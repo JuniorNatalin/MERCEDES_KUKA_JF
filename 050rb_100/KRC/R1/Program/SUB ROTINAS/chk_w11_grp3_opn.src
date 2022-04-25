@@ -1,0 +1,17 @@
+&ACCESS RVO4
+&COMMENT Axor 913 Z3.1
+DEF chk_w11_grp3_opn( )
+; Check gripper AXOR 913 OPEN Z3.1
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+WAIT FOR (NOT $IN[534])
+WAIT FOR ($IN[533])
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+END

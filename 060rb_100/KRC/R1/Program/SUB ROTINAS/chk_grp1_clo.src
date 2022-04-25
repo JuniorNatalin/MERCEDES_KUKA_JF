@@ -1,0 +1,47 @@
+&ACCESS RV2
+&REL 6
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\ExpertVorgabe
+&PARAM EDITMASK = *
+DEF chk_grp1_clo( )
+
+;FOLD ; Programa de verificacao de grampos Z1 fechado;%{PE}%R 4.1.16,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:Programa de verificacao de grampos Z1 fechado
+;ENDFOLD
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+;FOLD WAIT FOR IN 7 'grampo Z1.1 aberto'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:7, 3:'grampo Z1.1 aberto', 5:FALSE, 6:
+WAIT FOR $IN[7]==FALSE
+;ENDFOLD
+;FOLD WAIT FOR IN 9 'grampo Z1.2 aberto'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:9, 3:'grampo Z1.2 aberto', 5:FALSE, 6:
+WAIT FOR $IN[9]==FALSE
+;ENDFOLD
+;FOLD WAIT FOR IN 11 'grampo Z1.3 aberto'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:11, 3:'grampo Z1.3 aberto', 5:FALSE, 6:
+WAIT FOR $IN[11]==FALSE
+;ENDFOLD
+;FOLD WAIT FOR IN 13 'grampo Z1.4 aberto'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:13, 3:'grampo Z1.4 aberto', 5:FALSE, 6:
+WAIT FOR $IN[13]==FALSE
+;ENDFOLD
+;FOLD WAIT FOR IN 15 'grampo Z1.5 aberto'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:15, 3:'grampo Z1.5 aberto', 5:FALSE, 6:
+WAIT FOR $IN[15]==FALSE
+;ENDFOLD
+;FOLD WAIT FOR IN 8 'grampo Z1.1 fechado'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:8, 3:'grampo Z1.1 fechado', 5:TRUE, 6:
+WAIT FOR $IN[8]==TRUE
+;ENDFOLD
+;FOLD WAIT FOR IN 10 'grampo Z1.2 fechado'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:10, 3:'grampo Z1.2 fechado', 5:TRUE, 6:
+WAIT FOR $IN[10]==TRUE
+;ENDFOLD
+;FOLD WAIT FOR IN 12 'grampo Z1.3 fechado'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:12, 3:'grampo Z1.3 fechado', 5:TRUE, 6:
+WAIT FOR $IN[12]==TRUE
+;ENDFOLD
+;FOLD WAIT FOR IN 14 'grampo Z1.4 fechado'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:14, 3:'grampo Z1.4 fechado', 5:TRUE, 6:
+WAIT FOR $IN[14]==TRUE
+;ENDFOLD
+;FOLD WAIT FOR IN 16 'grampo Z1.5 fechado'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:16, 3:'grampo Z1.5 fechado', 5:TRUE, 6:
+WAIT FOR $IN[16]==TRUE
+;ENDFOLD
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+END

@@ -1,0 +1,84 @@
+&ACCESS  RV
+&USER PKL_AST
+&COMMENT daimler_automaticextern_library
+&PARAM DISKPATH = DAI
+&PARAM version = 2.0
+&REL 27
+DEFDAT  dai_sps_library
+
+
+;FOLD USER DECL
+; Please insert user defined declarations
+DECL STATE_T STAT
+DECL MODUS_T MODE
+DECL INT OFFSET,K,REP,INDEX
+DECL BOOL CALL_BY_SPS
+DECL BOOL EX_PROG_STOP
+DECL INT RedOverSave
+DECL INT SpsSubRunCount
+DECL BOOL LOOP_FIRED=TRUE
+;ENDFOLD (USER DECL)
+
+;FOLD WaitForStatusToPlc
+DECL BOOL Opt_With_Diag=TRUE
+DECL BOOL bDebug=TRUE
+
+
+SIGNAL WaitStatusToPlc $out[3222]  TO $out[3223] ;// Bit Range of Diag. Signals to PLC
+;DECL INT S_Count_Max=20
+DECL INT MaxR=2
+STRUC TApplicSign INT StartIO,EndIO,SendIO
+DECL TApplicSign ApplicSign[10]
+ApplicSign[1]={StartIO 1,EndIO 3200,SendIO 'B0001'} ;// $Out[3222] 
+ApplicSign[2]={StartIO 3201,EndIO 3500,SendIO 'B0010'} ;//$Out[3223]
+ApplicSign[3]={StartIO 0,EndIO 0,SendIO 'B0000'}
+ApplicSign[4]={StartIO 0,EndIO 0,SendIO 'B0000'}
+ApplicSign[5]={StartIO 0,EndIO 0,SendIO 'B0000'}
+ApplicSign[6]={StartIO 0,EndIO 0,SendIO 'B0000'}
+ApplicSign[7]={StartIO 0,EndIO 0,SendIO 'B0000'}
+ApplicSign[8]={StartIO 0,EndIO 0,SendIO 'B0000'}
+ApplicSign[9]={StartIO 0,EndIO 0,SendIO 'B0000'}
+ApplicSign[10]={StartIO 0,EndIO 0,SendIO 'B0000'}
+
+
+;//------ Runtime---------
+;DECL BOOL bDetect=FALSE
+;DECL INT S_Count_Act=0
+;DECL INT iSigNr=0
+;DECL CHAR StrWaitFor[120]
+;StrWaitFor[]=" "
+;//------ Runtime---------
+;ENDFOLD
+
+
+;FOLD DUPLICATE_IO V_3.01 ;%{E}
+; Vervielfaeltigung von Ein- / Ausgaengen auf Ausgaenge
+; Stand: 15.05.2000 / Wi
+;==================================
+; Userdefined Types 
+;==================================
+ENUM IO_TYP INP,OUTP
+ENUM INV_TYP Y,N
+STRUC SIGNAL_DUPL_TYP IO_TYP SRC_TYP,INT SRC_NO,INV_TYP INVERT,INT DST_NO
+;==================================
+; Userdefined Variables 
+;==================================
+;SRC_TYP: #INP,#OUTP: Art der Quelle (Eingang/Ausgang) 
+;SRC_NO : 1..4096   : Nummer des Quell-Eingangs/Ausgangs 
+;INVERT : #Y,#N     : Invertierung Ziel-Ausgang
+;DST_NO : 1..4096   : Nummer des Ziel-Ausgangs 
+;SRC_NO,DST_NO == 0 : nicht aktiv
+INT MAX_DUPL=10
+DECL SIGNAL_DUPL_TYP SIGNAL_DUPL[10]
+SIGNAL_DUPL[1]={SRC_TYP #INP,SRC_NO 0,INVERT #N,DST_NO 0}
+SIGNAL_DUPL[2]={SRC_TYP #INP,SRC_NO 0,INVERT #N,DST_NO 0}
+SIGNAL_DUPL[3]={SRC_TYP #INP,SRC_NO 0,INVERT #N,DST_NO 0}
+SIGNAL_DUPL[4]={SRC_TYP #INP,SRC_NO 0,INVERT #N,DST_NO 0}
+SIGNAL_DUPL[5]={SRC_TYP #INP,SRC_NO 0,INVERT #N,DST_NO 0}
+SIGNAL_DUPL[6]={SRC_TYP #OUTP,SRC_NO 0,INVERT #N,DST_NO 0}
+SIGNAL_DUPL[7]={SRC_TYP #OUTP,SRC_NO 0,INVERT #N,DST_NO 0}
+SIGNAL_DUPL[8]={SRC_TYP #OUTP,SRC_NO 0,INVERT #N,DST_NO 0}
+SIGNAL_DUPL[9]={SRC_TYP #OUTP,SRC_NO 0,INVERT #N,DST_NO 0}
+SIGNAL_DUPL[10]={SRC_TYP #OUTP,SRC_NO 0,INVERT #N,DST_NO 0}
+;ENDFOLD
+ENDDAT

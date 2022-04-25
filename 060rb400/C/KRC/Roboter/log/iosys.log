@@ -1,0 +1,13 @@
+KUKA IOSYS LOGFILE
+------------------
+Log Date 6.8.20 : 07:32
+
+open ini-file successful, version 2.00
+
+driver INTERBUS information
+  object file    
+  driver ready   1
+  driver version 0129
+  function entry 
+  input  objects 54
+  output objects 52

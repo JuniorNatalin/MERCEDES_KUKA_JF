@@ -1,0 +1,110 @@
+&ACCESS RVP
+&REL 14
+&COMMENT ACCELO BOLHA
+&PARAM DISKPATH = KRC:\R1\Program
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF hp010( )
+;FOLD INI
+  ;FOLD BASISTECH INI
+    GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM ( )
+    INTERRUPT ON 3 
+    BAS (#INITMOV,0 )
+  ;ENDFOLD (BASISTECH INI)
+;FOLD GRIPPERTECH INI
+USER_GRP(0,DUMMY,DUMMY,GDEFAULT)
+;ENDFOLD (GRIPPERTECH INI)
+  ;FOLD USER INI
+     ;FOLD COLLISION_V_3.01 INI ;%{E}
+        IF (COLLISION_DATA[1].I_NR>0) THEN
+          GLOBAL INTERRUPT DECL 21 WHEN $IN[COLLISION_DATA[1].I_NR]==FALSE DO COLLSTOP (1,0 )
+        ENDIF
+        IF (COLLISION_DATA[2].I_NR>0) THEN
+          GLOBAL INTERRUPT DECL 22 WHEN $IN[COLLISION_DATA[2].I_NR]==FALSE DO COLLSTOP (2,0 )
+        ENDIF
+        IF (COLLISION_DATA[3].I_NR>0) THEN
+          GLOBAL INTERRUPT DECL 23 WHEN $IN[COLLISION_DATA[3].I_NR]==FALSE DO COLLSTOP (3,0 )
+        ENDIF
+        IF (COLLISION_DATA[4].I_NR>0) THEN
+          GLOBAL INTERRUPT DECL 24 WHEN $IN[COLLISION_DATA[4].I_NR]==FALSE DO COLLSTOP (4,0 )
+        ENDIF
+     ;ENDFOLD (Collision)
+    ;Make your modifications here
+
+  ;ENDFOLD (USER INI)
+;ENDFOLD (INI)
+
+; Caracterização dos meios de produção:
+; Changes:  Accelo - HP007
+; Versão Atual:08/06/2013
+; Name: P13.050-R1
+
+chk_w8_wechs_ok ( )          ; CHECK TOOL CHANGE
+
+MBINI()
+
+;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
+$BWDSTART = FALSE
+PDAT_ACT=PDEFAULT
+FDAT_ACT=FHOME
+BAS (#PTP_PARAMS,100 )
+$H_POS=XHOME
+PTP  XHOME
+;ENDFOLD
+
+$TIMER[7]=0
+$TIMER_STOP[7]=FALSE
+
+wkz7_an_bolha()              ; Pega Gripper Traseira
+
+HO_ST600_R1_bolha()          ; Pega Traseira Accelo
+
+AB_ST600_R1_bolha()          ; Deposita Peca Geobox
+
+wkz7_ab_bolha()              ; Deposita Gripper Traseira
+
+wkz6_an()                    ; Pega Gripper Teto Accelo
+
+HO_ST600_R1_2()              ; Pega Teto ACCELO
+
+AB_ST600_R1_2()              ; Deposita Teto para R5
+
+wkz6_ab()                    ; Deposita Gripper do teto
+
+wkz2_an()                    ; Pega Pinca C1
+
+start_weld_geo()             ; Bit inicio solda geometria
+
+ps_ltc_geo_c1()              ; Solda Geometria C1
+
+wkz2_ab()                    ; Depositar Pinca C1
+
+wkz1_an()                    ; Pega Pinca X1
+
+ps_ltc_geo_x1()              ; Solda Geometria X1
+
+end_weld_geo()               ; Bit fim geometria
+
+start_weld_respot()          ; Bit inicio respot
+
+ps_ltc_res_x1()              ; Solda Respot X1
+
+end_weld_respot()
+
+MBINI_2()
+
+wkz1_ab()                    ; Deposita Pinca X1
+
+MBINI ( )                    ; Reset de bits
+
+$TIMER_STOP[7]=TRUE
+
+;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
+$BWDSTART = FALSE
+PDAT_ACT=PDEFAULT
+FDAT_ACT=FHOME
+BAS (#PTP_PARAMS,100 )
+$H_POS=XHOME
+PTP  XHOME
+;ENDFOLD
+END

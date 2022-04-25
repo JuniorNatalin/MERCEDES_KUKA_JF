@@ -1,0 +1,849 @@
+&ACCESS RVP1
+&REL 27
+&COMMENT daimler_automaticextern_library
+&USER PKL_AST
+&PARAM version = 2.0
+DEF DAI_SPS_Library( )
+; Ausgabe der Lade-Meldung....ohne Msg_library weil hier noch nicht geladen
+decl KrlMsg_t loadmessage
+decl KrlMsgPar_t LoadPar[3]
+decl KrlMsgOpt_t loadoptions
+decl int handle 
+loadmessage={modul[] "DAI_MSG_LIB",NR 12,msg_txt[] "DAI_MSG_L2"}
+handle=Set_KrlMsg(#notify,loadmessage,LoadPar[],loadoptions) 
+END  
+
+;
+; Haupt-Ini beim Start des Submits
+;
+;FOLD DAI_SPS_INI
+global DEF DAI_SPS_INI()
+	
+    
+
+;FOLD DAI_INIT
+      ;FOLD SpsSubStop4UpdateInit
+        SpsSubStop4Update=False
+        SpsSubStopped=False
+      ;ENDFOLD SpsSubStop4UpdateInit
+	
+	  		; AExtern-Init von Daimler
+        CALL_BY_SPS=FALSE
+        EX_PROG_STOP=FALSE
+        REP=0
+        P01_STEP=0
+        CHK_STEP=0
+        PGNO_FLAG=0
+        ERROR_FLAG=TRUE
+        RED_OVER_SAVE=0
+        
+        Kaltstart=True
+        if SpsSubRun <> 0 then  
+          $Out[SpsSubRun]=False
+          SpsSubRunCount=0
+        endif  
+;ENDFOLD (AExtern-Init von Daimler) 
+	       
+
+
+; User-Bereich um Events beim Start vom SPS.Sub zu machen
+dai_sps_init ()
+
+
+END
+;ENDFOLD
+
+;
+; Haupt-Loop des Submits
+;
+;FOLD DAI_SPS_LOOP
+GLOBAL DEF DAI_SPS_LOOP()
+	
+;FOLD Energieabschaltung 
+
+; Parametriert?
+if ((i_Energie_aktiv>0) and (i_Energie_deakt>0)) then
+
+	; Aktivieren?
+	if (i_Energie_aktiv>0) then
+    	$out[o_Energie_aktiv]=$in[i_Energie_aktiv] and (not $out[o_Energie_deakt]) and ($Brake_Sig==0) and IsInHome() and (not $PRO_ACT)
+  	endif
+  
+	; Deaktivieren?
+	if (i_Energie_deakt>0) then
+     $out[o_Energie_deakt]=$in[i_Energie_deakt] 
+  	endif  
+  
+endif
+
+  	; KUKA Energieabschaltung deaktiviert bis in FC180 implementiert --> FSE
+	;$OUT[3230]=true
+
+;ENDFOLD (Energieabschaltung)
+
+;FOLD KRF-Betriebsart
+	;$OUT[O_KRF] = (not $T1) and (not $T2) and  (not $AUT) and (not $EXT)
+;ENDFOLD
+
+
+	; Check Override for 100%
+   chk_max_speed()
+IF WithRDS then
+	; RDS-Daten senden
+   Send_RDS_Data()
+ endif  
+	; Aufruf fuer Technologien
+   DAI_TECH_LOOP()
+	
+	; Aufruf IO-Duplicate 
+	SPS_IO_DUPL ( )
+	
+	
+	 ; Verzoergungsaufrufe
+ 		iDelayCounter = iDelayCounter + 1 
+		 if iDelayCounter >= iDivisor then
+			iDelayCounter = 0
+			; Aufruf um die Visu-Bits zu senden
+			Send_Visu_Data()
+			; Aufruf für Meldungen an die PLC (Wartet auf Eingang X)
+ ;        WaitForStatusToPlc( )
+ 		endif
+
+
+
+; Abfrage ob Update gefahren wird ---> FSE
+				      ;FOLD SpsSubStop4UpdateLoop
+       if SpsSubStop4Update==True then
+         if (($PRO_STATE1==#P_END) or ($PRO_STATE1==#P_FREE) or ($PRO_STATE1==#P_RESET)) then
+           SpsSubStopped=True
+           Halt 
+           SpsSubStopped=false
+           SpsSubStop4Update=false
+         endif
+       endif
+      ;ENDFOLD (SpsSubStop4UpdateLoop)
+      
+ ; reduzierte Geschwindigkeit bei einer Suchbewegung
+;FOLD RedOverSave
+     RedOverSave = RED_OVER_SAVE  ;Globalen Wert in lokale Variable speichern
+     if ((RedOverSave > 0) and ($OV_PRO > RedOverSave)) then
+         $OV_PRO = RedOverSave
+         ;$LOOP_MSG[]="(RED_OVER_SAVE) Suchbeweg. akt. OV kann nicht erhoeht werden "
+         MsgLoop("CTRL_MSG10","DAI_MSG_LIB")
+     endif
+;ENDFOLD RedOverSave
+
+;FOLD AUTOEXT_DAIMLER
+		
+	; Fuer was ist das denn gut? --> FSE
+      if SpsSubRun <> 0 then
+        SpsSubRunCount=SpsSubRunCount+1
+        	if SpsSubRunCount>SpsSubRunCountMax then
+            	$Out[SpsSubRun] = not $Out[SpsSubRun]
+            	SpsSubRunCount=0
+        	endif
+      endif
+	
+      
+	
+	; Wenn Roboter auf "EXT" steht
+     IF ($MODE_OP==#EX) THEN
+        GhostOperation( ) 
+        SWITCH  $PRO_STATE1
+           CASE #P_END,#P_FREE
+              P00_SUBM (#INIT_EXT,#PGNO_GET )
+              IF IsInHome() THEN
+                 SPS_INI()
+              ENDIF
+              P00_SUBM (#EXT_PGNO,#PGNO_GET )
+              PRO_NAME1_L[]="        "
+              PRO_NAME1_A[]="        "
+              EX_PROG_STOP=FALSE
+              P00_SUBM (#EXT_PGNO,#PGNO_ACKN )
+              IF P01_STEP==3 THEN
+                 INDEX=FIND_INDEX(PGNO)
+                 IF (INDEX>0) THEN ;Prog-Nr in Tabelle gefunden
+                    OFFSET=0
+                     SWRITE(TMPNAME[],STAT,OFFSET,"RUN /R1/%s",SPS_PROG[INDEX].PROG_NAME[])
+                     CWRITE($CMD,STAT,MODE,TMPNAME[])
+                    WAIT SEC 0.2
+                   IF (($PRO_STATE1==#P_ACTIVE) AND (STAT.RET1==#CMD_OK)) THEN
+                    CALL_BY_SPS=TRUE
+                   ELSE
+                    ERROR_FLAG=FALSE
+                    P00_SUBM (#EXT_PGNO,#PGNO_FAULT )
+                   ENDIF
+                 ELSE
+                    ERROR_FLAG=FALSE
+                    P00_SUBM (#EXT_PGNO,#PGNO_FAULT )
+                 ENDIF
+              ENDIF
+           CASE #P_STOP,#P_RESET
+              IF APPL_RUN>0 THEN
+                 IF $OUT[APPL_RUN] THEN
+                    $OUT[APPL_RUN]=FALSE
+                 ENDIF
+              ENDIF
+              IF PROG_CONTROL THEN
+                 EX_PROG_STOP=TRUE
+              ENDIF
+           CASE #P_ACTIVE
+              IF APPL_RUN>0 THEN
+                 IF  NOT $OUT[APPL_RUN] THEN
+                    $OUT[APPL_RUN]=TRUE
+                 ENDIF
+              ENDIF
+              IF CALL_BY_SPS THEN
+                 OFFSET=0
+                 SREAD($PRO_NAME1[],STAT,OFFSET,"%s",PRO_NAME1_L[])
+                 CALL_BY_SPS=FALSE
+              ENDIF
+              IF EX_PROG_STOP THEN
+                 OFFSET=0
+                 SREAD($PRO_NAME1[],STAT,OFFSET,"%s",PRO_NAME1_A[])
+                 FOR K=1 TO  8
+                    IF PRO_NAME1_L[K]<>PRO_NAME1_A[K] THEN
+                       ;$LOOP_MSG[]="Programm wurde nicht von der SPS angewaehlt !"
+                        MsgLoop("CTRL_MSG11","DAI_MSG_LIB")
+                       ERROR_FLAG=FALSE
+                       CWRITE($CMD,STAT,MODE,"STOP 1")
+                       EXIT
+                    ENDIF
+                 ENDFOR
+                 EX_PROG_STOP=FALSE
+              ENDIF
+        ENDSWITCH
+     ELSE
+        IF (($MODE_OP==#T1) OR ($MODE_OP==#T2) OR ($MODE_OP==#AUT)) THEN
+           IF (PGNO_REQ>0) THEN
+              $OUT[PGNO_REQ]=FALSE
+           ENDIF
+           IF (PGNO_REQ<0) THEN
+              $OUT[-PGNO_REQ]=TRUE
+           ENDIF
+           IF ERROR_FLAG==FALSE THEN
+              ;$LOOP_MSG[]="                                                                "
+              MsgLoop(" "," ")
+              ERROR_FLAG=TRUE
+              P01_STEP=0
+              CHK_STEP=0
+           ENDIF
+        ENDIF
+     ENDIF
+     ;ENDFOLD (AUTOEXT_DAIMLER)
+	
+END
+;ENDFOLD
+
+;
+; Hilfsfunktion fuer die Abfrage ob der Roboter in Home steht
+;
+;FOLD IsInHome
+ Global DefFct Bool IsInHome()
+  Decl Bool HomeStatus
+	switch MaxHome
+	    case 1 
+	       HomeStatus=$IN_Home or $IN_Home5
+	    case 2
+	       HomeStatus=$IN_Home or $IN_HOME1 or $IN_Home5
+	    case 3
+	       HomeStatus=$IN_Home or $IN_HOME1 or $IN_HOME2 or $IN_Home5
+		default
+	       HomeStatus=False
+	endswitch	  
+  return(HomeStatus) 
+ EndFct
+;ENDFOLD (IsInHome)
+
+;
+; IO-Duplicate für die IBN (eigentlich nicht mehr benötigt)
+;
+;FOLD SPS_IO_DUPL
+DEF  SPS_IO_DUPL ( )
+      ; Vervielfaeltigung von Ein- / Ausgaengen auf Ausgaenge
+      ; Version: V1.1
+      ; Stand: 29.05.99 / RW
+      INT I
+      FOR I=1 TO  MAX_DUPL
+    IF ((SIGNAL_DUPL[I].SRC_NO>0) AND (SIGNAL_DUPL[I].SRC_NO<=4096) AND (SIGNAL_DUPL[I].DST_NO>0) AND (SIGNAL_DUPL[I].DST_NO<=4096)) THEN
+       SWITCH  SIGNAL_DUPL[I].SRC_TYP
+       CASE #INP
+          SWITCH  SIGNAL_DUPL[I].INVERT
+          CASE #N
+        $OUT[SIGNAL_DUPL[I].DST_NO]=$IN[SIGNAL_DUPL[I].SRC_NO]
+          CASE #Y
+        $OUT[SIGNAL_DUPL[I].DST_NO]= NOT $IN[SIGNAL_DUPL[I].SRC_NO]
+          DEFAULT
+        ;$LOOP_MSG[]="Projektierungsfehler INVERT in IO-Duplizierung"
+        MsgLoop("CTRL_MSG12","DAI_MSG_LIB")
+        HALT
+        ;$LOOP_MSG[]="                                                                "
+        MsgLoop(" "," ")  
+          ENDSWITCH ;SIGNAL_DUPL[I].INVERT
+       CASE #OUTP
+          SWITCH  SIGNAL_DUPL[I].INVERT
+          CASE #N
+        $OUT[SIGNAL_DUPL[I].DST_NO]=$OUT[SIGNAL_DUPL[I].SRC_NO]
+          CASE #Y
+        $OUT[SIGNAL_DUPL[I].DST_NO]= NOT $OUT[SIGNAL_DUPL[I].SRC_NO]
+          DEFAULT
+        ;$LOOP_MSG[]="Projektierungsfehler INVERT in IO-Duplizierung"
+        MsgLoop("CTRL_MSG12","DAI_MSG_LIB")
+        HALT
+        ;$LOOP_MSG[]="                                                                "
+        MsgLoop(" "," ") 
+          ENDSWITCH ;SIGNAL_DUPL[I].INVERT
+       DEFAULT
+          ;$LOOP_MSG[]="Projektierungsfehler SRC_TYP in IO-Duplizierung"
+          MsgLoop("CTRL_MSG13","DAI_MSG_LIB")
+          HALT
+          ;$LOOP_MSG[]="                                                                "
+            MsgLoop(" "," ")
+       ENDSWITCH ;SIGNAL_DUPL[I].SRC_TYP
+    ELSE
+       IF ((SIGNAL_DUPL[I].SRC_NO<>0) OR (SIGNAL_DUPL[I].DST_NO<>0)) THEN
+          ;$LOOP_MSG[]="Projektierungsfehler SRC_NO oder DST_NO in IO-Duplizierung"
+          MsgLoop("CTRL_MSG14","DAI_MSG_LIB")
+          HALT
+          ;$LOOP_MSG[]="                                                                "
+          MsgLoop(" "," ")
+       ENDIF ;((SIGNAL_DUPL[I].SRC_NO<>0) OR ...
+    ENDIF ;((SIGNAL_DUPL[I].SRC_NO>0) AND ...
+      ENDFOR ;I=1 TO ...
+   END
+;ENDFOLD
+
+;
+;Hilfsfunktion um das richtige Hauptprogramm im der config.dat zu finden
+;
+ ;FOLD FIND_INDEX
+   DEFFCT  INT FIND_INDEX(PGNO :IN)
+      INT PGNO,II
+      FOR II=1 TO  MAX_SPS_PROG
+    IF SPS_PROG[II].PROG_NR==PGNO THEN
+       RETURN  II
+    ENDIF
+      ENDFOR
+      RETURN  0
+   ENDFCT
+ ;ENDFOLD (FIND_INDEX)
+
+
+
+ 
+; 
+; AExtern Auswahl Programmnummer AExtern
+;
+;FOLD POO_SUBM
+global DEF  P00_SUBM (COMMAND :IN,PGNO_FUNCT :IN )
+;Version: D-WOERTH V1.01
+;         KUKA SW5.x.x und SW8.x.x
+;         13.05.2010 Schindler
+;         LOOP_MSG wird nur einmal gesetzt
+;----------------------------
+;Version: D-WOERTH_Mod_Sifi
+;         KUKA SW8.x.x
+;         6.12.2010
+;         APPL_RUN wird auf TRUE gesetzt SN155_SN156
+;         Message p01_MSG 1- 12 entf�llt
+; IF $IN_HOME==FALSE THEN ge�ndert SN396
+;----------------------------
+
+DECL P00_COMMAND COMMAND
+DECL FUNCT_TYPE PGNO_FUNCT
+
+SWITCH  COMMAND
+CASE #INIT_EXT
+IF ERROR_FLAG==TRUE THEN
+$H_POS=XHOME
+CHK_HOME ( )
+INIT_EXT ( )
+ENDIF
+CASE #EXT_PGNO
+IF (ERROR_FLAG==FALSE) AND (CHK_STEP==2) THEN
+EXT_PGNO (PGNO_FUNCT )
+ENDIF
+ENDSWITCH
+END
+
+; AExtern Initialisieren 
+DEF  INIT_EXT ( )
+;********************************
+; Function: initializing of the
+;           external interface
+;********************************
+PGNO_ERROR=0
+ERROR_FLAG=FALSE
+LOOP_FIRED=FALSE
+;********************************
+;INIT PGNO_REQ UND APPL_RUN
+;********************************
+IF (PGNO_REQ>0) THEN
+$OUT[PGNO_REQ]=FALSE
+ENDIF
+IF (PGNO_REQ<0) THEN
+$OUT[-PGNO_REQ]=TRUE
+ENDIF
+IF (APPL_RUN>0) THEN
+$OUT[APPL_RUN]=FALSE
+ENDIF
+
+SWITCH  PGNO_TYPE
+;*********************************************************
+CASE 1,2 ;bci-coding,bcd-coding
+;*********************************************************
+;***** CHECK PGNO_LENGTH *****
+IF (PGNO_LENGTH<1) THEN
+ERROR_FLAG=TRUE ;pgno_length
+P01_MSG (2 )
+ENDIF
+IF (PGNO_TYPE==1) THEN ;bci-coding
+IF (PGNO_LENGTH>16) THEN
+ERROR_FLAG=TRUE ;pgno_length
+P01_MSG (2 )
+ENDIF
+ENDIF
+IF (PGNO_TYPE==2) THEN ;bcd-coding
+SWITCH  PGNO_LENGTH
+CASE 4,8,12,16
+DEFAULT
+ERROR_FLAG=TRUE ;pgno_length
+P01_MSG (3 )
+ENDSWITCH
+ENDIF
+;***** CHECK PGNO_FBIT *****
+IF (PGNO_FBIT<1) THEN
+ERROR_FLAG=TRUE ;pgno_fbit
+P01_MSG (4 )
+ENDIF
+;***** CHECK PGNO_REQ *****
+IF (PGNO_REQ==0) THEN
+ERROR_FLAG=TRUE ;pgno_req
+P01_MSG (7 )
+ENDIF
+IF (PGNO_REQ>0) THEN ;active high
+$OUT[PGNO_REQ]=FALSE ;reset
+WAIT SEC 0.2 ;delay for plc
+ENDIF
+IF (PGNO_REQ<0) THEN ;active low
+$OUT[PGNO_REQ*(-1)]=TRUE ;reset
+WAIT SEC 0.2 ;delay for plc
+ENDIF
+;*********************************************************
+CASE 3 ;one out of n
+;*********************************************************
+;***** CHECK PGNO_LENGTH *****
+IF (PGNO_LENGTH<1) THEN
+ERROR_FLAG=TRUE ;pgno_length
+P01_MSG (2 )
+ENDIF
+IF (PGNO_LENGTH>16) THEN
+ERROR_FLAG=TRUE ;pgno_length
+P01_MSG (2 )
+ENDIF
+;***** CHECK PGNO_FBIT *****
+IF (PGNO_FBIT<1) THEN
+ERROR_FLAG=TRUE ;pgno_fbit
+P01_MSG (4 )
+ENDIF
+
+;*********************************************************
+DEFAULT ;PGNO_TYPE wrong type
+;*********************************************************
+ERROR_FLAG=TRUE ;pgno_type
+P01_MSG (1 )
+ENDSWITCH
+;***********************************************************
+END
+
+; AExtern Handshake
+DEF  EXT_PGNO (FUNCT :out)
+;********************************
+; Function: communication program
+;           for external mode
+;********************************
+DECL FUNCT_TYPE FUNCT
+INT I,J,K,L,M,N
+BOOL P_RECV
+BOOL P_CALC
+J=1
+K=0
+L=1
+P_RECV=FALSE
+P_CALC=FALSE
+IF (APPL_RUN>0) AND (P01_STEP<>3) THEN
+$OUT[APPL_RUN]=FALSE
+ENDIF
+SWITCH  FUNCT
+;*******************
+CASE #PGNO_ACKN
+;*******************
+IF (PGNO_REQ>0) AND (P01_STEP==3) THEN
+$OUT[PGNO_REQ]=FALSE
+ENDIF
+IF (PGNO_REQ<0) AND (P01_STEP==3) THEN
+$OUT[PGNO_REQ*(-1)]=TRUE
+ENDIF
+
+;IF (APPL_RUN>0) AND (P01_STEP==3) THEN; Aenderung 20.02.2009
+;$OUT[APPL_RUN]=TRUE; Aenderung 20.02.2009
+;ENDIF; Aenderung 20.02.2009
+;*******************
+CASE #PGNO_GET
+;*******************
+SWITCH  PGNO_TYPE
+;*******************
+CASE 1,2
+;*******************
+SWITCH  P01_STEP
+CASE 0
+IF PGNO_VALID>0 THEN
+IF $IN[PGNO_VALID]==FALSE THEN
+P01_STEP=1
+;$LOOP_MSG[]="                                                      "
+MsgLoop(" "," ")
+ELSE
+;$LOOP_MSG[]="Wait For $Input[PGNO_VALID]==FALSE"
+MsgLoop("CTRL_MSG15","DAI_MSG_LIB")
+ENDIF
+ELSE
+IF PGNO_VALID<0 THEN
+IF $IN[PGNO_VALID*(-1)]==TRUE THEN
+P01_STEP=1
+;$LOOP_MSG[]="                                                     "
+MsgLoop(" "," ")
+ELSE
+;$LOOP_MSG[]="Wait For $Input[PGNO_VALID]==TRUE"
+MsgLoop("CTRL_MSG17","DAI_MSG_LIB")
+ENDIF
+ELSE
+IF PGNO_VALID==0 THEN
+IF $EXT_START==FALSE THEN
+P01_STEP=1
+;$LOOP_MSG[]="                                                      "
+MsgLoop(" "," ")
+ELSE
+;$LOOP_MSG[]="Wait For $EXT_START==FALSE"
+MsgLoop("CTRL_MSG16","DAI_MSG_LIB")
+ENDIF
+ENDIF
+ENDIF
+ENDIF
+CASE 1
+IF PGNO_REQ>0 THEN
+$OUT[PGNO_REQ]=TRUE
+P01_STEP=2
+ELSE
+IF PGNO_REQ<0 THEN
+$OUT[PGNO_REQ*(-1)]=FALSE
+P01_STEP=2
+ENDIF
+ENDIF
+CASE 2
+IF PGNO_VALID>0 THEN
+IF $IN[PGNO_VALID]==TRUE THEN
+P01_STEP=3
+;$LOOP_MSG[]="                                                      "
+MsgLoop(" "," ")
+LOOP_FIRED=FALSE
+ELSE
+IF NOT LOOP_FIRED THEN
+;$LOOP_MSG[]="Wait For $Input[PGNO_VALID]==TRUE"
+MsgLoop("CTRL_MSG17","DAI_MSG_LIB")
+LOOP_FIRED=TRUE
+ENDIF
+ENDIF
+ELSE
+IF PGNO_VALID<0 THEN
+IF $IN[PGNO_VALID*(-1)]==FALSE THEN
+P01_STEP=3
+;$LOOP_MSG[]="                                                      "
+MsgLoop(" "," ")
+ELSE
+;$LOOP_MSG[]="Wait For $Input[PGNO_VALID]==FALSE"
+MsgLoop("CTRL_MSG15","DAI_MSG_LIB")
+ENDIF
+ELSE
+IF PGNO_VALID==0 THEN
+IF $EXT_START==TRUE THEN
+P01_STEP=3
+;$LOOP_MSG[]="                                                       "
+MsgLoop(" "," ")
+ELSE
+;$LOOP_MSG[]="Wait For $EXT_START==TRUE"
+MsgLoop("CTRL_MSG18","DAI_MSG_LIB")
+ENDIF
+ENDIF
+ENDIF
+ENDIF
+CASE 3
+P01_STEP=0
+DEFAULT
+ENDSWITCH
+
+PGNO=0
+SWITCH  PGNO_TYPE
+;*******************
+CASE 1
+;*******************
+FOR I=0 TO  PGNO_LENGTH-1
+IF $IN[PGNO_FBIT+I] THEN
+PGNO=PGNO+J
+ENDIF
+J=J*2
+ENDFOR
+;*******************
+CASE 2
+;*******************
+FOR I=0 TO  PGNO_LENGTH-1  STEP  4
+N=0
+J=1
+FOR M=I TO  I+3
+IF $IN[PGNO_FBIT+M] THEN
+N=N+J
+ENDIF
+J=J*2
+ENDFOR
+IF (N>9) THEN
+PGNO_ERROR=2
+PGNO=0
+EXIT
+ELSE
+PGNO=PGNO+N*L
+L=L*10
+ENDIF
+ENDFOR
+ENDSWITCH
+
+IF P01_STEP==3 THEN
+PGNO_FLAG=PGNO
+ENDIF
+IF (PGNO_ERROR<>2) THEN
+IF (PGNO_PARITY>0) THEN
+P_RECV=$IN[PGNO_PARITY]
+FOR I=0 TO  PGNO_LENGTH-1
+P_CALC=P_CALC EXOR $IN[PGNO_FBIT+I]
+ENDFOR
+IF (P_RECV<>P_CALC) THEN
+PGNO=0
+PGNO_ERROR=1
+ELSE
+PGNO_ERROR=0
+ENDIF
+ENDIF
+IF (PGNO_PARITY<0) THEN
+P_RECV=$IN[PGNO_PARITY*(-1)]
+FOR I=0 TO  PGNO_LENGTH-1
+P_CALC=P_CALC EXOR $IN[PGNO_FBIT+I]
+ENDFOR
+IF (P_RECV<> NOT (P_CALC)) THEN
+PGNO=0
+PGNO_ERROR=1
+ELSE
+PGNO_ERROR=0
+ENDIF
+ENDIF
+ENDIF
+;*******************
+CASE 3
+;*******************
+SWITCH  P01_STEP
+CASE 0
+IF PGNO>0 THEN
+PGNO_FLAG=PGNO ;remember old program number
+IF $IN[PGNO_FBIT+PGNO-1]==FALSE THEN
+P01_STEP=2
+ELSE
+;$LOOP_MSG[]="Wait for $Input[PGNO_FBIT+PGNO-1]==FALSE"
+MsgLoop("CTRL_MSG19","DAI_MSG_LIB")
+P01_STEP=1
+ENDIF
+ELSE
+P01_STEP=2
+ENDIF
+CASE 1
+IF $IN[PGNO_FBIT+PGNO_FLAG-1]==FALSE THEN
+;$LOOP_MSG[]="                                                             "
+MsgLoop(" "," ")
+P01_STEP=2
+ELSE
+;$LOOP_MSG[]="Wait for $Input[PGNO_FBIT+PGNO-1]==FALSE"
+MsgLoop("CTRL_MSG19","DAI_MSG_LIB")
+ENDIF
+CASE 2
+K=0
+IF $IN[PGNO_FBIT+PGNO_FLAG-1]==FALSE THEN
+FOR I=0 TO  PGNO_LENGTH-1
+IF $IN[PGNO_FBIT+I] THEN
+IF K==0 THEN
+K=I+1
+ELSE
+PGNO_ERROR=0
+K=0
+ENDIF
+ENDIF
+ENDFOR
+ELSE
+P01_STEP=1
+ENDIF
+PGNO=K
+IF PGNO<>0 THEN
+P01_STEP=3
+ENDIF
+CASE 3
+P01_STEP=0
+ENDSWITCH
+ENDSWITCH
+;***********************************************************
+CASE #PGNO_FAULT
+;***********************************************************
+IF PGNO_ERROR==1 THEN
+P01_MSG (10 )
+ENDIF
+IF PGNO_ERROR==2 THEN
+P01_MSG (12 )
+ENDIF
+IF PGNO_ERROR==0 THEN
+IF (PGNO_TYPE==3) THEN
+P01_MSG (15 )
+ELSE
+IF $PERI_RDY AND $MOVE_ENABLE THEN ;17_01_2002
+P01_MSG (11 )
+ELSE
+IF NOT $PERI_RDY THEN
+P01_MSG (14 )
+ENDIF
+IF NOT $MOVE_ENABLE THEN
+P01_MSG (13 )
+ENDIF
+ENDIF
+ENDIF
+ENDIF
+PGNO_ERROR=0
+IF (PGNO_REQ>0) THEN
+$OUT[PGNO_REQ]=FALSE
+ENDIF
+IF (PGNO_REQ<0) THEN
+$OUT[PGNO_REQ*(-1)]=TRUE
+ENDIF
+;WAIT SEC 0.5
+;IF PGNO_TYPE<>3 THEN
+;  P01_STEP=3
+;ENDIF
+ENDSWITCH
+END
+
+;von P00_Subm aufgerufen --> Abfrage ob Roboter in Home
+DEF  CHK_HOME ( )
+SWITCH  CHK_STEP
+CASE 0
+IF IsInHome()==FALSE THEN
+CHK_STEP=1
+;$LOOP_MSG[]="Robot not in Home-Position!"
+MsgLoop("CTRL_MSG20","DAI_MSG_LIB")
+ELSE
+CHK_STEP=2
+ENDIF
+CASE 1
+ERROR_FLAG=TRUE
+IF IsInHome()==TRUE THEN
+;$LOOP_MSG[]="                                                     "
+MsgLoop(" "," ")
+CHK_STEP=2
+ENDIF
+ENDSWITCH
+END
+
+; Fehlermeldungen waehrend der Programmanwahl
+DEF  P01_MSG (MSG_NR :IN )
+DECL INT MSG_NR
+
+SWITCH  MSG_NR
+CASE 1
+;$MSG_T.KEY[]="PgNo_TypeWrong"
+MsgLoop("CTRL_MSG50","DAI_MSG_LIB")
+CASE 2
+;$MSG_T.KEY[]="PgNo_LengthTooSmall"
+MsgLoop("CTRL_MSG51","DAI_MSG_LIB")
+CASE 3
+;$MSG_T.KEY[]="PgNo_LengthWrong"
+MsgLoop("CTRL_MSG52","DAI_MSG_LIB")
+CASE 4
+;$MSG_T.KEY[]="PgNo_FBitWrong"
+MsgLoop("CTRL_MSG53","DAI_MSG_LIB")
+CASE 7
+;$MSG_T.KEY[]="PgNo_ReqWrong"
+MsgLoop("CTRL_MSG54","DAI_MSG_LIB")
+CASE 10
+;$MSG_T.KEY[]="ParityFault"
+;OFFSET=0
+;SWRITE($MSG_T.PARAM[],STATE,OFFSET,"%d",PGNO)
+MsgLoop("CTRL_MSG55","DAI_MSG_LIB")
+CASE 11
+;$MSG_T.KEY[]="ProgramNotAvailable"
+;OFFSET=0
+;SWRITE($MSG_T.PARAM[],STATE,OFFSET,"%d",PGNO)
+MsgLoop("CTRL_MSG56","DAI_MSG_LIB")
+CASE 12
+;$MSG_T.KEY[]="BCDCodeError"
+;OFFSET=0
+;SWRITE($MSG_T.PARAM[],STATE,OFFSET,"%d",PGNO)
+MsgLoop("CTRL_MSG57","DAI_MSG_LIB")
+CASE 13 ;17_01_2002
+;$MSG_T.KEY[]="SelectionRequiresMoveEnable"
+MsgLoop("CTRL_MSG58","DAI_MSG_LIB")
+CASE 14
+;$MSG_T.KEY[]="SelectionRequiresDrivesOn"
+MsgLoop("CTRL_MSG59","DAI_MSG_LIB")
+CASE 15
+;$MSG_T.KEY[]="ProgNumberWrong"
+MsgLoop("CTRL_MSG60","DAI_MSG_LIB")
+ENDSWITCH
+
+END
+;ENDFOLD
+
+;
+; Housekeeping / Wird durchgeführt wenn der Roboter in Home steht
+;
+;FOLD SPS_INI
+Def SPS_INI()
+DECL INT I   
+
+   
+;COLLISION_V_3.01
+COLLSTOP (0,3 ) ;Initialisierung Verriegelung
+
+if Kaltstart then
+;Aktion nur bei Kaltstart
+
+  Kaltstart=False
+endif
+
+
+; Aufruf Tech-HousKeeping
+user_sps_ini()
+
+
+END
+;ENDFOLD
+
+;
+; Funktion die schaut ob der Override auf 100% steht
+;
+;FOLD CHK_MAX_SPEED
+DEF CHK_MAX_SPEED()
+
+if ($ov_pro>=99) and $ext then
+$OUT[O_max_speed]=true
+else
+$OUT[O_max_speed]=false
+endif
+
+end
+;ENDFOLD
+
+
+;
+; WaitFor-Status
+;

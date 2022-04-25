@@ -1,0 +1,28 @@
+&ACCESS R
+&REL 5
+&COMMENT BasisDruck V1.00
+DEF BasisDruck(GUNNR : IN)
+ DECL INT GUNNR
+;Basisdruck für Schweisszange einstellen
+ SIGNAL O_PROGRAMM_A $OUT[233]  TO $OUT[240]
+ SIGNAL O_PROGRAMM_B $OUT[257]  TO $OUT[288]
+ SIGNAL O_PROGRAMM_C $OUT[1023]  TO $OUT[1023]
+ SIGNAL O_PROGRAMM_D $OUT[1023]  TO $OUT[1023]
+ DECL INT DUMMY
+ DECL MSG_TXT_TYP BD_ERROR
+ BD_ERROR={MSGTXT[] "Ungueltige Schweisskofferparametrierung                     "}
+   
+   SWITCH  ZANGE[GUNNR].VSST
+   CASE 1
+      O_PROGRAMM_A=0 ;PROG.fuer Basisdruck SST1
+   CASE 2
+      O_PROGRAMM_B=0 ;PROG.fuer Basisdruck SST2
+   CASE 3
+      O_PROGRAMM_C=0 ;PROG.fuer Basisdruck SST3
+   CASE 4
+      O_PROGRAMM_D=0 ;PROG.fuer Basisdruck SST4
+   DEFAULT
+      ;Ungueltige Schweisskofferparametrierung
+      MSG_TEXT(BD_ERROR,#QUIT,DUMMY)
+   ENDSWITCH
+END

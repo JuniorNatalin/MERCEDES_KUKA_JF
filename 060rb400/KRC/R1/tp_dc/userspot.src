@@ -1,0 +1,2547 @@
+&ACCESS RVO14
+&REL 639
+&COMMENT MB-SpotWeld V4.14U
+DEF userspot(CMD :IN,S :IN )
+  DECL S_COMMAND CMD
+  DECL SPOT_TYPE S
+  INT DUMMY
+  BOOL BRESULT
+  decl MSG_TXT_TYP DresEr
+  ;!==================================================
+  ;! (C) Daimler AG
+  ;!
+  ;! Programm : USERSPOT.SRC
+  ;! Funktion : Punktschweissprogramm Ver. 4.xx
+  ;!==================================================
+  ;!   Version 4.15 JDF 
+  ;!     Aenderungsstand 2012-08-06 @B.ST.
+  ;!     -  conf. to JDF Standard KRC1 Reuse
+  ;!======================================================  
+  ;Fold
+  ;!   Version 4.14U
+  ;!     Aenderungsstand 2011-11-26 @B.ST.
+  ;!     -  Bugfix TipDress  RunTime Monitoring
+  ;!==================================================
+  ;!   Version 4.12
+  ;!     Aenderungsstand 2011-06-09 @B.ST.
+  ;!     -  Bugfix Fraesanfrage
+  ;!======================================================
+
+  ;!  Version 4.11
+  ;!     Aenderungsstand 2010-10-25 @B.ST.
+  ;!     -  Ghost integriert
+  ;!======================================================
+  ;!   Version 4.09
+  ;!     Aenderungsstand 28.04.2005 (Tobias Breitmaier DC-Sifi Tel:70512)
+  ;!     - Abfrage beim Start ob KEIN FK anliegt
+  ;!     - Start schweissen laenger stehen lassen fuer SPS
+  ;!     - Merker Fraesanforderung ueberarbeiten
+  ;!======================================================
+  ;!   Version 4.08
+  ;!     Aenderungsstand 11.10.2004 (Harry Konz DC-Sifi Tel:64913)
+  ;!     - Kontrollschweissung
+  ;!======================================================
+  ;!   Version 4.07
+  ;!     Aenderungsstand 11.02.2004 (Harry Konz DC-Sifi Tel:64913)
+  ;!     - Ausgang O_MSTRO (mit Zuendung verlegt)
+  ;!======================================================
+  ;!   Version 4.06
+  ;!     Aenderungsstand 05.02.2004 (Harry Konz DC-Sifi Tel:64913)
+  ;!     - WaitMaxStandmenge erweitert (Ausgang O_KappenWechselPos und Halt)
+  ;!======================================================
+  ;!   Version 4.05
+  ;!     Aenderungsstand 22.01.2004 (Tobias Breitmaier DC-Sifi Tel:70512)
+  ;!     - Fraesen geaendert
+  ;!======================================================
+  ;!   Version 4.04
+  ;!     Aenderungsstand 17.11.2003 (Harry Konz DC-Sifi Tel:64913)
+  ;!     - Vorhub geändert (O_VH_ZU, O_VH_AUF)
+  ;!     - Ermittlung Zangennummer (GetGunNr) geändert
+  ;!     - Überprüfung Zangenanzahl im Initteil geändert wegen Doppelzangen
+  ;!======================================================
+  ;!   Version 4.02
+  ;!     Aenderungsstand 11.03.2002 (Tobias Breitmaier DC-Sifi Tel:70512)
+  ;!     - Abänderung der SST auf neue Bosch-Schränke mit integrierter Fräsansteuerung
+  ;!        => Projektstand BR219
+  ;!======================================================
+  ;!   Version 4.01
+  ;!     Aenderungsstand 07.05.2002 (Bernd Steffens DB-Bremen Tel:6652)
+  ;!    - Fraesapplikation Aufruf über Inlineformular
+  ;!    - Fraesapplikation Proceduren getrennt "Twin/Single"
+  ;!    - Fraesapplikation Zuweisung Parameter korrospondiert mit
+  ;!      Zange[].Elektrode
+  ;!    - Fraesapplikation Fraesen in Steps optional
+  ;!    - Fraesapplikation Parametersatz fuer Twin integriert
+  ;!    - Fraesapplikation Procedur Ueberwachung Laufzeit Motor integriert
+  ;!    - Anzahl Punktwiederholung parametrierbar
+  ;!    - Ghostmodus integriert
+  ;!    - Inlineform. "GUN" korrospondiert mit Index Feld ZANGE
+  ;!    - C-Vorhubzg. Vorh.-auf -> Schweissh. start nach Abfr. Vorh. zu
+  ;!======================================================
+  ;!   Version 3.13
+  ;!     Aenderungsstand 04.03.2002 (Harry Konz   64913)
+  ;!    - Abfrage Fraeser dreht geaendert
+  ;!    - Quittierung Fraesen nur wenn auch gefraesst wurde
+  ;!======================================================
+  ;!   Version 3.12
+  ;!     Aenderungsstand 01.02.2002 (Harry Konz   43596)
+  ;!    - Funktionen zur Abfrage der Maximalen Standmenge
+  ;!        global DEFFCT BOOL MaxStandMenge(GUNNR : int)
+  ;!        global DEF WaitMaxStandMenge(Status : bool, GUNNR : int)
+  ;!======================================================
+  ;!   Version 3.11
+  ;!     Aenderungsstand 07.11.2001 (Harry Konz   43596)
+  ;!    - Fraesmotor wird sofort abgeschaltet wenn er klemmt
+  ;!    - Im UP Disp_MSG werden die Strings mit SWRITE kopiert
+  ;!    - Wenn HaltNachPunkt angewählt ist, wird der
+  ;!       Strömungswächter nicht abgefragt
+  ;!======================================================
+  ;!   Version 3.10
+  ;!     Aenderungsstand 05.11.2001 (Harry Konz   43596)
+  ;!    - Fraesanforderung über Merker
+  ;!    - neues UP (ElektrodenWechsel) zum prüfen ob Elektroden
+  ;!       gewechselt wurden
+  ;!    - O_QFRAES wird erst zurückgesetzt wenn I_Fraesen auf FALSE
+  ;!======================================================
+  ;!   Version 3.09
+  ;!     Aenderungsstand 08.10.2001 (Harry Konz   43596)
+  ;!    - Fraesanforderung als globale Funktion
+  ;!    - OPT_MIT_STR wird im Initteil überwacht
+  ;!======================================================
+  ;!   Version 3.08
+  ;!     Testversion
+  ;!======================================================
+  ;!   Version 3.06/07
+  ;!     Aenderungsstand 09.08.2001 (Harry Konz   43596)
+  ;!    - Schweißfehler (kein FK) kann am Roboter oder SK quittiert werden
+  ;!
+  ;!======================================================
+  ;!   Version 3.04/05
+  ;!     Aenderungsstand 27.07.2001 (Harry Konz   43596)
+  ;!     Aenderungsstand 03.08.2001 (Harry Konz   43596)
+  ;!
+  ;|    - Bei Vorhubbewegung wird kein Maxdruck ausgegeben (Vorhub-Ventil
+  ;!       wird direkt mit 10Bar versorgt)
+  ;!
+  ;!======================================================
+  ;!   Version 3.03
+  ;!     Aenderungsstand 02.07.2001 (Harry Konz   43596)
+  ;!
+  ;!    - Fräsmotor wird erst nach einschwenken eingestaltet
+  ;!    - Überwachungszeit und Wiederholungen  für Fräser klemmt
+  ;|       in Userspot.dat parametrierbar
+  ;!    - Im UP WAIT_FOR_ZANGE_ZU wird der Eingang I_SH_ZU abgefragt
+  ;!    - Neuer Zangentyp 4  C-ZANGE bei der der Vorhub nicht getrennt
+  ;|                          zurückgefahren werden kann
+  ;!    - Schweißfehler (kein FK) kann auch am  Roboter quittiert werden
+  ;!
+  ;!======================================================
+  ;!   Version 3.02
+  ;!     Aenderungsstand 09.02.2001 (HK)
+  ;!    - Wenn OPT_USRSPOT_SIMULATE==TRUE werden nur Vorhubbewegungen
+  ;!      ausgeführt
+  ;!
+  ;!======================================================
+  ;!   Version 3.01 alpha
+  ;!     Aenderungsstand 05.05.2000 (RW)
+  ;!    - Anpassung an globales MSG_WAIT(....
+  ;!    - Zeile 651 "Wait_for_vorhub_auf --> _zu" geändert HK
+  ;!    - Schweissprozessueberwachung geändert in wait_for_spue
+  ;!
+  ;!======================================================
+  ;!   Version 2.54
+  ;!     Aenderungsstand
+  ;!     30.08.1999
+  ;!    - Bug in Zangenansteuerungslogik im Unter-
+  ;!      FRAESEN() behoben. (RW)
+  ;!    - Maximaldruck jetzt fuer jede Zange einstellbar
+  ;!      (RW).
+  ;!    - Maximaldruck wird nun nach jedem Schweisszyklus
+  ;!      Zangenspezifisch eingestellt. (RW)
+  ;!
+  ;!======================================================
+  ;!   Version 2.53
+  ;!   - Aenderungen fuer SE Zange
+  ;!======================================================
+  ;!   Version 2.52
+  ;!     Aenderungsstand
+  ;!     24.06.1999
+  ;!    - Initator abfrage fuer SE Zange geaendert    (BE)
+  ;!
+  ;!======================================================
+  ;!   Version 2.51
+  ;!     Aenderungsstand
+  ;!     17.06.1999
+  ;!    - vorhublose Zange offen ist I_SH_AUF TRUE    (Wi)
+  ;!    - definierte Stellung SchwenkFraeser in INIT  (Wi)
+  ;!======================================================
+  ;!   Version 2.50
+  ;!     Aenderungsstand
+  ;!     09.06.1999
+  ;!    - Neue Zangenabfrage fuer X-Zange integriert (RW)
+  ;!======================================================
+  ;!   Version 2.13
+  ;!     Aenderungsstand
+  ;!     03.05.1999
+  ;!    -Ansteuerung fuer die SE_Zangen geaendert (BE)
+  ;!======================================================
+  ;!   Version 2.12
+  ;!     Aenderungsstand
+  ;!     30.03.1999
+  ;!    -Fraeseinheit schwenken per Optionsvar in $Config.dat
+  ;!    -Ansteuerung fuer die C_Zangen geaendert (BE)
+  ;!======================================================
+  ;! Version  : 2.11
+  ;! Aenderungsstand:
+  ;!  11.02.1999
+  ;!    I_MITSTROM und I_OHNEUEB als Variable eingefuegt
+  ;!    Alle Fehlerzustaende mit Meldungsausgaben versehen
+  ;!    Halt nach Punktende und Spotsimu() f. W203 einge-
+  ;!    fuegt. Rueckhubfunktionalitaet fuer Z2 Bremen
+  ;!    eingefuegt. (RW)
+  ;!======================================================
+  ;!  V2.10 23.02.1999
+  ;!  Abfragematrix fuer T_TYP 1 und 2
+  ;!  !-------------------------------------------!
+  ;!  !                  ! Zange ! Zange ! Vorhub !
+  ;!  !                  !   zu  ! offen !  zu    !
+  ;!  !                  !------------------------!
+  ;!  !                  ! Z_TYP 1=C, 2=X-Zange   !
+  ;!  !                  !------------------------!
+  ;!  !                  ! C ! X ! C ! X ! C ! X  !
+  ;!  !-------------------------------------------!
+  ;!  !   E5 I_VH_AUF    ! 0 ! 0 ! 1 ! 1 ! 0 ! 0  !
+  ;!  !-------------------------------------------!
+  ;!  !   E7 I_VH_ZU     ! 0 ! 1 ! 0 ! 0 ! 1 ! 1  !
+  ;!  !-------------------------------------------!
+  ;!  !   E6 I_SH_AUF    ! - ! 0 ! - ! 1 ! - ! 1  !
+  ;!  !-------------------------------------------!
+  ;!    Option Z_TYP fuer X-Zangen
+  ;!    Zangenabfragen u.a. in lokalen Unterprogrammen
+  ;!    gemaess o.a. Matrix implementiert.
+  ;!    (RW)
+  ;!
+  ;!  V2.11 01.03.1999
+  ;!    - Ueberwachung eingebaut um auf simulierte Ueberwachung
+  ;!      hinzuweisen.
+  ;!    - Schwenkeinheit beim Fraesen beruecksichtigt
+  ;!    - Bei Fraesquittg auf Fraesanforderungen nicht warten
+  ;!    - Fehler "T_AZ ungueltig" abgefangen bei Programmierung
+  ;!      von nicht parametrierter Zange
+  ;!
+  ;!======================================================
+  ;Endfold
+  IF  NOT OPT_USRSPOT THEN
+    RETURN
+  ENDIF
+
+  SWITCH  CMD
+  CASE #INIT
+    INIT ( )
+
+
+  CASE #SPOT
+    AZ=GETGUNNR(S)
+    IF (AZ==0) THEN ; Fehler bei Ermittlung von Zangennr.
+      RETURN
+    ENDIF
+    If (($Ext) and (OPT_USRSPOT_SIMULATE) and not (Ghost())) then
+      DresEr={MSGTXT[] "In Auto no Simulation allowed"}
+      OPT_USRSPOT_SIMULATE=false
+      DISP_MSG(DresEr,#QUIT,DUMMY)
+    endif
+
+    IF (S.CLO_TM==0) or (OPT_USRSPOT_SIMULATE and not $Ext) or  ghost()THEN
+      SPOTSIMU (S ) ;active=0 oder Simulation (global) oder Ghostbetrieb
+      S_READY=TRUE
+      RETURN
+    ENDIF
+    ;Abfrage ob Zange in richtiger Stellung
+   ; IF (ZANGE[AZ].VORHUB) AND ($OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]==TRUE) THEN
+;      WAIT_FOR_VORHUB_ZU (AZ )
+;   ELSE
+;      WAIT_FOR_ZANGE_AUF (AZ )
+;    ENDIF
+    for dummy=1 to MAX_PARAMETER  step 1
+      if ((s.pgno1)==(PARAMETER[dummy].ef_prog)) or ((s.pgno1)==(PARAMETER[dummy].ff_prog)) then
+        IF LangU then
+          DISP_MSG(PS_ERROR_U[11],#QUIT,DUMMY); Abbruch, Fraespr. angewaehlt
+        ELSE
+          DISP_MSG(PS_ERROR[11],#QUIT,DUMMY); Abbruch, Fraespr. angewaehlt
+        endif
+        return
+      endif
+    endfor
+    SPOT (CMD,S )
+    S_READY=TRUE
+    IF $IN[I_HALTNACHPUNKT] THEN
+      $OUT[O_HALTNACHPUNKTERREICHT]=TRUE ;Halt bei Punktende erreicht
+      HALT
+      IF LangU then
+        MSG_WAIT (PS_MESSAGE_U[], I_HALTNACHPUNKT, FALSE, MAX_I_PS_MESSAGE, 0, BRESULT ) ;Warten auf Freigabe Punktende
+      else
+        MSG_WAIT (PS_MESSAGE[], I_HALTNACHPUNKT, FALSE, MAX_I_PS_MESSAGE, 0, BRESULT ) ;Warten auf Freigabe Punktende
+      endif
+      $OUT[O_HALTNACHPUNKTERREICHT]=FALSE ;Halt bei Punktende erreicht zuruecksetzen
+    ENDIF
+
+  CASE #DRESS
+    IF $IN[I_HALTNACHPUNKT] THEN
+      $OUT[O_HALTNACHPUNKTERREICHT]=TRUE ;Halt bei Punktende erreicht
+      HALT
+      IF LangU then
+        MSG_WAIT (PS_MESSAGE_U[], I_HALTNACHPUNKT, FALSE, MAX_I_PS_MESSAGE, 0, BRESULT ) ;Warten auf Freigabe Punktende
+      else
+        MSG_WAIT (PS_MESSAGE[], I_HALTNACHPUNKT, FALSE, MAX_I_PS_MESSAGE, 0, BRESULT ) ;Warten auf Freigabe Punktende
+      endif
+      $OUT[O_HALTNACHPUNKTERREICHT]=FALSE ;Halt bei Punktende erreicht zuruecksetzen
+    ENDIF
+    AZ=GETGUNNR(S) ; Zange-Nr. ermitteln
+    IF (AZ==0) THEN ; Fehler bei Ermittlung von Zangennr.
+      RETURN
+    ENDIF
+    IF ZANGE[AZ].FRAESER>0 THEN
+ ;    IF (ZANGE[AZ].VORHUB) AND ($OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]==TRUE) THEN
+ ;       WAIT_FOR_VORHUB_ZU (AZ )
+ ;    ELSE
+ ;     WAIT_FOR_ZANGE_AUF (AZ )
+ ;    ENDIF
+      if (parameter[zange[az].fraeser].fraeser_schwenken) and (parameter[zange[az].fraeser].twin_fraeser) then
+        IF LangU then
+          DISP_MSG(PS_ERROR_U[10],#QUIT,DUMMY); Abbruch, Fraespr. angewaehlt
+        ELSE
+          DISP_MSG(PS_ERROR[10],#QUIT,DUMMY); Abbruch, Fraespr. angewaehlt
+        endif
+        S_READY=false
+        return
+      endif
+      IF FRAESER[ZANGE[AZ].FRAESER].FRAES_SST >0 then  ; Auswahl, ob Fräser von SST angesteuert ?
+        SINGLE_DRESS_SST (CMD,S)
+      ELSE
+        IF PARAMETER[ZANGE[AZ].FRAESER].TWIN_FRAESER THEN
+          TWIN_DRESS (CMD,S )
+        ELSE
+          SINGLE_DRESS (CMD,S )
+        ENDIF
+      ENDIF
+    ELSE
+      IF LangU then
+        DISP_MSG(PS_ERROR_U[12],#QUIT,DUMMY); Abbruch !! Kein Fraeser parametriert !
+      ELSE
+        DISP_MSG(PS_ERROR[12],#QUIT,DUMMY); Abbruch !! Kein Fraeser parametriert !
+      endif
+
+    ENDIF
+    S_READY=TRUE
+
+    IF $IN[I_HALTNACHPUNKT] THEN
+      $OUT[O_HALTNACHPUNKTERREICHT]=TRUE ;Halt bei Punktende erreicht
+      HALT
+      IF LangU then
+        MSG_WAIT (PS_MESSAGE_U[], I_HALTNACHPUNKT, FALSE, MAX_I_PS_MESSAGE, 0, BRESULT ) ;Warten auf Freigabe Punktende
+      else
+        MSG_WAIT (PS_MESSAGE[], I_HALTNACHPUNKT, FALSE, MAX_I_PS_MESSAGE, 0, BRESULT ) ;Warten auf Freigabe Punktende
+      endif
+      $OUT[O_HALTNACHPUNKTERREICHT]=FALSE ;Halt bei Punktende erreicht zuruecksetzen
+    ENDIF
+
+  CASE #RETR
+    AZ=GETGUNNR(S)
+    IF (AZ==0) THEN ; Fehler bei Ermittlung von Zangennr.
+      RETURN
+    ENDIF
+    ;Abfrage ob Zange in richtiger Stellung
+    IF (ZANGE[AZ].VORHUB) AND ($OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]==TRUE) THEN
+      WAIT_FOR_VORHUB_ZU (AZ )
+    ELSE
+      WAIT_FOR_ZANGE_AUF (AZ )
+    ENDIF
+    RETRACT (CMD,S )
+    S_READY=TRUE
+  ENDSWITCH
+END ;(USERSPOT)
+
+
+DEF  SPOT (CMD :IN,S :IN )
+  DECL S_COMMAND CMD
+  DECL SPOT_TYPE S
+  INT DUMMY
+  BOOL BRESULT
+
+  SET_WELD_PROG (AZ,S.PGNO1 ) ;prognr. -> boschtimer
+
+  IF ZANGE[AZ].VORHUB THEN
+    SWITCH  ZANGE[AZ].Z_TYP
+    CASE 1,4
+      ;Fuer C_Zange
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=FALSE ;Vorhub schliessen
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=TRUE ;Vorhub schliessen
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=TRUE ;Schweisshub schliessen
+    ;****  WAIT_FOR_VORHUB_ZU (AZ )
+    CASE 2
+      ;Fuer X_Zange
+      IF WithMaxPressure then
+        SET_WELD_PROG (AZ, ZANGE[AZ].PRMAXDR )
+      endif
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=FALSE ;Vorhub schliessen
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=TRUE ;Vorhub schliessen
+      WAIT_FOR_VORHUB_ZU (AZ )
+      SET_WELD_PROG (AZ,S.PGNO1 ) ;prognr. -> boschtimer
+    CASE 3
+      ;Fuer SE_Zange
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=TRUE ;Vorhub schliessen
+      WAIT_FOR_VORHUB_ZU (AZ )
+    ENDSWITCH
+  ENDIF
+  IF $T1==FALSE THEN
+    $OUT[SST[ZANGE[AZ].VSST].O_MSTROM]=OPT_MIT_STR ;SKMIT/Strom
+    IF $EXT==TRUE THEN
+      ;MIT STROM (E52) AUS SST
+      IF LangU then
+        MSG_WAIT (PS_MESSAGE_U[],SST[ZANGE[AZ].VSST].I_MSTROM,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+      else
+        MSG_WAIT (PS_MESSAGE[], SST[ZANGE[AZ].VSST].I_MSTROM,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+      endif
+
+    ENDIF
+    IF $IN[I_HALTNACHPUNKT] == FALSE THEN  ;Nur wenn kein HaltNachPunkt angewählt ist, wird Strömungswächter abgefragt
+      ;Stroemungswaechter
+      IF LangU then
+        MSG_WAIT (PS_MESSAGE_U[],Z_E_A[ZANGE[AZ].Z_EA_NR].I_SW_MIN,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+      else
+        MSG_WAIT (PS_MESSAGE[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_SW_MIN,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+      endif
+
+    endif
+    ;wenn Thermokontakt vorhanden (>0 parametriert)
+    IF Z_E_A[ZANGE[AZ].Z_EA_NR].I_TK>0 THEN
+      ;Thermokontakt
+      IF LangU then
+        MSG_WAIT (PS_MESSAGE_U[],Z_E_A[ZANGE[AZ].Z_EA_NR].I_TK,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+      else
+        MSG_WAIT (PS_MESSAGE[],Z_E_A[ZANGE[AZ].Z_EA_NR].I_TK,TRUE, MAX_I_PS_MESSAGE,0, BRESULT )
+      endif
+
+    ENDIF
+    ;SKBER/ZPS be.
+    IF LangU then
+      MSG_WAIT (PS_MESSAGE_U[],SST[ZANGE[AZ].VSST].I_ZPSBEREIT,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+    else
+      MSG_WAIT (PS_MESSAGE[],SST[ZANGE[AZ].VSST].I_ZPSBEREIT,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+    endif
+
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=TRUE ;Schweisshub schliessen
+    WAIT_FOR_ZANGE_ZU (AZ ) ; Pseudo Abfrage da Eingang nicht real vorhanden
+
+    ;Abfrage ob kein FK ansteht vor Schweissung
+    IF LangU then
+      MSG_WAIT (PS_MESSAGE_U[], SST[ZANGE[AZ].VSST].I_FK,FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+    else
+      MSG_WAIT (PS_MESSAGE[], SST[ZANGE[AZ].VSST].I_FK,FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+    endif
+
+    $OUT[SST[ZANGE[AZ].VSST].O_SKSTART]=TRUE ;SKSTART/START SCHW.
+    IF LangU then
+      FK_WAIT ( PS_MESSAGE_U[], SST[ZANGE[AZ].VSST].I_FK,MAX_I_PS_MESSAGE, FK_WAIT_TIME, BRESULT ) ;SKFK / FK von ZPS
+    else
+      FK_WAIT ( PS_MESSAGE[], SST[ZANGE[AZ].VSST].I_FK,MAX_I_PS_MESSAGE, FK_WAIT_TIME, BRESULT ) ;SKFK / FK von ZPS
+    endif
+    IF (SST[ZANGE[AZ].VSST].I_FRAESEN>0) then
+     if $IN[SST[ZANGE[AZ].VSST].I_FRAESEN] then
+      FraesAnford[AZ] = TRUE    ;Fraesmerker setzen
+     endif
+    endif 
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=FALSE ;Schweisshub oeffnen
+    ;Auskommentiert, da für SPS zu kurz $OUT[SST[ZANGE[AZ].VSST].O_SKSTART]=FALSE ;SKSTART RESET
+  ELSE
+    IF OPT_T1_CLOSE THEN ; KUKA Aenderung
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=TRUE ;Schweisshub zu
+      $OUT[SST[ZANGE[AZ].VSST].O_MSTROM]=OPT_MIT_STR ;alteracao servnews tmp
+      WAIT SEC 0.5
+      $OUT[SST[ZANGE[AZ].VSST].O_SKSTART]=TRUE ;SKSTART/START SCHW.
+    IF LangU then
+      FK_WAIT ( PS_MESSAGE_U[], SST[ZANGE[AZ].VSST].I_FK,MAX_I_PS_MESSAGE, FK_WAIT_TIME, BRESULT ) ;SKFK / FK von ZPS
+    else
+      FK_WAIT ( PS_MESSAGE[], SST[ZANGE[AZ].VSST].I_FK,MAX_I_PS_MESSAGE, FK_WAIT_TIME, BRESULT ) ;SKFK / FK von ZPS
+    endif
+      WAIT_FOR_ZANGE_ZU (AZ ) ; Pseudo Abfrage da Eingang nicht real vorhanden
+    ENDIF ;KUKA Aenderung
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=FALSE ;Schweisshub oeffnen
+    WAIT_FOR_VORHUB_ZU (AZ )
+  ENDIF
+
+  IF ((S.RETR==#CLO) AND (ZANGE[AZ].VORHUB)) THEN
+    WAIT_FOR_VORHUB_ZU (AZ )
+  ELSE
+  	If (ZANGE[AZ].Z_TYP==2) then
+      IF WithMaxPressure then
+        SET_WELD_PROG (AZ, ZANGE[AZ].PRMAXDR )
+      endif
+	  endif
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=FALSE ;Vorhub oeffnen
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=TRUE ;Vorhub oeffnen
+    WAIT_FOR_ZANGE_AUF (AZ )
+    If (ZANGE[AZ].Z_TYP==2) then
+	  SET_WELD_PROG (AZ,S.PGNO1 ) ;prognr. -> boschtimer
+	  endif
+
+  ENDIF
+
+  ;Schweisstart erst jetzt zurecksetzen, Aenderung TB 04.2005
+  $OUT[SST[ZANGE[AZ].VSST].O_SKSTART]=FALSE ;SKSTART RESET
+  ;SKFK rueck
+  IF LangU then
+    MSG_WAIT (PS_MESSAGE_U[], SST[ZANGE[AZ].VSST].I_FK,FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+  else
+    MSG_WAIT (PS_MESSAGE[], SST[ZANGE[AZ].VSST].I_FK,FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+  endif
+  ResetRefWeldSign()
+END ;(SPOT)
+
+
+DEF  RETRACT (CMD :IN,S :IN )
+  DECL S_COMMAND CMD
+  DECL SPOT_TYPE S
+  INT DUMMY
+  BOOL BRESULT
+  ; VORHUB OEFFNEN/SCHLIESSEN ZANGE
+  IF ZANGE[AZ].VORHUB THEN
+  	  if (ZANGE[AZ].Z_TYP==2) then
+      IF WithMaxPressure then
+        SET_WELD_PROG (AZ, ZANGE[AZ].PRMAXDR )
+      endif
+    	endif
+
+    IF S.RETR==#OPN THEN
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=FALSE ;Vorhub oeffnen
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=TRUE ;Vorhub oeffnen
+      WAIT_FOR_ZANGE_AUF (AZ )
+    ELSE
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=FALSE ;Vorhub schliessen
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=TRUE ;Vorhub schliessen
+      WAIT_FOR_VORHUB_ZU (AZ )
+    ENDIF
+    if (ZANGE[AZ].Z_TYP==2) then
+    SET_WELD_PROG (AZ,S.PGNO1 ) ;prognr. -> boschtimer
+    endif
+  ENDIF
+END ;(RETRACT)
+
+
+DEF  INIT ( )
+  ;!==========================================================
+  ;! Programm : INIT()
+  ;! Funktion : Vorhandene Wechsel-, bzw. stationaere Zangen
+  ;!            oeffnen
+  ;!
+  ;! Version  : 1.01
+  ;! Aenderungsstand: 17.06.99/R.Wiedmann
+  ;!==========================================================
+  ;! (C) 1998 Daimler-Benz AG
+  ;!
+  ;! Bearbeiter :
+  ;!  R.Weinmann  07031-90-2571
+  ;!==========================================================
+  INT DUMMY,II
+  BOOL BRESULT
+  INT Z_ANZ_MAX
+  ZA=0
+  AZ=0
+  TWIN=0
+  Z_ANZ_MAX=0
+
+  FOR II=1 TO  MAX_ZANGKENN
+    IF (ZANGE[II].WKZ_AB>0) AND (ZANGE[II].VORHANDEN) THEN
+    IF ((I_WKZAN>0) AND (ZANGE[II].WKZ_AB>0)) then
+      IF ($IN[I_WKZAN]) AND ($IN[ZANGE[II].WKZ_AB]==FALSE) THEN
+        ;wenn Wechselzangen vorhanden und angedockt, fehlende zaehlen
+        ZA=ZA+1
+        Z_ANZ_MAX=Zange[II].Z_ANZ
+        ;Zange oeffnen und Schweisskoffer ruecksetzen
+        $OUT[Z_E_A[ZANGE[II].Z_EA_NR].O_SH]=FALSE ;Schweisshub
+        $OUT[Z_E_A[ZANGE[II].Z_EA_NR].O_VH_ZU]=FALSE ;Vorhub
+        $OUT[Z_E_A[ZANGE[II].Z_EA_NR].O_VH_AUF]=TRUE ;Vorhub
+        ;WAIT_FOR_ZANGE_AUF (II )
+        $OUT[SST[ZANGE[II].VSST].O_SKSTART]=FALSE ;Schweisstart rueck
+      ENDIF
+    endif  
+    ENDIF
+    IF (ZANGE[II].WKZ_AB==0) AND (ZANGE[II].VORHANDEN) THEN
+      ;feste Zange(n) oeffnen und Schweisskoffer ruecksetzen
+      $OUT[Z_E_A[ZANGE[II].Z_EA_NR].O_SH]=FALSE ;Schweisshub
+      $OUT[Z_E_A[ZANGE[II].Z_EA_NR].O_VH_ZU]=FALSE ;Vorhub
+      $OUT[Z_E_A[ZANGE[II].Z_EA_NR].O_VH_AUF]=TRUE ;Vorhub
+      ;WAIT_FOR_ZANGE_AUF (II )
+      $OUT[SST[ZANGE[II].VSST].O_SKSTART]=FALSE ;Schweisstart rueck
+    ENDIF
+  ENDFOR
+
+  ;Pruefen, ob nur eine Wechselzange fehlt (angedockte Zange)
+  IF ZA>Z_ANZ_MAX THEN
+    WHILE  TRUE
+      If LangU then
+        DISP_MSG(PS_ERROR_U[3],#QUIT,DUMMY) ;Zangenzahl oder Endschalter Ablage n.i.O
+      else
+        DISP_MSG(PS_ERROR[3],#QUIT,DUMMY) ;Zangenzahl oder Endschalter Ablage n.i.O
+      endif
+    ENDWHILE
+    ;Zangenanzahl nicht korrekt
+    ;(Ablagenini kontrollieren oder Zange wieder einlegen)
+    ;oder Zangen in Userspot.DAT falsch parametriert
+  ENDIF
+
+
+
+  ;Fraeser aus und zurueckschwenken
+  FOR II=1 TO  MAX_ZANGKENN
+    IF (ZANGE[II].FRAESER>0) AND (ZANGE[II].FRAESER<=MAX_FRAESER) THEN
+      IF ((ZANGE[II].VORHANDEN) AND (ZANGE[II].FRAESER>0) AND (PARAMETER[ZANGE[II].FRAESER].FRAESER_SCHWENKEN)) THEN
+        $OUT[FRAESER[ZANGE[II].FRAESER].FRAES_START]=FALSE ;Fraeser aus
+        $OUT[FRAESER[ZANGE[II].FRAESER].O_SCHWENK_VOR]=FALSE ;Schwenkeinheit zurueck
+        $OUT[FRAESER[ZANGE[II].FRAESER].O_SCHWENK_ZUR]=TRUE
+        IF LangU then
+          MSG_WAIT (PS_MESSAGE_U[],FRAESER[ZANGE[II].FRAESER].I_SCHWENK_VOR,FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+          MSG_WAIT ( PS_MESSAGE_U[], FRAESER[ZANGE[II].FRAESER].I_SCHWENK_ZUR,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT ) ;Warten Schwenkeinheit hinten
+        else
+          MSG_WAIT ( PS_MESSAGE[], FRAESER[ZANGE[II].FRAESER].I_SCHWENK_VOR,FALSE, MAX_I_PS_MESSAGE, 0, BRESULT ) ;Warten Schwenkeinheit nicht vor
+          MSG_WAIT ( PS_MESSAGE[], FRAESER[ZANGE[II].FRAESER].I_SCHWENK_ZUR,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT ) ;Warten Schwenkeinheit hinten
+        endif
+
+      ENDIF
+    ELSE
+      WHILE  (ZANGE[II].VORHANDEN) AND (ZANGE[II].FRAESER<>0)
+
+        ;Projektierungsfehler Fraeserzuordnung
+        If LangU then
+          DISP_MSG(PS_ERROR_U[6],#QUIT,DUMMY)
+        else
+          DISP_MSG(PS_ERROR[6],#QUIT,DUMMY)
+        endif
+
+      ENDWHILE
+    ENDIF
+  ENDFOR ;II=1..
+
+  For II=1 TO  MAX_SST
+  	IF (SST[II].O_SKSTART>0) then
+    $OUT[SST[II].O_SKSTART]=FALSE
+  endif 
+  IF (SST[II].O_QFAL>0) then
+    $OUT[SST[II].O_QFAL]=FALSE
+  endif
+  IF (SST[II].O_QFFK>0) then  
+    $OUT[SST[II].O_QFFK]=FALSE
+  endif
+  IF (SST[II].O_QFPW>0) then  
+    $OUT[SST[II].O_QFPW]=FALSE
+  endif  
+  IF (SST[II].O_QELW>0) then
+    $OUT[SST[II].O_QELW]=FALSE
+  endif
+  If (SST[II].O_QFRAES >0) then
+    $OUT[SST[II].O_QFRAES]=FALSE
+  endif
+  If (SST[II].O_BTEnd>0) then 
+    $OUT[SST[II].O_BTEnd]=FALSE
+  endif
+  If (SST[II].O_RefWNEl>0) then  
+    $OUT[SST[II].O_RefWNEl]=FALSE
+  endif
+  If (SST[II].O_RefWFraes>0) then 
+    $OUT[SST[II].O_RefWFraes]=FALSE
+  endif
+  If ( SST[II].O_UebWSchw>0) then 
+    $OUT[SST[II].O_UebWSchw]=FALSE
+  endif  
+  ENDFOR
+  IF (($EXT == TRUE) and (OPT_MIT_STR == FALSE)) then
+    ;Schweissstrom ist ausgeschaltet!  Einschalten ?
+    If LangU then
+      DISP_MSG(PS_ERROR_U[5],#DIALOG,DUMMY)
+    else
+      DISP_MSG(PS_ERROR[5],#DIALOG,DUMMY)
+    endif
+    if DUMMY == 1 then
+      OPT_MIT_STR = TRUE
+    endif
+  endif
+
+IniDress=False ;// For JDF Truck reuse
+  IF ((not (Varstate("ZA")== #INITIALIZED )))  THEN
+    ZA=1
+  endif
+  IF (ZA<1) then
+  	za=1
+  endif	
+  if (O_PROGRAMM_A<1) then
+    SET_WELD_PROG (za, ZANGE[za].PRMAXDR )
+  endif
+
+
+END ;(INIT)
+
+
+DEF  SPOTSIMU (S :IN )
+  ;!==========================================================
+  ;! Programm : SPOTSIMU(..)
+  ;! Funktion : fuehrt nur Vorhubbewegungen aus
+  ;!
+  ;! Version  : 1.01
+  ;! Aenderungsstand: 22.08.1998
+  ;!==========================================================
+  ;! (C) 1998 Daimler-Benz AG
+  ;!
+  ;! Bearbeiter :
+  ;!  R.Weinmann  07031-90-2571
+  ;!==========================================================
+  DECL SPOT_TYPE S
+  INT DUMMY
+  BOOL BRESULT
+
+  SET_WELD_PROG (AZ,S.PGNO1 ) ; Schweissdruck einstellen
+
+  IF ZANGE[AZ].VORHUB THEN
+    SWITCH  ZANGE[AZ].Z_TYP
+    CASE 1,4
+      ;Fuer C_Zange
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=FALSE ;Vorhub schliessen
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=TRUE ;Vorhub schliessen
+      IF (not Ghost() or OPT_T1_CLOSE) then
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=TRUE ;Schweisshub schliessen
+      endif
+    CASE 2
+      ;Fuer X_Zange
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=FALSE ;Vorhub schliessen
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=TRUE ;Vorhub schliessen
+      WAIT_FOR_VORHUB_ZU (AZ )
+      SET_WELD_PROG (AZ,S.PGNO1 ) ; Schweissdruck einstellen
+    CASE 3
+      ;Fuer SE_Zange
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=TRUE ;Vorhub schliessen
+      WAIT_FOR_VORHUB_ZU (AZ )
+    ENDSWITCH
+  ENDIF
+  If Ghost () then
+    wait sec GhostDelay
+  endif
+
+  IF S.RETR==#OPN THEN
+    ;KUKA Aenderung Zange immer oeffnen
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=FALSE ;Vorhub oeffnen
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=TRUE ;Vorhub oeffnen
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=FALSE ;Schweisshub oeffnen
+    WAIT_FOR_ZANGE_AUF (AZ )
+  ELSE
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=FALSE ;Vorhub schliessen
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=TRUE ;Vorhub schliessen
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=FALSE ;Schweisshub oeffnen
+    WAIT_FOR_VORHUB_ZU (AZ )
+  ENDIF
+END ; (SPOTSIMU)
+
+
+
+DEF  TWIN_DRESS (CMD :IN,S :IN )
+  ;!=============================================
+  ;! Aenderungsstand: 10.11.01                  =
+  ;! (C) 2001 DC-Bremen RBR-IH                  =
+  ;! Bearbeiter: Projektgruppe R230 B.Steffens  =
+  ;! Tel.: 6652                                 =
+  ;!=============================================
+  DECL S_COMMAND CMD
+  DECL SPOT_TYPE S
+  INT KLEMMT,DUMMY,TURN_FLAG,Dress_err
+  BOOL BRESULT
+  dress_err=0
+  INTERRUPT ON 37 ;Fraesueberwachung ein
+  $TIMER_STOP[TI_NR2]=TRUE
+  $TIMER_STOP[TI_NR3]=TRUE
+  $TIMER[TI_NR2]=0
+  IF (SST[ZANGE[AZ].VSST].I_StartFraesAnfrage>0) then
+  	
+   IF $IN[SST[ZANGE[AZ].VSST].I_StartFraesAnfrage] THEN;abfrage startfraesen
+    IF TWIN>0 THEN
+      SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].Ef_Twin_Prog );Start_Fraes. 2. messer
+      UM_KAP=PARAMETER[ZANGE[AZ].EL_NR].TURN_TWIN_EF
+    ELSE
+      SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].Ef_Prog )    ;Start_Fraes. 1. messer
+      UM_KAP=PARAMETER[ZANGE[AZ].EL_NR].EF_UM_KAP
+    ENDIF
+   
+   else
+    IF TWIN>0 THEN
+      SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].Ff_Twin_Prog );Folge_Fraes. 2. messer
+      UM_KAP=PARAMETER[ZANGE[AZ].EL_NR].TURN_TWIN_FF
+    ELSE
+      SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].Ff_Prog )     ;Folge_Fraes. 1. messer
+      UM_KAP=PARAMETER[ZANGE[AZ].EL_NR].FF_UM_KAP
+    ENDIF
+   endif
+   
+   
+   
+   
+   
+   
+    
+  else ;//IF (SST[ZANGE[AZ].VSST].I_StartFraesAnfrage>0)
+      IF TWIN>0 THEN
+      SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].Ff_Twin_Prog );Folge_Fraes. 2. messer
+      UM_KAP=PARAMETER[ZANGE[AZ].EL_NR].TURN_TWIN_FF
+    ELSE
+      SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].Ff_Prog )     ;Folge_Fraes. 1. messer
+      UM_KAP=PARAMETER[ZANGE[AZ].EL_NR].FF_UM_KAP
+    ENDIF	  
+  endif
+
+
+
+
+
+
+  IF PARAMETER[ZANGE[AZ].FRAESER].FRAESER_SCHWENKEN THEN
+    FRAESER_SCHWENKEN_VOR ( )
+  endif
+  IF NOT $TIMER_FLAG[TI_NR3] then
+    IF NOT (TWIN>0) THEN ;1.fraesmesser
+      $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]=TRUE ;Fraes ein
+      $TIMER_STOP[TI_NR3]=TRUE
+      $TIMER[TI_NR3]=((PARAMETER[ZANGE[AZ].EL_NR].MAX_DRESS_TIME)*(-1000)) ; Ueberwachung Fraeserlaufzeit
+      $TIMER_STOP[TI_NR3]=FALSE
+    ENDIF
+    ;Drehbewegung Fraeser abfragen als TRUE_FALSE Flanke
+    IF LangU then
+      MSG_WAIT (PS_MESSAGE_U[], FRAESER[ZANGE[AZ].FRAESER].TWIN_DREHT, TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+    else
+      MSG_WAIT ( PS_MESSAGE[], FRAESER[ZANGE[AZ].FRAESER].TWIN_DREHT, TRUE, MAX_I_PS_MESSAGE, 0, BRESULT ) ;Warten Schwenkeinheit nicht vor
+    endif
+
+    if not BRESULT  then
+      IF LangU then
+        MSG_WAIT (PS_MESSAGE_U[], FRAESER[ZANGE[AZ].FRAESER].TWIN_DREHT, FALSE, MAX_I_PS_MESSAGE, 2000, BRESULT )
+      else
+        MSG_WAIT ( PS_MESSAGE[],FRAESER[ZANGE[AZ].FRAESER].TWIN_DREHT, FALSE, MAX_I_PS_MESSAGE, 2000, BRESULT )
+      endif
+    endif
+    if bresult then
+      dress_err=1 ;Error1 dresser not runing
+      $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]=FALSE ;Fraes aus
+    endif
+  ELSE
+    dress_err=3 ; reach Max. dress time
+  ENDIF;(NOT TIMER_FLAG)
+  WAIT SEC 0.5
+  IF ZANGE[AZ].VORHUB AND  (dress_err<1) THEN ;Vorhub schliessen wenn keine fehler
+    SWITCH  ZANGE[AZ].Z_TYP
+    CASE 1,4
+      ;Fuer C_Zange
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=FALSE ;Vorhub schliessen
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=TRUE ;Vorhub schliessen
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=TRUE ;Schweisshub schliessen
+      WAIT_FOR_VORHUB_ZU (AZ )
+    CASE 2
+      ;Fuer X_Zange
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=FALSE ;Vorhub schliessen
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=TRUE ;Vorhub schliessen
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=TRUE ;Rueckhub ( Schnellentlueftung )
+      WAIT_FOR_VORHUB_ZU (AZ )
+    CASE 3
+      ;Fuer SE_Zange
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=TRUE ;Vorhub schliessen
+      WAIT_FOR_VORHUB_ZU (AZ )
+    ENDSWITCH
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=TRUE ;Schweisshub schliessen
+    WAIT_FOR_ZANGE_ZU (AZ )
+  ENDIF
+  $TIMER_STOP[TI_NR2]=TRUE
+  TURN_ACT=0
+  KLEMMT=0
+  TURN_FLAG=0
+  FOR II=1 TO  UM_KAP
+    TURN_ACT=TURN_ACT+1
+    IF ((TURN_FLAG>=PARAMETER[ZANGE[AZ].EL_NR].STEP_TURN) AND (PARAMETER[ZANGE[AZ].EL_NR].STEP_DRESS==TRUE)) THEN
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=FALSE
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=FALSE
+      WAIT SEC 1.5 ;Fraesen in Steps
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=TRUE
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=TRUE
+      TURN_FLAG=0
+    ENDIF
+
+    $TIMER[TI_NR2]=FRAESER_KLEMMT_TIME * (-1) ;Timer fuer Ueberwachung Fraeser klemmt RESET
+
+    $TIMER_STOP[TI_NR2]=FALSE
+    IF (FRAESER[ZANGE[AZ].FRAESER].TWIN_DREHT>0) then
+    WAIT FOR  $IN[FRAESER[ZANGE[AZ].FRAESER].TWIN_DREHT] OR ($TIMER_flag[TI_NR2])
+    WAIT FOR  ( NOT $IN[FRAESER[ZANGE[AZ].FRAESER].TWIN_DREHT]) OR ($TIMER_flag[TI_NR2])
+  endif
+    $TIMER_STOP[TI_NR2]=TRUE ;Timer stoppen
+    TURN_FLAG=TURN_FLAG+1
+    if (($timer_flag[ti_nr2]) and (Dress_err<1))  then
+      KLEMMT=KLEMMT+1
+      dress_err=2
+    ENDIF
+    if $timer_flag[ti_nr3] then
+      dress_err=3 ; reach Max. dress time
+    endif
+    switch dress_err
+    case 1 ;nicht gestartet
+      $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]=FALSE
+      IF (( ZANGE[AZ].VORHUB) and  (S.RETR==#clo))  THEN
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=FALSE
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=true
+        WAIT_FOR_VORHUB_ZU (AZ )
+      endif
+      ;Abruch Fraeser nicht gestartet !
+      If LangU then
+        DISP_MSG(PS_ERROR_U[13],#QUIT,DUMMY)
+      else
+        DISP_MSG(PS_ERROR[13],#QUIT,DUMMY)
+      endif
+
+      EXIT ;Schleife verlasssen
+    case 2 ;klemmt wiederholen/abbruch
+      if klemmt>=FRAESER_KLEMMT_MAX then
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=FALSE ;Rueckhub ( Schnellentlueftung )
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=FALSE ;Schweisshub oeffnen
+        $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]=FALSE ;Fraes aus
+        WAIT_FOR_VORHUB_ZU (AZ )
+
+        ;Fraeser klemmt Fraesvorgang beenden ?
+        If LangU then
+          DISP_MSG(PS_ERROR_U[1],#DIALOG,DUMMY)
+        else
+          DISP_MSG(PS_ERROR[1],#DIALOG,DUMMY)
+        endif
+
+        if DUMMY == 1 then
+          EXIT
+        ELSE
+          KLEMMT=0 ;Fraesen wiederholen
+          II=1
+          TURN_ACT=0
+          $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]=TRUE
+          WAIT SEC 1
+          $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=TRUE
+          $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=TRUE
+          WAIT_FOR_ZANGE_ZU (AZ )
+        ENDIF
+      else
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=FALSE
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=FALSE
+        WAIT SEC 0.5 ;Nach Klemmen oeffnen u. schliessen
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=TRUE
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=TRUE
+        WAIT_FOR_ZANGE_ZU (AZ )
+      endif
+      dress_err=0
+    case 3 ;maxlaufzeit erreicht
+      $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]=FALSE
+      ;Maximale Fraeserlaufzeit erreicht
+      If LangU then
+        DISP_MSG(PS_ERROR_U[12],#QUIT,DUMMY)
+      else
+        DISP_MSG(PS_ERROR[12],#QUIT,DUMMY)
+      endif
+
+      EXIT ;Schleife verlasssen
+    endswitch
+  ENDFOR
+
+  IF TWIN>0 THEN
+
+
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=FALSE ;Rueckhub ( Schnellentlueftung )
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=FALSE ;Schweisshub oeffnen
+    if Dress_err<>1 then;Fraeser ist angelaufen
+      WAIT_FOR_VORHUB_ZU (AZ )
+    endif
+
+    if dress_err < 1 then ;keine fraesfehler
+      PULSE ($OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START],TRUE,parameter[zange[az].EL_Nr].Past_time) ;Fraes aus
+      IF OPT_EL_NR THEN
+        ;Elektrodennr. anwaehlen zum Reset des zugeordneten Zaehlers
+        SET_WELD_PROG (AZ,ZANGE[AZ].EL_NR )
+      ENDIF ;EL_NR
+      IF (SST[ZANGE[AZ].VSST].I_StartFraesAnfrage>0) then
+      IF $IN[SST[ZANGE[AZ].VSST].I_StartFraesAnfrage] THEN;abfrage startfraesen
+        SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].EF_PROG )
+      else
+        SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].FF_PROG )
+      endif
+    else
+    	SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].FF_PROG )
+    endif
+      
+      wait sec 0.05
+      pulse($OUT[SST[ZANGE[AZ].VSST].O_QFRAES],TRUE,3.0) ;Quittierung Fraesen
+      wait sec 0.05
+      ;Error handling
+      if (($in[SST[ZANGE[AZ].VSST].I_FRAESEN]==true) and ($OUT[SST[ZANGE[AZ].VSST].O_QFRAES]==true)) then
+        Sign_err[ZANGE[AZ].EL_NR]=Sign_err[ZANGE[AZ].EL_NR]+1
+      endif
+      IF LangU then
+        MSG_WAIT (PS_MESSAGE_U[],  SST[ZANGE[AZ].VSST].I_FRAESEN, FALSE, MAX_I_PS_MESSAGE, 2000, BRESULT )
+      else
+        MSG_WAIT ( PS_MESSAGE[], SST[ZANGE[AZ].VSST].I_FRAESEN, FALSE, MAX_I_PS_MESSAGE, 2000, BRESULT )
+      endif
+    endif
+
+    IF S.RETR==#OPN THEN
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=FALSE ;Vorhub oeffnen
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=TRUE ;Vorhub oeffnen
+      WAIT_FOR_ZANGE_AUF (AZ )
+    ENDIF ;RETR
+    ; Schwenkeinheit zurueckfahren
+    IF PARAMETER[ZANGE[AZ].FRAESER].FRAESER_SCHWENKEN THEN
+      FRAESER_SCHWENKEN_ZUR ( )
+    ENDIF
+    TWIN=0
+    $TIMER_STOP[TI_NR3]=TRUE
+    $TIMER[TI_NR3]=0
+    INTERRUPT OFF 37 ;Fraesueberwachung aus
+  ELSE
+    TWIN=1
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=FALSE ;Rueckhub ( Schnellentlueftung )
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=FALSE ;Schweisshub oeffnen
+    WAIT_FOR_VORHUB_ZU (AZ )
+    IF S.RETR==#OPN THEN
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=FALSE ;Vorhub oeffnen
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=TRUE ;Vorhub oeffnen
+      WAIT_FOR_ZANGE_AUF (AZ )
+    ENDIF
+  ENDIF ;TWIN
+  $TIMER_STOP[TI_NR2]=TRUE
+  $TIMER[TI_NR2]=0
+  KLEMMT=0
+  dress_err=0
+END
+
+
+DEF  SINGLE_DRESS (CMD :IN,S :IN )
+  ;!=============================================
+  ;! Aenderungsstand: 10.11.01                  =
+  ;! (C) 2001 DC-Bremen RBR-IH                  =
+  ;! Bearbeiter: Projektgruppe R230 B.Steffens  =
+  ;! Tel.: 6652                                 =
+  ;!=============================================
+  DECL S_COMMAND CMD
+  DECL SPOT_TYPE S
+  INT KLEMMT,DUMMY,TURN_FLAG,Dress_err,QFRAES
+  BOOL BRESULT
+  dress_err=0
+  AY=AZ
+  $TIMER_STOP[TI_NR2]=TRUE
+  $TIMER_STOP[TI_NR3]=TRUE
+  $TIMER[TI_NR2]=0
+  $TIMER[TI_NR3]=0
+
+    
+   $TIMER_STOP[ti_nr3]=TRUE
+   $TIMER[ti_nr3]=0;FRAESERUEBERWACHUNG
+   
+    IF LangU then
+        MSG_WAIT (PS_MESSAGE_U[],Z_E_A[ZANGE[AZ].Z_EA_NR].I_SW_MIN,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+    else
+        MSG_WAIT (PS_MESSAGE[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_SW_MIN,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+    endif
+
+IF not $IN[Z_E_A[ZANGE[AZ].Z_EA_NR].I_SW_MIN] then
+   $CYCFLAG[10]= (not $timer_flag[ti_nr3])
+else
+   $CYCFLAG[10]= ((not $timer_flag[ti_nr3]) and ($in[Z_E_A[ZANGE[AZ].Z_EA_NR].I_SW_MIN]))
+endif
+   
+   wait for $CYCFLAG[10] 
+   GLOBAL INTERRUPT DECL 37 WHEN not $CYCFLAG[10] DO Stop_Dress ()
+If (SST[ZANGE[AZ].VSST].I_StartFraesAnfrage>0) then
+  IF ($IN[SST[ZANGE[AZ].VSST].I_StartFraesAnfrage] or IniDress) THEN;abfrage startfraesen
+    SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].EF_PROG )
+    UM_KAP=PARAMETER[ZANGE[AZ].EL_NR].EF_UM_KAP
+  else
+    SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].FF_PROG )
+    UM_KAP=PARAMETER[ZANGE[AZ].EL_NR].FF_UM_KAP
+  endif
+else
+   IF IniDress then	
+    SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].EF_PROG )
+    UM_KAP=PARAMETER[ZANGE[AZ].EL_NR].EF_UM_KAP
+  else
+    SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].FF_PROG )
+    UM_KAP=PARAMETER[ZANGE[AZ].EL_NR].FF_UM_KAP
+  endif
+endif	
+  IF PARAMETER[ZANGE[AZ].FRAESER].FRAESER_SCHWENKEN THEN
+    FRAESER_SCHWENKEN_VOR ( )
+  endif
+  $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]=TRUE ;Fraes ein
+  $TIMER_STOP[TI_NR3]=TRUE
+  $TIMER[TI_NR3]=((PARAMETER[ZANGE[AZ].EL_NR].MAX_DRESS_TIME)*(-1000)) ; Ueberwachung Fraeserlaufzeit
+  $TIMER_STOP[TI_NR3]=FALSE
+  INTERRUPT ON 37 ;Fraesueberwachung ein
+  IF LangU then
+    MSG_WAIT (PS_MESSAGE_U[], FRAESER[ZANGE[AZ].FRAESER].FRAES_DREHT, TRUE, MAX_I_PS_MESSAGE, 2000, BRESULT )
+  else
+    MSG_WAIT ( PS_MESSAGE[], FRAESER[ZANGE[AZ].FRAESER].FRAES_DREHT, TRUE, MAX_I_PS_MESSAGE, 2000, BRESULT )
+  endif
+
+  if not BRESULT then
+    IF LangU then
+      MSG_WAIT (PS_MESSAGE_U[], FRAESER[ZANGE[AZ].FRAESER].FRAES_DREHT, FALSE, MAX_I_PS_MESSAGE, 2000, BRESULT )
+    else
+      MSG_WAIT ( PS_MESSAGE[], FRAESER[ZANGE[AZ].FRAESER].FRAES_DREHT, FALSE, MAX_I_PS_MESSAGE, 2000, BRESULT )
+    endif
+  endif
+  if bresult then
+    dress_err=1 ;Error1 dresser not runing
+    $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]=FALSE ;Fraes aus
+  endif
+  WAIT SEC 0.5
+
+  IF ZANGE[AZ].VORHUB AND  (dress_err<1) THEN ;Vorhub schliessen
+    SWITCH  ZANGE[AZ].Z_TYP
+    CASE 1,4
+      ;Fuer C_Zange
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=FALSE ;Vorhub schliessen
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=TRUE ;Vorhub schliessen
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=TRUE ;Schweisshub schliessen
+      WAIT_FOR_VORHUB_ZU (AZ )
+    CASE 2
+      ;Fuer X_Zange
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=FALSE ;Vorhub schliessen
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=TRUE ;Vorhub schliessen
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=TRUE ;Rueckhub ( Schnellentlueftung )
+      WAIT_FOR_VORHUB_ZU (AZ )
+    CASE 3
+      ;Fuer SE_Zange
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=TRUE ;Vorhub schliessen
+      WAIT_FOR_VORHUB_ZU (AZ )
+    ENDSWITCH
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=TRUE ;Schweisshub schliessen
+    WAIT_FOR_ZANGE_ZU (AZ )
+  ENDIF
+  If (dress_err<1) THEN
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=TRUE ;Schweisshub schliessen
+    WAIT_FOR_ZANGE_ZU (AZ )
+  endif
+
+
+  $TIMER_STOP[TI_NR2]=TRUE
+  TURN_ACT=0
+  KLEMMT=0
+  TURN_FLAG=0
+
+  FOR II=1 TO  UM_KAP
+    TURN_ACT=TURN_ACT+1
+    IF ((TURN_FLAG>=PARAMETER[ZANGE[AZ].EL_NR].STEP_TURN) AND (PARAMETER[ZANGE[AZ].EL_NR].STEP_DRESS==TRUE)) THEN
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=FALSE
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=FALSE
+      WAIT SEC 1.5 ;Fraesen in Steps
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=TRUE
+      $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=TRUE
+      WAIT_FOR_ZANGE_ZU (AZ )
+      TURN_FLAG=0
+    ENDIF
+    $TIMER[TI_NR2]=FRAESER_KLEMMT_TIME * (-1) ;Timer fuer Ueberwachung Fraeser klemmt RESET
+    $TIMER_STOP[TI_NR2]=FALSE
+    if (FRAESER[ZANGE[AZ].FRAESER].FRAES_DREHT>0) then
+    WAIT FOR  $IN[FRAESER[ZANGE[AZ].FRAESER].FRAES_DREHT] OR ($TIMER_flag[TI_NR2])
+    WAIT FOR  ( NOT $IN[FRAESER[ZANGE[AZ].FRAESER].FRAES_DREHT]) OR ($TIMER_flag[TI_NR2])
+  endif
+    $TIMER_STOP[TI_NR2]=TRUE ;Timer stoppen
+    TURN_FLAG=TURN_FLAG+1
+    if (($timer_flag[ti_nr2]) and (Dress_err<1))  then
+      KLEMMT=KLEMMT+1
+      dress_err=2 ;  Dresser is stick
+    endif
+    if $timer_flag[ti_nr3] then
+      dress_err=3 ; reach Max. dress time
+    endif
+    switch dress_err
+    case 1 ;nicht gestartet
+      $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]=FALSE
+      IF (( ZANGE[AZ].VORHUB) and  (S.RETR==#clo))  THEN
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=FALSE
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=true
+        WAIT_FOR_VORHUB_ZU (AZ )
+      endif
+      ;Abruch Fraeser nicht gestartet !
+      If LangU then
+        DISP_MSG(PS_ERROR_U[13],#QUIT,DUMMY)
+      else
+        DISP_MSG(PS_ERROR[13],#QUIT,DUMMY)
+      endif
+
+      EXIT ;Schleife verlasssen
+    case 2 ;klemmt wiederholen/abbruch
+      if klemmt>=FRAESER_KLEMMT_MAX then
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=FALSE ;Rueckhub ( Schnellentlueftung )
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=FALSE ;Schweisshub oeffnen
+        $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]=FALSE ;Fraes aus
+        WAIT_FOR_VORHUB_ZU (AZ )
+        ;Fraeser klemmt Fraesvorgang beenden ?
+        If LangU then
+          DISP_MSG(PS_ERROR_U[1],#DIALOG,DUMMY)
+        else
+          DISP_MSG(PS_ERROR[1],#DIALOG,DUMMY)
+        endif
+
+        if DUMMY == 1 then
+          EXIT
+        ELSE
+          KLEMMT=0 ;Fraesen wiederholen
+          II=1
+          TURN_ACT=0
+          $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]=TRUE
+          WAIT SEC 1
+          $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=TRUE
+          $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=TRUE
+          WAIT_FOR_ZANGE_ZU (AZ )
+        ENDIF
+      else
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=FALSE
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=FALSE
+        WAIT SEC 0.5 ;Nach Klemmen oeffnen u. schliessen
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=TRUE
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=TRUE
+        WAIT_FOR_ZANGE_ZU (AZ )
+      endif
+      dress_err=0
+    case 3 ;maxlaufzeit erreicht
+      $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]=FALSE
+      ;Maximale Fraeserlaufzeit erreicht
+      If LangU then
+        DISP_MSG(PS_ERROR_U[12],#QUIT,DUMMY)
+      else
+        DISP_MSG(PS_ERROR[12],#QUIT,DUMMY)
+      endif
+
+      EXIT ;Schleife verlasssen
+    endswitch
+  ENDFOR
+
+  $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=FALSE ;Rueckhub ( Schnellentlueftung )
+  $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=FALSE ;Schweisshub oeffnen
+  if Dress_err<>1 then;fraeser ist angelaufen
+    WAIT_FOR_VORHUB_ZU (AZ )
+  endif
+
+  if dress_err < 1 then ;keine fraesfehler
+    PULSE ($OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START],TRUE,parameter[zange[az].EL_Nr].Past_time) ;Fraes aus
+	IF OPT_EL_NR THEN
+		;Elektrodennr. anwaehlen zum Reset des zugeordneten Zaehlers
+		SET_WELD_PROG (AZ,ZANGE[AZ].EL_NR )
+	else
+
+		IF (SST[ZANGE[AZ].VSST].I_StartFraesAnfrage>0) then
+			IF $IN[SST[ZANGE[AZ].VSST].I_StartFraesAnfrage] THEN;abfrage startfraesen
+				SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].EF_PROG )
+			else
+				SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].FF_PROG )
+			endif
+		else
+			IF IniDress THEN;abfrage startfraesen
+				SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].EF_PROG )
+			else
+				SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].FF_PROG )
+			endif
+		endif
+	endif ;//IF OPT_EL_NR
+    
+    wait sec 0.05
+
+;====================================================
+QFRAES=GETGUNNR(S)
+SET_WELD_PROG (AZ,QFRAES)
+;====================================================
+
+    pulse($OUT[SST[ZANGE[AZ].VSST].O_QFRAES],TRUE,3.0) ;Quittierung Fraesen
+    wait sec 0.05
+    ;Error handling
+    
+    
+    
+    if (($in[SST[ZANGE[AZ].VSST].I_FRAESEN]==true) and ($OUT[SST[ZANGE[AZ].VSST].O_QFRAES]==true)) then
+      Sign_err[ZANGE[AZ].EL_NR]=Sign_err[ZANGE[AZ].EL_NR]+1
+    endif
+    IF LangU then
+      MSG_WAIT (PS_MESSAGE_U[], SST[ZANGE[AZ].VSST].I_FRAESEN, FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+    else
+      MSG_WAIT ( PS_MESSAGE[], SST[ZANGE[AZ].VSST].I_FRAESEN, FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+    endif
+
+  endif
+
+  IF S.RETR==#OPN THEN
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=FALSE ;Vorhub oeffnen
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=TRUE ;Vorhub oeffnen
+    WAIT_FOR_ZANGE_AUF (AZ )
+  ENDIF ;RETR
+  ; Schwenkeinheit zurueckfahren
+  IF PARAMETER[ZANGE[AZ].FRAESER].FRAESER_SCHWENKEN THEN
+    FRAESER_SCHWENKEN_ZUR ( )
+  ENDIF
+  $TIMER_STOP[TI_NR2]=TRUE
+  $TIMER_STOP[TI_NR3]=TRUE
+  $TIMER[TI_NR2]=0
+  $TIMER[TI_NR3]=0
+  KLEMMT=0
+  dress_err=0
+  INTERRUPT OFF 37 ;Fraesueberwachung aus
+END ;(Single_Dress)
+
+
+DEF  SINGLE_DRESS_SST (CMD :IN,S :IN )
+  ;!=============================================
+  ;! Aenderungsstand: 10.11.01                  =
+  ;! (C) 2003 DC-SIFI FWT-ANT                   =
+  ;! Bearbeiter: Robotergruppe T.Breitmaier     =
+  ;! Tel.: 70512                                =
+  ;!=============================================
+  DECL S_COMMAND CMD
+  DECL SPOT_TYPE S
+  INT DUMMY,Dress_err
+  BOOL BRESULT, dress_wdh
+  dress_err=0
+  $TIMER_STOP[TI_NR2]=TRUE
+  $TIMER[TI_NR2]=0
+
+  ; Motorschutz IO?
+  MSG_WAIT (PS_MESSAGE[], FRAESER[ZANGE[AZ].FRAESER].I_MMS, TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+  ; kein Schweissfehler
+  MSG_WAIT (PS_MESSAGE[], SST[ZANGE[AZ].VSST].I_SchwFehl, FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+
+  IF Elektrodenwechsel(AZ) then
+    SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].EF_PROG )
+  else
+    SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].FF_PROG )
+  endif
+
+  IF PARAMETER[ZANGE[AZ].FRAESER].FRAESER_SCHWENKEN THEN
+    FRAESER_SCHWENKEN_VOR ( )
+  endif
+
+  $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]=TRUE ;Fraes ein
+  IF LangU then
+    MSG_WAIT (PS_MESSAGE_U[], FRAESER[ZANGE[AZ].FRAESER].FRAES_DREHT, TRUE, MAX_I_PS_MESSAGE, 2000, BRESULT )
+  else
+    MSG_WAIT ( PS_MESSAGE[], FRAESER[ZANGE[AZ].FRAESER].FRAES_DREHT, TRUE, MAX_I_PS_MESSAGE, 2000, BRESULT )
+  endif
+  if bresult then
+    dress_err=1 ;Error1 dresser not runing
+    ;  $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]=FALSE ;Fraes aus
+  endif
+  WAIT SEC 0.5
+
+  IF (dress_err<1) THEN ;kein Fehler
+    IF ZANGE[AZ].VORHUB THEN ;Vorhub schliessen
+      SWITCH  ZANGE[AZ].Z_TYP
+      CASE 1,4
+        ;Fuer C_Zange
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=FALSE ;Vorhub schliessen
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=TRUE ;Vorhub schliessen
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=TRUE ;Schweisshub schliessen
+        WAIT_FOR_VORHUB_ZU (AZ )
+      CASE 2
+        ;Fuer X_Zange
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=FALSE ;Vorhub schliessen
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=TRUE ;Vorhub schliessen
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=TRUE ;Rueckhub ( Schnellentlueftung )
+        WAIT_FOR_VORHUB_ZU (AZ )
+      CASE 3
+        ;Fuer SE_Zange
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=FALSE ;Vorhub schliessen
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=TRUE ;Vorhub schliessen
+        WAIT_FOR_VORHUB_ZU (AZ )
+      ENDSWITCH
+    ENDIF
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=TRUE ;Schweisshub schliessen
+    WAIT_FOR_ZANGE_ZU (AZ )
+    $OUT[FRAESER[ZANGE[AZ].FRAESER].ZANGE_ZU] = TRUE ; ZANGE geschlossen an SST
+  ENDIF
+
+
+  $TIMER[TI_NR2]=FRAESER_KLEMMT_TIME * (-1) ;Timer fuer Ueberwachung Fraeser => Prozess lauft in der SST ab!
+  $TIMER_STOP[TI_NR2]=FALSE ;Überwachungszeit starten
+  WHILE  ($TIMER_flag[TI_NR2]<>TRUE)
+    IF  $IN[FRAESER[ZANGE[AZ].FRAESER].FRAES_Fertig] == TRUE THEN
+      dress_err = 0
+      EXIT
+    ENDIF
+    IF  $IN[FRAESER[ZANGE[AZ].FRAESER].FRAES_F] == TRUE THEN
+      dress_err = 2
+      EXIT
+    ENDIF
+    dress_err = 2
+  ENDWHILE
+  $TIMER_STOP[TI_NR2]=TRUE ;Timer stoppen
+
+
+
+  switch dress_err
+  case 1 ;nicht gestartet
+    $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]= FALSE ;Fraes aus
+    $OUT[FRAESER[ZANGE[AZ].FRAESER].ZANGE_ZU] = FALSE ; ZANGE-Meldung an SST
+    pulse($OUT[SST[FRAESER[ZANGE[AZ].FRAESER].FRAES_SST].O_QFAL],TRUE,0.5) ;Quittierung Fehler
+    ;Abruch Fraeser nicht gestartet !
+    If LangU then
+      DISP_MSG(PS_ERROR_U[13],#QUIT,DUMMY)
+    else
+      DISP_MSG(PS_ERROR[13],#QUIT,DUMMY)
+    endif
+
+  case 2 ; Fehler beim Fräsen
+    Dress_wdh = FALSE
+    while (dress_wdh <> TRUE)
+      IF  $IN[FRAESER[ZANGE[AZ].FRAESER].FRAES_F] == TRUE THEN
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=FALSE ;Rueckhub ( Schnellentlueftung )
+        $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=FALSE ;Schweisshub oeffnen
+        $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]=FALSE ;Fraes aus
+        $OUT[FRAESER[ZANGE[AZ].FRAESER].ZANGE_ZU] = FALSE ; ZANGE-Meldung an SST
+        WAIT_FOR_VORHUB_ZU (AZ ) ;*TB
+
+        ;Fraeserfehler von der Schweißsteuerung, wiederholen ?
+        If LangU then
+          DISP_MSG(PS_ERROR_U[15],#QUIT,DUMMY)
+        else
+          DISP_MSG(PS_ERROR[15],#QUIT,DUMMY)
+        endif
+
+        if DUMMY == 2 then   ;Wenn DIALOG NEIN, dann schleife verlassen!
+          dress_wdh = TRUE
+          exit
+        ELSE   ; Fraesen wiederholen
+          ;Bevor neuer Fräsversuch alles zurücksetzen
+          $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]=False
+          $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=False
+          $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=False
+          WAIT_FOR_VORHUB_ZU (AZ ) ;*TB
+          $OUT[FRAESER[ZANGE[AZ].FRAESER].ZANGE_ZU] = FALSE
+          pulse($OUT[SST[FRAESER[ZANGE[AZ].FRAESER].FRAES_SST].O_QFAL],TRUE,0.5) ;Quittierung Fehler
+          wait sec 1
+          IF LangU then
+            MSG_WAIT (PS_MESSAGE_U[], SST[ZANGE[AZ].VSST].I_SchwFehl, FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+          else
+            MSG_WAIT ( PS_MESSAGE[], SST[ZANGE[AZ].VSST].I_SchwFehl, FALSE, MAX_I_PS_MESSAGE,0, BRESULT )
+          endif
+          ;Ablauf neu starten
+          $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]=TRUE
+          WAIT SEC 1
+          $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=TRUE
+          $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=TRUE
+          WAIT_FOR_ZANGE_ZU (AZ )
+          $OUT[FRAESER[ZANGE[AZ].FRAESER].ZANGE_ZU] = TRUE ; ZANGE geschlossen an SST
+
+          $TIMER[TI_NR2]=FRAESER_KLEMMT_TIME * (-1) ;Timer fuer Ueberwachung Fraeser => Prozess lauft in der SST ab!
+          $TIMER_STOP[TI_NR2]=FALSE ;Überwachungszeit starten
+          WHILE  ($TIMER_flag[TI_NR2]<>TRUE)
+            IF  $IN[FRAESER[ZANGE[AZ].FRAESER].FRAES_Fertig] == TRUE THEN
+              EXIT
+            ENDIF
+            IF  $IN[FRAESER[ZANGE[AZ].FRAESER].FRAES_F] == TRUE THEN
+              EXIT
+            ENDIF
+          ENDWHILE
+          if $TIMER_FLAG[TI_NR2] then
+            ;Abruch Fraeser, Timeout !
+            If LangU then
+              DISP_MSG(PS_ERROR_U[12],#QUIT,DUMMY)
+            else
+              DISP_MSG(PS_ERROR[12],#QUIT,DUMMY)
+            endif
+          endif
+          $TIMER_STOP[TI_NR2]=TRUE ;Timer stoppen
+        ENDIF
+      ENDIF
+      IF  $IN[FRAESER[ZANGE[AZ].FRAESER].FRAES_Fertig] == TRUE THEN
+        dress_err = 0
+        dress_wdh = TRUE
+      ENDIF
+    ENDWHILE
+  case 3 ; Timeout-Fehler
+    $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]= FALSE ;Fraes aus
+    $OUT[FRAESER[ZANGE[AZ].FRAESER].ZANGE_ZU] = FALSE ; ZANGE-Meldung an SST
+    pulse($OUT[SST[FRAESER[ZANGE[AZ].FRAESER].FRAES_SST].O_QFAL],TRUE,0.5) ;Quittierung Fehler
+    ;Abruch Fraeser, Timeout !
+    If LangU then
+      DISP_MSG(PS_ERROR_U[12],#QUIT,DUMMY)
+    else
+      DISP_MSG(PS_ERROR[12],#QUIT,DUMMY)
+    endif
+  endswitch
+
+
+  $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_RH]=FALSE ;Rueckhub ( Schnellentlueftung )
+  $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=FALSE ;Schweisshub oeffnen
+  WAIT_FOR_VORHUB_ZU (AZ ) ;*TB
+  WAIT SEC 0.5
+
+  $OUT[FRAESER[ZANGE[AZ].FRAESER].ZANGE_ZU] = False
+
+
+  if dress_err < 1 then ;keine fraesfehler
+    $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]= False ;Fraes aus
+    IF OPT_EL_NR THEN
+      ;Elektrodennr. anwaehlen zum Reset des zugeordneten Zaehlers
+      SET_WELD_PROG (AZ,ZANGE[AZ].EL_NR )
+    ENDIF ;EL_NR
+    IF $IN[SST[ZANGE[AZ].VSST].I_StartFraesAnfrage] THEN;abfrage startfraesen
+      SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].EF_PROG )
+    else
+      SET_WELD_PROG (AZ,PARAMETER[ZANGE[AZ].EL_NR].FF_PROG )
+    endif
+    wait sec 0.05
+    pulse($OUT[SST[ZANGE[AZ].VSST].O_QFRAES],TRUE,3.0) ;Quittierung Fraesen
+    FraesAnford[AZ] = FALSE    ;Fraesmerker ruecksetzen
+    wait sec 0.05
+    ;Error handling
+    if (($in[SST[ZANGE[AZ].VSST].I_FRAESEN]==true) and ($OUT[SST[ZANGE[AZ].VSST].O_QFRAES]==true)) then
+      Sign_err[ZANGE[AZ].EL_NR]=Sign_err[ZANGE[AZ].EL_NR]+1
+    endif
+    IF LangU then
+      MSG_WAIT (PS_MESSAGE_U[],  SST[ZANGE[AZ].VSST].I_FRAESEN, FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+    else
+      MSG_WAIT ( PS_MESSAGE[],  SST[ZANGE[AZ].VSST].I_FRAESEN, FALSE, MAX_I_PS_MESSAGE,0, BRESULT )
+    endif
+
+  else ; Fräszähler wird nicht zurückgesetzt
+    $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]= False ;Fraes aus
+    $OUT[FRAESER[ZANGE[AZ].FRAESER].ZANGE_ZU] = False
+    pulse($OUT[SST[FRAESER[ZANGE[AZ].FRAESER].FRAES_SST].O_QFAL],TRUE,0.5) ;Quittierung Fehler
+    wait sec 1
+    IF LangU then
+      MSG_WAIT (PS_MESSAGE_U[],  SST[ZANGE[AZ].VSST].I_SchwFehl, FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+    else
+      MSG_WAIT ( PS_MESSAGE[],  SST[ZANGE[AZ].VSST].I_SchwFehl, FALSE, MAX_I_PS_MESSAGE,0, BRESULT )
+    endif
+
+  endif
+
+  IF S.RETR==#OPN THEN
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_ZU]=FALSE ;Vorhub oeffnen
+    $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_VH_AUF]=TRUE ;Vorhub oeffnen
+    WAIT_FOR_ZANGE_AUF (AZ )
+  ENDIF ;RETR
+  ; Schwenkeinheit zurueckfahren
+  IF PARAMETER[ZANGE[AZ].FRAESER].FRAESER_SCHWENKEN THEN
+    FRAESER_SCHWENKEN_ZUR ( )
+  ENDIF
+  ;Fraesmesser(FRAESER[ZANGE[AZ].FRAESER].FRAES_SST) ; Aufruf Unterprogramm Fräsmesserverschleiss
+  dress_err=0
+  dress_wdh=FALSE
+
+END ;(Single_Dress_neue Schweißsteuerung)
+
+
+
+DEF  FRAESER_SCHWENKEN_VOR ( )
+  BOOL BRESULT
+  IF LangU then
+    MSG_WAIT ( PS_MESSAGE[], FRAESER[ZANGE[AZ].FRAESER].I_SCHWENK_ZUR,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT ) ;Warten Schwenkeinheit zurueck
+    MSG_WAIT ( PS_MESSAGE[], FRAESER[ZANGE[AZ].FRAESER].I_SCHWENK_VOR,false, MAX_I_PS_MESSAGE, 0, BRESULT ) ; Warten Schwenkeinheit nicht vorne
+  else
+    MSG_WAIT ( PS_MESSAGE[], FRAESER[ZANGE[AZ].FRAESER].I_SCHWENK_ZUR,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT ) ;Warten Schwenkeinheit zurueck
+    MSG_WAIT ( PS_MESSAGE[], FRAESER[ZANGE[AZ].FRAESER].I_SCHWENK_VOR,false, MAX_I_PS_MESSAGE, 0, BRESULT ) ; Warten Schwenkeinheit nicht vorne
+  endif
+
+  $OUT[FRAESER[ZANGE[AZ].FRAESER].O_SCHWENK_VOR]=TRUE ;Schwenkeinheit vor
+  $OUT[FRAESER[ZANGE[AZ].FRAESER].O_SCHWENK_ZUR]=FALSE
+  IF LangU then
+    MSG_WAIT ( PS_MESSAGE_U[], FRAESER[ZANGE[AZ].FRAESER].I_SCHWENK_VOR,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT ) ; Warten Schwenkeinheit vorne
+    MSG_WAIT ( PS_MESSAGE_U[], FRAESER[ZANGE[AZ].FRAESER].I_SCHWENK_zur,false, MAX_I_PS_MESSAGE, 0, BRESULT ) ; Warten Schwenkeinheit nicht zurueck
+  else
+    MSG_WAIT ( PS_MESSAGE[], FRAESER[ZANGE[AZ].FRAESER].I_SCHWENK_VOR,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT ) ; Warten Schwenkeinheit vorne
+    MSG_WAIT ( PS_MESSAGE[], FRAESER[ZANGE[AZ].FRAESER].I_SCHWENK_zur,false, MAX_I_PS_MESSAGE, 0, BRESULT ) ; Warten Schwenkeinheit nicht zurueck
+  endif
+
+
+END ;(FRAESER_SCHWENKEN_VOR)
+
+
+DEF  FRAESER_SCHWENKEN_ZUR ( )
+  BOOL BRESULT
+  IF LangU then
+    MSG_WAIT ( PS_MESSAGE_U[], FRAESER[ZANGE[AZ].FRAESER].I_SCHWENK_VOR,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT ) ; Warten Schwenkeinheit vorne
+    MSG_WAIT ( PS_MESSAGE_U[], FRAESER[ZANGE[AZ].FRAESER].I_SCHWENK_zur,false, MAX_I_PS_MESSAGE, 0, BRESULT ) ; Warten Schwenkeinheit nicht zurueck
+  else
+    MSG_WAIT ( PS_MESSAGE[], FRAESER[ZANGE[AZ].FRAESER].I_SCHWENK_VOR,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT ) ; Warten Schwenkeinheit vorne
+    MSG_WAIT ( PS_MESSAGE[], FRAESER[ZANGE[AZ].FRAESER].I_SCHWENK_zur,false, MAX_I_PS_MESSAGE, 0, BRESULT ) ; Warten Schwenkeinheit nicht zurueck
+  endif
+  $OUT[FRAESER[ZANGE[AZ].FRAESER].O_SCHWENK_ZUR]=TRUE ;Schwenkeinheit zurueck
+  $OUT[FRAESER[ZANGE[AZ].FRAESER].O_SCHWENK_VOR]=FALSE
+  IF LangU then
+    MSG_WAIT ( PS_MESSAGE_U[], FRAESER[ZANGE[AZ].FRAESER].I_SCHWENK_ZUR,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT ) ;Warten Schwenkeinheit zurueck
+    MSG_WAIT ( PS_MESSAGE_U[], FRAESER[ZANGE[AZ].FRAESER].I_SCHWENK_VOR,false, MAX_I_PS_MESSAGE, 0, BRESULT ) ; Warten Schwenkeinheit nicht vorne
+  else
+    MSG_WAIT ( PS_MESSAGE[], FRAESER[ZANGE[AZ].FRAESER].I_SCHWENK_ZUR,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT ) ;Warten Schwenkeinheit zurueck
+    MSG_WAIT ( PS_MESSAGE[], FRAESER[ZANGE[AZ].FRAESER].I_SCHWENK_VOR,false, MAX_I_PS_MESSAGE, 0, BRESULT ) ; Warten Schwenkeinheit nicht vorne
+  endif
+
+END ;(FRAESER_SCHWENKEN_ZUR)
+
+
+GLOBAL DEF Stop_Dress ()
+  ;Fraes aus, Laufzeit ueberschritten
+  INTERRUPT OFF 37 ;Fraesueberwachung AUS
+  $TIMER_STOP[TI_NR3]=TRUE
+  $OUT[FRAESER[ZANGE[AZ].FRAESER].FRAES_START]=false
+end
+
+
+
+DEF  WAIT_FOR_ZANGE_ZU (AZ :IN )
+  ;!==========================================================
+  ;! Programm : WAIT_FOR_ZANGE_ZU(..)
+  ;! Funktion : Pseudofunktion Zange zu, da kein realer Zange
+  ;!            zu Eingang vorhanden werden vorhandene negativ
+  ;!            abgefragt.
+  ;!
+  ;! Version  : 1.00
+  ;! Aenderungsstand: 23.02.1999
+  ;!==========================================================
+  ;! Version  : 1.01
+  ;! Aenderungsstand: 04.07.2001
+  ;|              Eingang I_SH_ZU wird abgefragt
+  ;!==========================================================
+  ;! (C) 1999 DaimlerChrysler AG
+  ;!
+  ;! Bearbeiter :
+  ;!  R.Weinmann  07031-90-2571
+  ;!==========================================================
+  INT AZ
+  BOOL BRESULT
+  SWITCH  ZANGE[AZ].Z_TYP
+  CASE 1,3,4 ; C-ZANGE
+    IF ZANGE[AZ].VORHUB THEN
+      IF LangU then
+        MSG_WAIT ( PS_MESSAGE_U[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_SH_AUF,FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+      else
+        MSG_WAIT ( PS_MESSAGE[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_SH_AUF,FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+      endif
+
+    ENDIF
+  CASE 2 ; X-ZANGE
+    IF ZANGE[AZ].VORHUB THEN
+      IF LangU then
+        MSG_WAIT ( PS_MESSAGE_U[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_VH_ZU,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+        MSG_WAIT ( PS_MESSAGE_U[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_SH_AUF,FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+      else
+        MSG_WAIT ( PS_MESSAGE[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_VH_ZU,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+        MSG_WAIT ( PS_MESSAGE[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_SH_AUF,FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+      endif
+
+    ENDIF
+  ENDSWITCH
+  IF LangU then
+    MSG_WAIT ( PS_MESSAGE_U[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_VH_AUF,FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+    MSG_WAIT ( PS_MESSAGE_U[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_SH_ZU,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+  else
+    MSG_WAIT ( PS_MESSAGE[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_VH_AUF,FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+    MSG_WAIT ( PS_MESSAGE[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_SH_ZU,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+  endif
+
+END ;(WAIT_FOR_ZANGE_ZU)
+
+
+DEF  WAIT_FOR_ZANGE_AUF (AZ :IN )
+  ;!==========================================================
+  ;! Programm : WAIT_FOR_ZANGE_AUF(..)
+  ;! Funktion :
+  ;!
+  ;! Version  : 1.00
+  ;! Aenderungsstand: 17.06.99/R.Wiedmann
+  ;!==========================================================
+  ;! (C) 1999 DaimlerChrysler AG
+  ;!
+  ;! Bearbeiter :
+  ;!  R.Weinmann  07031-90-2571
+  ;!==========================================================
+  INT AZ
+  BOOL BRESULT
+  IF ZANGE[AZ].VORHUB THEN
+    SWITCH  ZANGE[AZ].Z_TYP
+    CASE 1,3,4
+      IF LangU then
+        MSG_WAIT ( PS_MESSAGE_U[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_SH_AUF,FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+      else
+        MSG_WAIT ( PS_MESSAGE[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_SH_AUF,FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+      endif
+
+    CASE 2
+      IF LangU then
+        MSG_WAIT ( PS_MESSAGE_U[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_VH_ZU,FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+        MSG_WAIT ( PS_MESSAGE_U[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_SH_AUF,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+      else
+        MSG_WAIT ( PS_MESSAGE[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_VH_ZU,FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+        MSG_WAIT ( PS_MESSAGE[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_SH_AUF,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+      endif
+    ENDSWITCH
+    IF LangU then
+      MSG_WAIT ( PS_MESSAGE_U[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_VH_AUF,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+    else
+      MSG_WAIT ( PS_MESSAGE[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_VH_AUF,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+    endif
+  ELSE
+    IF LangU then
+      MSG_WAIT ( PS_MESSAGE_U[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_SH_AUF,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+    else
+      MSG_WAIT ( PS_MESSAGE[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_SH_AUF,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+    endif
+  ENDIF
+END ;(WAIT_FOR_ZANGE_AUF)
+
+
+DEF  WAIT_FOR_VORHUB_ZU (AZ :IN )
+  ;!==========================================================
+  ;! Programm : WAIT_FOR_VORHUB_ZU(..)
+  ;! Funktion :
+  ;|
+  ;! Version  : 1.01
+  ;! Aenderungsstand: 04.07.2001
+  ;|              Neuer Zangentyp 4 (Vorhub zurück nicht getrennt)
+  ;!==========================================================
+  ;! Version  : 1.00
+  ;! Aenderungsstand:
+  ;!==========================================================
+  ;! (C) 1999 DaimlerChrysler AG
+  ;!
+  ;! Bearbeiter :
+  ;!  R.Weinmann  07031-90-2571
+  ;!==========================================================
+  INT AZ
+  BOOL BRESULT
+  IF ZANGE[AZ].VORHUB THEN
+    SWITCH  ZANGE[AZ].Z_TYP
+    CASE 1,3 ; C-ZANGE
+      IF LangU then
+        MSG_WAIT ( PS_MESSAGE_U[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_SH_AUF,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT ) ; Vorhub geschlossen
+        MSG_WAIT ( PS_MESSAGE_U[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_VH_AUF,FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+      else
+        MSG_WAIT ( PS_MESSAGE[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_SH_AUF,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT ) ; Vorhub geschlossen
+        MSG_WAIT ( PS_MESSAGE[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_VH_AUF,FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+      endif
+
+    CASE 2 ; X-ZANGE
+      IF LangU then
+        MSG_WAIT ( PS_MESSAGE_U[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_VH_ZU,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT ) ; Vorhub geschlossen
+        MSG_WAIT ( PS_MESSAGE_U[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_VH_AUF,FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+        MSG_WAIT ( PS_MESSAGE_U[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_SH_AUF,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+      else
+        MSG_WAIT ( PS_MESSAGE[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_VH_ZU,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT ) ; Vorhub geschlossen
+        MSG_WAIT ( PS_MESSAGE[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_VH_AUF,FALSE, MAX_I_PS_MESSAGE, 0, BRESULT )
+        MSG_WAIT ( PS_MESSAGE[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_SH_AUF,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT )
+      endif
+
+    CASE 4 ; C-ZANGE Vorhub kann nicht getrennt zurückgefahren werden
+      IF LangU then
+        MSG_WAIT ( PS_MESSAGE_U[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_SH_AUF,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT ) ; Zange offen
+      else
+        MSG_WAIT ( PS_MESSAGE[], Z_E_A[ZANGE[AZ].Z_EA_NR].I_SH_AUF,TRUE, MAX_I_PS_MESSAGE, 0, BRESULT ) ; Zange offen
+      endif
+
+    ENDSWITCH
+  ENDIF
+END ;(WAIT_FOR_VORHUB_ZU)
+
+
+DEF  WAIT_FOR_VORHUB_AUF (AZ :IN )
+  ;!==========================================================
+  ;! Programm : WAIT_FOR_VORHUB_AUF(..)
+  ;! Funktion :
+  ;!
+  ;! Version  : 1.00
+  ;! Aenderungsstand:
+  ;!==========================================================
+  ;! (C) 1999 DaimlerChrysler AG
+  ;!
+  ;! Bearbeiter :
+  ;!  R.Weinmann  07031-90-2571
+  ;!==========================================================
+  INT AZ
+  BOOL BRESULT
+
+END ;(WAIT_FOR_VORHUB_AUF)
+
+
+DEF  SET_WELD_PROG (AZ :IN,PROG_NR :IN )
+  ;!==========================================================
+  ;! Programm : SET_WELD_PROG(..)
+  ;! Funktion :
+  ;!
+  ;! Version  : 1.00
+  ;! Aenderungsstand:
+  ;!==========================================================
+  ;! (C) 1999 DaimlerChrysler AG
+  ;!
+  ;! Bearbeiter :
+  ;!  R.Weinmann  07031-90-2571
+  ;!==========================================================
+  INT AZ,PROG_NR,DUMMY
+
+  SWITCH  ZANGE[AZ].VSST
+  CASE 1
+    O_PROGRAMM_A=PROG_NR ;SKBIT0-SKBIT7/PROG.FUER MAXDRUCK SST1
+  CASE 2
+    O_PROGRAMM_B=PROG_NR ;SKBIT0-SKBIT7/PROG.FUER MAXDRUCK SST2
+  CASE 3
+    O_PROGRAMM_C=PROG_NR ;SKBIT0-SKBIT7/PROG.FUER MAXDRUCK SST2
+  CASE 4
+    O_PROGRAMM_D=PROG_NR ;SKBIT0-SKBIT7/PROG.FUER MAXDRUCK SST2
+  DEFAULT
+    If LangU then
+      DISP_MSG(PS_ERROR_U[2],#QUIT,DUMMY)
+    else
+      DISP_MSG(PS_ERROR[2],#QUIT,DUMMY)
+    endif
+
+  ENDSWITCH
+END ; (SET_WELD_PROG)
+
+
+DEFFCT  INT GETGUNNR(S :IN)
+  ;!==========================================================
+  ;! Programm : GETGUNNR(..)
+  ;! Funktion : Ermitteln was fuer eine Zange am IR haengt
+  ;!
+  ;! Version  : 1.01
+  ;! Aenderungsstand: 22.08.1998
+  ;!==========================================================
+  ;! (C) 1998 Daimler-Benz AG
+  ;!
+  ;! Bearbeiter :
+  ;!  R.Weinmann  07031-90-2571
+  ;!==========================================================
+  DECL SPOT_TYPE S
+  INT II,T_AZ,DUMMY
+  ; Kriterium fuer im Inlineformular uebergebende Zange
+  ; befindet sich am Roboter:
+  ; Zangennummer im Block ZANGE[..] ist gleich Zange Inlineformular und
+  ; als vorhanden gekennzeichnet, und Wechselzange, und nicht in Ablage
+  if (Opt_GetGunNr == true) then
+    ;Zangennummer aus Bahnhofsbelegung ermitteln
+    T_AZ=0
+    FOR II=1 TO  MAX_ZANGKENN
+      IF (S_ACT.GUN==II) AND (ZANGE[II].VORHANDEN) THEN
+        IF ZANGE[II].WKZ_AB>0 THEN
+          IF $IN[ZANGE[II].WKZ_AB]==FALSE THEN
+            T_AZ=II ;Nummer der aktuellen (angewaehlten) Wechselz.bestimmen
+          ENDIF
+        ELSE
+          T_AZ=II ;Nummer der aktuellen (angewaehlten) Zange bestimmen
+        ENDIF
+      ENDIF
+    ENDFOR
+    IF (T_AZ==0) THEN ;Keine Zange gefunden
+
+      ;GUN Nr. nicht definiert
+      If LangU then
+        DISP_MSG(PS_ERROR_U[7],#QUIT,DUMMY)
+      else
+        DISP_MSG(PS_ERROR[7],#QUIT,DUMMY)
+      endif
+
+      S_READY=FALSE
+      RETURN  0
+    ELSE
+      RETURN  T_AZ
+    ENDIF
+  else
+    ;Überprüfen ob richtige Zange angedockt ist
+    IF (ZANGE[S_ACT.GUN].VORHANDEN == FALSE) THEN
+      ;GUN Nr. nicht definiert
+      If LangU then
+        DISP_MSG(PS_ERROR_U[7],#QUIT,DUMMY)
+      else
+        DISP_MSG(PS_ERROR[7],#QUIT,DUMMY)
+      endif
+      S_READY=FALSE
+      RETURN  0
+    endif
+
+    ;Wechselzange ?
+    IF ZANGE[S_ACT.GUN].WKZ_AB>0 THEN
+      IF $IN[ZANGE[S_ACT.GUN].WKZ_AB]==TRUE THEN
+
+        ;falsche Zange angedockt
+        If LangU then
+          DISP_MSG(PS_ERROR_U[17],#QUIT,DUMMY)
+        else
+          DISP_MSG(PS_ERROR[17],#QUIT,DUMMY)
+        endif
+
+        S_READY=FALSE
+        RETURN  0
+      ENDIF
+      RETURN S_ACT.GUN
+    ENDIF
+    return S_ACT.GUN
+  endif
+ENDFCT ;(GETGUNNR)
+
+
+DEF FK_WAIT ( I_MESS[]:OUT, IN_NO:IN, MAX_MSG:IN, TIMEOUT:IN, RESULT:OUT )
+  ;!==========================================================
+  ;! Programm : FK_MSG(..)
+  ;! Funktion : Zeigt dem Eingang zugehoerigen Text im
+  ;!            Meldungsfenster an und öffnet nach Ablauf des Timeouts
+  ;!            einen Dialog
+  ;!
+  ;! Version  : 0.0
+  ;! Aenderungsstand: 09.07.2001
+  ;!==========================================================
+  ;! (C) 1998 Daimler-Benz AG
+  ;!
+  ;! Bearbeiter :
+  ;!  Harry Konz  07031-90-45396
+  ;!==========================================================
+  DECL I_MESSAGETYP I_MESS[]
+  DECL INT IN_NO,MAX_MSG,TIMEOUT,Weld_Repeat
+  DECL BOOL RESULT
+
+  DECL INT OFFSET,DUMMY,ANSWER,MSG_ID
+  DECL STATE_T STATE
+  DECL MSG_TYP MSG_TYPE
+  DECL MSG_T EMPTY_MSG
+  weld_repeat=0
+  EMPTY_MSG={MSG_T: VALID FALSE,RELEASE FALSE,TYP #NOTIFY,MODUL[] " ",KEY[] " ",PARAM_TYP #VALUE,PARAM[] " ",DLG_FORMAT[] " ",ANSWER 0}
+
+  MSG_ID=GET_MSG_ID( I_MESS[], IN_NO, MAX_MSG )
+
+  RESULT=FALSE ;default
+  $TIMER_STOP[TI_NR3]=TRUE
+  $TIMER[TI_NR3]=-1500 ;[msec]
+  $TIMER_STOP[TI_NR3]=FALSE
+  WHILE  (($IN[IN_NO]<>TRUE) AND ( NOT $TIMER_FLAG[TI_NR3]))
+    WAIT SEC 0.01
+  ENDWHILE
+
+  ; wenn Timeout Meldungsangezeige
+  IF $TIMER_FLAG[TI_NR3] THEN
+    $TIMER_STOP[TI_NR3]=TRUE
+    IF TIMEOUT > 0 THEN
+      $TIMER[TI_NR3] = (TIMEOUT-$TIMER[TI_NR3]) * (-1)
+      $TIMER_STOP[TI_NR3]=FALSE
+    ENDIF
+
+    OFFSET=0
+    SWRITE($LOOP_MSG[],STATE,OFFSET,"S|Wait for %s",I_MESS[MSG_ID].I_MSG_TXT[])
+    $LOOP_CONT=TRUE ;simtaste active
+
+    WHILE  (($IN[IN_NO]<>TRUE) AND $LOOP_CONT )
+      IF ($TIMER_FLAG[TI_NR3]) AND (TIMEOUT > 0) and ($T1==FALSE) and (weld_repeat<MAX_WELD_REPEAT) THEN
+        $LOOP_MSG[]="  ";sim abbrechen
+        ;Dialogmeldung ausgeben
+        $MSG_T=EMPTY_MSG ;struc default
+        $MSG_T.MODUL[]="USRSPOT"
+        $MSG_T.PARAM[]="PARAM"
+        $MSG_T.RELEASE=FALSE
+        $MSG_T.PARAM_TYP=#KEY
+        $MSG_T.TYP=#DIALOG
+        $MSG_T.DLG_FORMAT[]=" Ja | |Anhalten"
+
+        OFFSET = 0  ;"FK von Schweisssteuerung fehlt!    Schweisssung wiederholen ?"
+        SWRITE($MSG_T.KEY[],STATE,OFFSET,PS_ERROR[9].MSGTXT[])
+        WAIT SEC 0.4
+
+        $MSG_T.VALID=TRUE ;dialog activieren
+        WHILE  $MSG_T.VALID
+          WAIT SEC 0.05
+          if ($IN[IN_NO]==TRUE) then
+            ;Dialog beenden wenn FK doch noch kommt
+            wait sec 0.2
+            $MSG_T.RELEASE=TRUE ;abbruch dialog
+            wait sec 0.2
+            $TIMER_STOP[TI_NR3]=TRUE
+            return
+          endif
+          if ($T1==TRUE) then
+            ;Dialog beenden wenn auf T1 umgeschaltet wird
+            wait sec 0.2
+            $MSG_T.RELEASE=TRUE
+            wait sec 0.2
+            OFFSET=0
+            SWRITE($LOOP_MSG[],STATE,OFFSET,"S|Wait for %s",I_MESS[MSG_ID].I_MSG_TXT[])
+          endif
+        ENDWHILE
+
+        ANSWER=$MSG_T.ANSWER ;auswahl nach softkey
+        wait sec 0.2
+        $MSG_T=EMPTY_MSG ;structur loeschen
+        SWITCH  ANSWER
+        CASE 1
+          $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=false ;Schweisshub oeffnen
+          WAIT_FOR_VORHUB_ZU (AZ ) ; schweisshub auf
+          wait sec 1.0
+          $OUT[Z_E_A[ZANGE[AZ].Z_EA_NR].O_SH]=true ;Schweisshub schliessen
+          WAIT_FOR_ZANGE_ZU (AZ ) ; Pseudo Abfrage da Eingang nicht real vorhanden
+          wait sec 1.0
+          ;Fehler rücksetzen mit Punktwiederholung
+          PULSE($OUT[SST[ZANGE[az].VSST].O_QFPW],TRUE,0.5)
+          ;Timer neu starten
+          $TIMER_STOP[TI_NR3]=TRUE
+          $TIMER[TI_NR3]=-1500 ;[msec]
+          $TIMER_STOP[TI_NR3]=FALSE
+          OFFSET=0
+          SWRITE($LOOP_MSG[],STATE,OFFSET,"S|Wait for %s",I_MESS[MSG_ID].I_MSG_TXT[])
+          weld_repeat=weld_repeat+1 ;zaehler wiederholungen
+        CASE 3
+
+          ;Roboter wurde angehalten wegen fehlendem FK! Fehler beheben und neu starten
+          If LangU then
+            DISP_MSG(PS_ERROR_U[8],#QUIT,DUMMY)
+          else
+            DISP_MSG(PS_ERROR[8],#QUIT,DUMMY)
+          endif
+
+          wait sec 0.2
+          $MSG_T=EMPTY_MSG
+          Halt
+          ;Timer neu starten
+          $TIMER_STOP[TI_NR3]=TRUE
+          $TIMER[TI_NR3]=-1500 ;[msec]
+          $TIMER_STOP[TI_NR3]=FALSE
+          OFFSET=0
+          SWRITE($LOOP_MSG[],STATE,OFFSET,"S|Wait for %s",I_MESS[MSG_ID].I_MSG_TXT[])
+        ENDSWITCH
+      ENDIF
+      WAIT SEC 0.2
+    ENDWHILE
+
+    $LOOP_MSG[]="   " ;simulation abbrechen
+  ENDIF ;$TIMER_FLAG[15]
+  $TIMER_STOP[TI_NR3]=TRUE
+END ; (FK_WAIT)
+
+
+
+DEFFCT  INT GET_MSG_ID( I_MESS[]:OUT, IN_NO :IN, MSG_MAX:IN )
+  ;!==========================================================
+  ;! Programm : GET_MSG_ID(..)
+  ;! Funktion : Sucht im Datenstrukturfeld I_MESS[] eine
+  ;!            Eingangsnummer, und liefert den zugehoerigen
+  ;!            Feldindex zurueck
+  ;! Version  : 1.01
+  ;! Aenderungsstand: 22.08.1998
+  ;!==========================================================
+  ;! (C) 1998 Daimler-Benz AG
+  ;!
+  ;! Bearbeiter :
+  ;!  R.Weinmann  07031-90-2571
+  ;!==========================================================
+  DECL I_MESSAGETYP I_MESS[]
+  INT IN_NO,II, MSG_MAX
+  FOR II=1 TO  MSG_MAX
+    IF I_MESS[II].I_NR==IN_NO THEN
+      RETURN  II
+    ENDIF
+  ENDFOR
+  RETURN MSG_MAX
+ENDFCT
+
+
+
+DEF DISP_MSG(MSG_TXT : OUT,MSG_TYPE :IN, IRESULT :OUT)
+  DECL MSG_TXT_TYP MSG_TXT
+  DECL MSG_TYP     MSG_TYPE
+  DECL INT         IRESULT
+  ;!==========================================================
+  ;! Programm : DISP_MSG(..)
+  ;! Funktion : Zeigt per Parameter uebergebenden String
+  ;!            im Meldungsfenster an.
+  ;!
+  ;! Version  : 1.01
+  ;! Aenderungsstand: 22.08.1998
+  ;!==========================================================
+  ;! (C) 1998 Daimler-Benz AG
+  ;!
+  ;! Bearbeiter :
+  ;!  R.Weinmann  07031-90-2571
+  ;!==========================================================
+
+  DECL INT OFFSET
+  DECL STATE_T STATE
+  DECL MSG_T EMPTY_MSG
+  EMPTY_MSG={MSG_T: VALID FALSE,RELEASE FALSE,TYP #NOTIFY,MODUL[] " ",KEY[] " ",PARAM_TYP #VALUE,PARAM[] " ",DLG_FORMAT[] " ",ANSWER 0}
+
+  IRESULT = 0
+  $MSG_T=EMPTY_MSG
+  $MSG_T.MODUL[]="USRSPOT"
+  $MSG_T.PARAM[]="PARAM"
+  $MSG_T.RELEASE=FALSE
+  $MSG_T.PARAM_TYP=#KEY
+
+  OFFSET = 0
+  SWRITE($MSG_T.KEY[],STATE,OFFSET,MSG_TXT.MSGTXT[])
+  wait sec 0.2
+
+  SWITCH  MSG_TYPE
+  CASE #DIALOG
+    $MSG_T.TYP=#DIALOG
+    $MSG_T.DLG_FORMAT[]="JA|NEIN|"
+    $MSG_T.VALID=TRUE
+    WHILE  $MSG_T.VALID
+      WAIT SEC 0.05
+    ENDWHILE
+    IRESULT=$MSG_T.ANSWER ;rueckgabe
+  CASE #STATE
+    $MSG_T.TYP=#STATE
+    $MSG_T.VALID=TRUE
+    WHILE  $MSG_T.VALID
+      WAIT SEC 0.05
+    ENDWHILE
+
+  CASE #QUIT
+    $MSG_T.TYP=#QUIT
+    $MSG_T.VALID=TRUE
+    WHILE  $MSG_T.VALID
+      WAIT SEC 0.05
+    ENDWHILE
+
+  CASE #NOTIFY
+    $MSG_T.TYP=#NOTIFY
+    $MSG_T.VALID=TRUE
+    WHILE  $MSG_T.VALID
+      WAIT SEC 0.05
+    ENDWHILE
+
+  DEFAULT
+  ENDSWITCH
+END ;(DISP_MSG)MS
+
+
+;Pruefen ob von der Schweisssteuerung eine Fraesanforderung anliegt
+global DEFFCT BOOL FraesAnf(GunNr : IN,DressMode: in)
+  DECL BOOL Status,BRESULT,DressMode
+  DECL INT GUNNR
+  IF ((not (Varstate("GUNNR")== #INITIALIZED )))  THEN
+    GUNNR=1
+  endif
+  If (GunNr>MAX_ZANGKENN) then
+    GUNNR=1
+  endif
+  IF ((not (Varstate("IniDress")== #INITIALIZED )))  THEN
+    IniDress=FALSE
+  endif
+
+
+
+  SET_WELD_PROG (GUNNR, ZANGE[GUNNR].PRMAXDR )
+  wait sec 0.2
+
+  IF LangU then
+    MSG_WAIT ( PS_MESSAGE_U[], SST[ZANGE[GUNNR].VSST].I_PktAnwOK,true, MAX_I_PS_MESSAGE, 0, BRESULT ) ;PktOk
+  else
+    MSG_WAIT ( PS_MESSAGE[], SST[ZANGE[GUNNR].VSST].I_PktAnwOK,true, MAX_I_PS_MESSAGE, 0, BRESULT ) ;PktOk
+  endif
+
+  PS_SK_Signals(GunNr)  ;// --> PLC
+  
+  if ((PS_Stat_FraesErf>0) or (PS_Rob_FraesErf>0)) then ;// --> HANDLING PLC
+    if (($IN[SST[ZANGE[GUNNR].VSST].I_FRAESEN]) and (not $IN[SST[ZANGE[GUNNR].VSST].I_StartFraesAnfrage])) then
+      ZANGE[GunNr].FraesAnf = ZANGE[GunNr].FraesAnf - 1  ;//COUNTER
+    else
+      ZANGE[GunNr].FraesAnf=FraesAnfDelay  ;// INI COUNTER
+    endif
+  else  ;// --> DRESS HANDLING ROBOT
+    if (($IN[SST[ZANGE[GUNNR].VSST].I_FRAESEN]) and (not $IN[SST[ZANGE[GUNNR].VSST].I_StartFraesAnfrage])) then
+      ZANGE[GunNr].FraesAnf = ZANGE[GunNr].FraesAnf - 1
+    else
+      ZANGE[GunNr].FraesAnf=FraesAnfDelay
+    endif
+  endif
+  return ((ZANGE[GunNr].FraesAnf < 0) or ($IN[I_FRAESANFSPS] ) and (not $IN[SST[ZANGE[GUNNR].VSST].I_StartFraesAnfrage]))
+  ;// FRAESANF= -1, START DRESS REGARDING "COUNTING" --> PLC
+  ;// FRAESANFSPS = OPTION DRESS FROM SPS
+ENDFCT
+
+
+global DEFFCT BOOL ElektrodenWechsel(GUNNR : IN)
+  DECL BOOL Status,BRESULT
+  DECL INT GUNNR
+  IF ((not (Varstate("GUNNR")== #INITIALIZED )))  THEN
+    GUNNR=1
+  endif
+  If (GunNr>MAX_ZANGKENN) then
+    GUNNR=1
+  endif
+  SET_WELD_PROG (GUNNR, ZANGE[GUNNR].PRMAXDR )
+  wait sec 0.2
+  IF LangU then
+    MSG_WAIT ( PS_MESSAGE_U[], SST[ZANGE[GUNNR].VSST].I_PktAnwOK,true, MAX_I_PS_MESSAGE, 0, BRESULT ) ;PktOk
+  else
+    MSG_WAIT ( PS_MESSAGE[], SST[ZANGE[GUNNR].VSST].I_PktAnwOK,true, MAX_I_PS_MESSAGE, 0, BRESULT ) ;PktOk
+  endif
+  PS_SK_Signals(GunNr)
+  RETURN  $IN[SST[ZANGE[GUNNR].VSST].I_StartFraesAnfrage]
+ENDFCT
+
+;Elektrodenwechsel quittieren
+global DEF QuitElektrodenWechsel(GUNNR : IN)
+  DECL BOOL Status,BRESULT
+  DECL INT GUNNR
+  IF ((not (Varstate("GUNNR")== #INITIALIZED )))  THEN
+    GUNNR=1
+  endif
+  If (GunNr>MAX_ZANGKENN) then
+    GUNNR=1
+  endif
+  SET_WELD_PROG (GUNNR, ZANGE[GUNNR].PRMAXDR )
+  wait sec 0.2
+  IF LangU then
+    MSG_WAIT ( PS_MESSAGE_U[], SST[ZANGE[GUNNR].VSST].I_PktAnwOK,true, MAX_I_PS_MESSAGE, 0, BRESULT ) ;PktOk
+  else
+    MSG_WAIT ( PS_MESSAGE[], SST[ZANGE[GUNNR].VSST].I_PktAnwOK,true, MAX_I_PS_MESSAGE, 0, BRESULT ) ;PktOk
+  endif
+  $OUT[SST[ZANGE[GUNNR].VSST].O_QELW]=True   ;// QUITT E-WECHSEL ERFOLGT
+  IF LangU then
+    MSG_WAIT ( PS_MESSAGE_U[], SST[ZANGE[GUNNR].VSST].I_StartFraesAnfrage,true, MAX_I_PS_MESSAGE, 0, BRESULT ) ;PktOk
+  else
+    MSG_WAIT ( PS_MESSAGE[], SST[ZANGE[GUNNR].VSST].I_StartFraesAnfrage,true, MAX_I_PS_MESSAGE, 0, BRESULT ) ;PktOk
+  endif
+  $OUT[SST[ZANGE[GUNNR].VSST].O_QELW]=false   ;// QUITT E-WECHSEL ERFOLGT
+  IF LangU then
+    MSG_WAIT ( PS_MESSAGE_U[], SST[ZANGE[GUNNR].VSST].I_NeueEl,true, MAX_I_PS_MESSAGE, 0, BRESULT ) ;PktOk
+  else
+    MSG_WAIT ( PS_MESSAGE[], SST[ZANGE[GUNNR].VSST].I_NeueEl,true, MAX_I_PS_MESSAGE, 0, BRESULT ) ;PktOk
+  endif
+
+  PS_SK_Signals(GunNr)
+END
+
+;Pruefen ob die maximale Standmenge erreicht ist
+global DEFFCT BOOL MaxStandMenge(GUNNR : IN)
+  DECL BOOL Status,BRESULT
+  DECL INT GUNNR
+  IF ((not (Varstate("GUNNR")== #INITIALIZED )))  THEN
+    GUNNR=1
+  endif
+  If (GunNr>MAX_ZANGKENN) then
+    GUNNR=1
+  endif
+  SET_WELD_PROG (GUNNR, ZANGE[GUNNR].PRMAXDR )
+  wait sec 0.2
+  IF LangU then
+    MSG_WAIT ( PS_MESSAGE_U[], SST[ZANGE[GUNNR].VSST].I_PktAnwOK,true, MAX_I_PS_MESSAGE, 0, BRESULT ) ;PktOk
+  else
+    MSG_WAIT ( PS_MESSAGE[], SST[ZANGE[GUNNR].VSST].I_PktAnwOK,true, MAX_I_PS_MESSAGE, 0, BRESULT ) ;PktOk
+  endif
+  PS_SK_Signals(GunNr)
+  if ($IN[SST[ZANGE[GUNNR].VSST].I_MaxStandMenge]) then
+
+    ZANGE[GunNr].MaxStandmenge = ZANGE[GunNr].MaxStandmenge - 1
+  else
+    ZANGE[GunNr].MaxStandmenge=MaxStandmengeDelay
+  endif
+  RETURN (ZANGE[GunNr].MaxStandmenge < 0)
+ENDFCT
+
+
+;Meldung ausgeben Maximale Standmenge erreicht
+global DEF MaxStandmengeErreicht(GUNNR : IN)
+
+  DECL INT GUNNR,ACHSNR
+  DECL Bool Dummy
+  IF ((not (Varstate("GUNNR")== #INITIALIZED )) or (GUNNR<1) or (GUNNR>MAX_ZANGKENN)) THEN
+    GUNNR=1
+  endif
+
+  Wait Sec 0.4
+
+  $MSG_T={VALID FALSE,RELEASE FALSE,TYP #DIALOG,MODUL[] "USERSPOT",PARAM_TYP #VALUE,DLG_FORMAT[] "OK",ANSWER 0}
+
+  IF (($IN[SST[ZANGE[GUNNR].VSST].I_MaxStandMenge]) AND (NOT $IN[SST[ZANGE[GUNNR].VSST].I_FraesNotw])) THEN
+    $MSG_T.KEY[]="Maximale Standmenge wurde erreicht!  Elektrodenkappen von Hand wechseln!"
+  else
+    $MSG_T.KEY[]="MAXIMALE STANDMENGE IM FRAESSTEP ERREICHT!  FRAESEN NOTWENDIG!"
+  ENDIF
+  Wait Sec 0.4
+  $MSG_T.VALID=TRUE
+  WHILE  $MSG_T.VALID
+    WAIT SEC 0.05
+  ENDWHILE
+  $MSG_T.ANSWER=0
+  WAIT SEC 0.4
+  Halt
+  WaitMaxStandMenge(False,GunNr)
+END
+;Warten bis MaxStandmenge den gewünschten Status hat
+global DEF WaitMaxStandMenge(Status:IN,GUNNR : IN)
+  DECL BOOL Status,BRESULT
+  DECL INT GUNNR
+  decl int i,ContrNo
+
+  IF ((not (Varstate("GUNNR")== #INITIALIZED )))  THEN
+    GUNNR=1
+  endif
+  If (GunNr>MAX_ZANGKENN) then
+    GUNNR=1
+  endif
+  if O_KappenWechselPos > 0 then
+    $OUT[O_KappenWechselPos]=TRUE
+  endif
+  SET_WELD_PROG (GUNNR, ZANGE[GUNNR].PRMAXDR )
+  wait sec 0.2
+  IF LangU then
+    MSG_WAIT ( PS_MESSAGE_U[], SST[ZANGE[GUNNR].VSST].I_PktAnwOK,true, MAX_I_PS_MESSAGE, 0, BRESULT ) ;PktOk
+  else
+    MSG_WAIT ( PS_MESSAGE[], SST[ZANGE[GUNNR].VSST].I_PktAnwOK,true, MAX_I_PS_MESSAGE, 0, BRESULT ) ;PktOk
+  endif
+  PS_SK_Signals(GunNr)
+  IF LangU then
+    MSG_WAIT ( PS_MESSAGE_U[], SST[ZANGE[GUNNR].VSST].I_MaxStandMenge,Status, MAX_I_PS_MESSAGE, 0, BRESULT )
+  else
+    MSG_WAIT ( PS_MESSAGE[], SST[ZANGE[GUNNR].VSST].I_MaxStandMenge,Status, MAX_I_PS_MESSAGE, 0, BRESULT )
+  endif
+
+  if O_KappenWechselPos > 0 then
+    $OUT[O_KappenWechselPos]=FALSE
+  endif
+END
+
+;Pruefen ob die Vorwarnung erreicht ist
+global DEFFCT BOOL Vorwarnung(GUNNR : IN)
+  DECL BOOL Status,BRESULT
+  DECL INT GUNNR
+  decl int i,ContrNo
+
+  IF ((not (Varstate("GUNNR")== #INITIALIZED )))  THEN
+    GUNNR=1
+  endif
+  If (GunNr>MAX_ZANGKENN) then
+    GUNNR=1
+  endif
+
+  SET_WELD_PROG (GUNNR, ZANGE[GUNNR].PRMAXDR )
+  wait sec 0.2
+  IF LangU then
+    MSG_WAIT ( PS_MESSAGE_U[], SST[ZANGE[GUNNR].VSST].I_PktAnwOK,true, MAX_I_PS_MESSAGE, 0, BRESULT ) ;PktOk
+  else
+    MSG_WAIT ( PS_MESSAGE[], SST[ZANGE[GUNNR].VSST].I_PktAnwOK,true, MAX_I_PS_MESSAGE, 0, BRESULT ) ;PktOk
+  endif
+  PS_SK_Signals(GunNr)
+  RETURN  ($IN[SST[ZANGE[GUNNR].VSST].I_VorWarn] or $IN[SST[ZANGE[GUNNR].VSST].I_MaxStandMenge])
+ENDFCT
+
+global DEF WaitVorwarnung(Status:IN,GUNNR : IN)
+  DECL BOOL Status,BRESULT
+  DECL INT GUNNR
+  decl int i,ContrNo
+
+  IF ((not (Varstate("GUNNR")== #INITIALIZED )))  THEN
+    GUNNR=1
+  endif
+  If (GunNr>MAX_ZANGKENN) then
+    GUNNR=1
+  endif
+
+
+  if O_KappenWechselPos > 0 then
+    $OUT[O_KappenWechselPos]=TRUE
+  endif
+  SET_WELD_PROG (GUNNR, ZANGE[GUNNR].PRMAXDR )
+  wait sec 0.2
+  IF LangU then
+    MSG_WAIT ( PS_MESSAGE_U[], SST[ZANGE[GUNNR].VSST].I_PktAnwOK,true, MAX_I_PS_MESSAGE, 0, BRESULT ) ;PktOk
+  else
+    MSG_WAIT ( PS_MESSAGE[], SST[ZANGE[GUNNR].VSST].I_PktAnwOK,true, MAX_I_PS_MESSAGE, 0, BRESULT ) ;PktOk
+  endif
+  PS_SK_Signals(GunNr)  ;//--> TO PLC
+  IF LangU then
+    MSG_WAIT ( PS_MESSAGE_U[], SST[ZANGE[GUNNR].VSST].I_VorWarn,Status, MAX_I_PS_MESSAGE, 0, BRESULT )
+  else
+    MSG_WAIT ( PS_MESSAGE[], SST[ZANGE[GUNNR].VSST].I_VorWarn,Status, MAX_I_PS_MESSAGE, 0, BRESULT )
+  endif
+
+  if Status == False then   ;wenn Vorwarnung weg sein muss, muss auch Maxstandmenge weg sein
+    IF LangU then
+      MSG_WAIT ( PS_MESSAGE_U[], SST[ZANGE[GUNNR].VSST].I_MaxStandMenge,Status, MAX_I_PS_MESSAGE, 0, BRESULT )
+    else
+      MSG_WAIT ( PS_MESSAGE[], SST[ZANGE[GUNNR].VSST].I_MaxStandMenge,Status, MAX_I_PS_MESSAGE, 0, BRESULT )
+    endif
+
+  endif
+  if O_KappenWechselPos > 0 then
+    $OUT[O_KappenWechselPos]=FALSE
+  endif
+END
+
+Global DEF PS_Bauteilende (ContrNo: in )
+  decl int i,ContrNo
+  decl bool bresult
+  IF ((not (Varstate("ContrNo")== #INITIALIZED )))  THEN
+    ContrNo=1
+  endif
+  If (ContrNo>MAX_SST) then
+    ContrNo=1
+  endif
+  If SST[ContrNo].O_BTEnd>0 then
+    $out[SST[ContrNo].O_BTEnd] = False
+    IF LangU then
+      MSG_WAIT ( PS_MESSAGE_U[], SST[ContrNo].I_QBTEnd,false, MAX_I_PS_MESSAGE, 0, BRESULT ) ; BT-Ende
+    else
+      MSG_WAIT ( PS_MESSAGE[], SST[ZANGE[ContrNo].VSST].I_QBTEnd,false, MAX_I_PS_MESSAGE, 0, BRESULT ) ;PktOk
+    endif
+    $out[SST[ContrNo].O_BTEnd] = True
+    IF LangU then
+      MSG_WAIT ( PS_MESSAGE_U[], SST[ContrNo].I_QBTEnd,false, MAX_I_PS_MESSAGE, 0, BRESULT ) ; BT-Ende
+    else
+      MSG_WAIT ( PS_MESSAGE[], SST[ContrNo].I_QBTEnd,false, MAX_I_PS_MESSAGE, 0, BRESULT ) ; BT-Ende
+    endif
+    $out[SST[ContrNo].O_BTEnd] = False
+  endif
+END
+
+global DEF Ref_SchweissungNeu(GUNNR: in)
+  decl int i,ContrNo,GUNNR
+  decl bool bresult
+  IF ((not (Varstate("GUNNR")== #INITIALIZED )))  THEN
+    GUNNR=1
+  endif
+  If (GunNr>MAX_ZANGKENN) then
+    GUNNR=1
+  endif
+  If SST[ZANGE[GUNNR].VSST].O_RefWNEl>0 then
+    $OUT[SST[ZANGE[GUNNR].VSST].O_RefWNEl]=TRUE
+  endif
+END
+
+global DEF Ref_Schweissung(GUNNR: in )
+  decl int i,ContrNo,GUNNR
+  decl bool bresult
+  IF ((not (Varstate("GUNNR")== #INITIALIZED )))  THEN
+    GUNNR=1
+  endif
+  If (GunNr>MAX_ZANGKENN) then
+    GUNNR=1
+  endif
+  If SST[ZANGE[GUNNR].VSST].O_RefWFraes>0 then
+    $OUT[SST[ZANGE[GUNNR].VSST].O_RefWFraes]=TRUE
+  endif
+END
+
+global DEF Ueberw_Schweissung(GUNNR: in )
+  decl int i,ContrNo,GUNNR
+  decl bool bresult
+  IF ((not (Varstate("GUNNR")== #INITIALIZED )))  THEN
+    GUNNR=1
+  endif
+  If (GunNr>MAX_ZANGKENN) then
+    GUNNR=1
+  endif
+
+  If SST[ZANGE[GUNNR].VSST].O_RefWFraes>0 then
+    $OUT[SST[ZANGE[GUNNR].VSST].O_UebWSchw]=TRUE
+  endif
+END
+
+Global DEFFCT BOOL Fraesfehler(GUNNR : IN)
+  decl int i,ContrNo,GUNNR,Antwort
+  DECL MSG_TXT_TYP MSGText
+  decl bool bresult
+
+  IF ((not (Varstate("GUNNR")== #INITIALIZED )))  THEN
+    GUNNR=1
+  endif
+  If (GunNr>MAX_ZANGKENN) then
+    GUNNR=1
+  endif
+
+
+  IF LangU then
+    MSGText={MSGTXT[] "Fraesvorgang (Kontrollschweissung) fehlerhaft! Wiederholen?"}
+  else
+    MSGText={MSGTXT[] "Fraesvorgang (Kontrollschweissung) fehlerhaft! Wiederholen?"}
+  endif
+  if $IN[SST[ZANGE[GUNNR].VSST].I_FraesErr] == TRUE then
+    MSG_TEXT(MSGText,#DIALOG,AntWort)
+    if AntWort == 1 then
+      return(TRUE)
+    endif
+  endif
+  return(FALSE)
+ENDFCT
+
+;Auftrennung (Roboter-/Stationaere-Zange) der bisherigen Durchreichesignale
+global DEF PS_SK_Signals(GunNr:IN)
+  decl int i,ContrNo,GUNNR
+  decl bool bresult
+  IF ((not (Varstate("GUNNR")== #INITIALIZED )))  THEN
+    GUNNR=1
+  endif
+  If (GunNr>MAX_ZANGKENN) then
+    GUNNR=1
+  endif
+
+  if ZANGE[GUNNR].Stationaer then
+    if PS_Stat_Vorwarnung >0 then
+      $OUT[PS_Stat_Vorwarnung]   =$IN[SST[ZANGE[GUNNR].VSST].I_VorWarn]
+    endif
+    if PS_Stat_MaxStandmenge > 0 then
+      $OUT[PS_Stat_MaxStandmenge]=$IN[SST[ZANGE[GUNNR].VSST].I_MaxStandMenge]
+    endif
+    if PS_Stat_Fraesanf >0 then
+      $OUT[PS_Stat_Fraesanf]     =$IN[SST[ZANGE[GUNNR].VSST].I_FRAESEN]
+    endif
+    if PS_Stat_FraesErf >0 then
+      $OUT[PS_Stat_FraesErf]     =$IN[SST[ZANGE[GUNNR].VSST].I_FraesNotw]
+    endif
+  else
+    if PS_Rob_Vorwarnung >0 then
+      $OUT[PS_Rob_Vorwarnung]    =$IN[SST[ZANGE[GUNNR].VSST].I_VorWarn]
+    endif
+    if PS_Rob_MaxStandmenge >0 then
+      $OUT[PS_Rob_MaxStandmenge] =$IN[SST[ZANGE[GUNNR].VSST].I_MaxStandMenge]
+    endif
+    if PS_Rob_FraesErf >0 then
+      $OUT[PS_Rob_FraesErf]     =$IN[SST[ZANGE[GUNNR].VSST].I_FraesNotw]
+    endif
+  endif
+end
+
+;Um obige Signale ueber das Anwenderprogramm zu setzen
+global DEF Set_SK_Signals(GunNr:IN)
+  decl int i,ContrNo,GUNNR
+  decl bool bresult
+  IF ((not (Varstate("GUNNR")== #INITIALIZED )))  THEN
+    GUNNR=1
+  endif
+  If (GunNr>MAX_ZANGKENN) then
+    GUNNR=1
+  endif
+
+  SET_WELD_PROG (GUNNR, ZANGE[GUNNR].PRMAXDR )
+  IF LangU then
+    MSG_WAIT ( PS_MESSAGE_U[], SST[ZANGE[GUNNR].VSST].I_PktAnwOK,true, MAX_I_PS_MESSAGE, 0, BRESULT ) ; PktOk
+  else
+    MSG_WAIT ( PS_MESSAGE[], SST[ZANGE[GUNNR].VSST].I_PktAnwOK,true, MAX_I_PS_MESSAGE, 0, BRESULT ) ; PktOk
+  endif
+
+  PS_SK_Signals(GunNr)
+end
+
+Global DEF  StoppApplication ( )
+  BOOL BRESULT
+  IF $IN[I_HALTNACHPUNKT] THEN
+    $OUT[O_HALTNACHPUNKTERREICHT]=TRUE ;Halt nach Punktende erreicht
+    IF LangU then
+      MSG_WAIT ( PS_MESSAGE_U[],I_HALTNACHPUNKT, false, MAX_I_PS_MESSAGE, 0, BRESULT) ;Warte I_Stop_after_Proc FALSE
+    else
+      MSG_WAIT ( PS_MESSAGE[],I_HALTNACHPUNKT, false, MAX_I_PS_MESSAGE, 0, BRESULT) ;Warte I_Stop_after_Proc FALSE
+    endif
+    $OUT[O_HALTNACHPUNKTERREICHT]=FALSE ;Halt nach Punktende verlassen
+  endif
+end
+Def ResetRefWeldSign()
+  decl int II
+  For II=1 TO  MAX_SST
+    IF (SST[II].O_RefWNEl>0) then
+      $OUT[SST[II].O_RefWNEl]=FALSE
+    endif
+    IF (SST[II].O_RefWFraes>0) then
+      $OUT[SST[II].O_RefWFraes]=FALSE
+    endif
+    IF (SST[II].O_UebWSchw>0) then
+      $OUT[SST[II].O_UebWSchw]=FALSE
+    endif
+  ENDFOR
+end

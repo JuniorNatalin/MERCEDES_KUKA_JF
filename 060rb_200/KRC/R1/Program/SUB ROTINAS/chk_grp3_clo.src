@@ -1,0 +1,29 @@
+&ACCESS RVP1
+&REL 9
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF chk_grp3_clo( )
+
+;FOLD ; Rotina de checagem de fechamento do grampos Z3.1 e Z3.2;%{PE}%R 4.1.16,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:Rotina de checagem de fechamento do grampos Z3.1 e Z3.2
+;ENDFOLD
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+;FOLD WAIT FOR ( NOT IN 17 'Cilindro Z3.1 RECUADO' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:NOT, 5:$IN, 6:17, 7:Cilindro Z3.1 RECUADO, 9:
+WAIT FOR  (  NOT $IN[17] ) 
+;ENDFOLD
+;FOLD WAIT FOR ( NOT IN 19 'Cilindro Z3.1 RECUADO' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:NOT, 5:$IN, 6:19, 7:Cilindro Z3.1 RECUADO, 9:
+WAIT FOR  (  NOT $IN[19] ) 
+;ENDFOLD
+;FOLD WAIT FOR IN 18 'cilindro Z3.1 avancado'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:18, 3:'cilindro Z3.1 avancado', 5:TRUE, 6:
+WAIT FOR $IN[18]==TRUE
+;ENDFOLD
+;FOLD WAIT FOR IN 20 'cilindro Z3.2 avancado'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:20, 3:'cilindro Z3.2 avancado', 5:TRUE, 6:
+WAIT FOR $IN[20]==TRUE
+;ENDFOLD
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+END

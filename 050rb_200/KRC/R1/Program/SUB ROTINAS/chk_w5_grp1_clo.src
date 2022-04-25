@@ -1,0 +1,23 @@
+&ACCESS RVO1
+&COMMENT Check GRP ACTROS Z1 CLOSE
+DEF chk_w5_grp1_clo( )
+
+; Check gripper actros CLOSE Z1.1 Z1.2
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+;FOLD WAIT FOR ( NOT IN 5 ' Z1.1 - Grampo Recuado - Actros Todos' AND NOT IN 7 ' Z1.2 - Grampo Recuado - Actros Todos' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:NOT, 5:$IN, 6:5, 7: Z1.1 - Grampo Recuado - Actros Todos, 8:AND, 9:NOT, 10:$IN, 11:7, 12: Z1.2 - Grampo Recuado - Actros Todos, 14:
+WAIT FOR  (  NOT $IN[5] AND  NOT $IN[7] ) 
+;ENDFOLD
+;FOLD WAIT FOR ( IN 6 ' Z1.1 - Grampo Avançado - Actros Todos' AND IN 8 ' Z1.2 - Grampo Avançado - Actros Todos' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:6, 7: Z1.1 - Grampo Avançado - Actros Todos, 8:AND, 9:, 10:$IN, 11:8, 12: Z1.2 - Grampo Avançado - Actros Todos, 14:
+WAIT FOR  ( $IN[6] AND $IN[8] ) 
+;ENDFOLD
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+
+END

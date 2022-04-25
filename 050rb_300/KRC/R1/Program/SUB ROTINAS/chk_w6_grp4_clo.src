@@ -1,0 +1,18 @@
+&ACCESS RVO4
+&COMMENT Check GRP AXOR Z4 CLOSE
+DEF chk_w6_grp4_clo( )
+
+; Check gripper axor CLOSE Z4.1
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+WAIT FOR (NOT $IN[499])
+WAIT FOR ($IN[500])
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+END

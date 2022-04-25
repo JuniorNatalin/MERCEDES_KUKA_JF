@@ -1,0 +1,40 @@
+DEFTP DSF_ECKOLD={ SOT FALSE }
+;============================================
+; USRTECH für Durchsetzfügen ECKOLD
+; TS-APA, IR-Systeme, R.Weinmann
+; BM-BRM, M.Franz Tel.: 82887
+; Tel.: 07031-90-2571
+; Änderungsstand: 26.07.1999
+;============================================ 
+
+; *** Parameter-Beschreibung ***
+
+DECL PARAM Vorhub={shortname[] "Vorhub ", shortcut[] "Vh", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "#AUF", disp[] "Auf "}, _
+  ITEM[2] {ITEM:VALUE[] "#ZU", disp[] "Zu " }}}
+
+DECL PARAM ZANGENNR={shortname[] "ZangeNr. ", shortcut[] "Zange", unit[] "", value { NUMBER : min 1, max 2, step 1, default 1 }}
+
+DECL PARAM SpruehZeit={shortname[] "SpruehPuls ", shortcut[] "V-Zeit", unit[] " sec", value { real : min 0 , max 0.5, step 0.001, default 0 }}
+
+DECL PARAM NachhalteZeit={shortname[] "Nachhaltezeit ", shortcut[] "N-Zeit", unit[] " sec", value { real : min 0 , max 2.0, step 0.1, default 0 }}
+
+DECL PARAM Untergrenze={shortname[] "Ueberwachung untere Grenze", shortcut[] "UG", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "FALSE ", disp[] "Ein "}, _
+  ITEM[2] {ITEM:VALUE[] "TRUE ", disp[] "Aus " }}}
+
+; *** Fold-Beschreibung ***
+
+DECL FOLD DS1_FOLD[1]
+DS1_FOLD[1]="DSF_ECK (1 , %ZANGENNR , %Vorhub , %SpruehZeit , %Untergrenze , %NachhalteZeit  )"
+
+DECL FOLD DS2_FOLD[1]
+DS2_FOLD[1]="DSF_ECK (0 , %ZANGENNR , %Vorhub , %SpruehZeit , FALSE , %NachhalteZeit  )"
+
+; *** Beschreibung Inlineformulare ***
+
+DECL INLINEFORM Mit_Ueberwachung={FOCUS 0, FOLD[1] DS1_FOLD, PARAM[1] ZANGENNR , PARAM[2] Vorhub ,  PARAM[3] SpruehZeit , PARAM[4] NachhalteZeit  , PARAM[5] Untergrenze}
+
+DECL INLINEFORM Ohne_Ueberwachung={FOCUS 0, FOLD[1] DS2_FOLD, PARAM[1] ZANGENNR ,  PARAM[2] Vorhub , PARAM[3] SpruehZeit , PARAM[4] NachhalteZeit } 
+
+ENDTP

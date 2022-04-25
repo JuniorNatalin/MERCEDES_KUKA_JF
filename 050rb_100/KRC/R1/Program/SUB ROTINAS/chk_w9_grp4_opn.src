@@ -1,0 +1,18 @@
+&ACCESS RVO4
+&REL 4
+&COMMENT Axor 903 Z4.1
+DEF chk_w9_grp4_opn( )
+; Check gripper AXOR 903 OPEN Z4.1
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+WAIT FOR (NOT $IN[506] AND NOT $IN[508] AND NOT $IN[510] AND NOT $IN[512])
+WAIT FOR ($IN[505] AND $IN[507] AND $IN[509] AND $IN[511])
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+END

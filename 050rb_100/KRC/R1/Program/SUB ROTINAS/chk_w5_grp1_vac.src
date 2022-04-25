@@ -1,0 +1,16 @@
+&ACCESS RV
+&COMMENT Actros Vaccum on
+DEF chk_w5_grp1_vac( )
+; Check Vacuum on gripper ACTROS
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+WAIT FOR ($IN[5])
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+END

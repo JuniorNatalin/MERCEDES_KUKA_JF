@@ -1,0 +1,20 @@
+&ACCESS RVO8
+&REL 4
+&COMMENT Check C2
+DEF chk_w3_wechs_ok( )
+;Diag_Appl(#on,5)
+
+; VERIFICAÇÃO DE FERRAMENTA: C2
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+wait for (($in[161]) and ($in[169]) and (not $in[177]) and ( $in[185]) and ($in[219]))
+
+;//---- End -------
+;Diag_Appl(#Off,5)
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+END

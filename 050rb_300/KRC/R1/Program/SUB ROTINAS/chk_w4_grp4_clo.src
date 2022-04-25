@@ -1,0 +1,20 @@
+&ACCESS RVO2
+&REL 6
+&COMMENT Check GRP Z3 ACCELO CLOSE
+DEF chk_w4_grp4_clo( )
+
+; Check gripper accelo CLOSE Z3.1/2/3/4/5
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+;WAIT FOR ($IN[59])
+;WAIT FOR (NOT $IN[60])
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+
+END

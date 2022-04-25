@@ -1,0 +1,17 @@
+&ACCESS RVP1
+&REL 6
+&COMMENT SPS ANWENDERINITIALISIERUNGEN  V3.02
+DEF  SPS_INI ( )
+MirrToPlc=0 ;// Varianten-Kennung
+Diag_Appl()
+IniGhost()
+;FOLD COLLISION_V_3.01
+COLLSTOP (0,3 ) ;Initialisierung Verriegelung
+;ENDFOLD
+BasisDruck(1)
+;//-- Start User Entry --
+
+
+
+;//-- End User Entry --
+END

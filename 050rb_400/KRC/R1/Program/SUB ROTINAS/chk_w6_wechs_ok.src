@@ -1,0 +1,10 @@
+&ACCESS RVO8
+&REL 1
+&COMMENT Check Gripper Axor
+DEF chk_w6_wechs_ok( )
+
+; VERIFICAÇÃO DE FERRAMENTE: GRIPPER AXOR/ATEGO
+
+WAIT FOR (($in[161]) AND ($in[169]) AND  ($in[177]) AND ($in[185]) AND ($in[193]) AND (not $in[201]) AND ($in[219]))
+
+END

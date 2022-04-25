@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<XmlLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <MaintenanceGroups>
+    <MaintenanceGroup Name="MainAxisMaintenance">
+      <MaintenanceLogs>
+        <MaintenanceLog IntervalInYears="4" Maintenance="MainAxisMaintenance">
+          <CurrentDate>2016-08-11T00:00:00-03:00</CurrentDate>
+          <UserName>Kuka Roboter do Brasil</UserName>
+          <RunTimeInHours>1105</RunTimeInHours>
+          <OrderNumber>0</OrderNumber>
+          <Comment />
+        </MaintenanceLog>
+        <MaintenanceLog IntervalInYears="4" Maintenance="MainAxisMaintenance">
+          <CurrentDate>2011-06-19T19:00:00-03:00</CurrentDate>
+          <UserName>kuka roboter gmbh</UserName>
+          <RunTimeInHours>8</RunTimeInHours>
+          <OrderNumber>51246934587</OrderNumber>
+          <Comment>durchgefuehrt alle i.o</Comment>
+        </MaintenanceLog>
+      </MaintenanceLogs>
+    </MaintenanceGroup>
+    <MaintenanceGroup Name="BasicInspection">
+      <MaintenanceLogs>
+        <MaintenanceLog IntervalInYears="1" Maintenance="BasicInspection">
+          <CurrentDate>2016-08-11T00:00:00-03:00</CurrentDate>
+          <UserName>Kuka Roboter do Brasil</UserName>
+          <RunTimeInHours>1105</RunTimeInHours>
+          <OrderNumber>0</OrderNumber>
+          <Comment>Inspecao Basica</Comment>
+        </MaintenanceLog>
+        <MaintenanceLog IntervalInYears="1" Maintenance="BasicInspection">
+          <CurrentDate>2014-11-18T00:00:00-02:00</CurrentDate>
+          <UserName>KUKA</UserName>
+          <RunTimeInHours>21</RunTimeInHours>
+          <OrderNumber>001</OrderNumber>
+          <Comment>Realizado em 15_11_2014</Comment>
+        </MaintenanceLog>
+      </MaintenanceLogs>
+    </MaintenanceGroup>
+    <MaintenanceGroup Name="MinorElectricalMaintenance">
+      <MaintenanceLogs>
+        <MaintenanceLog IntervalInYears="2" Maintenance="MinorElectricalMaintenance">
+          <CurrentDate>2016-08-11T00:00:00-03:00</CurrentDate>
+          <UserName>Kuka Roboter do Brasil</UserName>
+          <RunTimeInHours>1105</RunTimeInHours>
+          <OrderNumber>0</OrderNumber>
+          <Comment />
+        </MaintenanceLog>
+      </MaintenanceLogs>
+    </MaintenanceGroup>
+    <MaintenanceGroup Name="BackLashMeasurement">
+      <MaintenanceLogs>
+        <MaintenanceLog IntervalInYears="1" Maintenance="BackLashMeasurement">
+          <CurrentDate>2016-08-11T00:00:00-03:00</CurrentDate>
+          <UserName>Kuka Roboter do Brasil</UserName>
+          <RunTimeInHours>1105</RunTimeInHours>
+          <OrderNumber>0</OrderNumber>
+          <Comment />
+        </MaintenanceLog>
+      </MaintenanceLogs>
+    </MaintenanceGroup>
+    <MaintenanceGroup Name="WristMaintenance">
+      <MaintenanceLogs>
+        <MaintenanceLog IntervalInYears="2" Maintenance="WristMaintenance">
+          <CurrentDate>2016-08-11T00:00:00-03:00</CurrentDate>
+          <UserName>Kuka Roboter do Brasil</UserName>
+          <RunTimeInHours>1105</RunTimeInHours>
+          <OrderNumber>0</OrderNumber>
+          <Comment />
+        </MaintenanceLog>
+      </MaintenanceLogs>
+    </MaintenanceGroup>
+    <MaintenanceGroup Name="DataBackupWithSpareHdd">
+      <MaintenanceLogs>
+        <MaintenanceLog IntervalInYears="1" Maintenance="DataBackupWithSpareHdd">
+          <CurrentDate>2016-08-11T00:00:00-03:00</CurrentDate>
+          <UserName>Kuka Roboter do Brasil</UserName>
+          <RunTimeInHours>1105</RunTimeInHours>
+          <OrderNumber>0</OrderNumber>
+          <Comment>Inspecao Basica</Comment>
+        </MaintenanceLog>
+      </MaintenanceLogs>
+    </MaintenanceGroup>
+  </MaintenanceGroups>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>8NE0oU5MY9OAG1O/LjFP0/V6RnI=</DigestValue></Reference><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>8NE0oU5MY9OAG1O/LjFP0/V6RnI=</DigestValue></Reference></SignedInfo><SignatureValue>wjnDO1k2BdhZCHzHMzxhG6t2J+CcbZAScgZV3Jt3HWerJG39JA2f6Uj3AINCnglSkJAlqbCLyNPqDIhObMx1NLULCyekL9Fd4NPVOIvRbp+/hp174GOfuCS7rMOgsMv0jTUcI4Jbi42Op3TUdswp3w3JP1KCOPy2x+daIRFcLYo=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>xS4GiQECsBckGSBDlUcqUCA4DjNMkAF5y+YU9ZTkVQpsYThT5SveLDKcK145n5r6U0MDO56cYSz9SiRh0Z5XBudYsbsQgZXWEjJZmb59hBIyn+G15OB7pyXE0Qsw+9aW1qtyWg/fSb9sMvFuVoWGuV+6LZXqIYZ5oDLVFwO1UTU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue></KeyInfo></Signature></XmlLog>

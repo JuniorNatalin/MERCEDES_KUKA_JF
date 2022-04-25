@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+	<UserMsg>
+		<MessageUser Messagenumber="1" Sender="P_22"/>
+		<MessageUser Messagenumber="2" Sender="KUKA"/>
+	</UserMsg>
+	<TechnologyMsg>
+		<MessageTech Messagenumber="1" Sender="KRmsgNET"/>     
+		<MessageTech Messagenumber="2" Sender="Dirloader"/>
+	</TechnologyMsg>
+	<SystemMsg>
+		<MessageSys Messagenumber="1"/>
+		<MessageSys Messagenumber="2"/>
+	</SystemMsg>
+</Settings>

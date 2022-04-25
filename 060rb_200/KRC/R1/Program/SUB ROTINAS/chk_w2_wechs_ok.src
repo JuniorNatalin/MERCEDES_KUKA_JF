@@ -1,0 +1,19 @@
+&ACCESS RVO2
+&REL 5
+&COMMENT Check Gripprt
+DEF chk_w2_wechs_ok( )
+;Diag_Appl(#on,5)
+
+; VERIFICAÇÃO DE FERRAMENTA: Gripper
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+wait for (($in[161]) and (not $in[169]) and ($in [177]) and ($in [185]) and ( $in[219]))
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End -------
+;Diag_Appl(#Off,5)
+END

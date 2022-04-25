@@ -1,0 +1,12 @@
+&ACCESS RVP13
+&COMMENT user_housekeeping
+&USER PKL_AST
+DEF user_sps_ini( )
+; hier alle User-Aufrufe fuer den SPS.SUB-Ini einpflegen
+; insert alle user-funtions for SPS.SUB-Ini
+
+
+
+
+
+END

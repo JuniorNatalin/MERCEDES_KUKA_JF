@@ -1,0 +1,9631 @@
+$TIMER[1]  Tempo de Ciclo LTA
+$TIMER[2]  Tempo de Ciclo LTB
+$TIMER[3]  Tempo de Ciclo MSR
+$TIMER[4]  Tempo de Ciclo MSB
+$TIMER[5]  Tempo de Ciclo STB
+$TIMER[6]  Tempo de Ciclo STB 12/13
+$TIMER[7]  Tempo de Ciclo ACCELO
+$TIMER[8] 
+$TIMER[9] 
+$TIMER[10]  Falha de Gripper (NÃO UTILIZAR)
+$TIMER[11] 
+$TIMER[12] 
+$TIMER[13] 
+$TIMER[14] 
+$TIMER[15] 
+$TIMER[16] 
+$TIMER[17] 
+$TIMER[18] 
+$TIMER[19] 
+$TIMER[20] 
+$TIMER[21] 
+$TIMER[22] 
+$TIMER[23] 
+$TIMER[24] 
+$TIMER[25] 
+$TIMER[26] 
+$TIMER[27] 
+$TIMER[28] 
+$TIMER[29] 
+$TIMER[30] 
+$TIMER[31] 
+$TIMER[32] 
+$TIMER[33] 
+$TIMER[34] 
+$TIMER[35] 
+$TIMER[36] 
+$TIMER[37] 
+$TIMER[38] 
+$TIMER[39] 
+$TIMER[40] 
+$TIMER[41] 
+$TIMER[42] 
+$TIMER[43] 
+$TIMER[44] 
+$TIMER[45] 
+$TIMER[46] 
+$TIMER[47] 
+$TIMER[48] 
+$TIMER[49] 
+$TIMER[50] 
+$TIMER[51] 
+$TIMER[52] 
+$TIMER[53] 
+$TIMER[54] 
+$TIMER[55] 
+$TIMER[56] 
+$TIMER[57] 
+$TIMER[58] 
+$TIMER[59] 
+$TIMER[60] 
+$COUNT_I[1] 
+$COUNT_I[2] 
+$COUNT_I[3] 
+$COUNT_I[4] 
+$COUNT_I[5] 
+$COUNT_I[6] 
+$COUNT_I[7] 
+$COUNT_I[8] 
+$COUNT_I[9] 
+$COUNT_I[10] 
+$COUNT_I[11] 
+$COUNT_I[12] 
+$COUNT_I[13] 
+$COUNT_I[14] 
+$COUNT_I[15] 
+$COUNT_I[16] 
+$COUNT_I[17] 
+$COUNT_I[18] 
+$COUNT_I[19] 
+$COUNT_I[20] 
+$COUNT_I[21] 
+$COUNT_I[22] 
+$COUNT_I[23] 
+$COUNT_I[24] 
+$COUNT_I[25] 
+$COUNT_I[26] 
+$COUNT_I[27] 
+$COUNT_I[28] 
+$COUNT_I[29] 
+$COUNT_I[30] 
+$COUNT_I[31] 
+$COUNT_I[32] 
+$COUNT_I[33] 
+$COUNT_I[34] 
+$COUNT_I[35] 
+$COUNT_I[36] 
+$COUNT_I[37] 
+$COUNT_I[38] 
+$COUNT_I[39] 
+$COUNT_I[40] 
+$COUNT_I[41] 
+$COUNT_I[42] 
+$COUNT_I[43] 
+$COUNT_I[44] 
+$COUNT_I[45] 
+$COUNT_I[46] 
+$COUNT_I[47] 
+$COUNT_I[48] 
+$COUNT_I[49] 
+$COUNT_I[50] 
+$COUNT_I[51] 
+$COUNT_I[52] 
+$COUNT_I[53] 
+$COUNT_I[54] 
+$COUNT_I[55] 
+$COUNT_I[56] 
+$COUNT_I[57] 
+$COUNT_I[58] 
+$COUNT_I[59] 
+$COUNT_I[60] 
+$FLAG[1] 
+$FLAG[2] 
+$FLAG[3] 
+$FLAG[4] 
+$FLAG[5] 
+$FLAG[6] 
+$FLAG[7] 
+$FLAG[8] 
+$FLAG[9] 
+$FLAG[10] 
+$FLAG[11] 
+$FLAG[12] 
+$FLAG[13] 
+$FLAG[14] 
+$FLAG[15] 
+$FLAG[16] 
+$FLAG[17] 
+$FLAG[18] 
+$FLAG[19] 
+$FLAG[20] 
+$FLAG[21] 
+$FLAG[22] 
+$FLAG[23] 
+$FLAG[24] 
+$FLAG[25] 
+$FLAG[26] 
+$FLAG[27] 
+$FLAG[28] 
+$FLAG[29] 
+$FLAG[30] 
+$FLAG[31] 
+$FLAG[32] 
+$FLAG[33] 
+$FLAG[34] 
+$FLAG[35] 
+$FLAG[36] 
+$FLAG[37] 
+$FLAG[38] 
+$FLAG[39] 
+$FLAG[40] 
+$FLAG[41] 
+$FLAG[42] 
+$FLAG[43] 
+$FLAG[44] 
+$FLAG[45] 
+$FLAG[46] 
+$FLAG[47] 
+$FLAG[48] 
+$FLAG[49] 
+$FLAG[50] 
+$FLAG[51] 
+$FLAG[52] 
+$FLAG[53] 
+$FLAG[54] 
+$FLAG[55] 
+$FLAG[56] 
+$FLAG[57] 
+$FLAG[58] 
+$FLAG[59] 
+$FLAG[60] 
+$FLAG[61] 
+$FLAG[62] 
+$FLAG[63] 
+$FLAG[64] 
+$FLAG[65] 
+$FLAG[66] 
+$FLAG[67] 
+$FLAG[68] 
+$FLAG[69] 
+$FLAG[70] 
+$FLAG[71] 
+$FLAG[72] 
+$FLAG[73] 
+$FLAG[74] 
+$FLAG[75] 
+$FLAG[76] 
+$FLAG[77] 
+$FLAG[78] 
+$FLAG[79] 
+$FLAG[80] 
+$FLAG[81] 
+$FLAG[82] 
+$FLAG[83] 
+$FLAG[84] 
+$FLAG[85] 
+$FLAG[86] 
+$FLAG[87] 
+$FLAG[88] 
+$FLAG[89] 
+$FLAG[90] 
+$FLAG[91] 
+$FLAG[92] 
+$FLAG[93] 
+$FLAG[94] 
+$FLAG[95] 
+$FLAG[96] 
+$FLAG[97] 
+$FLAG[98] 
+$FLAG[99] 
+$FLAG[100] 
+$FLAG[101] 
+$FLAG[102] 
+$FLAG[103] 
+$FLAG[104] 
+$FLAG[105] 
+$FLAG[106] 
+$FLAG[107] 
+$FLAG[108] 
+$FLAG[109] 
+$FLAG[110] 
+$FLAG[111] 
+$FLAG[112] 
+$FLAG[113] 
+$FLAG[114] 
+$FLAG[115] 
+$FLAG[116] 
+$FLAG[117] 
+$FLAG[118] 
+$FLAG[119] 
+$FLAG[120] 
+$FLAG[121] 
+$FLAG[122] 
+$FLAG[123] 
+$FLAG[124] 
+$FLAG[125] 
+$FLAG[126] 
+$FLAG[127] 
+$FLAG[128] 
+$FLAG[129] 
+$FLAG[130] 
+$FLAG[131] 
+$FLAG[132] 
+$FLAG[133] 
+$FLAG[134] 
+$FLAG[135] 
+$FLAG[136] 
+$FLAG[137] 
+$FLAG[138] 
+$FLAG[139] 
+$FLAG[140] 
+$FLAG[141] 
+$FLAG[142] 
+$FLAG[143] 
+$FLAG[144] 
+$FLAG[145] 
+$FLAG[146] 
+$FLAG[147] 
+$FLAG[148] 
+$FLAG[149] 
+$FLAG[150] 
+$FLAG[151] 
+$FLAG[152] 
+$FLAG[153] 
+$FLAG[154] 
+$FLAG[155] 
+$FLAG[156] 
+$FLAG[157] 
+$FLAG[158] 
+$FLAG[159] 
+$FLAG[160] 
+$FLAG[161] 
+$FLAG[162] 
+$FLAG[163] 
+$FLAG[164] 
+$FLAG[165] 
+$FLAG[166] 
+$FLAG[167] 
+$FLAG[168] 
+$FLAG[169] 
+$FLAG[170] 
+$FLAG[171] 
+$FLAG[172] 
+$FLAG[173] 
+$FLAG[174] 
+$FLAG[175] 
+$FLAG[176] 
+$FLAG[177] 
+$FLAG[178] 
+$FLAG[179] 
+$FLAG[180] 
+$FLAG[181] 
+$FLAG[182] 
+$FLAG[183] 
+$FLAG[184] 
+$FLAG[185] 
+$FLAG[186] 
+$FLAG[187] 
+$FLAG[188] 
+$FLAG[189] 
+$FLAG[190] 
+$FLAG[191] 
+$FLAG[192] 
+$FLAG[193] 
+$FLAG[194] 
+$FLAG[195] 
+$FLAG[196] 
+$FLAG[197] 
+$FLAG[198] 
+$FLAG[199] 
+$FLAG[200] 
+$FLAG[201] 
+$FLAG[202] 
+$FLAG[203] 
+$FLAG[204] 
+$FLAG[205] 
+$FLAG[206] 
+$FLAG[207] 
+$FLAG[208] 
+$FLAG[209] 
+$FLAG[210] 
+$FLAG[211] 
+$FLAG[212] 
+$FLAG[213] 
+$FLAG[214] 
+$FLAG[215] 
+$FLAG[216] 
+$FLAG[217] 
+$FLAG[218] 
+$FLAG[219] 
+$FLAG[220] 
+$FLAG[221] 
+$FLAG[222] 
+$FLAG[223] 
+$FLAG[224] 
+$FLAG[225] 
+$FLAG[226] 
+$FLAG[227] 
+$FLAG[228] 
+$FLAG[229] 
+$FLAG[230] 
+$FLAG[231] 
+$FLAG[232] 
+$FLAG[233] 
+$FLAG[234] 
+$FLAG[235] 
+$FLAG[236] 
+$FLAG[237] 
+$FLAG[238] 
+$FLAG[239] 
+$FLAG[240] 
+$FLAG[241] 
+$FLAG[242] 
+$FLAG[243] 
+$FLAG[244] 
+$FLAG[245] 
+$FLAG[246] 
+$FLAG[247] 
+$FLAG[248] 
+$FLAG[249] 
+$FLAG[250] 
+$FLAG[251] 
+$FLAG[252] 
+$FLAG[253] 
+$FLAG[254] 
+$FLAG[255] 
+$FLAG[256] 
+$FLAG[257] 
+$FLAG[258] 
+$FLAG[259] 
+$FLAG[260] 
+$FLAG[261] 
+$FLAG[262] 
+$FLAG[263] 
+$FLAG[264] 
+$FLAG[265] 
+$FLAG[266] 
+$FLAG[267] 
+$FLAG[268] 
+$FLAG[269] 
+$FLAG[270] 
+$FLAG[271] 
+$FLAG[272] 
+$FLAG[273] 
+$FLAG[274] 
+$FLAG[275] 
+$FLAG[276] 
+$FLAG[277] 
+$FLAG[278] 
+$FLAG[279] 
+$FLAG[280] 
+$FLAG[281] 
+$FLAG[282] 
+$FLAG[283] 
+$FLAG[284] 
+$FLAG[285] 
+$FLAG[286] 
+$FLAG[287] 
+$FLAG[288] 
+$FLAG[289] 
+$FLAG[290] 
+$FLAG[291] 
+$FLAG[292] 
+$FLAG[293] 
+$FLAG[294] 
+$FLAG[295] 
+$FLAG[296] 
+$FLAG[297] 
+$FLAG[298] 
+$FLAG[299] 
+$FLAG[300] 
+$FLAG[301] 
+$FLAG[302] 
+$FLAG[303] 
+$FLAG[304] 
+$FLAG[305] 
+$FLAG[306] 
+$FLAG[307] 
+$FLAG[308] 
+$FLAG[309] 
+$FLAG[310] 
+$FLAG[311] 
+$FLAG[312] 
+$FLAG[313] 
+$FLAG[314] 
+$FLAG[315] 
+$FLAG[316] 
+$FLAG[317] 
+$FLAG[318] 
+$FLAG[319] 
+$FLAG[320] 
+$FLAG[321] 
+$FLAG[322] 
+$FLAG[323] 
+$FLAG[324] 
+$FLAG[325] 
+$FLAG[326] 
+$FLAG[327] 
+$FLAG[328] 
+$FLAG[329] 
+$FLAG[330] 
+$FLAG[331] 
+$FLAG[332] 
+$FLAG[333] 
+$FLAG[334] 
+$FLAG[335] 
+$FLAG[336] 
+$FLAG[337] 
+$FLAG[338] 
+$FLAG[339] 
+$FLAG[340] 
+$FLAG[341] 
+$FLAG[342] 
+$FLAG[343] 
+$FLAG[344] 
+$FLAG[345] 
+$FLAG[346] 
+$FLAG[347] 
+$FLAG[348] 
+$FLAG[349] 
+$FLAG[350] 
+$FLAG[351] 
+$FLAG[352] 
+$FLAG[353] 
+$FLAG[354] 
+$FLAG[355] 
+$FLAG[356] 
+$FLAG[357] 
+$FLAG[358] 
+$FLAG[359] 
+$FLAG[360] 
+$FLAG[361] 
+$FLAG[362] 
+$FLAG[363] 
+$FLAG[364] 
+$FLAG[365] 
+$FLAG[366] 
+$FLAG[367] 
+$FLAG[368] 
+$FLAG[369] 
+$FLAG[370] 
+$FLAG[371] 
+$FLAG[372] 
+$FLAG[373] 
+$FLAG[374] 
+$FLAG[375] 
+$FLAG[376] 
+$FLAG[377] 
+$FLAG[378] 
+$FLAG[379] 
+$FLAG[380] 
+$FLAG[381] 
+$FLAG[382] 
+$FLAG[383] 
+$FLAG[384] 
+$FLAG[385] 
+$FLAG[386] 
+$FLAG[387] 
+$FLAG[388] 
+$FLAG[389] 
+$FLAG[390] 
+$FLAG[391] 
+$FLAG[392] 
+$FLAG[393] 
+$FLAG[394] 
+$FLAG[395] 
+$FLAG[396] 
+$FLAG[397] 
+$FLAG[398] 
+$FLAG[399] 
+$FLAG[400] 
+$FLAG[401] 
+$FLAG[402] 
+$FLAG[403] 
+$FLAG[404] 
+$FLAG[405] 
+$FLAG[406] 
+$FLAG[407] 
+$FLAG[408] 
+$FLAG[409] 
+$FLAG[410] 
+$FLAG[411] 
+$FLAG[412] 
+$FLAG[413] 
+$FLAG[414] 
+$FLAG[415] 
+$FLAG[416] 
+$FLAG[417] 
+$FLAG[418] 
+$FLAG[419] 
+$FLAG[420] 
+$FLAG[421] 
+$FLAG[422] 
+$FLAG[423] 
+$FLAG[424] 
+$FLAG[425] 
+$FLAG[426] 
+$FLAG[427] 
+$FLAG[428] 
+$FLAG[429] 
+$FLAG[430] 
+$FLAG[431] 
+$FLAG[432] 
+$FLAG[433] 
+$FLAG[434] 
+$FLAG[435] 
+$FLAG[436] 
+$FLAG[437] 
+$FLAG[438] 
+$FLAG[439] 
+$FLAG[440] 
+$FLAG[441] 
+$FLAG[442] 
+$FLAG[443] 
+$FLAG[444] 
+$FLAG[445] 
+$FLAG[446] 
+$FLAG[447] 
+$FLAG[448] 
+$FLAG[449] 
+$FLAG[450] 
+$FLAG[451] 
+$FLAG[452] 
+$FLAG[453] 
+$FLAG[454] 
+$FLAG[455] 
+$FLAG[456] 
+$FLAG[457] 
+$FLAG[458] 
+$FLAG[459] 
+$FLAG[460] 
+$FLAG[461] 
+$FLAG[462] 
+$FLAG[463] 
+$FLAG[464] 
+$FLAG[465] 
+$FLAG[466] 
+$FLAG[467] 
+$FLAG[468] 
+$FLAG[469] 
+$FLAG[470] 
+$FLAG[471] 
+$FLAG[472] 
+$FLAG[473] 
+$FLAG[474] 
+$FLAG[475] 
+$FLAG[476] 
+$FLAG[477] 
+$FLAG[478] 
+$FLAG[479] 
+$FLAG[480] 
+$FLAG[481] 
+$FLAG[482] 
+$FLAG[483] 
+$FLAG[484] 
+$FLAG[485] 
+$FLAG[486] 
+$FLAG[487] 
+$FLAG[488] 
+$FLAG[489] 
+$FLAG[490] 
+$FLAG[491] 
+$FLAG[492] 
+$FLAG[493] 
+$FLAG[494] 
+$FLAG[495] 
+$FLAG[496] 
+$FLAG[497] 
+$FLAG[498] 
+$FLAG[499] 
+$FLAG[500] 
+$FLAG[501] 
+$FLAG[502] 
+$FLAG[503] 
+$FLAG[504] 
+$FLAG[505] 
+$FLAG[506] 
+$FLAG[507] 
+$FLAG[508] 
+$FLAG[509] 
+$FLAG[510] 
+$FLAG[511] 
+$FLAG[512] 
+$FLAG[513] 
+$FLAG[514] 
+$FLAG[515] 
+$FLAG[516] 
+$FLAG[517] 
+$FLAG[518] 
+$FLAG[519] 
+$FLAG[520] 
+$FLAG[521] 
+$FLAG[522] 
+$FLAG[523] 
+$FLAG[524] 
+$FLAG[525] 
+$FLAG[526] 
+$FLAG[527] 
+$FLAG[528] 
+$FLAG[529] 
+$FLAG[530] 
+$FLAG[531] 
+$FLAG[532] 
+$FLAG[533] 
+$FLAG[534] 
+$FLAG[535] 
+$FLAG[536] 
+$FLAG[537] 
+$FLAG[538] 
+$FLAG[539] 
+$FLAG[540] 
+$FLAG[541] 
+$FLAG[542] 
+$FLAG[543] 
+$FLAG[544] 
+$FLAG[545] 
+$FLAG[546] 
+$FLAG[547] 
+$FLAG[548] 
+$FLAG[549] 
+$FLAG[550] 
+$FLAG[551] 
+$FLAG[552] 
+$FLAG[553] 
+$FLAG[554] 
+$FLAG[555] 
+$FLAG[556] 
+$FLAG[557] 
+$FLAG[558] 
+$FLAG[559] 
+$FLAG[560] 
+$FLAG[561] 
+$FLAG[562] 
+$FLAG[563] 
+$FLAG[564] 
+$FLAG[565] 
+$FLAG[566] 
+$FLAG[567] 
+$FLAG[568] 
+$FLAG[569] 
+$FLAG[570] 
+$FLAG[571] 
+$FLAG[572] 
+$FLAG[573] 
+$FLAG[574] 
+$FLAG[575] 
+$FLAG[576] 
+$FLAG[577] 
+$FLAG[578] 
+$FLAG[579] 
+$FLAG[580] 
+$FLAG[581] 
+$FLAG[582] 
+$FLAG[583] 
+$FLAG[584] 
+$FLAG[585] 
+$FLAG[586] 
+$FLAG[587] 
+$FLAG[588] 
+$FLAG[589] 
+$FLAG[590] 
+$FLAG[591] 
+$FLAG[592] 
+$FLAG[593] 
+$FLAG[594] 
+$FLAG[595] 
+$FLAG[596] 
+$FLAG[597] 
+$FLAG[598] 
+$FLAG[599] 
+$FLAG[600] 
+$FLAG[601] 
+$FLAG[602] 
+$FLAG[603] 
+$FLAG[604] 
+$FLAG[605] 
+$FLAG[606] 
+$FLAG[607] 
+$FLAG[608] 
+$FLAG[609] 
+$FLAG[610] 
+$FLAG[611] 
+$FLAG[612] 
+$FLAG[613] 
+$FLAG[614] 
+$FLAG[615] 
+$FLAG[616] 
+$FLAG[617] 
+$FLAG[618] 
+$FLAG[619] 
+$FLAG[620] 
+$FLAG[621] 
+$FLAG[622] 
+$FLAG[623] 
+$FLAG[624] 
+$FLAG[625] 
+$FLAG[626] 
+$FLAG[627] 
+$FLAG[628] 
+$FLAG[629] 
+$FLAG[630] 
+$FLAG[631] 
+$FLAG[632] 
+$FLAG[633] 
+$FLAG[634] 
+$FLAG[635] 
+$FLAG[636] 
+$FLAG[637] 
+$FLAG[638] 
+$FLAG[639] 
+$FLAG[640] 
+$FLAG[641] 
+$FLAG[642] 
+$FLAG[643] 
+$FLAG[644] 
+$FLAG[645] 
+$FLAG[646] 
+$FLAG[647] 
+$FLAG[648] 
+$FLAG[649] 
+$FLAG[650] 
+$FLAG[651] 
+$FLAG[652] 
+$FLAG[653] 
+$FLAG[654] 
+$FLAG[655] 
+$FLAG[656] 
+$FLAG[657] 
+$FLAG[658] 
+$FLAG[659] 
+$FLAG[660] 
+$FLAG[661] 
+$FLAG[662] 
+$FLAG[663] 
+$FLAG[664] 
+$FLAG[665] 
+$FLAG[666] 
+$FLAG[667] 
+$FLAG[668] 
+$FLAG[669] 
+$FLAG[670] 
+$FLAG[671] 
+$FLAG[672] 
+$FLAG[673] 
+$FLAG[674] 
+$FLAG[675] 
+$FLAG[676] 
+$FLAG[677] 
+$FLAG[678] 
+$FLAG[679] 
+$FLAG[680] 
+$FLAG[681] 
+$FLAG[682] 
+$FLAG[683] 
+$FLAG[684] 
+$FLAG[685] 
+$FLAG[686] 
+$FLAG[687] 
+$FLAG[688] 
+$FLAG[689] 
+$FLAG[690] 
+$FLAG[691] 
+$FLAG[692] 
+$FLAG[693] 
+$FLAG[694] 
+$FLAG[695] 
+$FLAG[696] 
+$FLAG[697] 
+$FLAG[698] 
+$FLAG[699] 
+$FLAG[700] 
+$FLAG[701] 
+$FLAG[702] 
+$FLAG[703] 
+$FLAG[704] 
+$FLAG[705] 
+$FLAG[706] 
+$FLAG[707] 
+$FLAG[708] 
+$FLAG[709] 
+$FLAG[710] 
+$FLAG[711] 
+$FLAG[712] 
+$FLAG[713] 
+$FLAG[714] 
+$FLAG[715] 
+$FLAG[716] 
+$FLAG[717] 
+$FLAG[718] 
+$FLAG[719] 
+$FLAG[720] 
+$FLAG[721] 
+$FLAG[722] 
+$FLAG[723] 
+$FLAG[724] 
+$FLAG[725] 
+$FLAG[726] 
+$FLAG[727] 
+$FLAG[728] 
+$FLAG[729] 
+$FLAG[730] 
+$FLAG[731] 
+$FLAG[732] 
+$FLAG[733] 
+$FLAG[734] 
+$FLAG[735] 
+$FLAG[736] 
+$FLAG[737] 
+$FLAG[738] 
+$FLAG[739] 
+$FLAG[740] 
+$FLAG[741] 
+$FLAG[742] 
+$FLAG[743] 
+$FLAG[744] 
+$FLAG[745] 
+$FLAG[746] 
+$FLAG[747] 
+$FLAG[748] 
+$FLAG[749] 
+$FLAG[750] 
+$FLAG[751] 
+$FLAG[752] 
+$FLAG[753] 
+$FLAG[754] 
+$FLAG[755] 
+$FLAG[756] 
+$FLAG[757] 
+$FLAG[758] 
+$FLAG[759] 
+$FLAG[760] 
+$FLAG[761] 
+$FLAG[762] 
+$FLAG[763] 
+$FLAG[764] 
+$FLAG[765] 
+$FLAG[766] 
+$FLAG[767] 
+$FLAG[768] 
+$FLAG[769] 
+$FLAG[770] 
+$FLAG[771] 
+$FLAG[772] 
+$FLAG[773] 
+$FLAG[774] 
+$FLAG[775] 
+$FLAG[776] 
+$FLAG[777] 
+$FLAG[778] 
+$FLAG[779] 
+$FLAG[780] 
+$FLAG[781] 
+$FLAG[782] 
+$FLAG[783] 
+$FLAG[784] 
+$FLAG[785] 
+$FLAG[786] 
+$FLAG[787] 
+$FLAG[788] 
+$FLAG[789] 
+$FLAG[790] 
+$FLAG[791] 
+$FLAG[792] 
+$FLAG[793] 
+$FLAG[794] 
+$FLAG[795] 
+$FLAG[796] 
+$FLAG[797] 
+$FLAG[798] 
+$FLAG[799] 
+$FLAG[800] 
+$FLAG[801] 
+$FLAG[802] 
+$FLAG[803] 
+$FLAG[804] 
+$FLAG[805] 
+$FLAG[806] 
+$FLAG[807] 
+$FLAG[808] 
+$FLAG[809] 
+$FLAG[810] 
+$FLAG[811] 
+$FLAG[812] 
+$FLAG[813] 
+$FLAG[814] 
+$FLAG[815] 
+$FLAG[816] 
+$FLAG[817] 
+$FLAG[818] 
+$FLAG[819] 
+$FLAG[820] 
+$FLAG[821] 
+$FLAG[822] 
+$FLAG[823] 
+$FLAG[824] 
+$FLAG[825] 
+$FLAG[826] 
+$FLAG[827] 
+$FLAG[828] 
+$FLAG[829] 
+$FLAG[830] 
+$FLAG[831] 
+$FLAG[832] 
+$FLAG[833] 
+$FLAG[834] 
+$FLAG[835] 
+$FLAG[836] 
+$FLAG[837] 
+$FLAG[838] 
+$FLAG[839] 
+$FLAG[840] 
+$FLAG[841] 
+$FLAG[842] 
+$FLAG[843] 
+$FLAG[844] 
+$FLAG[845] 
+$FLAG[846] 
+$FLAG[847] 
+$FLAG[848] 
+$FLAG[849] 
+$FLAG[850] 
+$FLAG[851] 
+$FLAG[852] 
+$FLAG[853] 
+$FLAG[854] 
+$FLAG[855] 
+$FLAG[856] 
+$FLAG[857] 
+$FLAG[858] 
+$FLAG[859] 
+$FLAG[860] 
+$FLAG[861] 
+$FLAG[862] 
+$FLAG[863] 
+$FLAG[864] 
+$FLAG[865] 
+$FLAG[866] 
+$FLAG[867] 
+$FLAG[868] 
+$FLAG[869] 
+$FLAG[870] 
+$FLAG[871] 
+$FLAG[872] 
+$FLAG[873] 
+$FLAG[874] 
+$FLAG[875] 
+$FLAG[876] 
+$FLAG[877] 
+$FLAG[878] 
+$FLAG[879] 
+$FLAG[880] 
+$FLAG[881] 
+$FLAG[882] 
+$FLAG[883] 
+$FLAG[884] 
+$FLAG[885] 
+$FLAG[886] 
+$FLAG[887] 
+$FLAG[888] 
+$FLAG[889] 
+$FLAG[890] 
+$FLAG[891] 
+$FLAG[892] 
+$FLAG[893] 
+$FLAG[894] 
+$FLAG[895] 
+$FLAG[896] 
+$FLAG[897] 
+$FLAG[898] 
+$FLAG[899] 
+$FLAG[900] 
+$FLAG[901] 
+$FLAG[902] 
+$FLAG[903] 
+$FLAG[904] 
+$FLAG[905] 
+$FLAG[906] 
+$FLAG[907] 
+$FLAG[908] 
+$FLAG[909] 
+$FLAG[910] 
+$FLAG[911] 
+$FLAG[912] 
+$FLAG[913] 
+$FLAG[914] 
+$FLAG[915] 
+$FLAG[916] 
+$FLAG[917] 
+$FLAG[918] 
+$FLAG[919] 
+$FLAG[920] 
+$FLAG[921] 
+$FLAG[922] 
+$FLAG[923] 
+$FLAG[924] 
+$FLAG[925] 
+$FLAG[926] 
+$FLAG[927] 
+$FLAG[928] 
+$FLAG[929] 
+$FLAG[930] 
+$FLAG[931] 
+$FLAG[932] 
+$FLAG[933] 
+$FLAG[934] 
+$FLAG[935] 
+$FLAG[936] 
+$FLAG[937] 
+$FLAG[938] 
+$FLAG[939] 
+$FLAG[940] 
+$FLAG[941] 
+$FLAG[942] 
+$FLAG[943] 
+$FLAG[944] 
+$FLAG[945] 
+$FLAG[946] 
+$FLAG[947] 
+$FLAG[948] 
+$FLAG[949] 
+$FLAG[950] 
+$FLAG[951] 
+$FLAG[952] 
+$FLAG[953] 
+$FLAG[954] 
+$FLAG[955] 
+$FLAG[956] 
+$FLAG[957] 
+$FLAG[958] 
+$FLAG[959] 
+$FLAG[960] 
+$FLAG[961] 
+$FLAG[962] 
+$FLAG[963] 
+$FLAG[964] 
+$FLAG[965] 
+$FLAG[966] 
+$FLAG[967] 
+$FLAG[968] 
+$FLAG[969] 
+$FLAG[970] 
+$FLAG[971] 
+$FLAG[972] 
+$FLAG[973] 
+$FLAG[974] 
+$FLAG[975] 
+$FLAG[976] 
+$FLAG[977] 
+$FLAG[978] 
+$FLAG[979] 
+$FLAG[980] 
+$FLAG[981] 
+$FLAG[982] 
+$FLAG[983] 
+$FLAG[984] 
+$FLAG[985] 
+$FLAG[986] 
+$FLAG[987] 
+$FLAG[988] 
+$FLAG[989] 
+$FLAG[990] 
+$FLAG[991] 
+$FLAG[992] 
+$FLAG[993] 
+$FLAG[994] 
+$FLAG[995] 
+$FLAG[996] 
+$FLAG[997] 
+$FLAG[998] 
+$FLAG[999] 
+$CYC_FLAG[1] 
+$CYC_FLAG[2] 
+$CYC_FLAG[3] 
+$CYC_FLAG[4] 
+$CYC_FLAG[5] 
+$CYC_FLAG[6] 
+$CYC_FLAG[7] 
+$CYC_FLAG[8] 
+$CYC_FLAG[9] 
+$CYC_FLAG[10] 
+$CYC_FLAG[11] 
+$CYC_FLAG[12] 
+$CYC_FLAG[13] 
+$CYC_FLAG[14] 
+$CYC_FLAG[15] 
+$CYC_FLAG[16] 
+$CYC_FLAG[17] 
+$CYC_FLAG[18] 
+$CYC_FLAG[19] 
+$CYC_FLAG[20] 
+$CYC_FLAG[21] 
+$CYC_FLAG[22] 
+$CYC_FLAG[23] 
+$CYC_FLAG[24] 
+$CYC_FLAG[25] 
+$CYC_FLAG[26] 
+$CYC_FLAG[27] 
+$CYC_FLAG[28] 
+$CYC_FLAG[29] 
+$CYC_FLAG[30] 
+$CYC_FLAG[31] 
+$CYC_FLAG[32] 
+$CYC_FLAG[33] 
+$CYC_FLAG[34] 
+$CYC_FLAG[35] 
+$CYC_FLAG[36] 
+$CYC_FLAG[37] 
+$CYC_FLAG[38] 
+$CYC_FLAG[39] 
+$CYC_FLAG[40] 
+$CYC_FLAG[41] 
+$CYC_FLAG[42] 
+$CYC_FLAG[43] 
+$CYC_FLAG[44] 
+$CYC_FLAG[45] 
+$CYC_FLAG[46] 
+$CYC_FLAG[47] 
+$CYC_FLAG[48] 
+$CYC_FLAG[49] 
+$CYC_FLAG[50] 
+$CYC_FLAG[51] 
+$CYC_FLAG[52] 
+$CYC_FLAG[53] 
+$CYC_FLAG[54] 
+$CYC_FLAG[55] 
+$CYC_FLAG[56] 
+$CYC_FLAG[57] 
+$CYC_FLAG[58] 
+$CYC_FLAG[59] 
+$CYC_FLAG[60] 
+$CYC_FLAG[61] 
+$CYC_FLAG[62] 
+$CYC_FLAG[63] 
+$CYC_FLAG[64] 
+$CYC_FLAG[65] 
+$CYC_FLAG[66] 
+$CYC_FLAG[67] 
+$CYC_FLAG[68] 
+$CYC_FLAG[69] 
+$CYC_FLAG[70] 
+$CYC_FLAG[71] 
+$CYC_FLAG[72] 
+$CYC_FLAG[73] 
+$CYC_FLAG[74] 
+$CYC_FLAG[75] 
+$CYC_FLAG[76] 
+$CYC_FLAG[77] 
+$CYC_FLAG[78] 
+$CYC_FLAG[79] 
+$CYC_FLAG[80] 
+$CYC_FLAG[81] 
+$CYC_FLAG[82] 
+$CYC_FLAG[83] 
+$CYC_FLAG[84] 
+$CYC_FLAG[85] 
+$CYC_FLAG[86] 
+$CYC_FLAG[87] 
+$CYC_FLAG[88] 
+$CYC_FLAG[89] 
+$CYC_FLAG[90] 
+$CYC_FLAG[91] 
+$CYC_FLAG[92] 
+$CYC_FLAG[93] 
+$CYC_FLAG[94] 
+$CYC_FLAG[95] 
+$CYC_FLAG[96] 
+$CYC_FLAG[97] 
+$CYC_FLAG[98] 
+$CYC_FLAG[99] 
+$CYC_FLAG[100] 
+$CYC_FLAG[101] 
+$CYC_FLAG[102] 
+$CYC_FLAG[103] 
+$CYC_FLAG[104] 
+$CYC_FLAG[105] 
+$CYC_FLAG[106] 
+$CYC_FLAG[107] 
+$CYC_FLAG[108] 
+$CYC_FLAG[109] 
+$CYC_FLAG[110] 
+$CYC_FLAG[111] 
+$CYC_FLAG[112] 
+$CYC_FLAG[113] 
+$CYC_FLAG[114] 
+$CYC_FLAG[115] 
+$CYC_FLAG[116] 
+$CYC_FLAG[117] 
+$CYC_FLAG[118] 
+$CYC_FLAG[119] 
+$CYC_FLAG[120] 
+$CYC_FLAG[121] 
+$CYC_FLAG[122] 
+$CYC_FLAG[123] 
+$CYC_FLAG[124] 
+$CYC_FLAG[125] 
+$CYC_FLAG[126] 
+$CYC_FLAG[127] 
+$CYC_FLAG[128] 
+$CYC_FLAG[129] 
+$CYC_FLAG[130] 
+$CYC_FLAG[131] 
+$CYC_FLAG[132] 
+$CYC_FLAG[133] 
+$CYC_FLAG[134] 
+$CYC_FLAG[135] 
+$CYC_FLAG[136] 
+$CYC_FLAG[137] 
+$CYC_FLAG[138] 
+$CYC_FLAG[139] 
+$CYC_FLAG[140] 
+$CYC_FLAG[141] 
+$CYC_FLAG[142] 
+$CYC_FLAG[143] 
+$CYC_FLAG[144] 
+$CYC_FLAG[145] 
+$CYC_FLAG[146] 
+$CYC_FLAG[147] 
+$CYC_FLAG[148] 
+$CYC_FLAG[149] 
+$CYC_FLAG[150] 
+$CYC_FLAG[151] 
+$CYC_FLAG[152] 
+$CYC_FLAG[153] 
+$CYC_FLAG[154] 
+$CYC_FLAG[155] 
+$CYC_FLAG[156] 
+$CYC_FLAG[157] 
+$CYC_FLAG[158] 
+$CYC_FLAG[159] 
+$CYC_FLAG[160] 
+$CYC_FLAG[161] 
+$CYC_FLAG[162] 
+$CYC_FLAG[163] 
+$CYC_FLAG[164] 
+$CYC_FLAG[165] 
+$CYC_FLAG[166] 
+$CYC_FLAG[167] 
+$CYC_FLAG[168] 
+$CYC_FLAG[169] 
+$CYC_FLAG[170] 
+$CYC_FLAG[171] 
+$CYC_FLAG[172] 
+$CYC_FLAG[173] 
+$CYC_FLAG[174] 
+$CYC_FLAG[175] 
+$CYC_FLAG[176] 
+$CYC_FLAG[177] 
+$CYC_FLAG[178] 
+$CYC_FLAG[179] 
+$CYC_FLAG[180] 
+$CYC_FLAG[181] 
+$CYC_FLAG[182] 
+$CYC_FLAG[183] 
+$CYC_FLAG[184] 
+$CYC_FLAG[185] 
+$CYC_FLAG[186] 
+$CYC_FLAG[187] 
+$CYC_FLAG[188] 
+$CYC_FLAG[189] 
+$CYC_FLAG[190] 
+$CYC_FLAG[191] 
+$CYC_FLAG[192] 
+$CYC_FLAG[193] 
+$CYC_FLAG[194] 
+$CYC_FLAG[195] 
+$CYC_FLAG[196] 
+$CYC_FLAG[197] 
+$CYC_FLAG[198] 
+$CYC_FLAG[199] 
+$CYC_FLAG[200] 
+$CYC_FLAG[201] 
+$CYC_FLAG[202] 
+$CYC_FLAG[203] 
+$CYC_FLAG[204] 
+$CYC_FLAG[205] 
+$CYC_FLAG[206] 
+$CYC_FLAG[207] 
+$CYC_FLAG[208] 
+$CYC_FLAG[209] 
+$CYC_FLAG[210] 
+$CYC_FLAG[211] 
+$CYC_FLAG[212] 
+$CYC_FLAG[213] 
+$CYC_FLAG[214] 
+$CYC_FLAG[215] 
+$CYC_FLAG[216] 
+$CYC_FLAG[217] 
+$CYC_FLAG[218] 
+$CYC_FLAG[219] 
+$CYC_FLAG[220] 
+$CYC_FLAG[221] 
+$CYC_FLAG[222] 
+$CYC_FLAG[223] 
+$CYC_FLAG[224] 
+$CYC_FLAG[225] 
+$CYC_FLAG[226] 
+$CYC_FLAG[227] 
+$CYC_FLAG[228] 
+$CYC_FLAG[229] 
+$CYC_FLAG[230] 
+$CYC_FLAG[231] 
+$CYC_FLAG[232] 
+$CYC_FLAG[233] 
+$CYC_FLAG[234] 
+$CYC_FLAG[235] 
+$CYC_FLAG[236] 
+$CYC_FLAG[237] 
+$CYC_FLAG[238] 
+$CYC_FLAG[239] 
+$CYC_FLAG[240] 
+$CYC_FLAG[241] 
+$CYC_FLAG[242] 
+$CYC_FLAG[243] 
+$CYC_FLAG[244] 
+$CYC_FLAG[245] 
+$CYC_FLAG[246] 
+$CYC_FLAG[247] 
+$CYC_FLAG[248] 
+$CYC_FLAG[249] 
+$CYC_FLAG[250] 
+$CYC_FLAG[251] 
+$CYC_FLAG[252] 
+$CYC_FLAG[253] 
+$CYC_FLAG[254] 
+$CYC_FLAG[255] 
+$CYC_FLAG[256] 
+$ANIN[1] 
+$ANIN[2] 
+$ANIN[3] 
+$ANIN[4] 
+$ANIN[5] 
+$ANIN[6] 
+$ANIN[7] 
+$ANIN[8] 
+$ANIN[9] 
+$ANIN[10] 
+$ANIN[11] 
+$ANIN[12] 
+$ANIN[13] 
+$ANIN[14] 
+$ANIN[15] 
+$ANIN[16] 
+$ANIN[17] 
+$ANIN[18] 
+$ANIN[19] 
+$ANIN[20] 
+$ANIN[21] 
+$ANIN[22] 
+$ANIN[23] 
+$ANIN[24] 
+$ANIN[25] 
+$ANIN[26] 
+$ANIN[27] 
+$ANIN[28] 
+$ANIN[29] 
+$ANIN[30] 
+$ANIN[31] 
+$ANIN[32] 
+$ANOUT[1] 
+$ANOUT[2] 
+$ANOUT[3] 
+$ANOUT[4] 
+$ANOUT[5] 
+$ANOUT[6] 
+$ANOUT[7] 
+$ANOUT[8] 
+$ANOUT[9] 
+$ANOUT[10] 
+$ANOUT[11] 
+$ANOUT[12] 
+$ANOUT[13] 
+$ANOUT[14] 
+$ANOUT[15] 
+$ANOUT[16] 
+$ANOUT[17] 
+$ANOUT[18] 
+$ANOUT[19] 
+$ANOUT[20] 
+$ANOUT[21] 
+$ANOUT[22] 
+$ANOUT[23] 
+$ANOUT[24] 
+$ANOUT[25] 
+$ANOUT[26] 
+$ANOUT[27] 
+$ANOUT[28] 
+$ANOUT[29] 
+$ANOUT[30] 
+$ANOUT[31] 
+$ANOUT[32] 
+$IN[1] Presenca de Peca
+$IN[2] AGUARDANDO PLC
+$IN[3] AGUARDANDO PLC NOVAMENTE
+$IN[4] AGUARDANDO PLC OUTRA VEZ
+$IN[5] Vacuo OK
+$IN[6] |in|
+$IN[7] Grampo Z2.1 ABERTO
+$IN[8] Grampo Z2.1 FECHADO
+$IN[9] Grampo Z2.2 ABERTO
+$IN[10] Grampo Z2.2 FECHADO
+$IN[11] Grampo Z2.3 ABERTO
+$IN[12] Grampo Z2.3 FECHADO
+$IN[13] Grampo Z2.4 ABERTO
+$IN[14] Grampo Z2.4 FECHADO
+$IN[15] Grampo Z2.5 ABERTO
+$IN[16] Grampo Z2.5 FECHADO
+$IN[17] Cilindro Z3.1 RECUADO
+$IN[18] Cilindro Z3.1 AVANCADO
+$IN[19] Cilindro Z3.1 RECUADO
+$IN[20] Cilindro Z3.1 AVANCADO
+$IN[21] |in|
+$IN[22] |in|
+$IN[23] |in|
+$IN[24] |in|
+$IN[25] |in|
+$IN[26] |in|
+$IN[27] |in|
+$IN[28] |in|
+$IN[29] |in|
+$IN[30] |in|
+$IN[31] |in|
+$IN[32] |in|
+$IN[33] |in|
+$IN[34] |in|
+$IN[35] |in|
+$IN[36] |in|
+$IN[37] |in|
+$IN[38] |in|
+$IN[39] |in|
+$IN[40] |in|
+$IN[41] |in|
+$IN[42] |in|
+$IN[43] |in|
+$IN[44] |in|
+$IN[45] |in|
+$IN[46] |in|
+$IN[47] |in|
+$IN[48] |in|
+$IN[49] |in|
+$IN[50] |in|
+$IN[51] |in|
+$IN[52] |in|
+$IN[53] |in|
+$IN[54] |in|
+$IN[55] |in|
+$IN[56] |in|
+$IN[57] |in|
+$IN[58] |in|
+$IN[59] |in|
+$IN[60] |in|
+$IN[61] |in|
+$IN[62] |in|
+$IN[63] |in|
+$IN[64] |in|
+$IN[65] |in|
+$IN[66] |in|
+$IN[67] FLUXOSTATO DA PINCA
+$IN[68] |in|
+$IN[69] PINCA1 Avanco para tras
+$IN[70] PINCA1 Curso de Solda Aberto
+$IN[71] PINCA1 Avanca na Frente
+$IN[72] PINCA1 Protecao Termica
+$IN[73] |in|
+$IN[74] |in|
+$IN[75] |in|
+$IN[76] |in|
+$IN[77] |in|
+$IN[78] |in|
+$IN[79] |in|
+$IN[80] |in|
+$IN[81] |in|
+$IN[82] |in|
+$IN[83] |in|
+$IN[84] |in|
+$IN[85] PINCA2 Avanco para tras
+$IN[86] PINCA2 Curso de Solda Aberto
+$IN[87] PINCA2 Avanca na Frente
+$IN[88] PINCA2 Protecao Termica
+$IN[89] |in|
+$IN[90] |in|
+$IN[91] |in|
+$IN[92] |in|
+$IN[93] |in|
+$IN[94] |in|
+$IN[95] |in|
+$IN[96] |in|
+$IN[97] |in|
+$IN[98] |in|
+$IN[99] PINCA3 Controlador de Corrente
+$IN[100] |in|
+$IN[101] PINCA3 Avanco para tras
+$IN[102] PINCA3 Curso de Solda Aberto
+$IN[103] PINCA3 Avanca na Frente
+$IN[104] PINCA3 Protecao Termica
+$IN[105] |in|
+$IN[106] |in|
+$IN[107] |in|
+$IN[108] |in|
+$IN[109] |in|
+$IN[110] |in|
+$IN[111] |in|
+$IN[112] |in|
+$IN[113] |in|
+$IN[114] |in|
+$IN[115] |in|
+$IN[116] FRESA1 Capa Girada para Fora
+$IN[117] |in|
+$IN[118] FRESA1 Capa Girada para Dentro
+$IN[119] |in|
+$IN[120] FRESA1 de Capa Funcionando
+$IN[121] |in|
+$IN[122] |in|
+$IN[123] |in|
+$IN[124] |in|
+$IN[125] |in|
+$IN[126] |in|
+$IN[127] |in|
+$IN[128] |in|
+$IN[129] |in|
+$IN[130] |in|
+$IN[131] |in|
+$IN[132] FRESA2 Capa Girada para Fora
+$IN[133] |in|
+$IN[134] FRESA2 Capa Girada para Dentro
+$IN[135] |in|
+$IN[136] FRESA2 de Capa Funcionando
+$IN[137] |in|
+$IN[138] |in|
+$IN[139] |in|
+$IN[140] |in|
+$IN[141] |in|
+$IN[142] |in|
+$IN[143] |in|
+$IN[144] |in|
+$IN[145] |in|
+$IN[146] |in|
+$IN[147] |in|
+$IN[148] FRESA3 Capa Girada para Fora
+$IN[149] |in|
+$IN[150] FRESA3 Capa Girada para Dentro
+$IN[151] |in|
+$IN[152] FRESA3 de Capa Funcionando
+$IN[153] |in|
+$IN[154] |in|
+$IN[155] |in|
+$IN[156] |in|
+$IN[157] |in|
+$IN[158] |in|
+$IN[159] |in|
+$IN[160] |in|
+$IN[161] DOCK1 Deposito Ocupado
+$IN[162] |in|
+$IN[163] |in|
+$IN[164] |in|
+$IN[165] DOCK1 Protecao Aberta
+$IN[166] DOCK1 Protecao Fechada
+$IN[167] |in|
+$IN[168] |in|
+$IN[169] DOCK2 Deposito Ocupado
+$IN[170] |in|
+$IN[171] |in|
+$IN[172] |in|
+$IN[173] DOCK2 Protecao Aberta
+$IN[174] DOCK2 Protecao Fechada
+$IN[175] |in|
+$IN[176] |in|
+$IN[177] DOCK3 Deposito Ocupado
+$IN[178] |in|
+$IN[179] |in|
+$IN[180] |in|
+$IN[181] DOCK3 Protecao Aberta
+$IN[182] DOCK3 Protecao Fechada
+$IN[183] |in|
+$IN[184] |in|
+$IN[185] DOCK4 Deposito Ocupado
+$IN[186] |in|
+$IN[187] |in|
+$IN[188] |in|
+$IN[189] DOCK4 Protecao Aberta
+$IN[190] DOCK4 Protecao Fechada
+$IN[191] |in|
+$IN[192] |in|
+$IN[193] DOCK5 Deposito Ocupado
+$IN[194] |in|
+$IN[195] |in|
+$IN[196] |in|
+$IN[197] DOCK5 Protecao Aberta
+$IN[198] DOCK5 Protecao Fechada
+$IN[199] |in|
+$IN[200] |in|
+$IN[201] DOCK6 Deposito Ocupado
+$IN[202] |in|
+$IN[203] |in|
+$IN[204] |in|
+$IN[205] DOCK6 Protecao Aberta
+$IN[206] DOCK6 Protecao Fechada
+$IN[207] |in|
+$IN[208] |in|
+$IN[209] DOCK7 Deposito Ocupado
+$IN[210] |in|
+$IN[211] |in|
+$IN[212] |in|
+$IN[213] DOCK7 Protecao Aberta
+$IN[214] DOCK7 Protecao Fechada
+$IN[215] |in|
+$IN[216] |in|
+$IN[217] MPS Destravado
+$IN[218] |in|
+$IN[219] Posicao p/ Acoplamento OK
+$IN[220] |in|
+$IN[221] MPS Travado
+$IN[222] Liberacao p/ Desbloqueio
+$IN[223] |in|
+$IN[224] |in|
+$IN[225] BOSCH Ponto de Solda Ok
+$IN[226] BOSCH Pedido de Fresagem
+$IN[227] BOSCH Pre-Aviso de Desgaste
+$IN[228] BOSCH Qtde Maxima Alcancado
+$IN[229] BOSCH Sistema de Controle Pronto
+$IN[230] BOSCH Erro de Solda
+$IN[231] BOSCH Sem Monitoracao
+$IN[232] BOSCH Com Ignicao
+$IN[233] BOSCH Valvula Prop 1
+$IN[234] BOSCH Valvula Prop 2
+$IN[235] BOSCH Valvula Prop 4
+$IN[236] BOSCH Valvula Prop 8
+$IN[237] BOSCH Valvula Prop 16
+$IN[238] BOSCH Valvula Prop 32
+$IN[239] BOSCH Corrente Sem Comando
+$IN[240] BOSCH Entrada Pressao
+$IN[241] |in|
+$IN[242] |in|
+$IN[243] |in|
+$IN[244] |in|
+$IN[245] |in|
+$IN[246] |in|
+$IN[247] |in|
+$IN[248] |in|
+$IN[249] |in|
+$IN[250] |in|
+$IN[251] |in|
+$IN[252] |in|
+$IN[253] |in|
+$IN[254] |in|
+$IN[255] |in|
+$IN[256] |in|
+$IN[257] |in|
+$IN[258] |in|
+$IN[259] |in|
+$IN[260] |in|
+$IN[261] |in|
+$IN[262] |in|
+$IN[263] |in|
+$IN[264] |in|
+$IN[265] |in|
+$IN[266] |in|
+$IN[267] |in|
+$IN[268] |in|
+$IN[269] |in|
+$IN[270] |in|
+$IN[271] |in|
+$IN[272] |in|
+$IN[273] |in|
+$IN[274] |in|
+$IN[275] |in|
+$IN[276] |in|
+$IN[277] |in|
+$IN[278] |in|
+$IN[279] |in|
+$IN[280] |in|
+$IN[281] |in|
+$IN[282] |in|
+$IN[283] |in|
+$IN[284] |in|
+$IN[285] |in|
+$IN[286] |in|
+$IN[287] |in|
+$IN[288] |in|
+$IN[289] |in|
+$IN[290] |in|
+$IN[291] |in|
+$IN[292] |in|
+$IN[293] |in|
+$IN[294] |in|
+$IN[295] |in|
+$IN[296] |in|
+$IN[297] |in|
+$IN[298] |in|
+$IN[299] |in|
+$IN[300] |in|
+$IN[301] |in|
+$IN[302] |in|
+$IN[303] |in|
+$IN[304] |in|
+$IN[305] |in|
+$IN[306] |in|
+$IN[307] |in|
+$IN[308] |in|
+$IN[309] |in|
+$IN[310] |in|
+$IN[311] |in|
+$IN[312] |in|
+$IN[313] |in|
+$IN[314] |in|
+$IN[315] |in|
+$IN[316] |in|
+$IN[317] |in|
+$IN[318] |in|
+$IN[319] |in|
+$IN[320] |in|
+$IN[321] |in|
+$IN[322] |in|
+$IN[323] |in|
+$IN[324] |in|
+$IN[325] |in|
+$IN[326] |in|
+$IN[327] |in|
+$IN[328] |in|
+$IN[329] |in|
+$IN[330] |in|
+$IN[331] |in|
+$IN[332] |in|
+$IN[333] |in|
+$IN[334] |in|
+$IN[335] |in|
+$IN[336] |in|
+$IN[337] |in|
+$IN[338] |in|
+$IN[339] |in|
+$IN[340] |in|
+$IN[341] |in|
+$IN[342] |in|
+$IN[343] |in|
+$IN[344] |in|
+$IN[345] |in|
+$IN[346] |in|
+$IN[347] |in|
+$IN[348] |in|
+$IN[349] |in|
+$IN[350] |in|
+$IN[351] |in|
+$IN[352] |in|
+$IN[353] |in|
+$IN[354] |in|
+$IN[355] |in|
+$IN[356] |in|
+$IN[357] |in|
+$IN[358] |in|
+$IN[359] |in|
+$IN[360] |in|
+$IN[361] |in|
+$IN[362] |in|
+$IN[363] |in|
+$IN[364] |in|
+$IN[365] |in|
+$IN[366] |in|
+$IN[367] |in|
+$IN[368] |in|
+$IN[369] |in|
+$IN[370] |in|
+$IN[371] |in|
+$IN[372] |in|
+$IN[373] |in|
+$IN[374] |in|
+$IN[375] |in|
+$IN[376] |in|
+$IN[377] |in|
+$IN[378] |in|
+$IN[379] |in|
+$IN[380] |in|
+$IN[381] |in|
+$IN[382] |in|
+$IN[383] |in|
+$IN[384] |in|
+$IN[385] |in|
+$IN[386] |in|
+$IN[387] |in|
+$IN[388] |in|
+$IN[389] |in|
+$IN[390] |in|
+$IN[391] |in|
+$IN[392] |in|
+$IN[393] |in|
+$IN[394] |in|
+$IN[395] |in|
+$IN[396] |in|
+$IN[397] |in|
+$IN[398] |in|
+$IN[399] |in|
+$IN[400] |in|
+$IN[401] |in|
+$IN[402] |in|
+$IN[403] |in|
+$IN[404] |in|
+$IN[405] |in|
+$IN[406] |in|
+$IN[407] |in|
+$IN[408] |in|
+$IN[409] |in|
+$IN[410] |in|
+$IN[411] |in|
+$IN[412] |in|
+$IN[413] |in|
+$IN[414] |in|
+$IN[415] |in|
+$IN[416] |in|
+$IN[417] BOLZEN 1 Pronto para Soldar
+$IN[418] BOLZEN 1 Solda sem Corrente
+$IN[419] BOLZEN 1 Sem Falha
+$IN[420] |in|
+$IN[421] |in|
+$IN[422] |in|
+$IN[423] |in|
+$IN[424] |in|
+$IN[425] BOLZEN 1 Falha Cabeþa 1
+$IN[426] BOLZEN 1 Falha Cabeþa 2
+$IN[427] BOLZEN 1 Falha Cabeþa 3
+$IN[428] BOLZEN 1 Falha Cabeþa 4
+$IN[429] BOLZEN 1 Falha Cabeþa 5
+$IN[430] BOLZEN 1 Alerta Manutencao
+$IN[431] BOLZEN 1 Solda dentro TolerÔncia
+$IN[432] |in|
+$IN[433] BOLZEN 1 Solda OK - Cabeþa 1
+$IN[434] BOLZEN 1 Solda OK - Cabeþa 2
+$IN[435] BOLZEN 1 Solda OK - Cabeþa 3
+$IN[436] BOLZEN 1 Solda OK - Cabeþa 4
+$IN[437] BOLZEN 1 Solda OK - Cabeþa 5
+$IN[438] BOLZEN 1 Cabeþa 1 Atrßs
+$IN[439] BOLZEN 1 Cabeþa 2 Atrßs
+$IN[440] BOLZEN 1 Cabeþa 3 Atrßs
+$IN[441] BOLZEN 1 Cabeþa 4 Atrßs
+$IN[442] BOLZEN 1 Cabeþa 5 Atrßs
+$IN[443] |in|
+$IN[444] |in|
+$IN[445] |in|
+$IN[446] |in|
+$IN[447] |in|
+$IN[448] |in|
+$IN[449] BOLZEN 2 Pronto para Soldar
+$IN[450] BOLZEN 2 Solda sem Corrente
+$IN[451] BOLZEN 2 Sem Falha
+$IN[452] |in|
+$IN[453] |in|
+$IN[454] |in|
+$IN[455] |in|
+$IN[456] |in|
+$IN[457] BOLZEN 2 Falha Cabeþa 1
+$IN[458] BOLZEN 2 Falha Cabeþa 2
+$IN[459] BOLZEN 2 Falha Cabeþa 3
+$IN[460] BOLZEN 2 Falha Cabeþa 4
+$IN[461] BOLZEN 2 Falha Cabeþa 5
+$IN[462] BOLZEN 2 Alerta Manutencao
+$IN[463] BOLZEN 2 Solda dentro TolerÔncia
+$IN[464] |in|
+$IN[465] BOLZEN 2 Solda OK - Cabeþa 1
+$IN[466] BOLZEN 2 Solda OK - Cabeþa 2
+$IN[467] BOLZEN 2 Solda OK - Cabeþa 3
+$IN[468] BOLZEN 2 Solda OK - Cabeþa 4
+$IN[469] BOLZEN 2 Solda OK - Cabeþa 5
+$IN[470] BOLZEN 2 Cabeþa 1 Atrßs
+$IN[471] BOLZEN 2 Cabeþa 2 Atrßs
+$IN[472] BOLZEN 2 Cabeþa 3 Atrßs
+$IN[473] BOLZEN 2 Cabeþa 4 Atrßs
+$IN[474] BOLZEN 2 Cabeþa 5 Atrßs
+$IN[475] |in|
+$IN[476] |in|
+$IN[477] |in|
+$IN[478] |in|
+$IN[479] |in|
+$IN[480] |in|
+$IN[481] |in|
+$IN[482] |in|
+$IN[483] |in|
+$IN[484] |in|
+$IN[485] |in|
+$IN[486] |in|
+$IN[487] |in|
+$IN[488] |in|
+$IN[489] |in|
+$IN[490] |in|
+$IN[491] |in|
+$IN[492] |in|
+$IN[493] |in|
+$IN[494] |in|
+$IN[495] |in|
+$IN[496] |in|
+$IN[497] |in|
+$IN[498] |in|
+$IN[499] |in|
+$IN[500] |in|
+$IN[501] |in|
+$IN[502] |in|
+$IN[503] |in|
+$IN[504] |in|
+$IN[505] |in|
+$IN[506] |in|
+$IN[507] |in|
+$IN[508] |in|
+$IN[509] |in|
+$IN[510] |in|
+$IN[511] |in|
+$IN[512] |in|
+$IN[513] |in|
+$IN[514] |in|
+$IN[515] |in|
+$IN[516] |in|
+$IN[517] |in|
+$IN[518] |in|
+$IN[519] |in|
+$IN[520] |in|
+$IN[521] |in|
+$IN[522] |in|
+$IN[523] |in|
+$IN[524] |in|
+$IN[525] |in|
+$IN[526] |in|
+$IN[527] |in|
+$IN[528] |in|
+$IN[529] |in|
+$IN[530] |in|
+$IN[531] |in|
+$IN[532] |in|
+$IN[533] |in|
+$IN[534] |in|
+$IN[535] |in|
+$IN[536] |in|
+$IN[537] |in|
+$IN[538] |in|
+$IN[539] |in|
+$IN[540] |in|
+$IN[541] |in|
+$IN[542] |in|
+$IN[543] |in|
+$IN[544] |in|
+$IN[545] |in|
+$IN[546] |in|
+$IN[547] |in|
+$IN[548] |in|
+$IN[549] |in|
+$IN[550] |in|
+$IN[551] |in|
+$IN[552] |in|
+$IN[553] |in|
+$IN[554] |in|
+$IN[555] |in|
+$IN[556] |in|
+$IN[557] |in|
+$IN[558] |in|
+$IN[559] |in|
+$IN[560] |in|
+$IN[561] |in|
+$IN[562] |in|
+$IN[563] |in|
+$IN[564] |in|
+$IN[565] |in|
+$IN[566] |in|
+$IN[567] |in|
+$IN[568] |in|
+$IN[569] |in|
+$IN[570] |in|
+$IN[571] |in|
+$IN[572] |in|
+$IN[573] |in|
+$IN[574] |in|
+$IN[575] |in|
+$IN[576] |in|
+$IN[577] |in|
+$IN[578] |in|
+$IN[579] |in|
+$IN[580] |in|
+$IN[581] |in|
+$IN[582] |in|
+$IN[583] |in|
+$IN[584] |in|
+$IN[585] |in|
+$IN[586] |in|
+$IN[587] |in|
+$IN[588] |in|
+$IN[589] |in|
+$IN[590] |in|
+$IN[591] |in|
+$IN[592] |in|
+$IN[593] |in|
+$IN[594] |in|
+$IN[595] |in|
+$IN[596] |in|
+$IN[597] |in|
+$IN[598] |in|
+$IN[599] |in|
+$IN[600] |in|
+$IN[601] |in|
+$IN[602] |in|
+$IN[603] |in|
+$IN[604] |in|
+$IN[605] |in|
+$IN[606] |in|
+$IN[607] |in|
+$IN[608] |in|
+$IN[609] |in|
+$IN[610] |in|
+$IN[611] |in|
+$IN[612] |in|
+$IN[613] |in|
+$IN[614] |in|
+$IN[615] |in|
+$IN[616] |in|
+$IN[617] |in|
+$IN[618] |in|
+$IN[619] |in|
+$IN[620] |in|
+$IN[621] |in|
+$IN[622] |in|
+$IN[623] |in|
+$IN[624] |in|
+$IN[625] |in|
+$IN[626] |in|
+$IN[627] |in|
+$IN[628] |in|
+$IN[629] |in|
+$IN[630] |in|
+$IN[631] |in|
+$IN[632] |in|
+$IN[633] |in|
+$IN[634] |in|
+$IN[635] |in|
+$IN[636] |in|
+$IN[637] |in|
+$IN[638] |in|
+$IN[639] |in|
+$IN[640] |in|
+$IN[641] |in|
+$IN[642] |in|
+$IN[643] |in|
+$IN[644] |in|
+$IN[645] |in|
+$IN[646] |in|
+$IN[647] |in|
+$IN[648] |in|
+$IN[649] |in|
+$IN[650] |in|
+$IN[651] |in|
+$IN[652] |in|
+$IN[653] |in|
+$IN[654] |in|
+$IN[655] |in|
+$IN[656] |in|
+$IN[657] |in|
+$IN[658] |in|
+$IN[659] |in|
+$IN[660] |in|
+$IN[661] |in|
+$IN[662] |in|
+$IN[663] |in|
+$IN[664] |in|
+$IN[665] |in|
+$IN[666] |in|
+$IN[667] |in|
+$IN[668] |in|
+$IN[669] |in|
+$IN[670] |in|
+$IN[671] |in|
+$IN[672] |in|
+$IN[673] |in|
+$IN[674] |in|
+$IN[675] |in|
+$IN[676] |in|
+$IN[677] |in|
+$IN[678] |in|
+$IN[679] |in|
+$IN[680] |in|
+$IN[681] |in|
+$IN[682] |in|
+$IN[683] |in|
+$IN[684] |in|
+$IN[685] |in|
+$IN[686] |in|
+$IN[687] |in|
+$IN[688] |in|
+$IN[689] |in|
+$IN[690] |in|
+$IN[691] |in|
+$IN[692] |in|
+$IN[693] |in|
+$IN[694] |in|
+$IN[695] |in|
+$IN[696] |in|
+$IN[697] |in|
+$IN[698] |in|
+$IN[699] |in|
+$IN[700] |in|
+$IN[701] |in|
+$IN[702] |in|
+$IN[703] |in|
+$IN[704] |in|
+$IN[705] |in|
+$IN[706] |in|
+$IN[707] |in|
+$IN[708] |in|
+$IN[709] |in|
+$IN[710] |in|
+$IN[711] |in|
+$IN[712] |in|
+$IN[713] |in|
+$IN[714] |in|
+$IN[715] |in|
+$IN[716] |in|
+$IN[717] |in|
+$IN[718] |in|
+$IN[719] |in|
+$IN[720] |in|
+$IN[721] |in|
+$IN[722] |in|
+$IN[723] |in|
+$IN[724] |in|
+$IN[725] |in|
+$IN[726] |in|
+$IN[727] |in|
+$IN[728] |in|
+$IN[729] |in|
+$IN[730] |in|
+$IN[731] |in|
+$IN[732] |in|
+$IN[733] |in|
+$IN[734] |in|
+$IN[735] |in|
+$IN[736] |in|
+$IN[737] |in|
+$IN[738] |in|
+$IN[739] |in|
+$IN[740] |in|
+$IN[741] |in|
+$IN[742] |in|
+$IN[743] |in|
+$IN[744] |in|
+$IN[745] |in|
+$IN[746] |in|
+$IN[747] |in|
+$IN[748] |in|
+$IN[749] |in|
+$IN[750] |in|
+$IN[751] |in|
+$IN[752] |in|
+$IN[753] |in|
+$IN[754] |in|
+$IN[755] |in|
+$IN[756] |in|
+$IN[757] |in|
+$IN[758] |in|
+$IN[759] |in|
+$IN[760] |in|
+$IN[761] |in|
+$IN[762] |in|
+$IN[763] |in|
+$IN[764] |in|
+$IN[765] |in|
+$IN[766] |in|
+$IN[767] |in|
+$IN[768] |in|
+$IN[769] |in|
+$IN[770] |in|
+$IN[771] |in|
+$IN[772] |in|
+$IN[773] |in|
+$IN[774] |in|
+$IN[775] |in|
+$IN[776] |in|
+$IN[777] |in|
+$IN[778] |in|
+$IN[779] |in|
+$IN[780] |in|
+$IN[781] |in|
+$IN[782] |in|
+$IN[783] |in|
+$IN[784] |in|
+$IN[785] |in|
+$IN[786] |in|
+$IN[787] |in|
+$IN[788] |in|
+$IN[789] |in|
+$IN[790] |in|
+$IN[791] |in|
+$IN[792] |in|
+$IN[793] |in|
+$IN[794] |in|
+$IN[795] |in|
+$IN[796] |in|
+$IN[797] |in|
+$IN[798] |in|
+$IN[799] |in|
+$IN[800] |in|
+$IN[801] |in|
+$IN[802] |in|
+$IN[803] |in|
+$IN[804] |in|
+$IN[805] |in|
+$IN[806] |in|
+$IN[807] |in|
+$IN[808] |in|
+$IN[809] |in|
+$IN[810] |in|
+$IN[811] |in|
+$IN[812] |in|
+$IN[813] |in|
+$IN[814] |in|
+$IN[815] |in|
+$IN[816] |in|
+$IN[817] |in|
+$IN[818] |in|
+$IN[819] |in|
+$IN[820] |in|
+$IN[821] |in|
+$IN[822] |in|
+$IN[823] |in|
+$IN[824] |in|
+$IN[825] |in|
+$IN[826] |in|
+$IN[827] |in|
+$IN[828] |in|
+$IN[829] |in|
+$IN[830] |in|
+$IN[831] |in|
+$IN[832] |in|
+$IN[833] |in|
+$IN[834] |in|
+$IN[835] |in|
+$IN[836] |in|
+$IN[837] |in|
+$IN[838] |in|
+$IN[839] |in|
+$IN[840] |in|
+$IN[841] |in|
+$IN[842] |in|
+$IN[843] |in|
+$IN[844] |in|
+$IN[845] |in|
+$IN[846] |in|
+$IN[847] |in|
+$IN[848] |in|
+$IN[849] |in|
+$IN[850] |in|
+$IN[851] |in|
+$IN[852] |in|
+$IN[853] |in|
+$IN[854] |in|
+$IN[855] |in|
+$IN[856] |in|
+$IN[857] |in|
+$IN[858] |in|
+$IN[859] |in|
+$IN[860] |in|
+$IN[861] |in|
+$IN[862] |in|
+$IN[863] |in|
+$IN[864] |in|
+$IN[865] |in|
+$IN[866] |in|
+$IN[867] |in|
+$IN[868] |in|
+$IN[869] |in|
+$IN[870] |in|
+$IN[871] |in|
+$IN[872] |in|
+$IN[873] |in|
+$IN[874] |in|
+$IN[875] |in|
+$IN[876] |in|
+$IN[877] |in|
+$IN[878] |in|
+$IN[879] |in|
+$IN[880] |in|
+$IN[881] |in|
+$IN[882] |in|
+$IN[883] |in|
+$IN[884] |in|
+$IN[885] |in|
+$IN[886] |in|
+$IN[887] |in|
+$IN[888] |in|
+$IN[889] |in|
+$IN[890] |in|
+$IN[891] |in|
+$IN[892] |in|
+$IN[893] |in|
+$IN[894] |in|
+$IN[895] |in|
+$IN[896] |in|
+$IN[897] |in|
+$IN[898] |in|
+$IN[899] |in|
+$IN[900] |in|
+$IN[901] |in|
+$IN[902] |in|
+$IN[903] |in|
+$IN[904] |in|
+$IN[905] |in|
+$IN[906] |in|
+$IN[907] |in|
+$IN[908] |in|
+$IN[909] |in|
+$IN[910] |in|
+$IN[911] |in|
+$IN[912] |in|
+$IN[913] |in|
+$IN[914] |in|
+$IN[915] |in|
+$IN[916] |in|
+$IN[917] |in|
+$IN[918] |in|
+$IN[919] |in|
+$IN[920] |in|
+$IN[921] |in|
+$IN[922] |in|
+$IN[923] |in|
+$IN[924] |in|
+$IN[925] |in|
+$IN[926] |in|
+$IN[927] |in|
+$IN[928] |in|
+$IN[929] |in|
+$IN[930] |in|
+$IN[931] |in|
+$IN[932] |in|
+$IN[933] |in|
+$IN[934] |in|
+$IN[935] |in|
+$IN[936] |in|
+$IN[937] |in|
+$IN[938] |in|
+$IN[939] |in|
+$IN[940] |in|
+$IN[941] |in|
+$IN[942] |in|
+$IN[943] |in|
+$IN[944] |in|
+$IN[945] |in|
+$IN[946] |in|
+$IN[947] |in|
+$IN[948] |in|
+$IN[949] |in|
+$IN[950] |in|
+$IN[951] |in|
+$IN[952] |in|
+$IN[953] |in|
+$IN[954] |in|
+$IN[955] |in|
+$IN[956] |in|
+$IN[957] |in|
+$IN[958] |in|
+$IN[959] |in|
+$IN[960] |in|
+$IN[961] |in|
+$IN[962] |in|
+$IN[963] |in|
+$IN[964] |in|
+$IN[965] |in|
+$IN[966] |in|
+$IN[967] |in|
+$IN[968] |in|
+$IN[969] |in|
+$IN[970] |in|
+$IN[971] |in|
+$IN[972] |in|
+$IN[973] |in|
+$IN[974] |in|
+$IN[975] |in|
+$IN[976] |in|
+$IN[977] |in|
+$IN[978] |in|
+$IN[979] |in|
+$IN[980] |in|
+$IN[981] |in|
+$IN[982] |in|
+$IN[983] |in|
+$IN[984] |in|
+$IN[985] |in|
+$IN[986] |in|
+$IN[987] |in|
+$IN[988] |in|
+$IN[989] |in|
+$IN[990] |in|
+$IN[991] |in|
+$IN[992] |in|
+$IN[993] |in|
+$IN[994] |in|
+$IN[995] |in|
+$IN[996] |in|
+$IN[997] |in|
+$IN[998] |in|
+$IN[999] |in|
+$IN[1000] |in|
+$IN[1001] |in|
+$IN[1002] |in|
+$IN[1003] |in|
+$IN[1004] |in|
+$IN[1005] |in|
+$IN[1006] |in|
+$IN[1007] |in|
+$IN[1008] |in|
+$IN[1009] |in|
+$IN[1010] |in|
+$IN[1011] |in|
+$IN[1012] |in|
+$IN[1013] |in|
+$IN[1014] |in|
+$IN[1015] |in|
+$IN[1016] |in|
+$IN[1017] |in|
+$IN[1018] |in|
+$IN[1019] |in|
+$IN[1020] |in|
+$IN[1021] |in|
+$IN[1022] |in|
+$IN[1023] |in|
+$IN[1024] |in|
+$IN[1025] Predefined input always in HIGH state.
+$IN[1026] Predefined input always in LOW state.
+$IN[1027] |in|
+$IN[1028] |in|
+$IN[1029] |in|
+$IN[1030] |in|
+$IN[1031] |in|
+$IN[1032] |in|
+$IN[1033] |in|
+$IN[1034] |in|
+$IN[1035] |in|
+$IN[1036] |in|
+$IN[1037] |in|
+$IN[1038] |in|
+$IN[1039] |in|
+$IN[1040] |in|
+$IN[1041] |in|
+$IN[1042] |in|
+$IN[1043] |in|
+$IN[1044] |in|
+$IN[1045] |in|
+$IN[1046] |in|
+$IN[1047] |in|
+$IN[1048] |in|
+$IN[1049] |in|
+$IN[1050] |in|
+$IN[1051] |in|
+$IN[1052] |in|
+$IN[1053] |in|
+$IN[1054] |in|
+$IN[1055] |in|
+$IN[1056] |in|
+$IN[1057] |in|
+$IN[1058] |in|
+$IN[1059] |in|
+$IN[1060] |in|
+$IN[1061] |in|
+$IN[1062] |in|
+$IN[1063] |in|
+$IN[1064] |in|
+$IN[1065] |in|
+$IN[1066] |in|
+$IN[1067] |in|
+$IN[1068] |in|
+$IN[1069] |in|
+$IN[1070] |in|
+$IN[1071] |in|
+$IN[1072] |in|
+$IN[1073] |in|
+$IN[1074] |in|
+$IN[1075] |in|
+$IN[1076] |in|
+$IN[1077] |in|
+$IN[1078] |in|
+$IN[1079] |in|
+$IN[1080] |in|
+$IN[1081] |in|
+$IN[1082] |in|
+$IN[1083] |in|
+$IN[1084] |in|
+$IN[1085] |in|
+$IN[1086] |in|
+$IN[1087] |in|
+$IN[1088] |in|
+$IN[1089] |in|
+$IN[1090] |in|
+$IN[1091] |in|
+$IN[1092] |in|
+$IN[1093] |in|
+$IN[1094] |in|
+$IN[1095] |in|
+$IN[1096] |in|
+$IN[1097] |in|
+$IN[1098] |in|
+$IN[1099] |in|
+$IN[1100] |in|
+$IN[1101] |in|
+$IN[1102] |in|
+$IN[1103] |in|
+$IN[1104] |in|
+$IN[1105] |in|
+$IN[1106] |in|
+$IN[1107] |in|
+$IN[1108] |in|
+$IN[1109] |in|
+$IN[1110] |in|
+$IN[1111] |in|
+$IN[1112] |in|
+$IN[1113] |in|
+$IN[1114] |in|
+$IN[1115] |in|
+$IN[1116] |in|
+$IN[1117] |in|
+$IN[1118] |in|
+$IN[1119] |in|
+$IN[1120] |in|
+$IN[1121] |in|
+$IN[1122] |in|
+$IN[1123] |in|
+$IN[1124] |in|
+$IN[1125] |in|
+$IN[1126] |in|
+$IN[1127] |in|
+$IN[1128] |in|
+$IN[1129] |in|
+$IN[1130] |in|
+$IN[1131] |in|
+$IN[1132] |in|
+$IN[1133] |in|
+$IN[1134] |in|
+$IN[1135] |in|
+$IN[1136] |in|
+$IN[1137] |in|
+$IN[1138] |in|
+$IN[1139] |in|
+$IN[1140] |in|
+$IN[1141] |in|
+$IN[1142] |in|
+$IN[1143] |in|
+$IN[1144] |in|
+$IN[1145] |in|
+$IN[1146] |in|
+$IN[1147] |in|
+$IN[1148] |in|
+$IN[1149] |in|
+$IN[1150] |in|
+$IN[1151] |in|
+$IN[1152] |in|
+$IN[1153] |in|
+$IN[1154] |in|
+$IN[1155] |in|
+$IN[1156] |in|
+$IN[1157] |in|
+$IN[1158] |in|
+$IN[1159] |in|
+$IN[1160] |in|
+$IN[1161] |in|
+$IN[1162] |in|
+$IN[1163] |in|
+$IN[1164] |in|
+$IN[1165] |in|
+$IN[1166] |in|
+$IN[1167] |in|
+$IN[1168] |in|
+$IN[1169] |in|
+$IN[1170] |in|
+$IN[1171] |in|
+$IN[1172] |in|
+$IN[1173] |in|
+$IN[1174] |in|
+$IN[1175] |in|
+$IN[1176] |in|
+$IN[1177] |in|
+$IN[1178] |in|
+$IN[1179] |in|
+$IN[1180] |in|
+$IN[1181] |in|
+$IN[1182] |in|
+$IN[1183] |in|
+$IN[1184] |in|
+$IN[1185] |in|
+$IN[1186] |in|
+$IN[1187] |in|
+$IN[1188] |in|
+$IN[1189] |in|
+$IN[1190] |in|
+$IN[1191] |in|
+$IN[1192] |in|
+$IN[1193] |in|
+$IN[1194] |in|
+$IN[1195] |in|
+$IN[1196] |in|
+$IN[1197] |in|
+$IN[1198] |in|
+$IN[1199] |in|
+$IN[1200] |in|
+$IN[1201] |in|
+$IN[1202] |in|
+$IN[1203] |in|
+$IN[1204] |in|
+$IN[1205] |in|
+$IN[1206] |in|
+$IN[1207] |in|
+$IN[1208] |in|
+$IN[1209] |in|
+$IN[1210] |in|
+$IN[1211] |in|
+$IN[1212] |in|
+$IN[1213] |in|
+$IN[1214] |in|
+$IN[1215] |in|
+$IN[1216] |in|
+$IN[1217] |in|
+$IN[1218] |in|
+$IN[1219] |in|
+$IN[1220] |in|
+$IN[1221] |in|
+$IN[1222] |in|
+$IN[1223] |in|
+$IN[1224] |in|
+$IN[1225] |in|
+$IN[1226] |in|
+$IN[1227] |in|
+$IN[1228] |in|
+$IN[1229] |in|
+$IN[1230] |in|
+$IN[1231] |in|
+$IN[1232] |in|
+$IN[1233] |in|
+$IN[1234] |in|
+$IN[1235] |in|
+$IN[1236] |in|
+$IN[1237] |in|
+$IN[1238] |in|
+$IN[1239] |in|
+$IN[1240] |in|
+$IN[1241] |in|
+$IN[1242] |in|
+$IN[1243] |in|
+$IN[1244] |in|
+$IN[1245] |in|
+$IN[1246] |in|
+$IN[1247] |in|
+$IN[1248] |in|
+$IN[1249] |in|
+$IN[1250] |in|
+$IN[1251] |in|
+$IN[1252] |in|
+$IN[1253] |in|
+$IN[1254] |in|
+$IN[1255] |in|
+$IN[1256] |in|
+$IN[1257] |in|
+$IN[1258] |in|
+$IN[1259] |in|
+$IN[1260] |in|
+$IN[1261] |in|
+$IN[1262] |in|
+$IN[1263] |in|
+$IN[1264] |in|
+$IN[1265] |in|
+$IN[1266] |in|
+$IN[1267] |in|
+$IN[1268] |in|
+$IN[1269] |in|
+$IN[1270] |in|
+$IN[1271] |in|
+$IN[1272] |in|
+$IN[1273] |in|
+$IN[1274] |in|
+$IN[1275] |in|
+$IN[1276] |in|
+$IN[1277] |in|
+$IN[1278] |in|
+$IN[1279] |in|
+$IN[1280] |in|
+$IN[1281] |in|
+$IN[1282] |in|
+$IN[1283] |in|
+$IN[1284] |in|
+$IN[1285] |in|
+$IN[1286] |in|
+$IN[1287] |in|
+$IN[1288] |in|
+$IN[1289] |in|
+$IN[1290] |in|
+$IN[1291] |in|
+$IN[1292] |in|
+$IN[1293] |in|
+$IN[1294] |in|
+$IN[1295] |in|
+$IN[1296] |in|
+$IN[1297] |in|
+$IN[1298] |in|
+$IN[1299] |in|
+$IN[1300] |in|
+$IN[1301] |in|
+$IN[1302] |in|
+$IN[1303] |in|
+$IN[1304] |in|
+$IN[1305] |in|
+$IN[1306] |in|
+$IN[1307] |in|
+$IN[1308] |in|
+$IN[1309] |in|
+$IN[1310] |in|
+$IN[1311] |in|
+$IN[1312] |in|
+$IN[1313] |in|
+$IN[1314] |in|
+$IN[1315] |in|
+$IN[1316] |in|
+$IN[1317] |in|
+$IN[1318] |in|
+$IN[1319] |in|
+$IN[1320] |in|
+$IN[1321] |in|
+$IN[1322] |in|
+$IN[1323] |in|
+$IN[1324] |in|
+$IN[1325] |in|
+$IN[1326] |in|
+$IN[1327] |in|
+$IN[1328] |in|
+$IN[1329] |in|
+$IN[1330] |in|
+$IN[1331] |in|
+$IN[1332] |in|
+$IN[1333] |in|
+$IN[1334] |in|
+$IN[1335] |in|
+$IN[1336] |in|
+$IN[1337] |in|
+$IN[1338] |in|
+$IN[1339] |in|
+$IN[1340] |in|
+$IN[1341] |in|
+$IN[1342] |in|
+$IN[1343] |in|
+$IN[1344] |in|
+$IN[1345] |in|
+$IN[1346] |in|
+$IN[1347] |in|
+$IN[1348] |in|
+$IN[1349] |in|
+$IN[1350] |in|
+$IN[1351] |in|
+$IN[1352] |in|
+$IN[1353] |in|
+$IN[1354] |in|
+$IN[1355] |in|
+$IN[1356] |in|
+$IN[1357] |in|
+$IN[1358] |in|
+$IN[1359] |in|
+$IN[1360] |in|
+$IN[1361] |in|
+$IN[1362] |in|
+$IN[1363] |in|
+$IN[1364] |in|
+$IN[1365] |in|
+$IN[1366] |in|
+$IN[1367] |in|
+$IN[1368] |in|
+$IN[1369] |in|
+$IN[1370] |in|
+$IN[1371] |in|
+$IN[1372] |in|
+$IN[1373] |in|
+$IN[1374] |in|
+$IN[1375] |in|
+$IN[1376] |in|
+$IN[1377] |in|
+$IN[1378] |in|
+$IN[1379] |in|
+$IN[1380] |in|
+$IN[1381] |in|
+$IN[1382] |in|
+$IN[1383] |in|
+$IN[1384] |in|
+$IN[1385] |in|
+$IN[1386] |in|
+$IN[1387] |in|
+$IN[1388] |in|
+$IN[1389] |in|
+$IN[1390] |in|
+$IN[1391] |in|
+$IN[1392] |in|
+$IN[1393] |in|
+$IN[1394] |in|
+$IN[1395] |in|
+$IN[1396] |in|
+$IN[1397] |in|
+$IN[1398] |in|
+$IN[1399] |in|
+$IN[1400] |in|
+$IN[1401] |in|
+$IN[1402] |in|
+$IN[1403] |in|
+$IN[1404] |in|
+$IN[1405] |in|
+$IN[1406] |in|
+$IN[1407] |in|
+$IN[1408] |in|
+$IN[1409] |in|
+$IN[1410] |in|
+$IN[1411] |in|
+$IN[1412] |in|
+$IN[1413] |in|
+$IN[1414] |in|
+$IN[1415] |in|
+$IN[1416] |in|
+$IN[1417] |in|
+$IN[1418] |in|
+$IN[1419] |in|
+$IN[1420] |in|
+$IN[1421] |in|
+$IN[1422] |in|
+$IN[1423] |in|
+$IN[1424] |in|
+$IN[1425] |in|
+$IN[1426] |in|
+$IN[1427] |in|
+$IN[1428] |in|
+$IN[1429] |in|
+$IN[1430] |in|
+$IN[1431] |in|
+$IN[1432] |in|
+$IN[1433] |in|
+$IN[1434] |in|
+$IN[1435] |in|
+$IN[1436] |in|
+$IN[1437] |in|
+$IN[1438] |in|
+$IN[1439] |in|
+$IN[1440] |in|
+$IN[1441] |in|
+$IN[1442] |in|
+$IN[1443] |in|
+$IN[1444] |in|
+$IN[1445] |in|
+$IN[1446] |in|
+$IN[1447] |in|
+$IN[1448] |in|
+$IN[1449] |in|
+$IN[1450] |in|
+$IN[1451] |in|
+$IN[1452] |in|
+$IN[1453] |in|
+$IN[1454] |in|
+$IN[1455] |in|
+$IN[1456] |in|
+$IN[1457] |in|
+$IN[1458] |in|
+$IN[1459] |in|
+$IN[1460] |in|
+$IN[1461] |in|
+$IN[1462] |in|
+$IN[1463] |in|
+$IN[1464] |in|
+$IN[1465] |in|
+$IN[1466] |in|
+$IN[1467] |in|
+$IN[1468] |in|
+$IN[1469] |in|
+$IN[1470] |in|
+$IN[1471] |in|
+$IN[1472] |in|
+$IN[1473] |in|
+$IN[1474] |in|
+$IN[1475] |in|
+$IN[1476] |in|
+$IN[1477] |in|
+$IN[1478] |in|
+$IN[1479] |in|
+$IN[1480] |in|
+$IN[1481] |in|
+$IN[1482] |in|
+$IN[1483] |in|
+$IN[1484] |in|
+$IN[1485] |in|
+$IN[1486] |in|
+$IN[1487] |in|
+$IN[1488] |in|
+$IN[1489] |in|
+$IN[1490] |in|
+$IN[1491] |in|
+$IN[1492] |in|
+$IN[1493] |in|
+$IN[1494] |in|
+$IN[1495] |in|
+$IN[1496] |in|
+$IN[1497] |in|
+$IN[1498] |in|
+$IN[1499] |in|
+$IN[1500] |in|
+$IN[1501] |in|
+$IN[1502] |in|
+$IN[1503] |in|
+$IN[1504] |in|
+$IN[1505] |in|
+$IN[1506] |in|
+$IN[1507] |in|
+$IN[1508] |in|
+$IN[1509] |in|
+$IN[1510] |in|
+$IN[1511] |in|
+$IN[1512] |in|
+$IN[1513] |in|
+$IN[1514] |in|
+$IN[1515] |in|
+$IN[1516] |in|
+$IN[1517] |in|
+$IN[1518] |in|
+$IN[1519] |in|
+$IN[1520] |in|
+$IN[1521] |in|
+$IN[1522] |in|
+$IN[1523] |in|
+$IN[1524] |in|
+$IN[1525] |in|
+$IN[1526] |in|
+$IN[1527] |in|
+$IN[1528] |in|
+$IN[1529] |in|
+$IN[1530] |in|
+$IN[1531] |in|
+$IN[1532] |in|
+$IN[1533] |in|
+$IN[1534] |in|
+$IN[1535] |in|
+$IN[1536] |in|
+$IN[1537] |in|
+$IN[1538] |in|
+$IN[1539] |in|
+$IN[1540] |in|
+$IN[1541] |in|
+$IN[1542] |in|
+$IN[1543] |in|
+$IN[1544] |in|
+$IN[1545] |in|
+$IN[1546] |in|
+$IN[1547] |in|
+$IN[1548] |in|
+$IN[1549] |in|
+$IN[1550] |in|
+$IN[1551] |in|
+$IN[1552] |in|
+$IN[1553] |in|
+$IN[1554] |in|
+$IN[1555] |in|
+$IN[1556] |in|
+$IN[1557] |in|
+$IN[1558] |in|
+$IN[1559] |in|
+$IN[1560] |in|
+$IN[1561] |in|
+$IN[1562] |in|
+$IN[1563] |in|
+$IN[1564] |in|
+$IN[1565] |in|
+$IN[1566] |in|
+$IN[1567] |in|
+$IN[1568] |in|
+$IN[1569] |in|
+$IN[1570] |in|
+$IN[1571] |in|
+$IN[1572] |in|
+$IN[1573] |in|
+$IN[1574] |in|
+$IN[1575] |in|
+$IN[1576] |in|
+$IN[1577] |in|
+$IN[1578] |in|
+$IN[1579] |in|
+$IN[1580] |in|
+$IN[1581] |in|
+$IN[1582] |in|
+$IN[1583] |in|
+$IN[1584] |in|
+$IN[1585] |in|
+$IN[1586] |in|
+$IN[1587] |in|
+$IN[1588] |in|
+$IN[1589] |in|
+$IN[1590] |in|
+$IN[1591] |in|
+$IN[1592] |in|
+$IN[1593] |in|
+$IN[1594] |in|
+$IN[1595] |in|
+$IN[1596] |in|
+$IN[1597] |in|
+$IN[1598] |in|
+$IN[1599] |in|
+$IN[1600] |in|
+$IN[1601] |in|
+$IN[1602] |in|
+$IN[1603] |in|
+$IN[1604] |in|
+$IN[1605] |in|
+$IN[1606] |in|
+$IN[1607] |in|
+$IN[1608] |in|
+$IN[1609] |in|
+$IN[1610] |in|
+$IN[1611] |in|
+$IN[1612] |in|
+$IN[1613] |in|
+$IN[1614] |in|
+$IN[1615] |in|
+$IN[1616] |in|
+$IN[1617] |in|
+$IN[1618] |in|
+$IN[1619] |in|
+$IN[1620] |in|
+$IN[1621] |in|
+$IN[1622] |in|
+$IN[1623] |in|
+$IN[1624] |in|
+$IN[1625] |in|
+$IN[1626] |in|
+$IN[1627] |in|
+$IN[1628] |in|
+$IN[1629] |in|
+$IN[1630] |in|
+$IN[1631] |in|
+$IN[1632] |in|
+$IN[1633] |in|
+$IN[1634] |in|
+$IN[1635] |in|
+$IN[1636] |in|
+$IN[1637] |in|
+$IN[1638] |in|
+$IN[1639] |in|
+$IN[1640] |in|
+$IN[1641] |in|
+$IN[1642] |in|
+$IN[1643] |in|
+$IN[1644] |in|
+$IN[1645] |in|
+$IN[1646] |in|
+$IN[1647] |in|
+$IN[1648] |in|
+$IN[1649] |in|
+$IN[1650] |in|
+$IN[1651] |in|
+$IN[1652] |in|
+$IN[1653] |in|
+$IN[1654] |in|
+$IN[1655] |in|
+$IN[1656] |in|
+$IN[1657] |in|
+$IN[1658] |in|
+$IN[1659] |in|
+$IN[1660] |in|
+$IN[1661] |in|
+$IN[1662] |in|
+$IN[1663] |in|
+$IN[1664] |in|
+$IN[1665] |in|
+$IN[1666] |in|
+$IN[1667] |in|
+$IN[1668] |in|
+$IN[1669] |in|
+$IN[1670] |in|
+$IN[1671] |in|
+$IN[1672] |in|
+$IN[1673] |in|
+$IN[1674] |in|
+$IN[1675] |in|
+$IN[1676] |in|
+$IN[1677] |in|
+$IN[1678] |in|
+$IN[1679] |in|
+$IN[1680] |in|
+$IN[1681] |in|
+$IN[1682] |in|
+$IN[1683] |in|
+$IN[1684] |in|
+$IN[1685] |in|
+$IN[1686] |in|
+$IN[1687] |in|
+$IN[1688] |in|
+$IN[1689] |in|
+$IN[1690] |in|
+$IN[1691] |in|
+$IN[1692] |in|
+$IN[1693] |in|
+$IN[1694] |in|
+$IN[1695] |in|
+$IN[1696] |in|
+$IN[1697] |in|
+$IN[1698] |in|
+$IN[1699] |in|
+$IN[1700] |in|
+$IN[1701] |in|
+$IN[1702] |in|
+$IN[1703] |in|
+$IN[1704] |in|
+$IN[1705] |in|
+$IN[1706] |in|
+$IN[1707] |in|
+$IN[1708] |in|
+$IN[1709] |in|
+$IN[1710] |in|
+$IN[1711] |in|
+$IN[1712] |in|
+$IN[1713] |in|
+$IN[1714] |in|
+$IN[1715] |in|
+$IN[1716] |in|
+$IN[1717] |in|
+$IN[1718] |in|
+$IN[1719] |in|
+$IN[1720] |in|
+$IN[1721] |in|
+$IN[1722] |in|
+$IN[1723] |in|
+$IN[1724] |in|
+$IN[1725] |in|
+$IN[1726] |in|
+$IN[1727] |in|
+$IN[1728] |in|
+$IN[1729] |in|
+$IN[1730] |in|
+$IN[1731] |in|
+$IN[1732] |in|
+$IN[1733] |in|
+$IN[1734] |in|
+$IN[1735] |in|
+$IN[1736] |in|
+$IN[1737] |in|
+$IN[1738] |in|
+$IN[1739] |in|
+$IN[1740] |in|
+$IN[1741] |in|
+$IN[1742] |in|
+$IN[1743] |in|
+$IN[1744] |in|
+$IN[1745] |in|
+$IN[1746] |in|
+$IN[1747] |in|
+$IN[1748] |in|
+$IN[1749] |in|
+$IN[1750] |in|
+$IN[1751] |in|
+$IN[1752] |in|
+$IN[1753] |in|
+$IN[1754] |in|
+$IN[1755] |in|
+$IN[1756] |in|
+$IN[1757] |in|
+$IN[1758] |in|
+$IN[1759] |in|
+$IN[1760] |in|
+$IN[1761] |in|
+$IN[1762] |in|
+$IN[1763] |in|
+$IN[1764] |in|
+$IN[1765] |in|
+$IN[1766] |in|
+$IN[1767] |in|
+$IN[1768] |in|
+$IN[1769] |in|
+$IN[1770] |in|
+$IN[1771] |in|
+$IN[1772] |in|
+$IN[1773] |in|
+$IN[1774] |in|
+$IN[1775] |in|
+$IN[1776] |in|
+$IN[1777] |in|
+$IN[1778] |in|
+$IN[1779] |in|
+$IN[1780] |in|
+$IN[1781] |in|
+$IN[1782] |in|
+$IN[1783] |in|
+$IN[1784] |in|
+$IN[1785] |in|
+$IN[1786] |in|
+$IN[1787] |in|
+$IN[1788] |in|
+$IN[1789] |in|
+$IN[1790] |in|
+$IN[1791] |in|
+$IN[1792] |in|
+$IN[1793] |in|
+$IN[1794] |in|
+$IN[1795] |in|
+$IN[1796] |in|
+$IN[1797] |in|
+$IN[1798] |in|
+$IN[1799] |in|
+$IN[1800] |in|
+$IN[1801] |in|
+$IN[1802] |in|
+$IN[1803] |in|
+$IN[1804] |in|
+$IN[1805] |in|
+$IN[1806] |in|
+$IN[1807] |in|
+$IN[1808] |in|
+$IN[1809] |in|
+$IN[1810] |in|
+$IN[1811] |in|
+$IN[1812] |in|
+$IN[1813] |in|
+$IN[1814] |in|
+$IN[1815] |in|
+$IN[1816] |in|
+$IN[1817] |in|
+$IN[1818] |in|
+$IN[1819] |in|
+$IN[1820] |in|
+$IN[1821] |in|
+$IN[1822] |in|
+$IN[1823] |in|
+$IN[1824] |in|
+$IN[1825] |in|
+$IN[1826] |in|
+$IN[1827] |in|
+$IN[1828] |in|
+$IN[1829] |in|
+$IN[1830] |in|
+$IN[1831] |in|
+$IN[1832] |in|
+$IN[1833] |in|
+$IN[1834] |in|
+$IN[1835] |in|
+$IN[1836] |in|
+$IN[1837] |in|
+$IN[1838] |in|
+$IN[1839] |in|
+$IN[1840] |in|
+$IN[1841] |in|
+$IN[1842] |in|
+$IN[1843] |in|
+$IN[1844] |in|
+$IN[1845] |in|
+$IN[1846] |in|
+$IN[1847] |in|
+$IN[1848] |in|
+$IN[1849] |in|
+$IN[1850] |in|
+$IN[1851] |in|
+$IN[1852] |in|
+$IN[1853] |in|
+$IN[1854] |in|
+$IN[1855] |in|
+$IN[1856] |in|
+$IN[1857] |in|
+$IN[1858] |in|
+$IN[1859] |in|
+$IN[1860] |in|
+$IN[1861] |in|
+$IN[1862] |in|
+$IN[1863] |in|
+$IN[1864] |in|
+$IN[1865] |in|
+$IN[1866] |in|
+$IN[1867] |in|
+$IN[1868] |in|
+$IN[1869] |in|
+$IN[1870] |in|
+$IN[1871] |in|
+$IN[1872] |in|
+$IN[1873] |in|
+$IN[1874] |in|
+$IN[1875] |in|
+$IN[1876] |in|
+$IN[1877] |in|
+$IN[1878] |in|
+$IN[1879] |in|
+$IN[1880] |in|
+$IN[1881] |in|
+$IN[1882] |in|
+$IN[1883] |in|
+$IN[1884] |in|
+$IN[1885] |in|
+$IN[1886] |in|
+$IN[1887] |in|
+$IN[1888] |in|
+$IN[1889] |in|
+$IN[1890] |in|
+$IN[1891] |in|
+$IN[1892] |in|
+$IN[1893] |in|
+$IN[1894] |in|
+$IN[1895] |in|
+$IN[1896] |in|
+$IN[1897] |in|
+$IN[1898] |in|
+$IN[1899] |in|
+$IN[1900] |in|
+$IN[1901] |in|
+$IN[1902] |in|
+$IN[1903] |in|
+$IN[1904] |in|
+$IN[1905] |in|
+$IN[1906] |in|
+$IN[1907] |in|
+$IN[1908] |in|
+$IN[1909] |in|
+$IN[1910] |in|
+$IN[1911] |in|
+$IN[1912] |in|
+$IN[1913] |in|
+$IN[1914] |in|
+$IN[1915] |in|
+$IN[1916] |in|
+$IN[1917] |in|
+$IN[1918] |in|
+$IN[1919] |in|
+$IN[1920] |in|
+$IN[1921] |in|
+$IN[1922] |in|
+$IN[1923] |in|
+$IN[1924] |in|
+$IN[1925] |in|
+$IN[1926] |in|
+$IN[1927] |in|
+$IN[1928] |in|
+$IN[1929] |in|
+$IN[1930] |in|
+$IN[1931] |in|
+$IN[1932] |in|
+$IN[1933] |in|
+$IN[1934] |in|
+$IN[1935] |in|
+$IN[1936] |in|
+$IN[1937] |in|
+$IN[1938] |in|
+$IN[1939] |in|
+$IN[1940] |in|
+$IN[1941] |in|
+$IN[1942] |in|
+$IN[1943] |in|
+$IN[1944] |in|
+$IN[1945] |in|
+$IN[1946] |in|
+$IN[1947] |in|
+$IN[1948] |in|
+$IN[1949] |in|
+$IN[1950] |in|
+$IN[1951] |in|
+$IN[1952] |in|
+$IN[1953] |in|
+$IN[1954] |in|
+$IN[1955] |in|
+$IN[1956] |in|
+$IN[1957] |in|
+$IN[1958] |in|
+$IN[1959] |in|
+$IN[1960] |in|
+$IN[1961] |in|
+$IN[1962] |in|
+$IN[1963] |in|
+$IN[1964] |in|
+$IN[1965] |in|
+$IN[1966] |in|
+$IN[1967] |in|
+$IN[1968] |in|
+$IN[1969] |in|
+$IN[1970] |in|
+$IN[1971] |in|
+$IN[1972] |in|
+$IN[1973] |in|
+$IN[1974] |in|
+$IN[1975] |in|
+$IN[1976] |in|
+$IN[1977] |in|
+$IN[1978] |in|
+$IN[1979] |in|
+$IN[1980] |in|
+$IN[1981] |in|
+$IN[1982] |in|
+$IN[1983] |in|
+$IN[1984] |in|
+$IN[1985] |in|
+$IN[1986] |in|
+$IN[1987] |in|
+$IN[1988] |in|
+$IN[1989] |in|
+$IN[1990] |in|
+$IN[1991] |in|
+$IN[1992] |in|
+$IN[1993] |in|
+$IN[1994] |in|
+$IN[1995] |in|
+$IN[1996] |in|
+$IN[1997] |in|
+$IN[1998] |in|
+$IN[1999] |in|
+$IN[2000] |in|
+$IN[2001] |in|
+$IN[2002] |in|
+$IN[2003] |in|
+$IN[2004] |in|
+$IN[2005] |in|
+$IN[2006] |in|
+$IN[2007] |in|
+$IN[2008] |in|
+$IN[2009] |in|
+$IN[2010] |in|
+$IN[2011] |in|
+$IN[2012] |in|
+$IN[2013] |in|
+$IN[2014] |in|
+$IN[2015] |in|
+$IN[2016] |in|
+$IN[2017] |in|
+$IN[2018] |in|
+$IN[2019] |in|
+$IN[2020] |in|
+$IN[2021] |in|
+$IN[2022] |in|
+$IN[2023] |in|
+$IN[2024] |in|
+$IN[2025] |in|
+$IN[2026] |in|
+$IN[2027] |in|
+$IN[2028] |in|
+$IN[2029] |in|
+$IN[2030] |in|
+$IN[2031] |in|
+$IN[2032] |in|
+$IN[2033] |in|
+$IN[2034] |in|
+$IN[2035] |in|
+$IN[2036] |in|
+$IN[2037] |in|
+$IN[2038] |in|
+$IN[2039] |in|
+$IN[2040] |in|
+$IN[2041] |in|
+$IN[2042] |in|
+$IN[2043] |in|
+$IN[2044] |in|
+$IN[2045] |in|
+$IN[2046] |in|
+$IN[2047] |in|
+$IN[2048] |in|
+$IN[2049] |in|
+$IN[2050] |in|
+$IN[2051] |in|
+$IN[2052] |in|
+$IN[2053] |in|
+$IN[2054] |in|
+$IN[2055] |in|
+$IN[2056] |in|
+$IN[2057] |in|
+$IN[2058] |in|
+$IN[2059] |in|
+$IN[2060] |in|
+$IN[2061] |in|
+$IN[2062] |in|
+$IN[2063] |in|
+$IN[2064] |in|
+$IN[2065] |in|
+$IN[2066] |in|
+$IN[2067] |in|
+$IN[2068] |in|
+$IN[2069] |in|
+$IN[2070] |in|
+$IN[2071] |in|
+$IN[2072] |in|
+$IN[2073] |in|
+$IN[2074] |in|
+$IN[2075] |in|
+$IN[2076] |in|
+$IN[2077] |in|
+$IN[2078] |in|
+$IN[2079] |in|
+$IN[2080] |in|
+$IN[2081] |in|
+$IN[2082] |in|
+$IN[2083] |in|
+$IN[2084] |in|
+$IN[2085] |in|
+$IN[2086] |in|
+$IN[2087] |in|
+$IN[2088] |in|
+$IN[2089] |in|
+$IN[2090] |in|
+$IN[2091] |in|
+$IN[2092] |in|
+$IN[2093] |in|
+$IN[2094] |in|
+$IN[2095] |in|
+$IN[2096] |in|
+$IN[2097] |in|
+$IN[2098] |in|
+$IN[2099] |in|
+$IN[2100] |in|
+$IN[2101] |in|
+$IN[2102] |in|
+$IN[2103] |in|
+$IN[2104] |in|
+$IN[2105] |in|
+$IN[2106] |in|
+$IN[2107] |in|
+$IN[2108] |in|
+$IN[2109] |in|
+$IN[2110] |in|
+$IN[2111] |in|
+$IN[2112] |in|
+$IN[2113] |in|
+$IN[2114] |in|
+$IN[2115] |in|
+$IN[2116] |in|
+$IN[2117] |in|
+$IN[2118] |in|
+$IN[2119] |in|
+$IN[2120] |in|
+$IN[2121] |in|
+$IN[2122] |in|
+$IN[2123] |in|
+$IN[2124] |in|
+$IN[2125] |in|
+$IN[2126] |in|
+$IN[2127] |in|
+$IN[2128] |in|
+$IN[2129] |in|
+$IN[2130] |in|
+$IN[2131] |in|
+$IN[2132] |in|
+$IN[2133] |in|
+$IN[2134] |in|
+$IN[2135] |in|
+$IN[2136] |in|
+$IN[2137] |in|
+$IN[2138] |in|
+$IN[2139] |in|
+$IN[2140] |in|
+$IN[2141] |in|
+$IN[2142] |in|
+$IN[2143] |in|
+$IN[2144] |in|
+$IN[2145] |in|
+$IN[2146] |in|
+$IN[2147] |in|
+$IN[2148] |in|
+$IN[2149] |in|
+$IN[2150] |in|
+$IN[2151] |in|
+$IN[2152] |in|
+$IN[2153] |in|
+$IN[2154] |in|
+$IN[2155] |in|
+$IN[2156] |in|
+$IN[2157] |in|
+$IN[2158] |in|
+$IN[2159] |in|
+$IN[2160] |in|
+$IN[2161] |in|
+$IN[2162] |in|
+$IN[2163] |in|
+$IN[2164] |in|
+$IN[2165] |in|
+$IN[2166] |in|
+$IN[2167] |in|
+$IN[2168] |in|
+$IN[2169] |in|
+$IN[2170] |in|
+$IN[2171] |in|
+$IN[2172] |in|
+$IN[2173] |in|
+$IN[2174] |in|
+$IN[2175] |in|
+$IN[2176] |in|
+$IN[2177] |in|
+$IN[2178] |in|
+$IN[2179] |in|
+$IN[2180] |in|
+$IN[2181] |in|
+$IN[2182] |in|
+$IN[2183] |in|
+$IN[2184] |in|
+$IN[2185] |in|
+$IN[2186] |in|
+$IN[2187] |in|
+$IN[2188] |in|
+$IN[2189] |in|
+$IN[2190] |in|
+$IN[2191] |in|
+$IN[2192] |in|
+$IN[2193] |in|
+$IN[2194] |in|
+$IN[2195] |in|
+$IN[2196] |in|
+$IN[2197] |in|
+$IN[2198] |in|
+$IN[2199] |in|
+$IN[2200] |in|
+$IN[2201] |in|
+$IN[2202] |in|
+$IN[2203] |in|
+$IN[2204] |in|
+$IN[2205] |in|
+$IN[2206] |in|
+$IN[2207] |in|
+$IN[2208] |in|
+$IN[2209] |in|
+$IN[2210] |in|
+$IN[2211] |in|
+$IN[2212] |in|
+$IN[2213] |in|
+$IN[2214] |in|
+$IN[2215] |in|
+$IN[2216] |in|
+$IN[2217] |in|
+$IN[2218] |in|
+$IN[2219] |in|
+$IN[2220] |in|
+$IN[2221] |in|
+$IN[2222] |in|
+$IN[2223] |in|
+$IN[2224] |in|
+$IN[2225] |in|
+$IN[2226] |in|
+$IN[2227] |in|
+$IN[2228] |in|
+$IN[2229] |in|
+$IN[2230] |in|
+$IN[2231] |in|
+$IN[2232] |in|
+$IN[2233] |in|
+$IN[2234] |in|
+$IN[2235] |in|
+$IN[2236] |in|
+$IN[2237] |in|
+$IN[2238] |in|
+$IN[2239] |in|
+$IN[2240] |in|
+$IN[2241] |in|
+$IN[2242] |in|
+$IN[2243] |in|
+$IN[2244] |in|
+$IN[2245] |in|
+$IN[2246] |in|
+$IN[2247] |in|
+$IN[2248] |in|
+$IN[2249] |in|
+$IN[2250] |in|
+$IN[2251] |in|
+$IN[2252] |in|
+$IN[2253] |in|
+$IN[2254] |in|
+$IN[2255] |in|
+$IN[2256] |in|
+$IN[2257] |in|
+$IN[2258] |in|
+$IN[2259] |in|
+$IN[2260] |in|
+$IN[2261] |in|
+$IN[2262] |in|
+$IN[2263] |in|
+$IN[2264] |in|
+$IN[2265] |in|
+$IN[2266] |in|
+$IN[2267] |in|
+$IN[2268] |in|
+$IN[2269] |in|
+$IN[2270] |in|
+$IN[2271] |in|
+$IN[2272] |in|
+$IN[2273] |in|
+$IN[2274] |in|
+$IN[2275] |in|
+$IN[2276] |in|
+$IN[2277] |in|
+$IN[2278] |in|
+$IN[2279] |in|
+$IN[2280] |in|
+$IN[2281] |in|
+$IN[2282] |in|
+$IN[2283] |in|
+$IN[2284] |in|
+$IN[2285] |in|
+$IN[2286] |in|
+$IN[2287] |in|
+$IN[2288] |in|
+$IN[2289] |in|
+$IN[2290] |in|
+$IN[2291] |in|
+$IN[2292] |in|
+$IN[2293] |in|
+$IN[2294] |in|
+$IN[2295] |in|
+$IN[2296] |in|
+$IN[2297] |in|
+$IN[2298] |in|
+$IN[2299] |in|
+$IN[2300] |in|
+$IN[2301] |in|
+$IN[2302] |in|
+$IN[2303] |in|
+$IN[2304] |in|
+$IN[2305] |in|
+$IN[2306] |in|
+$IN[2307] |in|
+$IN[2308] |in|
+$IN[2309] |in|
+$IN[2310] |in|
+$IN[2311] |in|
+$IN[2312] |in|
+$IN[2313] |in|
+$IN[2314] |in|
+$IN[2315] |in|
+$IN[2316] |in|
+$IN[2317] |in|
+$IN[2318] |in|
+$IN[2319] |in|
+$IN[2320] |in|
+$IN[2321] |in|
+$IN[2322] |in|
+$IN[2323] |in|
+$IN[2324] |in|
+$IN[2325] |in|
+$IN[2326] |in|
+$IN[2327] |in|
+$IN[2328] |in|
+$IN[2329] |in|
+$IN[2330] |in|
+$IN[2331] |in|
+$IN[2332] |in|
+$IN[2333] |in|
+$IN[2334] |in|
+$IN[2335] |in|
+$IN[2336] |in|
+$IN[2337] |in|
+$IN[2338] |in|
+$IN[2339] |in|
+$IN[2340] |in|
+$IN[2341] |in|
+$IN[2342] |in|
+$IN[2343] |in|
+$IN[2344] |in|
+$IN[2345] |in|
+$IN[2346] |in|
+$IN[2347] |in|
+$IN[2348] |in|
+$IN[2349] |in|
+$IN[2350] |in|
+$IN[2351] |in|
+$IN[2352] |in|
+$IN[2353] |in|
+$IN[2354] |in|
+$IN[2355] |in|
+$IN[2356] |in|
+$IN[2357] |in|
+$IN[2358] |in|
+$IN[2359] |in|
+$IN[2360] |in|
+$IN[2361] |in|
+$IN[2362] |in|
+$IN[2363] |in|
+$IN[2364] |in|
+$IN[2365] |in|
+$IN[2366] |in|
+$IN[2367] |in|
+$IN[2368] |in|
+$IN[2369] |in|
+$IN[2370] |in|
+$IN[2371] |in|
+$IN[2372] |in|
+$IN[2373] |in|
+$IN[2374] |in|
+$IN[2375] |in|
+$IN[2376] |in|
+$IN[2377] |in|
+$IN[2378] |in|
+$IN[2379] |in|
+$IN[2380] |in|
+$IN[2381] |in|
+$IN[2382] |in|
+$IN[2383] |in|
+$IN[2384] |in|
+$IN[2385] |in|
+$IN[2386] |in|
+$IN[2387] |in|
+$IN[2388] |in|
+$IN[2389] |in|
+$IN[2390] |in|
+$IN[2391] |in|
+$IN[2392] |in|
+$IN[2393] |in|
+$IN[2394] |in|
+$IN[2395] |in|
+$IN[2396] |in|
+$IN[2397] |in|
+$IN[2398] |in|
+$IN[2399] |in|
+$IN[2400] |in|
+$IN[2401] |in|
+$IN[2402] |in|
+$IN[2403] |in|
+$IN[2404] |in|
+$IN[2405] |in|
+$IN[2406] |in|
+$IN[2407] |in|
+$IN[2408] |in|
+$IN[2409] |in|
+$IN[2410] |in|
+$IN[2411] |in|
+$IN[2412] |in|
+$IN[2413] |in|
+$IN[2414] |in|
+$IN[2415] |in|
+$IN[2416] |in|
+$IN[2417] |in|
+$IN[2418] |in|
+$IN[2419] |in|
+$IN[2420] |in|
+$IN[2421] |in|
+$IN[2422] |in|
+$IN[2423] |in|
+$IN[2424] |in|
+$IN[2425] |in|
+$IN[2426] |in|
+$IN[2427] |in|
+$IN[2428] |in|
+$IN[2429] |in|
+$IN[2430] |in|
+$IN[2431] |in|
+$IN[2432] |in|
+$IN[2433] |in|
+$IN[2434] |in|
+$IN[2435] |in|
+$IN[2436] |in|
+$IN[2437] |in|
+$IN[2438] |in|
+$IN[2439] |in|
+$IN[2440] |in|
+$IN[2441] |in|
+$IN[2442] |in|
+$IN[2443] |in|
+$IN[2444] |in|
+$IN[2445] |in|
+$IN[2446] |in|
+$IN[2447] |in|
+$IN[2448] |in|
+$IN[2449] |in|
+$IN[2450] |in|
+$IN[2451] |in|
+$IN[2452] |in|
+$IN[2453] |in|
+$IN[2454] |in|
+$IN[2455] |in|
+$IN[2456] |in|
+$IN[2457] |in|
+$IN[2458] |in|
+$IN[2459] |in|
+$IN[2460] |in|
+$IN[2461] |in|
+$IN[2462] |in|
+$IN[2463] |in|
+$IN[2464] |in|
+$IN[2465] |in|
+$IN[2466] |in|
+$IN[2467] |in|
+$IN[2468] |in|
+$IN[2469] |in|
+$IN[2470] |in|
+$IN[2471] |in|
+$IN[2472] |in|
+$IN[2473] |in|
+$IN[2474] |in|
+$IN[2475] |in|
+$IN[2476] |in|
+$IN[2477] |in|
+$IN[2478] |in|
+$IN[2479] |in|
+$IN[2480] |in|
+$IN[2481] |in|
+$IN[2482] |in|
+$IN[2483] |in|
+$IN[2484] |in|
+$IN[2485] |in|
+$IN[2486] |in|
+$IN[2487] |in|
+$IN[2488] |in|
+$IN[2489] |in|
+$IN[2490] |in|
+$IN[2491] |in|
+$IN[2492] |in|
+$IN[2493] |in|
+$IN[2494] |in|
+$IN[2495] |in|
+$IN[2496] |in|
+$IN[2497] |in|
+$IN[2498] |in|
+$IN[2499] |in|
+$IN[2500] |in|
+$IN[2501] |in|
+$IN[2502] |in|
+$IN[2503] |in|
+$IN[2504] |in|
+$IN[2505] |in|
+$IN[2506] |in|
+$IN[2507] |in|
+$IN[2508] |in|
+$IN[2509] |in|
+$IN[2510] |in|
+$IN[2511] |in|
+$IN[2512] |in|
+$IN[2513] |in|
+$IN[2514] |in|
+$IN[2515] |in|
+$IN[2516] |in|
+$IN[2517] |in|
+$IN[2518] |in|
+$IN[2519] |in|
+$IN[2520] |in|
+$IN[2521] |in|
+$IN[2522] |in|
+$IN[2523] |in|
+$IN[2524] |in|
+$IN[2525] |in|
+$IN[2526] |in|
+$IN[2527] |in|
+$IN[2528] |in|
+$IN[2529] |in|
+$IN[2530] |in|
+$IN[2531] |in|
+$IN[2532] |in|
+$IN[2533] |in|
+$IN[2534] |in|
+$IN[2535] |in|
+$IN[2536] |in|
+$IN[2537] |in|
+$IN[2538] |in|
+$IN[2539] |in|
+$IN[2540] |in|
+$IN[2541] |in|
+$IN[2542] |in|
+$IN[2543] |in|
+$IN[2544] |in|
+$IN[2545] |in|
+$IN[2546] |in|
+$IN[2547] |in|
+$IN[2548] |in|
+$IN[2549] |in|
+$IN[2550] |in|
+$IN[2551] |in|
+$IN[2552] |in|
+$IN[2553] |in|
+$IN[2554] |in|
+$IN[2555] |in|
+$IN[2556] |in|
+$IN[2557] |in|
+$IN[2558] |in|
+$IN[2559] |in|
+$IN[2560] |in|
+$IN[2561] |in|
+$IN[2562] |in|
+$IN[2563] |in|
+$IN[2564] |in|
+$IN[2565] |in|
+$IN[2566] |in|
+$IN[2567] |in|
+$IN[2568] |in|
+$IN[2569] |in|
+$IN[2570] |in|
+$IN[2571] |in|
+$IN[2572] |in|
+$IN[2573] |in|
+$IN[2574] |in|
+$IN[2575] |in|
+$IN[2576] |in|
+$IN[2577] |in|
+$IN[2578] |in|
+$IN[2579] |in|
+$IN[2580] |in|
+$IN[2581] |in|
+$IN[2582] |in|
+$IN[2583] |in|
+$IN[2584] |in|
+$IN[2585] |in|
+$IN[2586] |in|
+$IN[2587] |in|
+$IN[2588] |in|
+$IN[2589] |in|
+$IN[2590] |in|
+$IN[2591] |in|
+$IN[2592] |in|
+$IN[2593] |in|
+$IN[2594] |in|
+$IN[2595] |in|
+$IN[2596] |in|
+$IN[2597] |in|
+$IN[2598] |in|
+$IN[2599] |in|
+$IN[2600] |in|
+$IN[2601] |in|
+$IN[2602] |in|
+$IN[2603] |in|
+$IN[2604] |in|
+$IN[2605] |in|
+$IN[2606] |in|
+$IN[2607] |in|
+$IN[2608] |in|
+$IN[2609] |in|
+$IN[2610] |in|
+$IN[2611] |in|
+$IN[2612] |in|
+$IN[2613] |in|
+$IN[2614] |in|
+$IN[2615] |in|
+$IN[2616] |in|
+$IN[2617] |in|
+$IN[2618] |in|
+$IN[2619] |in|
+$IN[2620] |in|
+$IN[2621] |in|
+$IN[2622] |in|
+$IN[2623] |in|
+$IN[2624] |in|
+$IN[2625] |in|
+$IN[2626] |in|
+$IN[2627] |in|
+$IN[2628] |in|
+$IN[2629] |in|
+$IN[2630] |in|
+$IN[2631] |in|
+$IN[2632] |in|
+$IN[2633] |in|
+$IN[2634] |in|
+$IN[2635] |in|
+$IN[2636] |in|
+$IN[2637] |in|
+$IN[2638] |in|
+$IN[2639] |in|
+$IN[2640] |in|
+$IN[2641] |in|
+$IN[2642] |in|
+$IN[2643] |in|
+$IN[2644] |in|
+$IN[2645] |in|
+$IN[2646] |in|
+$IN[2647] |in|
+$IN[2648] |in|
+$IN[2649] |in|
+$IN[2650] |in|
+$IN[2651] |in|
+$IN[2652] |in|
+$IN[2653] |in|
+$IN[2654] |in|
+$IN[2655] |in|
+$IN[2656] |in|
+$IN[2657] |in|
+$IN[2658] |in|
+$IN[2659] |in|
+$IN[2660] |in|
+$IN[2661] |in|
+$IN[2662] |in|
+$IN[2663] |in|
+$IN[2664] |in|
+$IN[2665] |in|
+$IN[2666] |in|
+$IN[2667] |in|
+$IN[2668] |in|
+$IN[2669] |in|
+$IN[2670] |in|
+$IN[2671] |in|
+$IN[2672] |in|
+$IN[2673] |in|
+$IN[2674] |in|
+$IN[2675] |in|
+$IN[2676] |in|
+$IN[2677] |in|
+$IN[2678] |in|
+$IN[2679] |in|
+$IN[2680] |in|
+$IN[2681] |in|
+$IN[2682] |in|
+$IN[2683] |in|
+$IN[2684] |in|
+$IN[2685] |in|
+$IN[2686] |in|
+$IN[2687] |in|
+$IN[2688] |in|
+$IN[2689] |in|
+$IN[2690] |in|
+$IN[2691] |in|
+$IN[2692] |in|
+$IN[2693] |in|
+$IN[2694] |in|
+$IN[2695] |in|
+$IN[2696] |in|
+$IN[2697] |in|
+$IN[2698] |in|
+$IN[2699] |in|
+$IN[2700] |in|
+$IN[2701] |in|
+$IN[2702] |in|
+$IN[2703] |in|
+$IN[2704] |in|
+$IN[2705] |in|
+$IN[2706] |in|
+$IN[2707] |in|
+$IN[2708] |in|
+$IN[2709] |in|
+$IN[2710] |in|
+$IN[2711] |in|
+$IN[2712] |in|
+$IN[2713] |in|
+$IN[2714] |in|
+$IN[2715] |in|
+$IN[2716] |in|
+$IN[2717] |in|
+$IN[2718] |in|
+$IN[2719] |in|
+$IN[2720] |in|
+$IN[2721] |in|
+$IN[2722] |in|
+$IN[2723] |in|
+$IN[2724] |in|
+$IN[2725] |in|
+$IN[2726] |in|
+$IN[2727] |in|
+$IN[2728] |in|
+$IN[2729] |in|
+$IN[2730] |in|
+$IN[2731] |in|
+$IN[2732] |in|
+$IN[2733] |in|
+$IN[2734] |in|
+$IN[2735] |in|
+$IN[2736] |in|
+$IN[2737] |in|
+$IN[2738] |in|
+$IN[2739] |in|
+$IN[2740] |in|
+$IN[2741] |in|
+$IN[2742] |in|
+$IN[2743] |in|
+$IN[2744] |in|
+$IN[2745] |in|
+$IN[2746] |in|
+$IN[2747] |in|
+$IN[2748] |in|
+$IN[2749] |in|
+$IN[2750] |in|
+$IN[2751] |in|
+$IN[2752] |in|
+$IN[2753] |in|
+$IN[2754] |in|
+$IN[2755] |in|
+$IN[2756] |in|
+$IN[2757] |in|
+$IN[2758] |in|
+$IN[2759] |in|
+$IN[2760] |in|
+$IN[2761] |in|
+$IN[2762] |in|
+$IN[2763] |in|
+$IN[2764] |in|
+$IN[2765] |in|
+$IN[2766] |in|
+$IN[2767] |in|
+$IN[2768] |in|
+$IN[2769] |in|
+$IN[2770] |in|
+$IN[2771] |in|
+$IN[2772] |in|
+$IN[2773] |in|
+$IN[2774] |in|
+$IN[2775] |in|
+$IN[2776] |in|
+$IN[2777] |in|
+$IN[2778] |in|
+$IN[2779] |in|
+$IN[2780] |in|
+$IN[2781] |in|
+$IN[2782] |in|
+$IN[2783] |in|
+$IN[2784] |in|
+$IN[2785] |in|
+$IN[2786] |in|
+$IN[2787] |in|
+$IN[2788] |in|
+$IN[2789] |in|
+$IN[2790] |in|
+$IN[2791] |in|
+$IN[2792] |in|
+$IN[2793] |in|
+$IN[2794] |in|
+$IN[2795] |in|
+$IN[2796] |in|
+$IN[2797] |in|
+$IN[2798] |in|
+$IN[2799] |in|
+$IN[2800] |in|
+$IN[2801] |in|
+$IN[2802] |in|
+$IN[2803] |in|
+$IN[2804] |in|
+$IN[2805] |in|
+$IN[2806] |in|
+$IN[2807] |in|
+$IN[2808] |in|
+$IN[2809] |in|
+$IN[2810] |in|
+$IN[2811] |in|
+$IN[2812] |in|
+$IN[2813] |in|
+$IN[2814] |in|
+$IN[2815] |in|
+$IN[2816] |in|
+$IN[2817] |in|
+$IN[2818] |in|
+$IN[2819] |in|
+$IN[2820] |in|
+$IN[2821] |in|
+$IN[2822] |in|
+$IN[2823] |in|
+$IN[2824] |in|
+$IN[2825] |in|
+$IN[2826] |in|
+$IN[2827] |in|
+$IN[2828] |in|
+$IN[2829] |in|
+$IN[2830] |in|
+$IN[2831] |in|
+$IN[2832] |in|
+$IN[2833] |in|
+$IN[2834] |in|
+$IN[2835] |in|
+$IN[2836] |in|
+$IN[2837] |in|
+$IN[2838] |in|
+$IN[2839] |in|
+$IN[2840] |in|
+$IN[2841] |in|
+$IN[2842] |in|
+$IN[2843] |in|
+$IN[2844] |in|
+$IN[2845] |in|
+$IN[2846] |in|
+$IN[2847] |in|
+$IN[2848] |in|
+$IN[2849] |in|
+$IN[2850] |in|
+$IN[2851] |in|
+$IN[2852] |in|
+$IN[2853] |in|
+$IN[2854] |in|
+$IN[2855] |in|
+$IN[2856] |in|
+$IN[2857] |in|
+$IN[2858] |in|
+$IN[2859] |in|
+$IN[2860] |in|
+$IN[2861] |in|
+$IN[2862] |in|
+$IN[2863] |in|
+$IN[2864] |in|
+$IN[2865] |in|
+$IN[2866] |in|
+$IN[2867] |in|
+$IN[2868] |in|
+$IN[2869] |in|
+$IN[2870] |in|
+$IN[2871] |in|
+$IN[2872] |in|
+$IN[2873] |in|
+$IN[2874] |in|
+$IN[2875] |in|
+$IN[2876] |in|
+$IN[2877] |in|
+$IN[2878] |in|
+$IN[2879] |in|
+$IN[2880] |in|
+$IN[2881] |in|
+$IN[2882] |in|
+$IN[2883] |in|
+$IN[2884] |in|
+$IN[2885] |in|
+$IN[2886] |in|
+$IN[2887] |in|
+$IN[2888] |in|
+$IN[2889] |in|
+$IN[2890] |in|
+$IN[2891] |in|
+$IN[2892] |in|
+$IN[2893] |in|
+$IN[2894] |in|
+$IN[2895] |in|
+$IN[2896] |in|
+$IN[2897] |in|
+$IN[2898] |in|
+$IN[2899] |in|
+$IN[2900] |in|
+$IN[2901] |in|
+$IN[2902] |in|
+$IN[2903] |in|
+$IN[2904] |in|
+$IN[2905] |in|
+$IN[2906] |in|
+$IN[2907] |in|
+$IN[2908] |in|
+$IN[2909] |in|
+$IN[2910] |in|
+$IN[2911] |in|
+$IN[2912] |in|
+$IN[2913] |in|
+$IN[2914] |in|
+$IN[2915] |in|
+$IN[2916] |in|
+$IN[2917] |in|
+$IN[2918] |in|
+$IN[2919] |in|
+$IN[2920] |in|
+$IN[2921] |in|
+$IN[2922] |in|
+$IN[2923] |in|
+$IN[2924] |in|
+$IN[2925] |in|
+$IN[2926] |in|
+$IN[2927] |in|
+$IN[2928] |in|
+$IN[2929] |in|
+$IN[2930] |in|
+$IN[2931] |in|
+$IN[2932] |in|
+$IN[2933] |in|
+$IN[2934] |in|
+$IN[2935] |in|
+$IN[2936] |in|
+$IN[2937] |in|
+$IN[2938] |in|
+$IN[2939] |in|
+$IN[2940] |in|
+$IN[2941] |in|
+$IN[2942] |in|
+$IN[2943] |in|
+$IN[2944] |in|
+$IN[2945] |in|
+$IN[2946] |in|
+$IN[2947] |in|
+$IN[2948] |in|
+$IN[2949] |in|
+$IN[2950] |in|
+$IN[2951] |in|
+$IN[2952] |in|
+$IN[2953] |in|
+$IN[2954] |in|
+$IN[2955] |in|
+$IN[2956] |in|
+$IN[2957] |in|
+$IN[2958] |in|
+$IN[2959] |in|
+$IN[2960] |in|
+$IN[2961] |in|
+$IN[2962] |in|
+$IN[2963] |in|
+$IN[2964] |in|
+$IN[2965] |in|
+$IN[2966] |in|
+$IN[2967] |in|
+$IN[2968] |in|
+$IN[2969] |in|
+$IN[2970] |in|
+$IN[2971] |in|
+$IN[2972] |in|
+$IN[2973] |in|
+$IN[2974] |in|
+$IN[2975] |in|
+$IN[2976] |in|
+$IN[2977] |in|
+$IN[2978] |in|
+$IN[2979] |in|
+$IN[2980] |in|
+$IN[2981] |in|
+$IN[2982] |in|
+$IN[2983] |in|
+$IN[2984] |in|
+$IN[2985] |in|
+$IN[2986] |in|
+$IN[2987] |in|
+$IN[2988] |in|
+$IN[2989] |in|
+$IN[2990] |in|
+$IN[2991] |in|
+$IN[2992] |in|
+$IN[2993] |in|
+$IN[2994] |in|
+$IN[2995] |in|
+$IN[2996] |in|
+$IN[2997] |in|
+$IN[2998] |in|
+$IN[2999] |in|
+$IN[3000] |in|
+$IN[3001] |in|
+$IN[3002] |in|
+$IN[3003] |in|
+$IN[3004] |in|
+$IN[3005] |in|
+$IN[3006] |in|
+$IN[3007] |in|
+$IN[3008] |in|
+$IN[3009] |in|
+$IN[3010] |in|
+$IN[3011] |in|
+$IN[3012] |in|
+$IN[3013] |in|
+$IN[3014] |in|
+$IN[3015] |in|
+$IN[3016] |in|
+$IN[3017] |in|
+$IN[3018] |in|
+$IN[3019] |in|
+$IN[3020] |in|
+$IN[3021] |in|
+$IN[3022] |in|
+$IN[3023] |in|
+$IN[3024] |in|
+$IN[3025] |in|
+$IN[3026] |in|
+$IN[3027] |in|
+$IN[3028] |in|
+$IN[3029] |in|
+$IN[3030] |in|
+$IN[3031] |in|
+$IN[3032] |in|
+$IN[3033] |in|
+$IN[3034] |in|
+$IN[3035] |in|
+$IN[3036] |in|
+$IN[3037] |in|
+$IN[3038] |in|
+$IN[3039] |in|
+$IN[3040] |in|
+$IN[3041] |in|
+$IN[3042] |in|
+$IN[3043] |in|
+$IN[3044] |in|
+$IN[3045] |in|
+$IN[3046] |in|
+$IN[3047] |in|
+$IN[3048] |in|
+$IN[3049] |in|
+$IN[3050] |in|
+$IN[3051] |in|
+$IN[3052] |in|
+$IN[3053] |in|
+$IN[3054] |in|
+$IN[3055] |in|
+$IN[3056] |in|
+$IN[3057] |in|
+$IN[3058] |in|
+$IN[3059] |in|
+$IN[3060] |in|
+$IN[3061] |in|
+$IN[3062] |in|
+$IN[3063] |in|
+$IN[3064] |in|
+$IN[3065] |in|
+$IN[3066] |in|
+$IN[3067] |in|
+$IN[3068] |in|
+$IN[3069] |in|
+$IN[3070] |in|
+$IN[3071] |in|
+$IN[3072] |in|
+$IN[3073] |in|
+$IN[3074] |in|
+$IN[3075] |in|
+$IN[3076] |in|
+$IN[3077] |in|
+$IN[3078] |in|
+$IN[3079] |in|
+$IN[3080] |in|
+$IN[3081] |in|
+$IN[3082] |in|
+$IN[3083] |in|
+$IN[3084] |in|
+$IN[3085] |in|
+$IN[3086] |in|
+$IN[3087] |in|
+$IN[3088] |in|
+$IN[3089] |in|
+$IN[3090] |in|
+$IN[3091] |in|
+$IN[3092] |in|
+$IN[3093] |in|
+$IN[3094] |in|
+$IN[3095] |in|
+$IN[3096] |in|
+$IN[3097] |in|
+$IN[3098] |in|
+$IN[3099] |in|
+$IN[3100] |in|
+$IN[3101] |in|
+$IN[3102] |in|
+$IN[3103] |in|
+$IN[3104] |in|
+$IN[3105] |in|
+$IN[3106] |in|
+$IN[3107] |in|
+$IN[3108] |in|
+$IN[3109] |in|
+$IN[3110] |in|
+$IN[3111] |in|
+$IN[3112] |in|
+$IN[3113] |in|
+$IN[3114] |in|
+$IN[3115] |in|
+$IN[3116] |in|
+$IN[3117] |in|
+$IN[3118] |in|
+$IN[3119] |in|
+$IN[3120] |in|
+$IN[3121] |in|
+$IN[3122] |in|
+$IN[3123] |in|
+$IN[3124] |in|
+$IN[3125] |in|
+$IN[3126] |in|
+$IN[3127] |in|
+$IN[3128] |in|
+$IN[3129] |in|
+$IN[3130] |in|
+$IN[3131] |in|
+$IN[3132] |in|
+$IN[3133] |in|
+$IN[3134] |in|
+$IN[3135] |in|
+$IN[3136] |in|
+$IN[3137] |in|
+$IN[3138] |in|
+$IN[3139] |in|
+$IN[3140] |in|
+$IN[3141] |in|
+$IN[3142] |in|
+$IN[3143] |in|
+$IN[3144] |in|
+$IN[3145] |in|
+$IN[3146] |in|
+$IN[3147] |in|
+$IN[3148] |in|
+$IN[3149] |in|
+$IN[3150] |in|
+$IN[3151] |in|
+$IN[3152] |in|
+$IN[3153] |in|
+$IN[3154] |in|
+$IN[3155] |in|
+$IN[3156] |in|
+$IN[3157] |in|
+$IN[3158] |in|
+$IN[3159] |in|
+$IN[3160] |in|
+$IN[3161] |in|
+$IN[3162] |in|
+$IN[3163] |in|
+$IN[3164] |in|
+$IN[3165] |in|
+$IN[3166] |in|
+$IN[3167] |in|
+$IN[3168] |in|
+$IN[3169] |in|
+$IN[3170] |in|
+$IN[3171] |in|
+$IN[3172] |in|
+$IN[3173] |in|
+$IN[3174] |in|
+$IN[3175] |in|
+$IN[3176] |in|
+$IN[3177] |in|
+$IN[3178] |in|
+$IN[3179] |in|
+$IN[3180] |in|
+$IN[3181] |in|
+$IN[3182] |in|
+$IN[3183] |in|
+$IN[3184] |in|
+$IN[3185] |in|
+$IN[3186] |in|
+$IN[3187] |in|
+$IN[3188] |in|
+$IN[3189] |in|
+$IN[3190] |in|
+$IN[3191] |in|
+$IN[3192] |in|
+$IN[3193] |in|
+$IN[3194] |in|
+$IN[3195] |in|
+$IN[3196] |in|
+$IN[3197] |in|
+$IN[3198] |in|
+$IN[3199] |in|
+$IN[3200] |in|
+$IN[3201] External $DRIVES_OFF
+$IN[3202] External $DRIVES_ON
+$IN[3203] External $MOVE_ENABLE
+$IN[3204] External $EXT_START
+$IN[3205] Acknowledgment Error $CONF_MESS
+$IN[3206] Program Confirmation PGNO_VALID
+$IN[3207] Parity Bit PGNO_PARITY
+$IN[3208] PLC Live Bit
+$IN[3209] Prog Number Bit 0
+$IN[3210] Prog Number Bit 1
+$IN[3211] Prog Number Bit 2
+$IN[3212] Prog Number Bit 3
+$IN[3213] Prog Number Bit 4
+$IN[3214] Prog Number Bit 5
+$IN[3215] Prog Number Bit 6
+$IN[3216] Prog Number Bit 7
+$IN[3217] Stop after point-end
+$IN[3218] Request special-position
+$IN[3219] reserve
+$IN[3220] ghost operation active
+$IN[3221] ghost operation non active
+$IN[3222] reserve
+$IN[3223] reserve
+$IN[3224] reserve
+$IN[3225] acyclic dataerror quit
+$IN[3226] reserve
+$IN[3227] reserve
+$IN[3228] reserve
+$IN[3229] energy-saving activate
+$IN[3230] energy-saving deactivate
+$IN[3231] reserve
+$IN[3232] reserve
+$IN[3233] load level 0
+$IN[3234] load level 1
+$IN[3235] load level 2
+$IN[3236] reserve
+$IN[3237] reserve
+$IN[3238] reserve
+$IN[3239] Braketest required $BRAKETEST_REQ_EX
+$IN[3240] reserve
+$IN[3241] reserve
+$IN[3242] reserve
+$IN[3243] reserve
+$IN[3244] reserve
+$IN[3245] reserve
+$IN[3246] reserve
+$IN[3247] reserve
+$IN[3248] reserve
+$IN[3249] reserve
+$IN[3250] reserve
+$IN[3251] reserve
+$IN[3252] reserve
+$IN[3253] reserve
+$IN[3254] reserve
+$IN[3255] reserve
+$IN[3256] reserve
+$IN[3257] reserve
+$IN[3258] reserve
+$IN[3259] reserve
+$IN[3260] reserve
+$IN[3261] reserve
+$IN[3262] reserve
+$IN[3263] reserve
+$IN[3264] reserve
+$IN[3265] reserve
+$IN[3266] reserve
+$IN[3267] Adj. Required $MASTERINGTEST_REQ_EX
+$IN[3268] reserve
+$IN[3269] reserve
+$IN[3270] reserve
+$IN[3271] reserve
+$IN[3272] reserve
+$IN[3273] reserve
+$IN[3274] reserve
+$IN[3275] reserve
+$IN[3276] reserve
+$IN[3277] reserve
+$IN[3278] reserve
+$IN[3279] reserve
+$IN[3280] reserve
+$IN[3281] reserve
+$IN[3282] reserve
+$IN[3283] reserve
+$IN[3284] reserve
+$IN[3285] reserve
+$IN[3286] reserve
+$IN[3287] reserve
+$IN[3288] reserve
+$IN[3289] reserve
+$IN[3290] reserve
+$IN[3291] reserve
+$IN[3292] reserve
+$IN[3293] reserve
+$IN[3294] reserve
+$IN[3295] reserve
+$IN[3296] reserve
+$IN[3297] reserve
+$IN[3298] reserve
+$IN[3299] reserve
+$IN[3300] reserve
+$IN[3301] reserve
+$IN[3302] reserve
+$IN[3303] reserve
+$IN[3304] reserve
+$IN[3305] reserve
+$IN[3306] reserve
+$IN[3307] reserve
+$IN[3308] reserve
+$IN[3309] reserve
+$IN[3310] reserve
+$IN[3311] reserve
+$IN[3312] reserve
+$IN[3313] reserve
+$IN[3314] reserve
+$IN[3315] reserve
+$IN[3316] reserve
+$IN[3317] reserve
+$IN[3318] reserve
+$IN[3319] reserve
+$IN[3320] reserve
+$IN[3321] R2_Aguarda Lib. Buscar Gripper
+$IN[3322] Modelo UNIMOG
+$IN[3323] R2_Aguarda Lib. Soldar Respot GEO1
+$IN[3324] PLC lock signal
+$IN[3325] PLC lock signal
+$IN[3326] PLC lock signal
+$IN[3327] PLC lock signal
+$IN[3328] PLC lock signal
+$IN[3329] PLC lock signal
+$IN[3330] PLC lock signal
+$IN[3331] PLC lock signal
+$IN[3332] PLC lock signal
+$IN[3333] PLC lock signal
+$IN[3334] R2_Aguarda Lib. Soldar Respot
+$IN[3335] R2_Aguarda Lib. Retirar Garra
+$IN[3336] PLC lock signal
+$IN[3337] R2_Aguarda Lib. Entrar Geo
+$IN[3338] PLC lock signal
+$IN[3339] R2_Aguarda Lib. Soldar Geometria
+$IN[3340] PLC lock signal
+$IN[3341] PLC lock signal
+$IN[3342] PLC lock signal
+$IN[3343] R2_Aguarda Lib. Sair Geo
+$IN[3344] PLC lock signal
+$IN[3345] PLC lock signal
+$IN[3346] R2_Aguarda Lib. Entrar peca Geo
+$IN[3347] PLC lock signal
+$IN[3348] PLC lock signal
+$IN[3349] R2_Aguarda Lib. Sair Magazine
+$IN[3350] PLC lock signal
+$IN[3351] R2_Aguarda Lib. Buscar Lat. Accelo
+$IN[3352] PLC lock signal
+$IN[3353] INTERLOCK Area Robo R8
+$IN[3354] INTERLOCK Area Robo R7
+$IN[3355] INTERLOCK Area Robo R6
+$IN[3356] INTERLOCK Area Robo R5
+$IN[3357] INTERLOCK Area Robo R4
+$IN[3358] INTERLOCK Area Robo R3
+$IN[3359] INTERLOCK Area Robo R2
+$IN[3360] INTERLOCK Area Robo R1
+$IN[3361] PLC lock signal
+$IN[3362] PLC lock signal
+$IN[3363] PLC lock signal
+$IN[3364] PLC lock signal
+$IN[3365] PLC lock signal
+$IN[3366] PLC lock signal
+$IN[3367] PLC lock signal
+$IN[3368] PLC lock signal
+$IN[3369] PLC lock signal
+$IN[3370] PLC lock signal
+$IN[3371] PLC lock signal
+$IN[3372] PLC lock signal
+$IN[3373] PLC lock signal
+$IN[3374] PLC lock signal
+$IN[3375] PLC lock signal
+$IN[3376] PLC lock signal
+$IN[3377] PLC lock signal
+$IN[3378] PLC lock signal
+$IN[3379] PLC lock signal
+$IN[3380] Liberacao de Solda
+$IN[3381] AREA DO OPERADOR LIVRE
+$IN[3382] PLC lock signal
+$IN[3383] PLC lock signal
+$IN[3384] PLC lock signal
+$IN[3385] INTERLOCK Area Robo RB16
+$IN[3386] INTERLOCK Area Robo RB15
+$IN[3387] INTERLOCK Area Robo RB14
+$IN[3388] INTERLOCK Area Robo RB13
+$IN[3389] INTERLOCK Area Robo RB12
+$IN[3390] INTERLOCK Area Robo RB11
+$IN[3391] Lib interlock 10 robo 4
+$IN[3392] INTERLOCK Area Robo RB9
+$IN[3393] INTERLOCK Area Robo RB8
+$IN[3394] INTERLOCK Area Robo RB7
+$IN[3395] INTERLOCK Area Robo RB6
+$IN[3396] Lib interlock 5 robo 5
+$IN[3397] INTERLOCK Area Robo RB4
+$IN[3398] Lib interlock 3 robo 3
+$IN[3399] INTERLOCK Area Robo RB2
+$IN[3400] Lib interlock 1 robo 1
+$IN[3401] reserve for application-signals
+$IN[3402] reserve for application-signals
+$IN[3403] reserve for application-signals
+$IN[3404] reserve for application-signals
+$IN[3405] reserve for application-signals
+$IN[3406] reserve for application-signals
+$IN[3407] reserve for application-signals
+$IN[3408] reserve for application-signals
+$IN[3409] reserve for application-signals
+$IN[3410] reserve for application-signals
+$IN[3411] reserve for application-signals
+$IN[3412] reserve for application-signals
+$IN[3413] reserve for application-signals
+$IN[3414] reserve for application-signals
+$IN[3415] reserve for application-signals
+$IN[3416] reserve for application-signals
+$IN[3417] evaluation ready system 1
+$IN[3418] evaluation ready system 2
+$IN[3419] request flushing system 1 (2K)
+$IN[3420] request flushing system 2 (2K)
+$IN[3421] heater o.k. system 1
+$IN[3422] heater o.k. system 2
+$IN[3423] dosing feeder open system 1
+$IN[3424] dosing feeder open system 2
+$IN[3425] filling valve open system 1
+$IN[3426] filling valve open system 2
+$IN[3427] hand ab system 1
+$IN[3428] resin drain system 1
+$IN[3429] harder drain system 1
+$IN[3430] hand ab system 2
+$IN[3431] resin drain system 2
+$IN[3432] harder drain system 2
+$IN[3433] reserve for gluing
+$IN[3434] reserve for gluing
+$IN[3435] reserve for gluing
+$IN[3436] reserve for gluing
+$IN[3437] reserve for gluing
+$IN[3438] reserve for gluing
+$IN[3439] reserve for gluing
+$IN[3440] reserve for gluing
+$IN[3441] cooling-water-suction off
+$IN[3442] request milling
+$IN[3443] reserve
+$IN[3444] waterstopvalve quit
+$IN[3445] tipchanger request
+$IN[3446] reserve for technology SpotWeld
+$IN[3447] reserve for technology SpotWeld
+$IN[3448] reserve for technology SpotWeld
+$IN[3449] reserve for technology SpotWeld
+$IN[3450] reserve for technology SpotWeld
+$IN[3451] reserve for technology SpotWeld
+$IN[3452] reserve for technology SpotWeld
+$IN[3453] reserve for technology SpotWeld
+$IN[3454] reserve for technology SpotWeld
+$IN[3455] reserve for technology SpotWeld
+$IN[3456] reserve for technology SpotWeld
+$IN[3457] reserve for technology SpotWeld
+$IN[3458] reserve for technology SpotWeld
+$IN[3459] reserve for technology SpotWeld
+$IN[3460] reserve for technology SpotWeld
+$IN[3461] reserve for technology SpotWeld
+$IN[3462] reserve for technology SpotWeld
+$IN[3463] reserve for technology SpotWeld
+$IN[3464] reserve for technology SpotWeld
+$IN[3465] reserve for welding-bits
+$IN[3466] reserve for welding-bits
+$IN[3467] reserve for welding-bits
+$IN[3468] reserve for welding-bits
+$IN[3469] reserve for welding-bits
+$IN[3470] reserve for welding-bits
+$IN[3471] reserve for welding-bits
+$IN[3472] reserve for welding-bits
+$IN[3473] release Tucker welding (Alu)
+$IN[3474] release Tucker welding (Alu)
+$IN[3475] release Tucker welding (Alu)
+$IN[3476] release Tucker welding (Alu)
+$IN[3477] release Tucker welding (Alu)
+$IN[3478] release Tucker welding (Alu)
+$IN[3479] release Tucker welding (Alu)
+$IN[3480] release Tucker welding (Alu)
+$IN[3481] reserve for application-signals
+$IN[3482] reserve for application-signals
+$IN[3483] reserve for application-signals
+$IN[3484] reserve for application-signals
+$IN[3485] reserve for application-signals
+$IN[3486] reserve for application-signals
+$IN[3487] reserve for application-signals
+$IN[3488] reserve for application-signals
+$IN[3489] reserve for application-signals
+$IN[3490] reserve for application-signals
+$IN[3491] reserve for application-signals
+$IN[3492] reserve for application-signals
+$IN[3493] reserve for application-signals
+$IN[3494] reserve for application-signals
+$IN[3495] reserve for application-signals
+$IN[3496] reserve for application-signals
+$IN[3497] reserve for application-signals
+$IN[3498] reserve for application-signals
+$IN[3499] reserve for application-signals
+$IN[3500] reserve for application-signals
+$IN[3501] reserve for application-signals
+$IN[3502] reserve for application-signals
+$IN[3503] reserve for application-signals
+$IN[3504] reserve for application-signals
+$IN[3505] reserve for application-signals
+$IN[3506] reserve for application-signals
+$IN[3507] reserve for application-signals
+$IN[3508] reserve for application-signals
+$IN[3509] reserve for application-signals
+$IN[3510] reserve for application-signals
+$IN[3511] reserve for application-signals
+$IN[3512] reserve for application-signals
+$IN[3513] reserve for application-signals
+$IN[3514] reserve for application-signals
+$IN[3515] reserve for application-signals
+$IN[3516] reserve for application-signals
+$IN[3517] reserve for application-signals
+$IN[3518] reserve for application-signals
+$IN[3519] reserve for application-signals
+$IN[3520] reserve for application-signals
+$IN[3521] reserve for application-signals & locking-signals
+$IN[3522] reserve for application-signals & locking-signals
+$IN[3523] reserve for application-signals & locking-signals
+$IN[3524] reserve for application-signals & locking-signals
+$IN[3525] reserve for application-signals & locking-signals
+$IN[3526] reserve for application-signals & locking-signals
+$IN[3527] reserve for application-signals & locking-signals
+$IN[3528] reserve for application-signals & locking-signals
+$IN[3529] reserve for application-signals & locking-signals
+$IN[3530] reserve for application-signals & locking-signals
+$IN[3531] reserve for application-signals & locking-signals
+$IN[3532] reserve for application-signals & locking-signals
+$IN[3533] reserve for application-signals & locking-signals
+$IN[3534] reserve for application-signals & locking-signals
+$IN[3535] reserve for application-signals & locking-signals
+$IN[3536] reserve for application-signals & locking-signals
+$IN[3537] reserve for application-signals & locking-signals
+$IN[3538] reserve for application-signals & locking-signals
+$IN[3539] reserve for application-signals & locking-signals
+$IN[3540] reserve for application-signals & locking-signals
+$IN[3541] reserve for application-signals & locking-signals
+$IN[3542] reserve for application-signals & locking-signals
+$IN[3543] reserve for application-signals & locking-signals
+$IN[3544] reserve for application-signals & locking-signals
+$IN[3545] reserve for application-signals & locking-signals
+$IN[3546] reserve for application-signals & locking-signals
+$IN[3547] reserve for application-signals & locking-signals
+$IN[3548] reserve for application-signals & locking-signals
+$IN[3549] reserve for application-signals & locking-signals
+$IN[3550] reserve for application-signals & locking-signals
+$IN[3551] reserve for application-signals & locking-signals
+$IN[3552] reserve for application-signals & locking-signals
+$IN[3553] reserve for data channel oder application-signals
+$IN[3554] reserve for data channel oder application-signals
+$IN[3555] reserve for data channel oder application-signals
+$IN[3556] reserve for data channel oder application-signals
+$IN[3557] reserve for data channel oder application-signals
+$IN[3558] reserve for data channel oder application-signals
+$IN[3559] reserve for data channel oder application-signals
+$IN[3560] reserve for data channel oder application-signals
+$IN[3561] reserve for data channel oder application-signals
+$IN[3562] reserve for data channel oder application-signals
+$IN[3563] reserve for data channel oder application-signals
+$IN[3564] reserve for data channel oder application-signals
+$IN[3565] reserve for data channel oder application-signals
+$IN[3566] reserve for data channel oder application-signals
+$IN[3567] reserve for data channel oder application-signals
+$IN[3568] reserve for data channel oder application-signals
+$IN[3569] reserve for data channel oder application-signals
+$IN[3570] reserve for data channel oder application-signals
+$IN[3571] reserve for data channel oder application-signals
+$IN[3572] reserve for data channel oder application-signals
+$IN[3573] reserve for data channel oder application-signals
+$IN[3574] reserve for data channel oder application-signals
+$IN[3575] reserve for data channel oder application-signals
+$IN[3576] reserve for data channel oder application-signals
+$IN[3577] reserve for data channel oder application-signals
+$IN[3578] reserve for data channel oder application-signals
+$IN[3579] reserve for data channel oder application-signals
+$IN[3580] reserve for data channel oder application-signals
+$IN[3581] reserve for data channel oder application-signals
+$IN[3582] reserve for data channel oder application-signals
+$IN[3583] reserve for data channel oder application-signals
+$IN[3584] reserve for data channel oder application-signals
+$IN[3585] reserve for data channel oder application-signals
+$IN[3586] reserve for data channel oder application-signals
+$IN[3587] reserve for data channel oder application-signals
+$IN[3588] reserve for data channel oder application-signals
+$IN[3589] reserve for data channel oder application-signals
+$IN[3590] reserve for data channel oder application-signals
+$IN[3591] reserve for data channel oder application-signals
+$IN[3592] reserve for data channel oder application-signals
+$IN[3593] reserve for data channel oder application-signals
+$IN[3594] reserve for data channel oder application-signals
+$IN[3595] reserve for data channel oder application-signals
+$IN[3596] reserve for data channel oder application-signals
+$IN[3597] reserve for data channel oder application-signals
+$IN[3598] reserve for data channel oder application-signals
+$IN[3599] reserve for data channel oder application-signals
+$IN[3600] reserve for data channel oder application-signals
+$IN[3601] reserve for data channel oder application-signals
+$IN[3602] reserve for data channel oder application-signals
+$IN[3603] reserve for data channel oder application-signals
+$IN[3604] reserve for data channel oder application-signals
+$IN[3605] reserve for data channel oder application-signals
+$IN[3606] reserve for data channel oder application-signals
+$IN[3607] reserve for data channel oder application-signals
+$IN[3608] reserve for data channel oder application-signals
+$IN[3609] reserve for data channel oder application-signals
+$IN[3610] reserve for data channel oder application-signals
+$IN[3611] reserve for data channel oder application-signals
+$IN[3612] reserve for data channel oder application-signals
+$IN[3613] reserve for data channel oder application-signals
+$IN[3614] reserve for data channel oder application-signals
+$IN[3615] reserve for data channel oder application-signals
+$IN[3616] reserve for data channel oder application-signals
+$IN[3617] reserve for data channel oder application-signals
+$IN[3618] reserve for data channel oder application-signals
+$IN[3619] reserve for data channel oder application-signals
+$IN[3620] reserve for data channel oder application-signals
+$IN[3621] reserve for data channel oder application-signals
+$IN[3622] reserve for data channel oder application-signals
+$IN[3623] reserve for data channel oder application-signals
+$IN[3624] reserve for data channel oder application-signals
+$IN[3625] reserve for data channel oder application-signals
+$IN[3626] reserve for data channel oder application-signals
+$IN[3627] reserve for data channel oder application-signals
+$IN[3628] reserve for data channel oder application-signals
+$IN[3629] reserve for data channel oder application-signals
+$IN[3630] reserve for data channel oder application-signals
+$IN[3631] reserve for data channel oder application-signals
+$IN[3632] reserve for data channel oder application-signals
+$IN[3633] data channel byte 0/bit 0
+$IN[3634] data channel byte 0/bit 1
+$IN[3635] data channel byte 0/bit 2
+$IN[3636] data channel byte 0/bit 3
+$IN[3637] data channel byte 0/bit 4
+$IN[3638] data channel byte 0/bit 5
+$IN[3639] data channel byte 0/bit 6
+$IN[3640] data channel byte 0/bit 7
+$IN[3641] data channel byte 1/bit 0
+$IN[3642] data channel byte 1/bit 1
+$IN[3643] data channel byte 1/bit 2
+$IN[3644] data channel byte 1/bit 3
+$IN[3645] data channel byte 1/bit 4
+$IN[3646] data channel byte 1/bit 5
+$IN[3647] data channel byte 1/bit 6
+$IN[3648] data channel byte 1/bit 7
+$IN[3649] data channel byte 2/bit 0
+$IN[3650] data channel byte 2/bit 1
+$IN[3651] data channel byte 2/bit 2
+$IN[3652] data channel byte 2/bit 3
+$IN[3653] data channel byte 2/bit 4
+$IN[3654] data channel byte 2/bit 5
+$IN[3655] data channel byte 2/bit 6
+$IN[3656] data channel byte 2/bit 7
+$IN[3657] data channel byte 3/bit 0
+$IN[3658] data channel byte 3/bit 1
+$IN[3659] data channel byte 3/bit 2
+$IN[3660] data channel byte 3/bit 3
+$IN[3661] data channel byte 3/bit 4
+$IN[3662] data channel byte 3/bit 5
+$IN[3663] data channel byte 3/bit 6
+$IN[3664] data channel byte 3/bit 7
+$IN[3665] data channel byte 4/bit 0
+$IN[3666] data channel byte 4/bit 1
+$IN[3667] data channel byte 4/bit 2
+$IN[3668] data channel byte 4/bit 3
+$IN[3669] data channel byte 4/bit 4
+$IN[3670] data channel byte 4/bit 5
+$IN[3671] data channel byte 4/bit 6
+$IN[3672] data channel byte 4/bit 7
+$IN[3673] data channel byte 5/bit 0
+$IN[3674] data channel byte 5/bit 1
+$IN[3675] data channel byte 5/bit 2
+$IN[3676] data channel byte 5/bit 3
+$IN[3677] data channel byte 5/bit 4
+$IN[3678] data channel byte 5/bit 5
+$IN[3679] data channel byte 5/bit 6
+$IN[3680] data channel byte 5/bit 7
+$IN[3681] data channel byte 6/bit 0
+$IN[3682] data channel byte 6/bit 1
+$IN[3683] data channel byte 6/bit 2
+$IN[3684] data channel byte 6/bit 3
+$IN[3685] data channel byte 6/bit 4
+$IN[3686] data channel byte 6/bit 5
+$IN[3687] data channel byte 6/bit 6
+$IN[3688] data channel byte 6/bit 7
+$IN[3689] data channel byte 7/bit 0
+$IN[3690] data channel byte 7/bit 1
+$IN[3691] data channel byte 7/bit 2
+$IN[3692] data channel byte 7/bit 3
+$IN[3693] data channel byte 7/bit 4
+$IN[3694] data channel byte 7/bit 5
+$IN[3695] data channel byte 7/bit 6
+$IN[3696] data channel byte 7/bit 7
+$IN[3697] data channel byte 8/bit 0
+$IN[3698] data channel byte 8/bit 0
+$IN[3699] data channel byte 8/bit 0
+$IN[3700] data channel byte 8/bit 0
+$IN[3701] data channel byte 8/bit 0
+$IN[3702] data channel byte 8/bit 0
+$IN[3703] data channel byte 8/bit 0
+$IN[3704] data channel byte 8/bit 0
+$IN[3705] data channel byte 9/bit 0
+$IN[3706] data channel byte 9/bit 0
+$IN[3707] data channel byte 9/bit 0
+$IN[3708] data channel byte 9/bit 0
+$IN[3709] data channel byte 9/bit 0
+$IN[3710] data channel byte 9/bit 0
+$IN[3711] data channel byte 9/bit 0
+$IN[3712] data channel byte 9/bit 0
+$IN[3713] |in|
+$IN[3714] |in|
+$IN[3715] |in|
+$IN[3716] |in|
+$IN[3717] |in|
+$IN[3718] |in|
+$IN[3719] |in|
+$IN[3720] |in|
+$IN[3721] |in|
+$IN[3722] |in|
+$IN[3723] |in|
+$IN[3724] |in|
+$IN[3725] |in|
+$IN[3726] |in|
+$IN[3727] |in|
+$IN[3728] |in|
+$IN[3729] |in|
+$IN[3730] |in|
+$IN[3731] |in|
+$IN[3732] |in|
+$IN[3733] |in|
+$IN[3734] |in|
+$IN[3735] |in|
+$IN[3736] |in|
+$IN[3737] |in|
+$IN[3738] |in|
+$IN[3739] |in|
+$IN[3740] |in|
+$IN[3741] |in|
+$IN[3742] |in|
+$IN[3743] |in|
+$IN[3744] |in|
+$IN[3745] |in|
+$IN[3746] |in|
+$IN[3747] |in|
+$IN[3748] |in|
+$IN[3749] |in|
+$IN[3750] |in|
+$IN[3751] |in|
+$IN[3752] |in|
+$IN[3753] |in|
+$IN[3754] |in|
+$IN[3755] |in|
+$IN[3756] |in|
+$IN[3757] |in|
+$IN[3758] |in|
+$IN[3759] |in|
+$IN[3760] |in|
+$IN[3761] |in|
+$IN[3762] |in|
+$IN[3763] |in|
+$IN[3764] |in|
+$IN[3765] |in|
+$IN[3766] |in|
+$IN[3767] |in|
+$IN[3768] |in|
+$IN[3769] |in|
+$IN[3770] |in|
+$IN[3771] |in|
+$IN[3772] |in|
+$IN[3773] |in|
+$IN[3774] |in|
+$IN[3775] |in|
+$IN[3776] |in|
+$IN[3777] |in|
+$IN[3778] |in|
+$IN[3779] |in|
+$IN[3780] |in|
+$IN[3781] |in|
+$IN[3782] |in|
+$IN[3783] |in|
+$IN[3784] |in|
+$IN[3785] |in|
+$IN[3786] |in|
+$IN[3787] |in|
+$IN[3788] |in|
+$IN[3789] |in|
+$IN[3790] |in|
+$IN[3791] |in|
+$IN[3792] |in|
+$IN[3793] |in|
+$IN[3794] |in|
+$IN[3795] |in|
+$IN[3796] |in|
+$IN[3797] |in|
+$IN[3798] |in|
+$IN[3799] |in|
+$IN[3800] |in|
+$IN[3801] |in|
+$IN[3802] |in|
+$IN[3803] |in|
+$IN[3804] |in|
+$IN[3805] |in|
+$IN[3806] |in|
+$IN[3807] |in|
+$IN[3808] |in|
+$IN[3809] |in|
+$IN[3810] |in|
+$IN[3811] |in|
+$IN[3812] |in|
+$IN[3813] |in|
+$IN[3814] |in|
+$IN[3815] |in|
+$IN[3816] |in|
+$IN[3817] |in|
+$IN[3818] |in|
+$IN[3819] |in|
+$IN[3820] |in|
+$IN[3821] |in|
+$IN[3822] |in|
+$IN[3823] |in|
+$IN[3824] |in|
+$IN[3825] |in|
+$IN[3826] |in|
+$IN[3827] |in|
+$IN[3828] |in|
+$IN[3829] |in|
+$IN[3830] |in|
+$IN[3831] |in|
+$IN[3832] |in|
+$IN[3833] |in|
+$IN[3834] |in|
+$IN[3835] |in|
+$IN[3836] |in|
+$IN[3837] |in|
+$IN[3838] |in|
+$IN[3839] |in|
+$IN[3840] |in|
+$IN[3841] |in|
+$IN[3842] |in|
+$IN[3843] |in|
+$IN[3844] |in|
+$IN[3845] |in|
+$IN[3846] |in|
+$IN[3847] |in|
+$IN[3848] |in|
+$IN[3849] |in|
+$IN[3850] |in|
+$IN[3851] |in|
+$IN[3852] |in|
+$IN[3853] |in|
+$IN[3854] |in|
+$IN[3855] |in|
+$IN[3856] |in|
+$IN[3857] |in|
+$IN[3858] |in|
+$IN[3859] |in|
+$IN[3860] |in|
+$IN[3861] |in|
+$IN[3862] |in|
+$IN[3863] |in|
+$IN[3864] |in|
+$IN[3865] |in|
+$IN[3866] |in|
+$IN[3867] |in|
+$IN[3868] |in|
+$IN[3869] |in|
+$IN[3870] |in|
+$IN[3871] |in|
+$IN[3872] |in|
+$IN[3873] |in|
+$IN[3874] |in|
+$IN[3875] |in|
+$IN[3876] |in|
+$IN[3877] |in|
+$IN[3878] |in|
+$IN[3879] |in|
+$IN[3880] |in|
+$IN[3881] |in|
+$IN[3882] |in|
+$IN[3883] |in|
+$IN[3884] |in|
+$IN[3885] |in|
+$IN[3886] |in|
+$IN[3887] |in|
+$IN[3888] |in|
+$IN[3889] |in|
+$IN[3890] |in|
+$IN[3891] |in|
+$IN[3892] |in|
+$IN[3893] |in|
+$IN[3894] |in|
+$IN[3895] |in|
+$IN[3896] |in|
+$IN[3897] |in|
+$IN[3898] |in|
+$IN[3899] |in|
+$IN[3900] |in|
+$IN[3901] |in|
+$IN[3902] |in|
+$IN[3903] |in|
+$IN[3904] |in|
+$IN[3905] |in|
+$IN[3906] |in|
+$IN[3907] |in|
+$IN[3908] |in|
+$IN[3909] |in|
+$IN[3910] |in|
+$IN[3911] |in|
+$IN[3912] |in|
+$IN[3913] |in|
+$IN[3914] |in|
+$IN[3915] |in|
+$IN[3916] |in|
+$IN[3917] |in|
+$IN[3918] |in|
+$IN[3919] |in|
+$IN[3920] |in|
+$IN[3921] |in|
+$IN[3922] |in|
+$IN[3923] |in|
+$IN[3924] |in|
+$IN[3925] |in|
+$IN[3926] |in|
+$IN[3927] |in|
+$IN[3928] |in|
+$IN[3929] |in|
+$IN[3930] |in|
+$IN[3931] |in|
+$IN[3932] |in|
+$IN[3933] |in|
+$IN[3934] |in|
+$IN[3935] |in|
+$IN[3936] |in|
+$IN[3937] |in|
+$IN[3938] |in|
+$IN[3939] |in|
+$IN[3940] |in|
+$IN[3941] |in|
+$IN[3942] |in|
+$IN[3943] |in|
+$IN[3944] |in|
+$IN[3945] |in|
+$IN[3946] |in|
+$IN[3947] |in|
+$IN[3948] |in|
+$IN[3949] |in|
+$IN[3950] |in|
+$IN[3951] |in|
+$IN[3952] |in|
+$IN[3953] |in|
+$IN[3954] |in|
+$IN[3955] |in|
+$IN[3956] |in|
+$IN[3957] |in|
+$IN[3958] |in|
+$IN[3959] |in|
+$IN[3960] |in|
+$IN[3961] |in|
+$IN[3962] |in|
+$IN[3963] |in|
+$IN[3964] |in|
+$IN[3965] |in|
+$IN[3966] |in|
+$IN[3967] |in|
+$IN[3968] |in|
+$IN[3969] |in|
+$IN[3970] |in|
+$IN[3971] |in|
+$IN[3972] |in|
+$IN[3973] |in|
+$IN[3974] |in|
+$IN[3975] |in|
+$IN[3976] |in|
+$IN[3977] |in|
+$IN[3978] |in|
+$IN[3979] |in|
+$IN[3980] |in|
+$IN[3981] |in|
+$IN[3982] |in|
+$IN[3983] |in|
+$IN[3984] |in|
+$IN[3985] |in|
+$IN[3986] |in|
+$IN[3987] |in|
+$IN[3988] |in|
+$IN[3989] |in|
+$IN[3990] |in|
+$IN[3991] |in|
+$IN[3992] |in|
+$IN[3993] |in|
+$IN[3994] |in|
+$IN[3995] |in|
+$IN[3996] |in|
+$IN[3997] |in|
+$IN[3998] |in|
+$IN[3999] |in|
+$IN[4000] |in|
+$IN[4001] |in|
+$IN[4002] |in|
+$IN[4003] |in|
+$IN[4004] |in|
+$IN[4005] |in|
+$IN[4006] |in|
+$IN[4007] |in|
+$IN[4008] |in|
+$IN[4009] |in|
+$IN[4010] |in|
+$IN[4011] |in|
+$IN[4012] |in|
+$IN[4013] |in|
+$IN[4014] |in|
+$IN[4015] |in|
+$IN[4016] |in|
+$IN[4017] |in|
+$IN[4018] |in|
+$IN[4019] |in|
+$IN[4020] |in|
+$IN[4021] |in|
+$IN[4022] |in|
+$IN[4023] |in|
+$IN[4024] |in|
+$IN[4025] |in|
+$IN[4026] |in|
+$IN[4027] |in|
+$IN[4028] |in|
+$IN[4029] |in|
+$IN[4030] |in|
+$IN[4031] |in|
+$IN[4032] |in|
+$IN[4033] |in|
+$IN[4034] |in|
+$IN[4035] |in|
+$IN[4036] |in|
+$IN[4037] |in|
+$IN[4038] |in|
+$IN[4039] |in|
+$IN[4040] |in|
+$IN[4041] |in|
+$IN[4042] |in|
+$IN[4043] |in|
+$IN[4044] |in|
+$IN[4045] |in|
+$IN[4046] |in|
+$IN[4047] |in|
+$IN[4048] |in|
+$IN[4049] |in|
+$IN[4050] |in|
+$IN[4051] |in|
+$IN[4052] |in|
+$IN[4053] |in|
+$IN[4054] |in|
+$IN[4055] |in|
+$IN[4056] |in|
+$IN[4057] |in|
+$IN[4058] |in|
+$IN[4059] |in|
+$IN[4060] |in|
+$IN[4061] |in|
+$IN[4062] |in|
+$IN[4063] |in|
+$IN[4064] |in|
+$IN[4065] |in|
+$IN[4066] |in|
+$IN[4067] |in|
+$IN[4068] |in|
+$IN[4069] |in|
+$IN[4070] |in|
+$IN[4071] |in|
+$IN[4072] |in|
+$IN[4073] |in|
+$IN[4074] |in|
+$IN[4075] |in|
+$IN[4076] |in|
+$IN[4077] |in|
+$IN[4078] |in|
+$IN[4079] |in|
+$IN[4080] |in|
+$IN[4081] |in|
+$IN[4082] |in|
+$IN[4083] |in|
+$IN[4084] |in|
+$IN[4085] |in|
+$IN[4086] |in|
+$IN[4087] |in|
+$IN[4088] |in|
+$IN[4089] |in|
+$IN[4090] |in|
+$IN[4091] |in|
+$IN[4092] |in|
+$IN[4093] |in|
+$IN[4094] |in|
+$IN[4095] |in|
+$IN[4096] |in|
+$OUT[1] |out|
+$OUT[2] |out|
+$OUT[3] Sopro
+$OUT[4] Liga Vacuo
+$OUT[5] Fechar Grampos
+$OUT[6] Abrir Grampos
+$OUT[7] Recua Cilindro Z3.1/Z3.2
+$OUT[8] Avanca Cilindro Z3.1/Z3.2
+$OUT[9] |out|
+$OUT[10] |out|
+$OUT[11] |out|
+$OUT[12] |out|
+$OUT[13] |out|
+$OUT[14] |out|
+$OUT[15] |out|
+$OUT[16] |out|
+$OUT[17] |out|
+$OUT[18] |out|
+$OUT[19] |out|
+$OUT[20] |out|
+$OUT[21] |out|
+$OUT[22] |out|
+$OUT[23] |out|
+$OUT[24] |out|
+$OUT[25] |out|
+$OUT[26] |out|
+$OUT[27] |out|
+$OUT[28] |out|
+$OUT[29] |out|
+$OUT[30] |out|
+$OUT[31] |out|
+$OUT[32] |out|
+$OUT[33] |out|
+$OUT[34] |out|
+$OUT[35] |out|
+$OUT[36] |out|
+$OUT[37] |out|
+$OUT[38] |out|
+$OUT[39] |out|
+$OUT[40] |out|
+$OUT[41] |out|
+$OUT[42] |out|
+$OUT[43] |out|
+$OUT[44] |out|
+$OUT[45] |out|
+$OUT[46] |out|
+$OUT[47] |out|
+$OUT[48] |out|
+$OUT[49] |out|
+$OUT[50] |out|
+$OUT[51] |out|
+$OUT[52] |out|
+$OUT[53] |out|
+$OUT[54] |out|
+$OUT[55] |out|
+$OUT[56] |out|
+$OUT[57] |out|
+$OUT[58] |out|
+$OUT[59] |out|
+$OUT[60] |out|
+$OUT[61] |out|
+$OUT[62] |out|
+$OUT[63] |out|
+$OUT[64] |out|
+$OUT[65] PINCA1 Weld Open
+$OUT[66] PINCA1 Weld Close
+$OUT[67] |out|
+$OUT[68] PINCA1 Retract Open
+$OUT[69] |out|
+$OUT[70] |out|
+$OUT[71] |out|
+$OUT[72] |out|
+$OUT[73] |out|
+$OUT[74] |out|
+$OUT[75] |out|
+$OUT[76] |out|
+$OUT[77] |out|
+$OUT[78] |out|
+$OUT[79] |out|
+$OUT[80] |out|
+$OUT[81] PINCA2 Retract Close
+$OUT[82] PINCA2 Weld Close
+$OUT[83] |out|
+$OUT[84] PINCA2 Retract Open
+$OUT[85] |out|
+$OUT[86] |out|
+$OUT[87] |out|
+$OUT[88] |out|
+$OUT[89] |out|
+$OUT[90] |out|
+$OUT[91] |out|
+$OUT[92] |out|
+$OUT[93] |out|
+$OUT[94] |out|
+$OUT[95] |out|
+$OUT[96] |out|
+$OUT[97] PINCA3 Retract Close
+$OUT[98] PINCA3 Weld Close
+$OUT[99] |out|
+$OUT[100] PINCA3 Retract Open
+$OUT[101] |out|
+$OUT[102] |out|
+$OUT[103] |out|
+$OUT[104] |out|
+$OUT[105] |out|
+$OUT[106] |out|
+$OUT[107] |out|
+$OUT[108] |out|
+$OUT[109] |out|
+$OUT[110] |out|
+$OUT[111] |out|
+$OUT[112] |out|
+$OUT[113] |out|
+$OUT[114] |out|
+$OUT[115] FRESA1 Girar para Fora
+$OUT[116] |out|
+$OUT[117] FRESA1 Girar para Dentro
+$OUT[118] |out|
+$OUT[119] FRESA1 Ligada
+$OUT[120] |out|
+$OUT[121] |out|
+$OUT[122] |out|
+$OUT[123] |out|
+$OUT[124] |out|
+$OUT[125] |out|
+$OUT[126] |out|
+$OUT[127] |out|
+$OUT[128] |out|
+$OUT[129] |out|
+$OUT[130] |out|
+$OUT[131] FRESA2 Girar para Fora
+$OUT[132] |out|
+$OUT[133] FRESA2 Girar para Dentro
+$OUT[134] |out|
+$OUT[135] FRESA2 Ligada
+$OUT[136] |out|
+$OUT[137] |out|
+$OUT[138] |out|
+$OUT[139] |out|
+$OUT[140] |out|
+$OUT[141] |out|
+$OUT[142] |out|
+$OUT[143] |out|
+$OUT[144] |out|
+$OUT[145] |out|
+$OUT[146] |out|
+$OUT[147] FRESA3 Girar para Fora
+$OUT[148] |out|
+$OUT[149] FRESA3 Girar para Dentro
+$OUT[150] |out|
+$OUT[151] FRESA3 Ligada
+$OUT[152] |out|
+$OUT[153] |out|
+$OUT[154] |out|
+$OUT[155] |out|
+$OUT[156] |out|
+$OUT[157] |out|
+$OUT[158] |out|
+$OUT[159] |out|
+$OUT[160] |out|
+$OUT[161] |out|
+$OUT[162] |out|
+$OUT[163] |out|
+$OUT[164] |out|
+$OUT[165] |out|
+$OUT[166] |out|
+$OUT[167] DOCK1 Abrir Protecao
+$OUT[168] DOCK1 Fechar Protecao
+$OUT[169] |out|
+$OUT[170] |out|
+$OUT[171] |out|
+$OUT[172] |out|
+$OUT[173] |out|
+$OUT[174] |out|
+$OUT[175] DOCK2 Abrir Protecao
+$OUT[176] DOCK2 Fechar Protecao
+$OUT[177] |out|
+$OUT[178] |out|
+$OUT[179] |out|
+$OUT[180] |out|
+$OUT[181] |out|
+$OUT[182] |out|
+$OUT[183] DOCK3 Abrir Protecao
+$OUT[184] DOCK3 Fechar Protecao
+$OUT[185] |out|
+$OUT[186] |out|
+$OUT[187] |out|
+$OUT[188] |out|
+$OUT[189] |out|
+$OUT[190] |out|
+$OUT[191] DOCK4 Abrir Protecao
+$OUT[192] DOCK4 Fechar Protecao
+$OUT[193] |out|
+$OUT[194] |out|
+$OUT[195] |out|
+$OUT[196] |out|
+$OUT[197] |out|
+$OUT[198] |out|
+$OUT[199] DOCK5 Abrir Protecao
+$OUT[200] DOCK5 Fechar Protecao
+$OUT[201] |out|
+$OUT[202] |out|
+$OUT[203] |out|
+$OUT[204] |out|
+$OUT[205] |out|
+$OUT[206] |out|
+$OUT[207] DOCK6 Abrir Protecao
+$OUT[208] DOCK6 Fechar Protecao
+$OUT[209] |out|
+$OUT[210] |out|
+$OUT[211] |out|
+$OUT[212] |out|
+$OUT[213] |out|
+$OUT[214] |out|
+$OUT[215] DOCK7 Abrir Protecao
+$OUT[216] DOCK7 Fechar Protecao
+$OUT[217] |out|
+$OUT[218] |out|
+$OUT[219] |out|
+$OUT[220] |out|
+$OUT[221] |out|
+$OUT[222] |out|
+$OUT[223] Desbloquear MPS
+$OUT[224] Bloquear MPS
+$OUT[225] BOSCH Start Solda
+$OUT[226] BOSCH Confirmacao de Fresa
+$OUT[227] BOSCH Reset Falha na Unidade de Potencia
+$OUT[228] BOSCH Confirmacao Troca de Eletrodo
+$OUT[229] BOSCH Reset Geral de Falha
+$OUT[230] BOSCH Reset Falha com CCS
+$OUT[231] BOSCH Reset Falha com Repeticao de Ponto
+$OUT[232] BOSCH Ignicao Externa Ligada
+$OUT[233] BOSCH selecao de ponto Bit 00 = 1
+$OUT[234] BOSCH selecao de ponto Bit 01 = 2
+$OUT[235] BOSCH selecao de ponto Bit 02 = 4
+$OUT[236] BOSCH selecao de ponto Bit 03 = 8
+$OUT[237] BOSCH selecao de ponto Bit 04 = 16
+$OUT[238] BOSCH selecao de ponto Bit 05 = 32
+$OUT[239] BOSCH selecao de ponto Bit 06 = 64
+$OUT[240] BOSCH selecao de ponto Bit 07 = 128
+$OUT[241] |out|
+$OUT[242] |out|
+$OUT[243] |out|
+$OUT[244] |out|
+$OUT[245] |out|
+$OUT[246] |out|
+$OUT[247] |out|
+$OUT[248] |out|
+$OUT[249] |out|
+$OUT[250] |out|
+$OUT[251] |out|
+$OUT[252] |out|
+$OUT[253] |out|
+$OUT[254] |out|
+$OUT[255] |out|
+$OUT[256] |out|
+$OUT[257] |out|
+$OUT[258] |out|
+$OUT[259] |out|
+$OUT[260] |out|
+$OUT[261] |out|
+$OUT[262] |out|
+$OUT[263] |out|
+$OUT[264] |out|
+$OUT[265] |out|
+$OUT[266] |out|
+$OUT[267] |out|
+$OUT[268] |out|
+$OUT[269] |out|
+$OUT[270] |out|
+$OUT[271] |out|
+$OUT[272] |out|
+$OUT[273] |out|
+$OUT[274] |out|
+$OUT[275] |out|
+$OUT[276] |out|
+$OUT[277] |out|
+$OUT[278] |out|
+$OUT[279] |out|
+$OUT[280] |out|
+$OUT[281] |out|
+$OUT[282] |out|
+$OUT[283] |out|
+$OUT[284] |out|
+$OUT[285] |out|
+$OUT[286] |out|
+$OUT[287] |out|
+$OUT[288] |out|
+$OUT[289] |out|
+$OUT[290] |out|
+$OUT[291] |out|
+$OUT[292] |out|
+$OUT[293] |out|
+$OUT[294] |out|
+$OUT[295] |out|
+$OUT[296] |out|
+$OUT[297] |out|
+$OUT[298] |out|
+$OUT[299] |out|
+$OUT[300] |out|
+$OUT[301] |out|
+$OUT[302] |out|
+$OUT[303] |out|
+$OUT[304] |out|
+$OUT[305] |out|
+$OUT[306] |out|
+$OUT[307] |out|
+$OUT[308] |out|
+$OUT[309] |out|
+$OUT[310] |out|
+$OUT[311] |out|
+$OUT[312] |out|
+$OUT[313] |out|
+$OUT[314] |out|
+$OUT[315] |out|
+$OUT[316] |out|
+$OUT[317] |out|
+$OUT[318] |out|
+$OUT[319] |out|
+$OUT[320] |out|
+$OUT[321] |out|
+$OUT[322] |out|
+$OUT[323] |out|
+$OUT[324] |out|
+$OUT[325] |out|
+$OUT[326] |out|
+$OUT[327] |out|
+$OUT[328] |out|
+$OUT[329] |out|
+$OUT[330] |out|
+$OUT[331] |out|
+$OUT[332] |out|
+$OUT[333] |out|
+$OUT[334] |out|
+$OUT[335] |out|
+$OUT[336] |out|
+$OUT[337] |out|
+$OUT[338] |out|
+$OUT[339] |out|
+$OUT[340] |out|
+$OUT[341] |out|
+$OUT[342] |out|
+$OUT[343] |out|
+$OUT[344] |out|
+$OUT[345] |out|
+$OUT[346] |out|
+$OUT[347] |out|
+$OUT[348] |out|
+$OUT[349] |out|
+$OUT[350] |out|
+$OUT[351] |out|
+$OUT[352] |out|
+$OUT[353] |out|
+$OUT[354] |out|
+$OUT[355] |out|
+$OUT[356] |out|
+$OUT[357] |out|
+$OUT[358] |out|
+$OUT[359] |out|
+$OUT[360] |out|
+$OUT[361] |out|
+$OUT[362] |out|
+$OUT[363] |out|
+$OUT[364] |out|
+$OUT[365] |out|
+$OUT[366] |out|
+$OUT[367] |out|
+$OUT[368] |out|
+$OUT[369] |out|
+$OUT[370] |out|
+$OUT[371] |out|
+$OUT[372] |out|
+$OUT[373] |out|
+$OUT[374] |out|
+$OUT[375] |out|
+$OUT[376] |out|
+$OUT[377] |out|
+$OUT[378] |out|
+$OUT[379] |out|
+$OUT[380] |out|
+$OUT[381] |out|
+$OUT[382] |out|
+$OUT[383] |out|
+$OUT[384] |out|
+$OUT[385] |out|
+$OUT[386] |out|
+$OUT[387] |out|
+$OUT[388] |out|
+$OUT[389] |out|
+$OUT[390] |out|
+$OUT[391] |out|
+$OUT[392] |out|
+$OUT[393] |out|
+$OUT[394] |out|
+$OUT[395] |out|
+$OUT[396] |out|
+$OUT[397] |out|
+$OUT[398] |out|
+$OUT[399] |out|
+$OUT[400] |out|
+$OUT[401] |out|
+$OUT[402] |out|
+$OUT[403] |out|
+$OUT[404] |out|
+$OUT[405] |out|
+$OUT[406] |out|
+$OUT[407] |out|
+$OUT[408] |out|
+$OUT[409] |out|
+$OUT[410] |out|
+$OUT[411] |out|
+$OUT[412] |out|
+$OUT[413] |out|
+$OUT[414] |out|
+$OUT[415] |out|
+$OUT[416] |out|
+$OUT[417] BOLZEN 1 Parada de Emergencia
+$OUT[418] BOLZEN 1 Pre Selecao Sem Solda
+$OUT[419] BOLZEN 1 Reset Falha
+$OUT[420] BOLZEN 1 Envia Pino Cabeþa 1
+$OUT[421] BOLZEN 1 Envia Pino Cabeþa 2
+$OUT[422] BOLZEN 1 Envia Pino Cabeþa 3
+$OUT[423] BOLZEN 1 Envia Pino Cabeþa 4
+$OUT[424] BOLZEN 1 Envia Pino Cabeþa 5
+$OUT[425] BOLZEN 1 Program Bit 00
+$OUT[426] BOLZEN 1 Program Bit 01
+$OUT[427] BOLZEN 1 Program Bit 02
+$OUT[428] BOLZEN 1 Program Bit 03
+$OUT[429] BOLZEN 1 Program Bit 04
+$OUT[430] BOLZEN 1 Program Bit 05
+$OUT[431] BOLZEN 1 Program Bit 06
+$OUT[432] |out|
+$OUT[433] BOLZEN 1 Soldar cabeþa 1
+$OUT[434] BOLZEN 1 Soldar cabeþa 2
+$OUT[435] BOLZEN 1 Soldar cabeþa 3
+$OUT[436] BOLZEN 1 Soldar cabeþa 4
+$OUT[437] BOLZEN 1 Soldar cabeþa 5
+$OUT[438] BOLZEN 1 Avanþar Cabeþa 1
+$OUT[439] BOLZEN 1 Avanþar Cabeþa 2
+$OUT[440] BOLZEN 1 Avanþar Cabeþa 3
+$OUT[441] BOLZEN 1 Avanþar Cabeþa 4
+$OUT[442] BOLZEN 1 Avanþar Cabeþa 5
+$OUT[443] BOLZEN 1 Reset com repeticao de Solda
+$OUT[444] BOLZEN 1 Reset com ponto de solda OK
+$OUT[445] |out|
+$OUT[446] |out|
+$OUT[447] |out|
+$OUT[448] |out|
+$OUT[449] BOLZEN 2 Parada de Emergencia
+$OUT[450] BOLZEN 2 Pre Selecao Sem Solda
+$OUT[451] BOLZEN 2 Reset Falha
+$OUT[452] BOLZEN 2 Envia Pino Cabeþa 1
+$OUT[453] BOLZEN 2 Envia Pino Cabeþa 2
+$OUT[454] BOLZEN 2 Envia Pino Cabeþa 3
+$OUT[455] BOLZEN 2 Envia Pino Cabeþa 4
+$OUT[456] BOLZEN 2 Envia Pino Cabeþa 5
+$OUT[457] BOLZEN 2 Program Bit 00
+$OUT[458] BOLZEN 2 Program Bit 01
+$OUT[459] BOLZEN 2 Program Bit 02
+$OUT[460] BOLZEN 2 Program Bit 03
+$OUT[461] BOLZEN 2 Program Bit 04
+$OUT[462] BOLZEN 2 Program Bit 05
+$OUT[463] BOLZEN 2 Program Bit 06
+$OUT[464] |out|
+$OUT[465] BOLZEN 2 Soldar cabeþa 1
+$OUT[466] BOLZEN 2 Soldar cabeþa 2
+$OUT[467] BOLZEN 2 Soldar cabeþa 3
+$OUT[468] BOLZEN 2 Soldar cabeþa 4
+$OUT[469] BOLZEN 2 Soldar cabeþa 5
+$OUT[470] BOLZEN 2 Avanþar Cabeþa 1
+$OUT[471] BOLZEN 2 Avanþar Cabeþa 2
+$OUT[472] BOLZEN 2 Avanþar Cabeþa 3
+$OUT[473] BOLZEN 2 Avanþar Cabeþa 4
+$OUT[474] BOLZEN 2 Avanþar Cabeþa 5
+$OUT[475] BOLZEN 2 Reset com repeticao de Solda
+$OUT[476] BOLZEN 2 Reset com ponto de solda OK
+$OUT[477] |out|
+$OUT[478] |out|
+$OUT[479] |out|
+$OUT[480] |out|
+$OUT[481] |out|
+$OUT[482] |out|
+$OUT[483] |out|
+$OUT[484] |out|
+$OUT[485] |out|
+$OUT[486] |out|
+$OUT[487] |out|
+$OUT[488] |out|
+$OUT[489] |out|
+$OUT[490] |out|
+$OUT[491] |out|
+$OUT[492] |out|
+$OUT[493] |out|
+$OUT[494] |out|
+$OUT[495] |out|
+$OUT[496] |out|
+$OUT[497] |out|
+$OUT[498] |out|
+$OUT[499] |out|
+$OUT[500] |out|
+$OUT[501] |out|
+$OUT[502] |out|
+$OUT[503] |out|
+$OUT[504] |out|
+$OUT[505] |out|
+$OUT[506] |out|
+$OUT[507] |out|
+$OUT[508] |out|
+$OUT[509] |out|
+$OUT[510] |out|
+$OUT[511] |out|
+$OUT[512] |out|
+$OUT[513] |out|
+$OUT[514] |out|
+$OUT[515] |out|
+$OUT[516] |out|
+$OUT[517] |out|
+$OUT[518] |out|
+$OUT[519] |out|
+$OUT[520] |out|
+$OUT[521] |out|
+$OUT[522] |out|
+$OUT[523] |out|
+$OUT[524] |out|
+$OUT[525] |out|
+$OUT[526] |out|
+$OUT[527] |out|
+$OUT[528] |out|
+$OUT[529] |out|
+$OUT[530] |out|
+$OUT[531] |out|
+$OUT[532] |out|
+$OUT[533] |out|
+$OUT[534] |out|
+$OUT[535] |out|
+$OUT[536] |out|
+$OUT[537] |out|
+$OUT[538] |out|
+$OUT[539] |out|
+$OUT[540] |out|
+$OUT[541] |out|
+$OUT[542] |out|
+$OUT[543] |out|
+$OUT[544] |out|
+$OUT[545] |out|
+$OUT[546] |out|
+$OUT[547] |out|
+$OUT[548] |out|
+$OUT[549] |out|
+$OUT[550] |out|
+$OUT[551] |out|
+$OUT[552] |out|
+$OUT[553] |out|
+$OUT[554] |out|
+$OUT[555] |out|
+$OUT[556] |out|
+$OUT[557] |out|
+$OUT[558] |out|
+$OUT[559] |out|
+$OUT[560] |out|
+$OUT[561] |out|
+$OUT[562] |out|
+$OUT[563] |out|
+$OUT[564] |out|
+$OUT[565] |out|
+$OUT[566] |out|
+$OUT[567] |out|
+$OUT[568] |out|
+$OUT[569] |out|
+$OUT[570] |out|
+$OUT[571] |out|
+$OUT[572] |out|
+$OUT[573] |out|
+$OUT[574] |out|
+$OUT[575] |out|
+$OUT[576] |out|
+$OUT[577] |out|
+$OUT[578] |out|
+$OUT[579] |out|
+$OUT[580] |out|
+$OUT[581] |out|
+$OUT[582] |out|
+$OUT[583] |out|
+$OUT[584] |out|
+$OUT[585] |out|
+$OUT[586] |out|
+$OUT[587] |out|
+$OUT[588] |out|
+$OUT[589] |out|
+$OUT[590] |out|
+$OUT[591] |out|
+$OUT[592] |out|
+$OUT[593] |out|
+$OUT[594] |out|
+$OUT[595] |out|
+$OUT[596] |out|
+$OUT[597] |out|
+$OUT[598] |out|
+$OUT[599] |out|
+$OUT[600] |out|
+$OUT[601] |out|
+$OUT[602] |out|
+$OUT[603] |out|
+$OUT[604] |out|
+$OUT[605] |out|
+$OUT[606] |out|
+$OUT[607] |out|
+$OUT[608] |out|
+$OUT[609] |out|
+$OUT[610] |out|
+$OUT[611] |out|
+$OUT[612] |out|
+$OUT[613] |out|
+$OUT[614] |out|
+$OUT[615] |out|
+$OUT[616] |out|
+$OUT[617] |out|
+$OUT[618] |out|
+$OUT[619] |out|
+$OUT[620] |out|
+$OUT[621] |out|
+$OUT[622] |out|
+$OUT[623] |out|
+$OUT[624] |out|
+$OUT[625] |out|
+$OUT[626] |out|
+$OUT[627] |out|
+$OUT[628] |out|
+$OUT[629] |out|
+$OUT[630] |out|
+$OUT[631] |out|
+$OUT[632] |out|
+$OUT[633] |out|
+$OUT[634] |out|
+$OUT[635] |out|
+$OUT[636] |out|
+$OUT[637] |out|
+$OUT[638] |out|
+$OUT[639] |out|
+$OUT[640] |out|
+$OUT[641] |out|
+$OUT[642] |out|
+$OUT[643] |out|
+$OUT[644] |out|
+$OUT[645] |out|
+$OUT[646] |out|
+$OUT[647] |out|
+$OUT[648] |out|
+$OUT[649] |out|
+$OUT[650] |out|
+$OUT[651] |out|
+$OUT[652] |out|
+$OUT[653] |out|
+$OUT[654] |out|
+$OUT[655] |out|
+$OUT[656] |out|
+$OUT[657] |out|
+$OUT[658] |out|
+$OUT[659] |out|
+$OUT[660] |out|
+$OUT[661] |out|
+$OUT[662] |out|
+$OUT[663] |out|
+$OUT[664] |out|
+$OUT[665] |out|
+$OUT[666] |out|
+$OUT[667] |out|
+$OUT[668] |out|
+$OUT[669] |out|
+$OUT[670] |out|
+$OUT[671] |out|
+$OUT[672] |out|
+$OUT[673] |out|
+$OUT[674] |out|
+$OUT[675] |out|
+$OUT[676] |out|
+$OUT[677] |out|
+$OUT[678] |out|
+$OUT[679] |out|
+$OUT[680] |out|
+$OUT[681] |out|
+$OUT[682] |out|
+$OUT[683] |out|
+$OUT[684] |out|
+$OUT[685] |out|
+$OUT[686] |out|
+$OUT[687] |out|
+$OUT[688] |out|
+$OUT[689] |out|
+$OUT[690] |out|
+$OUT[691] |out|
+$OUT[692] |out|
+$OUT[693] |out|
+$OUT[694] |out|
+$OUT[695] |out|
+$OUT[696] |out|
+$OUT[697] |out|
+$OUT[698] |out|
+$OUT[699] |out|
+$OUT[700] |out|
+$OUT[701] |out|
+$OUT[702] |out|
+$OUT[703] |out|
+$OUT[704] |out|
+$OUT[705] |out|
+$OUT[706] |out|
+$OUT[707] |out|
+$OUT[708] |out|
+$OUT[709] |out|
+$OUT[710] |out|
+$OUT[711] |out|
+$OUT[712] |out|
+$OUT[713] |out|
+$OUT[714] |out|
+$OUT[715] |out|
+$OUT[716] |out|
+$OUT[717] |out|
+$OUT[718] |out|
+$OUT[719] |out|
+$OUT[720] |out|
+$OUT[721] |out|
+$OUT[722] |out|
+$OUT[723] |out|
+$OUT[724] |out|
+$OUT[725] |out|
+$OUT[726] |out|
+$OUT[727] |out|
+$OUT[728] |out|
+$OUT[729] |out|
+$OUT[730] |out|
+$OUT[731] |out|
+$OUT[732] |out|
+$OUT[733] |out|
+$OUT[734] |out|
+$OUT[735] |out|
+$OUT[736] |out|
+$OUT[737] |out|
+$OUT[738] |out|
+$OUT[739] |out|
+$OUT[740] |out|
+$OUT[741] |out|
+$OUT[742] |out|
+$OUT[743] |out|
+$OUT[744] |out|
+$OUT[745] |out|
+$OUT[746] |out|
+$OUT[747] |out|
+$OUT[748] |out|
+$OUT[749] |out|
+$OUT[750] |out|
+$OUT[751] |out|
+$OUT[752] |out|
+$OUT[753] |out|
+$OUT[754] |out|
+$OUT[755] |out|
+$OUT[756] |out|
+$OUT[757] |out|
+$OUT[758] |out|
+$OUT[759] |out|
+$OUT[760] |out|
+$OUT[761] |out|
+$OUT[762] |out|
+$OUT[763] |out|
+$OUT[764] |out|
+$OUT[765] |out|
+$OUT[766] |out|
+$OUT[767] |out|
+$OUT[768] |out|
+$OUT[769] |out|
+$OUT[770] |out|
+$OUT[771] |out|
+$OUT[772] |out|
+$OUT[773] |out|
+$OUT[774] |out|
+$OUT[775] |out|
+$OUT[776] |out|
+$OUT[777] |out|
+$OUT[778] |out|
+$OUT[779] |out|
+$OUT[780] |out|
+$OUT[781] |out|
+$OUT[782] |out|
+$OUT[783] |out|
+$OUT[784] |out|
+$OUT[785] |out|
+$OUT[786] |out|
+$OUT[787] |out|
+$OUT[788] |out|
+$OUT[789] |out|
+$OUT[790] |out|
+$OUT[791] |out|
+$OUT[792] |out|
+$OUT[793] |out|
+$OUT[794] |out|
+$OUT[795] |out|
+$OUT[796] |out|
+$OUT[797] |out|
+$OUT[798] |out|
+$OUT[799] |out|
+$OUT[800] |out|
+$OUT[801] |out|
+$OUT[802] |out|
+$OUT[803] |out|
+$OUT[804] |out|
+$OUT[805] |out|
+$OUT[806] |out|
+$OUT[807] |out|
+$OUT[808] |out|
+$OUT[809] |out|
+$OUT[810] |out|
+$OUT[811] |out|
+$OUT[812] |out|
+$OUT[813] |out|
+$OUT[814] |out|
+$OUT[815] |out|
+$OUT[816] |out|
+$OUT[817] |out|
+$OUT[818] |out|
+$OUT[819] |out|
+$OUT[820] |out|
+$OUT[821] |out|
+$OUT[822] |out|
+$OUT[823] |out|
+$OUT[824] |out|
+$OUT[825] |out|
+$OUT[826] |out|
+$OUT[827] |out|
+$OUT[828] |out|
+$OUT[829] |out|
+$OUT[830] |out|
+$OUT[831] |out|
+$OUT[832] |out|
+$OUT[833] |out|
+$OUT[834] |out|
+$OUT[835] |out|
+$OUT[836] |out|
+$OUT[837] |out|
+$OUT[838] |out|
+$OUT[839] |out|
+$OUT[840] |out|
+$OUT[841] |out|
+$OUT[842] |out|
+$OUT[843] |out|
+$OUT[844] |out|
+$OUT[845] |out|
+$OUT[846] |out|
+$OUT[847] |out|
+$OUT[848] |out|
+$OUT[849] |out|
+$OUT[850] |out|
+$OUT[851] |out|
+$OUT[852] |out|
+$OUT[853] |out|
+$OUT[854] |out|
+$OUT[855] |out|
+$OUT[856] |out|
+$OUT[857] |out|
+$OUT[858] |out|
+$OUT[859] |out|
+$OUT[860] |out|
+$OUT[861] |out|
+$OUT[862] |out|
+$OUT[863] |out|
+$OUT[864] |out|
+$OUT[865] |out|
+$OUT[866] |out|
+$OUT[867] |out|
+$OUT[868] |out|
+$OUT[869] |out|
+$OUT[870] |out|
+$OUT[871] |out|
+$OUT[872] |out|
+$OUT[873] |out|
+$OUT[874] |out|
+$OUT[875] |out|
+$OUT[876] |out|
+$OUT[877] |out|
+$OUT[878] |out|
+$OUT[879] |out|
+$OUT[880] |out|
+$OUT[881] |out|
+$OUT[882] |out|
+$OUT[883] |out|
+$OUT[884] |out|
+$OUT[885] |out|
+$OUT[886] |out|
+$OUT[887] |out|
+$OUT[888] |out|
+$OUT[889] |out|
+$OUT[890] |out|
+$OUT[891] |out|
+$OUT[892] |out|
+$OUT[893] |out|
+$OUT[894] |out|
+$OUT[895] |out|
+$OUT[896] |out|
+$OUT[897] |out|
+$OUT[898] |out|
+$OUT[899] |out|
+$OUT[900] |out|
+$OUT[901] |out|
+$OUT[902] |out|
+$OUT[903] |out|
+$OUT[904] |out|
+$OUT[905] |out|
+$OUT[906] |out|
+$OUT[907] |out|
+$OUT[908] |out|
+$OUT[909] |out|
+$OUT[910] |out|
+$OUT[911] |out|
+$OUT[912] |out|
+$OUT[913] |out|
+$OUT[914] |out|
+$OUT[915] |out|
+$OUT[916] |out|
+$OUT[917] |out|
+$OUT[918] |out|
+$OUT[919] |out|
+$OUT[920] |out|
+$OUT[921] |out|
+$OUT[922] |out|
+$OUT[923] |out|
+$OUT[924] |out|
+$OUT[925] |out|
+$OUT[926] |out|
+$OUT[927] |out|
+$OUT[928] |out|
+$OUT[929] |out|
+$OUT[930] |out|
+$OUT[931] |out|
+$OUT[932] |out|
+$OUT[933] |out|
+$OUT[934] |out|
+$OUT[935] |out|
+$OUT[936] |out|
+$OUT[937] |out|
+$OUT[938] |out|
+$OUT[939] |out|
+$OUT[940] |out|
+$OUT[941] |out|
+$OUT[942] |out|
+$OUT[943] |out|
+$OUT[944] |out|
+$OUT[945] |out|
+$OUT[946] |out|
+$OUT[947] |out|
+$OUT[948] |out|
+$OUT[949] |out|
+$OUT[950] |out|
+$OUT[951] |out|
+$OUT[952] |out|
+$OUT[953] |out|
+$OUT[954] |out|
+$OUT[955] |out|
+$OUT[956] |out|
+$OUT[957] |out|
+$OUT[958] |out|
+$OUT[959] |out|
+$OUT[960] |out|
+$OUT[961] |out|
+$OUT[962] |out|
+$OUT[963] |out|
+$OUT[964] |out|
+$OUT[965] |out|
+$OUT[966] |out|
+$OUT[967] |out|
+$OUT[968] |out|
+$OUT[969] |out|
+$OUT[970] |out|
+$OUT[971] |out|
+$OUT[972] |out|
+$OUT[973] |out|
+$OUT[974] |out|
+$OUT[975] |out|
+$OUT[976] |out|
+$OUT[977] |out|
+$OUT[978] |out|
+$OUT[979] |out|
+$OUT[980] |out|
+$OUT[981] |out|
+$OUT[982] |out|
+$OUT[983] |out|
+$OUT[984] |out|
+$OUT[985] |out|
+$OUT[986] |out|
+$OUT[987] |out|
+$OUT[988] |out|
+$OUT[989] |out|
+$OUT[990] |out|
+$OUT[991] |out|
+$OUT[992] |out|
+$OUT[993] |out|
+$OUT[994] |out|
+$OUT[995] |out|
+$OUT[996] |out|
+$OUT[997] |out|
+$OUT[998] |out|
+$OUT[999] |out|
+$OUT[1000] |out|
+$OUT[1001] |out|
+$OUT[1002] |out|
+$OUT[1003] |out|
+$OUT[1004] |out|
+$OUT[1005] |out|
+$OUT[1006] |out|
+$OUT[1007] |out|
+$OUT[1008] |out|
+$OUT[1009] |out|
+$OUT[1010] |out|
+$OUT[1011] |out|
+$OUT[1012] |out|
+$OUT[1013] |out|
+$OUT[1014] |out|
+$OUT[1015] |out|
+$OUT[1016] |out|
+$OUT[1017] |out|
+$OUT[1018] |out|
+$OUT[1019] |out|
+$OUT[1020] |out|
+$OUT[1021] |out|
+$OUT[1022] |out|
+$OUT[1023] |out|
+$OUT[1024] |out|
+$OUT[1025] |out|
+$OUT[1026] |out|
+$OUT[1027] |out|
+$OUT[1028] |out|
+$OUT[1029] |out|
+$OUT[1030] |out|
+$OUT[1031] |out|
+$OUT[1032] |out|
+$OUT[1033] |out|
+$OUT[1034] |out|
+$OUT[1035] |out|
+$OUT[1036] |out|
+$OUT[1037] |out|
+$OUT[1038] |out|
+$OUT[1039] |out|
+$OUT[1040] |out|
+$OUT[1041] |out|
+$OUT[1042] |out|
+$OUT[1043] |out|
+$OUT[1044] |out|
+$OUT[1045] |out|
+$OUT[1046] |out|
+$OUT[1047] |out|
+$OUT[1048] |out|
+$OUT[1049] |out|
+$OUT[1050] |out|
+$OUT[1051] |out|
+$OUT[1052] |out|
+$OUT[1053] |out|
+$OUT[1054] |out|
+$OUT[1055] |out|
+$OUT[1056] |out|
+$OUT[1057] |out|
+$OUT[1058] |out|
+$OUT[1059] |out|
+$OUT[1060] |out|
+$OUT[1061] |out|
+$OUT[1062] |out|
+$OUT[1063] |out|
+$OUT[1064] |out|
+$OUT[1065] |out|
+$OUT[1066] |out|
+$OUT[1067] |out|
+$OUT[1068] |out|
+$OUT[1069] |out|
+$OUT[1070] |out|
+$OUT[1071] |out|
+$OUT[1072] |out|
+$OUT[1073] |out|
+$OUT[1074] |out|
+$OUT[1075] |out|
+$OUT[1076] |out|
+$OUT[1077] |out|
+$OUT[1078] |out|
+$OUT[1079] |out|
+$OUT[1080] |out|
+$OUT[1081] |out|
+$OUT[1082] |out|
+$OUT[1083] |out|
+$OUT[1084] |out|
+$OUT[1085] |out|
+$OUT[1086] |out|
+$OUT[1087] |out|
+$OUT[1088] |out|
+$OUT[1089] |out|
+$OUT[1090] |out|
+$OUT[1091] |out|
+$OUT[1092] |out|
+$OUT[1093] |out|
+$OUT[1094] |out|
+$OUT[1095] |out|
+$OUT[1096] |out|
+$OUT[1097] |out|
+$OUT[1098] |out|
+$OUT[1099] |out|
+$OUT[1100] |out|
+$OUT[1101] |out|
+$OUT[1102] |out|
+$OUT[1103] |out|
+$OUT[1104] |out|
+$OUT[1105] |out|
+$OUT[1106] |out|
+$OUT[1107] |out|
+$OUT[1108] |out|
+$OUT[1109] |out|
+$OUT[1110] |out|
+$OUT[1111] |out|
+$OUT[1112] |out|
+$OUT[1113] |out|
+$OUT[1114] |out|
+$OUT[1115] |out|
+$OUT[1116] |out|
+$OUT[1117] |out|
+$OUT[1118] |out|
+$OUT[1119] |out|
+$OUT[1120] |out|
+$OUT[1121] |out|
+$OUT[1122] |out|
+$OUT[1123] |out|
+$OUT[1124] |out|
+$OUT[1125] |out|
+$OUT[1126] |out|
+$OUT[1127] |out|
+$OUT[1128] |out|
+$OUT[1129] |out|
+$OUT[1130] |out|
+$OUT[1131] |out|
+$OUT[1132] |out|
+$OUT[1133] |out|
+$OUT[1134] |out|
+$OUT[1135] |out|
+$OUT[1136] |out|
+$OUT[1137] |out|
+$OUT[1138] |out|
+$OUT[1139] |out|
+$OUT[1140] |out|
+$OUT[1141] |out|
+$OUT[1142] |out|
+$OUT[1143] |out|
+$OUT[1144] |out|
+$OUT[1145] |out|
+$OUT[1146] |out|
+$OUT[1147] |out|
+$OUT[1148] |out|
+$OUT[1149] |out|
+$OUT[1150] |out|
+$OUT[1151] |out|
+$OUT[1152] |out|
+$OUT[1153] |out|
+$OUT[1154] |out|
+$OUT[1155] |out|
+$OUT[1156] |out|
+$OUT[1157] |out|
+$OUT[1158] |out|
+$OUT[1159] |out|
+$OUT[1160] |out|
+$OUT[1161] |out|
+$OUT[1162] |out|
+$OUT[1163] |out|
+$OUT[1164] |out|
+$OUT[1165] |out|
+$OUT[1166] |out|
+$OUT[1167] |out|
+$OUT[1168] |out|
+$OUT[1169] |out|
+$OUT[1170] |out|
+$OUT[1171] |out|
+$OUT[1172] |out|
+$OUT[1173] |out|
+$OUT[1174] |out|
+$OUT[1175] |out|
+$OUT[1176] |out|
+$OUT[1177] |out|
+$OUT[1178] |out|
+$OUT[1179] |out|
+$OUT[1180] |out|
+$OUT[1181] |out|
+$OUT[1182] |out|
+$OUT[1183] |out|
+$OUT[1184] |out|
+$OUT[1185] |out|
+$OUT[1186] |out|
+$OUT[1187] |out|
+$OUT[1188] |out|
+$OUT[1189] |out|
+$OUT[1190] |out|
+$OUT[1191] |out|
+$OUT[1192] |out|
+$OUT[1193] |out|
+$OUT[1194] |out|
+$OUT[1195] |out|
+$OUT[1196] |out|
+$OUT[1197] |out|
+$OUT[1198] |out|
+$OUT[1199] |out|
+$OUT[1200] |out|
+$OUT[1201] |out|
+$OUT[1202] |out|
+$OUT[1203] |out|
+$OUT[1204] |out|
+$OUT[1205] |out|
+$OUT[1206] |out|
+$OUT[1207] |out|
+$OUT[1208] |out|
+$OUT[1209] |out|
+$OUT[1210] |out|
+$OUT[1211] |out|
+$OUT[1212] |out|
+$OUT[1213] |out|
+$OUT[1214] |out|
+$OUT[1215] |out|
+$OUT[1216] |out|
+$OUT[1217] |out|
+$OUT[1218] |out|
+$OUT[1219] |out|
+$OUT[1220] |out|
+$OUT[1221] |out|
+$OUT[1222] |out|
+$OUT[1223] |out|
+$OUT[1224] |out|
+$OUT[1225] |out|
+$OUT[1226] |out|
+$OUT[1227] |out|
+$OUT[1228] |out|
+$OUT[1229] |out|
+$OUT[1230] |out|
+$OUT[1231] |out|
+$OUT[1232] |out|
+$OUT[1233] |out|
+$OUT[1234] |out|
+$OUT[1235] |out|
+$OUT[1236] |out|
+$OUT[1237] |out|
+$OUT[1238] |out|
+$OUT[1239] |out|
+$OUT[1240] |out|
+$OUT[1241] |out|
+$OUT[1242] |out|
+$OUT[1243] |out|
+$OUT[1244] |out|
+$OUT[1245] |out|
+$OUT[1246] |out|
+$OUT[1247] |out|
+$OUT[1248] |out|
+$OUT[1249] |out|
+$OUT[1250] |out|
+$OUT[1251] |out|
+$OUT[1252] |out|
+$OUT[1253] |out|
+$OUT[1254] |out|
+$OUT[1255] |out|
+$OUT[1256] |out|
+$OUT[1257] |out|
+$OUT[1258] |out|
+$OUT[1259] |out|
+$OUT[1260] |out|
+$OUT[1261] |out|
+$OUT[1262] |out|
+$OUT[1263] |out|
+$OUT[1264] |out|
+$OUT[1265] |out|
+$OUT[1266] |out|
+$OUT[1267] |out|
+$OUT[1268] |out|
+$OUT[1269] |out|
+$OUT[1270] |out|
+$OUT[1271] |out|
+$OUT[1272] |out|
+$OUT[1273] |out|
+$OUT[1274] |out|
+$OUT[1275] |out|
+$OUT[1276] |out|
+$OUT[1277] |out|
+$OUT[1278] |out|
+$OUT[1279] |out|
+$OUT[1280] |out|
+$OUT[1281] |out|
+$OUT[1282] |out|
+$OUT[1283] |out|
+$OUT[1284] |out|
+$OUT[1285] |out|
+$OUT[1286] |out|
+$OUT[1287] |out|
+$OUT[1288] |out|
+$OUT[1289] |out|
+$OUT[1290] |out|
+$OUT[1291] |out|
+$OUT[1292] |out|
+$OUT[1293] |out|
+$OUT[1294] |out|
+$OUT[1295] |out|
+$OUT[1296] |out|
+$OUT[1297] |out|
+$OUT[1298] |out|
+$OUT[1299] |out|
+$OUT[1300] |out|
+$OUT[1301] |out|
+$OUT[1302] |out|
+$OUT[1303] |out|
+$OUT[1304] |out|
+$OUT[1305] |out|
+$OUT[1306] |out|
+$OUT[1307] |out|
+$OUT[1308] |out|
+$OUT[1309] |out|
+$OUT[1310] |out|
+$OUT[1311] |out|
+$OUT[1312] |out|
+$OUT[1313] |out|
+$OUT[1314] |out|
+$OUT[1315] |out|
+$OUT[1316] |out|
+$OUT[1317] |out|
+$OUT[1318] |out|
+$OUT[1319] |out|
+$OUT[1320] |out|
+$OUT[1321] |out|
+$OUT[1322] |out|
+$OUT[1323] |out|
+$OUT[1324] |out|
+$OUT[1325] |out|
+$OUT[1326] |out|
+$OUT[1327] |out|
+$OUT[1328] |out|
+$OUT[1329] |out|
+$OUT[1330] |out|
+$OUT[1331] |out|
+$OUT[1332] |out|
+$OUT[1333] |out|
+$OUT[1334] |out|
+$OUT[1335] |out|
+$OUT[1336] |out|
+$OUT[1337] |out|
+$OUT[1338] |out|
+$OUT[1339] |out|
+$OUT[1340] |out|
+$OUT[1341] |out|
+$OUT[1342] |out|
+$OUT[1343] |out|
+$OUT[1344] |out|
+$OUT[1345] |out|
+$OUT[1346] |out|
+$OUT[1347] |out|
+$OUT[1348] |out|
+$OUT[1349] |out|
+$OUT[1350] |out|
+$OUT[1351] |out|
+$OUT[1352] |out|
+$OUT[1353] |out|
+$OUT[1354] |out|
+$OUT[1355] |out|
+$OUT[1356] |out|
+$OUT[1357] |out|
+$OUT[1358] |out|
+$OUT[1359] |out|
+$OUT[1360] |out|
+$OUT[1361] |out|
+$OUT[1362] |out|
+$OUT[1363] |out|
+$OUT[1364] |out|
+$OUT[1365] |out|
+$OUT[1366] |out|
+$OUT[1367] |out|
+$OUT[1368] |out|
+$OUT[1369] |out|
+$OUT[1370] |out|
+$OUT[1371] |out|
+$OUT[1372] |out|
+$OUT[1373] |out|
+$OUT[1374] |out|
+$OUT[1375] |out|
+$OUT[1376] |out|
+$OUT[1377] |out|
+$OUT[1378] |out|
+$OUT[1379] |out|
+$OUT[1380] |out|
+$OUT[1381] |out|
+$OUT[1382] |out|
+$OUT[1383] |out|
+$OUT[1384] |out|
+$OUT[1385] |out|
+$OUT[1386] |out|
+$OUT[1387] |out|
+$OUT[1388] |out|
+$OUT[1389] |out|
+$OUT[1390] |out|
+$OUT[1391] |out|
+$OUT[1392] |out|
+$OUT[1393] |out|
+$OUT[1394] |out|
+$OUT[1395] |out|
+$OUT[1396] |out|
+$OUT[1397] |out|
+$OUT[1398] |out|
+$OUT[1399] |out|
+$OUT[1400] |out|
+$OUT[1401] |out|
+$OUT[1402] |out|
+$OUT[1403] |out|
+$OUT[1404] |out|
+$OUT[1405] |out|
+$OUT[1406] |out|
+$OUT[1407] |out|
+$OUT[1408] |out|
+$OUT[1409] |out|
+$OUT[1410] |out|
+$OUT[1411] |out|
+$OUT[1412] |out|
+$OUT[1413] |out|
+$OUT[1414] |out|
+$OUT[1415] |out|
+$OUT[1416] |out|
+$OUT[1417] |out|
+$OUT[1418] |out|
+$OUT[1419] |out|
+$OUT[1420] |out|
+$OUT[1421] |out|
+$OUT[1422] |out|
+$OUT[1423] |out|
+$OUT[1424] |out|
+$OUT[1425] |out|
+$OUT[1426] |out|
+$OUT[1427] |out|
+$OUT[1428] |out|
+$OUT[1429] |out|
+$OUT[1430] |out|
+$OUT[1431] |out|
+$OUT[1432] |out|
+$OUT[1433] |out|
+$OUT[1434] |out|
+$OUT[1435] |out|
+$OUT[1436] |out|
+$OUT[1437] |out|
+$OUT[1438] |out|
+$OUT[1439] |out|
+$OUT[1440] |out|
+$OUT[1441] |out|
+$OUT[1442] |out|
+$OUT[1443] |out|
+$OUT[1444] |out|
+$OUT[1445] |out|
+$OUT[1446] |out|
+$OUT[1447] |out|
+$OUT[1448] |out|
+$OUT[1449] |out|
+$OUT[1450] |out|
+$OUT[1451] |out|
+$OUT[1452] |out|
+$OUT[1453] |out|
+$OUT[1454] |out|
+$OUT[1455] |out|
+$OUT[1456] |out|
+$OUT[1457] |out|
+$OUT[1458] |out|
+$OUT[1459] |out|
+$OUT[1460] |out|
+$OUT[1461] |out|
+$OUT[1462] |out|
+$OUT[1463] |out|
+$OUT[1464] |out|
+$OUT[1465] |out|
+$OUT[1466] |out|
+$OUT[1467] |out|
+$OUT[1468] |out|
+$OUT[1469] |out|
+$OUT[1470] |out|
+$OUT[1471] |out|
+$OUT[1472] |out|
+$OUT[1473] |out|
+$OUT[1474] |out|
+$OUT[1475] |out|
+$OUT[1476] |out|
+$OUT[1477] |out|
+$OUT[1478] |out|
+$OUT[1479] |out|
+$OUT[1480] |out|
+$OUT[1481] |out|
+$OUT[1482] |out|
+$OUT[1483] |out|
+$OUT[1484] |out|
+$OUT[1485] |out|
+$OUT[1486] |out|
+$OUT[1487] |out|
+$OUT[1488] |out|
+$OUT[1489] |out|
+$OUT[1490] |out|
+$OUT[1491] |out|
+$OUT[1492] |out|
+$OUT[1493] |out|
+$OUT[1494] |out|
+$OUT[1495] |out|
+$OUT[1496] |out|
+$OUT[1497] |out|
+$OUT[1498] |out|
+$OUT[1499] |out|
+$OUT[1500] |out|
+$OUT[1501] |out|
+$OUT[1502] |out|
+$OUT[1503] |out|
+$OUT[1504] |out|
+$OUT[1505] |out|
+$OUT[1506] |out|
+$OUT[1507] |out|
+$OUT[1508] |out|
+$OUT[1509] |out|
+$OUT[1510] |out|
+$OUT[1511] |out|
+$OUT[1512] |out|
+$OUT[1513] |out|
+$OUT[1514] |out|
+$OUT[1515] |out|
+$OUT[1516] |out|
+$OUT[1517] |out|
+$OUT[1518] |out|
+$OUT[1519] |out|
+$OUT[1520] |out|
+$OUT[1521] |out|
+$OUT[1522] |out|
+$OUT[1523] |out|
+$OUT[1524] |out|
+$OUT[1525] |out|
+$OUT[1526] |out|
+$OUT[1527] |out|
+$OUT[1528] |out|
+$OUT[1529] |out|
+$OUT[1530] |out|
+$OUT[1531] |out|
+$OUT[1532] |out|
+$OUT[1533] |out|
+$OUT[1534] |out|
+$OUT[1535] |out|
+$OUT[1536] |out|
+$OUT[1537] |out|
+$OUT[1538] |out|
+$OUT[1539] |out|
+$OUT[1540] |out|
+$OUT[1541] |out|
+$OUT[1542] |out|
+$OUT[1543] |out|
+$OUT[1544] |out|
+$OUT[1545] |out|
+$OUT[1546] |out|
+$OUT[1547] |out|
+$OUT[1548] |out|
+$OUT[1549] |out|
+$OUT[1550] |out|
+$OUT[1551] |out|
+$OUT[1552] |out|
+$OUT[1553] |out|
+$OUT[1554] |out|
+$OUT[1555] |out|
+$OUT[1556] |out|
+$OUT[1557] |out|
+$OUT[1558] |out|
+$OUT[1559] |out|
+$OUT[1560] |out|
+$OUT[1561] |out|
+$OUT[1562] |out|
+$OUT[1563] |out|
+$OUT[1564] |out|
+$OUT[1565] |out|
+$OUT[1566] |out|
+$OUT[1567] |out|
+$OUT[1568] |out|
+$OUT[1569] |out|
+$OUT[1570] |out|
+$OUT[1571] |out|
+$OUT[1572] |out|
+$OUT[1573] |out|
+$OUT[1574] |out|
+$OUT[1575] |out|
+$OUT[1576] |out|
+$OUT[1577] |out|
+$OUT[1578] |out|
+$OUT[1579] |out|
+$OUT[1580] |out|
+$OUT[1581] |out|
+$OUT[1582] |out|
+$OUT[1583] |out|
+$OUT[1584] |out|
+$OUT[1585] |out|
+$OUT[1586] |out|
+$OUT[1587] |out|
+$OUT[1588] |out|
+$OUT[1589] |out|
+$OUT[1590] |out|
+$OUT[1591] |out|
+$OUT[1592] |out|
+$OUT[1593] |out|
+$OUT[1594] |out|
+$OUT[1595] |out|
+$OUT[1596] |out|
+$OUT[1597] |out|
+$OUT[1598] |out|
+$OUT[1599] |out|
+$OUT[1600] |out|
+$OUT[1601] |out|
+$OUT[1602] |out|
+$OUT[1603] |out|
+$OUT[1604] |out|
+$OUT[1605] |out|
+$OUT[1606] |out|
+$OUT[1607] |out|
+$OUT[1608] |out|
+$OUT[1609] |out|
+$OUT[1610] |out|
+$OUT[1611] |out|
+$OUT[1612] |out|
+$OUT[1613] |out|
+$OUT[1614] |out|
+$OUT[1615] |out|
+$OUT[1616] |out|
+$OUT[1617] |out|
+$OUT[1618] |out|
+$OUT[1619] |out|
+$OUT[1620] |out|
+$OUT[1621] |out|
+$OUT[1622] |out|
+$OUT[1623] |out|
+$OUT[1624] |out|
+$OUT[1625] |out|
+$OUT[1626] |out|
+$OUT[1627] |out|
+$OUT[1628] |out|
+$OUT[1629] |out|
+$OUT[1630] |out|
+$OUT[1631] |out|
+$OUT[1632] |out|
+$OUT[1633] |out|
+$OUT[1634] |out|
+$OUT[1635] |out|
+$OUT[1636] |out|
+$OUT[1637] |out|
+$OUT[1638] |out|
+$OUT[1639] |out|
+$OUT[1640] |out|
+$OUT[1641] |out|
+$OUT[1642] |out|
+$OUT[1643] |out|
+$OUT[1644] |out|
+$OUT[1645] |out|
+$OUT[1646] |out|
+$OUT[1647] |out|
+$OUT[1648] |out|
+$OUT[1649] |out|
+$OUT[1650] |out|
+$OUT[1651] |out|
+$OUT[1652] |out|
+$OUT[1653] |out|
+$OUT[1654] |out|
+$OUT[1655] |out|
+$OUT[1656] |out|
+$OUT[1657] |out|
+$OUT[1658] |out|
+$OUT[1659] |out|
+$OUT[1660] |out|
+$OUT[1661] |out|
+$OUT[1662] |out|
+$OUT[1663] |out|
+$OUT[1664] |out|
+$OUT[1665] |out|
+$OUT[1666] |out|
+$OUT[1667] |out|
+$OUT[1668] |out|
+$OUT[1669] |out|
+$OUT[1670] |out|
+$OUT[1671] |out|
+$OUT[1672] |out|
+$OUT[1673] |out|
+$OUT[1674] |out|
+$OUT[1675] |out|
+$OUT[1676] |out|
+$OUT[1677] |out|
+$OUT[1678] |out|
+$OUT[1679] |out|
+$OUT[1680] |out|
+$OUT[1681] |out|
+$OUT[1682] |out|
+$OUT[1683] |out|
+$OUT[1684] |out|
+$OUT[1685] |out|
+$OUT[1686] |out|
+$OUT[1687] |out|
+$OUT[1688] |out|
+$OUT[1689] |out|
+$OUT[1690] |out|
+$OUT[1691] |out|
+$OUT[1692] |out|
+$OUT[1693] |out|
+$OUT[1694] |out|
+$OUT[1695] |out|
+$OUT[1696] |out|
+$OUT[1697] |out|
+$OUT[1698] |out|
+$OUT[1699] |out|
+$OUT[1700] |out|
+$OUT[1701] |out|
+$OUT[1702] |out|
+$OUT[1703] |out|
+$OUT[1704] |out|
+$OUT[1705] |out|
+$OUT[1706] |out|
+$OUT[1707] |out|
+$OUT[1708] |out|
+$OUT[1709] |out|
+$OUT[1710] |out|
+$OUT[1711] |out|
+$OUT[1712] |out|
+$OUT[1713] |out|
+$OUT[1714] |out|
+$OUT[1715] |out|
+$OUT[1716] |out|
+$OUT[1717] |out|
+$OUT[1718] |out|
+$OUT[1719] |out|
+$OUT[1720] |out|
+$OUT[1721] |out|
+$OUT[1722] |out|
+$OUT[1723] |out|
+$OUT[1724] |out|
+$OUT[1725] |out|
+$OUT[1726] |out|
+$OUT[1727] |out|
+$OUT[1728] |out|
+$OUT[1729] |out|
+$OUT[1730] |out|
+$OUT[1731] |out|
+$OUT[1732] |out|
+$OUT[1733] |out|
+$OUT[1734] |out|
+$OUT[1735] |out|
+$OUT[1736] |out|
+$OUT[1737] |out|
+$OUT[1738] |out|
+$OUT[1739] |out|
+$OUT[1740] |out|
+$OUT[1741] |out|
+$OUT[1742] |out|
+$OUT[1743] |out|
+$OUT[1744] |out|
+$OUT[1745] |out|
+$OUT[1746] |out|
+$OUT[1747] |out|
+$OUT[1748] |out|
+$OUT[1749] |out|
+$OUT[1750] |out|
+$OUT[1751] |out|
+$OUT[1752] |out|
+$OUT[1753] |out|
+$OUT[1754] |out|
+$OUT[1755] |out|
+$OUT[1756] |out|
+$OUT[1757] |out|
+$OUT[1758] |out|
+$OUT[1759] |out|
+$OUT[1760] |out|
+$OUT[1761] |out|
+$OUT[1762] |out|
+$OUT[1763] |out|
+$OUT[1764] |out|
+$OUT[1765] |out|
+$OUT[1766] |out|
+$OUT[1767] |out|
+$OUT[1768] |out|
+$OUT[1769] |out|
+$OUT[1770] |out|
+$OUT[1771] |out|
+$OUT[1772] |out|
+$OUT[1773] |out|
+$OUT[1774] |out|
+$OUT[1775] |out|
+$OUT[1776] |out|
+$OUT[1777] |out|
+$OUT[1778] |out|
+$OUT[1779] |out|
+$OUT[1780] |out|
+$OUT[1781] |out|
+$OUT[1782] |out|
+$OUT[1783] |out|
+$OUT[1784] |out|
+$OUT[1785] |out|
+$OUT[1786] |out|
+$OUT[1787] |out|
+$OUT[1788] |out|
+$OUT[1789] |out|
+$OUT[1790] |out|
+$OUT[1791] |out|
+$OUT[1792] |out|
+$OUT[1793] |out|
+$OUT[1794] |out|
+$OUT[1795] |out|
+$OUT[1796] |out|
+$OUT[1797] |out|
+$OUT[1798] |out|
+$OUT[1799] |out|
+$OUT[1800] |out|
+$OUT[1801] |out|
+$OUT[1802] |out|
+$OUT[1803] |out|
+$OUT[1804] |out|
+$OUT[1805] |out|
+$OUT[1806] |out|
+$OUT[1807] |out|
+$OUT[1808] |out|
+$OUT[1809] |out|
+$OUT[1810] |out|
+$OUT[1811] |out|
+$OUT[1812] |out|
+$OUT[1813] |out|
+$OUT[1814] |out|
+$OUT[1815] |out|
+$OUT[1816] |out|
+$OUT[1817] |out|
+$OUT[1818] |out|
+$OUT[1819] |out|
+$OUT[1820] |out|
+$OUT[1821] |out|
+$OUT[1822] |out|
+$OUT[1823] |out|
+$OUT[1824] |out|
+$OUT[1825] |out|
+$OUT[1826] |out|
+$OUT[1827] |out|
+$OUT[1828] |out|
+$OUT[1829] |out|
+$OUT[1830] |out|
+$OUT[1831] |out|
+$OUT[1832] |out|
+$OUT[1833] |out|
+$OUT[1834] |out|
+$OUT[1835] |out|
+$OUT[1836] |out|
+$OUT[1837] |out|
+$OUT[1838] |out|
+$OUT[1839] |out|
+$OUT[1840] |out|
+$OUT[1841] |out|
+$OUT[1842] |out|
+$OUT[1843] |out|
+$OUT[1844] |out|
+$OUT[1845] |out|
+$OUT[1846] |out|
+$OUT[1847] |out|
+$OUT[1848] |out|
+$OUT[1849] |out|
+$OUT[1850] |out|
+$OUT[1851] |out|
+$OUT[1852] |out|
+$OUT[1853] |out|
+$OUT[1854] |out|
+$OUT[1855] |out|
+$OUT[1856] |out|
+$OUT[1857] |out|
+$OUT[1858] |out|
+$OUT[1859] |out|
+$OUT[1860] |out|
+$OUT[1861] |out|
+$OUT[1862] |out|
+$OUT[1863] |out|
+$OUT[1864] |out|
+$OUT[1865] |out|
+$OUT[1866] |out|
+$OUT[1867] |out|
+$OUT[1868] |out|
+$OUT[1869] |out|
+$OUT[1870] |out|
+$OUT[1871] |out|
+$OUT[1872] |out|
+$OUT[1873] |out|
+$OUT[1874] |out|
+$OUT[1875] |out|
+$OUT[1876] |out|
+$OUT[1877] |out|
+$OUT[1878] |out|
+$OUT[1879] |out|
+$OUT[1880] |out|
+$OUT[1881] |out|
+$OUT[1882] |out|
+$OUT[1883] |out|
+$OUT[1884] |out|
+$OUT[1885] |out|
+$OUT[1886] |out|
+$OUT[1887] |out|
+$OUT[1888] |out|
+$OUT[1889] |out|
+$OUT[1890] |out|
+$OUT[1891] |out|
+$OUT[1892] |out|
+$OUT[1893] |out|
+$OUT[1894] |out|
+$OUT[1895] |out|
+$OUT[1896] |out|
+$OUT[1897] |out|
+$OUT[1898] |out|
+$OUT[1899] |out|
+$OUT[1900] |out|
+$OUT[1901] |out|
+$OUT[1902] |out|
+$OUT[1903] |out|
+$OUT[1904] |out|
+$OUT[1905] |out|
+$OUT[1906] |out|
+$OUT[1907] |out|
+$OUT[1908] |out|
+$OUT[1909] |out|
+$OUT[1910] |out|
+$OUT[1911] |out|
+$OUT[1912] |out|
+$OUT[1913] |out|
+$OUT[1914] |out|
+$OUT[1915] |out|
+$OUT[1916] |out|
+$OUT[1917] |out|
+$OUT[1918] |out|
+$OUT[1919] |out|
+$OUT[1920] |out|
+$OUT[1921] |out|
+$OUT[1922] |out|
+$OUT[1923] |out|
+$OUT[1924] |out|
+$OUT[1925] |out|
+$OUT[1926] |out|
+$OUT[1927] |out|
+$OUT[1928] |out|
+$OUT[1929] |out|
+$OUT[1930] |out|
+$OUT[1931] |out|
+$OUT[1932] |out|
+$OUT[1933] |out|
+$OUT[1934] |out|
+$OUT[1935] |out|
+$OUT[1936] |out|
+$OUT[1937] |out|
+$OUT[1938] |out|
+$OUT[1939] |out|
+$OUT[1940] |out|
+$OUT[1941] |out|
+$OUT[1942] |out|
+$OUT[1943] |out|
+$OUT[1944] |out|
+$OUT[1945] |out|
+$OUT[1946] |out|
+$OUT[1947] |out|
+$OUT[1948] |out|
+$OUT[1949] |out|
+$OUT[1950] |out|
+$OUT[1951] |out|
+$OUT[1952] |out|
+$OUT[1953] |out|
+$OUT[1954] |out|
+$OUT[1955] |out|
+$OUT[1956] |out|
+$OUT[1957] |out|
+$OUT[1958] |out|
+$OUT[1959] |out|
+$OUT[1960] |out|
+$OUT[1961] |out|
+$OUT[1962] |out|
+$OUT[1963] |out|
+$OUT[1964] |out|
+$OUT[1965] |out|
+$OUT[1966] |out|
+$OUT[1967] |out|
+$OUT[1968] |out|
+$OUT[1969] |out|
+$OUT[1970] |out|
+$OUT[1971] |out|
+$OUT[1972] |out|
+$OUT[1973] |out|
+$OUT[1974] |out|
+$OUT[1975] |out|
+$OUT[1976] |out|
+$OUT[1977] |out|
+$OUT[1978] |out|
+$OUT[1979] |out|
+$OUT[1980] |out|
+$OUT[1981] |out|
+$OUT[1982] |out|
+$OUT[1983] |out|
+$OUT[1984] |out|
+$OUT[1985] |out|
+$OUT[1986] |out|
+$OUT[1987] |out|
+$OUT[1988] |out|
+$OUT[1989] |out|
+$OUT[1990] |out|
+$OUT[1991] |out|
+$OUT[1992] |out|
+$OUT[1993] |out|
+$OUT[1994] |out|
+$OUT[1995] |out|
+$OUT[1996] |out|
+$OUT[1997] |out|
+$OUT[1998] |out|
+$OUT[1999] |out|
+$OUT[2000] |out|
+$OUT[2001] |out|
+$OUT[2002] |out|
+$OUT[2003] |out|
+$OUT[2004] |out|
+$OUT[2005] |out|
+$OUT[2006] |out|
+$OUT[2007] |out|
+$OUT[2008] |out|
+$OUT[2009] |out|
+$OUT[2010] |out|
+$OUT[2011] |out|
+$OUT[2012] |out|
+$OUT[2013] |out|
+$OUT[2014] |out|
+$OUT[2015] |out|
+$OUT[2016] |out|
+$OUT[2017] |out|
+$OUT[2018] |out|
+$OUT[2019] |out|
+$OUT[2020] |out|
+$OUT[2021] |out|
+$OUT[2022] |out|
+$OUT[2023] |out|
+$OUT[2024] |out|
+$OUT[2025] |out|
+$OUT[2026] |out|
+$OUT[2027] |out|
+$OUT[2028] |out|
+$OUT[2029] |out|
+$OUT[2030] |out|
+$OUT[2031] |out|
+$OUT[2032] |out|
+$OUT[2033] |out|
+$OUT[2034] |out|
+$OUT[2035] |out|
+$OUT[2036] |out|
+$OUT[2037] |out|
+$OUT[2038] |out|
+$OUT[2039] |out|
+$OUT[2040] |out|
+$OUT[2041] |out|
+$OUT[2042] |out|
+$OUT[2043] |out|
+$OUT[2044] |out|
+$OUT[2045] |out|
+$OUT[2046] |out|
+$OUT[2047] |out|
+$OUT[2048] |out|
+$OUT[2049] |out|
+$OUT[2050] |out|
+$OUT[2051] |out|
+$OUT[2052] |out|
+$OUT[2053] |out|
+$OUT[2054] |out|
+$OUT[2055] |out|
+$OUT[2056] |out|
+$OUT[2057] |out|
+$OUT[2058] |out|
+$OUT[2059] |out|
+$OUT[2060] |out|
+$OUT[2061] |out|
+$OUT[2062] |out|
+$OUT[2063] |out|
+$OUT[2064] |out|
+$OUT[2065] |out|
+$OUT[2066] |out|
+$OUT[2067] |out|
+$OUT[2068] |out|
+$OUT[2069] |out|
+$OUT[2070] |out|
+$OUT[2071] |out|
+$OUT[2072] |out|
+$OUT[2073] |out|
+$OUT[2074] |out|
+$OUT[2075] |out|
+$OUT[2076] |out|
+$OUT[2077] |out|
+$OUT[2078] |out|
+$OUT[2079] |out|
+$OUT[2080] |out|
+$OUT[2081] |out|
+$OUT[2082] |out|
+$OUT[2083] |out|
+$OUT[2084] |out|
+$OUT[2085] |out|
+$OUT[2086] |out|
+$OUT[2087] |out|
+$OUT[2088] |out|
+$OUT[2089] |out|
+$OUT[2090] |out|
+$OUT[2091] |out|
+$OUT[2092] |out|
+$OUT[2093] |out|
+$OUT[2094] |out|
+$OUT[2095] |out|
+$OUT[2096] |out|
+$OUT[2097] |out|
+$OUT[2098] |out|
+$OUT[2099] |out|
+$OUT[2100] |out|
+$OUT[2101] |out|
+$OUT[2102] |out|
+$OUT[2103] |out|
+$OUT[2104] |out|
+$OUT[2105] |out|
+$OUT[2106] |out|
+$OUT[2107] |out|
+$OUT[2108] |out|
+$OUT[2109] |out|
+$OUT[2110] |out|
+$OUT[2111] |out|
+$OUT[2112] |out|
+$OUT[2113] |out|
+$OUT[2114] |out|
+$OUT[2115] |out|
+$OUT[2116] |out|
+$OUT[2117] |out|
+$OUT[2118] |out|
+$OUT[2119] |out|
+$OUT[2120] |out|
+$OUT[2121] |out|
+$OUT[2122] |out|
+$OUT[2123] |out|
+$OUT[2124] |out|
+$OUT[2125] |out|
+$OUT[2126] |out|
+$OUT[2127] |out|
+$OUT[2128] |out|
+$OUT[2129] |out|
+$OUT[2130] |out|
+$OUT[2131] |out|
+$OUT[2132] |out|
+$OUT[2133] |out|
+$OUT[2134] |out|
+$OUT[2135] |out|
+$OUT[2136] |out|
+$OUT[2137] |out|
+$OUT[2138] |out|
+$OUT[2139] |out|
+$OUT[2140] |out|
+$OUT[2141] |out|
+$OUT[2142] |out|
+$OUT[2143] |out|
+$OUT[2144] |out|
+$OUT[2145] |out|
+$OUT[2146] |out|
+$OUT[2147] |out|
+$OUT[2148] |out|
+$OUT[2149] |out|
+$OUT[2150] |out|
+$OUT[2151] |out|
+$OUT[2152] |out|
+$OUT[2153] |out|
+$OUT[2154] |out|
+$OUT[2155] |out|
+$OUT[2156] |out|
+$OUT[2157] |out|
+$OUT[2158] |out|
+$OUT[2159] |out|
+$OUT[2160] |out|
+$OUT[2161] |out|
+$OUT[2162] |out|
+$OUT[2163] |out|
+$OUT[2164] |out|
+$OUT[2165] |out|
+$OUT[2166] |out|
+$OUT[2167] |out|
+$OUT[2168] |out|
+$OUT[2169] |out|
+$OUT[2170] |out|
+$OUT[2171] |out|
+$OUT[2172] |out|
+$OUT[2173] |out|
+$OUT[2174] |out|
+$OUT[2175] |out|
+$OUT[2176] |out|
+$OUT[2177] |out|
+$OUT[2178] |out|
+$OUT[2179] |out|
+$OUT[2180] |out|
+$OUT[2181] |out|
+$OUT[2182] |out|
+$OUT[2183] |out|
+$OUT[2184] |out|
+$OUT[2185] |out|
+$OUT[2186] |out|
+$OUT[2187] |out|
+$OUT[2188] |out|
+$OUT[2189] |out|
+$OUT[2190] |out|
+$OUT[2191] |out|
+$OUT[2192] |out|
+$OUT[2193] |out|
+$OUT[2194] |out|
+$OUT[2195] |out|
+$OUT[2196] |out|
+$OUT[2197] |out|
+$OUT[2198] |out|
+$OUT[2199] |out|
+$OUT[2200] |out|
+$OUT[2201] |out|
+$OUT[2202] |out|
+$OUT[2203] |out|
+$OUT[2204] |out|
+$OUT[2205] |out|
+$OUT[2206] |out|
+$OUT[2207] |out|
+$OUT[2208] |out|
+$OUT[2209] |out|
+$OUT[2210] |out|
+$OUT[2211] |out|
+$OUT[2212] |out|
+$OUT[2213] |out|
+$OUT[2214] |out|
+$OUT[2215] |out|
+$OUT[2216] |out|
+$OUT[2217] |out|
+$OUT[2218] |out|
+$OUT[2219] |out|
+$OUT[2220] |out|
+$OUT[2221] |out|
+$OUT[2222] |out|
+$OUT[2223] |out|
+$OUT[2224] |out|
+$OUT[2225] |out|
+$OUT[2226] |out|
+$OUT[2227] |out|
+$OUT[2228] |out|
+$OUT[2229] |out|
+$OUT[2230] |out|
+$OUT[2231] |out|
+$OUT[2232] |out|
+$OUT[2233] |out|
+$OUT[2234] |out|
+$OUT[2235] |out|
+$OUT[2236] |out|
+$OUT[2237] |out|
+$OUT[2238] |out|
+$OUT[2239] |out|
+$OUT[2240] |out|
+$OUT[2241] |out|
+$OUT[2242] |out|
+$OUT[2243] |out|
+$OUT[2244] |out|
+$OUT[2245] |out|
+$OUT[2246] |out|
+$OUT[2247] |out|
+$OUT[2248] |out|
+$OUT[2249] |out|
+$OUT[2250] |out|
+$OUT[2251] |out|
+$OUT[2252] |out|
+$OUT[2253] |out|
+$OUT[2254] |out|
+$OUT[2255] |out|
+$OUT[2256] |out|
+$OUT[2257] |out|
+$OUT[2258] |out|
+$OUT[2259] |out|
+$OUT[2260] |out|
+$OUT[2261] |out|
+$OUT[2262] |out|
+$OUT[2263] |out|
+$OUT[2264] |out|
+$OUT[2265] |out|
+$OUT[2266] |out|
+$OUT[2267] |out|
+$OUT[2268] |out|
+$OUT[2269] |out|
+$OUT[2270] |out|
+$OUT[2271] |out|
+$OUT[2272] |out|
+$OUT[2273] |out|
+$OUT[2274] |out|
+$OUT[2275] |out|
+$OUT[2276] |out|
+$OUT[2277] |out|
+$OUT[2278] |out|
+$OUT[2279] |out|
+$OUT[2280] |out|
+$OUT[2281] |out|
+$OUT[2282] |out|
+$OUT[2283] |out|
+$OUT[2284] |out|
+$OUT[2285] |out|
+$OUT[2286] |out|
+$OUT[2287] |out|
+$OUT[2288] |out|
+$OUT[2289] |out|
+$OUT[2290] |out|
+$OUT[2291] |out|
+$OUT[2292] |out|
+$OUT[2293] |out|
+$OUT[2294] |out|
+$OUT[2295] |out|
+$OUT[2296] |out|
+$OUT[2297] |out|
+$OUT[2298] |out|
+$OUT[2299] |out|
+$OUT[2300] |out|
+$OUT[2301] |out|
+$OUT[2302] |out|
+$OUT[2303] |out|
+$OUT[2304] |out|
+$OUT[2305] |out|
+$OUT[2306] |out|
+$OUT[2307] |out|
+$OUT[2308] |out|
+$OUT[2309] |out|
+$OUT[2310] |out|
+$OUT[2311] |out|
+$OUT[2312] |out|
+$OUT[2313] |out|
+$OUT[2314] |out|
+$OUT[2315] |out|
+$OUT[2316] |out|
+$OUT[2317] |out|
+$OUT[2318] |out|
+$OUT[2319] |out|
+$OUT[2320] |out|
+$OUT[2321] |out|
+$OUT[2322] |out|
+$OUT[2323] |out|
+$OUT[2324] |out|
+$OUT[2325] |out|
+$OUT[2326] |out|
+$OUT[2327] |out|
+$OUT[2328] |out|
+$OUT[2329] |out|
+$OUT[2330] |out|
+$OUT[2331] |out|
+$OUT[2332] |out|
+$OUT[2333] |out|
+$OUT[2334] |out|
+$OUT[2335] |out|
+$OUT[2336] |out|
+$OUT[2337] |out|
+$OUT[2338] |out|
+$OUT[2339] |out|
+$OUT[2340] |out|
+$OUT[2341] |out|
+$OUT[2342] |out|
+$OUT[2343] |out|
+$OUT[2344] |out|
+$OUT[2345] |out|
+$OUT[2346] |out|
+$OUT[2347] |out|
+$OUT[2348] |out|
+$OUT[2349] |out|
+$OUT[2350] |out|
+$OUT[2351] |out|
+$OUT[2352] |out|
+$OUT[2353] |out|
+$OUT[2354] |out|
+$OUT[2355] |out|
+$OUT[2356] |out|
+$OUT[2357] |out|
+$OUT[2358] |out|
+$OUT[2359] |out|
+$OUT[2360] |out|
+$OUT[2361] |out|
+$OUT[2362] |out|
+$OUT[2363] |out|
+$OUT[2364] |out|
+$OUT[2365] |out|
+$OUT[2366] |out|
+$OUT[2367] |out|
+$OUT[2368] |out|
+$OUT[2369] |out|
+$OUT[2370] |out|
+$OUT[2371] |out|
+$OUT[2372] |out|
+$OUT[2373] |out|
+$OUT[2374] |out|
+$OUT[2375] |out|
+$OUT[2376] |out|
+$OUT[2377] |out|
+$OUT[2378] |out|
+$OUT[2379] |out|
+$OUT[2380] |out|
+$OUT[2381] |out|
+$OUT[2382] |out|
+$OUT[2383] |out|
+$OUT[2384] |out|
+$OUT[2385] |out|
+$OUT[2386] |out|
+$OUT[2387] |out|
+$OUT[2388] |out|
+$OUT[2389] |out|
+$OUT[2390] |out|
+$OUT[2391] |out|
+$OUT[2392] |out|
+$OUT[2393] |out|
+$OUT[2394] |out|
+$OUT[2395] |out|
+$OUT[2396] |out|
+$OUT[2397] |out|
+$OUT[2398] |out|
+$OUT[2399] |out|
+$OUT[2400] |out|
+$OUT[2401] |out|
+$OUT[2402] |out|
+$OUT[2403] |out|
+$OUT[2404] |out|
+$OUT[2405] |out|
+$OUT[2406] |out|
+$OUT[2407] |out|
+$OUT[2408] |out|
+$OUT[2409] |out|
+$OUT[2410] |out|
+$OUT[2411] |out|
+$OUT[2412] |out|
+$OUT[2413] |out|
+$OUT[2414] |out|
+$OUT[2415] |out|
+$OUT[2416] |out|
+$OUT[2417] |out|
+$OUT[2418] |out|
+$OUT[2419] |out|
+$OUT[2420] |out|
+$OUT[2421] |out|
+$OUT[2422] |out|
+$OUT[2423] |out|
+$OUT[2424] |out|
+$OUT[2425] |out|
+$OUT[2426] |out|
+$OUT[2427] |out|
+$OUT[2428] |out|
+$OUT[2429] |out|
+$OUT[2430] |out|
+$OUT[2431] |out|
+$OUT[2432] |out|
+$OUT[2433] |out|
+$OUT[2434] |out|
+$OUT[2435] |out|
+$OUT[2436] |out|
+$OUT[2437] |out|
+$OUT[2438] |out|
+$OUT[2439] |out|
+$OUT[2440] |out|
+$OUT[2441] |out|
+$OUT[2442] |out|
+$OUT[2443] |out|
+$OUT[2444] |out|
+$OUT[2445] |out|
+$OUT[2446] |out|
+$OUT[2447] |out|
+$OUT[2448] |out|
+$OUT[2449] |out|
+$OUT[2450] |out|
+$OUT[2451] |out|
+$OUT[2452] |out|
+$OUT[2453] |out|
+$OUT[2454] |out|
+$OUT[2455] |out|
+$OUT[2456] |out|
+$OUT[2457] |out|
+$OUT[2458] |out|
+$OUT[2459] |out|
+$OUT[2460] |out|
+$OUT[2461] |out|
+$OUT[2462] |out|
+$OUT[2463] |out|
+$OUT[2464] |out|
+$OUT[2465] |out|
+$OUT[2466] |out|
+$OUT[2467] |out|
+$OUT[2468] |out|
+$OUT[2469] |out|
+$OUT[2470] |out|
+$OUT[2471] |out|
+$OUT[2472] |out|
+$OUT[2473] |out|
+$OUT[2474] |out|
+$OUT[2475] |out|
+$OUT[2476] |out|
+$OUT[2477] |out|
+$OUT[2478] |out|
+$OUT[2479] |out|
+$OUT[2480] |out|
+$OUT[2481] |out|
+$OUT[2482] |out|
+$OUT[2483] |out|
+$OUT[2484] |out|
+$OUT[2485] |out|
+$OUT[2486] |out|
+$OUT[2487] |out|
+$OUT[2488] |out|
+$OUT[2489] |out|
+$OUT[2490] |out|
+$OUT[2491] |out|
+$OUT[2492] |out|
+$OUT[2493] |out|
+$OUT[2494] |out|
+$OUT[2495] |out|
+$OUT[2496] |out|
+$OUT[2497] |out|
+$OUT[2498] |out|
+$OUT[2499] |out|
+$OUT[2500] |out|
+$OUT[2501] |out|
+$OUT[2502] |out|
+$OUT[2503] |out|
+$OUT[2504] |out|
+$OUT[2505] |out|
+$OUT[2506] |out|
+$OUT[2507] |out|
+$OUT[2508] |out|
+$OUT[2509] |out|
+$OUT[2510] |out|
+$OUT[2511] |out|
+$OUT[2512] |out|
+$OUT[2513] |out|
+$OUT[2514] |out|
+$OUT[2515] |out|
+$OUT[2516] |out|
+$OUT[2517] |out|
+$OUT[2518] |out|
+$OUT[2519] |out|
+$OUT[2520] |out|
+$OUT[2521] |out|
+$OUT[2522] |out|
+$OUT[2523] |out|
+$OUT[2524] |out|
+$OUT[2525] |out|
+$OUT[2526] |out|
+$OUT[2527] |out|
+$OUT[2528] |out|
+$OUT[2529] |out|
+$OUT[2530] |out|
+$OUT[2531] |out|
+$OUT[2532] |out|
+$OUT[2533] |out|
+$OUT[2534] |out|
+$OUT[2535] |out|
+$OUT[2536] |out|
+$OUT[2537] |out|
+$OUT[2538] |out|
+$OUT[2539] |out|
+$OUT[2540] |out|
+$OUT[2541] |out|
+$OUT[2542] |out|
+$OUT[2543] |out|
+$OUT[2544] |out|
+$OUT[2545] |out|
+$OUT[2546] |out|
+$OUT[2547] |out|
+$OUT[2548] |out|
+$OUT[2549] |out|
+$OUT[2550] |out|
+$OUT[2551] |out|
+$OUT[2552] |out|
+$OUT[2553] |out|
+$OUT[2554] |out|
+$OUT[2555] |out|
+$OUT[2556] |out|
+$OUT[2557] |out|
+$OUT[2558] |out|
+$OUT[2559] |out|
+$OUT[2560] |out|
+$OUT[2561] |out|
+$OUT[2562] |out|
+$OUT[2563] |out|
+$OUT[2564] |out|
+$OUT[2565] |out|
+$OUT[2566] |out|
+$OUT[2567] |out|
+$OUT[2568] |out|
+$OUT[2569] |out|
+$OUT[2570] |out|
+$OUT[2571] |out|
+$OUT[2572] |out|
+$OUT[2573] |out|
+$OUT[2574] |out|
+$OUT[2575] |out|
+$OUT[2576] |out|
+$OUT[2577] |out|
+$OUT[2578] |out|
+$OUT[2579] |out|
+$OUT[2580] |out|
+$OUT[2581] |out|
+$OUT[2582] |out|
+$OUT[2583] |out|
+$OUT[2584] |out|
+$OUT[2585] |out|
+$OUT[2586] |out|
+$OUT[2587] |out|
+$OUT[2588] |out|
+$OUT[2589] |out|
+$OUT[2590] |out|
+$OUT[2591] |out|
+$OUT[2592] |out|
+$OUT[2593] |out|
+$OUT[2594] |out|
+$OUT[2595] |out|
+$OUT[2596] |out|
+$OUT[2597] |out|
+$OUT[2598] |out|
+$OUT[2599] |out|
+$OUT[2600] |out|
+$OUT[2601] |out|
+$OUT[2602] |out|
+$OUT[2603] |out|
+$OUT[2604] |out|
+$OUT[2605] |out|
+$OUT[2606] |out|
+$OUT[2607] |out|
+$OUT[2608] |out|
+$OUT[2609] |out|
+$OUT[2610] |out|
+$OUT[2611] |out|
+$OUT[2612] |out|
+$OUT[2613] |out|
+$OUT[2614] |out|
+$OUT[2615] |out|
+$OUT[2616] |out|
+$OUT[2617] |out|
+$OUT[2618] |out|
+$OUT[2619] |out|
+$OUT[2620] |out|
+$OUT[2621] |out|
+$OUT[2622] |out|
+$OUT[2623] |out|
+$OUT[2624] |out|
+$OUT[2625] |out|
+$OUT[2626] |out|
+$OUT[2627] |out|
+$OUT[2628] |out|
+$OUT[2629] |out|
+$OUT[2630] |out|
+$OUT[2631] |out|
+$OUT[2632] |out|
+$OUT[2633] |out|
+$OUT[2634] |out|
+$OUT[2635] |out|
+$OUT[2636] |out|
+$OUT[2637] |out|
+$OUT[2638] |out|
+$OUT[2639] |out|
+$OUT[2640] |out|
+$OUT[2641] |out|
+$OUT[2642] |out|
+$OUT[2643] |out|
+$OUT[2644] |out|
+$OUT[2645] |out|
+$OUT[2646] |out|
+$OUT[2647] |out|
+$OUT[2648] |out|
+$OUT[2649] |out|
+$OUT[2650] |out|
+$OUT[2651] |out|
+$OUT[2652] |out|
+$OUT[2653] |out|
+$OUT[2654] |out|
+$OUT[2655] |out|
+$OUT[2656] |out|
+$OUT[2657] |out|
+$OUT[2658] |out|
+$OUT[2659] |out|
+$OUT[2660] |out|
+$OUT[2661] |out|
+$OUT[2662] |out|
+$OUT[2663] |out|
+$OUT[2664] |out|
+$OUT[2665] |out|
+$OUT[2666] |out|
+$OUT[2667] |out|
+$OUT[2668] |out|
+$OUT[2669] |out|
+$OUT[2670] |out|
+$OUT[2671] |out|
+$OUT[2672] |out|
+$OUT[2673] |out|
+$OUT[2674] |out|
+$OUT[2675] |out|
+$OUT[2676] |out|
+$OUT[2677] |out|
+$OUT[2678] |out|
+$OUT[2679] |out|
+$OUT[2680] |out|
+$OUT[2681] |out|
+$OUT[2682] |out|
+$OUT[2683] |out|
+$OUT[2684] |out|
+$OUT[2685] |out|
+$OUT[2686] |out|
+$OUT[2687] |out|
+$OUT[2688] |out|
+$OUT[2689] |out|
+$OUT[2690] |out|
+$OUT[2691] |out|
+$OUT[2692] |out|
+$OUT[2693] |out|
+$OUT[2694] |out|
+$OUT[2695] |out|
+$OUT[2696] |out|
+$OUT[2697] |out|
+$OUT[2698] |out|
+$OUT[2699] |out|
+$OUT[2700] |out|
+$OUT[2701] |out|
+$OUT[2702] |out|
+$OUT[2703] |out|
+$OUT[2704] |out|
+$OUT[2705] |out|
+$OUT[2706] |out|
+$OUT[2707] |out|
+$OUT[2708] |out|
+$OUT[2709] |out|
+$OUT[2710] |out|
+$OUT[2711] |out|
+$OUT[2712] |out|
+$OUT[2713] |out|
+$OUT[2714] |out|
+$OUT[2715] |out|
+$OUT[2716] |out|
+$OUT[2717] |out|
+$OUT[2718] |out|
+$OUT[2719] |out|
+$OUT[2720] |out|
+$OUT[2721] |out|
+$OUT[2722] |out|
+$OUT[2723] |out|
+$OUT[2724] |out|
+$OUT[2725] |out|
+$OUT[2726] |out|
+$OUT[2727] |out|
+$OUT[2728] |out|
+$OUT[2729] |out|
+$OUT[2730] |out|
+$OUT[2731] |out|
+$OUT[2732] |out|
+$OUT[2733] |out|
+$OUT[2734] |out|
+$OUT[2735] |out|
+$OUT[2736] |out|
+$OUT[2737] |out|
+$OUT[2738] |out|
+$OUT[2739] |out|
+$OUT[2740] |out|
+$OUT[2741] |out|
+$OUT[2742] |out|
+$OUT[2743] |out|
+$OUT[2744] |out|
+$OUT[2745] |out|
+$OUT[2746] |out|
+$OUT[2747] |out|
+$OUT[2748] |out|
+$OUT[2749] |out|
+$OUT[2750] |out|
+$OUT[2751] |out|
+$OUT[2752] |out|
+$OUT[2753] |out|
+$OUT[2754] |out|
+$OUT[2755] |out|
+$OUT[2756] |out|
+$OUT[2757] |out|
+$OUT[2758] |out|
+$OUT[2759] |out|
+$OUT[2760] |out|
+$OUT[2761] |out|
+$OUT[2762] |out|
+$OUT[2763] |out|
+$OUT[2764] |out|
+$OUT[2765] |out|
+$OUT[2766] |out|
+$OUT[2767] |out|
+$OUT[2768] |out|
+$OUT[2769] |out|
+$OUT[2770] |out|
+$OUT[2771] |out|
+$OUT[2772] |out|
+$OUT[2773] |out|
+$OUT[2774] |out|
+$OUT[2775] |out|
+$OUT[2776] |out|
+$OUT[2777] |out|
+$OUT[2778] |out|
+$OUT[2779] |out|
+$OUT[2780] |out|
+$OUT[2781] |out|
+$OUT[2782] |out|
+$OUT[2783] |out|
+$OUT[2784] |out|
+$OUT[2785] |out|
+$OUT[2786] |out|
+$OUT[2787] |out|
+$OUT[2788] |out|
+$OUT[2789] |out|
+$OUT[2790] |out|
+$OUT[2791] |out|
+$OUT[2792] |out|
+$OUT[2793] |out|
+$OUT[2794] |out|
+$OUT[2795] |out|
+$OUT[2796] |out|
+$OUT[2797] |out|
+$OUT[2798] |out|
+$OUT[2799] |out|
+$OUT[2800] |out|
+$OUT[2801] |out|
+$OUT[2802] |out|
+$OUT[2803] |out|
+$OUT[2804] |out|
+$OUT[2805] |out|
+$OUT[2806] |out|
+$OUT[2807] |out|
+$OUT[2808] |out|
+$OUT[2809] |out|
+$OUT[2810] |out|
+$OUT[2811] |out|
+$OUT[2812] |out|
+$OUT[2813] |out|
+$OUT[2814] |out|
+$OUT[2815] |out|
+$OUT[2816] |out|
+$OUT[2817] |out|
+$OUT[2818] |out|
+$OUT[2819] |out|
+$OUT[2820] |out|
+$OUT[2821] |out|
+$OUT[2822] |out|
+$OUT[2823] |out|
+$OUT[2824] |out|
+$OUT[2825] |out|
+$OUT[2826] |out|
+$OUT[2827] |out|
+$OUT[2828] |out|
+$OUT[2829] |out|
+$OUT[2830] |out|
+$OUT[2831] |out|
+$OUT[2832] |out|
+$OUT[2833] |out|
+$OUT[2834] |out|
+$OUT[2835] |out|
+$OUT[2836] |out|
+$OUT[2837] |out|
+$OUT[2838] |out|
+$OUT[2839] |out|
+$OUT[2840] |out|
+$OUT[2841] |out|
+$OUT[2842] |out|
+$OUT[2843] |out|
+$OUT[2844] |out|
+$OUT[2845] |out|
+$OUT[2846] |out|
+$OUT[2847] |out|
+$OUT[2848] |out|
+$OUT[2849] |out|
+$OUT[2850] |out|
+$OUT[2851] |out|
+$OUT[2852] |out|
+$OUT[2853] |out|
+$OUT[2854] |out|
+$OUT[2855] |out|
+$OUT[2856] |out|
+$OUT[2857] |out|
+$OUT[2858] |out|
+$OUT[2859] |out|
+$OUT[2860] |out|
+$OUT[2861] |out|
+$OUT[2862] |out|
+$OUT[2863] |out|
+$OUT[2864] |out|
+$OUT[2865] |out|
+$OUT[2866] |out|
+$OUT[2867] |out|
+$OUT[2868] |out|
+$OUT[2869] |out|
+$OUT[2870] |out|
+$OUT[2871] |out|
+$OUT[2872] |out|
+$OUT[2873] |out|
+$OUT[2874] |out|
+$OUT[2875] |out|
+$OUT[2876] |out|
+$OUT[2877] |out|
+$OUT[2878] |out|
+$OUT[2879] |out|
+$OUT[2880] |out|
+$OUT[2881] |out|
+$OUT[2882] |out|
+$OUT[2883] |out|
+$OUT[2884] |out|
+$OUT[2885] |out|
+$OUT[2886] |out|
+$OUT[2887] |out|
+$OUT[2888] |out|
+$OUT[2889] |out|
+$OUT[2890] |out|
+$OUT[2891] |out|
+$OUT[2892] |out|
+$OUT[2893] |out|
+$OUT[2894] |out|
+$OUT[2895] |out|
+$OUT[2896] |out|
+$OUT[2897] |out|
+$OUT[2898] |out|
+$OUT[2899] |out|
+$OUT[2900] |out|
+$OUT[2901] |out|
+$OUT[2902] |out|
+$OUT[2903] |out|
+$OUT[2904] |out|
+$OUT[2905] |out|
+$OUT[2906] |out|
+$OUT[2907] |out|
+$OUT[2908] |out|
+$OUT[2909] |out|
+$OUT[2910] |out|
+$OUT[2911] |out|
+$OUT[2912] |out|
+$OUT[2913] |out|
+$OUT[2914] |out|
+$OUT[2915] |out|
+$OUT[2916] |out|
+$OUT[2917] |out|
+$OUT[2918] |out|
+$OUT[2919] |out|
+$OUT[2920] |out|
+$OUT[2921] |out|
+$OUT[2922] |out|
+$OUT[2923] |out|
+$OUT[2924] |out|
+$OUT[2925] |out|
+$OUT[2926] |out|
+$OUT[2927] |out|
+$OUT[2928] |out|
+$OUT[2929] |out|
+$OUT[2930] |out|
+$OUT[2931] |out|
+$OUT[2932] |out|
+$OUT[2933] |out|
+$OUT[2934] |out|
+$OUT[2935] |out|
+$OUT[2936] |out|
+$OUT[2937] |out|
+$OUT[2938] |out|
+$OUT[2939] |out|
+$OUT[2940] |out|
+$OUT[2941] |out|
+$OUT[2942] |out|
+$OUT[2943] |out|
+$OUT[2944] |out|
+$OUT[2945] |out|
+$OUT[2946] |out|
+$OUT[2947] |out|
+$OUT[2948] |out|
+$OUT[2949] |out|
+$OUT[2950] |out|
+$OUT[2951] |out|
+$OUT[2952] |out|
+$OUT[2953] |out|
+$OUT[2954] |out|
+$OUT[2955] |out|
+$OUT[2956] |out|
+$OUT[2957] |out|
+$OUT[2958] |out|
+$OUT[2959] |out|
+$OUT[2960] |out|
+$OUT[2961] |out|
+$OUT[2962] |out|
+$OUT[2963] |out|
+$OUT[2964] |out|
+$OUT[2965] |out|
+$OUT[2966] |out|
+$OUT[2967] |out|
+$OUT[2968] |out|
+$OUT[2969] |out|
+$OUT[2970] |out|
+$OUT[2971] |out|
+$OUT[2972] |out|
+$OUT[2973] |out|
+$OUT[2974] |out|
+$OUT[2975] |out|
+$OUT[2976] |out|
+$OUT[2977] |out|
+$OUT[2978] |out|
+$OUT[2979] |out|
+$OUT[2980] |out|
+$OUT[2981] |out|
+$OUT[2982] |out|
+$OUT[2983] |out|
+$OUT[2984] |out|
+$OUT[2985] |out|
+$OUT[2986] |out|
+$OUT[2987] |out|
+$OUT[2988] |out|
+$OUT[2989] |out|
+$OUT[2990] |out|
+$OUT[2991] |out|
+$OUT[2992] |out|
+$OUT[2993] |out|
+$OUT[2994] |out|
+$OUT[2995] |out|
+$OUT[2996] |out|
+$OUT[2997] |out|
+$OUT[2998] |out|
+$OUT[2999] |out|
+$OUT[3000] |out|
+$OUT[3001] |out|
+$OUT[3002] |out|
+$OUT[3003] |out|
+$OUT[3004] |out|
+$OUT[3005] |out|
+$OUT[3006] |out|
+$OUT[3007] |out|
+$OUT[3008] |out|
+$OUT[3009] |out|
+$OUT[3010] |out|
+$OUT[3011] |out|
+$OUT[3012] |out|
+$OUT[3013] |out|
+$OUT[3014] |out|
+$OUT[3015] |out|
+$OUT[3016] |out|
+$OUT[3017] |out|
+$OUT[3018] |out|
+$OUT[3019] |out|
+$OUT[3020] |out|
+$OUT[3021] |out|
+$OUT[3022] |out|
+$OUT[3023] |out|
+$OUT[3024] |out|
+$OUT[3025] |out|
+$OUT[3026] |out|
+$OUT[3027] |out|
+$OUT[3028] |out|
+$OUT[3029] |out|
+$OUT[3030] |out|
+$OUT[3031] |out|
+$OUT[3032] |out|
+$OUT[3033] |out|
+$OUT[3034] |out|
+$OUT[3035] |out|
+$OUT[3036] |out|
+$OUT[3037] |out|
+$OUT[3038] |out|
+$OUT[3039] |out|
+$OUT[3040] |out|
+$OUT[3041] |out|
+$OUT[3042] |out|
+$OUT[3043] |out|
+$OUT[3044] |out|
+$OUT[3045] |out|
+$OUT[3046] |out|
+$OUT[3047] |out|
+$OUT[3048] |out|
+$OUT[3049] |out|
+$OUT[3050] |out|
+$OUT[3051] |out|
+$OUT[3052] |out|
+$OUT[3053] |out|
+$OUT[3054] |out|
+$OUT[3055] |out|
+$OUT[3056] |out|
+$OUT[3057] |out|
+$OUT[3058] |out|
+$OUT[3059] |out|
+$OUT[3060] |out|
+$OUT[3061] |out|
+$OUT[3062] |out|
+$OUT[3063] |out|
+$OUT[3064] |out|
+$OUT[3065] |out|
+$OUT[3066] |out|
+$OUT[3067] |out|
+$OUT[3068] |out|
+$OUT[3069] |out|
+$OUT[3070] |out|
+$OUT[3071] |out|
+$OUT[3072] |out|
+$OUT[3073] |out|
+$OUT[3074] |out|
+$OUT[3075] |out|
+$OUT[3076] |out|
+$OUT[3077] |out|
+$OUT[3078] |out|
+$OUT[3079] |out|
+$OUT[3080] |out|
+$OUT[3081] |out|
+$OUT[3082] |out|
+$OUT[3083] |out|
+$OUT[3084] |out|
+$OUT[3085] |out|
+$OUT[3086] |out|
+$OUT[3087] |out|
+$OUT[3088] |out|
+$OUT[3089] |out|
+$OUT[3090] |out|
+$OUT[3091] |out|
+$OUT[3092] |out|
+$OUT[3093] |out|
+$OUT[3094] |out|
+$OUT[3095] |out|
+$OUT[3096] |out|
+$OUT[3097] |out|
+$OUT[3098] |out|
+$OUT[3099] |out|
+$OUT[3100] |out|
+$OUT[3101] |out|
+$OUT[3102] |out|
+$OUT[3103] |out|
+$OUT[3104] |out|
+$OUT[3105] |out|
+$OUT[3106] |out|
+$OUT[3107] |out|
+$OUT[3108] |out|
+$OUT[3109] |out|
+$OUT[3110] |out|
+$OUT[3111] |out|
+$OUT[3112] |out|
+$OUT[3113] |out|
+$OUT[3114] |out|
+$OUT[3115] |out|
+$OUT[3116] |out|
+$OUT[3117] |out|
+$OUT[3118] |out|
+$OUT[3119] |out|
+$OUT[3120] |out|
+$OUT[3121] |out|
+$OUT[3122] |out|
+$OUT[3123] |out|
+$OUT[3124] |out|
+$OUT[3125] |out|
+$OUT[3126] |out|
+$OUT[3127] |out|
+$OUT[3128] |out|
+$OUT[3129] |out|
+$OUT[3130] |out|
+$OUT[3131] |out|
+$OUT[3132] |out|
+$OUT[3133] |out|
+$OUT[3134] |out|
+$OUT[3135] |out|
+$OUT[3136] |out|
+$OUT[3137] |out|
+$OUT[3138] |out|
+$OUT[3139] |out|
+$OUT[3140] |out|
+$OUT[3141] |out|
+$OUT[3142] |out|
+$OUT[3143] |out|
+$OUT[3144] |out|
+$OUT[3145] |out|
+$OUT[3146] |out|
+$OUT[3147] |out|
+$OUT[3148] |out|
+$OUT[3149] |out|
+$OUT[3150] |out|
+$OUT[3151] |out|
+$OUT[3152] |out|
+$OUT[3153] |out|
+$OUT[3154] |out|
+$OUT[3155] |out|
+$OUT[3156] |out|
+$OUT[3157] |out|
+$OUT[3158] |out|
+$OUT[3159] |out|
+$OUT[3160] |out|
+$OUT[3161] |out|
+$OUT[3162] |out|
+$OUT[3163] |out|
+$OUT[3164] |out|
+$OUT[3165] |out|
+$OUT[3166] |out|
+$OUT[3167] |out|
+$OUT[3168] |out|
+$OUT[3169] |out|
+$OUT[3170] |out|
+$OUT[3171] |out|
+$OUT[3172] |out|
+$OUT[3173] |out|
+$OUT[3174] |out|
+$OUT[3175] |out|
+$OUT[3176] |out|
+$OUT[3177] |out|
+$OUT[3178] |out|
+$OUT[3179] |out|
+$OUT[3180] |out|
+$OUT[3181] |out|
+$OUT[3182] |out|
+$OUT[3183] |out|
+$OUT[3184] |out|
+$OUT[3185] |out|
+$OUT[3186] |out|
+$OUT[3187] |out|
+$OUT[3188] |out|
+$OUT[3189] |out|
+$OUT[3190] |out|
+$OUT[3191] |out|
+$OUT[3192] |out|
+$OUT[3193] |out|
+$OUT[3194] |out|
+$OUT[3195] |out|
+$OUT[3196] |out|
+$OUT[3197] |out|
+$OUT[3198] |out|
+$OUT[3199] |out|
+$OUT[3200] |out|
+$OUT[3201] robot-drives are powered on $PERI_RDY
+$OUT[3202] operator-safety closed $USER SAF
+$OUT[3203] reserve
+$OUT[3204] robot stopped $ROB_STOPPED
+$OUT[3205] robot-stop by meaasage $STOPMESS
+$OUT[3206] programrequest PGNO_REQ
+$OUT[3207] program run APPL_RUN
+$OUT[3208] Robot Live Bit
+$OUT[3209] Modo $T1
+$OUT[3210] Modo $T2
+$OUT[3211] Automatik extern ready   $I_O_ACTCONF
+$OUT[3212] pointer-coincidence $NEAR_POSRET
+$OUT[3213] robot on path $ON_PATH
+$OUT[3214] secondary home-position  $IN_HOME2
+$OUT[3215] secondary home-position $IN_HOME1
+$OUT[3216] primary home-position$IN_HOME
+$OUT[3217] end of point reached
+$OUT[3218] special-position reached
+$OUT[3219] Override_MAX
+$OUT[3220] ghost operation activat
+$OUT[3221] ghost operation allowed
+$OUT[3222] robot waits for device-input
+$OUT[3223] robot waits for plc-input
+$OUT[3224] dialog-message is shown
+$OUT[3225] acyclic transmission error
+$OUT[3226] acyclic dta received
+$OUT[3227] reserve
+$OUT[3228] reserve
+$OUT[3229] energy saving activated
+$OUT[3230] energy saving deactivated
+$OUT[3231] cleaning-position $IN_HOME5
+$OUT[3232] reserve
+$OUT[3233] toolchanger:  pneumatic-safety on
+$OUT[3234] toolchanger:  pneumatic-safety feedback
+$OUT[3235] toolchanger:  pneumatic-safety reserve
+$OUT[3236] braketest works $BRAKETEST_WORK
+$OUT[3237] braketest carried out sucessfully $BRAKES_OK
+$OUT[3238] monitoring-time braketest expired $BRAKES_MONTIME
+$OUT[3239] braketest required $BRAKETEST_REQ_INT
+$OUT[3240] one brake wear limit reached $BRAKETEST_WARN
+$OUT[3241] data valid
+$OUT[3242] IFS-errormessage
+$OUT[3243] general motion enable
+$OUT[3244] drive enable
+$OUT[3245] Start-Up Mode
+$OUT[3246] US2 voltage switched on eingeschaltet
+$OUT[3247] reserve
+$OUT[3248] reserve
+$OUT[3249] safe state (safe-operation active)
+$OUT[3250] adjustment-error
+$OUT[3251] reduced velocity active
+$OUT[3252] speed supervision cartesian
+$OUT[3253] speed supervision axis
+$OUT[3254] cellrange exceeded
+$OUT[3255] reserve
+$OUT[3256] reserve
+$OUT[3257] safety stop 1(all axis)
+$OUT[3258] external stop
+$OUT[3259] safety-stop 2 (all axis)
+$OUT[3260] safe operational stop 1  (axisgroup 1)
+$OUT[3261] safe operational stop 1  (axisgroup 2)
+$OUT[3262] tool-error (no tool)
+$OUT[3263] tool-error (more than one tool)
+$OUT[3264] reserve
+$OUT[3265] adjustment works
+$OUT[3266] error mastering test point
+$OUT[3267] mastering test request
+$OUT[3268] mastering test failed
+$OUT[3269] referencing-stop ->  illegal control mode
+$OUT[3270] referencing-interval expired
+$OUT[3271] reserve
+$OUT[3272] reserve
+$OUT[3273] toolnumber safety bit 0
+$OUT[3274] toolnumber safety bit 1
+$OUT[3275] toolnumber safety bit 2
+$OUT[3276] toolnumber safety bit 3
+$OUT[3277] toolnumber safety bit 4
+$OUT[3278] toolnumber safety bit 5
+$OUT[3279] toolnumber safety bit 6
+$OUT[3280] toolnumber safety bit 7
+$OUT[3281] monitoring spaces 1 activated
+$OUT[3282] monitoring spaces 2 activated
+$OUT[3283] monitoring spaces 3 activated
+$OUT[3284] monitoring spaces 4 activated
+$OUT[3285] monitoring spaces 5 activated
+$OUT[3286] monitoring spaces 6 activated
+$OUT[3287] monitoring spaces 7 activated
+$OUT[3288] monitoring spaces 8 activated
+$OUT[3289] monitoring spaces 9 activated
+$OUT[3290] monitoring spaces 10 activated
+$OUT[3291] monitoring spaces 11 activated
+$OUT[3292] monitoring spaces 12 activated
+$OUT[3293] monitoring spaces 13 activated
+$OUT[3294] monitoring spaces 14 activated
+$OUT[3295] monitoring spaces 15 activated
+$OUT[3296] monitoring spaces 16 activated
+$OUT[3297] monitoring spaces 1 hurt
+$OUT[3298] monitoring spaces 2 hurt
+$OUT[3299] monitoring spaces 3 hurt
+$OUT[3300] monitoring spaces 4 hurt
+$OUT[3301] monitoring spaces 5 hurt
+$OUT[3302] monitoring spaces 6 hurt
+$OUT[3303] monitoring spaces 7 hurt
+$OUT[3304] monitoring spaces 8 hurt
+$OUT[3305] monitoring spaces 9 hurt
+$OUT[3306] monitoring spaces 10 hurt
+$OUT[3307] monitoring spaces 11 hurt
+$OUT[3308] monitoring spaces 12 hurt
+$OUT[3309] monitoring spaces 13 hurt
+$OUT[3310] monitoring spaces 14 hurt
+$OUT[3311] monitoring spaces 15 hurt
+$OUT[3312] monitoring spaces 16 hurt
+$OUT[3313] Tool 1 - reserve
+$OUT[3314] Tool 2 - Pinca C1
+$OUT[3315] Tool 3 - Pinca C2
+$OUT[3316] Tool 4 - Pinca C3
+$OUT[3317] Tool 5 - reserve
+$OUT[3318] Tool 6 - Gripper Accelo
+$OUT[3319] Tool 7 - reserve
+$OUT[3320] Tool 8 - Tool Changer
+$OUT[3321] PLC lock signal
+$OUT[3322] PLC lock signal
+$OUT[3323] PLC lock signal
+$OUT[3324] PLC lock signal
+$OUT[3325] PLC lock signal
+$OUT[3326] PLC lock signal
+$OUT[3327] PLC lock signal
+$OUT[3328] PLC lock signal
+$OUT[3329] PLC lock signal
+$OUT[3330] PLC lock signal
+$OUT[3331] R2_Soldando
+$OUT[3332] PLC lock signal
+$OUT[3333] R2_Trabalho Concluido
+$OUT[3334] R2_Solda Respot OK
+$OUT[3335] R2_Retirou Garra Geo
+$OUT[3336] PLC lock signal
+$OUT[3337] R2_Retira Garra Geo
+$OUT[3338] R2_Solda Geometria OK
+$OUT[3339] R2_Solicita Lib. Para Soldar Geometria
+$OUT[3340] PLC lock signal
+$OUT[3341] PLC lock signal
+$OUT[3342] PLC lock signal
+$OUT[3343] R2_Entregou Peca Geo
+$OUT[3344] R2_Solicita Lib. Para Sair Geo
+$OUT[3345] PLC lock signal
+$OUT[3346] R2_Entrega Peca Geo
+$OUT[3347] PLC lock signal
+$OUT[3348] PLC lock signal
+$OUT[3349] R2_Pegou Peca
+$OUT[3350] R2_Solicita Lib. Sair Magazine
+$OUT[3351] R2_Busca Peca Accelo
+$OUT[3352] PLC lock signal
+$OUT[3353] PLC lock signal
+$OUT[3354] PLC lock signal
+$OUT[3355] PLC lock signal
+$OUT[3356] PLC lock signal
+$OUT[3357] PLC lock signal
+$OUT[3358] PLC lock signal
+$OUT[3359] PLC lock signal
+$OUT[3360] PLC lock signal
+$OUT[3361] R2_Solicita Lib. Entrar EST 060EL_632
+$OUT[3362] R2_Solicita Lib. Buscar Gripper
+$OUT[3363] R2_Solicita Lib. Entregar Peca GEOBOX
+$OUT[3364] R2_Solicita Lib. Soldar Geo2
+$OUT[3365] R2_Solicita Lib. Soldar Geo1
+$OUT[3366] R2_Solicita Sair com Garra
+$OUT[3367] R2_Solda Respot Geo1 OK
+$OUT[3368] Peca na GEO
+$OUT[3369] Area de Solda
+$OUT[3370] Area do Gripper
+$OUT[3371] Area do Operador
+$OUT[3372] B30YEV MPS verriegelt
+$OUT[3373] Magazine 3 Ocupado
+$OUT[3374] Magazine 2 Ocupado
+$OUT[3375] Magazine 1 Ocupado
+$OUT[3376] R2_Solicita Lib. Entregar Peca GEOBOX
+$OUT[3377] PLC lock signal
+$OUT[3378] PLC lock signal
+$OUT[3379] Interbus Master OK
+$OUT[3380] Perfil Livre Estacao
+$OUT[3381] LIBERACAO AREA DO OPERADOR
+$OUT[3382] PLC lock signal
+$OUT[3383] PLC lock signal
+$OUT[3384] PLC lock signal
+$OUT[3385] INTERLOCK Area Robo RB16
+$OUT[3386] INTERLOCK Area Robo RB15
+$OUT[3387] INTERLOCK Area Robo RB14
+$OUT[3388] INTERLOCK Area Robo RB13
+$OUT[3389] INTERLOCK Area Robo RB12
+$OUT[3390] INTERLOCK Area Robo RB11
+$OUT[3391] Lib interlock 10 robo 4
+$OUT[3392] INTERLOCK Area Robo RB9
+$OUT[3393] INTERLOCK Area Robo RB8
+$OUT[3394] INTERLOCK Area Robo RB7
+$OUT[3395] INTERLOCK Area Robo RB6
+$OUT[3396] Lib interlock 5 robo 5
+$OUT[3397] INTERLOCK Area Robo RB4
+$OUT[3398] Lib interlock 3 robo 3
+$OUT[3399] INTERLOCK Area Robo RB2
+$OUT[3400] Lib interlock 1 robo 1
+$OUT[3401] toolchange: $Tool / bit0
+$OUT[3402] toolchange: $Tool / bit1
+$OUT[3403] toolchange: $Tool / bit2
+$OUT[3404] toolchange: $Tool / bit3
+$OUT[3405] toolchange: $Tool / bit4
+$OUT[3406] toolchange: $Tool / bit5
+$OUT[3407] reserve for application-signals
+$OUT[3408] reserve for application-signals
+$OUT[3409] reserve for application-signals
+$OUT[3410] reserve for application-signals
+$OUT[3411] reserve for application-signals
+$OUT[3412] reserve for application-signals
+$OUT[3413] reserve for application-signals
+$OUT[3414] reserve for application-signals
+$OUT[3415] reserve for application-signals
+$OUT[3416] reserve for application-signals
+$OUT[3417] readymessage gluing system 1
+$OUT[3418] readymessage gluing system 2
+$OUT[3419] Sp³lvorgang beendet system 1 (2K)
+$OUT[3420] Sp³lvorgang beendet system 2 (2K)
+$OUT[3421] filling 1 system 1
+$OUT[3422] filling 2 system 1
+$OUT[3423] filling 1 system 2
+$OUT[3424] filling 2 system 2
+$OUT[3425] dosing feeder offen system 1
+$OUT[3426] dosing feeder offen system 2
+$OUT[3427] filling valve offen system 1
+$OUT[3428] filling valve offen system 2
+$OUT[3429] reserve gluing system 1
+$OUT[3430] reserve gluing system 2
+$OUT[3431] reserve gluing system 1
+$OUT[3432] reserve gluing system 2
+$OUT[3433] reserve for gluing
+$OUT[3434] reserve for gluing
+$OUT[3435] reserve for gluing
+$OUT[3436] reserve for gluing
+$OUT[3437] reserve for gluing
+$OUT[3438] reserve for gluing
+$OUT[3439] reserve for gluing
+$OUT[3440] reserve for gluing
+$OUT[3441] Fluxo de Agua OK
+$OUT[3442] cooling-water drainage on
+$OUT[3443] without gun
+$OUT[3444] reserve
+$OUT[3445] tipdress required
+$OUT[3446] readiness group-tipdress robot-gun
+$OUT[3447] readiness group-tipdress stationary gun
+$OUT[3448] backtracking tipdress
+$OUT[3449] Maquina BOSCH OK
+$OUT[3450] Pre-Aviso SK1
+$OUT[3451] readiness group toolchange
+$OUT[3452] Qtde Maxima SK1
+$OUT[3453] tipchange stationary gun required
+$OUT[3454] readiness group-toolchange stationary gun
+$OUT[3455] maximum quantity electrode stationary gun
+$OUT[3456] reset tipchanger
+$OUT[3457] tipchanger-position
+$OUT[3458] error at short-circuit-welding
+$OUT[3459] gunforce advance warning
+$OUT[3460] gunforce error
+$OUT[3461] temperature servogun advance warning
+$OUT[3462] temperature servogun error
+$OUT[3463] electrode-magazine advance warning
+$OUT[3464] electorde-magazin empty
+$OUT[3465] reserve for welding-bits
+$OUT[3466] reserve for welding-bits
+$OUT[3467] reserve for welding-bits
+$OUT[3468] reserve for welding-bits
+$OUT[3469] reserve for welding-bits
+$OUT[3470] reserve for welding-bits
+$OUT[3471] reserve for welding-bits
+$OUT[3472] reserve for welding-bits
+$OUT[3473] request Tucker welding (Alu)
+$OUT[3474] reserve Tucker welding (Alu)
+$OUT[3475] reserve Tucker welding (Alu)
+$OUT[3476] reserve Tucker welding (Alu)
+$OUT[3477] reserve Tucker welding (Alu)
+$OUT[3478] reserve Tucker welding (Alu)
+$OUT[3479] reserve Tucker welding (Alu)
+$OUT[3480] reserve Tucker welding (Alu)
+$OUT[3481] reserve for application-signals
+$OUT[3482] reserve for application-signals
+$OUT[3483] reserve for application-signals
+$OUT[3484] reserve for application-signals
+$OUT[3485] reserve for application-signals
+$OUT[3486] reserve for application-signals
+$OUT[3487] reserve for application-signals
+$OUT[3488] reserve for application-signals
+$OUT[3489] reserve for application-signals
+$OUT[3490] reserve for application-signals
+$OUT[3491] reserve for application-signals
+$OUT[3492] reserve for application-signals
+$OUT[3493] reserve for application-signals
+$OUT[3494] reserve for application-signals
+$OUT[3495] reserve for application-signals
+$OUT[3496] reserve for application-signals
+$OUT[3497] Falha de Solda
+$OUT[3498] Falha de Gripper
+$OUT[3499] reserve for application-signals
+$OUT[3500] reserve for application-signals
+$OUT[3501] reserve for application-signals
+$OUT[3502] reserve for application-signals
+$OUT[3503] reserve for application-signals
+$OUT[3504] reserve for application-signals
+$OUT[3505] reserve for application-signals
+$OUT[3506] reserve for application-signals
+$OUT[3507] reserve for application-signals
+$OUT[3508] reserve for application-signals
+$OUT[3509] reserve for application-signals
+$OUT[3510] reserve for application-signals
+$OUT[3511] reserve for application-signals
+$OUT[3512] reserve for application-signals
+$OUT[3513] reserve for application-signals
+$OUT[3514] reserve for application-signals
+$OUT[3515] reserve for application-signals
+$OUT[3516] reserve for application-signals
+$OUT[3517] reserve for application-signals
+$OUT[3518] reserve for application-signals
+$OUT[3519] reserve for application-signals
+$OUT[3520] reserve for application-signals
+$OUT[3521] reserve for application-signals & locking-signals
+$OUT[3522] reserve for application-signals & locking-signals
+$OUT[3523] reserve for application-signals & locking-signals
+$OUT[3524] reserve for application-signals & locking-signals
+$OUT[3525] reserve for application-signals & locking-signals
+$OUT[3526] reserve for application-signals & locking-signals
+$OUT[3527] reserve for application-signals & locking-signals
+$OUT[3528] reserve for application-signals & locking-signals
+$OUT[3529] reserve for application-signals & locking-signals
+$OUT[3530] reserve for application-signals & locking-signals
+$OUT[3531] reserve for application-signals & locking-signals
+$OUT[3532] reserve for application-signals & locking-signals
+$OUT[3533] reserve for application-signals & locking-signals
+$OUT[3534] reserve for application-signals & locking-signals
+$OUT[3535] reserve for application-signals & locking-signals
+$OUT[3536] reserve for application-signals & locking-signals
+$OUT[3537] reserve for application-signals & locking-signals
+$OUT[3538] reserve for application-signals & locking-signals
+$OUT[3539] reserve for application-signals & locking-signals
+$OUT[3540] reserve for application-signals & locking-signals
+$OUT[3541] reserve for application-signals & locking-signals
+$OUT[3542] reserve for application-signals & locking-signals
+$OUT[3543] reserve for application-signals & locking-signals
+$OUT[3544] reserve for application-signals & locking-signals
+$OUT[3545] reserve for application-signals & locking-signals
+$OUT[3546] reserve for application-signals & locking-signals
+$OUT[3547] reserve for application-signals & locking-signals
+$OUT[3548] reserve for application-signals & locking-signals
+$OUT[3549] reserve for application-signals & locking-signals
+$OUT[3550] reserve for application-signals & locking-signals
+$OUT[3551] reserve for application-signals & locking-signals
+$OUT[3552] reserve for application-signals & locking-signals
+$OUT[3553] technology-VISU-signals / TP A / TP-ID
+$OUT[3554] technology-VISU-signals / TP A / TP-ID
+$OUT[3555] technology-VISU-signals / TP A / TP-ID
+$OUT[3556] technology-VISU-signals / TP A / TP-ID
+$OUT[3557] technology-VISU-signals / TP A / TP-ID
+$OUT[3558] technology-VISU-signals / TP A / TP-ID
+$OUT[3559] technology-VISU-signals / TP A / TP-ID
+$OUT[3560] technology-VISU-signals / TP A / TP-ID
+$OUT[3561] technology-VISU-signals / TP A / byte 0
+$OUT[3562] technology-VISU-signals / TP A / byte 0
+$OUT[3563] technology-VISU-signals / TP A / byte 0
+$OUT[3564] technology-VISU-signals / TP A / byte 0
+$OUT[3565] technology-VISU-signals / TP A / byte 0
+$OUT[3566] technology-VISU-signals / TP A / byte 0
+$OUT[3567] technology-VISU-signals / TP A / byte 0
+$OUT[3568] technology-VISU-signals / TP A / byte 0
+$OUT[3569] technology-VISU-signals / TP A / byte 1
+$OUT[3570] technology-VISU-signals / TP A / byte 1
+$OUT[3571] technology-VISU-signals / TP A / byte 1
+$OUT[3572] technology-VISU-signals / TP A / byte 1
+$OUT[3573] technology-VISU-signals / TP A / byte 1
+$OUT[3574] technology-VISU-signals / TP A / byte 1
+$OUT[3575] technology-VISU-signals / TP A / byte 1
+$OUT[3576] technology-VISU-signals / TP A / byte 1
+$OUT[3577] technology-VISU-signals / TP B / TP-ID
+$OUT[3578] technology-VISU-signals / TP B / TP-ID
+$OUT[3579] technology-VISU-signals / TP B / TP-ID
+$OUT[3580] technology-VISU-signals / TP B / TP-ID
+$OUT[3581] technology-VISU-signals / TP B / TP-ID
+$OUT[3582] technology-VISU-signals / TP B / TP-ID
+$OUT[3583] technology-VISU-signals / TP B / TP-ID
+$OUT[3584] technology-VISU-signals / TP B / TP-ID
+$OUT[3585] technology-VISU-signals / TP B / byte 0
+$OUT[3586] technology-VISU-signals / TP B / byte 0
+$OUT[3587] technology-VISU-signals / TP B / byte 0
+$OUT[3588] technology-VISU-signals / TP B / byte 0
+$OUT[3589] technology-VISU-signals / TP B / byte 0
+$OUT[3590] technology-VISU-signals / TP B / byte 0
+$OUT[3591] technology-VISU-signals / TP B / byte 0
+$OUT[3592] technology-VISU-signals / TP B / byte 0
+$OUT[3593] technology-VISU-signals / TP B / byte 1
+$OUT[3594] technology-VISU-signals / TP B / byte 1
+$OUT[3595] technology-VISU-signals / TP B / byte 1
+$OUT[3596] technology-VISU-signals / TP B / byte 1
+$OUT[3597] technology-VISU-signals / TP B / byte 1
+$OUT[3598] technology-VISU-signals / TP B / byte 1
+$OUT[3599] technology-VISU-signals / TP B / byte 1
+$OUT[3600] technology-VISU-signals / TP B / byte 1
+$OUT[3601] technology-VISU-signals / TP C / TP-ID
+$OUT[3602] technology-VISU-signals / TP C / TP-ID
+$OUT[3603] technology-VISU-signals / TP C / TP-ID
+$OUT[3604] technology-VISU-signals / TP C / TP-ID
+$OUT[3605] technology-VISU-signals / TP C / TP-ID
+$OUT[3606] technology-VISU-signals / TP C / TP-ID
+$OUT[3607] technology-VISU-signals / TP C / TP-ID
+$OUT[3608] technology-VISU-signals / TP C / TP-ID
+$OUT[3609] technology-VISU-signals / TP C / byte 0
+$OUT[3610] technology-VISU-signals / TP C / byte 0
+$OUT[3611] technology-VISU-signals / TP C / byte 0
+$OUT[3612] technology-VISU-signals / TP C / byte 0
+$OUT[3613] technology-VISU-signals / TP C / byte 0
+$OUT[3614] technology-VISU-signals / TP C / byte 0
+$OUT[3615] technology-VISU-signals / TP C / byte 0
+$OUT[3616] technology-VISU-signals / TP C / byte 0
+$OUT[3617] technology-VISU-signals / TP C / byte 1
+$OUT[3618] technology-VISU-signals / TP C / byte 1
+$OUT[3619] technology-VISU-signals / TP C / byte 1
+$OUT[3620] technology-VISU-signals / TP C / byte 1
+$OUT[3621] technology-VISU-signals / TP C / byte 1
+$OUT[3622] technology-VISU-signals / TP C / byte 1
+$OUT[3623] technology-VISU-signals / TP C / byte 1
+$OUT[3624] technology-VISU-signals / TP C / byte 1
+$OUT[3625] technology-VISU-signals / TP D / TP-ID
+$OUT[3626] technology-VISU-signals / TP D / TP-ID
+$OUT[3627] technology-VISU-signals / TP D / TP-ID
+$OUT[3628] technology-VISU-signals / TP D / TP-ID
+$OUT[3629] technology-VISU-signals / TP D / TP-ID
+$OUT[3630] technology-VISU-signals / TP D / TP-ID
+$OUT[3631] technology-VISU-signals / TP D / TP-ID
+$OUT[3632] technology-VISU-signals / TP D / TP-ID
+$OUT[3633] technology-VISU-signals / TP D / byte 0
+$OUT[3634] technology-VISU-signals / TP D / byte 0
+$OUT[3635] technology-VISU-signals / TP D / byte 0
+$OUT[3636] technology-VISU-signals / TP D / byte 0
+$OUT[3637] technology-VISU-signals / TP D / byte 0
+$OUT[3638] technology-VISU-signals / TP D / byte 0
+$OUT[3639] technology-VISU-signals / TP D / byte 0
+$OUT[3640] technology-VISU-signals / TP D / byte 0
+$OUT[3641] technology-VISU-signals / TP D / byte 1
+$OUT[3642] technology-VISU-signals / TP D / byte 1
+$OUT[3643] technology-VISU-signals / TP D / byte 1
+$OUT[3644] technology-VISU-signals / TP D / byte 1
+$OUT[3645] technology-VISU-signals / TP D / byte 1
+$OUT[3646] technology-VISU-signals / TP D / byte 1
+$OUT[3647] technology-VISU-signals / TP D / byte 1
+$OUT[3648] technology-VISU-signals / TP D / byte 1
+$OUT[3649] technology-VISU-signals / TP E / TP-ID
+$OUT[3650] technology-VISU-signals / TP E / TP-ID
+$OUT[3651] technology-VISU-signals / TP E / TP-ID
+$OUT[3652] technology-VISU-signals / TP E / TP-ID
+$OUT[3653] technology-VISU-signals / TP E / TP-ID
+$OUT[3654] technology-VISU-signals / TP E / TP-ID
+$OUT[3655] technology-VISU-signals / TP E / TP-ID
+$OUT[3656] technology-VISU-signals / TP E / TP-ID
+$OUT[3657] technology-VISU-signals / TP E / byte 0
+$OUT[3658] technology-VISU-signals / TP E / byte 0
+$OUT[3659] technology-VISU-signals / TP E / byte 0
+$OUT[3660] technology-VISU-signals / TP E / byte 0
+$OUT[3661] technology-VISU-signals / TP E / byte 0
+$OUT[3662] technology-VISU-signals / TP E / byte 0
+$OUT[3663] technology-VISU-signals / TP E / byte 0
+$OUT[3664] technology-VISU-signals / TP E / byte 0
+$OUT[3665] technology-VISU-signals / TP E / byte 1
+$OUT[3666] technology-VISU-signals / TP E / byte 1
+$OUT[3667] technology-VISU-signals / TP E / byte 1
+$OUT[3668] technology-VISU-signals / TP E / byte 1
+$OUT[3669] technology-VISU-signals / TP E / byte 1
+$OUT[3670] technology-VISU-signals / TP E / byte 1
+$OUT[3671] technology-VISU-signals / TP E / byte 1
+$OUT[3672] technology-VISU-signals / TP E / byte 1
+$OUT[3673] reserve CRC
+$OUT[3674] reserve CRC
+$OUT[3675] reserve CRC
+$OUT[3676] reserve CRC
+$OUT[3677] reserve CRC
+$OUT[3678] reserve CRC
+$OUT[3679] reserve CRC
+$OUT[3680] reserve CRC
+$OUT[3681]  CRC signal_0 (4 bit)
+$OUT[3682]  CRC signal_0 (4 bit)
+$OUT[3683]  CRC signal_0 (4 bit)
+$OUT[3684]  CRC signal_0 (4 bit)
+$OUT[3685]  CRC signal_1 (4 bit)
+$OUT[3686]  CRC signal_1 (4 bit)
+$OUT[3687]  CRC signal_1 (4 bit)
+$OUT[3688]  CRC signal_1 (4 bit)
+$OUT[3689]  CRC signal_2 (4 bit)
+$OUT[3690]  CRC signal_2 (4 bit)
+$OUT[3691]  CRC signal_2 (4 bit)
+$OUT[3692]  CRC signal_2 (4 bit)
+$OUT[3693]  CRC signal_3 (4 bit)
+$OUT[3694]  CRC signal_3 (4 bit)
+$OUT[3695]  CRC signal_3 (4 bit)
+$OUT[3696]  CRC signal_3 (4 bit)
+$OUT[3697]  CRC signal_4 (4 bit)
+$OUT[3698]  CRC signal_4 (4 bit)
+$OUT[3699]  CRC signal_4 (4 bit)
+$OUT[3700]  CRC signal_4 (4 bit)
+$OUT[3701]  CRC signal_5 (4 bit)
+$OUT[3702]  CRC signal_5 (4 bit)
+$OUT[3703]  CRC signal_5 (4 bit)
+$OUT[3704]  CRC signal_5 (4 bit)
+$OUT[3705]  CRC signal_6 (4 bit)
+$OUT[3706]  CRC signal_6 (4 bit)
+$OUT[3707]  CRC signal_6 (4 bit)
+$OUT[3708]  CRC signal_6 (4 bit)
+$OUT[3709]  CRC signal_7 (4 bit)
+$OUT[3710]  CRC signal_7 (4 bit)
+$OUT[3711]  CRC signal_7 (4 bit)
+$OUT[3712]  CRC signal_7 (4 bit)
+$OUT[3713] 
+$OUT[3714] 
+$OUT[3715] 
+$OUT[3716] 
+$OUT[3717] 
+$OUT[3718] 
+$OUT[3719] 
+$OUT[3720] 
+$OUT[3721] 
+$OUT[3722] 
+$OUT[3723] 
+$OUT[3724] 
+$OUT[3725] 
+$OUT[3726] 
+$OUT[3727] 
+$OUT[3728] 
+$OUT[3729] 
+$OUT[3730] 
+$OUT[3731] 
+$OUT[3732] 
+$OUT[3733] 
+$OUT[3734] 
+$OUT[3735] 
+$OUT[3736] 
+$OUT[3737] 
+$OUT[3738] 
+$OUT[3739] 
+$OUT[3740] 
+$OUT[3741] 
+$OUT[3742] 
+$OUT[3743] 
+$OUT[3744] 
+$OUT[3745] 
+$OUT[3746] 
+$OUT[3747] 
+$OUT[3748] 
+$OUT[3749] 
+$OUT[3750] 
+$OUT[3751] 
+$OUT[3752] 
+$OUT[3753] 
+$OUT[3754] 
+$OUT[3755] 
+$OUT[3756] 
+$OUT[3757] 
+$OUT[3758] 
+$OUT[3759] 
+$OUT[3760] 
+$OUT[3761] 
+$OUT[3762] 
+$OUT[3763] 
+$OUT[3764] 
+$OUT[3765] 
+$OUT[3766] 
+$OUT[3767] 
+$OUT[3768] 
+$OUT[3769] 
+$OUT[3770] 
+$OUT[3771] 
+$OUT[3772] 
+$OUT[3773] 
+$OUT[3774] 
+$OUT[3775] 
+$OUT[3776] 
+$OUT[3777] 
+$OUT[3778] 
+$OUT[3779] 
+$OUT[3780] 
+$OUT[3781] 
+$OUT[3782] 
+$OUT[3783] 
+$OUT[3784] 
+$OUT[3785] 
+$OUT[3786] 
+$OUT[3787] 
+$OUT[3788] 
+$OUT[3789] 
+$OUT[3790] 
+$OUT[3791] 
+$OUT[3792] 
+$OUT[3793] 
+$OUT[3794] 
+$OUT[3795] 
+$OUT[3796] 
+$OUT[3797] 
+$OUT[3798] 
+$OUT[3799] 
+$OUT[3800] 
+$OUT[3801] 
+$OUT[3802] 
+$OUT[3803] 
+$OUT[3804] 
+$OUT[3805] 
+$OUT[3806] 
+$OUT[3807] 
+$OUT[3808] 
+$OUT[3809] 
+$OUT[3810] 
+$OUT[3811] 
+$OUT[3812] 
+$OUT[3813] 
+$OUT[3814] 
+$OUT[3815] 
+$OUT[3816] 
+$OUT[3817] 
+$OUT[3818] 
+$OUT[3819] 
+$OUT[3820] 
+$OUT[3821] 
+$OUT[3822] 
+$OUT[3823] 
+$OUT[3824] 
+$OUT[3825] 
+$OUT[3826] 
+$OUT[3827] 
+$OUT[3828] 
+$OUT[3829] 
+$OUT[3830] 
+$OUT[3831] 
+$OUT[3832] 
+$OUT[3833] 
+$OUT[3834] 
+$OUT[3835] 
+$OUT[3836] 
+$OUT[3837] 
+$OUT[3838] 
+$OUT[3839] 
+$OUT[3840] 
+$OUT[3841] 
+$OUT[3842] 
+$OUT[3843] 
+$OUT[3844] 
+$OUT[3845] 
+$OUT[3846] 
+$OUT[3847] 
+$OUT[3848] 
+$OUT[3849] 
+$OUT[3850] 
+$OUT[3851] 
+$OUT[3852] 
+$OUT[3853] 
+$OUT[3854] 
+$OUT[3855] 
+$OUT[3856] 
+$OUT[3857] 
+$OUT[3858] 
+$OUT[3859] 
+$OUT[3860] 
+$OUT[3861] 
+$OUT[3862] 
+$OUT[3863] 
+$OUT[3864] 
+$OUT[3865] 
+$OUT[3866] 
+$OUT[3867] 
+$OUT[3868] 
+$OUT[3869] 
+$OUT[3870] 
+$OUT[3871] 
+$OUT[3872] 
+$OUT[3873] 
+$OUT[3874] 
+$OUT[3875] 
+$OUT[3876] 
+$OUT[3877] 
+$OUT[3878] 
+$OUT[3879] 
+$OUT[3880] 
+$OUT[3881] 
+$OUT[3882] 
+$OUT[3883] 
+$OUT[3884] 
+$OUT[3885] 
+$OUT[3886] 
+$OUT[3887] 
+$OUT[3888] 
+$OUT[3889] 
+$OUT[3890] 
+$OUT[3891] 
+$OUT[3892] 
+$OUT[3893] 
+$OUT[3894] 
+$OUT[3895] 
+$OUT[3896] 
+$OUT[3897] 
+$OUT[3898] 
+$OUT[3899] 
+$OUT[3900] 
+$OUT[3901] 
+$OUT[3902] 
+$OUT[3903] 
+$OUT[3904] 
+$OUT[3905] 
+$OUT[3906] 
+$OUT[3907] 
+$OUT[3908] 
+$OUT[3909] 
+$OUT[3910] 
+$OUT[3911] 
+$OUT[3912] 
+$OUT[3913] 
+$OUT[3914] 
+$OUT[3915] 
+$OUT[3916] 
+$OUT[3917] 
+$OUT[3918] 
+$OUT[3919] 
+$OUT[3920] 
+$OUT[3921] 
+$OUT[3922] 
+$OUT[3923] 
+$OUT[3924] 
+$OUT[3925] 
+$OUT[3926] 
+$OUT[3927] 
+$OUT[3928] 
+$OUT[3929] 
+$OUT[3930] 
+$OUT[3931] 
+$OUT[3932] 
+$OUT[3933] 
+$OUT[3934] 
+$OUT[3935] 
+$OUT[3936] 
+$OUT[3937] 
+$OUT[3938] 
+$OUT[3939] 
+$OUT[3940] 
+$OUT[3941] 
+$OUT[3942] 
+$OUT[3943] 
+$OUT[3944] 
+$OUT[3945] 
+$OUT[3946] 
+$OUT[3947] 
+$OUT[3948] 
+$OUT[3949] 
+$OUT[3950] 
+$OUT[3951] 
+$OUT[3952] 
+$OUT[3953] 
+$OUT[3954] 
+$OUT[3955] 
+$OUT[3956] 
+$OUT[3957] 
+$OUT[3958] 
+$OUT[3959] 
+$OUT[3960] 
+$OUT[3961] 
+$OUT[3962] 
+$OUT[3963] 
+$OUT[3964] 
+$OUT[3965] 
+$OUT[3966] 
+$OUT[3967] 
+$OUT[3968] 
+$OUT[3969] 
+$OUT[3970] 
+$OUT[3971] 
+$OUT[3972] 
+$OUT[3973] 
+$OUT[3974] 
+$OUT[3975] 
+$OUT[3976] 
+$OUT[3977] 
+$OUT[3978] 
+$OUT[3979] 
+$OUT[3980] 
+$OUT[3981] 
+$OUT[3982] 
+$OUT[3983] 
+$OUT[3984] 
+$OUT[3985] 
+$OUT[3986] 
+$OUT[3987] 
+$OUT[3988] 
+$OUT[3989] 
+$OUT[3990] 
+$OUT[3991] 
+$OUT[3992] 
+$OUT[3993] 
+$OUT[3994] 
+$OUT[3995] 
+$OUT[3996] 
+$OUT[3997] 
+$OUT[3998] 
+$OUT[3999] 
+$OUT[4000] 
+$OUT[4001] data channel byte 0/bit 0
+$OUT[4002] data channel byte 0/bit 1
+$OUT[4003] data channel byte 0/bit 2
+$OUT[4004] data channel byte 0/bit 3
+$OUT[4005] data channel byte 0/bit 4
+$OUT[4006] data channel byte 0/bit 5
+$OUT[4007] data channel byte 0/bit 6
+$OUT[4008] data channel byte 0/bit 7
+$OUT[4009] data channel byte 1/bit 0
+$OUT[4010] data channel byte 1/bit 1
+$OUT[4011] data channel byte 1/bit 2
+$OUT[4012] data channel byte 1/bit 3
+$OUT[4013] data channel byte 1/bit 4
+$OUT[4014] data channel byte 1/bit 5
+$OUT[4015] data channel byte 1/bit 6
+$OUT[4016] data channel byte 1/bit 7
+$OUT[4017] data channel byte 2/bit 0
+$OUT[4018] data channel byte 2/bit 1
+$OUT[4019] data channel byte 2/bit 2
+$OUT[4020] data channel byte 2/bit 3
+$OUT[4021] data channel byte 2/bit 4
+$OUT[4022] data channel byte 2/bit 5
+$OUT[4023] data channel byte 2/bit 6
+$OUT[4024] data channel byte 2/bit 7
+$OUT[4025] data channel byte 3/bit 0
+$OUT[4026] data channel byte 3/bit 1
+$OUT[4027] data channel byte 3/bit 2
+$OUT[4028] data channel byte 3/bit 3
+$OUT[4029] data channel byte 3/bit 4
+$OUT[4030] data channel byte 3/bit 5
+$OUT[4031] data channel byte 3/bit 6
+$OUT[4032] data channel byte 3/bit 7
+$OUT[4033] data channel byte 4/bit 0
+$OUT[4034] data channel byte 4/bit 1
+$OUT[4035] data channel byte 4/bit 2
+$OUT[4036] data channel byte 4/bit 3
+$OUT[4037] data channel byte 4/bit 4
+$OUT[4038] data channel byte 4/bit 5
+$OUT[4039] data channel byte 4/bit 6
+$OUT[4040] data channel byte 4/bit 7
+$OUT[4041] data channel byte 5/bit 0
+$OUT[4042] data channel byte 5/bit 1
+$OUT[4043] data channel byte 5/bit 2
+$OUT[4044] data channel byte 5/bit 3
+$OUT[4045] data channel byte 5/bit 4
+$OUT[4046] data channel byte 5/bit 5
+$OUT[4047] data channel byte 5/bit 6
+$OUT[4048] data channel byte 5/bit 7
+$OUT[4049] data channel byte 6/bit 0
+$OUT[4050] data channel byte 6/bit 1
+$OUT[4051] data channel byte 6/bit 2
+$OUT[4052] data channel byte 6/bit 3
+$OUT[4053] data channel byte 6/bit 4
+$OUT[4054] data channel byte 6/bit 5
+$OUT[4055] data channel byte 6/bit 6
+$OUT[4056] data channel byte 6/bit 7
+$OUT[4057] data channel byte 7/bit 0
+$OUT[4058] data channel byte 7/bit 1
+$OUT[4059] data channel byte 7/bit 2
+$OUT[4060] data channel byte 7/bit 3
+$OUT[4061] data channel byte 7/bit 4
+$OUT[4062] data channel byte 7/bit 5
+$OUT[4063] data channel byte 7/bit 6
+$OUT[4064] data channel byte 7/bit 7
+$OUT[4065] data channel byte 8/bit 0
+$OUT[4066] data channel byte 8/bit 0
+$OUT[4067] data channel byte 8/bit 0
+$OUT[4068] data channel byte 8/bit 0
+$OUT[4069] data channel byte 8/bit 0
+$OUT[4070] data channel byte 8/bit 0
+$OUT[4071] data channel byte 8/bit 0
+$OUT[4072] data channel byte 8/bit 0
+$OUT[4073] data channel byte 9/bit 0
+$OUT[4074] data channel byte 9/bit 0
+$OUT[4075] data channel byte 9/bit 0
+$OUT[4076] data channel byte 9/bit 0
+$OUT[4077] data channel byte 9/bit 0
+$OUT[4078] data channel byte 9/bit 0
+$OUT[4079] data channel byte 9/bit 0
+$OUT[4080] data channel byte 9/bit 0
+$OUT[4081] 
+$OUT[4082] 
+$OUT[4083] 
+$OUT[4084] 
+$OUT[4085] 
+$OUT[4086] 
+$OUT[4087] 
+$OUT[4088] 
+$OUT[4089] 
+$OUT[4090] 
+$OUT[4091] 
+$OUT[4092] 
+$OUT[4093] 
+$OUT[4094] 
+$OUT[4095] 
+$OUT[4096] 

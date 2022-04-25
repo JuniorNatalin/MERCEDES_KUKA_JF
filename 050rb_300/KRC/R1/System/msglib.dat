@@ -1,0 +1,9 @@
+&ACCESS  RV
+&COMMENT library of msg-calls
+&PARAM DISKPATH = System
+&REL 4
+DEFDAT  msglib PUBLIC
+
+DECL INT lnHandle=10267
+
+ENDDAT

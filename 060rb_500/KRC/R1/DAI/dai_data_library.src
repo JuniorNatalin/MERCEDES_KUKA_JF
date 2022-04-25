@@ -1,0 +1,588 @@
+&ACCESS RV18
+&REL 124
+&COMMENT daimler_data_library
+&PARAM DISKPATH = KRC:\R1\DAI
+&PARAM version = 2.1.1
+DEF dai_data_library( )
+; Ausgabe der Lade-Meldung....ohne Msg_library weil hier noch nicht geladen
+decl KrlMsg_t loadmessage 
+decl KrlMsgPar_t LoadPar[3]
+decl KrlMsgOpt_t loadoptions
+decl int handle             
+loadmessage={modul[] "DAI_MSG_LIB",NR 15,msg_txt[] "DAI_MSG_L4"}
+handle=Set_KrlMsg(#notify,loadmessage,LoadPar[],loadoptions)
+END
+                   
+;           
+;Alle Funktionen fuer die Visu-Signale
+;all functions belong to the visu-bits
+;  
+;FOLD VISU
+        
+;        
+; Hauptfunktion fuer die Visusignale
+; MainFunction to send the visu-signals
+;     
+GLOBAl DEF Send_Visu_Data()
+	; Visu-Signale Senden
+ 	Visu_Signals()
+END
+
+;
+;Funktion um die Bits je nach Einstellung zu senden
+;
+;
+DEF Visu_Signals()
+ INT iCounter
+ INT Number        
+ CHAR Akt_Shortcut[5]
+           
+; Alle fuenf Felder durchlaufen
+ FOR iCounter=1 TO 5 STEP 1
+ 
+    ; Abfrage ob ueberhaupt aktiv ist
+   SWITCH Tech_Visu[iCounter].IsActive
+		CASE #YES
+			; aktuellen Techkueruzel holen
+         Akt_Shortcut[]=Tech_Visu[iCounter].TechShortcut[]   
+
+			; Arrayposition herausfinden#
+         Number = Find_Number(Akt_Shortcut[])    
+         
+          ; Abfrage ob die Funktion "0" zurueckgegeben hat 
+          ; --> Kuerzel nicht gefunden
+         If (Number == 0) then
+          msg_show("DAI_MSG_LIB", #quit, 1, "CTRL_MSG71")
+          return
+         Endif
+                 
+			; jetzt werden die Bits gesendet
+         Send_Visu_Bits(Tech_Array[Number],iCounter)
+
+		CASE #NO
+         SWITCH iCounter
+				CASE 1
+					Signal_Tech_A_ID = 0
+					Signal_Tech_A_DATA = 0
+				CASE 2
+					Signal_Tech_B_ID = 0
+					Signal_Tech_B_DATA = 0
+				CASE 3
+					Signal_Tech_C_ID = 0
+					Signal_Tech_C_DATA = 0
+				CASE 4
+					Signal_Tech_D_ID = 0
+					Signal_Tech_D_DATA = 0
+				CASE 5
+					Signal_Tech_E_ID = 0
+					Signal_Tech_E_DATA = 0
+				DEFAULT
+					msg_show("DAI_MSG_LIB", #dialog, 1, "CTRL_MSG71")
+			ENDSWITCH	
+		DEFAULT
+			msg_show("DAI_MSG_LIB", #quit, 1, "CTRL_MSG70")
+	ENDSWITCH    
+ ENDFOR
+
+END 
+     
+;        
+; Unterfunktion die die einzelne Bits sendet
+; Subroutine to send the several bits
+;  
+DEF Send_Visu_Bits (Act_Tech:IN,Block:IN)
+INT Counter, Block, Offset
+Decl Technology Act_tech
+   
+
+   
+    ; Verschiebung der Bloecke berechnen auf Basis der aktuellen Nummer (3553-->Start_Visu) 
+    Offset = ((Block - 1) * 24) + Start_Visu + 8
+	
+		IF Varstate("Act_Tech.Nr1") <> #DECLARED THEN
+			SWITCH ACT_Tech.Nr1.Typ
+				CASE #INP
+               $OUT[0 + Offset] = $IN[Act_Tech.Nr1.Number]
+				CASE #OUTP
+					$OUT[0 + Offset] = $OUT[Act_Tech.Nr1.Number]
+				DEFAULT
+					msg_param(1,,Block)
+					msg_show("DAI_MSG_LIB", #quit, 1, "CTRL_MSG72")
+			ENDSWITCH
+		ENDIF
+		IF Varstate("Act_Tech.Nr2") <> #DECLARED THEN
+			SWITCH ACT_Tech.Nr2.Typ
+				CASE #INP
+					$OUT[1 + Offset] = $IN[Act_Tech.Nr2.Number]
+				CASE #OUTP
+					$OUT[1 + Offset] = $OUT[Act_Tech.Nr2.Number]
+				DEFAULT
+					msg_param(1,,Block)
+					msg_show("DAI_MSG_LIB", #quit, 1, "CTRL_MSG73")
+			ENDSWITCH
+		ENDIF
+		IF Varstate("Act_Tech.Nr3") <> #DECLARED THEN
+			SWITCH ACT_Tech.Nr3.Typ
+				CASE #INP
+					$OUT[2 + Offset] = $IN[Act_Tech.Nr3.Number]
+				CASE #OUTP
+					$OUT[2 + Offset] = $OUT[Act_Tech.Nr3.Number]
+				DEFAULT
+					msg_param(1,,Block)
+					msg_show("DAI_MSG_LIB", #quit, 1, "CTRL_MSG74")
+			ENDSWITCH
+		ENDIF
+		IF Varstate("Act_Tech.Nr4") <> #DECLARED THEN
+			SWITCH ACT_Tech.Nr4.Typ
+				CASE #INP
+					$OUT[3 + Offset] = $IN[Act_Tech.Nr4.Number]
+				CASE #OUTP
+					$OUT[3 + Offset] = $OUT[Act_Tech.Nr4.Number]
+				DEFAULT
+					msg_param(1,,Block)
+					msg_show("DAI_MSG_LIB", #quit, 1, "CTRL_MSG75")
+			ENDSWITCH
+		ENDIF
+		IF Varstate("Act_Tech.Nr5") <> #DECLARED THEN
+			SWITCH ACT_Tech.Nr5.Typ
+				CASE #INP
+					$OUT[4 + Offset] = $IN[Act_Tech.Nr5.Number]
+				CASE #OUTP
+					$OUT[4 + Offset] = $OUT[Act_Tech.Nr5.Number]
+				DEFAULT
+					msg_param(1,,Block)
+					msg_show("DAI_MSG_LIB", #quit, 1, "CTRL_MSG76")
+			ENDSWITCH
+		ENDIF
+		IF Varstate("Act_Tech.Nr6") <> #DECLARED THEN
+			SWITCH ACT_Tech.Nr6.Typ
+				CASE #INP
+					$OUT[5 + Offset] = $IN[Act_Tech.Nr6.Number]
+				CASE #OUTP
+					$OUT[5 + Offset] = $OUT[Act_Tech.Nr6.Number]
+				DEFAULT
+					msg_param(1,,Block)
+					msg_show("DAI_MSG_LIB", #quit, 1, "CTRL_MSG77")
+			ENDSWITCH
+		ENDIF
+		IF Varstate("Act_Tech.Nr7") <> #DECLARED THEN
+			SWITCH ACT_Tech.Nr7.Typ
+				CASE #INP
+					$OUT[6 + Offset] = $IN[Act_Tech.Nr7.Number]
+				CASE #OUTP
+					$OUT[6 + Offset] = $OUT[Act_Tech.Nr7.Number]
+				DEFAULT
+					msg_param(1,,Block)
+					msg_show("DAI_MSG_LIB", #quit, 1, "CTRL_MSG78")
+			ENDSWITCH
+		ENDIF
+		IF Varstate("Act_Tech.Nr8") <> #DECLARED THEN
+			SWITCH ACT_Tech.Nr8.Typ
+				CASE #INP
+					$OUT[7 + Offset] = $IN[Act_Tech.Nr8.Number]
+				CASE #OUTP
+					$OUT[7 + Offset] = $OUT[Act_Tech.Nr8.Number]
+				DEFAULT
+					msg_param(1,,Block)
+					msg_show("DAI_MSG_LIB", #quit, 1, "CTRL_MSG79")
+			ENDSWITCH
+		ENDIF
+		IF Varstate("Act_Tech.Nr9") <> #DECLARED THEN
+			SWITCH ACT_Tech.Nr9.Typ
+				CASE #INP
+					$OUT[8 + Offset] = $IN[Act_Tech.Nr9.Number]
+				CASE #OUTP
+					$OUT[8 + Offset] = $OUT[Act_Tech.Nr9.Number]
+				DEFAULT
+					msg_param(1,,Block)
+					msg_show("DAI_MSG_LIB", #quit, 1, "CTRL_MSG80")
+			ENDSWITCH
+		ENDIF
+		IF Varstate("Act_Tech.Nr10") <> #DECLARED THEN
+			SWITCH ACT_Tech.Nr10.Typ
+				CASE #INP
+					$OUT[9 + Offset] = $IN[Act_Tech.Nr10.Number]
+				CASE #OUTP
+					$OUT[9 + Offset] = $OUT[Act_Tech.Nr10.Number]
+				DEFAULT
+					msg_param(1,,Block)
+					msg_show("DAI_MSG_LIB", #quit, 1, "CTRL_MSG81")
+			ENDSWITCH
+		ENDIF	
+		IF Varstate("Act_Tech.Nr11") <> #DECLARED THEN
+			SWITCH ACT_Tech.Nr11.Typ
+				CASE #INP
+					$OUT[10 + Offset] = $IN[Act_Tech.Nr11.Number]
+				CASE #OUTP
+					$OUT[10 + Offset] = $OUT[Act_Tech.Nr11.Number]
+				DEFAULT
+					msg_param(1,,Block)
+					msg_show("DAI_MSG_LIB", #quit, 1, "CTRL_MSG82")
+			ENDSWITCH
+		ENDIF
+		IF Varstate("Act_Tech.Nr12") <> #DECLARED THEN
+			SWITCH ACT_Tech.Nr12.Typ
+				CASE #INP
+					$OUT[11 + Offset] = $IN[Act_Tech.Nr12.Number]
+				CASE #OUTP
+					$OUT[11 + Offset] = $OUT[Act_Tech.Nr12.Number]
+				DEFAULT
+					msg_param(1,,Block)
+					msg_show("DAI_MSG_LIB", #quit, 1, "CTRL_MSG83")
+			ENDSWITCH
+		ENDIF
+		IF Varstate("Act_Tech.Nr13") <> #DECLARED THEN
+			SWITCH ACT_Tech.Nr13.Typ
+				CASE #INP
+					$OUT[12 + Offset] = $IN[Act_Tech.Nr13.Number]
+				CASE #OUTP
+					$OUT[12 + Offset] = $OUT[Act_Tech.Nr13.Number]
+				DEFAULT
+					msg_param(1,,Block)
+					msg_show("DAI_MSG_LIB", #quit, 1, "CTRL_MSG84")
+			ENDSWITCH
+		ENDIF		
+		IF Varstate("Act_Tech.Nr14") <> #DECLARED THEN
+			SWITCH ACT_Tech.Nr14.Typ
+				CASE #INP
+					$OUT[13 + Offset] = $IN[Act_Tech.Nr14.Number]
+				CASE #OUTP
+					$OUT[13 + Offset] = $OUT[Act_Tech.Nr14.Number]
+				DEFAULT
+					msg_param(1,,Block)
+					msg_show("DAI_MSG_LIB", #quit, 1, "CTRL_MSG85")
+			ENDSWITCH
+		ENDIF	
+		IF Varstate("Act_Tech.Nr15") <> #DECLARED THEN
+			SWITCH ACT_Tech.Nr15.Typ
+				CASE #INP
+					$OUT[14 + Offset] = $IN[Act_Tech.Nr15.Number]
+				CASE #OUTP
+					$OUT[14 + Offset] = $OUT[Act_Tech.Nr15.Number]
+				DEFAULT
+					msg_param(1,,Block)
+					msg_show("DAI_MSG_LIB", #quit, 1, "CTRL_MSG86")
+			ENDSWITCH
+		ENDIF	
+		IF Varstate("Act_Tech.Nr16") <> #DECLARED THEN
+			SWITCH ACT_Tech.Nr16.Typ
+				CASE #INP
+					$OUT[15 + Offset] = $IN[Act_Tech.Nr16.Number]
+				CASE #OUTP
+					$OUT[15 + Offset] = $OUT[Act_Tech.Nr16.Number]
+				DEFAULT
+					msg_param(1,,Block)
+					msg_show("DAI_MSG_LIB", #quit, 1, "CTRL_MSG87")
+			ENDSWITCH
+		ENDIF	
+
+  		;Tech-kennung rueberschieben
+		SWITCH Block
+		CASE 1
+			Signal_Tech_A_ID = ACT_Tech.Kennung
+		CASE 2
+			Signal_Tech_B_ID = ACT_Tech.Kennung
+		CASE 3
+			Signal_Tech_C_ID = ACT_Tech.Kennung
+		CASE 4
+			Signal_Tech_D_ID = ACT_Tech.Kennung
+		CASE 5
+			Signal_Tech_E_ID = ACT_Tech.Kennung
+		DEFAULT
+			msg_show("DAI_MSG_LIB", #quit, 1, "CTRL_MSG71")
+		ENDSWITCH	
+END
+
+;        
+; Unterfunktion: Findet Nummer in dem Array mit dem String wo eingetragen worden isz
+; Subroutine to find then number in the Array with the string
+;  
+DEFFCT INT Find_Number (TechShortCutIn[]:IN)
+CHAR TechShortCutIn[]
+INT Counter
+BOOL  bResult
+
+	FOR Counter = 1 TO MAX_TECH STEP 1
+      SWITCH Tech_Array[Counter].IsActive
+			Case #YES
+				IF StrComp(Tech_Array[Counter].TechShortCut[],TechShortCutIn[],#NOT_CASE_SENS) THEN
+					return Counter
+				ENDIF
+			CASE #NO
+				; nichts machen
+			DEFAULT
+				msg_show("DAI_MSG_LIB", #quit, 1, "CTRL_MSG71")
+		ENDSWITCH
+	ENDFOR
+		
+      ; Funktion gibt 0 zurueck wenn die Technologie nicht gefunden wurde
+	return 0
+		
+ENDFCT
+
+;ENDFOLD
+            
+          
+;    
+;Alle Funktion fuer RDS
+;all functions belongs RDS
+;
+;FOLD RDS
+
+
+GLOBAL DEF Send_RDS_Data()
+
+; Daten die von der SPS kommen ruerberkopieren auf die einzelnen Bereiche
+
+; 0. Bereich [Byte 480]
+O_RDS_0_1 = I_RDS_1 
+O_RDS_0_2 = I_RDS_2 
+O_RDS_0_3 = I_RDS_3 
+O_RDS_0_4 = I_RDS_4
+O_RDS_0_5 = I_RDS_5
+
+; 1. Bereich [Byte 600]
+O_RDS_1_1 = I_RDS_1 
+O_RDS_1_2 = I_RDS_2 
+O_RDS_1_3 = I_RDS_3 
+O_RDS_1_4 = I_RDS_4
+O_RDS_1_5 = I_RDS_5
+; 2. Bereich [Byte 620]
+O_RDS_2_1 = I_RDS_1 
+O_RDS_2_2 = I_RDS_2 
+O_RDS_2_3 = I_RDS_3 
+O_RDS_2_4 = I_RDS_4
+O_RDS_2_5 = I_RDS_5
+; 3. Bereich [Byte 640]
+O_RDS_3_1 = I_RDS_1 
+O_RDS_3_2 = I_RDS_2 
+O_RDS_3_3 = I_RDS_3 
+O_RDS_3_4 = I_RDS_4
+O_RDS_3_5 = I_RDS_5
+; 4. Bereich [Byte 660]
+O_RDS_4_1 = I_RDS_1 
+O_RDS_4_2 = I_RDS_2 
+O_RDS_4_3 = I_RDS_3 
+O_RDS_4_4 = I_RDS_4
+O_RDS_4_5 = I_RDS_5
+; 5. Bereich [Byte 680]
+O_RDS_5_1 = I_RDS_1 
+O_RDS_5_2 = I_RDS_2 
+O_RDS_5_3 = I_RDS_3 
+O_RDS_5_4 = I_RDS_4
+O_RDS_5_5 = I_RDS_5
+; 6. Bereich [Byte 700]
+O_RDS_6_1 = I_RDS_1 
+O_RDS_6_2 = I_RDS_2 
+O_RDS_6_3 = I_RDS_3 
+O_RDS_6_4 = I_RDS_4
+O_RDS_6_5 = I_RDS_5
+; 7. Bereich [Byte 720]
+O_RDS_7_1 = I_RDS_1 
+O_RDS_7_2 = I_RDS_2 
+O_RDS_7_3 = I_RDS_3 
+O_RDS_7_4 = I_RDS_4
+O_RDS_7_5 = I_RDS_5
+; 8. Bereich [Byte 740]
+O_RDS_8_1 = I_RDS_1 
+O_RDS_8_2 = I_RDS_2 
+O_RDS_8_3 = I_RDS_3 
+O_RDS_8_4 = I_RDS_4
+O_RDS_8_5 = I_RDS_5
+; 9. Bereich [Byte 760]
+O_RDS_9_1 = I_RDS_1 
+O_RDS_9_2 = I_RDS_2 
+O_RDS_9_3 = I_RDS_3 
+O_RDS_9_4 = I_RDS_4
+O_RDS_9_5 = I_RDS_5
+; 10. Bereich [Byte 780]
+O_RDS_10_1 = I_RDS_1 
+O_RDS_10_2 = I_RDS_2 
+O_RDS_10_3 = I_RDS_3 
+O_RDS_10_4 = I_RDS_4
+O_RDS_10_5 = I_RDS_5
+; 11. Bereich [Byte 800]
+O_RDS_11_1 = I_RDS_1 
+O_RDS_11_2 = I_RDS_2 
+O_RDS_11_3 = I_RDS_3 
+O_RDS_11_4 = I_RDS_4
+O_RDS_11_5 = I_RDS_5
+END
+
+;ENDFOLD
+            
+             
+;      
+;Alle Funktion fuer PLUS
+;all functions belongs PLUS
+;
+;FOLD PLUS
+
+; Globale Funktion für die PLUS-Anbindung
+; global function for PLUS-coupling
+GLOBAL DEF  PlusData(PLUS_CMD: IN,PLUS_Data: IN)
+    DECL en_PlusData PLUS_CMD
+    DECL T_PlusData PLUS_Data
+    
+    switch PLUS_CMD
+    case #PLUS_Init
+        PlusData_Init()
+    case #PLUS_Fill
+        PlusData_Fill(PLUS_Data)
+    case #PLUS_Send
+        PlusData_Send()
+    default
+    ;
+    endswitch
+
+END
+
+; Funktion zum Initialisieren der Gesamten PLUS-Funktion
+; Initialize the complete PLUS-function
+DEF PlusData_Init()
+    Result = true
+    time = 1
+    
+    ; Abfrage ob Uerbtragung das letzte Mal erfolgreich
+    IF  bPLUSSend THEN        ; Wenn ich was gesendet habe
+      IF NOT $IN[IO_AzykHndshkPLC]  THEN    ; und keine erfolgreiche Rückmeldung habe
+         Msg_Show("DAI_MSG_LIB",#notify,10,"QD_DLG_MSG10") ;Letzte Q-Daten wurden von SPS nicht gelesen     
+      ENDIF
+      bPLUSSend = FALSE ; Merker wieder zuruecksetzen
+    ENDIF
+   
+    ; Request an SPS nochmals wegnehmen falls es beim letzten Senden einen Fehler gab
+    $OUT[IO_AzykHndshkPLC] = FALSE
+    
+    ; Sendebuffer leer machen
+    wait for StrClear(SendBuffer[])
+
+    ; Temp Datenspeicher loeschen
+    TempQTelegram.QAussageArt[] = "    " ;4Zeichen
+    TempQTelegram.qcodierung[] = "    " ;4Zeichen
+    TempQTelegram.qident[] = "            " ;12 Zeichen
+    
+    ; Array leer machen & Zaehler zuruecksetzebn
+    FOR SpotNr=1 TO Max_PlusData
+    	  QualTelegram[SpotNr].QAussageArt[] = "    "
+        QualTelegram[SpotNr].QIdent[] = 	"            "
+        QualTelegram[SpotNr].QCodierung[] = "    "        
+    ENDFOR
+    SpotNr = 1
+    
+     ; Azyklischen Dienst initialisieren
+     AzykHndl = 0
+     WModus = #ASYNC
+     offset = 0
+     COPEN(:LD_EXT_OBJ1,AzykHndl) ; Link auf External Object in machine.dat
+END    
+
+; Funktion fuer die Techpakete um die Punkt zu fuellen
+; function for the techpakets to fill the PLUS-array
+DEF PlusData_Fill(PLUS_Data :IN)
+   DECL T_PlusData PLUS_Data
+   ;Check ob noch PLatz im Array
+   IF (SpotNr > Max_PlusData) THEN
+		Msg_Show("DAI_MSG_LIB",#quit,10,"QD_DLG_MSG11")
+		HALT
+   ENDIF
+
+   ; Daten werden ins Array kopiert
+   
+   ; Punktnummer wird reinkopiert
+   wait for   StrCopy(QualTelegram[SpotNr].QIdent[],PLUS_Data.QIdent[])
+   wait for   StrCopy(QualTelegram[SpotNr].QAussageArt[],PLUS_Data.QAussageArt[])
+   wait for   StrCopy(QualTelegram[SpotNr].QCodierung[],PLUS_Data.QCodierung[])
+    
+   ; Punktzaehler wir hochgezaehlt 
+   SpotNr = SpotNr + 1
+
+   ; temporaere Daten loeschen
+   PLUS_Data.QAussageArt[] = "    " ;4Zeichen
+   PLUS_Data.qcodierung[] = "    " ;4Zeichen
+   PLUS_Data.qident[] = "            " ;12 Zeichen
+   TempQTelegram.QAussageArt[] = "    " ;4Zeichen
+   TempQTelegram.qcodierung[] = "    " ;4Zeichen
+   TempQTelegram.qident[] = "            " ;12 Zeichen
+
+    
+    
+END
+
+
+; Funktion um die Daten azyklisch zu senden
+; function to send the data 
+DEF PlusData_Send()
+DECL INT iLauf  
+
+  
+
+IF (SpotNr > 1) AND (bPLUSActiv)  THEN
+      
+      ; IO-Request an SPS schicken
+      $OUT[IO_AzykHndshkPLC] = TRUE
+      
+      IF AzykHndl > 0 then
+
+         
+         ; INIT-Telegramm von SPS empfangen 
+         RModus = #ABS
+         CREAD(AzykHndl,WState,RModus, TimeOut, offset,"%r",SendBuffer[])
+         
+         IF (WState.Ret1 == #Data_End) then
+            wait sec 0.2
+            offset = 0
+            
+            ; Daten aus dem Requesttelegramm rauslesen
+           	CAST_FROM(SendBuffer[],offset,cmdid)
+           	CAST_FROM(SendBuffer[],offset,cmdl)
+           	CAST_FROM(SendBuffer[],offset,tid)
+           	CAST_FROM(SendBuffer[],offset,aid)
+           	CAST_FROM(SendBuffer[],offset,slot)
+           	CAST_FROM(SendBuffer[],offset,sslot)
+           	CAST_FROM(SendBuffer[],offset,idx)
+          	CAST_FROM(SendBuffer[],offset,cdl)
+           
+            ; ID 3 --> Requesttelegramm
+            IF (cmdid == 3) THEN
+            	offset = 0
+           		CAST_TO(SendBuffer[],offset,cmdid)
+               cmdl = 2028 ; 2000Bytes Nutzdaten  + 28Bytes Header
+           		CAST_TO(SendBuffer[],offset,cmdl)
+           		CAST_TO(SendBuffer[],offset,tid)
+           		CAST_TO(SendBuffer[],offset,aid)
+           		CAST_TO(SendBuffer[],offset,slot)
+           		CAST_TO(SendBuffer[],offset,sslot)
+           		CAST_TO(SendBuffer[],offset,idx)
+           		errc = 0
+           		CAST_TO(SendBuffer[],offset,errc)
+           		CAST_TO(SendBuffer[],offset,cdl)
+            
+               ; Jetzt die einzelnen Punkte rausschreiben
+               FOR iLauf=1 TO Max_PlusData
+               	 ;GLOBAL STRUC T_PlusData CHAR QAussageArt[4], CHAR QIdent[12],CHAR QCodierung[4]
+               	CAST_TO(SendBuffer[],offset,QualTelegram[iLauf].QAussageArt[])
+                  CAST_TO(SendBuffer[],offset,QualTelegram[iLauf].QIdent[])
+                  CAST_TO(SendBuffer[],offset,QualTelegram[iLauf].QCodierung[])    
+               ENDFOR
+               
+               ; Jetzt das eigentliche Paket wegschicken
+               CWrite(AzykHndl,WState,WModus,"%1.2036r",SendBuffer[])
+            ENDIF   
+         ENDIF
+      ENDIF
+      wait sec 0.5
+      
+      ;IO-Request an SPS wegnehmen
+      $OUT[IO_AzykHndshkPLC] = FALSE 
+      
+    
+              
+    
+ENDIF    
+END
+
+;ENDFOLD
+    
+  
+   

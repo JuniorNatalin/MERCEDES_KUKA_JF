@@ -1,0 +1,15 @@
+    Upgrade: Logtime     < 06-08-2012 17:24:41 >
+    ---- ROBKONF  /S=N /B gestarted ----
+    Robotername (P13B100R3) eingetragen
+    BOF wurde abgebrochen
+    Maschinendaten erfolgreich geladen
+    c:\DC_TOOLS\RobKonf\Mada\KRC1__\KR200\FLOOR\R1
+    ---- ROBKONF beendet ----
+    Upgrade: Logtime     < 09-09-2012 11:35:50 >
+    ---- Vorauswahl ROBKONF   C:\DC_TOOLS\ROBKONF\ROBKONF.ini gestarted ----
+    Vorauswahl-Script (c:\dc_tools\Robkonf\Netsetup\rb1_417\Vorauswahl.bat) ausgeführt
+    ---- ROBKONF  /V /I=C:\DC_Tools\Robkonf\Netsetup\rb1_417\robkonf.ini gestarted ----
+    Robotername (P13A60R30) eingetragen
+    Maschinendaten erfolgreich geladen
+    c:\DC_TOOLS\RobKonf\Mada\KRC1__\KR200\FLOOR\R1
+    Roboter wird neu gestartet

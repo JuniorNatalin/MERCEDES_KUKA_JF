@@ -1,0 +1,27 @@
+&ACCESS RVP
+&REL 25
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEFDAT  teste_calibracao
+;FOLD EXTERNAL DECLARATIONS;%{PE}%MKUKATPBASIS,%CEXT,%VCOMMON,%P
+;FOLD GRIPPERTECH EXT
+EXT  H50 (INT  :IN,INT  :IN,INT  :IN,GRP_TYP  :IN )
+;ENDFOLD (GRIPPERTECH EXT)
+;FOLD SPOTTECH EXT
+EXT  USERSPOT (S_COMMAND  :IN,SPOT_TYPE  :IN )
+;ENDFOLD (SPOTTECH EXT)
+;FOLD BASISTECH EXT;%{PE}%MKUKATPBASIS,%CEXT,%VEXT,%P
+EXT  BAS (BAS_COMMAND  :IN,REAL  :IN )
+DECL INT SUCCESS
+;ENDFOLD (BASISTECH EXT)
+;FOLD USER EXT;%{E}%MKUKATPUSER,%CEXT,%VEXT,%P
+;Make your modifications here
+
+;ENDFOLD (USER EXT)
+;ENDFOLD (EXTERNAL DECLARATIONS)
+DECL SPOT_SUGG_T LAST_SPOT={GUN[] "1                       ",RETR_CMD[] "#OPN                    ",CHOISE[] "#FIRST                  ",CLO_TM[] "0                       ",PGNO1[] "1                       ",PRESS1[] "0                       ",PGNO2[] "1                       ",PRESS2[] "0                       ",SPOT_PARAMS[] "NORMAL                  "}
+DECL BASIS_SUGG_T LAST_BASIS={POINT1[] "PS01010002              ",POINT2[] "PS01010002              ",CP_PARAMS[] "CPDAT0                  ",PTP_PARAMS[] "PDAT1                   ",CONT[] "                        ",CP_VEL[] "2.0                     ",PTP_VEL[] "100                     ",SPL_NAME[] "S0                      "}
+DECL E6POS XPS01010002={X -155.207108,Y -2707.84692,Z 2097.73193,A -73.7345734,B -80.7278137,C -13.7781696,S 2,T 10,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
+DECL FDAT FPS01010002={TOOL_NO 1,BASE_NO 0,IPO_FRAME #BASE,POINT2[] " ",TQ_STATE FALSE}
+DECL PDAT PPDAT1={VEL 100.0,ACC 100.0,APO_DIST 50.0,APO_MODE #CDIS}
+ENDDAT

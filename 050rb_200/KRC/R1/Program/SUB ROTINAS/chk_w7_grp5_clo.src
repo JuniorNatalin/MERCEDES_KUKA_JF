@@ -1,0 +1,23 @@
+&ACCESS RVO9
+&COMMENT Check GRP AXOR Z5 CLOSE
+DEF chk_w7_grp5_clo( )
+
+; Check gripper axor CLOSE Z5.1/2/3/4
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+WAIT FOR ($IN[502] and $in[504] AND $IN[506] AND $IN[508])
+;FOLD WAIT FOR ( NOT IN 501 ' Z5.1 - Grampo Recuado - Axor' AND NOT IN 503 ' Z5.2 - Grampo Recuado - Axor' AND NOT IN 505 ' Z5.3 - Grampo Recuado - Axor' AND NOT IN 507 ' Z5.4 - Grampo Recuado - Axor' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:NOT, 5:$IN, 6:501, 7: Z5.1 - Grampo Recuado - Axor, 8:AND, 9:NOT, 10:$IN, 11:503, 12: Z5.2 - Grampo Recuado - Axor, 13:AND, 14:NOT, 15:$IN, 16:505, 17: Z5.3 - Grampo Recuado - Axor, 18:AND, 19:NOT, 20:$IN, 21:507, 22: Z5.4 - Grampo Recuado - Axor, 24:
+WAIT FOR  (  NOT $IN[501] AND  NOT $IN[503] AND  NOT $IN[505] AND  NOT $IN[507] ) 
+;ENDFOLD
+;FOLD WAIT FOR ( IN 502 ' Z5.1 - Grampo Avançado - Axor' AND IN 504 ' Z5.2 - Grampo Avançado - Axor' AND IN 506 ' Z5.3 - Grampo Avançado - Axor' AND IN 508 ' Z5.4 - Grampo Avançado - Axor' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:502, 7: Z5.1 - Grampo Avançado - Axor, 8:AND, 9:, 10:$IN, 11:504, 12: Z5.2 - Grampo Avançado - Axor, 13:AND, 14:, 15:$IN, 16:506, 17: Z5.3 - Grampo Avançado - Axor, 18:AND, 19:, 20:$IN, 21:508, 22: Z5.4 - Grampo Avançado - Axor, 24:
+WAIT FOR  ( $IN[502] AND $IN[504] AND $IN[506] AND $IN[508] ) 
+;ENDFOLD
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+END

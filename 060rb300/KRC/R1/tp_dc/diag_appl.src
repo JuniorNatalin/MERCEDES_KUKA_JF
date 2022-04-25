@@ -1,0 +1,196 @@
+&ACCESS RV11
+&REL 34
+&COMMENT Dianostic modul V5.02
+DEF Diag_Appl(Check_Mode: in,TimeOut :in)
+
+   ;=======================================
+   ;! Funktion : Diagnoastic Modul        =
+   ;!    Handler of Error messages to PLC =
+   ;!======================================
+   ;! Date:      18/05/08                 =
+   ;! Name: Bernd Steffens MBSA           =
+   ;! Ver: 5.02                           =
+   ;!     -- Add continue                 =
+   ;!======================================
+   ;! Date:      06/19/05                 =
+   ;! Name: Bernd Steffens MBUSI          =
+   ;!                                     =
+   ;!======================================
+
+decl int TimeOut
+decl DiagToPLc Check_Mode
+
+IF not (Varstate("TimeOut")==#INITIALIZED) THEN
+   TimeOut=5
+endif
+IF not (Varstate("Check_Mode")==#INITIALIZED) THEN
+   Check_Mode=#OFF
+endif
+
+
+ResetTimer (TimeOut)
+
+if $ext and Opt_Diag then
+   switch Check_Mode
+   case #ON ;// General Tech ON
+     continue
+     global interrupt decl 38 when $Timer_Flag[Ti_Nr4]==true  do Check(#on)
+     continue 
+     Interrupt on 38
+     continue
+     FaultToPlc=ApplicationSignal[1] ;//reset
+   case #clo ;// GripperTech (Close)
+     continue
+     global interrupt decl 38 when $Timer_Flag[Ti_Nr4]==true  do Check(#clo) 
+     continue
+     Interrupt on 38
+     continue
+     FaultToPlc=ApplicationSignal[1] ;//reset
+   case #opn ;// GripperTech (Open)
+     continue
+     global  interrupt decl 38 when $Timer_Flag[Ti_Nr4]==true do Check(#opn)
+     continue
+     Interrupt on 38 
+     continue
+     FaultToPlc=ApplicationSignal[1] ;//reset
+   case #pp0 ;// Gripper not Part present (pp0)
+     continue
+     global  interrupt decl 38 when $Timer_Flag[Ti_Nr4]==true do Check(#pp0)
+     continue 
+     Interrupt on 38 
+     continue
+     FaultToPlc=ApplicationSignal[1] ;//reset
+   case #pp1 ;// Gripper Part present (pp1)
+     continue
+     global  interrupt decl 38 when $Timer_Flag[Ti_Nr4]==true do Check(#pp1) 
+     continue
+     Interrupt on 38 
+     continue
+     FaultToPlc=ApplicationSignal[1] ;//reset
+   case #OnTech1 ;// OnTech1
+     continue
+     global  interrupt decl 38 when $Timer_Flag[Ti_Nr4]==true do Check(#OnTech1) 
+     continue
+     Interrupt on 38 
+     continue
+     FaultToPlc=ApplicationSignal[1] ;//reset
+   case #OnTech2 ;// OnTech2
+     continue
+     global  interrupt decl 38 when $Timer_Flag[Ti_Nr4]==true do Check(#OnTech2) 
+     continue
+     Interrupt on 38 
+     continue
+     FaultToPlc=ApplicationSignal[1] ;//reset
+   case #OnTech3 ;// OnTech3
+     continue
+     global  interrupt decl 38 when $Timer_Flag[Ti_Nr4]==true do Check(#OnTech3) 
+     continue
+     Interrupt on 38 
+     continue
+     FaultToPlc=ApplicationSignal[1] ;//reset
+   case #OnTech4 ;// OnTech4
+     continue
+     global  interrupt decl 38 when $Timer_Flag[Ti_Nr4]==true do Check(#OnTech4) 
+     continue
+     Interrupt on 38 
+     continue
+     FaultToPlc=ApplicationSignal[1] ;//reset
+   case #OnTech5 ;// OnTech5
+     continue
+     global  interrupt decl 38 when $Timer_Flag[Ti_Nr4]==true do Check(#OnTech5) 
+     continue
+     Interrupt on 38 
+     continue
+     FaultToPlc=ApplicationSignal[1] ;//reset
+   case #OFF
+    If (($PRO_STATE1==#P_END) or ($PRO_STATE1==#P_FREE)) then
+     Ini_AplicationFlt ()
+    else  	
+     Set_ApplicationFlt_Off ()
+    endif 
+   endswitch
+endif 
+END
+Def ResetTimer (TimeOut: in)
+decl int TimeOut
+If (($PRO_STATE1==#P_END) or ($PRO_STATE1==#P_FREE) and (not $Timer_Stop[Ti_Nr4])) then
+   $Timer_Stop[Ti_Nr4]=true
+   $Timer[Ti_Nr4]=-1000
+else
+	 If (($PRO_STATE1<>#P_END) and ($PRO_STATE1<>#P_FREE)) then
+    $Timer_Stop[Ti_Nr4]=true
+    $Timer[Ti_Nr4]=0
+    $Timer[Ti_Nr4]=(-TimeOut*1000)
+    $Timer_Stop[Ti_Nr4]=false
+   endif ;//If (($PRO_STATE1<>#P_END...
+endif ;//If (($PRO_STATE1==#P_END...
+end
+
+Def Ini_AplicationFlt ()
+If not bInter_Aktive then
+  global  interrupt decl 38 when $Timer_Flag[Ti_Nr4]==true do Check(#Off) 
+  interrupt off 38
+  bInter_Aktive=true
+endif
+IF ( FaultToPlc<>ApplicationSignal[1]) then
+  FaultToPlc=ApplicationSignal[1] ;// Reset
+endif	   
+end
+
+Def Set_ApplicationFlt_Off ()
+If not  bInter_Aktive then
+  continue
+  interrupt off 38
+  bInter_Aktive=true
+endif
+continue
+IF ( FaultToPlc<>ApplicationSignal[1]) then
+  continue
+  FaultToPlc=ApplicationSignal[1] ;//Reset
+endif	   
+If (($Timer_Stop[Ti_Nr4]<>true) or ( $Timer[Ti_Nr4]<>0)) then
+	 $Timer_Stop[Ti_Nr4]=true
+   $Timer[Ti_Nr4]=0
+endif   
+end
+
+global def Check(Check_Mode: in )
+decl DiagToPLc Check_Mode
+switch Check_Mode
+case #on
+  continue
+  FaultToPlc=ApplicationSignal[2] ;// General Tech ON
+case #clo
+  continue
+  FaultToPlc=ApplicationSignal[3] ;// GripperTech (Close)
+case #opn
+  continue
+  FaultToPlc=ApplicationSignal[4] ;// GripperTech (Open)
+case #pp0 
+  continue
+  FaultToPlc=ApplicationSignal[5];// Gripper not Part present (pp0)
+case #pp1 
+  continue
+  FaultToPlc=ApplicationSignal[6];// Gripper Part present (pp1)
+case #OnTech1 
+  continue
+  FaultToPlc=ApplicationSignal[7] ;// OnTech1
+case #OnTech2 
+  continue
+  FaultToPlc=ApplicationSignal[8] ;// OnTech2
+case #OnTech3 
+  continue
+  FaultToPlc=ApplicationSignal[9] ;// OnTech3
+case #OnTech4 
+  continue
+  FaultToPlc=ApplicationSignal[10] ;// OnTech4
+case #OnTech5 
+  continue
+  FaultToPlc=ApplicationSignal[11] ;// OnTech5
+endswitch
+continue
+Interrupt off 38
+$Timer_Stop[Ti_Nr4]=true
+$Timer[Ti_Nr4]=0
+bInter_Aktive=false
+end

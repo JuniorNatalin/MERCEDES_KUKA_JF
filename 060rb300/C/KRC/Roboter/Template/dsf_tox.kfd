@@ -1,0 +1,59 @@
+;FOLD DSF_TOX ;%{H}
+;============================================
+; USRTECH für Durchsetzfügen Tox
+; TS-APA, IR-Systeme, R.Weinmann
+; BM-BRM, M.Franz Tel.: 82887
+; Tel.: 07031-90-2571
+; Änderungsstand: 26.07.1999
+;============================================ 
+;
+DEFTP DSF_TOX={ SOT FALSE }
+
+DECL PARAM Vorhub={shortname[] "Vorhub/Eloloket ", shortcut[] "Vh", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "#AUF", disp[] "Auf "}, _
+  ITEM[2] {ITEM:VALUE[] "#ZU", disp[] "Zu " }}}
+
+DECL PARAM DSProgrammInit={shortname[] "ProgNr./Prog.Nr. ", shortcut[] "Prg", unit[] "", value { NUMBER : min 0 , max 15, step 1, default 1 }}
+
+DECL PARAM DSProgramm={shortname[] "ProgNr./Prog.Nr. ", shortcut[] "Prg", unit[] "", value { NUMBER : min 1 , max 15, step 1, default 1 }}
+
+DECL PARAM ZANGENNR={shortname[] "ZangeNr./FogoNr. ", shortcut[] "Zange", unit[] "", value { NUMBER : min 1, max 2, step 1, default 1 }}
+
+DECL PARAM SpruehZeit={shortname[] "SpruehPuls/permetezoimplzus ", shortcut[] "V-Zeit", unit[] " sec", value { real : min 0 , max 0.5, step 0.001, default 0 }}
+
+DECL PARAM KompZange={shortname[] "KompZange/kiegyenlitosFogo ", shortcut[] "Komp ", unit[] "", value { LIST : POS 2, _
+  ITEM[1] {ITEM:VALUE[] "TRUE ", disp[] "Ein "}, _
+  ITEM[2] {ITEM:VALUE[] "FALSE ", disp[] "Aus " }}}
+
+DECL PARAM Druckueber={shortname[] "Druckueberwachung/nyomasfelugyelet ", shortcut[] "Druck ", unit[] "", value { LIST : POS 2, _
+  ITEM[1] {ITEM:VALUE[] "TRUE ", disp[] "Ein "}, _
+  ITEM[2] {ITEM:VALUE[] "FALSE ", disp[] "Aus " }}}
+
+DECL PARAM Abstreif={shortname[] "Abstreifer/Lehuzo ", shortcut[] "Abstr ", unit[] "", value { LIST : POS 2, _
+  ITEM[1] {ITEM:VALUE[] "TRUE ", disp[] "Ein "}, _
+  ITEM[2] {ITEM:VALUE[] "FALSE ", disp[] "Aus " }}}
+
+
+DECL PARAM Abstreif1={shortname[] "Abstreifen/Lehuzo ", shortcut[] "Abstr ", unit[] "", value { LIST : POS 2, _
+  ITEM[1] {ITEM:VALUE[] "TRUE ", disp[] "Ein "}, _
+  ITEM[2] {ITEM:VALUE[] "FALSE ", disp[] "Aus " }}}
+
+DECL FOLD DS1_FOLD[1]
+DS1_FOLD[1]="DSF_TOX (1 , %DSProgrammInit ,%ZANGENNR , #AUF , 0 , %KompZange  , %Abstreif , %Druckueber )"
+
+DECL FOLD DS2_FOLD[1]
+DS2_FOLD[1]="DSF_TOX (0 , %DSProgramm , %ZANGENNR , #AUF , %SpruehZeit , FALSE , FALSE , FALSE )"
+
+DECL FOLD DS3_FOLD[1]
+DS3_FOLD[1]="DSF_TOX (0 , 0 , %ZANGENNR , #AUF ,  %SpruehZeit , FALSE , FALSE , FALSE)"
+
+DECL FOLD DS4_FOLD[1]
+DS4_FOLD[1]="DSF_TOX (2 , 0 , %ZANGENNR , #AUF ,  %SpruehZeit , FALSE , FALSE , FALSE)"
+
+
+DECL INLINEFORM Init={FOCUS 0, FOLD[1] DS1_FOLD, PARAM[1] DSProgrammInit , PARAM[2] ZANGENNR , PARAM[3] KompZange , PARAM[4] Abstreif , PARAM[5] Druckueber}
+DECL INLINEFORM Mit_Ueberwachung={FOCUS 0, FOLD[1] DS2_FOLD, PARAM[1] ZANGENNR ,   PARAM[2] SpruehZeit , PARAM[3] DSProgramm}
+DECL INLINEFORM Ohne_Ueberwachung={FOCUS 0, FOLD[1] DS3_FOLD, PARAM[1] ZANGENNR , PARAM[2] SpruehZeit} 
+DECL INLINEFORM SprueImpuls={FOCUS 0, FOLD[1] DS4_FOLD, PARAM[1] ZANGENNR , PARAM[2] SpruehZeit} 
+ENDTP
+;ENDFOLD

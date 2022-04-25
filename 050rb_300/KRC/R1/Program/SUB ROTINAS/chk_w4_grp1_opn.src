@@ -1,0 +1,19 @@
+&ACCESS RVO2
+&COMMENT Check GRP Z1 ACCELO OPEN
+DEF chk_w4_grp1_opn( )
+
+; Check gripper accelo OPEN Z1.1/2/3/4/5
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+WAIT FOR (NOT $IN[38] AND NOT $IN[40] AND NOT $IN[42] AND NOT $IN[44] AND NOT $IN[46])
+WAIT FOR ($IN[37] AND $IN[39] AND $IN[41] AND $IN[43] AND $IN[45])
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+
+END

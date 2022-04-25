@@ -1,0 +1,21 @@
+&ACCESS RV3
+&COMMENT Check Gripper Actros
+DEF chk_w3_wechs_ok( )
+
+;177 => wkz1 C1
+;185 => wkz2 C2
+;161 => wkz3 GRIPER ACTROS
+;169 => wkz4 GRIPER ACELO
+;193 => wkz5 C3
+;201 => wkz6 GRIPER AXOR/ATEGO
+;219 => ACOPLAMENTO OK
+;3320=> GRIPER NA ST600
+
+; VERIFICAÇÃO DE FERRAMENTA: GRIPPER ACTROS
+
+wait for ((not $in[161]) and ($in[169]) and ($in[177]) and ($IN[185]) and ($IN[193]) and ($IN[201]) and ( $in[219]) AND NOT($IN[3320]))
+
+
+;//---- End -------
+;Diag_Appl(#Off,5)
+END

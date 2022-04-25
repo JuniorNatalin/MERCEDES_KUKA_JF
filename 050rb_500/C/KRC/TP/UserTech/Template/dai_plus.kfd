@@ -1,0 +1,45 @@
+;============================================
+; USERTECH f�r PLUS
+; function:			   Sendet Q-Informationen an PLUS
+; content:			   Inlineformulare fuer PLUS-Ansteuerung
+; user: 			      PKL_AST Thomas Schneider 74975
+;============================================
+; user: 			      PKL_AST Thomas Schneider 74975
+; date: 			      2012-01-18
+; version:			   1.0
+; comment:			   First Release
+; offline relevant	yes 
+;============================================
+DEFTP PLUS={ SOT FALSE }
+
+
+;
+; 1. alle Parameter 
+;
+
+
+;
+; 2. alle Folds
+;
+DECL FOLD fInit[1]
+fInit[1]="PlusData(#PLUS_Init)"
+
+DECL FOLD fSend[1]
+fSend[1]="PlusData(#PLUS_Send)"
+
+
+
+;
+; 3. alle inlineformulare
+;
+DECL INLINEFORM Init={FOCUS 0, FOLD[1] fInit}
+DECL INLINEFORM Send={FOCUS 0, FOLD[1] fSend}
+
+
+;
+; 4. alle Skripte
+;
+
+
+ENDTP
+

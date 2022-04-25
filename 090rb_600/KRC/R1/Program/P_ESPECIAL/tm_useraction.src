@@ -1,0 +1,11 @@
+&ACCESS R
+DEF TM_USERACTION( )
+
+;===================
+; Stop robot
+;===================
+
+BRAKE
+HALT
+
+END

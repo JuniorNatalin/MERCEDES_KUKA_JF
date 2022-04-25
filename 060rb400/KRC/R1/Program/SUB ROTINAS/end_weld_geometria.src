@@ -1,0 +1,13 @@
+&ACCESS RVP
+&REL 2
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF end_weld_geometria( )
+; Envia FIM DE SOLDA GEOMETRIA ACCELO
+
+;FOLD PULSE 840 'R4 solda geometri concluida'  State= TRUE CONT  Time= 3 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:840, 3:'R4 solda geometri concluida', 5:TRUE, 6:CONTINUE, 8:3
+CONTINUE
+PULSE($OUT[840], TRUE,3)
+;ENDFOLD
+
+END

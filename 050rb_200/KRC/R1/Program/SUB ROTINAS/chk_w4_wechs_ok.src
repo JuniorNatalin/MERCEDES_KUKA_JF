@@ -1,0 +1,18 @@
+&ACCESS RVO6
+&COMMENT Check PINCA AXOR
+DEF chk_w4_wechs_ok( )
+
+; VERIFICAÇÃO DE FERRAMENTA: Pinca Axor C3
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+wait for (($in[161]) and (not $in[169]) and ($in[177]) and ($IN[185]) and ($IN[193]) and ($IN[201]) and (($IN[209]) OR ((NOT $IN[209]) AND ($IN [3320]))) and ($IN[219]))
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End -------
+;Diag_Appl(#Off,5)
+
+END

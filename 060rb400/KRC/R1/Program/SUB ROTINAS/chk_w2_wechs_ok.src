@@ -1,0 +1,14 @@
+&ACCESS RVO2
+&REL 4
+&COMMENT Check X1
+DEF chk_w2_wechs_ok( )
+Diag_Appl(#on,5)
+
+; VERIFICAÇÃO DE FERRAMENTA: X1
+
+wait for ((not $in[161]) and ($in[169]) and ($in[177]) and ($in[219]))
+
+
+;//---- End -------
+Diag_Appl(#Off,5)
+END

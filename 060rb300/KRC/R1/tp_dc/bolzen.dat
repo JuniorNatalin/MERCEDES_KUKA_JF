@@ -1,0 +1,320 @@
+&ACCESS RP14
+&REL 125
+&COMMENT DC-BOLZENSCHWEISSEN V4.04_JDF #C
+DEFDAT  BOLZEN
+;FOLD BOLZEN_V4.02
+; allgemeine Kommentare
+;$IN[1025]: Dauer TRUE
+;$IN[1026]: Dauer FALSE
+
+; Strukturdeklarationen
+STRUC KOPFDATTYP BOOL VORHANDEN,BOOL AKTIV,INT I_STOERUNG,INT I_FK,INT I_KOPF_HINTEN,INT O_STARTSCHWEISS,INT O_KOPF_VOR
+STRUC BSSTDATTYP BOOL VORHANDEN,INT I_BSSTBEREIT,I_MITSTROM,I_KEINESTOERUNG,I_WARNUNG,I_INTOLERANZ,O_NoEStop,O_MITSTROM,O_QUITT,O_WIEDERHOLEN,O_FORCE_FK,O_TESTBETRIEB
+STRUC FOERDERTYP INT O_FOERDERN,INT O_FARBM,INT I_QUIT_FARBM
+STRUC MIN_MAX_INT_T INT MIN,INT MAX
+
+;-----------------------------
+; Variablen zur Projektierung 
+;-----------------------------
+
+; Optionsvariablen
+DECL CONST BOOL OPT_STUDWELD=TRUE ;Technologiepaket aktiv
+DECL CONST BOOL OPT_WELD_IN_T1=TRUE ;Schweissen in T1 moegl.
+DECL CONST BOOL OPT_WEICHE=FALSE ;Weiche vorhanden
+DECL GLOBAL INT BOLZEN_TIME=2000 ;Überwachungszeit für Bolzen gefördert, nur beim Weichenbetrieb aktiv
+DECL INT B_TIMER=1               ;Interner Timer-Anwahl für die Bolzen-Förder-Überwachung               ;
+DECL GLOBAL BOOL BOLZEN_LADEN=FALSE ;Aktionsvariable für Bolzen nachfördern, nur beim Weichenbetrieb aktiv
+DECL CONST BOOL OPT_MIT_STROM=FALSE ;Need to false for old Tucker Version
+DECL CONST BOOL OPT_RESTART=FALSE ;Restart - Stoerung quittieren mit Schweisswiederholung (gesperrt)        ****
+DECL CONST BOOL OPT_TESTBETRIEB=FALSE ;Testbetrieb (ohne Bolzenfoerdern + ohne Schweissen)  => GHOSTBETRIEB	  ****
+DECL INT WAIT_TIME_FK=0
+
+; Min-/Max-Werte
+DECL CONST MIN_MAX_INT_T BOLZEN_NR_MM={MIN 0,MAX 127} ;Bolzen-Nummer
+DECL CONST MIN_MAX_INT_T KOPF_NR_MM={MIN 0,MAX 10} ;Kopf-Nummer				****
+DECL CONST MIN_MAX_INT_T FOERDERN_NR_MM={MIN 0,MAX 10} ;Foerderer-Nummer			
+DECL CONST MIN_MAX_INT_T BSST_NR_MM={MIN 0,MAX 2} ;Controller-Nummer
+DECL CONST INT CYCFLAG_NR=10
+
+; allgemeine Signale
+DECL CONST INT I_HALTNACHPUNKT=817
+DECL CONST INT I_WARTEFREIGABE=1025 ;bisher 3219 ***
+DECL CONST INT O_HALTNACHPUNKTERREICHT=817
+
+; E/A-Belegung Bolzenkoepfe 1..10
+DECL KOPFDATTYP KOPF[10]
+KOPF[1]={VORHANDEN TRUE,AKTIV TRUE,I_STOERUNG 425,I_FK 433,I_KOPF_HINTEN 438,O_STARTSCHWEISS 433,O_KOPF_VOR 438}
+KOPF[2]={VORHANDEN TRUE,AKTIV TRUE,I_STOERUNG 426,I_FK 434,I_KOPF_HINTEN 439,O_STARTSCHWEISS 434,O_KOPF_VOR 439}
+KOPF[3]={VORHANDEN TRUE,AKTIV TRUE,I_STOERUNG 427,I_FK 435,I_KOPF_HINTEN 440,O_STARTSCHWEISS 435,O_KOPF_VOR 440}
+KOPF[4]={VORHANDEN FALSE,AKTIV TRUE,I_STOERUNG 428,I_FK 436,I_KOPF_HINTEN 441,O_STARTSCHWEISS 436,O_KOPF_VOR 441}
+KOPF[5]={VORHANDEN FALSE,AKTIV TRUE,I_STOERUNG 429,I_FK 437,I_KOPF_HINTEN 442,O_STARTSCHWEISS 437,O_KOPF_VOR 442}
+KOPF[6]={VORHANDEN TRUE,AKTIV TRUE,I_STOERUNG 457,I_FK 465,I_KOPF_HINTEN 470,O_STARTSCHWEISS 465,O_KOPF_VOR 470}
+KOPF[7]={VORHANDEN TRUE,AKTIV TRUE,I_STOERUNG 458,I_FK 466,I_KOPF_HINTEN 471,O_STARTSCHWEISS 466,O_KOPF_VOR 471}
+KOPF[8]={VORHANDEN TRUE,AKTIV TRUE,I_STOERUNG 459,I_FK 467,I_KOPF_HINTEN 472,O_STARTSCHWEISS 467,O_KOPF_VOR 472}
+KOPF[9]={VORHANDEN FALSE,AKTIV TRUE,I_STOERUNG 460,I_FK 468,I_KOPF_HINTEN 473,O_STARTSCHWEISS 468,O_KOPF_VOR 473}
+KOPF[10]={VORHANDEN FALSE,AKTIV TRUE,I_STOERUNG 461,I_FK 469,I_KOPF_HINTEN 474,O_STARTSCHWEISS 469,O_KOPF_VOR 474}
+; E/A-Belegung Foerderer
+DECL FOERDERTYP FOERDERER[10]
+FOERDERER[1]={O_FOERDERN 999,O_FARBM 999,I_QUIT_FARBM 1026}
+FOERDERER[2]={O_FOERDERN 999,O_FARBM 999,I_QUIT_FARBM 1026}
+FOERDERER[3]={O_FOERDERN 999,O_FARBM 999,I_QUIT_FARBM 1026}
+FOERDERER[4]={O_FOERDERN 999,O_FARBM 999,I_QUIT_FARBM 1026}
+FOERDERER[5]={O_FOERDERN 999,O_FARBM 999,I_QUIT_FARBM 1026}
+FOERDERER[6]={O_FOERDERN 999,O_FARBM 999,I_QUIT_FARBM 1026}
+FOERDERER[7]={O_FOERDERN 999,O_FARBM 999,I_QUIT_FARBM 1026}
+FOERDERER[8]={O_FOERDERN 999,O_FARBM 999,I_QUIT_FARBM 1026}
+FOERDERER[9]={O_FOERDERN 999,O_FARBM 999,I_QUIT_FARBM 1026}
+FOERDERER[10]={O_FOERDERN 999,O_FARBM 999,I_QUIT_FARBM 1026}
+
+; E/A-Bereich BolzenNummer Controller 1..4
+SIGNAL O_BOLZEN_NR_BSST_1 $OUT[425]  TO $OUT[432] ;***
+SIGNAL O_BOLZEN_NR_BSST_2 $OUT[457]  TO $OUT[463]
+
+; E/A-Belegung Bolzensteuerung 1..4
+DECL  BSSTDATTYP BSST[4] ;*** Bolzensteuerung 1 geändert die E/A´s, sowie die Variable auf "*_MITSTROM" geändert
+BSST[1]={VORHANDEN TRUE,I_BSSTBEREIT 417,I_MITSTROM 418,I_KEINESTOERUNG 419,I_WARNUNG 430,I_INTOLERANZ 431,O_NoEStop 417,O_MITSTROM 418,O_QUITT 419,O_WIEDERHOLEN 443,O_FORCE_FK 444,O_TESTBETRIEB 999}
+BSST[2]={VORHANDEN TRUE,I_BSSTBEREIT 449,I_MITSTROM 450,I_KEINESTOERUNG 451,I_WARNUNG 462,I_INTOLERANZ 463,O_NoEStop 449,O_MITSTROM 450,O_QUITT 451,O_WIEDERHOLEN 475,O_FORCE_FK 476,O_TESTBETRIEB 999}
+
+;--------------------------------------------
+; Programm Variablen (werden ueberschrieben)
+;--------------------------------------------
+
+
+; Abbild der Schnittstellenbelegung
+; Merker ob Schweißung außerhalb Toleranz (für Farbmarkierung)
+DECL BOOL NotInToleranz[2]
+NotInToleranz[1]=TRUE
+NotInToleranz[2]=FALSE
+
+INT CYC_IN[10]
+CYC_IN[1]=310
+CYC_IN[2]=1025
+CYC_IN[3]=1025
+CYC_IN[4]=1025
+CYC_IN[5]=1025
+CYC_IN[6]=1025
+CYC_IN[7]=1025
+CYC_IN[8]=1025
+CYC_IN[9]=1025
+CYC_IN[10]=1025
+; Abbild der Werte der Eingaenge bei Interrupt
+BOOL STATE_IN[10]
+STATE_IN[1]=FALSE
+STATE_IN[2]=FALSE
+STATE_IN[3]=FALSE
+STATE_IN[4]=FALSE
+STATE_IN[5]=FALSE
+STATE_IN[6]=FALSE
+STATE_IN[7]=FALSE
+STATE_IN[8]=FALSE
+STATE_IN[9]=FALSE
+STATE_IN[10]=FALSE
+;ENDFOLD
+;FOLD BOLZEN_INPUTS_V4.02
+
+; ********************************** 
+;   Fehlermeldungen für Bolzenschweissen 
+; 
+;  geändert: Texte BSMIT, sowie E/A´s
+; **********************************
+
+INT MAX_I_BS_MESSAGE=60
+DECL I_MESSAGETYP BS_MESSAGE[100]
+; EINGAENGE AM CDIO MODUL ZANGE 1
+BS_MESSAGE[1]={I_NR 417,I_MSG_TXT[] "Betriebsbereit BSS1 E417 BSBER                             "}
+BS_MESSAGE[2]={I_NR 418,I_MSG_TXT[] "Ohne Schweissstrom BSS1 E418 BSOHN                         "}
+BS_MESSAGE[3]={I_NR 419,I_MSG_TXT[] "Keine Stoerung BSS1 E419 BSSTOEN                           "}
+BS_MESSAGE[4]={I_NR 425,I_MSG_TXT[] "Stoerung Kopf1 BSS1 E425 BSSTOE1                           "}
+BS_MESSAGE[5]={I_NR 426,I_MSG_TXT[] "Stoerung Kopf2 BSS1 E425 BSSTOE2                           "}
+BS_MESSAGE[6]={I_NR 427,I_MSG_TXT[] "Stoerung Kopf3 BSS1 E425 BSSTOE3                           "}
+BS_MESSAGE[7]={I_NR 428,I_MSG_TXT[] "Stoerung Kopf4 BSS1 E425 BSSTOE4                           "}
+BS_MESSAGE[8]={I_NR 429,I_MSG_TXT[] "Stoerung Kopf5 BSS1 E425 BSSTOE5                           "}
+BS_MESSAGE[9]={I_NR 430,I_MSG_TXT[] "Wartungwarnung BSS1 E430 BSVORW                            "}
+BS_MESSAGE[10]={I_NR 431,I_MSG_TXT[] "Schweissung innerhalb Toleranz BSS1 E431 BSIO              "}
+BS_MESSAGE[11]={I_NR 433,I_MSG_TXT[] "Fortschaltkontakt Kopf1 BSS1 E433 BSFK1                    "}
+BS_MESSAGE[12]={I_NR 434,I_MSG_TXT[] "Fortschaltkontakt Kopf2 BSS1 E434 BSFK2                    "}
+BS_MESSAGE[13]={I_NR 435,I_MSG_TXT[] "Fortschaltkontakt Kopf3 BSS1 E435 BSFK3                    "}
+BS_MESSAGE[14]={I_NR 436,I_MSG_TXT[] "Fortschaltkontakt Kopf4 BSS1 E436 BSFK4                    "}
+BS_MESSAGE[15]={I_NR 437,I_MSG_TXT[] "Fortschaltkontakt Kopf5 BSS1 E437 BSFK5                    "}
+BS_MESSAGE[16]={I_NR 438,I_MSG_TXT[] "Schweisskopf1 hinten BSS1 E438 BS1ER                       "}
+BS_MESSAGE[17]={I_NR 439,I_MSG_TXT[] "Schweisskopf2 hinten BSS1 E439 BS2ER                       "}
+BS_MESSAGE[18]={I_NR 440,I_MSG_TXT[] "Schweisskopf3 hinten BSS1 E440 BS3ER                       "}
+BS_MESSAGE[19]={I_NR 441,I_MSG_TXT[] "Schweisskopf4 hinten BSS1 E441 BS4ER                       "}
+BS_MESSAGE[20]={I_NR 442,I_MSG_TXT[] "Schweisskopf5 hinten BSS1 E442 BS5ER                       "}
+BS_MESSAGE[21]={I_NR 449,I_MSG_TXT[] "Betriebsbereit BSS2 E449 BSBER                             "}
+BS_MESSAGE[22]={I_NR 450,I_MSG_TXT[] "Ohne Schweissstrom BSS2 E450 BSOHN                         "}
+BS_MESSAGE[23]={I_NR 451,I_MSG_TXT[] "Keine Stoerung BSS2 E451 BSSTOEN                           "}
+BS_MESSAGE[24]={I_NR 457,I_MSG_TXT[] "Stoerung Kopf1 BSS2 E457 BSSTOE1                           "}
+BS_MESSAGE[25]={I_NR 458,I_MSG_TXT[] "Stoerung Kopf2 BSS2 E458 BSSTOE2                           "}
+BS_MESSAGE[26]={I_NR 459,I_MSG_TXT[] "Stoerung Kopf3 BSS2 E459 BSSTOE3                           "}
+BS_MESSAGE[27]={I_NR 460,I_MSG_TXT[] "Stoerung Kopf4 BSS2 E460 BSSTOE4                           "}
+BS_MESSAGE[28]={I_NR 461,I_MSG_TXT[] "Stoerung Kopf5 BSS2 E461 BSSTOE5                           "}
+BS_MESSAGE[29]={I_NR 462,I_MSG_TXT[] "Wartungwarnung BSS2 E462 BSVORW                            "}
+BS_MESSAGE[30]={I_NR 463,I_MSG_TXT[] "Schweissung innerhalb Toleranz BSS2 E463 BSIO              "}
+BS_MESSAGE[31]={I_NR 465,I_MSG_TXT[] "Fortschaltkontakt Kopf1 BSS2 E465 BSFK1                    "}
+BS_MESSAGE[32]={I_NR 466,I_MSG_TXT[] "Fortschaltkontakt Kopf2 BSS2 E466 BSFK2                    "}
+BS_MESSAGE[33]={I_NR 467,I_MSG_TXT[] "Fortschaltkontakt Kopf3 BSS2 E467 BSFK3                    "}
+BS_MESSAGE[34]={I_NR 468,I_MSG_TXT[] "Fortschaltkontakt Kopf4 BSS2 E468 BSFK4                    "}
+BS_MESSAGE[35]={I_NR 469,I_MSG_TXT[] "Fortschaltkontakt Kopf5 BSS2 E469 BSFK5                    "}
+BS_MESSAGE[36]={I_NR 470,I_MSG_TXT[] "Schweisskopf1 hinten BSS2 E470 BS1ER                       "}
+BS_MESSAGE[37]={I_NR 471,I_MSG_TXT[] "Schweisskopf2 hinten BSS2 E471 BS2ER                       "}
+BS_MESSAGE[38]={I_NR 472,I_MSG_TXT[] "Schweisskopf3 hinten BSS2 E472 BS3ER                       "}
+BS_MESSAGE[39]={I_NR 473,I_MSG_TXT[] "Schweisskopf4 hinten BSS2 E473 BS4ER                       "}
+BS_MESSAGE[40]={I_NR 474,I_MSG_TXT[] "Schweisskopf5 hinten BSS2 E474 BS5ER                       "}
+BS_MESSAGE[41]={I_NR 1025,I_MSG_TXT[] "Freigabe von SPS (NBS)                                  "}
+BS_MESSAGE[42]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE[43]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE[44]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE[45]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE[46]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE[47]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE[48]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE[49]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE[50]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE[51]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE[52]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE[53]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE[54]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE[55]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE[56]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE[57]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE[58]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE[59]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE[60]={I_NR 0,I_MSG_TXT[] "Kein Eingangsname vorhanden                                "}
+
+DECL I_MESSAGETYP BS_MESSAGE_U[100]
+; EINGAENGE AM CDIO MODUL ZANGE 1
+BS_MESSAGE_U[1]={I_NR 417,I_MSG_TXT[] "Uezemkesz BSS1 E417 BSBER                               "}
+BS_MESSAGE_U[2]={I_NR 418,I_MSG_TXT[] "Hegesztoearam nelkUel BSS1 E418 BSOHN                   "}
+BS_MESSAGE_U[3]={I_NR 419,I_MSG_TXT[] "Nincs zavar BSS1 E419 BSSTOEN                           "}
+BS_MESSAGE_U[4]={I_NR 425,I_MSG_TXT[] "Zavar Fej1 BSS1 E425 BSSTOE1                            "}
+BS_MESSAGE_U[5]={I_NR 426,I_MSG_TXT[] "Zavar Fej2 BSS1 E425 BSSTOE2                            "}
+BS_MESSAGE_U[6]={I_NR 427,I_MSG_TXT[] "Zavar Fej3 BSS1 E425 BSSTOE3                            "}
+BS_MESSAGE_U[7]={I_NR 428,I_MSG_TXT[] "Zavar Fej4 BSS1 E425 BSSTOE4                            "}
+BS_MESSAGE_U[8]={I_NR 429,I_MSG_TXT[] "Zavar Fej5 BSS1 E425 BSSTOE5                            "}
+BS_MESSAGE_U[9]={I_NR 430,I_MSG_TXT[] "Figyelmeztetes karbantartasra BSS1 E430 BSVORW          "}
+BS_MESSAGE_U[10]={I_NR 431,I_MSG_TXT[] "Hegesztes tolerancian belUel BSS1 E431 BSIO              "}
+BS_MESSAGE_U[11]={I_NR 433,I_MSG_TXT[] "Leptetoe kontaktus fej1 BSS1 E433 BSFK1                  "}
+BS_MESSAGE_U[12]={I_NR 434,I_MSG_TXT[] "Leptetoe kontaktus fej2 BSS1 E434 BSFK2                  "}
+BS_MESSAGE_U[13]={I_NR 435,I_MSG_TXT[] "Leptetoe kontaktus fej3 BSS1 E435 BSFK3                  "}
+BS_MESSAGE_U[14]={I_NR 436,I_MSG_TXT[] "Leptetoe kontaktus fej4 BSS1 E436 BSFK4                  "}
+BS_MESSAGE_U[15]={I_NR 437,I_MSG_TXT[] "Leptetoe kontaktus fej5 BSS1 E437 BSFK5                  "}
+BS_MESSAGE_U[16]={I_NR 438,I_MSG_TXT[] "Hegesztoefej 1 hatul BSS1 E438 BS1ER                     "}
+BS_MESSAGE_U[17]={I_NR 439,I_MSG_TXT[] "Hegesztoefej 2 hatul BSS1 E439 BS2ER                     "}
+BS_MESSAGE_U[18]={I_NR 440,I_MSG_TXT[] "Hegesztoefej 3 hatul BSS1 E440 BS3ER                     "}
+BS_MESSAGE_U[19]={I_NR 441,I_MSG_TXT[] "Hegesztoefej 4 hatul BSS1 E441 BS4ER                     "}
+BS_MESSAGE_U[20]={I_NR 442,I_MSG_TXT[] "Hegesztoefej 5 hatul BSS1 E442 BS5ER                     "}
+BS_MESSAGE_U[21]={I_NR 449,I_MSG_TXT[] "Uezemkesz BSS2 E449 BSBER                                "}
+BS_MESSAGE_U[22]={I_NR 450,I_MSG_TXT[] "Ohne Schweissstrom BSS2 E450 BSOHN                       "}
+BS_MESSAGE_U[23]={I_NR 451,I_MSG_TXT[] "Nincs zavar BSS2 E451 BSSTOEN                            "}
+BS_MESSAGE_U[24]={I_NR 457,I_MSG_TXT[] "Zavar Fej1 BSS2 E457 BSSTOE1                             "}
+BS_MESSAGE_U[25]={I_NR 458,I_MSG_TXT[] "Zavar Fej2 BSS2 E458 BSSTOE2                             "}
+BS_MESSAGE_U[26]={I_NR 459,I_MSG_TXT[] "Zavar Fej3 BSS2 E459 BSSTOE3                             "}
+BS_MESSAGE_U[27]={I_NR 460,I_MSG_TXT[] "Zavar Fej4 BSS2 E460 BSSTOE4                             "}
+BS_MESSAGE_U[28]={I_NR 461,I_MSG_TXT[] "Zavar Fej5 BSS2 E461 BSSTOE5                             "}
+BS_MESSAGE_U[29]={I_NR 462,I_MSG_TXT[] "Figyelmeztetes karbantartasra BSS2 E462 BSVORW           "}
+BS_MESSAGE_U[30]={I_NR 463,I_MSG_TXT[] "Hegesztes tolerancian belUel BSS2 E463 BSIO              "}
+BS_MESSAGE_U[31]={I_NR 465,I_MSG_TXT[] "Leptetoe kontaktus fej1 BSS2 E465 BSFK1                  "}
+BS_MESSAGE_U[32]={I_NR 466,I_MSG_TXT[] "Leptetoe kontaktus fej2 BSS2 E466 BSFK2                  "}
+BS_MESSAGE_U[33]={I_NR 467,I_MSG_TXT[] "Leptetoe kontaktus fej3 BSS2 E467 BSFK3                  "}
+BS_MESSAGE_U[34]={I_NR 468,I_MSG_TXT[] "Leptetoe kontaktus fej4 BSS2 E468 BSFK4                  "}
+BS_MESSAGE_U[35]={I_NR 469,I_MSG_TXT[] "Leptetoe kontaktus fej5 BSS2 E469 BSFK5                  "}
+BS_MESSAGE_U[36]={I_NR 470,I_MSG_TXT[] "Hegesztoefej 1 hatul BSS2 E470 BS1ER                     "}
+BS_MESSAGE_U[37]={I_NR 471,I_MSG_TXT[] "Hegesztoefej 2 hatul BSS2 E471 BS2ER                     "}
+BS_MESSAGE_U[38]={I_NR 472,I_MSG_TXT[] "Hegesztoefej 3 hatul BSS2 E472 BS3ER                     "}
+BS_MESSAGE_U[39]={I_NR 473,I_MSG_TXT[] "Hegesztoefej 4 hatul BSS2 E473 BS4ER                     "}
+BS_MESSAGE_U[40]={I_NR 474,I_MSG_TXT[] "Hegesztoefej 5 hatul BSS2 E474 BS5ER                     "}
+BS_MESSAGE_U[41]={I_NR 1025,I_MSG_TXT[] "Engedelyezes az SPS-toel (NBS)                          "}
+BS_MESSAGE_U[42]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE_U[43]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE_U[44]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE_U[45]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE_U[46]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE_U[47]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE_U[48]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE_U[49]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE_U[50]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE_U[51]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE_U[52]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE_U[53]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE_U[54]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE_U[55]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE_U[56]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE_U[57]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE_U[58]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE_U[59]={I_NR 0,I_MSG_TXT[] "                                                           "}
+BS_MESSAGE_U[60]={I_NR 0,I_MSG_TXT[] "Bemeneti nev nem all rendelkezesre                         "}
+
+;ENDFOLD
+;FOLD BOLZEN_ERRORS_V3.01
+INT MAX_I_BS_ERRORS=32
+DECL MSG_TXT_TYP BS_ERRORS[32]
+BS_ERRORS[1]={MSGTXT[] "Parameter ausserhalb Grenzen->Abbruch                      "}
+BS_ERRORS[2]={MSGTXT[] "Falscher ENUM Typ                                          "}
+BS_ERRORS[3]={MSGTXT[] "Option ohne Strom gesetzt                                  "}
+BS_ERRORS[4]={MSGTXT[] "BSST-Nummer ausserhalb Grenzen->Abbruch                    "}
+BS_ERRORS[5]={MSGTXT[] "Programmnummer ausserhalb Grenzen->Abbruch                 "}
+BS_ERRORS[6]={MSGTXT[] "Kopfnummer ausserhalb Grenzen->Abbruch                     "}
+BS_ERRORS[7]={MSGTXT[] "Naechster Bolzentyp ausserhalb Grenzen->Abbruch            "}
+BS_ERRORS[8]={MSGTXT[] "Wollen Sie wiederholen                                     "}
+BS_ERRORS[9]={MSGTXT[] " Testmode nicht korrekt  (OPT_TESTBETRIEB)                  "}
+BS_ERRORS[10]={MSGTXT[] "Angewaehlter Kopf nicht aktive gesetzt (Wechsler)          "}
+BS_ERRORS[11]={MSGTXT[] "                                                           "}
+BS_ERRORS[12]={MSGTXT[] "                                                           "}
+BS_ERRORS[13]={MSGTXT[] "                                                           "}
+BS_ERRORS[14]={MSGTXT[] "                                                           "}
+BS_ERRORS[15]={MSGTXT[] "                                                           "}
+BS_ERRORS[16]={MSGTXT[] "                                                           "}
+BS_ERRORS[17]={MSGTXT[] "                                                           "}
+BS_ERRORS[18]={MSGTXT[] "                                                           "}
+BS_ERRORS[19]={MSGTXT[] "                                                           "}
+BS_ERRORS[20]={MSGTXT[] "                                                           "}
+BS_ERRORS[21]={MSGTXT[] "                                                           "}
+BS_ERRORS[22]={MSGTXT[] "                                                           "}
+BS_ERRORS[23]={MSGTXT[] "                                                           "}
+BS_ERRORS[24]={MSGTXT[] "                                                           "}
+BS_ERRORS[25]={MSGTXT[] "                                                           "}
+BS_ERRORS[26]={MSGTXT[] "                                                           "}
+BS_ERRORS[27]={MSGTXT[] "                                                           "}
+BS_ERRORS[28]={MSGTXT[] "                                                           "}
+BS_ERRORS[29]={MSGTXT[] "                                                           "}
+BS_ERRORS[30]={MSGTXT[] "                                                           "}
+BS_ERRORS[31]={MSGTXT[] "                                                           "}
+BS_ERRORS[32]={MSGTXT[] "                                                           "}
+
+DECL MSG_TXT_TYP BS_ERRORS_U[32]
+BS_ERRORS_U[1]={MSGTXT[] "Parameter a hatarokon kivUel->Megse                       "}
+BS_ERRORS_U[2]={MSGTXT[] "Rossz ENUM Tipus                                          "}
+BS_ERRORS_U[3]={MSGTXT[] "Opcio aram neluUel beallitva                              "}
+BS_ERRORS_U[4]={MSGTXT[] "BSST-szam a hatarokon kivUel->Megse                       "}
+BS_ERRORS_U[5]={MSGTXT[] "Programszam a hatarokon kivUel->Megse                     "}
+BS_ERRORS_U[6]={MSGTXT[] "Fejszam a hatarokon kivUel->Megse                         "}
+BS_ERRORS_U[7]={MSGTXT[] "Koevetkezoe csaptipus a hatarokon kivUel->Megse           "}
+BS_ERRORS_U[8]={MSGTXT[] "Meg akarja ismetelni                                      "}
+BS_ERRORS_U[9]={MSGTXT[] " Testmode nicht korrekt  (OPT_TESTBETRIEB)                  "}
+BS_ERRORS_U[10]={MSGTXT[] "Angewaehlter Kopf nicht aktive gesetzt (Wechsler)          "}
+BS_ERRORS_U[11]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[12]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[13]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[14]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[15]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[16]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[17]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[18]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[19]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[20]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[21]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[22]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[23]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[24]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[25]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[26]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[27]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[28]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[29]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[30]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[31]={MSGTXT[] "                                                          "}
+BS_ERRORS_U[32]={MSGTXT[] "                                                          "}
+;ENDFOLD        
+   
+ENDDAT

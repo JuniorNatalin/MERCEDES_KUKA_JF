@@ -1,0 +1,39 @@
+&ACCESS RVP
+&REL 1
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF CHK_W7_R2_AB( )
+;
+;check all dock stationsbefore release the tool
+;Please, verify the inputs to each robot
+;Verificar as entradas para adaptar à cada robô
+;Dock 1 - 161 (GRIPPER R3)
+;Dock 2 - 169
+;Dock 3 - 177 (GRIPPER R1)
+;Dock 4 - 185 (GRIPPER R4)
+;Dock 5 - 193 (GRIPPER R2)
+;Dock 6 - 201
+;Dock 7 - 209
+
+IF ($IN[838]==TRUE) THEN
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+wait for (($IN[161]) and ($IN[169])  and ($IN[177]) and ($IN[185]) and (NOT $in[193]) and ($in[201]) and (NOT $in[209]) and ($in[219]))
+ELSE
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+wait for (($IN[161]) and ($IN[169])  and ($IN[177]) and ($IN[185]) and ($IN[193]) and ($IN[201]) and (NOT $in[209]) and ($in[219]))
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+ENDIF
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+END

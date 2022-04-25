@@ -1,0 +1,540 @@
+IN_67 Fluxostato
+IN_69 pinca aberta
+IN_70 cursor aberto
+IN_71 pinca semi-aberta
+IN_72 Protecao Termica
+IN_85 pinca aberta
+IN_86 cursor aberto
+IN_87 pinca semi-aberta
+IN_88 Protecao Termica
+IN_99 Controlador de Corrente
+IN_101 pinca aberta
+IN_102 cursor aberto
+IN_103 pinca semi-aberta
+IN_104 Protecao Termica
+IN_116 Fresa Capa Girando para fora
+IN_118 Fresa de Capa Girando para dentro
+IN_120 Fresa de capa funcionando
+IN_132 Fresa Capa Girando para fora
+IN_134 Fresa de Capa Girando para dentro
+IN_136 Fresa de capa funcionando
+IN_148 Fresa Capa Girando para fora
+IN_150 Fresa de Capa Girando para dentro
+IN_152 Fresa de capa funcionando
+IN_161 Deposito 1 Ocupado
+IN_165 Protecao de pinca aberta
+IN_166 Protecao de pinca fechada
+IN_169 Deposito 2 Ocupado
+IN_173 Protecao de pinca aberta
+IN_174 Protecao de pinca fechada
+IN_177 Deposito 3 Ocupado
+IN_181 Protecao de pinca aberta
+IN_182 Protecao de pinca fechada
+IN_185 Deposito Ocupado
+IN_189 Protecao de pinca aberta
+IN_190 Protecao de pinca fechada
+IN_193 Deposito Ocupado
+IN_197 Protecao de pinca aberta
+IN_198 Protecao de pinca fechada
+IN_201 Deposito Ocupado
+IN_205 Protecao de pinca aberta
+IN_206 Protecao de pinca fechada
+IN_209 Deposito Ocupado
+IN_213 Protecao de pinca aberta
+IN_214 Protecao de pinca fechada
+IN_217 MPS Destravado
+IN_219 Placa de suporte fundida
+IN_221 MPS Travado
+IN_222 Klaschka ativado
+IN_225 ponto de solda ok
+IN_226 Pedido de fresa
+IN_227 Pre-alerta
+IN_228 Quantidade Maxima alcansada
+IN_229 sistema de controle pronto
+IN_230 Falha de solda
+IN_231 Sem monitoração
+IN_232 Com ignição
+IN_233 Selecao de Bit 00
+IN_234 Selecao de Bit 01
+IN_235 Selecao de Bit 02
+IN_236 Selecao de Bit 03
+IN_237 Selecao de Bit 04
+IN_238 Selecao de Bit 05
+IN_239 Selecao de Bit 06
+IN_240 Selecao de Bit 07
+IN_289 Falha Geral
+IN_290 Erro limite superior
+IN_291 Erro limite inferior
+IN_292 erro 1 (falha de colagem H)
+IN_293 erro 2
+IN_294 pronto (alimentador H)
+IN_295 alimentador preenchido
+IN_296 cola fluxa HERION
+IN_297 Quitar Prog. Bit 0
+IN_298 Quitar Prog. Bit 1
+IN_299 Quitar Prog. Bit 2
+IN_300 Quitar Prog. Bit 3
+IN_353 Falha Geral
+IN_354 Erro limite superior
+IN_355 Erro limite inferior
+IN_356 erro 1 (falha de colagem H)
+IN_357 erro 2
+IN_358 pronto (alimentador H)
+IN_359 alimentador preenchido
+IN_360 cola fluxa HERION
+IN_361 Quitar Prog. Bit 0
+IN_362 Quitar Prog. Bit 1
+IN_363 Quitar Prog. Bit 2
+IN_364 Quitar Prog. Bit 3
+IN_417 pronto para operar
+IN_418 Sem corrente de solda
+IN_419 Não Falha
+IN_425 Falha Cabeça 1
+IN_426 Falha Cabeça 2
+IN_427 Falha Cabeça 3
+IN_428 Falha Cabeça 4
+IN_429 Falha Cabeça 5
+IN_430 Alerta de Manutencao
+IN_431 Solda dentro da tolerancia
+IN_433 Ponto de solda OK - Cabec 1
+IN_434 Ponto de solda OK - Cabec 2
+IN_435 Ponto de solda OK - Cabec 3
+IN_436 Ponto de solda OK - Cabec 4
+IN_437 Ponto de solda OK - Cabec 5
+IN_438 Cabeca de solda 1 atras
+IN_439 Cabeca de solda 2 atras
+IN_440 Cabeca de solda 3 atras
+IN_441 Cabeca de solda 4 atras
+IN_442 Cabeca de solda 5 atras
+IN_449 Pronto para operar
+IN_450 Sem corrente de solda
+IN_451 Não Falha
+IN_457 Falha Cabeça 1
+IN_458 Falha Cabeça 2
+IN_459 Falha Cabeça 3
+IN_460 Falha Cabeça 4
+IN_461 Falha Cabeça 5
+IN_462 Alerta de Manutencao
+IN_463 Solda dentro da tolerancia
+IN_465 Ponto de solda OK - Cabec 1
+IN_466 Ponto de solda OK - Cabec 2
+IN_467 Ponto de solda OK - Cabec 3
+IN_468 Ponto de solda OK - Cabec 4
+IN_469 Ponto de solda OK - Cabec 5
+IN_470 Cabeca de solda 1 atras
+IN_471 Cabeca de solda 2 atras
+IN_472 Cabeca de solda 3 atras
+IN_473 Cabeca de solda 4 atras
+IN_474 Cabeca de solda 5 atras
+IN_801 $DRIVES_OFF
+IN_802 $DRIVES_ON
+IN_803 $MOVE ENABLE
+IN_804 $EXT_START
+IN_805 $CONF_MESS
+IN_806 $PGNO_VALID
+IN_807 $PGNO_PARITY
+IN_808 $LARGURA DOS BITS
+IN_809 $PROGRAMA BIT 0
+IN_810 $PROGRAMA BIT 1
+IN_811 $PROGRAMA BIT 2
+IN_812 $PROGRAMA BIT 3
+IN_813 $PROGRAMA BIT 4
+IN_814 $PROGRAMA BIT 5
+IN_815 $PROGRAMA BIT 6
+IN_816 $PROGRAMA BIT 7
+IN_817 PARAR DEPOIS DO FIM DO PONTO
+IN_818 SOLICITAR POSIÇÃO DE MANUTENCAO
+IN_819 Reservado para FC170
+IN_820 GHOST ATIVADO
+IN_821 Reservado para FC170
+IN_822 Reservado para FC170
+IN_823 Reservado para FC170
+IN_824 Reservado para FC170
+IN_825 Sinal de Anti-colisão para CLP
+IN_826 _
+IN_827 _
+IN_828 _
+IN_829 _
+IN_830 _
+IN_831 _
+IN_832 _
+IN_833 _
+IN_836 Sinal de Anti-colisão para CLP
+IN_839 R4 Aguarda Lib. Soldar GEO accelo
+IN_841 Sinal de Anti-colisão para CLP
+IN_844 R4 Aguard lib soldar RES accelo/actros
+IN_846 R4 Aguarda Lib soldar RES geo 11
+IN_851 _
+IN_852 _
+IN_853 _
+IN_854 _
+IN_855 Lib interlock 10 robo 2
+IN_856 Lib interlock 9 robo 3
+IN_857 Lib interlock 8 robo 3
+IN_858 Lib interlock 7 robo 3
+IN_859 Lib interlock 6 robo 3
+IN_860 Lib interlock 5 robo 5
+IN_861 Sinal de Anti-colisão do robô 4
+IN_862 Sinal de Anti-colisão do robô 3
+IN_863 Sinal de Anti-colisão do robô 2
+IN_864 Lib interlock 1 robo 1
+IN_868 Liberacao para Soldar
+IN_871 Aplicação purga de dois componentes INICIADO
+IN_1002 $HWEND
+OUT_65 Avanço em frente
+OUT_66 Curso de solda em frente / compensação
+OUT_68 Avanço em frente
+OUT_81 Avanço em frente
+OUT_82 Curso de solda em frente / compensação
+OUT_84 Avanço em frente
+OUT_97 Avanço em frente
+OUT_98 Curso de solda em frente / compensação
+OUT_100 Avanço em frente
+OUT_115 Fresa de capa girar para fora
+OUT_117 Fresa de capa girar para dentro
+OUT_119 Fresa de capa ligada
+OUT_131 Fresa de capa girar para fora
+OUT_133 Fresa de capa girar para dentro
+OUT_135 Fresa de capa ligada
+OUT_147 Fresa de capa girar para fora
+OUT_149 Fresa de capa girar para dentro
+OUT_151 Fresa de capa ligada
+OUT_167 protecao da pinca X1 abrir
+OUT_168 protecao da pinca X1 fechar
+OUT_175 protecao da pinca C1 abrir
+OUT_176 protecao da pinca C1 fechar
+OUT_183 protecao da pinca abrir
+OUT_184 protecao da pinca fechar
+OUT_191 protecao da pinca abrir
+OUT_192 protecao da pinca fechar
+OUT_199 protecao da pinca abrir
+OUT_200 protecao da pinca fechar
+OUT_207 protecao da pinca abrir
+OUT_208 protecao da pinca fechar
+OUT_215 protecao da pinca abrir
+OUT_216 protecao da pinca fechar
+OUT_223 Desbloqueio MPS
+OUT_224 Bloqueio MPS
+OUT_225 Start Solda
+OUT_226 Confirmacao de Fresagem
+OUT_227 Reset na unidade Potencia
+OUT_228 Confirmacao de troca Eletrodo
+OUT_229 Reset Geral Solda
+OUT_230 Reset erro com CCS
+OUT_231 Reset erro com repeticao de ponto
+OUT_232 Ignicao externa ligada
+OUT_233 selecao solda BIT 00
+OUT_234 selecao solda BIT 01
+OUT_235 selecao solda BIT 02
+OUT_236 selecao solda BIT 03
+OUT_237 selecao solda BIT 04
+OUT_238 selecao solda BIT 05
+OUT_239 selecao solda BIT 06
+OUT_240 selecao solda Bit 07
+OUT_257 BIT_000
+OUT_258 BIT_001
+OUT_259 BIT_002
+OUT_289 Partida (controle de DH1)
+OUT_290 Partida (controle de DH1)
+OUT_291 Alimentador preencher
+OUT_292 Bico limpar
+OUT_293 Controle de pre-pressao ligado
+OUT_294 Partida (controle de caminho DH2)
+OUT_295 Purga
+OUT_296 E-stop (aviso)
+OUT_297 Programa Bit 00
+OUT_298 Programa Bit 01
+OUT_299 Programa Bit 02
+OUT_300 Programa Bit 03
+OUT_301 Quitar programa
+OUT_302 Partida (controle de pressao dh2)
+OUT_303 Quitar erro
+OUT_304 Com/sem material
+OUT_305 Valor nominal de materia Bit 00
+OUT_306 Valor nominal de materia Bit 01
+OUT_307 Valor nominal de materia Bit 02
+OUT_308 Valor nominal de materia Bit 03
+OUT_309 Valor nominal de materia Bit 04
+OUT_310 Valor nominal de materia Bit 05
+OUT_311 Valor nominal de materia Bit 06
+OUT_312 Valor nominal de materia Bit 07
+OUT_313 Valor nominal de materia Bit 08
+OUT_314 Valor nominal de materia Bit 09
+OUT_315 Valor nominal de materia Bit 10
+OUT_316 Valor nominal de materia Bit 11
+OUT_317 Valor nominal de materia Bit 12
+OUT_318 Valor nominal de materia Bit 13
+OUT_319 Valor nominal de materia Bit 14
+OUT_320 Valor nominal de materia Bit 15
+OUT_321 Valor nominal de ar pulverizado Bit 00
+OUT_322 Valor nominal de ar pulverizado Bit 01
+OUT_323 Valor nominal de ar pulverizado Bit 02
+OUT_324 Valor nominal de ar pulverizado Bit 03
+OUT_325 Valor nominal de ar pulverizado Bit 04
+OUT_326 Valor nominal de ar pulverizado Bit 05
+OUT_327 Valor nominal de ar pulverizado Bit 06
+OUT_328 Valor nominal de ar pulverizado Bit 07
+OUT_329 Valor nominal de ar pulverizado Bit 08
+OUT_330 Valor nominal de ar pulverizado Bit 09
+OUT_331 Valor nominal de ar pulverizado Bit 10
+OUT_332 Valor nominal de ar pulverizado Bit 11
+OUT_333 Valor nominal de ar pulverizado Bit 12
+OUT_334 Valor nominal de ar pulverizado Bit 13
+OUT_335 Valor nominal de ar pulverizado Bit 14
+OUT_336 Valor nominal de ar pulverizado Bit 15
+OUT_353 Partida (controle de DH1)
+OUT_354 Partida (controle de DH1)
+OUT_355 Alimentador preencher
+OUT_356 Bico limpar
+OUT_357 Controle de pre-pressao ligado
+OUT_358 Partida (controle de caminho DH2)
+OUT_359 Purga
+OUT_360 E-stop (aviso)
+OUT_361 Programa Bit 00
+OUT_362 Programa Bit 01
+OUT_363 Programa Bit 02
+OUT_364 Programa Bit 03
+OUT_365 Quitar programa
+OUT_366 Partida (controle de pressao dh2)
+OUT_367 Quitar erro
+OUT_368 Com/sem material
+OUT_369 Valor nominal de materia Bit 00
+OUT_370 Valor nominal de materia Bit 01
+OUT_371 Valor nominal de materia Bit 02
+OUT_372 Valor nominal de materia Bit 03
+OUT_373 Valor nominal de materia Bit 04
+OUT_374 Valor nominal de materia Bit 05
+OUT_375 Valor nominal de materia Bit 06
+OUT_376 Valor nominal de materia Bit 07
+OUT_377 Valor nominal de materia Bit 08
+OUT_378 Valor nominal de materia Bit 09
+OUT_379 Valor nominal de materia Bit 10
+OUT_380 Valor nominal de materia Bit 11
+OUT_381 Valor nominal de materia Bit 12
+OUT_382 Valor nominal de materia Bit 13
+OUT_383 Valor nominal de materia Bit 14
+OUT_384 Valor nominal de materia Bit 15
+OUT_385 Valor nominal de ar pulverizado Bit 00
+OUT_386 Valor nominal de ar pulverizado Bit 01
+OUT_387 Valor nominal de ar pulverizado Bit 02
+OUT_388 Valor nominal de ar pulverizado Bit 03
+OUT_389 Valor nominal de ar pulverizado Bit 04
+OUT_390 Valor nominal de ar pulverizado Bit 05
+OUT_391 Valor nominal de ar pulverizado Bit 06
+OUT_392 Valor nominal de ar pulverizado Bit 07
+OUT_393 Valor nominal de ar pulverizado Bit 08
+OUT_394 Valor nominal de ar pulverizado Bit 09
+OUT_395 Valor nominal de ar pulverizado Bit 10
+OUT_396 Valor nominal de ar pulverizado Bit 11
+OUT_397 Valor nominal de ar pulverizado Bit 12
+OUT_398 Valor nominal de ar pulverizado Bit 13
+OUT_399 Valor nominal de ar pulverizado Bit 14
+OUT_400 Valor nominal de ar pulverizado Bit 15
+OUT_417 BS1 período de parada e;stop
+OUT_418 BS1 pré seleção sem solda
+OUT_419 BS1 quitar falha
+OUT_420 BS1 tranportar  de pinos cabeça 1
+OUT_421 BS1 tranportar  de pinos cabeça 2
+OUT_422 BS1 tranportar  de pinos cabeça 3
+OUT_423 BS1 tranportar  de pinos cabeça 4
+OUT_424 BS1 tranportar  de pinos cabeça 5
+OUT_425 BS1 seleção programa Bit 00
+OUT_426 BS1 seleção programa Bit 01
+OUT_427 BS1 seleção programa Bit 02
+OUT_428 BS1 seleção programa Bit 03
+OUT_429 BS1 seleção programa Bit 04
+OUT_430 BS1 seleção programa Bit 05
+OUT_431 BS1 seleção programa Bit 06
+OUT_433 BS1 partida solda cabeça 1
+OUT_434 BS1 partida solda cabeça 2
+OUT_435 BS1 partida solda cabeça 3
+OUT_436 BS1 partida solda cabeça 4
+OUT_437 BS1 partida solda cabeça 5
+OUT_438 BS1 cabeça de solda 1 em frente (GRF)
+OUT_439 BS1 cabeça de solda 2 em frente (GRF)
+OUT_440 BS1 cabeça de solda 3 em frente (GRF)
+OUT_441 BS1 cabeça de solda 4 em frente (GRF)
+OUT_442 BS1 cabeça de solda 5 em frente (GRF)
+OUT_443 BS1 resetar falha com repetição de solda
+OUT_444 BS1 resetar falha com ponto de solda Ok
+OUT_445 BS1 _
+OUT_446 BS1 _
+OUT_447 BS1 _
+OUT_448 BS1 _
+OUT_449 BS2 período de parada e;stop
+OUT_450 BS2 pré seleção sem solda
+OUT_451 BS2 quitar falha
+OUT_452 BS2 tranportar  de pinos cabeça 1
+OUT_453 BS2 tranportar  de pinos cabeça 2
+OUT_454 BS2 tranportar  de pinos cabeça 3
+OUT_455 BS2 tranportar  de pinos cabeça 4
+OUT_456 BS2 tranportar  de pinos cabeça 5
+OUT_457 BS2 seleção programa Bit 00
+OUT_458 BS2 seleção programa Bit 01
+OUT_459 BS2 seleção programa Bit 02
+OUT_460 BS2 seleção programa Bit 03
+OUT_461 BS2 seleção programa Bit 04
+OUT_462 BS2 seleção programa Bit 05
+OUT_463 BS2 seleção programa Bit 06
+OUT_464 BS2 _
+OUT_465 BS2 partida solda cabeça 1
+OUT_466 BS2 partida solda cabeça 2
+OUT_467 BS2 partida solda cabeça 3
+OUT_468 BS2 partida solda cabeça 4
+OUT_469 BS2 partida solda cabeça 5
+OUT_470 BS2 cabeça de solda 1 em frente (GRF)
+OUT_471 BS2 cabeça de solda 2 em frente (GRF)
+OUT_472 BS2 cabeça de solda 3 em frente (GRF)
+OUT_473 BS2 cabeça de solda 4 em frente (GRF)
+OUT_474 BS2 cabeça de solda 5 em frente (GRF)
+OUT_475 BS2 resetar error com repetição de solda
+OUT_476 BS2 resetar falha com ponto de solda Ok
+OUT_477 BS2 _
+OUT_478 BS2 _
+OUT_479 BS2 _
+OUT_480 BS2 _
+OUT_801 $PERI_RDY
+OUT_802 $USER_SAFE
+OUT_803 Reservado para FC170
+OUT_804 Reservado para FC170
+OUT_805 $STOPMESS
+OUT_806 PGNO_REQ
+OUT_807 APPL_RUN
+OUT_808 Submit está rodando
+OUT_809 $T1
+OUT_810 $T2
+OUT_811 $I_O_ACTCONF
+OUT_812 $NEAR_POSRET
+OUT_813 $ON_PATH
+OUT_814 Reservado para FC170
+OUT_815 Reservado para FC170
+OUT_816 $IN_HOME POSITION
+OUT_817 Fim do ponto atingido
+OUT_818 Em posição de manutenção
+OUT_819 Reservado para FC170
+OUT_820 Ativar Ghost
+OUT_821 Reservado para FC170
+OUT_822 Reservado para FC170
+OUT_823 Reservado para FC170
+OUT_824 Reservado para FC170
+OUT_825 Anti-colisão para CLP
+OUT_826 Anti-colisão para CLP
+OUT_827 Anti-colisão para CLP
+OUT_828 Anti-colisão para CLP
+OUT_829 Anti-colisão para CLP
+OUT_830 Anti-colisão para CLP
+OUT_831 Anti-colisão para CLP
+OUT_832 Anti-colisão para CLP
+OUT_833 Anti-colisão para CLP
+OUT_834 Anti-colisão para CLP
+OUT_835 Anti-colisão para CLP
+OUT_836 Solic. Lib. Soldar Geometria
+OUT_837 Solic. Lib. Soldar Respot Geo2
+OUT_838 Solic. Lib. Soldar Respot Geo1
+OUT_839 R4 Soldando
+OUT_840 R4 solda geometri concluida
+OUT_841 Solic Lib. Soldar Respot Final
+OUT_844 R4 solda RESPOT concluida
+OUT_845 R4 trabalho concluido
+OUT_846 R4 solda RES geo1 concluida
+OUT_847 Anti-colisão para CLP
+OUT_848 Area de Solda
+OUT_849 Anti-colisão para CLP
+OUT_850 Anti-colisão para CLP
+OUT_851 Libera AGV
+OUT_852 RESERVADO para colision
+OUT_853 Anti-colisão para CLP
+OUT_854 Anti-colisão para CLP
+OUT_855 Lib interlock 10 robo 2
+OUT_856 Lib interlock 9 robo 3
+OUT_857 Lib interlock 8 robo 3
+OUT_858 Lib interlock 7 robo 3
+OUT_859 Lib interlock 6 robo 3
+OUT_860 Lib interlock 5 robo 5
+OUT_861 Anti-colisão do robô 4
+OUT_862 Anti-colisão do robô 3
+OUT_863 Anti-colisão do robô 2
+OUT_864 Lib interlock 1 robo 1
+OUT_867 Aplicação OK
+OUT_868 Perfil Livre Estacao
+OUT_869 Alerta de aplicação
+OUT_870 Falha de aplicação
+OUT_871 Aplicação purga de dois componentes INICIADO
+OUT_872 FALHA DE SOLDA
+OUT_875 FALHA DE AGUA
+OUT_877 B30YEV  MPS verriegelt
+OUT_878 Magazine 3 ocupado
+OUT_879 Magazine 2 ocupado
+OUT_880 Magazine 1 ocupado
+OUT_881 Pre-aviso SK1
+OUT_882 Quantidade maxima SK1
+OUT_883 SK1 Pronto
+OUT_884 Interbus Master OK
+OUT_887 KLB1D1 pronto
+OUT_888 KLD1 sem falha no dosador
+OUT_889 KLD1 sem falha de cola
+OUT_890 Monitoramento de fluxo HIP1
+OUT_891 Monitoramento de fluxo HIP2
+OUT_892 Monitoramento de fluxo HIP3
+OUT_893 MirrPLC_B0
+OUT_894 MirrPLC_B1
+OUT_895 MirrPLC_B2
+OUT_896 Aplicacao pronta
+OUT_977 $IN_HOME1
+OUT_978 $IN_HOME2
+OUT_979 $IN_HOME3
+OUT_980 $IN_HOME4
+OUT_981 $IN_HOME5
+OUT_982 $MOVE_ENA_ACK
+OUT_983 _
+OUT_984 $WORKSTATE1
+OUT_985 $WORKSTATE2
+OUT_986 $WORKSTATE3
+OUT_987 $WORKSTATE4
+OUT_988 $WORKSTATE5
+OUT_989 $WORKSTATE6
+OUT_990 $WORKSTATE7
+OUT_991 $WORKSTATE8
+OUT_992 _
+OUT_993 $PR_MODE
+OUT_994 $SS_MODE
+OUT_995 $AUT
+OUT_996 _
+OUT_997 $COLL_ALARM
+OUT_998 $COLL_ENABLE
+OUT_999 _
+OUT_1000 _
+OUT_1001 $ROB_CAL
+OUT_1002 _
+OUT_1003 _
+OUT_1004 _
+OUT_1005 _
+OUT_1006 _
+OUT_1007 _
+OUT_1008 _
+OUT_1009 _
+OUT_1010 _
+OUT_1011 _
+OUT_1012 $RC_RDY1
+OUT_1013 $ALARM_STOP
+OUT_1014 _
+OUT_1015 $STROBE1
+OUT_1016 $STROBE2
+OUT_1017 $STROBE3
+OUT_1018 $STROBE4
+OUT_1019 $STROBE5
+OUT_1020 $STROBE6
+OUT_1021 $PRO_ACT
+OUT_1022 $PRO_MOVE
+OUT_1023 $ROB_STOPPED
+OUT_1024 _
+CounterText1 CONTADOR
+CounterText2 CONTADOR
+TimerText1 Tempo Ciclo LTA
+TimerText2 Tempo Ciclo LTB
+TimerText3 Tempo Ciclo MSR
+TimerText4 Tempo Ciclo MSB
+TimerText5 Tempo Ciclo STB
+TimerText6 Tempo Ciclo STB 1213
+TimerText7 Tempo Ciclo ACCELO
+

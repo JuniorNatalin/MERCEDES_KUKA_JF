@@ -1,0 +1,33 @@
+&ACCESS RVO
+DEF  KAPPEN ( )
+; Kappen mit druck aufsetzen
+; 
+; 18.05.2000
+; FWT-APA
+
+PROGRAMM=243 ; PROGRAMMANWAHL / BSBIT0 - BSBIT6
+
+$OUT[56]=FALSE ; ohne Strom
+
+$OUT[1]=TRUE ; Vorhub zu
+
+$OUT[2]=TRUE ; SW zu
+
+$OUT[49]=TRUE ; Start
+
+WAIT FOR  $IN[49]==TRUE ; FK
+
+$OUT[49]=FALSE ; Start
+
+;$OUT[2]=FALSE ; Sw 
+
+;$OUT[1]=FALSE ; vorhub auf
+
+$OUT[56]=TRUE ; ohne Strom
+
+;WAIT FOR  $IN[5]==TRUE ; Vorhub geöffnet S41ER
+
+;WAIT FOR  $IN[6]==TRUE ; Schweisshub geöffnet S40ER
+
+
+END

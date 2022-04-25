@@ -1,0 +1,18 @@
+&ACCESS RV2
+&REL 3
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF LIB_BUSCA_GRIPPER( )
+
+
+;FOLD OUT 830 'R3 Solic Lib Buscar Gripper Acelo'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:830, 3:'R3 Solic Lib Buscar Gripper Acelo', 5:TRUE, 6:
+$OUT[830]=TRUE
+;ENDFOLD
+;FOLD WAIT FOR IN 830 'R3 Aguarda Lib Buscar Gripper Accelo'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:830, 3:'R3 Aguarda Lib Buscar Gripper Accelo', 5:TRUE, 6:
+WAIT FOR $IN[830]==TRUE
+;ENDFOLD
+;FOLD OUT 830 'R3 Solic Lib Buscar Gripper Acelo'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:830, 3:'R3 Solic Lib Buscar Gripper Acelo', 5:FALSE, 6:
+$OUT[830]=FALSE
+;ENDFOLD
+
+END

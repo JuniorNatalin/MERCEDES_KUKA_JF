@@ -1,0 +1,12 @@
+&ACCESS RVP
+&REL 3
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF end_weld_respot( )
+
+;FOLD PULSE 3334 'R2_Solda Respot OK' State=TRUE CONT Time=3 sec;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:3334, 3:R2_Solda Respot OK, 5:TRUE, 6:CONTINUE, 8:3
+CONTINUE
+PULSE($OUT[3334], TRUE,3)
+;ENDFOLD
+
+END

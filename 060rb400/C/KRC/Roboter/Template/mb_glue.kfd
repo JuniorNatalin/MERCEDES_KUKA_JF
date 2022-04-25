@@ -1,0 +1,791 @@
+;(*========================================*)     
+;(* Modul: MB_Glue/MB_Vision Ger(UserTech) *)     
+;(* Funktion:Management Modul Glue/Vision  *)     
+;(* Name: B.St.   2011-04-15     @B        *)     
+;(* Ver. 1.1 GUI Version: KRC 2_ 5.3.16    *)     
+;(*---> GluePakage   "Kleben_H"    V1.18"  *)     
+;/*---> VisionPakage "Quiss-RTV-T" V1.00"  *)     
+;/*---> MBGluePakage "MB_Glue" V1.60    "  *)     
+;(*========================================*)     
+
+
+;----> Globals Settings
+;//-- Parameter Vision System (Quiss) --
+DECL PARAM Vis_Swap={shortname[] "Q_Inspec Wechs : ", shortcut[] " ", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "TRUE", disp[] "Ja"}, _
+  ITEM[2] {ITEM:VALUE[] "FALSE", disp[] "Nein" }}}
+DECL PARAM Vis_Off={shortname[] "Mit Quiss: ", shortcut[] " ", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "TRUE", disp[] "Ja"}, _
+  ITEM[2] {ITEM:VALUE[] "FALSE", disp[] "Nein" }}}
+DECL PARAM Vis_Cont={shortname[] "Insp.Fortfuehr: ", shortcut[] " ", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "TRUE", disp[] "Ja"}, _
+  ITEM[2] {ITEM:VALUE[] "FALSE", disp[] "Nein" }}}
+DECL PARAM VisPartID={shortname[] "Q_BT ID ", shortcut[] "Par", unit[] "", value { NUMBER : min 1, max 65535, step 1, default 1 }}
+DECL PARAM VisPrgNo={shortname[] "Q_Prod ID ", shortcut[] "Prg", unit[] "", value { NUMBER : min 1, max 254, step 1, default 1 }}
+DECL PARAM VisArID={shortname[] "Q_Area_ID.", shortcut[] "ID", unit[] "", value { NUMBER : min 1, max 63, step 1, default 1 }}
+DECL PARAM VisQArID={shortname[] "Q_AreaID.", shortcut[] "ID", unit[] "", value { NUMBER : min 64, max 128, step 1, default 1 }}
+DECL PARAM VisDist={shortname[] "Quiss Path Delay: ", shortcut[] "DIS", unit[] " mm", value { number : min -400, max 400, step 1, default 0 }}
+DECL PARAM VisOPMode={shortname[] " Q_OP_Mode ", shortcut[] "Vis", unit[] " ", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "#Vis_Op_OK", disp[] "Quiss Application OK"}, _
+  ITEM[2] {ITEM:VALUE[] "#No_VisAnalys", disp[] "Quiss Kein Auswertung"}, _
+  ITEM[3] {ITEM:VALUE[] "#No_VisSys", disp[] "Kein Quiss System" }}}
+
+
+
+;//-- Parameter Glue System (BRM_Old) --
+DECL PARAM DosFill={shortname[] "Dos fuell ", shortcut[] " ", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "TRUE", disp[] "EIN"}, _
+  ITEM[2] {ITEM:VALUE[] "FALSE", disp[] "AUS" }}}
+
+DECL PARAM PrePres={shortname[] "VorDruck ", shortcut[] "VDru", unit[] " bar", value { real : min 0, max 400.0, step 0.1, default 0 }}
+DECL PARAM GlueVolume={shortname[] "Menge ", shortcut[] "V ", unit[] " Volt", value { real : min 0, max 10, step 0.1, default 0 }}
+DECL PARAM GlueFactor={shortname[] "Menge ", shortcut[] " ", unit[] " Fac", value { real : min 0, max 10, step 0.1, default 0 }}
+
+DECL PARAM IdleTime={shortname[] "Spuelen nach ", shortcut[] "LLZ", unit[] " min", value { NUMBER : min 1, max 120, step 1, default 1 }}
+DECL PARAM PurgeTime={shortname[] "Spuelzeit ", shortcut[] "SPZ", unit[] " sec", value { NUMBER : min 1, max 60, step 1, default 1 }}
+
+DECL PARAM DelayTime={shortname[] "Kleb Delay: ", shortcut[] "Delay", unit[] " sec", value { real : min -0.3, max 0.3, step 0.01, default 0.0 }}
+DECL PARAM DelayDist={shortname[] "Kleb Path Delay: ", shortcut[] "DIS", unit[] " mm", value { number : min -400, max 400, step 1, default 0 }}
+DECL PARAM SeamArea={shortname[] "Kleb Bereich ", shortcut[] "Area", unit[] " ", value { number : min 1, max 8, step 1, default 1 }}
+DECL PARAM Doser={shortname[] "Glue", shortcut[] "Dos", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "1", disp[] "Doser 1"}, _
+  ITEM[2] {ITEM:VALUE[] "2", disp[] "Doser 2" }}}
+  ;ITEM[3] {ITEM:VALUE[] "3", disp[] "Doser 3"}, _
+ ; ITEM[4] {ITEM:VALUE[] "4", disp[] "Doser 4" }}}
+
+DECL PARAM ApplicPrgNo={shortname[] "Glue PrgNo.", shortcut[] "Prg", unit[] "", value { NUMBER : min 1, max 63, step 1, default 1 }}
+
+DECL PARAM ErrorMode={shortname[] "Kleb Analyse: ", shortcut[] " ", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "0", disp[] "AUS"}, _
+  ITEM[2] {ITEM:VALUE[] "1", disp[] "SPS"}, _
+  ITEM[3] {ITEM:VALUE[] "2", disp[] "Messagebox" }}}
+
+;<---- Globals Settings
+DEFTP MB_Glue={ SOT FALSE }
+
+DECL PARAM Glue_APRX_ACTIVE={VALUE {FREE: DEFAULT [] ""}}
+DECL PARAM Glue_POINT_Name={SHORTNAME[] " ", VALUE {NAME: DEFAULT[] "LHP01"}}	  
+DECL PARAM fr_POS_ACT={VALUE {FREE: DEFAULT [] ""}}
+DECL PARAM fr_Check_TOOL={VALUE {FREE: DEFAULT [] ""}}
+DECL PARAM fr_Check_BASE={VALUE {FREE: DEFAULT [] ""}}
+DECL PARAM fr_Check_IPOTYPE={VALUE {FREE: DEFAULT [] ""}}
+DECL PARAM Glue_Base_Nr={VALUE {NUMBER: AUTOLIMIT FALSE, min 0,max 16,default 1},shortname[] "Base[", UNIT[] "]", Shortcut[] "Base", USERMODE 0}
+DECL PARAM Glue_Tool_Nr={VALUE {NUMBER: AUTOLIMIT FALSE, min 0,max 16,default 1},shortname[] "Tool[", UNIT[] "]", Shortcut[] "Tool", USERMODE 0}
+
+DECL PARAM TOOL_NO={shortname[] "Tool", shortcut[] "", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "0 ", disp[] "NULLFRAME"}, _
+  ITEM[2] {ITEM:VALUE[] "1 ", disp[] "TOOL_DATA[1]"}, _
+  ITEM[3] {ITEM:VALUE[] "2 ", disp[] "TOOL_DATA[2]"}, _
+  ITEM[4] {ITEM:VALUE[] "3 ", disp[] "TOOL_DATA[3]"}, _
+  ITEM[5] {ITEM:VALUE[] "4", disp[] "TOOL_DATA[4]"}, _
+  ITEM[6] {ITEM:VALUE[] "5", disp[] "TOOL_DATA[5]"}, _
+  ITEM[7] {ITEM:VALUE[] "6", disp[] "TOOL_DATA[6]"}, _
+  ITEM[8] {ITEM:VALUE[] "7", disp[] "TOOL_DATA[7]"}, _
+  ITEM[9] {ITEM:VALUE[] "8", disp[] "TOOL_DATA[8]"}, _
+  ITEM[10] {ITEM:VALUE[] "9", disp[] "TOOL_DATA[9]"}, _
+  ITEM[11] {ITEM:VALUE[] "10", disp[] "TOOL_DATA[10]"}, _
+  ITEM[12] {ITEM:VALUE[] "11", disp[] "TOOL_DATA[11]"}, _
+  ITEM[13] {ITEM:VALUE[] "12", disp[] "TOOL_DATA[12]"}, _
+  ITEM[14] {ITEM:VALUE[] "13", disp[] "TOOL_DATA[13]"}, _
+  ITEM[15] {ITEM:VALUE[] "14", disp[] "TOOL_DATA[14]"}, _
+  ITEM[16] {ITEM:VALUE[] "15", disp[] "TOOL_DATA[15]"}, _
+  ITEM[17] {ITEM:VALUE[] "16", disp[] "TOOL_DATA[16]"}, _
+  ITEM[18] {ITEM:VALUE[] "17", disp[] "TOOL_DATA[17]"}, _
+  ITEM[19] {ITEM:VALUE[] "18", disp[] "TOOL_DATA[18]"}, _
+  ITEM[20] {ITEM:VALUE[] "19", disp[] "TOOL_DATA[19]"}, _
+  ITEM[21] {ITEM:VALUE[] "20", disp[] "TOOL_DATA[20]"}, _
+  ITEM[22] {ITEM:VALUE[] "21", disp[] "TOOL_DATA[21]"}, _
+  ITEM[23] {ITEM:VALUE[] "22", disp[] "TOOL_DATA[22]"}, _
+  ITEM[24] {ITEM:VALUE[] "23", disp[] "TOOL_DATA[23]"}, _
+  ITEM[25] {ITEM:VALUE[] "24", disp[] "TOOL_DATA[24]"}, _
+  ITEM[26] {ITEM:VALUE[] "25", disp[] "TOOL_DATA[25]"}, _
+  ITEM[27] {ITEM:VALUE[] "26", disp[] "TOOL_DATA[26]"}, _
+  ITEM[28] {ITEM:VALUE[] "27", disp[] "TOOL_DATA[27]"}, _
+  ITEM[29] {ITEM:VALUE[] "28", disp[] "TOOL_DATA[28]"}, _
+  ITEM[30] {ITEM:VALUE[] "29", disp[] "TOOL_DATA[29]"}, _
+  ITEM[31] {ITEM:VALUE[] "30", disp[] "TOOL_DATA[30]"}, _
+  ITEM[32] {ITEM:VALUE[] "31", disp[] "TOOL_DATA[31]"}, _
+  ITEM[33] {ITEM:VALUE[] "32", disp[] "TOOL_DATA[32]"}}}
+
+DECL PARAM BASE_NO={shortname[] "Base", shortcut[] "", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "0", disp[] "NULLFRAME"}, _
+  ITEM[2] {ITEM:VALUE[] "1", disp[] "BASE_DATA[1]"}, _
+  ITEM[3] {ITEM:VALUE[] "2", disp[] "BASE_DATA[2]"}, _
+  ITEM[4] {ITEM:VALUE[] "3", disp[] "BASE_DATA[3]"}, _
+  ITEM[5] {ITEM:VALUE[] "4", disp[] "BASE_DATA[4]"}, _
+  ITEM[6] {ITEM:VALUE[] "5", disp[] "BASE_DATA[5]"}, _
+  ITEM[7] {ITEM:VALUE[] "6", disp[] "BASE_DATA[6]"}, _
+  ITEM[8] {ITEM:VALUE[] "7", disp[] "BASE_DATA[7]"}, _
+  ITEM[9] {ITEM:VALUE[] "8", disp[] "BASE_DATA[8]"}, _
+  ITEM[10] {ITEM:VALUE[] "9", disp[] "BASE_DATA[9]"}, _
+  ITEM[11] {ITEM:VALUE[] "10", disp[] "BASE_DATA[10]"}, _
+  ITEM[12] {ITEM:VALUE[] "11", disp[] "BASE_DATA[11]"}, _
+  ITEM[13] {ITEM:VALUE[] "12", disp[] "BASE_DATA[12]"}, _
+  ITEM[14] {ITEM:VALUE[] "13", disp[] "BASE_DATA[13]"}, _
+  ITEM[15] {ITEM:VALUE[] "14", disp[] "BASE_DATA[14]"}, _
+  ITEM[16] {ITEM:VALUE[] "15", disp[] "BASE_DATA[15]"}, _
+  ITEM[17] {ITEM:VALUE[] "16", disp[] "BASE_DATA[16]"}, _
+  ITEM[18] {ITEM:VALUE[] "17", disp[] "BASE_DATA[17]"}, _
+  ITEM[19] {ITEM:VALUE[] "18", disp[] "BASE_DATA[18]"}, _
+  ITEM[20] {ITEM:VALUE[] "19", disp[] "BASE_DATA[19]"}, _
+  ITEM[21] {ITEM:VALUE[] "20", disp[] "BASE_DATA[20]"}, _
+  ITEM[22] {ITEM:VALUE[] "21", disp[] "BASE_DATA[21]"}, _
+  ITEM[23] {ITEM:VALUE[] "22", disp[] "BASE_DATA[22]"}, _
+  ITEM[24] {ITEM:VALUE[] "23", disp[] "BASE_DATA[23]"}, _
+  ITEM[25] {ITEM:VALUE[] "24", disp[] "BASE_DATA[24]"}, _
+  ITEM[26] {ITEM:VALUE[] "25", disp[] "BASE_DATA[25]"}, _
+  ITEM[27] {ITEM:VALUE[] "26", disp[] "BASE_DATA[26]"}, _
+  ITEM[28] {ITEM:VALUE[] "27", disp[] "BASE_DATA[27]"}, _
+  ITEM[29] {ITEM:VALUE[] "28", disp[] "BASE_DATA[28]"}, _
+  ITEM[30] {ITEM:VALUE[] "29", disp[] "BASE_DATA[29]"}, _
+  ITEM[31] {ITEM:VALUE[] "30", disp[] "BASE_DATA[30]"}, _
+  ITEM[32] {ITEM:VALUE[] "31", disp[] "BASE_DATA[31]"}, _
+  ITEM[33] {ITEM:VALUE[] "32", disp[] "BASE_DATA[32]"}}}
+
+DECL PARAM Tool_Name={VALUE {FREE: DEFAULT[] ""}} 
+DECL PARAM Base_Name={VALUE {FREE: DEFAULT[] ""}} 
+DECL PARAM PCONT={SHORTNAME[] " ", VALUE {LIST:ITEM[1] {ITEM: VALUE[] " ", DISP[] " "}, _
+																						ITEM[2] {ITEM: VALUE[] "C_PTP ", DISP[] "CONT "}, DEFAULT[] " "}, UNIT[] " ", SHORTCUT[] "Cont"}
+DECL PARAM LCONT={SHORTNAME[] " ", VALUE {LIST:ITEM[1] {ITEM: VALUE[] " ", DISP[] " "}, _
+                                                       ITEM[2] {ITEM: VALUE[] "C_DIS ", DISP[] "CONT "}, DEFAULT[] " "}, UNIT[] " ", SHORTCUT[] "Cont"}
+
+
+DECL PARAM PVEL={VALUE {NUMBER: AUTOLIMIT TRUE, min 1,max 100,Step 1,default 100},shortname[] "Vel= ", UNIT[] " %", Shortcut[] "Vel"}
+DECL PARAM LVEL={VALUE {REAL: AUTOLIMIT TRUE, min 0.01,max 2.0,Step 0.1, default 2.0},shortname[] "Velocity", UNIT[] " m/s", Shortcut[] "Vel"}
+DECL PARAM PointName2={VALUE {FREE: DEFAULT[] "LHP02"}} 
+DECL PARAM ORI_TYPL={shortname[] "Orientation control", shortcut[] "", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "#VAR", disp[] "Standard"}, _
+  ITEM[2] {ITEM:VALUE[] "#JOINT", disp[] "Wrist PTP"}, _
+  ITEM[3] {ITEM:VALUE[] "#CONSTANT", disp[] "Constant Orientation"}}}
+DECL PARAM IPO_FRAME={shortname[] "External TCP ", shortcut[] "", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "#BASE", disp[] "False "}, _
+  ITEM[2] {ITEM:VALUE[] "#TCP", disp[] "True "}}}
+Decl PARAM ACC={VALUE {NUMBER: AUTOLIMIT TRUE, MIN 1, MAX 100,STEP 1, DEFAULT 100}, SHORTNAME[] "Acceleration", UNIT[] "%", SHORTCUT[] "Acc"}
+Decl PARAM APO_DISTP={VALUE {NUMBER: AUTOLIMIT TRUE, MIN 1, MAX 100, STEP 1, DEFAULT 100},SHORTNAME[] "Approximation distance",  UNIT[] "%", SHORTCUT[] "Cont" }
+Decl PARAM APO_DISTL={VALUE {NUMBER: AUTOLIMIT TRUE, MIN 1, MAX 300, STEP 1, DEFAULT 100},SHORTNAME[] "Approximation distance",  UNIT[] "mm", SHORTCUT[] "Cont" }
+
+
+DEFSCRIPT DefSetParam
+	Message "Debug10!"
+ENDSCRIPT
+
+DEFSCRIPT CancelChange
+   Message "InputError"
+   Do CancelInlineform
+Do END
+ENDSCRIPT
+
+DEFSCRIPT Nothing
+ENDSCRIPT
+
+DEFSCRIPT Set_App_Active
+   Showvar(Fullpath[] "TRUE", Param Glue_APRX_ACTIVE)
+ENDSCRIPT
+
+DEFSCRIPT Reset_App_Active
+   Showvar(Fullpath[] "FALSE", Param Glue_APRX_ACTIVE)
+ENDSCRIPT
+
+DEFSCRIPT Verify_Name_Error
+   Message "No position-name defined, Define name for point before accepting!"
+   Do CancelInlineform
+Do END
+ENDSCRIPT
+
+DEFSCRIPT Check_Motion_Error
+	 Message "Debug3!"
+   Message "Base, Tool, or IPO mode may not be changed without Touchup. Action aborted!"
+   Do CancelInlineform
+Do END
+ENDSCRIPT
+
+DEFSCRIPT Verify_IPO_Mode
+   SetVar(FullPath[] "$IPO_MODE", VALUE[] "%IPO_FRAME ")
+ENDSCRIPT
+
+DEFSCRIPT Set_Base_Zero
+   SetVar(Fullpath[] "$BASE", Value[] "$NULLFRAME")
+ENDSCRIPT
+
+DEFSCRIPT Set_Base_Data
+   SetVar(Fullpath[] "$BASE", Value[] "BASE_DATA[%BASE_NO ]")
+ENDSCRIPT
+
+DEFSCRIPT Verify_Base
+   Switch "%BASE_NO "
+   Case "0" Do Set_Base_Zero
+   Case "Else" Do Set_Base_Data
+   Endswitch
+ENDSCRIPT
+
+DEFSCRIPT Set_Tool_Zero
+   SetVar(Fullpath[] "$TOOL", Value[] "$NULLFRAME")
+ENDSCRIPT
+
+DEFSCRIPT Set_Tool_Data
+   SetVar(Fullpath[] "$TOOL", Value[] "TOOL_DATA[%TOOL_NO ]")
+ENDSCRIPT
+
+DEFSCRIPT Verify_Tool
+   Switch "%TOOL_NO "
+   	Message "Debug2!"
+   Case "0" Do Set_Tool_Zero
+   Case "Else" Do Set_Tool_Data
+   Endswitch
+ENDSCRIPT
+
+DEFSCRIPT Verify_Name
+   Switch "%Glue_POINT_Name "
+   Message "Debug1!"	
+   Case $ Do Verify_Name_Error
+   Endswitch
+ENDSCRIPT
+
+
+
+   DEFSCRIPT Verify_PTP_Anticipation
+      Switch "%PCONT "
+      Case C_PTP Do Set_App_Active
+      Case Else Do Reset_App_Active
+      Endswitch
+   ENDSCRIPT
+   
+   DEFSCRIPT AcceptData
+      Do Verify_PTP_Anticipation
+      ShowVar(Fullpath[] "%Module//F%Glue_POINT_Name .BASE_NO", PARAM fr_Check_BASE )
+      Switch "%fr_Check_BASE <> %BASE_NO "
+      Case TRUE Do Check_Motion_Error
+      Endswitch
+      ShowVar(Fullpath[] "%Module//F%Glue_POINT_Name .TOOL_NO", PARAM fr_Check_TOOL )
+      Switch "%fr_Check_TOOL <> %TOOL_NO "
+      Case TRUE Do Check_Motion_Error
+      Endswitch
+      ShowVar(FullPath[] "%Module//F%Glue_POINT_Name .IPO_FRAME <> %IPO_FRAME ", Param fr_Check_IPOTYPE )
+      Switch "%fr_TEST_IPOTYPE "
+      Case TRUE Do Check_Motion_Error
+      Endswitch
+      Redecl (PATH[] "%MODULE", Declaration[] "DECL PDAT P%Glue_POINT_Name ={VEL %PVEL ,ACC %ACC ,APO_DIST 100.0}")
+      Do AcceptInlineform
+      Message "The parameter changes have been accepted for position %Glue_POINT_Name ."
+      Do END
+   ENDSCRIPT
+   
+   DEFSCRIPT AcceptChange
+      Do Verify_Name
+      Do Verify_Base
+      Do Verify_Tool
+      Do Verify_IPO_Mode
+      Do Verify_PTP_Anticipation
+      Showvar(Fullpath[] "$POS_ACT",Param fr_POS_ACT)
+      SetVar(FULLPATH[] "X%Glue_POINT_Name ", VALUE[] "%fr_POS_ACT ")
+      Redecl (PATH[] "%MODULE", Declaration[] "DECL PDAT P%Glue_POINT_Name ={VEL %PVEL ,ACC %ACC ,APO_DIST 100.0}")
+      Redecl (PATH[] "%MODULE", Declaration[] "DECL FDAT F%Glue_POINT_Name ={TOOL_NO %TOOL_NO ,BASE_NO %BASE_NO ,IPO_FRAME %IPO_FRAME }")
+      Message " Position GR%Glue_POINT_Name  has been changed! "
+      Do AcceptInlineform
+      Do END
+   ENDSCRIPT
+   
+   DEFSCRIPT CreatePoint
+      Do Verify_Name
+      Message "Debug4!"
+      Do Verify_Base
+      Message "Debug5!"
+      Do Verify_Tool
+      Message "Debug6!"
+      Do Verify_IPO_Mode
+      Message "Debug7!"
+      Do Verify_PTP_Anticipation
+      Message "Debug8!"
+      Showvar(Fullpath[] "$POS_ACT", Param fr_POS_ACT)
+      Redecl (PATH[] "%MODULE", Declaration[] "E6POS x%Glue_POINT_Name =%fr_POS_ACT ")
+      Redecl (PATH[] "%MODULE", Declaration[] "DECL FDAT F%Glue_POINT_Name ={TOOL_NO %TOOL_NO ,BASE_NO %BASE_NO ,IPO_FRAME %IPO_FRAME }")
+      Redecl (PATH[] "%MODULE", Declaration[] "DECL PDAT P%Glue_POINT_Name ={VEL %PVEL ,ACC %ACC ,APO_DIST 100.0}")
+      Message " Postion %Glue_POINT_Name  has been created! "
+      Do AcceptInlineform
+   ENDSCRIPT
+  
+  
+   
+   DEFSCRIPT GLUE_Touch_4
+      SetVar (Fullpath[] "$DataPath[]", Value[] "/"%Module/"")
+      Switch Dialog "Do you want to accept changes and touch up position GR%Glue_POINT_Name ?"
+      Case "No" Do Nothing
+      Case "Yes" Do AcceptChange
+      Endswitch
+   ENDSCRIPT
+   
+   DEFSCRIPT GLUE_Touch_3
+      SetVar (Fullpath[] "$DataPath[]", Value[] "/"%Module/"")
+      Switch Dialog "Do you want to touch up position GR%Glue_POINT_Name ?"
+      Case "No" Do CancelInlineform
+      Case "Yes" Do AcceptChange
+      Endswitch
+   ENDSCRIPT
+   
+   DEFSCRIPT GLUE_Touch_2
+      SetVar (Fullpath[] "$DataPath[]", Value[] "/"%Module/"")
+      Switch Dialog "Do you want to save changes or touch up position GR%Glue_POINT_Name ?"
+      Case "Accept" Do AcceptData
+      Case "Cancel" Do CancelChange
+      Case "TouchUp" Do GLUE_Touch_4
+      Endswitch
+      Do GLUE_Touch_2
+   ENDSCRIPT
+   
+   DEFSCRIPT GLUE_Touch_1
+   	Message "Debug11!"
+      SetVar (Fullpath[] "$DataPath[]", Value[] "/"%Module/"")
+      Switch "GR%Glue_POINT_Name .X <> GR%Glue_POINT_Name .X"
+      Case "FALSE" Do GLUE_Touch_2
+      Case "Else" Do CreatePoint
+      Endswitch
+   ENDSCRIPT
+
+
+
+
+; Initialisierung
+DECL FOLD ApplicInit[11] 
+APPLICINIT[1]="GLUEPARAM.GlueMod=#Init       /; Option Init select"
+APPLICINIT[2]="GLUEPARAM.Doser=%Doser        /; Current Doser"
+APPLICINIT[3]="GLUEPARAM.ProgNo=%ApplicPrgNo /; Glue applicaton PrgNo"
+APPLICINIT[4]="GLUEPARAM.Quantity=0 /; Glue Volume"
+APPLICINIT[5]="GLUEPARAM.PrePresure=%PrePres /; Pre Pressure"
+APPLICINIT[6]="GLUEPARAM.TimeDelay=%DelayTime /;Delay for Speed parameter "
+APPLICINIT[7]="VisParam.Mod=#VisInit         /; Option Init select"
+APPLICINIT[8]="VisParam.Contr=%Doser         /; Current Vision controller"
+APPLICINIT[9]="VisParam.VisOPMode=%VisOPMode /; Vison Syst. OP-Mode"
+APPLICINIT[10]="VisParam.ProductID=%ApplicPrgNo  /; Vison Syst. Product ID"
+APPLICINIT[11]="MB_Glue ( GLUEPARAM,VisParam ) /;Call Techprog"
+
+; Nahtbeginn
+DECL FOLD ApplicSeamStart[9] 
+ApplicSeamStart[1]="GLUEPARAM.GlueMod=#SeamStart"
+ApplicSeamStart[2]="GLUEPARAM.Doser=%Doser"           ;<-------------------------------
+ApplicSeamStart[3]="GLUEPARAM.DisDelay=%DelayDist"
+ApplicSeamStart[4]="VisParam.Mod=#VisStart"
+ApplicSeamStart[5]="VisParam.VisAvail=%Vis_Off"
+ApplicSeamStart[6]="VisParam.Contr=%Doser"
+ApplicSeamStart[7]="VisParam.AreaID=0"
+ApplicSeamStart[8]="VisParam.DisDelay=%DelayDist"
+ApplicSeamStart[9]="MB_GLUE ( GLUEPARAM,VisParam )"
+
+
+; Volumensteuerung
+DECL FOLD ApplicVolume[10] 
+ApplicVolume[1]="GLUEPARAM.GlueMod=#Quanti"
+ApplicVolume[2]="GLUEPARAM.Doser=%Doser"
+ApplicVolume[3]="GLUEPARAM.Quantity=%GlueVolume"
+ApplicVolume[4]="GLUEPARAM.DisDelay=%DelayDist"
+ApplicVolume[5]="VisParam.Mod=#VisSwap"
+ApplicVolume[6]="VisParam.Contr=%Doser"
+ApplicVolume[7]="VisParam.AreaID=0"
+ApplicVolume[8]="VisParam.Swap=%Vis_Swap"
+ApplicVolume[9]="VisParam.DisDelay=%DelayDist"
+ApplicVolume[10]="MB_GLUE ( GLUEPARAM,VisParam )"
+
+; NahtEnde
+DECL FOLD ApplicSeamEnd[10] 
+ApplicSeamEnd[1]="GLUEPARAM.GlueMod=#SeamEnd"
+ApplicSeamEnd[2]="GLUEPARAM.Doser=%Doser"
+ApplicSeamEnd[3]="GLUEPARAM.PrePresure=%PrePres"
+ApplicSeamEnd[4]="GLUEPARAM.DisDelay=%DelayDist"
+ApplicSeamEnd[5]="GLUEPARAM.DosFill=%DosFill"
+ApplicSeamEnd[6]="VisParam.Mod=#VisEnd"
+ApplicSeamEnd[7]="VisParam.Contr=%Doser"
+ApplicSeamEnd[8]="VisParam.DisDelay=%DelayDist"
+ApplicSeamEnd[9]="VisParam.Cont=%Vis_Cont"
+ApplicSeamEnd[10]="MB_GLUE ( GLUEPARAM,VisParam )"
+
+
+; FehlerStop
+DECL FOLD ApplicFault[6] 
+ApplicFault[1]="GLUEPARAM.GlueMod=#GlueFault"
+ApplicFault[2]="GLUEPARAM.Doser=%Doser"
+ApplicFault[3]="GLUEPARAM.GlueStop=%ErrorMode"
+ApplicFault[4]="VisParam.Mod=#VisResult"
+ApplicFault[5]="VisParam.Contr=%Doser"
+ApplicFault[6]="MB_GLUE ( GLUEPARAM,VisParam )"
+
+; Quiis Area swap
+DECL FOLD ApplicQSwap[6] 
+ApplicQSwap[1]="QParam.Mod=#QSwap"
+ApplicQSwap[2]="QParam.Contr=%Doser"
+ApplicQSwap[3]="QParam.AreaID=0"
+ApplicQSwap[4]="QParam.QSwap=true"
+ApplicQSwap[5]="QParam.DisDelay=%DelayDist"
+ApplicQSwap[6]="mb_Quiss ( QParam )"
+
+
+
+DECL FOLD ApplicPrePres[4] 
+ApplicPrePres[1]="GLUEPARAM.GlueMod=#PrePres"
+ApplicPrePres[2]="GLUEPARAM.Doser=%Doser"
+ApplicPrePres[3]="GLUEPARAM.PrePresure=%PrePres"
+ApplicPrePres[4]="MB_GLUE ( GLUEPARAM,VisParam)"
+
+
+DECL FOLD ApplicDoserFill[1] 
+ApplicDoserFill[1]="GLUEPARAM.GlueMod=#Fill"
+ApplicDoserFill[2]="GLUEPARAM.Doser=%Doser"
+ApplicDoserFill[3]="MB_GLUE ( GLUEPARAM,VisParam)"
+
+;DECL FOLD ApplicDoserPurge[10] 
+;          ApplicDoserPurge[1]="$BWDSTART=TRUE"
+;          ApplicDoserPurge[2]="PDAT_ACT=P%Glue_POINT_Name "
+;          ApplicDoserPurge[3]="BAS (#PTP_DAT )"
+;          ApplicDoserPurge[4]="BAS (#VEL_PTP,%PVEL )"
+;          ApplicDoserPurge[5]="FDAT_ACT=F%Glue_POINT_Name "
+;          ApplicDoserPurge[6]="BAS (#FRAMES)"
+;          ApplicDoserPurge[7]="PTP x%Glue_POINT_Name  %PCONT "
+;          ApplicDoserPurge[8]="GLUEPARAM.PurgeIdle=%IdleTime"
+;					ApplicDoserPurge[9]="GLUEPARAM.PurgeTime=%PurgeTime"
+;					ApplicDoserPurge[10]="GLUEPARAM.Quantity=%GlueVolume"
+;          ApplicDoserPurge[11]="GLUEPARAM.GlueMod=#Purge"
+;					ApplicDoserPurge[12]="GLUEPARAM.Doser=%Doser"
+;					ApplicDoserPurge[13]="MB_GLUE ( GLUEPARAM,VisParam)"
+
+;PARAM[2] PCONT, _
+;DECL INLINEFORM Purge={PARAM[1] Glue_POINT_Name, _
+;                          PARAM[2] PVEL, _
+;                          PARAM[3] Glue_Tool_Nr, _
+;                          PARAM[4] Glue_Base_Nr, _
+;                          PARAM[5] IPO_FRAME, _
+;                          PARAM[6] Doser, _
+;                          PARAM[7] IdleTime, _
+;                          PARAM[8] PurgeTime, _ 
+;                          PARAM[9] GlueVolume, _
+;                          FOLD[1] ApplicDoserPurge, _
+;                          OnOpen DefSetParam, OnAccept GLUE_Touch_1, OnTouchUp GLUE_Touch_3 }
+
+DECL FOLD ApplicDoserPurge[6] 
+          ApplicDoserPurge[1]="GLUEPARAM.PurgeIdle=%IdleTime"
+					ApplicDoserPurge[2]="GLUEPARAM.PurgeTime=%PurgeTime"
+					ApplicDoserPurge[3]="GLUEPARAM.Quantity=%GlueVolume"
+          ApplicDoserPurge[4]="GLUEPARAM.GlueMod=#Purge"
+					ApplicDoserPurge[5]="GLUEPARAM.Doser=%Doser"
+					ApplicDoserPurge[6]="MB_GLUE ( GLUEPARAM,VisParam)"
+                          
+DECL INLINEFORM Glue_Purge  ={FOCUS 1, FOLD[1] ApplicDoserPurge, PARAM[1] Doser, PARAM[2] IdleTime, PARAM[3] PurgeTime, PARAM[4] GlueVolume}
+
+
+;<--- ILF-------->
+DECL INLINEFORM Init={FOCUS 1, FOLD[1] APPLICINIT, PARAM[1] VisOPMode, PARAM[2] Doser, PARAM[3] ApplicPrgNo, PARAM[4] PrePres, PARAM[6] DelayTime}
+DECL INLINEFORM Seam_Start={FOCUS 1, FOLD[1] ApplicSeamStart, PARAM[1] Vis_Off, PARAM[2] Doser, PARAM[3] DelayDist}
+DECL INLINEFORM Quantity={FOCUS 1, FOLD[1] ApplicVolume, PARAM[1] Doser, PARAM[2] Vis_Swap,PARAM[3] GlueVolume, PARAM[4] DelayDist}
+DECL INLINEFORM Seam_End={FOCUS 1, FOLD[1] ApplicSeamEnd, PARAM[1] Doser, PARAM[2] Vis_Cont, PARAM[3] PrePres, PARAM[4] DelayDist, PARAM[5] DosFill}
+DECL INLINEFORM Fault_Stop={FOCUS 1, FOLD[1] ApplicFault, PARAM[1] Doser, PARAM[2] ErrorMode}
+;DECL INLINEFORM Glue_Purge  ={FOCUS 1, FOLD[1] ApplicDoserPurge, PARAM[1] Doser, PARAM[2] IdleTime, PARAM[3] PurgeTime, PARAM[4] GlueVolume}
+;DECL INLINEFORM Purge  ={FOCUS 1, FOLD[1] ApplicDoserPurge, PARAM[1] Doser, PARAM[2] IdleTime, PARAM[3] PurgeTime, PARAM[4] GlueVolume}
+
+DECL INLINEFORM Pre_Pressure  ={FOCUS 1, FOLD[1] ApplicPrePres, PARAM[1] Doser, PARAM[2] PrePres}
+DECL INLINEFORM _Fill  ={FOCUS 1, FOLD[1] ApplicDoserFill, PARAM[1] Doser}
+
+ENDTP
+
+DEFTP MB_Vision={ SOT FALSE }
+
+DECL FOLD ApplicQSwap[1] 
+ApplicQSwap[1]="QParam.Mod=#QSwap"
+ApplicQSwap[2]="QParam.Contr=%Doser"
+ApplicQSwap[3]="QParam.AreaID=0"
+ApplicQSwap[4]="QParam.QSwap=true"
+ApplicQSwap[5]="QParam.DisDelay=%DelayDist"
+ApplicQSwap[6]="mb_Quiss ( QParam )"
+
+DECL INLINEFORM Quiss_Swap  ={FOCUS 1, FOLD[1] ApplicQSwap, PARAM[1] Doser, PARAM[2] DelayDist}
+ENDTP
+
+
+DEFTP MB_Move={ SOT FALSE }
+
+DECL PARAM MB_Prof_Con={shortname[] " Mode ", shortcut[] "Mod", unit[] " ", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "#ON ", disp[] "On"}, _
+  ITEM[2] {ITEM:VALUE[] "#OFF ", disp[] "OFF"}}}
+ 
+ 
+DECL PARAM MB_Prof_Mode={shortname[] "Move Profiles: ", shortcut[] " ", unit[] "", value { LIST : POS 3, _
+  ITEM[1] {ITEM:VALUE[] "1", disp[] "Soft --> large parts in gripper"}, _
+  ITEM[2] {ITEM:VALUE[] "2", disp[] "Medium --->large parts in gripper"}, _
+  ITEM[3] {ITEM:VALUE[] "3", disp[] "Standard"}, _
+  ITEM[4] {ITEM:VALUE[] "4", disp[] "High velocity -->Small Tool" }}}
+
+DECL PARAM MB_Prof_Advance={shortname[] "$Advance: ", shortcut[] " ", unit[] "", value { LIST : POS 4, _
+  ITEM[1] {ITEM:VALUE[] "0", disp[] "0 "}, _
+  ITEM[2] {ITEM:VALUE[] "1", disp[] "1 "}, _
+  ITEM[3] {ITEM:VALUE[] "2", disp[] "2 "}, _
+  ITEM[4] {ITEM:VALUE[] "3", disp[] "3 "}, _
+  ITEM[5] {ITEM:VALUE[] "4", disp[] "4 "}, _
+  ITEM[6] {ITEM:VALUE[] "5", disp[] "5 " }}}
+ 
+DECL PARAM MB_Prof_No={shortname[] "Profile ", shortcut[] "ID", unit[] "", value { NUMBER : min 1, max 4, step 1, default 1 }}
+
+DECL FOLD MB_Prof[1]  
+MB_Prof[1]="MB_MoveProfil ( %MB_Prof_Mode , #ON , %MB_Prof_Advance ) "
+
+DECL FOLD MB_Prof_OFF[1]  
+MB_Prof_Off[1]="MB_MoveProfil ( 0, #OFF, DEF_ADVANCE ) "
+
+
+DECL INLINEFORM _ON ={FOCUS 1, FOLD[1] MB_Prof, PARAM[1] MB_Prof_Mode, PARAM[2] MB_Prof_Advance}
+DECL INLINEFORM _OFF ={FOCUS 1, FOLD[1] MB_Prof_Off }
+ENDTP
+
+;======================================    
+;Modul: Handling StatKey action       =
+;Name: B.Steffens                     =
+;======================================
+DEFTP StatK_MBGlue={SOC false}
+
+
+;//--- Start Key Contr No---
+DECL STATKEY MBGlue_KEY3
+Decl Param DOSERNO={VALUE {FREE: DEFAULT[] ""}} 
+Decl Param MAXDOS={VALUE {FREE: DEFAULT[] ""}}
+
+DEFSCRIPT SetMB_Key_1
+;MESSAGE " Debug 30 !"
+ SETVAR (FULLPATH[] "//R1//MB_GLUE.DAT//MB_Key", VALUE[] "1")
+ ShowVar(FullPath[] "//R1//MB_GLUE.DAT//MB_Key", Param DOSERNO )
+;MESSAGE " Debug 31 !"
+ENDSCRIPT
+
+DEFSCRIPT SetMB_Key
+;MESSAGE " Debug 1!"
+  SETVAR (FULLPATH[] "//R1//MB_GLUE.DAT//MB_Key", VALUE[] "%DOSERNO +1")
+  ShowVar(FullPath[] "//R1//MB_GLUE.DAT//MAXDOSER", Param MAXDOS )
+  ShowVar(FullPath[] "//R1//MB_GLUE.DAT//MB_Key", Param DOSERNO )
+
+;MESSAGE " Debug 2 !"
+switch "%DOSERNO > %MAXDOS "
+ case "true " do SetMB_Key_1
+ENDSWITCH
+ENDSCRIPT
+
+DEFSCRIPT CountDoser
+DO SetMB_Key
+MESSAGE " Selcted Controll No. is %DOSERNO !"
+SET MBGlue_KEY3={BottomTEXT[] "%DOSERNO " }
+ENDSCRIPT
+;//--- Start Key Contr No---
+
+
+;//-- Start Key Showpart ---
+DECL STATKEY MBGlue_KEY1
+DEFSCRIPT ShowPart_ON
+  ShowVar(FullPath[] "//R1//MB_GLUE.DAT//MB_Key", Param DOSERNO )
+  SETVAR (FULLPATH[] "//R1//MB_GLUE.DAT//ShowPartHndl[%DOSERNO ].Key_VisualCheck", VALUE[] "TRUE")
+  MESSAGE "   Kleb-Vorzeigen fuer Doser No.  %DOSERNO  ist angewaehlt !"
+ENDSCRIPT
+DEFSCRIPT ShowPart_OFF
+  ShowVar(FullPath[] "//R1//MB_GLUE.DAT//MB_Key", Param DOSERNO )
+  SETVAR (FULLPATH[] "//R1//MB_GLUE.DAT//ShowPartHndl[%DOSERNO ].Key_VisualCheck", VALUE[] "FALSE")
+  MESSAGE "   Kleb-Vorzeigen fuer Doser No.  %DOSERNO  ist abgewaehlt !"
+ENDSCRIPT
+
+DEFSCRIPT ShowPart
+ShowVar(FullPath[] "//R1//MB_GLUE.DAT//MB_Key", Param DOSERNO )
+Switch "//R1//MB_GLUE.DAT//ShowPartHndl[%DOSERNO ].Key_VisualCheck"
+ case " TRUE " DO ShowPart_OFF
+ case " FALSE " DO ShowPart_ON
+endswitch
+ENDSCRIPT
+;//-- End Key Showpart ---
+
+;//-- Start Key SetRunMode ---
+Decl Param RunMode={VALUE {FREE: DEFAULT[] ""}}
+DEFSCRIPT Set_On
+  ;MESSAGE " Debug 61!"
+  SETVAR (FULLPATH[] "//R1//MB_GLUE.DAT//DryRunHdl[%DOSERNO ].ReqDry", VALUE[] "TRUE")
+  SET MBGlue_KEY1={TOPTEXT[] "Glue ", BottomTEXT[] "OFF ", picture[] "c:\krc\util\GlueOFF.ico" }
+  MESSAGE "   Glue Application  in Dry-Run for Doser No.  %DOSERNO  !"
+ENDSCRIPT
+DEFSCRIPT Set_OFF
+  ;MESSAGE " Debug 62!"
+  SETVAR (FULLPATH[] "//R1//MB_GLUE.DAT//DryRunHdl[%DOSERNO ].ReqDry", VALUE[] "FALSE")
+  SET MBGlue_KEY1={TOPTEXT[] "Glue ", BottomTEXT[] "ON ", picture[] "c:\krc\util\GlueON.ico" }
+  MESSAGE "   Glue Application not in Dry-Run for Doser No.  %DOSERNO  !"
+ENDSCRIPT
+
+DEFSCRIPT SetParaRunMode
+;MESSAGE " Debug 1002!"
+ShowVar(FullPath[] "//R1//MB_GLUE.DAT//MB_Key", Param DOSERNO )
+ShowVar(FullPath[] "//R1//MB_GLUE.DAT//DryRunHdl[%DOSERNO ].ReqDry", Param RunMode ) 
+;MESSAGE " Debug 1003!"
+
+Switch "DryRunHdl[%DOSERNO ].ReqDry"
+;MESSAGE " Debug 1004!"
+case "True " DO Set_OFF
+case "False " DO Set_ON
+endswitch
+ENDSCRIPT
+;//-- End Key SetRunMode  ---
+
+;//-- Start Key Purge ---
+DECL STATKEY MBGlue_KEY2
+
+DEFSCRIPT Purge_On
+	SET MBGlue_KEY2={picture[] "c:\krc\util\PurgeOn.ico" }
+  ;MESSAGE " Debug 71!"
+  SETVAR (FULLPATH[] "//R1//MB_GLUE.DAT//PurgeHdl[%DOSERNO ].ReqPurge", VALUE[] "TRUE")
+  MESSAGE "   Glue Applicartion Purge Active for Doser No.  %DOSERNO  !"
+ENDSCRIPT
+
+DEFSCRIPT Purge_OFF
+	 SET MBGlue_KEY2={picture[] "c:\krc\util\PurgeOFF.ico" }
+   ;MESSAGE " Debug 72!"
+   SETVAR (FULLPATH[] "//R1//MB_GLUE.DAT//PurgeHdl[%DOSERNO ].ReqPurge", VALUE[] "FALSE")
+   MESSAGE "   Glue Applicartion Purge Deactive for Doser No.  %DOSERNO  !"
+ENDSCRIPT
+
+DEFSCRIPT Purge
+ShowVar(FullPath[] "//R1//MB_GLUE.DAT//MB_Key", Param DOSERNO )
+Switch "//R1//MB_GLUE.DAT//PurgeHdl[%DOSERNO ].ReqPurge"
+ case " TRUE " DO Purge_OFF
+ case " FALSE " DO Purge_ON
+endswitch
+
+ENDSCRIPT
+;//-- End Key Purge ---
+
+;//-- Start Key Bucket ---
+Decl Param I_Nr={VALUE {FREE: DEFAULT[] ""}} 
+Decl Param I_Nr2={VALUE {FREE: DEFAULT[] ""}} 
+Decl Param O_Nr={VALUE {FREE: DEFAULT[] ""}} 
+Decl Param O_Nr2={VALUE {FREE: DEFAULT[] ""}}
+
+
+			
+DEFSCRIPT Buck_On
+  MESSAGE " Debug 71 In!"
+  SETVAR (FULLPATH[] "//R1//MB_GLUE.DAT//PurgeHdl[%DOSERNO ].ReqPurge", VALUE[] "TRUE")
+  MESSAGE "   Glue Applicartion Bucket for Doser No.  %DOSERNO  moved in Purge- Position!"
+ENDSCRIPT
+
+DEFSCRIPT Set_Out_On_O_Nr2
+   SETVAR (FULLPATH[] "$OUT[%O_Nr2 ]", VALUE[] "TRUE")
+ENDSCRIPT
+
+DEFSCRIPT Set_Out_Off_O_Nr2
+   SETVAR (FULLPATH[] "$OUT[%O_Nr2 ]", VALUE[] "FALSE")
+ENDSCRIPT
+
+DEFSCRIPT Set_Out_On_O_Nr
+   SETVAR (FULLPATH[] "$OUT[%O_Nr ]", VALUE[] "TRUE")
+ENDSCRIPT
+
+DEFSCRIPT Set_Out_Off_O_Nr
+   SETVAR (FULLPATH[] "$OUT[%O_Nr ]", VALUE[] "FALSE")
+ENDSCRIPT
+
+DEFSCRIPT MoveBuck_In
+	 SET MBGlue_KEY1={picture[] "c:\krc\util\BucketIN.ico" }
+   switch "%O_Nr > 0 "
+   	case "true"  DO Set_Out_On_O_Nr
+   endswitch
+   switch "%O_Nr2 > 0 "
+   	case "true"  DO Set_Out_Off_O_Nr2
+   endswitch
+   MESSAGE "   MoveBuck_In for Doser No.  %DOSERNO  moved %O_Nr out Purge- Position!"
+ENDSCRIPT
+
+
+
+DEFSCRIPT MoveBuck_Out
+	 SET MBGlue_KEY1={picture[] "c:\krc\util\BucketOut.ico" }
+   switch "%O_Nr > 0 "
+   	case "true"  DO Set_Out_Off_O_Nr
+   endswitch
+   switch "%O_Nr2 > 0 "
+   	case "true"  DO Set_Out_On_O_Nr2
+   endswitch
+   MESSAGE "   Glue MoveBuck_Out  No.  %DOSERNO  moved %O_Nr %O_Nr2  out Purge- Position!"
+ENDSCRIPT
+
+
+DEFSCRIPT MoveBuck
+ShowVar(FullPath[] "//R1//MB_GLUE.DAT//MB_Key", Param DOSERNO )
+ShowVar(FullPath[] "//R1//MB_GLUE.DAT//PurgeHdl[%DOSERNO ].O_BuckTrack", Param O_Nr)
+ShowVar(FullPath[] "//R1//MB_GLUE.DAT//PurgeHdl[%DOSERNO ].O_BuckReTrack", Param O_Nr2)
+Switch "$OUT[%O_Nr ] "
+ case " TRUE " DO MoveBuck_Out
+ case " FALSE " DO MoveBuck_In
+endswitch
+; MESSAGE "   Glue Applicartion Bucket for Doser No.  %DOSERNO  moved %O_Nr out Purge- Position!"
+ENDSCRIPT
+
+
+;// Main Script "Bucket" switch "%DOSERNO > %MAXDOS "
+DEFSCRIPT Bucket
+ShowVar(FullPath[] "//R1//MB_GLUE.DAT//MB_Key", Param DOSERNO )
+Switch "//R1//MB_GLUE.DAT//PurgeHdl[%DOSERNO ].O_BuckTrack > 0 "
+ case " TRUE " DO MoveBuck
+; case " FALSE " DO Buck_ON
+endswitch
+
+ENDSCRIPT
+
+DEFSCRIPT SwitchOffKey1
+	;MESSAGE " Debug Start SwitchOffKey!"
+ SET MBGlue_KEY1={ENABLE FALSE }
+ENDSCRIPT 
+
+DEFSCRIPT CheckBuck
+;	MESSAGE " Debug Start CheckBuck!"
+	Switch "//R1//MB_GLUE.DAT//PurgeHdl[%DOSERNO ].O_BuckTrack > 0 "
+	 case "false"  DO SwitchOffKey1
+	endswitch 	
+ENDSCRIPT
+DEFSCRIPT SwitchOnKey1
+;	MESSAGE " Debug Start SwitchOnKey1 !"
+ SET MBGlue_KEY1={ENABLE TRUE }
+ENDSCRIPT 
+;//-- End Key Bucket ---
+
+
+
+
+
+;//-- Start Switch StatBar ---
+;// -- StatkeyBars ----
+DECL STATKEYBAR MBGlue_BAR1
+DECL STATKEYBAR MBGlue_BAR2
+DECL STATKEY MBGlue_KEY4
+
+DEFSCRIPT SwitchBar2
+SETVAR (FULLPATH[] "//R1//MB_GLUE.DAT//MB_Bar", VALUE[] "2")
+ShowVar(FullPath[] "//R1//MB_GLUE.DAT//MB_Key", Param DOSERNO )
+SET MBGlue_KEY1={TOPTEXT[] "", BottomTEXT[] "Bucket ", picture[] "c:\krc\util\BucketOut.ico",keydown_picture[] "c:\krc\util\BucketIN.ico", style #switch, ONKEYDOWN Bucket, USERMODE 10, NEED_MODEOP 15,NEED_PROSTATE 62}
+SET MBGlue_KEY2={TOPTEXT[] " ", BottomTEXT[] "Purge ", picture[] "c:\krc\util\PurgeOff.ico",keydown_picture[] "c:\krc\util\PurgeOn.ico", style #switch, ONKEYDOWN Purge, USERMODE 10, NEED_MODEOP 15,NEED_PROSTATE 62}
+SET MBGlue_KEY3={TOPTEXT[] "Doser ", style #switch, ONKEYDOWN CountDoser, USERMODE 10, NEED_MODEOP 15,NEED_PROSTATE 62}
+SET MBGlue_KEY4={TOPTEXT[] "Next ", BottomTEXT[] " ", NEXT MBGlue_BAR1, style #switch, ONKEYDOWN NextBar, USERMODE 10, NEED_MODEOP 15,NEED_PROSTATE 62}
+DO CheckBuck
+ENDSCRIPT
+
+DEFSCRIPT SwitchBar1
+ShowVar(FullPath[] "//R1//MB_GLUE.DAT//MB_Key", Param DOSERNO )
+SETVAR (FULLPATH[] "//R1//MB_GLUE.DAT//MB_Bar", VALUE[] "1")
+SET MBGlue_KEY1={TOPTEXT[] "Glue ", BottomTEXT[] "On ", picture[] "c:\krc\util\GlueON.ico",keydown_picture[] "c:\krc\util\GlueOFF.ico",ENABLE TRUE, style #switch, ONKEYDOWN SetParaRunMode, USERMODE 10, NEED_MODEOP 15,NEED_PROSTATE 62}
+SET MBGlue_KEY2={TOPTEXT[] "Show ", BottomTEXT[] "Part",picture[] "c:\krc\util\ShowP_1.ico",keydown_picture[] "c:\krc\util\ShowP_2.ico", style #switch, ONKEYDOWN ShowPart, USERMODE 10, NEED_MODEOP 15,NEED_PROSTATE 62}
+SET MBGlue_KEY3={TOPTEXT[] "Doser ", style #switch, ONKEYDOWN CountDoser, USERMODE 10, NEED_MODEOP 15,NEED_PROSTATE 62}
+SET MBGlue_KEY4={TOPTEXT[] "Next ", BottomTEXT[] " ", NEXT MBGlue_BAR2, style #switch, ONKEYDOWN NextBar, USERMODE 10, NEED_MODEOP 15,NEED_PROSTATE 62}
+DO SwitchOnKey1
+ENDSCRIPT
+
+DEFSCRIPT NextBar
+SWITCH "//R1//MB_GLUE.DAT//MB_Bar"
+CASE "1" Do SwitchBar2
+CASE "2" Do SwitchBar1
+ENDSWITCH
+
+ENDSCRIPT
+
+;//-- End Switch StatBar ---
+SET MBGlue_KEY1={TOPTEXT[] "Glue ", BottomTEXT[] "On ", picture[] "c:\krc\util\GlueON.ico", keydown_picture[] "c:\krc\util\GlueON.ico", style #switch, ONKEYDOWN SetParaRunMode, USERMODE 10, NEED_MODEOP 15,NEED_PROSTATE 62}
+SET MBGlue_KEY2={TOPTEXT[] "Show ", BottomTEXT[] "Part",picture[] "c:\krc\util\ShowP_1.ico",keydown_picture[] "c:\krc\util\ShowP_2.ico", style #switch, ONKEYDOWN ShowPart, USERMODE 10, NEED_MODEOP 15,NEED_PROSTATE 62}
+SET MBGlue_KEY3={TOPTEXT[] "Doser ", style #switch, ONKEYDOWN CountDoser, USERMODE 10, NEED_MODEOP 15,NEED_PROSTATE 62}
+SET MBGlue_KEY4={TOPTEXT[] "Next ", picture[] "c:\krc\util\NextB.ICO", style #switch, ONKEYDOWN NextBar, USERMODE 10, NEED_MODEOP 15,NEED_PROSTATE 62}
+
+SET MBGlue_BAR1 = { STATKEY[1] MBGlue_KEY1, STATKEY[2] MBGlue_KEY2, STATKEY[3] MBGlue_KEY3, STATKEY[4] MBGlue_KEY4}
+SET MBGlue_BAR2 = { STATKEY[1] MBGlue_KEY1, STATKEY[2] MBGlue_KEY2, STATKEY[3] MBGlue_KEY3, STATKEY[4] MBGlue_KEY4}
+ENDTP

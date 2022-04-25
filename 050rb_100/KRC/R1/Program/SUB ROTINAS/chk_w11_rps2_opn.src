@@ -1,0 +1,17 @@
+&ACCESS RVO3
+&COMMENT Axor 913 Z2.1_Z2.2
+DEF chk_w11_rps2_opn( )
+; Check RPS AXOR 913 OPEN Z2.1/2
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+WAIT FOR (NOT $IN[530] AND NOT $IN[532])
+WAIT FOR ($IN[529] AND $IN[531])
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+END

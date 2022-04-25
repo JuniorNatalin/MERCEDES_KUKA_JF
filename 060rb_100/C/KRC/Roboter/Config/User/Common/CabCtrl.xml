@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CabCtrl xsi:noNamespaceSchemaLocation="/Roboter/Config/System/Common/Schemes/CabCtrlUser.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+   <Version Label="2" > 
+     <Info Version="" />
+     <Schema Version="100" />
+   </Version>
+
+   <Operations>
+
+      <PowerDownByPLC activated="off">
+         <Input driver="DriverName" bus="BusName" bitOffset="?"/>
+         <Output driver="DriverName" bus="BusName" bitOffset="?"/>
+      </PowerDownByPLC>
+
+	 	<!-- FC 180 Einstellung: 2328	 	-->
+      <UserInterface activated="on">
+         <Output driver="PNIODriver" bus="PNIO-DEV" bitOffset="2328"/>
+      </UserInterface>
+
+      <ControlOuterFan>
+         <TrafoTemp monitoring="on"/>
+         <ClimateDevice monitoring="off"/>
+      </ControlOuterFan>
+
+      <Retrofit activated="off">
+         <Input driver="ECatIODriver" bus="SYS-X44" bitOffset="208"/>
+      </Retrofit>
+
+   </Operations>
+</CabCtrl>

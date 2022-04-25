@@ -1,0 +1,200 @@
+;============================================
+; USRTECH für Suchen Interruptgesteuert
+; FWT-ANT H. Konz Tel. 64913
+; Änderungsstand: 15.04.2007
+;============================================
+;
+DEFTP DC_Suchen={ SOT FALSE }
+
+decl PARAM pInSL_1={SHORTNAME[] "Schnell-->Langsam: $IN[",UNIT[] "]",shortcut[] "$IN_SL1",VALUE {NUMBER:MIN -4096,MAX 4096,DEFAULT 1}}
+decl PARAM pInSL_2={SHORTNAME[] "$IN[",UNIT[] "]",shortcut[] "$IN_SL2",VALUE {NUMBER:MIN -4096,MAX 4096,DEFAULT 1}}
+
+decl PARAM pInG_1={SHORTNAME[] "Gefunden: $IN[",UNIT[] "]",shortcut[] "$IN_G1",VALUE {NUMBER:MIN -4096,MAX 4096,DEFAULT 1}}
+decl PARAM pInG_2={SHORTNAME[] "$IN[",UNIT[] "]",shortcut[] "$IN_G2",VALUE {NUMBER:MIN -4096,MAX 4096,DEFAULT 1}}
+
+
+decl PARAM pInG_1a={SHORTNAME[] "Gefunden:<$IN[",UNIT[] "]",shortcut[] "$IN_G1",VALUE {NUMBER:MIN -4096,MAX 4096,DEFAULT 1}}
+decl PARAM pInG_2a={SHORTNAME[] "or $IN[",UNIT[] "]>",shortcut[] "$IN_G2",VALUE {NUMBER:MIN -4096,MAX 4096,DEFAULT 1}}
+
+
+decl PARAM pInG_1b={SHORTNAME[] "Gefunden:<<$IN[",UNIT[] "]",shortcut[] "$IN_G1",VALUE {NUMBER:MIN -4096,MAX 4096,DEFAULT 1}}
+decl PARAM pInG_3b={SHORTNAME[] "and $IN[",UNIT[] "]>",shortcut[] "$IN_G3",VALUE {NUMBER:MIN -4096,MAX 4096,DEFAULT 1}}
+
+decl PARAM pInG_2b={SHORTNAME[] "or <$IN[",UNIT[] "]",shortcut[] "$IN_G2",VALUE {NUMBER:MIN -4096,MAX 4096,DEFAULT 1}}
+decl PARAM pInG_4b={SHORTNAME[] "and $IN[",UNIT[] "]>>",shortcut[] "$IN_G4",VALUE {NUMBER:MIN -4096,MAX 4096,DEFAULT 1}}
+
+
+DECL PARAM pPos_Akt={VALUE {FREE: DEFAULT[] ""}}
+
+DECL PARAM pVelS={shortname[] "VelS=", shortcut[] "VelS", unit[] "m/s", value { Real : min 0.0, max 2.0, step 0.1, default 0.5 }}
+DECL PARAM pVelL={shortname[] "VelL=", shortcut[] "VelL", unit[] "m/s", value { Real : min 0.0, max 0.2, step 0.01, default 0.05 }}
+
+
+DECL FOLD fSuchen2[11]
+fSuchen[1]="Suchen_ACT.IN_SL1=%pInSL_1"
+fSuchen[2]="Suchen_ACT.IN_SL2=%pInSL_2"
+fSuchen[3]="Suchen_ACT.IN_G1=%pInG_1a"
+fSuchen[4]="Suchen_ACT.IN_G2=%pInG_2a"
+fSuchen[5]="Suchen_ACT.IN_G3=1025"
+fSuchen[6]="Suchen_ACT.IN_G4=1025"
+fSuchen[7]="Suchen_ACT.EndE6Pos=X%P__Po1"
+fSuchen[8]="Suchen_ACT.EndFDat=F%P__Po1"
+fSuchen[9]="Suchen_ACT.VelS=%pVelS"
+fSuchen[10]="Suchen_ACT.VelL=%pVelL"
+fSuchen[11]="DC_Suchen(Suchen_ACT)"
+
+DECL FOLD fSuchen4[11]
+fSuchen[1]="Suchen_ACT.IN_SL1=%pInSL_1"
+fSuchen[2]="Suchen_ACT.IN_SL2=%pInSL_2"
+fSuchen[3]="Suchen_ACT.IN_G1=%pInG_1b"
+fSuchen[4]="Suchen_ACT.IN_G2=%pInG_2b"
+fSuchen[5]="Suchen_ACT.IN_G3=%pInG_3b"
+fSuchen[6]="Suchen_ACT.IN_G4=%pInG_4b"
+fSuchen[7]="Suchen_ACT.EndE6Pos=X%P__Po1"
+fSuchen[8]="Suchen_ACT.EndFDat=F%P__Po1"
+fSuchen[9]="Suchen_ACT.VelS=%pVelS"
+fSuchen[10]="Suchen_ACT.VelL=%pVelL"
+fSuchen[11]="DC_Suchen(Suchen_ACT)"
+
+ 
+;####scripte ######
+decl PARAM p__Po1={SHORTNAME[] "",shortcut[] "EndPos",VALUE {NAME:default[] "LSuchen0"}}
+DECL PARAM P__Tool={VALUE {NUMBER: AUTOLIMIT FALSE, min 0,max 32,default 1},shortname[] "Tool[", UNIT[] "]", Shortcut[] "Tool", USERMODE 0}
+DECL PARAM P__Base={VALUE {NUMBER: AUTOLIMIT FALSE, min 0,max 32,default 1},shortname[] "Base[", UNIT[] "]", Shortcut[] "Base", USERMODE 0}
+DECL PARAM P__Ipo={VALUE {LIST: ITEM[1] {ITEM: VALUE[] "#BASE", DISP[] "FALSE"}, _
+                               ITEM[2] {ITEM: VALUE[] "#TCP", DISP[] "TRUE"} }, SHORTNAME[] "EXT.TCP=" , USERMODE 0} 
+
+DECL PARAM P__POSITION={VALUE {FREE: DEFAULT[] ""}}
+DECL PARAM T__Tool={VALUE {FREE: DEFAULT[] ""}}
+DECL PARAM T__Base={VALUE {FREE: DEFAULT[] ""}}
+;DECL PARAM T_Ipo={VALUE {FREE: DEFAULT[] ""}}
+
+;+++++++++++++++++++++++++++++++++++++++++++++++++
+defscript Check
+message "Using fault:InputError!"
+do CANCELINLINEFORM
+do end
+endscript
+; ------create base data ---------
+defscript SET__Base_NULL
+setvar(FULLPATH[] "$BASE", VALUE[] "$NULLFRAME")
+endscript
+
+defscript SET__BaseDATA
+setvar(FULLPATH[] "$BASE", VALUE[] "BASE_DATA[%P__Base ]")
+endscript
+
+
+defscript BASE__DECISION
+switch "%P__Base"
+case "0" do SET__Base_NULL
+case else do SET__BaseDATA
+endswitch
+endscript
+
+; ------create tool data ---------
+defscript SET__Tool_NULL
+setvar(FULLPATH[] "$TOOL", VALUE[] "$NULLFRAME")
+endscript
+
+defscript SET__ToolDATA
+setvar(FULLPATH[] "$TOOL", VALUE[] "TOOL_DATA[%P__Tool ]")
+endscript
+
+defscript TOOL__DECISION
+switch "%P__Tool"
+case "0" do SET__Tool_NULL
+case else do SET__ToolDATA
+endswitch
+endscript
+;+++++++change parameter+++++++++++++++++
+defscript U_EBERNAHME
+SETVAR(FULLPATH[] "$IPO_MODE", VALUE[] "%P__Ipo")
+SETVAR(FULLPATH[] "F%p__Po1 .IPO_FRAME", VALUE[] "%P__Ipo ")
+SETVAR(FULLPATH[] "F%p__Po1 .BASE_NO", VALUE[] "%P__Base ")
+DO BASE__DECISION
+showVAR(FULLPATH[] "F%p__Po1 .BASE_NO ", PARAM T__Base )
+switch "%T__Base <> %P__Base "
+case TRUE do Check
+endswitch
+
+
+SETVAR(FULLPATH[] "F%p__Po1 .TOOL_NO", VALUE[] "%P__Tool ")
+DO TOOL__DECISION
+showVAR(FULLPATH[] "F%p__Po1 .TOOL_NO ", PARAM T__Tool )
+switch "%T__Tool <> %P__Tool "
+case TRUE do Check
+endswitch
+do ACCEPTINLINEFORM
+MESSAGE "Die neuen Parameter wurden in %p__Po1  uebernommen !"
+do END
+endscript
+;++++++change position++++++++++++++++
+defscript C_HANGE
+SETVAR(FULLPATH[] "F%p__Po1 .BASE_NO", VALUE[] "%P__Base ")
+DO BASE__DECISION
+SETVAR(FULLPATH[] "F%p__Po1 .TOOL_NO", VALUE[] "%P__Tool ")
+DO TOOL__DECISION
+SETVAR(FULLPATH[] "$IPO_MODE", VALUE[] "%P__Ipo")
+SETVAR(FULLPATH[] "F%p__Po1 .IPO_FRAME", VALUE[] "%P__Ipo ")
+SHOWVAR(FULLPATH[] "$POS_ACT", PARAM P__POSITION )
+SETVAR(FULLPATH[] "X%p__Po1 ", VALUE[] "%P__POSITION ")
+MESSAGE "Die neue Position wurde in %p__Po1  uebernommen !"
+do ACCEPTINLINEFORM
+endscript
+
+;+++++create new+++++++++++++++++
+defscript TOUCH__NEW
+SETVAR(FULLPATH[] "$IPO_MODE", VALUE[] "%P__Ipo")
+REDECL(PATH[] "%MODULE", DECLARATION[] "DECL FDAT F%p__Po1 ={ TOOL_NO %P__Tool ,BASE_NO %P__Base , IPO_FRAME %P__Ipo }")
+;REDECL(PATH[] "%MODULE", DECLARATION[] "DECL LDAT LCP%p__Po1 ={VEL %pVelS ,ACC %pACC ,APO_DIST 100.0,APO_FAC 50.0,ORI_TYP #VAR}")
+DO BASE__DECISION
+DO TOOL__DECISION
+SHOWVAR(FULLPATH[] "$POS_ACT", PARAM P__POSITION )
+REDECL(PATH[] "%MODULE ", DECLARATION[] "DECL E6POS X%p__Po1 =%P__POSITION" )
+SETVAR(FULLPATH[] "X%p__Po1 ", VALUE[] "%P__POSITION ")
+MESSAGE "Der Punkt %p__Po1  wurde automatisch angelegt !"
+do ACCEPTINLINEFORM
+endscript
+
+;+++++++++++++++++++++++++++++++++++++
+defscript TOUCH__3
+setvar(Fullpath[] "$DATAPATH[]", value[] "/"%MODULE/"")
+switch dialog "Soll die neue Position in Punkt %p__Po1  uebernommen werden ?"
+case NEIN do CANCELINLINEFORM
+case JA do C_HANGE
+case
+case 
+case
+case
+case ABBRECHEN do CANCELINLINEFORM
+endswitch
+endscript
+;+++++++++++++++++++++++++++++++++++++
+defscript TOUCH__2
+switch dialog "Sollen die neuen Parameter in Punkt %p__Po1  uebernommen werden ?"
+case NEIN do CANCELINLINEFORM
+case JA do U_EBERNAHME
+case
+case 
+case
+case
+case ABBRECHEN do CANCELINLINEFORM
+endswitch
+endscript
+;++++++++++++++++++++++++++++++++++++
+defscript TOUCH__1 
+setvar(Fullpath[] "$DATAPATH[]", value[] "/"%MODULE/"")
+switch "x%p__Po1 .x<>x%p__Po1 .x"
+case "FALSE" do TOUCH__2
+case else do TOUCH__NEW
+endswitch
+endscript
+
+;#############
+
+Decl InlineForm LIN_={FOCUS 0, FOLD[1] fSuchen2, PARAM[1] p__Po1, PARAM[2] pVelS, PARAM[3] pVelL, PARAM[4] pInSL_1, PARAM[5] pInSL_2, PARAM[6] pInG_1a, PARAM[7] pInG_2a, PARAM[8] P__Tool,PARAM[9] P__Base, PARAM[10] P__Ipo, ONACCEPT TOUCH__1, ONTOUCHUP TOUCH__3}
+
+Decl InlineForm LIN4_={FOCUS 0, FOLD[1] fSuchen4, PARAM[1] p__Po1, PARAM[2] pVelS, PARAM[3] pVelL, PARAM[4] pInSL_1, PARAM[5] pInSL_2, PARAM[6] pInG_1b, PARAM[7] pInG_3b, PARAM[8] pInG_2b, PARAM[9] pInG_4b, PARAM[10] P__Tool,PARAM[11] P__Base, PARAM[12] P__Ipo, ONACCEPT TOUCH__1, ONTOUCHUP TOUCH__3}
+
+ENDTP

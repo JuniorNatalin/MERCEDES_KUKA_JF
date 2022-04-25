@@ -1,0 +1,269 @@
+&ACCESS RVO
+&REL 16
+&COMMENT PLC on control
+DEF  SPS ( )
+  ;FOLD DECLARATIONS
+  ;FOLD BASISTECH DECL
+  ;Automatik extern
+  DECL STATE_T STAT
+  DECL MODUS_T MODE
+  ;ENDFOLD (BASISTECH DECL)
+  ;FOLD USER DECL
+  ; Please insert user defined declarations
+
+  ;ENDFOLD (USER DECL)
+  ;ENDFOLD (DECLARATIONS)
+  ;FOLD INI
+  ;FOLD AUTOEXT INIT
+  INTERRUPT DECL 91 WHEN $PRO_STATE1==#P_FREE DO RESET_OUT ()
+  INTERRUPT ON 91
+  $LOOP_MSG[]="                                                            "
+  MODE=#SYNC
+  $H_POS=$H_POS
+  ;Automatik extern
+  IF $MODE_OP==#EX THEN
+    CWRITE($CMD,STAT,MODE,"RUN /R1/CELL()")
+  ENDIF
+  ;ENDFOLD (AUTOEXT INIT)
+	     ;FOLD DAI_SPS_INI
+	     ; Daimler-Anteil im sps.sub INIT
+	      
+        DAI_MSG_LIBRARY() ; dient zum Einbinden der Message_library
+        DAI_CTRL_LIBRARY() ; dient zum Einbinden der CTRL_library
+        DAI_SPS_LIBRARY() ; dient zum Einbinden der SPS_library
+        DAI_MATH_LIBRARY() ; dient zum Einbinden der MATH_library
+        DAI_DATA_LIBRARY() ; dient zum Einbinden der DATA_library
+        
+        
+        dai_sps_ini() ; Initialisierungen von der Mercedes Grundplatte
+         ;ENDFOLD (DAI_SPS_INI)
+  ;FOLD USER INIT
+  ; Please insert user defined initialization commands
+if O_SpsSubRun <> 0 then
+  $Out[O_SpsSubRun]=False
+  SpsSubRunCount=0
+endif
+  ;ENDFOLD (USER INIT)
+  ;ENDFOLD (INI)
+
+  LOOP
+     WAIT FOR NOT($POWER_FAIL)
+     TORQUE_MONITORING()
+
+;FOLD GRIPPERTECH PLC;%{E}%MKUKATPGRP,%CSPS,%VSPS,%P
+  IF (ZANGEN_FUNKT>0) THEN
+    H50 (5,AKT_ZANGE,DUMMY,GDEFAULT )
+    ZANGEN_FUNKT=0
+  ENDIF
+;ENDFOLD (GRIPPERTECH PLC)
+	  ;FOLD DAI_SPS_LOOP
+	  ; Daimler-Anteil im sps.sub LOOP
+     dai_sps_loop() ; Aufruf mercedesspezifischer sps.sub-Anweisungen
+     ;ENDFOLD (DAI_SPS_LOOP)
+    ;FOLD USER PLC
+    ;Make your modifications here
+
+IF ($IN[227]) THEN
+   $OUT[3450]=TRUE    ;PRE ALERTA
+   $OUT[3452]=FALSE   ;LIM.MAX DE PONTOS ATINGIDO
+ELSE
+   $OUT[3450]=FALSE   ;PRE ALERTA
+ENDIF
+
+IF ($IN[228]) THEN 
+   $OUT[3450]=FALSE   ;PRE ALERTA
+   $OUT[3452]=TRUE    ;LIM.MAX DE PONTOS ATINGIDO
+ENDIF
+
+IF (NOT $IN[227]) AND (NOT $IN[228]) THEN
+   $OUT[3450]=FALSE   ;PRE ALERTA
+   $OUT[3452]=FALSE   ;LIM.MAX DE PONTOS ATINGIDO
+ENDIF
+
+IF ($IN[229]) THEN 
+   $OUT[3449]=TRUE    ;MAQUINA BOSCH OK
+ELSE 
+   $OUT[3449]=FALSE
+ENDIF
+
+; Falha de solda
+
+IF (NOT $IN[229]) OR ($IN[230]) THEN
+   $OUT[3497] = FALSE
+ ELSE
+   $OUT[3497] = TRUE 
+ENDIF
+
+; Sinais para Seguranca do Docking
+
+IF ((NOT $IN[161]) OR (NOT $IN[169]) OR (NOT $IN[177]) OR (NOT $IN[185]) OR (NOT $IN[193])) THEN
+  
+   $OUT[223]=FALSE   ; DESBLOQUEAR MPS
+   $OUT[224]=TRUE    ; BLOQUEAR MPS
+
+ENDIF
+
+
+; Comunicacao para PLC - ProfiSafe - monitoramento de ferramentas
+
+;Tool Change
+IF ((NOT $IN[219]) AND ($IN[161]) AND ($IN[169]) AND ($IN[177]) AND ($IN[185]) AND ($IN[193])) THEN
+
+   $OUT[3313]=FALSE   ; (1) TOOL PINCA C1   
+   $OUT[3314]=FALSE   ; (2) GARRA ACTROS 
+   $OUT[3315]=FALSE   ; (3) GARRA ACCELO 
+   $OUT[3316]=FALSE   ; (4) TOOL PINCA C2 
+   $OUT[3317]=FALSE   ; (5) GARRA AXOR ATEGO 
+   $OUT[3320]=TRUE    ; (6) TOOL CHANGE   
+      
+ENDIF
+
+; Pinca C1
+IF (($IN[219]) AND (NOT $IN[161]) AND ($IN[169]) AND ($IN[177]) AND ($IN[185]) AND ($IN[193])) THEN
+
+   $OUT[3313]=TRUE    ; (1) TOOL PINCA C1   
+   $OUT[3314]=FALSE   ; (2) GARRA ACTROS  
+   $OUT[3315]=FALSE   ; (3) GARRA ACCELO  
+   $OUT[3316]=FALSE   ; (4) TOOL PINCA C2   
+   $OUT[3317]=FALSE   ; (5) GARRA AXOR ATEGO   
+   $OUT[3320]=FALSE   ; (6) TOOL CHANGE   
+   
+ENDIF
+
+; Garra Actros
+IF (($IN[219]) AND ($IN[161]) AND ($IN[169]) AND (NOT $IN[177]) AND ($IN[185]) AND ($IN[193])) THEN
+
+   $OUT[3313]=FALSE   ; (1) TOOL PINCA C1   
+   $OUT[3314]=TRUE    ; (2) GARRA ACTROS   
+   $OUT[3315]=FALSE   ; (3) GARRA ACCELO  
+   $OUT[3316]=FALSE   ; (4) TOOL PINCA C2  
+   $OUT[3317]=FALSE   ; (5) GARRA AXOR ATEGO   
+   $OUT[3320]=FALSE   ; (6) TOOL CHANGE 
+     
+ENDIF
+
+; Garra Accelo
+IF (($IN[219]) AND ($IN[161]) AND (NOT $IN[169]) AND ($IN[177]) AND ($IN[185]) AND ($IN[193])) THEN
+
+   $OUT[3313]=FALSE   ; (1) TOOL PINCA C1   
+   $OUT[3314]=FALSE   ; (2) GARRA ACTROS   
+   $OUT[3315]=TRUE    ; (3) GARRA ACCELO   
+   $OUT[3316]=FALSE   ; (4) TOOL PINCA C2   
+   $OUT[3317]=FALSE   ; (5) GARRA AXOR ATEGO  
+   $OUT[3320]=FALSE   ; (6) TOOL CHANGE
+      
+ENDIF
+
+; Pinca C2
+IF (($IN[219]) AND ($IN[161]) AND ($IN[169]) AND ($IN[177]) AND (NOT $IN[185]) AND ($IN[193])) THEN
+
+   $OUT[3313]=FALSE   ; (1) TOOL PINCA C1   
+   $OUT[3314]=FALSE   ; (2) GARRA ACTROS   
+   $OUT[3315]=FALSE   ; (3) GARRA ACCELO   
+   $OUT[3316]=TRUE    ; (4) TOOL PINCA C2   
+   $OUT[3317]=FALSE   ; (5) GARRA AXOR ATEGO   
+   $OUT[3320]=FALSE   ; (6) TOOL CHANGE 
+     
+ENDIF
+
+; Garra Axor Atego
+IF (($IN[219]) AND ($IN[161]) AND ($IN[169]) AND ($IN[177]) AND ($IN[185]) AND (NOT $IN[193])) THEN
+
+   $OUT[3313]=FALSE   ; (1) TOOL PINCA C1   
+   $OUT[3314]=FALSE   ; (2) GARRA ACTROS  
+   $OUT[3315]=FALSE   ; (3) GARRA ACCELO  
+   $OUT[3316]=FALSE   ; (4) TOOL PINCA C2  
+   $OUT[3317]=TRUE    ; (5) GARRA AXOR ATEGO  
+   $OUT[3320]=FALSE   ; (6) TOOL CHANGE  
+   
+ENDIF
+
+; Falhas de água
+; -----------------------------------------------------
+
+IF ((NOT $IN[219]) AND ($IN[161]) AND ($IN[169]) AND ($IN[177]) AND ($IN[185]) AND ($IN[193]) AND (NOT $IN[67])) THEN
+   $OUT[3441] = TRUE
+ENDIF
+
+IF (($IN[219]) AND (NOT $IN[161]) AND (NOT $IN[67]) AND (NOT $IN[3218])) THEN
+   $OUT[3441] = FALSE
+ENDIF
+
+IF (($IN[219]) AND (NOT $IN[169]) AND (NOT $IN[67])) THEN
+   $OUT[3441] = TRUE
+ENDIF
+
+IF (($IN[219]) AND (NOT $IN[177]) AND (NOT $IN[67])) THEN
+   $OUT[3441] = TRUE
+ENDIF
+
+IF (($IN[219]) AND (NOT $IN[185]) AND (NOT $IN[67]) AND (NOT $IN[3218])) THEN
+   $OUT[3441] = FALSE
+ENDIF
+
+IF (($IN[219]) AND (NOT $IN[193]) AND (NOT $IN[67])) THEN
+   $OUT[3441] = TRUE
+ENDIF
+
+IF ($IN[67]) THEN
+   $OUT[3441] = TRUE
+ENDIF
+
+IF (NOT $IN[67]) AND ($IN[3218]) THEN
+   $OUT[3441] = TRUE
+ENDIF
+
+; Fim de falhas de água
+; ------------------------------------------------------
+
+; Falha de Gripper
+; Foi utilizado o contador 10. Favor não utiliza-lo/altera-lo.
+
+IF $TIMER[10] >= 5000 THEN
+   $OUT[3498] = FALSE
+ ELSE
+   $OUT[3498] = TRUE
+ENDIF
+
+; -----------------------------------------------------
+
+
+
+;FOLD CheckSpsSub is running
+  if O_SpsSubRun <> 0 then
+    SpsSubRunCount=SpsSubRunCount+1
+      if SpsSubRunCount>SpsSubRunCountMax then
+        $Out[O_SpsSubRun] = not $Out[O_SpsSubRun]
+        SpsSubRunCount=0
+      endif
+    endif
+    ;ENDFOLD (USER PLC)
+  ENDLOOP
+  ;FOLD ;%{H}
+  ;FOLD
+END
+  ;ENDFOLD
+
+
+DEF  RESET_OUT ( )
+  INT N
+  MsgLoop(" ")
+  IF REFLECT_PROG_NR == 1 THEN
+    FOR N = 0 TO PGNO_LENGTH - 1
+      $OUT[PGNO_FBIT_REFL + N] = FALSE
+    ENDFOR
+  ENDIF
+  IF (PGNO_REQ>0) THEN
+    $OUT[PGNO_REQ]=FALSE
+  ELSE
+    IF (PGNO_REQ<0) THEN
+      $OUT[-PGNO_REQ]=TRUE
+    ENDIF
+  ENDIF
+END
+
+;FOLD USER SUBROUTINE
+; Integrate your user defined subroutines
+
+;ENDFOLD (USER SUBROUTINE)
+;ENDFOLD

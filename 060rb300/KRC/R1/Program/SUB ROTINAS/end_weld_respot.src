@@ -1,0 +1,14 @@
+&ACCESS RV3
+&REL 4
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF end_weld_respot( )
+
+;FOLD ; Envia sinal de Solda GEOMETRIA concluida;%{PE}%R 4.1.16,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:Envia sinal de Solda GEOMETRIA concluida
+;ENDFOLD
+
+;FOLD PULSE 844 'Solda Respot Geo 2 Concluida'  State= TRUE CONT  Time= 3 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:844, 3:'Solda Respot Geo 2 Concluida', 5:TRUE, 6:CONTINUE, 8:3
+CONTINUE
+PULSE($OUT[844], TRUE,3)
+;ENDFOLD
+END

@@ -1,0 +1,23 @@
+&ACCESS RVP2
+&COMMENT Condicoes iniciais dock 6 - Deposito
+DEF CHK_W6_AB_OK ( )
+;Routine to check all dock stations before release the tool
+;Please, verify the inputs to each robot
+;Verificar as entradas para adaptar à cada robô
+;Dock 1 - 161
+;Dock 2 - 169
+;Dock 3 - 177
+;Dock 4 - 185
+;Dock 5 - 193
+;Dock 6 - 201
+;Dock 7 - 209
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+wait for (($in[161]) and ($in[169])  and ($IN[177]) and ($IN[185]) and ($in[193]) and (not $in[201]) and ($in[219]))
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+END

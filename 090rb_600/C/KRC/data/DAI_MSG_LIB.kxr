@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns="http://www.kuka.com/schemas/kxr/2009">
+  <module name="DAI_MSG_LIB">
+    <uiText key="Velocity">
+      <text xml:lang="de-DEV">Bahn- und Orientierungsgeschwindigkeit</text>
+      <text xml:lang="en-DEV">Path and Orientation velocity</text>
+    </uiText>
+    <uiText key="Set">
+      <text xml:lang="de-DEV">Setzen</text>
+      <text xml:lang="en-DEV">Set</text>
+    </uiText>
+    <uiText key="Reset">
+      <text xml:lang="de-DEV">Rücksetzen</text>
+      <text xml:lang="en-DEV">Reset</text>
+    </uiText>
+   <uiText key="Fieldbus">
+      <text xml:lang="de-DEV">Feldbus</text>
+      <text xml:lang="en-DEV">Fieldbus</text>
+    </uiText>
+   <uiText key="Koll">
+      <text xml:lang="de-DEV">Kollision</text>
+      <text xml:lang="en-DEV">Collision</text>
+   </uiText>
+   <uiText key="PLUS">
+      <text xml:lang="de-DEV">PLUS</text>
+      <text xml:lang="en-DEV">PLUS</text>
+   </uiText>
+   <uiText key="Init">
+      <text xml:lang="de-DEV">Initialisieren</text>
+      <text xml:lang="en-DEV">Initialize</text>
+   </uiText> 
+   <uiText key="Send">
+      <text xml:lang="de-DEV">Senden</text>
+      <text xml:lang="en-DEV">Send</text>
+   </uiText> 
+    <uiText key="DAI_YES_BT">
+      <text xml:lang="de-DEV">Ja</text>
+      <text xml:lang="en-DEV">yes</text>
+    </uiText>
+    <uiText key="DAI_NO_BT">
+      <text xml:lang="de-DEV">Nein</text>
+      <text xml:lang="en-DEV">no</text>
+    </uiText>  
+	<uiText key="DAI_OK_BT">
+      <text xml:lang="de-DEV">OK</text>
+      <text xml:lang="en-DEV">OK</text>
+    </uiText>  
+    <uiText key="DAI_CAN_BT">
+      <text xml:lang="de-DEV">Abbruch</text>
+      <text xml:lang="en-DEV">cancel</text>
+    </uiText> 
+    <uiText key="DAI_NEX_BT">
+      <text xml:lang="de-DEV">weiter</text>
+      <text xml:lang="en-DEV">continue</text>
+    </uiText>
+      <uiText key="DAI_MSG_L0">
+      <text xml:lang="de-DEV">DAI_MSG_LIBRARY wurde eingebunden</text>
+      <text xml:lang="en-DEV">DAI_MSG_LIBRARY incorporated</text>
+    </uiText>    
+    <uiText key="DAI_MSG_L1">
+      <text xml:lang="de-DEV">DAI_CTRL_LIBRARY wurde eingebunden</text>
+      <text xml:lang="en-DEV">DAI_CTRL_LIBRARY incorporated</text>
+    </uiText>
+    <uiText key="DAI_MSG_L2">
+      <text xml:lang="de-DEV">DAI_SPS_LIBRARY wurde eingebunden</text>
+      <text xml:lang="en-DEV">DAI_SPS_LIBRARY incorporated</text>
+    </uiText>
+    <uiText key="DAI_MSG_L3">
+      <text xml:lang="de-DEV">DAI_MATH_LIBRARY wurde eingebunden</text>
+      <text xml:lang="en-DEV">DAI_MATH_LIBRARY incorporated</text>
+    </uiText>
+    <uiText key="DAI_MSG_L4">
+      <text xml:lang="de-DEV">DAI_DATA_LIBRARY wurde eingebunden</text>
+      <text xml:lang="en-DEV">DAI_DATA_LIBRARY incorporated</text>
+    </uiText>
+    <uiText key="CTRL_MSG01">
+      <text xml:lang="de-DEV">Ghostsignale von SPS falsch ! (IN3220 == IN3221) I_GhostAktiv/-NotAktiv</text>
+      <text xml:lang="en-DEV">ghost signal from PLC wrong ! (IN3220 == IN3221) I_GhostActive/-NotActive</text>
+    </uiText>
+    <uiText key="CTRL_MSG02">
+      <text xml:lang="de-DEV">Roboter wegen Haltpunktende angehalten</text>
+      <text xml:lang="en-DEV">robot stopped  due to 'StopAfterPoint'</text>
+    </uiText>
+    <uiText key="CTRL_MSG03">
+      <text xml:lang="de-DEV">Roboter verlaesst Haltpunktende</text>
+      <text xml:lang="en-DEV">robot is leaving 'StopAfterPoint'</text>
+    </uiText>
+    <uiText key="CTRL_MSG04">
+      <text xml:lang="de-DEV">Roboter wegen 'BedingterHalt' angehalten !  Weiter ?</text>
+      <text xml:lang="en-DEV">robot stopped due to 'StopOnCondition' !  Continue ?</text>
+    </uiText>
+    <uiText key="CTRL_MSG05">
+      <text xml:lang="de-DEV">Override ist nicht auf 100%! Soll auf 100% gesetzt werden?</text>
+      <text xml:lang="en-DEV">Override is not 100% ! Change to 100% ?</text>
+    </uiText> 
+    <uiText key="CTRL_MSG10">
+      <text xml:lang="de-DEV">(RED_OVER_SAVE) Suchbeweg. akt. OV kann nicht erhoeht werden</text>
+      <text xml:lang="en-DEV">(RED_OVER_SAVE) Search move active ! OV can't be changed</text>
+    </uiText>
+    <uiText key="CTRL_MSG11">
+      <text xml:lang="de-DEV">Programm wurde nicht von der SPS angewaehlt !</text>
+      <text xml:lang="en-DEV">program not selected by PLC</text>
+    </uiText>
+    <uiText key="CTRL_MSG12">
+      <text xml:lang="de-DEV">Projektierungsfehler INVERT in IO-Duplizierung</text>
+      <text xml:lang="en-DEV">configuration fault INVERT un IO-Duplicate</text>
+    </uiText> 
+    <uiText key="CTRL_MSG13">
+      <text xml:lang="de-DEV">Projektierungsfehler SRC-Typ in IO-Duplizierung</text>
+      <text xml:lang="en-DEV">configuration fault src-type in IO-Duplicate</text>
+    </uiText>   
+    <uiText key="CTRL_MSG14">
+      <text xml:lang="de-DEV">Projektierungsfehler SRC-NO oder DST_N0 in IO-Duplizierung</text>
+      <text xml:lang="en-DEV">configuration fault SRC-NO oder DST_N0 in IO-Duplicate</text>
+    </uiText>   
+    <uiText key="CTRL_MSG15">
+      <text xml:lang="de-DEV">Warte auf $Input[PGNO_VALID]==FALSE</text>
+      <text xml:lang="en-DEV">Wait for $Input[PGNO_VALID]==FALSE</text>
+    </uiText>
+    <uiText key="CTRL_MSG16">
+      <text xml:lang="de-DEV">Warte auf $EXT_START==FALSE</text>
+      <text xml:lang="en-DEV">Wait for $EXT_START==FALSE</text>
+    </uiText>
+    <uiText key="CTRL_MSG17">
+      <text xml:lang="de-DEV">Warte auf $Input[PGNO_VALID]==TRUE</text>
+      <text xml:lang="en-DEV">Wait for $Input[PGNO_VALID]==TRUE</text>
+    </uiText>
+    <uiText key="CTRL_MSG18">
+      <text xml:lang="de-DEV">Warte auf $EXT_START==TRUE</text>
+      <text xml:lang="en-DEV">Wait for $EXT_START==TRUE</text>
+    </uiText>
+    <uiText key="CTRL_MSG19">
+      <text xml:lang="de-DEV">Warte auf $Input[PGNO_FBIT+PGNO-1]==FALSE</text>
+      <text xml:lang="en-DEV">Wait for $Input[PGNO_FBIT+PGNO-1]==FALSE</text>
+    </uiText>
+    <uiText key="CTRL_MSG20">
+      <text xml:lang="de-DEV">Roboter ist nicht in der  Home-Position!</text>
+      <text xml:lang="en-DEV">Robot not in Home-Position!</text>
+    </uiText>
+    <uiText key="CTRL_MSG50">
+      <text xml:lang="de-DEV">PGNO Typ falsch</text>
+      <text xml:lang="en-DEV">PgNo_TypeWrong</text>
+    </uiText>
+    <uiText key="CTRL_MSG51">
+      <text xml:lang="de-DEV">PGNO Laenge zu kurz</text>
+      <text xml:lang="en-DEV">PgNo_LengthTooSmall</text>
+    </uiText>
+    <uiText key="CTRL_MSG52">
+      <text xml:lang="de-DEV">PGNO Laenge falsch</text>
+      <text xml:lang="en-DEV">PgNo_LengthWrong</text>
+    </uiText> 
+    <uiText key="CTRL_MSG53">
+      <text xml:lang="de-DEV">PgNo_FBit  falsch</text>
+      <text xml:lang="en-DEV">PgNo_FBitWrong</text>
+    </uiText>   
+    <uiText key="CTRL_MSG54">
+      <text xml:lang="de-DEV">PgNo_Req   falsch</text>
+      <text xml:lang="en-DEV">PgNo_ReqWrong</text>
+    </uiText>   
+    <uiText key="CTRL_MSG55">
+      <text xml:lang="de-DEV">Paritaetsfehler</text>
+      <text xml:lang="en-DEV">ParityFault</text>
+    </uiText>
+    <uiText key="CTRL_MSG56">
+      <text xml:lang="de-DEV">Programm nicht vorhanden</text>
+      <text xml:lang="en-DEV">ProgramNotAvailable</text>
+    </uiText>
+    <uiText key="CTRL_MSG57">
+      <text xml:lang="de-DEV">BCDCode Fehler</text>
+      <text xml:lang="en-DEV">BCDCodeError</text>
+    </uiText>
+    <uiText key="CTRL_MSG58">
+      <text xml:lang="de-DEV">fuer Anwahl ist Fahrfreigabe erfordelich</text>
+      <text xml:lang="en-DEV">SelectionRequiresMoveEnable</text>
+    </uiText>
+    <uiText key="CTRL_MSG59">
+      <text xml:lang="de-DEV">fuer Anwahl ist AntriebeEin erforderlich</text>
+      <text xml:lang="en-DEV">SelectionRequiresDrivesOn</text>
+    </uiText>
+    <uiText key="CTRL_MSG60">
+      <text xml:lang="de-DEV">Programmnummer falsch</text>
+      <text xml:lang="en-DEV">ProgNumberWrong</text>
+    </uiText>  
+    <uiText key="CTRL_MSG70">
+      <text xml:lang="de-DEV">Visu-Bits: Fehler in der DAI_DATA_LIB</text>
+      <text xml:lang="en-DEV">Visu-Bits: Error in der DAI_DATA_LIB</text>
+    </uiText>
+    <uiText key="CTRL_MSG71">
+      <text xml:lang="de-DEV">Visu-Bits: Parametrierung in user_settings.dat falsch</text>
+      <text xml:lang="en-DEV">Visu-Bits: Configuration in user_settings.dat wrong</text>
+    </uiText>  
+    <uiText key="CTRL_MSG72">
+      <text xml:lang="de-DEV">Visu-Bits: Parametrierung bei Bit Nr.1 im Block %1 falsch</text>
+      <text xml:lang="en-DEV">Visu-Bits: Configuration at bit Nr.1 in block %1 wrong</text>
+    </uiText>  
+    <uiText key="CTRL_MSG73">
+      <text xml:lang="de-DEV">Visu-Bits: Parametrierung bei Bit Nr.2 im Block %1 falsch</text>
+      <text xml:lang="en-DEV">Visu-Bits: Configuration at bit Nr.2 in block %1 wrong</text>
+    </uiText>  		
+    <uiText key="CTRL_MSG74">
+      <text xml:lang="de-DEV">Visu-Bits: Parametrierung bei Bit Nr.3 im Block %1 falsch</text>
+      <text xml:lang="en-DEV">Visu-Bits: Configuration at bit Nr.3 in block %1 wrong</text>
+    </uiText>  		   
+    <uiText key="CTRL_MSG75">
+      <text xml:lang="de-DEV">Visu-Bits: Parametrierung bei Bit Nr.4 im Block %1 falsch</text>
+      <text xml:lang="en-DEV">Visu-Bits: Configuration at bit Nr.4 in block %1 wrong</text>
+    </uiText>  		   
+    <uiText key="CTRL_MSG76">
+      <text xml:lang="de-DEV">Visu-Bits: Parametrierung bei Bit Nr.5 im Block %1 falsch</text>
+      <text xml:lang="en-DEV">Visu-Bits: Configuration at bit Nr.5 in block %1 wrong</text>
+    </uiText>        
+    <uiText key="CTRL_MSG77">
+      <text xml:lang="de-DEV">Visu-Bits: Parametrierung bei Bit Nr.6 im Block %1 falsch</text>
+      <text xml:lang="en-DEV">Visu-Bits: Configuration at bit Nr.6 in block %1 wrong</text>
+    </uiText>        
+    <uiText key="CTRL_MSG78">
+      <text xml:lang="de-DEV">Visu-Bits: Parametrierung bei Bit Nr.7 im Block %1 falsch</text>
+      <text xml:lang="en-DEV">Visu-Bits: Configuration at bit Nr.7 in block %1 wrong</text>
+    </uiText>     
+    <uiText key="CTRL_MSG79">
+      <text xml:lang="de-DEV">Visu-Bits: Parametrierung bei Bit Nr.8 im Block %1 falsch</text>
+      <text xml:lang="en-DEV">Visu-Bits: Configuration at bit Nr.8 in block %1 wrong</text>
+    </uiText>     
+    <uiText key="CTRL_MSG80">
+      <text xml:lang="de-DEV">Visu-Bits: Parametrierung bei Bit Nr.9 im Block %1 falsch</text>
+      <text xml:lang="en-DEV">Visu-Bits: Configuration at bit Nr.9 in block %1 wrong</text>
+    </uiText>       
+    <uiText key="CTRL_MSG81">
+      <text xml:lang="de-DEV">Visu-Bits: Parametrierung bei Bit Nr.10 im Block %1 falsch</text>
+      <text xml:lang="en-DEV">Visu-Bits: Configuration at bit Nr.10 in block %1 wrong</text>
+    </uiText>     
+    <uiText key="CTRL_MSG82">
+      <text xml:lang="de-DEV">Visu-Bits: Parametrierung bei Bit Nr.11 im Block %1 falsch</text>
+      <text xml:lang="en-DEV">Visu-Bits: Configuration at bit Nr.11 in block %1 wrong</text>
+    </uiText>    
+    <uiText key="CTRL_MSG83">
+      <text xml:lang="de-DEV">Visu-Bits: Parametrierung bei Bit Nr.12 im Block %1 falsch</text>
+      <text xml:lang="en-DEV">Visu-Bits: Configuration at bit Nr.12 in block %1 wrong</text>
+    </uiText>    
+    <uiText key="CTRL_MSG84">
+      <text xml:lang="de-DEV">Visu-Bits: Parametrierung bei Bit Nr.13 im Block %1 falsch</text>
+      <text xml:lang="en-DEV">Visu-Bits: Configuration at bit Nr.13 in block %1 wrong</text>
+    </uiText>    
+    <uiText key="CTRL_MSG85">
+      <text xml:lang="de-DEV">Visu-Bits: Parametrierung bei Bit Nr.14 im Block %1 falsch</text>
+      <text xml:lang="en-DEV">Visu-Bits: Configuration at bit Nr.14 in block %1 wrong</text>
+    </uiText>    
+	<uiText key="CTRL_MSG86">
+      <text xml:lang="de-DEV">Visu-Bits: Parametrierung bei Bit Nr.15 im Block %1 falsch</text>
+      <text xml:lang="en-DEV">Visu-Bits: Configuration at bit Nr.15 in block %1 wrong</text>
+    </uiText>    
+	<uiText key="CTRL_MSG87">
+      <text xml:lang="de-DEV">Visu-Bits: Parametrierung bei Bit Nr.16 im Block %1 falsch</text>
+      <text xml:lang="en-DEV">Visu-Bits: Configuration at bit Nr.16 in block %1 wrong</text>
+    </uiText>    
+    <uiText key="QD_DLG_MSG10">
+      <text xml:lang="de-DEV">QData: Q-Daten des letzten Bauteils wurden nicht von der SPS gelesen. Senden wiederholen?</text>
+      <text xml:lang="en-DEV">QData: No English Dialog :-P</text>
+    </uiText>
+	<uiText key="QD_DLG_MSG11">
+      <text xml:lang="de-DEV">QData: Zu viele Punkte in einem Telegramm!</text>
+      <text xml:lang="en-DEV">QData: No English Dialog :-P</text>
+    </uiText>
+	<uiText key="QD_Yes_Btn">
+      <text xml:lang="de-DEV">Ja</text>
+      <text xml:lang="en-DEV">Yes</text>
+    </uiText> 
+	<uiText key="QD_No_Btn">
+      <text xml:lang="de-DEV">Nein</text>
+      <text xml:lang="en-DEV">No</text>
+   </uiText> 
+    </module>
+</resources>

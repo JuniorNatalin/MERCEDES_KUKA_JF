@@ -1,0 +1,107 @@
+&ACCESS RVP
+&REL 3
+&COMMENT ACCELO BOLHA
+&PARAM DISKPATH = KRC:\R1\Program
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF hp010( )
+;FOLD INI
+  ;FOLD BASISTECH INI
+    GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM ( )
+    INTERRUPT ON 3 
+    BAS (#INITMOV,0 )
+  ;ENDFOLD (BASISTECH INI)
+;FOLD GRIPPERTECH INI
+USER_GRP(0,DUMMY,DUMMY,GDEFAULT)
+;ENDFOLD (GRIPPERTECH INI)
+  ;FOLD USER INI
+    ;Make your modifications here
+
+  ;ENDFOLD (USER INI)
+     ;FOLD COLLISION_V_3.01 INI ;%{E}
+        IF (COLLISION_DATA[1].I_NR>0) THEN
+          GLOBAL INTERRUPT DECL 21 WHEN $IN[COLLISION_DATA[1].I_NR]==FALSE DO COLLSTOP (1,0 )
+        ENDIF
+        IF (COLLISION_DATA[2].I_NR>0) THEN
+          GLOBAL INTERRUPT DECL 22 WHEN $IN[COLLISION_DATA[2].I_NR]==FALSE DO COLLSTOP (2,0 )
+        ENDIF
+        IF (COLLISION_DATA[3].I_NR>0) THEN
+          GLOBAL INTERRUPT DECL 23 WHEN $IN[COLLISION_DATA[3].I_NR]==FALSE DO COLLSTOP (3,0 )
+        ENDIF
+        IF (COLLISION_DATA[4].I_NR>0) THEN
+          GLOBAL INTERRUPT DECL 24 WHEN $IN[COLLISION_DATA[4].I_NR]==FALSE DO COLLSTOP (4,0 )
+        ENDIF
+     ;ENDFOLD (Collision)
+;ENDFOLD (INI)
+
+; Caracterização dos meios de produção:
+; Changes: Accelo Bolha
+; Versão Atual: 03/11/2017
+; Name: P13.050-R2
+
+chk_w8_wechs_ok ( )        ; CHECK TOOL CHANGE
+
+MBINI ()                   ; Reset de bits
+
+;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
+$BWDSTART = FALSE
+PDAT_ACT=PDEFAULT
+FDAT_ACT=FHOME
+BAS (#PTP_PARAMS,100 )
+$H_POS=XHOME
+PTP  XHOME
+;ENDFOLD
+
+$TIMER[1]=0
+$TIMER_STOP[1]=FALSE
+
+wkz6_an()                  ; Pega do Gripper ACCELO
+
+HO_ST600_R2_2()            ; Pega lateral magazine
+
+AB_ST600_R2_2_Bolha()      ; Deposito da peca na geobox Bolha
+
+wkz1_an()                  ; Pega Pinca X1
+
+start_weld_GEO()           ; Bit inicio solda geometria
+
+PS_ltc_geo_x1()            ; Solda GUN X1 geometria
+
+wkz1_ab()                  ; Deposita Pinca X1
+
+wkz2_an()                  ; Pega Pinca C1
+
+PS_ltc_geo_c1()            ; Solda GUN C1 geometria
+
+end_weld_GEO()             ; Bit fim solda geometria
+
+wkz2_ab()                  ; Deposita Pinca C1
+
+WKZ6_OFF_st600_BOLHA()     ; Busca Gripper na geobox Bolha
+
+wkz6_ab()                  ; Deposita Gripper ACCELO
+
+wkz1_an()                  ; Pega Pinca X1
+
+start_weld_RESPOT()        ; Bit inicio solda respot
+
+PS_ltc_res_x1()            ; Solda GUN X1 RESPOT
+
+end_weld_RESPOT()          ; Bit trabalho concluido
+ 
+MBINI_2()
+
+wkz1_ab()                  ; Deposita Pinca X1
+ 
+$TIMER_STOP[1]=TRUE
+
+;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
+$BWDSTART = FALSE
+PDAT_ACT=PDEFAULT
+FDAT_ACT=FHOME
+BAS (#PTP_PARAMS,100 )
+$H_POS=XHOME
+PTP  XHOME
+;ENDFOLD
+
+END

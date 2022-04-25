@@ -1,0 +1,10 @@
+&ACCESS RVO7
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF Perfil_Livre( )
+
+;FOLD PULSE 868 'Perfil Livre Estacao'  State= TRUE CONT  Time= 3 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:868, 3:'Perfil Livre Estacao', 5:TRUE, 6:CONTINUE, 8:3
+CONTINUE
+PULSE($OUT[868], TRUE,3)
+;ENDFOLD
+END

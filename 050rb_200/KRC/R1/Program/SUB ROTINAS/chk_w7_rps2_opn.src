@@ -1,0 +1,22 @@
+&ACCESS RVO6
+&COMMENT Check GRP AXOR Z2 OPEN
+DEF chk_w7_rps2_opn( )
+
+; Check rps axor OPEN Z2.1
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+;FOLD WAIT FOR ( IN 495 ' Z2.1 - RPS Recuado - Axor' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:495, 7: Z2.1 - RPS Recuado - Axor, 9:
+WAIT FOR  ( $IN[495] ) 
+;ENDFOLD
+;FOLD WAIT FOR ( NOT IN 496 ' Z2.1 - RPS Avançado - Axor' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:NOT, 5:$IN, 6:496, 7: Z2.1 - RPS Avançado - Axor, 9:
+WAIT FOR  (  NOT $IN[496] ) 
+;ENDFOLD
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+END

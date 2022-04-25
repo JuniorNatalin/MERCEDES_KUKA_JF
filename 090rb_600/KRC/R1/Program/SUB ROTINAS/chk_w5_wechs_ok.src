@@ -1,0 +1,23 @@
+&ACCESS RVO7
+&REL 3
+&COMMENT Check Gripper Actros
+DEF chk_w5_wechs_ok( )
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+;IN[161] -> WKZ1 C1
+;IN[169] -> WKZ2 GRIPPER ACTROS
+;IN[177] -> WKZ3 GRIPPER ACELO
+;IN[185] -> WKZ4 X1
+;IN[193] -> WKZ5 GRIPPER AXOR ATEGO
+;IN[219] -> SUPERFICIE DE CONTATO
+
+; VERIFICAÇÃO DE FERRAMENTA: GRIPPER AXOR
+
+wait for (( $in[161]) and ($in[169]) and ($in[177]) and ($in[185]) and (not $in[193]) and ( $in[219]))
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+END

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns="http://www.kuka.com/schemas/kxr/2009">
+
+<!--====================================*)
+;(* Modul: AirGun Spotwelding           *)
+;(* GUI Version: KRC 4_ 8.2.xx          *)
+;(* Process: Daimler SpotWeld           *)
+;(* Company: Daimler AG                 *)
+;(* Department: PKL/AST                 *)
+;(* Name: B.Steffens  2012-07-12        *)
+;(*Ver. 1.0 - Initial Release  @C       *)
+;(*====================================--> 
+
+  <module name="DAI_AG_Spot">
+  
+    <uiText key="AG_DressStick"> 
+      <text xml:lang="de-DEV">Fraeser klemmt Fraesvorgang beenden ?  </text>
+      <text xml:lang="en-DEV">Dress is stick, cancle Process_</text>
+      <text xml:lang="pt-DEV">Dress is stick, cancle Process_</text>
+    </uiText>
+    <uiText key="AG_WrongPara"> 
+      <text xml:lang="de-DEV">Ungueltige Schweisskofferparametrierung ! </text>
+      <text xml:lang="en-DEV">Wrong weld parameter !_</text>
+      <text xml:lang="pt-DEV">Wrong weld parameter !_</text>
+    </uiText>
+    <uiText key="AG_GunConfFault"> 
+      <text xml:lang="de-DEV">Zangenzahl oder Endschalter Ablage n.i.O   </text>
+      <text xml:lang="en-DEV">Gun Changer configuration fault!</text>
+      <text xml:lang="pt-DEV">Gun Changer configuration fault!</text>
+    </uiText>
+    <uiText key="YES">
+      <text xml:lang="de-DEV">Ja</text>
+      <text xml:lang="en-DEV">Yes</text>
+      <text xml:lang="pt-DEV">Yes</text>
+    </uiText>
+    <uiText key="OK_">
+      <text xml:lang="de-DEV">OK</text>
+      <text xml:lang="en-DEV">OK</text>
+      <text xml:lang="pt-DEV">OK</text> 
+    </uiText>
+    
+    <uiText key="NO_">
+      <text xml:lang="de-DEV">Nein</text>
+      <text xml:lang="en-DEV">No</text>
+      <text xml:lang="pt-DEV">No</text>
+    </uiText>
+    
+    <uiText key="CANCEL">
+      <text xml:lang="de-DEV">Abbruch</text>
+      <text xml:lang="en-DEV">Cancel</text>
+      <text xml:lang="pt-DEV">Cancel</text>
+    </uiText>
+
+    <uiText key="AG_WeldMoniOff">
+      <text xml:lang="de-DEV">Schweissueberw. ist ausgeschalten !</text>
+      <text xml:lang="en-DEV">Weld monitoring is switched off</text>
+      <text xml:lang="pt-DEV">Weld monitoring is switched off</text>
+    </uiText>
+    <uiText key="AG_WeldMoniOff">
+      <text xml:lang="de-DEV">Schweissstrom/Ueberwachung ist ausgeschaltet!  Einschalten ?  </text>
+      <text xml:lang="en-DEV">Current monitoring is switched off</text>
+      <text xml:lang="pt-DEV">Current monitoring is switched off</text>
+    </uiText>
+    <uiText key="AG_CurentOff">
+      <text xml:lang="de-DEV">Schweissstrom ist ausgeschaltet!  Einschalten ?  </text>
+      <text xml:lang="en-DEV">Current is switched off!  Turned on ?</text>
+      <text xml:lang="pt-DEV">Current is switched off!  Turned on ?</text>
+    </uiText>
+    <uiText key="AG_GunConfWrong">
+      <text xml:lang="de-DEV">GUN Nr. nicht in Userspot.dat (Zange[Gun]) definiert </text>
+      <text xml:lang="en-DEV">Gun No. not in Userspot.dat definend</text>
+      <text xml:lang="pt-DEV">Gun No. not in Userspot.dat definend</text>
+    </uiText>
+    <uiText key="AG_FK_Missing">
+      <text xml:lang="de-DEV">Roboter gestoppt wegen fehlendem FK! Beheben und neu starten</text>
+      <text xml:lang="en-DEV">Process interrupt! End of Cycle missing</text>
+      <text xml:lang="pt-DEV">Process interrupt! End of Cycle missing</text>
+    </uiText>
+    <uiText key="AG_FK_Missing2">
+      <text xml:lang="de-DEV">FK von Schweisssteuerung fehlt!   Schweisssung wiederholen ?</text>
+      <text xml:lang="en-DEV">Process interrupt! End of Cycle missing</text>
+      <text xml:lang="pt-DEV">Process interrupt! End of Cycle missing</text>
+    </uiText>
+    <uiText key="AG_DressPrgSel">
+      <text xml:lang="de-DEV"> Abbruch, Fraesprogramm angewaehlt ! </text>
+      <text xml:lang="en-DEV">Process canclet! Tipdress program select!</text>
+      <text xml:lang="pt-DEV">Process canclet! Tipdress program select!</text>
+    </uiText>
+    <uiText key="AG_MaxDressTime">
+      <text xml:lang="de-DEV"> Maximale Fraeserlaufzeit erreicht ! </text>
+      <text xml:lang="en-DEV">Max. DressTime excidet</text>
+      <text xml:lang="pt-DEV">Max. DressTime excidet</text>
+    </uiText>
+    <uiText key="AG_DressNotStart">
+      <text xml:lang="de-DEV"> Abruch Fraeser nicht gestartet ! </text>
+      <text xml:lang="en-DEV">Cancle! Tipdresser not started</text>
+      <text xml:lang="pt-DEV">Cancle! Tipdresser not started</text>
+    </uiText>
+    <uiText key="AG_DressNotDef">
+      <text xml:lang="de-DEV"> Abbruch !! Kein Fraeser parametriert !</text>
+      <text xml:lang="en-DEV">Cancle! No Tip-Dresser defined</text>
+      <text xml:lang="pt-DEV">Cancle! No Tip-Dresser defined</text>
+    </uiText>
+    <uiText key="AG_DressErr">
+      <text xml:lang="de-DEV"> Fraesfehler von der Schweisssteuerung !</text>
+      <text xml:lang="en-DEV">Dress-Error occur</text>
+      <text xml:lang="pt-DEV">Dress-Error occur</text>
+    </uiText>
+    <uiText key="AG_TipCheckError">
+      <text xml:lang="de-DEV"> Elektrode-Kontrolle ist nicht in Ordnung ! </text>
+      <text xml:lang="en-DEV">Tip-Check not OK</text>
+      <text xml:lang="pt-DEV">Tip-Check not OK</text>
+    </uiText>
+    <uiText key="AG_GunChngError">
+      <text xml:lang="de-DEV">Falsche Zange angedockt !</text>
+      <text xml:lang="en-DEV">Wrong Gun are been changed</text>
+      <text xml:lang="pt-DEV">Wrong Gun are been changed</text>
+    </uiText>
+    <uiText key="AG_ConfDress">
+      <text xml:lang="de-DEV">! Konfiguration Fraeser nicht moeglich !</text>
+      <text xml:lang="en-DEV">Tip-Dresser Configuration not possible!</text>
+      <text xml:lang="pt-DEV">Tip-Dresser Configuration not possible!</text>
+    </uiText>
+    <uiText key="AG_SimAllowed">
+      <text xml:lang="de-DEV">In Auto keine Simulation erlaubt!</text>
+      <text xml:lang="en-DEV">In Auto no Simulation allowed!</text>
+      <text xml:lang="pt-DEV">In Auto no Simulation allowed!</text>
+    </uiText>
+    <uiText key="AG_Repeat">
+      <text xml:lang="de-DEV">Wiederholen</text>
+      <text xml:lang="en-DEV">Repeat</text>
+      <text xml:lang="pt-DEV">Repeat</text>
+    </uiText>
+    <uiText key="AG_CheckWeldError">
+      <text xml:lang="de-DEV">Fraesvorgang (Kontrollschweissung) fehlerhaft! Wiederholen?</text>
+      <text xml:lang="en-DEV">Dress process faulty! Repeat? </text>
+      <text xml:lang="pt-DEV">Dress process faulty! Repeat? </text>
+    </uiText>
+    
+    <uiText key="AG_CmdDress">
+      <text xml:lang="de-DEV">Elektroden Fraesen</text>
+      <text xml:lang="en-DEV">Tip Dress</text>
+      <text xml:lang="pt-DEV">Tip Dress</text>
+    </uiText>
+    <uiText key="AG_DressLin">
+      <text xml:lang="de-DEV">_LIN</text>
+      <text xml:lang="en-DEV">_LIN</text>
+      <text xml:lang="pt-DEV">_LIN</text>
+    </uiText>
+    <uiText key="AG_DressPTP">
+      <text xml:lang="de-DEV">_PTP</text>
+      <text xml:lang="en-DEV">_PTP</text>
+      <text xml:lang="pt-DEV">_PTP</text>
+    </uiText>
+
+
+    <uiText key="AG_STUDKEYBar"> 
+      <text xml:lang="de-DEV">Luft Punkt-Schweissen</text>
+      <text xml:lang="en-DEV">Air Spot-Weld</text>
+      <text xml:lang="pt-DEV">Air Spot-Weld</text>
+    </uiText>
+    
+
+
+   
+ </module>  
+</resources>

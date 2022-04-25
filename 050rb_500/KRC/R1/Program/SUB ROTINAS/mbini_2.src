@@ -1,0 +1,52 @@
+&ACCESS RVO2
+&COMMENT Cond Finais
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF MBINI_2( )
+;FOLD OUT 3333 'R5 trabalho concluido' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3333, 3:R5 trabalho concluido, 5:FALSE, 6:
+$OUT[3333]=FALSE
+;ENDFOLD
+;FOLD OUT 3334 'R5 solicita lib soldar respot' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3334, 3:R5 solicita lib soldar respot, 5:FALSE, 6:
+$OUT[3334]=FALSE
+;ENDFOLD
+;FOLD OUT 3335 'R5 retirou garra da Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3335, 3:R5 retirou garra da Geo, 5:FALSE, 6:
+$OUT[3335]=FALSE
+;ENDFOLD
+;FOLD OUT 3336 'R5 posicao retirar garra' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3336, 3:R5 posicao retirar garra, 5:FALSE, 6:
+$OUT[3336]=FALSE
+;ENDFOLD
+;FOLD OUT 3337 'R5 retirando garra Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3337, 3:R5 retirando garra Geo, 5:FALSE, 6:
+$OUT[3337]=FALSE
+;ENDFOLD
+;FOLD OUT 3338 'R5 solda geometria concluida' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3338, 3:R5 solda geometria concluida, 5:FALSE, 6:
+$OUT[3338]=FALSE
+;ENDFOLD
+;FOLD OUT 3339 'R5 aguarda lib soldar geometria' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3339, 3:R5 aguarda lib soldar geometria, 5:FALSE, 6:
+$OUT[3339]=FALSE
+;ENDFOLD
+;FOLD OUT 3344 'R5 entregou peca geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3344, 3:R5 entregou peca geo, 5:FALSE, 6:
+$OUT[3344]=FALSE
+;ENDFOLD
+;FOLD OUT 3345 'R5 solicita lib sair Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3345, 3:R5 solicita lib sair Geo, 5:FALSE, 6:
+$OUT[3345]=FALSE
+;ENDFOLD
+;FOLD OUT 3346 'R5 entrega teto Accelo Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3346, 3:R5 entrega teto Accelo Geo, 5:FALSE, 6:
+$OUT[3346]=FALSE
+;ENDFOLD
+;FOLD OUT 3360 'R5 posicao pegar teto Accelo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3360, 3:R5 posicao pegar teto Accelo, 5:FALSE, 6:
+$OUT[3360]=FALSE
+;ENDFOLD
+;FOLD OUT 3359 'R5 posicao com grampos fechados' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3359, 3:R5 posicao com grampos fechados, 5:FALSE, 6:
+$OUT[3359]=FALSE
+;ENDFOLD
+;FOLD OUT 3358 'R5 com teto' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3358, 3:R5 com teto, 5:FALSE, 6:
+$OUT[3358]=FALSE
+;ENDFOLD
+
+;FOLD OUT 3340 'AREA_CLEAR_AGV' State=TRUE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3340, 3:AREA_CLEAR_AGV, 5:TRUE, 6:
+$OUT[3340]=TRUE
+;ENDFOLD
+;FOLD WAIT Time=1 sec;%{PE}%R 8.2.20,%MKUKATPBASIS,%CWAIT,%VWAIT,%P 3:1
+WAIT SEC 1
+;ENDFOLD
+END

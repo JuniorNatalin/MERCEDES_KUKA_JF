@@ -1,0 +1,22 @@
+&ACCESS RV6
+&COMMENT Check GRP AXOR Z4 OPEN
+DEF chk_w7_grp4_opn( )
+
+; Check gripper axor OPEN Z4.1
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+;FOLD WAIT FOR ( IN 499 ' Z4.1 - Grampo Recuado - Axor' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:499, 7: Z4.1 - Grampo Recuado - Axor, 9:
+WAIT FOR  ( $IN[499] ) 
+;ENDFOLD
+;FOLD WAIT FOR ( NOT IN 500 ' Z4.1 - Grampo Avançado - Axor' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:NOT, 5:$IN, 6:500, 7: Z4.1 - Grampo Avançado - Axor, 9:
+WAIT FOR  (  NOT $IN[500] ) 
+;ENDFOLD
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+END

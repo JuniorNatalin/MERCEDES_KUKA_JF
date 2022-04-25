@@ -1,0 +1,302 @@
+&ACCESS RO
+&REL 19
+&COMMENT Torq_monitoring V4_01
+DEFDAT  TORQ_RES PUBLIC
+;========================================
+; Torqmon function automatic monitoring =
+;Name:   B.Steffens                     =
+;Depart. DC-SA                          =
+;Date:   11.07.2000    ver. 4.01        =
+;========================================
+;FOLD Variablen
+;GLOBAL STRUC TORQ_PARA INT F,TRIG_A TRIG,CLEAR CL_PARA,INT TORQ_BUF1,INT TORQ_BUF2,INT TORQ_BUF3,INT TORQ_BUF4,INT TORQ_BUF5,INT TORQ_BUF6
+;DECL GLOBAL TORQ_PARA TO_PARA
+;BOOL TORQ_DEFAULT=TRUE ;Torqmon default 200%
+BOOL MON_CL=TRUE ; clear Monit variable
+;BOOL TORQ_MES=FALSE ; Torque measurement application active
+BOOL DIAG=FALSE ;    diagnostic test
+DECL CONST INT TORQ_MAX=5 ;      number of monitoring max loops
+;INT TORQ_LOOP=2 ; number of monitoring loops
+;INT F=15 ;            actual sequence
+DECL CONST INT TORQ_MIN=10 ; min Values of Torqmon
+DECL CONST INT SEQ=5 ;     Number of The monotoring sequences
+DECL CONST INT DEF_MONIT=1 ;default initialisation of Monit
+DECL CONST INT POS_SEQ=30 ;max. Number of sequences
+;endfold
+;fold Fix offset
+INT TOL1=20 ;       fix offset axis 1 of %
+INT TOL2=30 ;       fix offset axis 2 of %
+INT TOL3=20 ;       fix offset axis 3 of %
+INT TOL4=20 ;        fix offset axis 4 of %
+INT TOL5=20 ;        fix offset axis 5 of %
+INT TOL6=20 ;        fix offset axis 6 of %
+;endfold
+;fold Timer controll
+;INT TI_NR1=14 ;active timer
+INT TI_COUNT=0 ;counter for timer routine
+INT TI_DELAY=180 ;Timer delay in minutes
+INT TI_OFFSET=0 ;Offset about Timer controll
+BOOL TI_CTR=TRUE ;Timer on flag
+BOOL TI_AK=FALSE ;Flag
+BOOL TI_MERK=FALSE ;Flag
+;endfold
+;fold Buffer
+; buffer variable
+INT TORQ_BUF1=0
+INT TORQ_BUF2=0
+INT TORQ_BUF3=0
+INT TORQ_BUF4=0
+INT TORQ_BUF5=0
+INT TORQ_BUF6=0
+
+; buffer variable
+DECL INT MON_BUF[6]
+MON_BUF[1]=23
+MON_BUF[2]=24
+MON_BUF[3]=11
+MON_BUF[4]=14
+MON_BUF[5]=14
+MON_BUF[6]=7
+;endfold
+;fold Torqmon sequence 1
+DECL INT MONIT[30,6] ;Array sequence variable
+MONIT[1,1]=1
+MONIT[1,2]=1
+MONIT[1,3]=1
+MONIT[1,4]=1
+MONIT[1,5]=1
+MONIT[1,6]=1
+;endfold
+;fold Torqmon sequence 2
+MONIT[2,1]=1
+MONIT[2,2]=1
+MONIT[2,3]=1
+MONIT[2,4]=1
+MONIT[2,5]=1
+MONIT[2,6]=1
+;endfold
+;fold Torqmon sequence 3
+MONIT[3,1]=1
+MONIT[3,2]=1
+MONIT[3,3]=1
+MONIT[3,4]=1
+MONIT[3,5]=1
+MONIT[3,6]=1
+;endfold
+;fold Torqmon sequence 4
+MONIT[4,1]=1
+MONIT[4,2]=1
+MONIT[4,3]=1
+MONIT[4,4]=1
+MONIT[4,5]=1
+MONIT[4,6]=1
+;endfold
+;fold Torqmon sequence 5
+MONIT[5,1]=1
+MONIT[5,2]=1
+MONIT[5,3]=1
+MONIT[5,4]=1
+MONIT[5,5]=1
+MONIT[5,6]=1
+;endfold
+;fold Torqmon sequence 6
+MONIT[6,1]=1
+MONIT[6,2]=1
+MONIT[6,3]=1
+MONIT[6,4]=1
+MONIT[6,5]=1
+MONIT[6,6]=1
+;endfold
+;fold Torqmon sequence 7
+MONIT[7,1]=1
+MONIT[7,2]=1
+MONIT[7,3]=1
+MONIT[7,4]=1
+MONIT[7,5]=1
+MONIT[7,6]=1
+;endfold
+;fold Torqmon sequence 8
+MONIT[8,1]=1
+MONIT[8,2]=1
+MONIT[8,3]=1
+MONIT[8,4]=1
+MONIT[8,5]=1
+MONIT[8,6]=1
+;endfold
+;fold Torqmon sequence 9
+MONIT[9,1]=1
+MONIT[9,2]=1
+MONIT[9,3]=1
+MONIT[9,4]=1
+MONIT[9,5]=1
+MONIT[9,6]=1
+;endfold
+;fold Torqmon sequence 10
+MONIT[10,1]=1
+MONIT[10,2]=1
+MONIT[10,3]=1
+MONIT[10,4]=1
+MONIT[10,5]=1
+MONIT[10,6]=1
+;endfold
+;fold Torqmon sequence 11
+MONIT[11,1]=1
+MONIT[11,2]=1
+MONIT[11,3]=1
+MONIT[11,4]=1
+MONIT[11,5]=1
+MONIT[11,6]=1
+;endfold
+;fold Torqmon sequence 12
+MONIT[12,1]=1
+MONIT[12,2]=1
+MONIT[12,3]=1
+MONIT[12,4]=1
+MONIT[12,5]=1
+MONIT[12,6]=1
+;endfold
+;fold Torqmon sequence 13
+MONIT[13,1]=1
+MONIT[13,2]=1
+MONIT[13,3]=1
+MONIT[13,4]=1
+MONIT[13,5]=1
+MONIT[13,6]=1
+;endfold
+;fold Torqmon sequence 14
+MONIT[14,1]=1
+MONIT[14,2]=1
+MONIT[14,3]=1
+MONIT[14,4]=1
+MONIT[14,5]=1
+MONIT[14,6]=1
+;endfold
+;fold Torqmon sequence 15
+MONIT[15,1]=1
+MONIT[15,2]=1
+MONIT[15,3]=1
+MONIT[15,4]=1
+MONIT[15,5]=1
+MONIT[15,6]=1
+;endfold
+;fold Torqmon sequence 16
+MONIT[16,1]=1
+MONIT[16,2]=1
+MONIT[16,3]=1
+MONIT[16,4]=1
+MONIT[16,5]=1
+MONIT[16,6]=1
+;endfold
+;fold Torqmon sequence 17
+MONIT[17,1]=1
+MONIT[17,2]=1
+MONIT[17,3]=1
+MONIT[17,4]=1
+MONIT[17,5]=1
+MONIT[17,6]=1
+;endfold
+;fold Torqmon sequence 18
+MONIT[18,1]=1
+MONIT[18,2]=1
+MONIT[18,3]=1
+MONIT[18,4]=1
+MONIT[18,5]=1
+MONIT[18,6]=1
+;endfold
+;fold Torqmon sequence 19
+MONIT[19,1]=1
+MONIT[19,2]=1
+MONIT[19,3]=1
+MONIT[19,4]=1
+MONIT[19,5]=1
+MONIT[19,6]=1
+;endfold
+;fold Torqmon sequence 20
+MONIT[20,1]=1
+MONIT[20,2]=1
+MONIT[20,3]=1
+MONIT[20,4]=1
+MONIT[20,5]=1
+MONIT[20,6]=1
+;endfold
+;fold Torqmon sequence 21
+MONIT[21,1]=1
+MONIT[21,2]=1
+MONIT[21,3]=1
+MONIT[21,4]=1
+MONIT[21,5]=1
+MONIT[21,6]=1
+;endfold
+;fold Torqmon sequence 22
+MONIT[22,1]=1
+MONIT[22,2]=1
+MONIT[22,3]=1
+MONIT[22,4]=1
+MONIT[22,5]=1
+MONIT[22,6]=1
+;endfold
+;fold Torqmon sequence 23
+MONIT[23,1]=1
+MONIT[23,2]=1
+MONIT[23,3]=1
+MONIT[23,4]=1
+MONIT[23,5]=1
+MONIT[23,6]=1
+;endfold
+;fold Torqmon sequence 24
+MONIT[24,1]=1
+MONIT[24,2]=1
+MONIT[24,3]=1
+MONIT[24,4]=1
+MONIT[24,5]=1
+MONIT[24,6]=1
+;endfold
+;fold Torqmon sequence 25
+MONIT[25,1]=1
+MONIT[25,2]=1
+MONIT[25,3]=1
+MONIT[25,4]=1
+MONIT[25,5]=1
+MONIT[25,6]=1
+;endfold
+;fold Torqmon sequence 26
+MONIT[26,1]=31
+MONIT[26,2]=30
+MONIT[26,3]=13
+MONIT[26,4]=8
+MONIT[26,5]=11
+MONIT[26,6]=10
+;endfold
+;fold Torqmon sequence 27
+MONIT[27,1]=6
+MONIT[27,2]=12
+MONIT[27,3]=5
+MONIT[27,4]=15
+MONIT[27,5]=8
+MONIT[27,6]=5
+;endfold
+;fold Torqmon sequence 28
+MONIT[28,1]=23
+MONIT[28,2]=32
+MONIT[28,3]=12
+MONIT[28,4]=17
+MONIT[28,5]=7
+MONIT[28,6]=7
+;endfold
+;fold Torqmon sequence 29
+MONIT[29,1]=21
+MONIT[29,2]=35
+MONIT[29,3]=13
+MONIT[29,4]=13
+MONIT[29,5]=13
+MONIT[29,6]=6
+;endfold
+;fold Torqmon sequence 30
+MONIT[30,1]=8
+MONIT[30,2]=25
+MONIT[30,3]=8
+MONIT[30,4]=6
+MONIT[30,5]=7
+MONIT[30,6]=9
+;ENDFOLD
+ENDDAT

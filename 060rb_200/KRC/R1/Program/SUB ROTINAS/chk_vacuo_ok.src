@@ -1,0 +1,20 @@
+&ACCESS RVO3
+&REL 3
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF chk_vacuo_ok( )
+
+;FOLD ; Programa de verificacao de vacuo ok;%{PE}%R 4.1.16,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:Programa de verificacao de vacuo ok
+;ENDFOLD
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+;FOLD WAIT FOR IN 5 'vacuo ok'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:5, 3:'vacuo ok', 5:TRUE, 6:
+WAIT FOR $IN[5]==TRUE
+;ENDFOLD
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+END

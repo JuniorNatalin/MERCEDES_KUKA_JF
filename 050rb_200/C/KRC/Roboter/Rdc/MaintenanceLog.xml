@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<XmlLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <MaintenanceGroups>
+    <MaintenanceGroup Name="MainAxisMaintenance">
+      <MaintenanceLogs>
+        <MaintenanceLog IntervalInYears="4" Maintenance="MainAxisMaintenance">
+          <CurrentDate>2011-06-19T19:00:00-03:00</CurrentDate>
+          <UserName>kuka roboter gmbh</UserName>
+          <RunTimeInHours>8</RunTimeInHours>
+          <OrderNumber>51246934587</OrderNumber>
+          <Comment>durchgefuehrt alle i.o</Comment>
+        </MaintenanceLog>
+      </MaintenanceLogs>
+    </MaintenanceGroup>
+    <MaintenanceGroup Name="BasicInspection">
+      <MaintenanceLogs>
+        <MaintenanceLog IntervalInYears="1" Maintenance="BasicInspection">
+          <CurrentDate>2012-08-25T00:00:00-03:00</CurrentDate>
+          <UserName>es</UserName>
+          <RunTimeInHours>41</RunTimeInHours>
+          <OrderNumber>1424</OrderNumber>
+          <Comment>erttg vftr vg</Comment>
+        </MaintenanceLog>
+      </MaintenanceLogs>
+    </MaintenanceGroup>
+  </MaintenanceGroups>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>ljmAuzP0Av00WcyumYM2Q+YLf1U=</DigestValue></Reference><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>ljmAuzP0Av00WcyumYM2Q+YLf1U=</DigestValue></Reference></SignedInfo><SignatureValue>kJ5I05NoWS7CaOieqkmhhqHj3YC6XTjcgvcPYNt1sVja1ouCFivQfx0T4HzwZpIvrFP7vDJDGN1pEdm2kpjLqoFk4qqKr64z7J3eVl2lUNksxwU/ORKK3R1B+bcGQ9HXotq/6/hvA9YTjOdLH90+1eI6yvp9Wugsu9ZMmqsTreI=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>qL6r+STY9BDAUJdla/fKmt3u2NvfXLoPBYF2zRX69eMg4nAOgRoi9Zonb+TqEQNCTsnLreFKnu2s9UWIuPXuc8aIPUWwSRRkzBy6Vn6wmdIWzud+Opywj/FgWc/OGVn9jP7rcx9bmjg2GG8Q1e9hVpCvoOHbTNVfl1ezZlBKRCk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue></KeyInfo></Signature></XmlLog>

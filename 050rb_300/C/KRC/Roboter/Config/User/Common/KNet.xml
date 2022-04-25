@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<KNet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/Roboter/Config/System/Common/Schemes/KNet.xsd">
+   <Version Label="">
+      <Info Version="KRC V8.2"/>
+      <Schema Version="100"/>
+   </Version>
+   <HostTable>
+      <!--
+         - two host entries for Non-Realtime and Realtime IP adresses
+         - 0..n entries for IP adresses of other host IP adresses
+      -->
+      <Host Name="SYS_NRT" IpAddress="172.17.0.1"/>
+      <Host Name="SYS_RT" IpAddress="172.16.0.1"/>
+   </HostTable>
+</KNet>

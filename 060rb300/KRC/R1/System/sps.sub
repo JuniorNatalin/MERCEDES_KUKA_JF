@@ -1,0 +1,347 @@
+&ACCESS RVP
+&REL 19
+&COMMENT PLC ON CONTROL
+DEF  SPS ( )
+   ;FOLD DECLARATIONS;%{PE}%V3.2.0,%MKUKATPBASIS,%CINIT,%VCOMMON,%P
+   ;FOLD BASIS DECL;%{PE}%V3.2.0,%MKUKATPBASIS,%CINIT,%VCOMMON,%P
+   DECL INT WFD_PLUS,WFD_MINUS,OLD_WFD
+   ;Automatik extern
+   DECL STATE_T STAT
+   DECL MODUS_T MODE
+   ;ENDFOLD (BASIS DECL)
+   ;FOLD USER DECL;%{PE}%V3.2.0,%MKUKATPBASIS,%CINIT,%VCOMMON,%P
+   ; Please insert user defined declarations
+   DECL INT OFFSET,K,REP,INDEX
+   DECL BOOL CALL_BY_SPS
+   DECL BOOL EX_PROG_STOP
+   DECL INT SpsSubRunCount
+   ;ENDFOLD (USER DECL)
+   ;ENDFOLD (DECLARATIONS)
+   ;FOLD INI;%{PE}%V3.2.0,%MKUKATPBASIS,%CINIT,%VCOMMON,%P
+   ;FOLD AUTOEXT INIT;%{E}%V3.2.0,%MKUKATPBASIS,%CSPS,%VAUTOEXT,%P
+  INTERRUPT DECL 91 WHEN $PRO_STATE1==#P_FREE DO RESET_REFL_OUT ()
+  INTERRUPT ON 91
+  $LOOP_MSG[]="                                                            "
+   MODE=#SYNC
+   $H_POS=$H_POS
+   TECH_MOTION=FALSE
+   ;ENDFOLD (AUTOEXT INIT)
+   ;FOLD USER INIT;%{E}%V3.2.0,%MKUKATPBASIS,%CSPS,%VAUTOEXT,%P
+   ; Please insert user defined initialization commands
+   CALL_BY_SPS=FALSE
+   EX_PROG_STOP=FALSE
+   REP=0
+   P01_STEP=0
+   CHK_STEP=0
+   PGNO_FLAG=0
+   ERROR_FLAG=TRUE
+   if O_SpsSubRun <> 0 then  
+     $Out[O_SpsSubRun]=False
+     SpsSubRunCount=0
+   endif 
+   User_SPS (#_INIT ) 
+   ;ENDFOLD (USER INIT)
+   ;ENDFOLD (INI)
+
+LOOP
+WAIT FOR NOT($POWER_FAIL)
+   ;FOLD AUTOEXT_DC;%{E}%V3.2.0,%MKUKATPBASIS,%CSPS,%VAUTOEXT,%P
+   IF ($MODE_OP==#EX) THEN
+      SWITCH  $PRO_STATE1
+         CASE #P_END,#P_FREE
+            P00_SUBM (#INIT_EXT,#PGNO_GET )
+            IF $IN_HOME THEN
+               SPS_INI ( )
+            ENDIF
+            P00_SUBM (#EXT_PGNO,#PGNO_GET )
+            PRO_NAME1_L[]="        "
+            PRO_NAME1_A[]="        "
+            EX_PROG_STOP=FALSE
+            P00_SUBM (#EXT_PGNO,#PGNO_ACKN )
+            IF P01_STEP==3 THEN
+               INDEX=FIND_INDEX(PGNO)
+               IF (INDEX>0) THEN ;Prog-Nr in Tabelle gefunden
+                  OFFSET=0
+                  SWRITE(TMPNAME[],STAT,OFFSET,"RUN /R1/%s",SPS_PROG[INDEX].PROG_NAME[])
+                  CWRITE($CMD,STAT,MODE,TMPNAME[])
+                  WAIT SEC 0.2
+                  IF (($PRO_STATE1==#P_ACTIVE) AND (STAT.RET1==#CMD_OK)) THEN
+                     CALL_BY_SPS=TRUE
+                  ELSE
+                     ERROR_FLAG=FALSE
+                     P00_SUBM (#EXT_PGNO,#PGNO_FAULT )
+                  ENDIF
+               ELSE
+                  ERROR_FLAG=FALSE
+                  P00_SUBM (#EXT_PGNO,#PGNO_FAULT )
+               ENDIF
+            ENDIF
+         CASE #P_STOP,#P_RESET
+            IF APPL_RUN>0 THEN
+               IF $OUT[APPL_RUN] THEN
+                  $OUT[APPL_RUN]=FALSE
+               ENDIF
+            ENDIF
+            IF PROG_CONTROL THEN
+               EX_PROG_STOP=TRUE
+            ENDIF
+         CASE #P_ACTIVE
+            IF APPL_RUN>0 THEN
+               IF  NOT $OUT[APPL_RUN] THEN
+                  $OUT[APPL_RUN]=TRUE
+               ENDIF
+            ENDIF
+            IF CALL_BY_SPS THEN
+               OFFSET=0
+               SREAD($PRO_NAME1[],STAT,OFFSET,"%s",PRO_NAME1_L[])
+               CALL_BY_SPS=FALSE
+            ENDIF
+            IF EX_PROG_STOP THEN
+               OFFSET=0
+               SREAD($PRO_NAME1[],STAT,OFFSET,"%s",PRO_NAME1_A[])
+               FOR K=1 TO  8
+                  IF PRO_NAME1_L[K]<>PRO_NAME1_A[K] THEN
+                     $LOOP_MSG[]="Programm wurde nicht von der SPS angewaehlt !"
+                     ERROR_FLAG=FALSE
+                     CWRITE($CMD,STAT,MODE,"STOP 1")
+                     EXIT
+                  ENDIF
+               ENDFOR
+               EX_PROG_STOP=FALSE
+            ENDIF
+      ENDSWITCH
+   ELSE
+      IF (($MODE_OP==#T1) OR ($MODE_OP==#T2) OR ($MODE_OP==#AUT)) THEN
+         IF (PGNO_REQ>0) THEN
+            $OUT[PGNO_REQ]=FALSE
+         ENDIF
+         IF (PGNO_REQ<0) THEN
+            $OUT[-PGNO_REQ]=TRUE
+         ENDIF
+         IF ERROR_FLAG==FALSE THEN
+            $LOOP_MSG[]="                                                                "
+            ERROR_FLAG=TRUE
+            P01_STEP=0
+            CHK_STEP=0
+         ENDIF
+      ENDIF
+   ENDIF
+   ;ENDFOLD (AUTOEXT_DC)
+   ;FOLD ARC20 PLC;%{E}%V3.2.0,%MKUKATPA20,%CSPS,%VSPS,%P
+   IF ((ARC20==TRUE) AND (A10_OPTION==#DISABLED)) THEN
+      A20_TECH ( )
+   ENDIF
+   ;ENDFOLD (ARC20 PLC)
+   ;FOLD TOUCH PLC;%{E}%V3.2.0,%MKUKATPTS,%CSPS,%VSPS,%P
+   IF H70_OPTION THEN
+      IF ( NOT ($PRO_ACT) AND FG_ON_WORK AND ($OV_PRO==0)) THEN
+         IF (TOUCH_ACTIVE>0) AND (TOUCH_ACTIVE<5) THEN
+            IF TOUCH_O[TOUCH_ACTIVE].OUT_NR>0 THEN
+               $OUT[TOUCH_O[TOUCH_ACTIVE].OUT_NR]=FALSE
+            ENDIF
+         ENDIF
+         NOTAUS_TOUCH=TRUE ; error flag 
+         $OV_PRO=OV_PRO_OLD
+      ENDIF
+   ENDIF
+   ;ENDFOLD (TOUCH PLC)
+   ;FOLD GRP PLC;%{E}%V3.2.0,%MKUKATPGRP,%CSPS,%VSPS,%P
+   IF (ZANGEN_FUNKT>0) THEN
+      H50 (5,AKT_ZANGE,DUMMY,GDEFAULT )
+      ZANGEN_FUNKT=0
+   ENDIF
+   ;ENDFOLD (GRP PLC)
+   ;FOLD SPOT PLC;%{E}%V3.2.0,%MKUKATPSPOT,%CSPS,%VSPS,%P
+   ;Make your modifications here
+   ;ENDFOLD (SPOT PLC)
+   ;FOLD USER PLC;%{E}%V3.2.0,%MKUKATPUSER,%CSPS,%VSPS,%P
+   ;Make your modifications here
+
+IF ($IN[227]) THEN
+    $OUT[881]=TRUE   ;PRE AVISO
+    $OUT[882]=FALSE  ;LIMITE MAX DE PONTOS DE SOLDA
+  ELSE
+    $OUT[881]=FALSE  ;PRE AVISO
+ENDIF
+
+IF (NOT $IN[227]) AND (NOT $IN[228]) THEN
+    $OUT[881]=FALSE  ;PRE AVISO
+    $OUT[882]=FALSE  ;LIMITE MAX DE PONTOS DE SOLDA
+ENDIF
+
+IF ($IN[228]) THEN
+    $OUT[881]=FALSE  ;PRE AVISO
+    $OUT[882]=TRUE   ;LIMITE MAX DE PONTOS DE SOLDA
+ENDIF
+
+IF ($IN[229]) THEN
+    $OUT[883]=TRUE   ;MAQUINA OK
+ELSE
+    $OUT[883]=FALSE  ;MAQUINA OK
+ENDIF
+
+; Falha de solda
+
+IF (NOT $IN[229]) OR ($IN[230]) THEN
+   $OUT[872] = FALSE
+ ELSE
+   $OUT[872] = TRUE    
+ENDIF
+
+; Sinais para Seguranca do Docking
+
+IF ((NOT $IN[161]) OR (NOT $IN[169]) OR (NOT $IN[185]) OR ((NOT $IN[177]) AND (NOT $IN[835]))) THEN
+  
+   $OUT[223]=FALSE   ; DESBLOQUEAR MPS
+   $OUT[224]=TRUE    ; BLOQUEAR MPS
+
+ENDIF
+
+; Falhas de água
+; -----------------------------------------------------
+; Diagnostico feito conforme a ferramenta em punho.
+
+IF (NOT $IN[169]) AND ($IN[219]) AND (NOT $IN[67]) AND (NOT $IN[818]) THEN
+   $OUT[875] = FALSE      
+ENDIF
+
+IF (NOT $IN[161]) AND ($IN[219]) AND (NOT $IN[67]) THEN
+   $OUT[875] = FALSE     
+ENDIF
+
+IF (NOT $IN[185]) AND ($IN[219]) AND (NOT $IN[67]) THEN
+   $OUT[875] = FALSE     
+ENDIF
+
+IF ($IN[169]) AND ($IN[161]) AND ($IN[185])  AND (NOT $IN[177]) AND ($IN[219]) THEN
+   $OUT[875] = TRUE   
+ENDIF
+
+IF ($IN[169]) AND ($IN[161])  AND ($IN[177]) AND ($IN[185]) AND (NOT $IN[219]) THEN
+   $OUT[875] = TRUE   
+ENDIF
+
+IF ($IN[67])  THEN
+   $OUT[875] = TRUE
+ENDIF
+
+IF (NOT $IN[67]) AND ($IN[818]) THEN
+   $OUT[875] = TRUE
+ENDIF
+
+; Fim de falhas de água
+; ----------------------------------------------------
+
+; Falha de Gripper
+; Utilizado o contador 10. Favor não utiliza-lo ou modifica-lo.
+
+IF $TIMER[10] >= 5000 THEN
+   $OUT[876] = FALSE
+ ELSE
+   $OUT[876] = TRUE
+ENDIF
+
+; --------------------------------------------------
+
+
+
+   ;Fold CheckSpsSub is running
+   if O_SpsSubRun <> 0 then
+    SpsSubRunCount=SpsSubRunCount+1
+     if SpsSubRunCount>SpsSubRunCountMax then
+       $Out[O_SpsSubRun] = not $Out[O_SpsSubRun]
+       SpsSubRunCount=0
+     endif
+    endif
+   ;endfold (Chk SPS Sub)
+   SPS_IO_DUPL ( )
+   User_SPS (#_Loop )
+   ;ENDFOLD (USER PLC)
+ENDLOOP
+;FOLD ;%{H}
+END
+;ENDFOLD
+
+
+;FOLD ;%{H}
+DEF  A20_TECH ( )
+   IF ($PRO_STATE1==#P_STOP) THEN
+      A20 (TECH_STOP )
+   ENDIF
+END
+DEF  RESET_REFL_OUT ( )
+  INT N
+
+  $LOOP_MSG[]="                                                            "
+  IF REFLECT_PROG_NR == 1 THEN
+    FOR N = 0 TO PGNO_LENGTH - 1
+      $OUT[PGNO_FBIT_REFL + N] = FALSE
+    ENDFOR
+  ENDIF
+END
+;ENDFOLD
+
+;FOLD USER SUBROUTINE;%{H}%V3.2.0,%MKUKATPUSER,%CSPS,%VSPS,%P
+;Integrate your user defined subroutines
+
+;FOLD SPS_IO_DUPL;%{H}%V3.2.0,%MKUKATPUSER,%CSPS,%VSPS,%P
+DEF  SPS_IO_DUPL ( )
+   ; Vervielfaeltigung von Ein- / Ausgaengen auf Ausgaenge
+   ; Version: V1.1
+   ; Stand: 29.05.99 / RW
+   INT I
+   FOR I=1 TO  MAX_DUPL
+      IF ((SIGNAL_DUPL[I].SRC_NO>0) AND (SIGNAL_DUPL[I].SRC_NO<=1024) AND (SIGNAL_DUPL[I].DST_NO>0) AND (SIGNAL_DUPL[I].DST_NO<=1024)) THEN
+         SWITCH  SIGNAL_DUPL[I].SRC_TYP
+         CASE #INP
+            SWITCH  SIGNAL_DUPL[I].INVERT
+            CASE #N
+               $OUT[SIGNAL_DUPL[I].DST_NO]=$IN[SIGNAL_DUPL[I].SRC_NO]
+            CASE #Y
+               $OUT[SIGNAL_DUPL[I].DST_NO]= NOT $IN[SIGNAL_DUPL[I].SRC_NO]
+            DEFAULT
+               $LOOP_MSG[]="Projektierungsfehler INVERT in IO-Duplizierung"
+               HALT
+               $LOOP_MSG[]="                                                                "
+            ENDSWITCH ;SIGNAL_DUPL[I].INVERT
+         CASE #OUTP
+            SWITCH  SIGNAL_DUPL[I].INVERT
+            CASE #N
+               $OUT[SIGNAL_DUPL[I].DST_NO]=$OUT[SIGNAL_DUPL[I].SRC_NO]
+            CASE #Y
+               $OUT[SIGNAL_DUPL[I].DST_NO]= NOT $OUT[SIGNAL_DUPL[I].SRC_NO]
+            DEFAULT
+               $LOOP_MSG[]="Projektierungsfehler INVERT in IO-Duplizierung"
+               HALT
+               $LOOP_MSG[]="                                                                "
+            ENDSWITCH ;SIGNAL_DUPL[I].INVERT
+         DEFAULT
+            $LOOP_MSG[]="Projektierungsfehler SRC_TYP in IO-Duplizierung"
+            HALT
+            $LOOP_MSG[]="                                                                "
+         ENDSWITCH ;SIGNAL_DUPL[I].SRC_TYP
+      ELSE
+         IF ((SIGNAL_DUPL[I].SRC_NO<>0) OR (SIGNAL_DUPL[I].DST_NO<>0)) THEN
+            $LOOP_MSG[]="Projektierungsfehler SRC_NO oder DST_NO in IO-Duplizierung"
+            HALT
+            $LOOP_MSG[]="                                                                "
+         ENDIF ;((SIGNAL_DUPL[I].SRC_NO<>0) OR ...
+      ENDIF ;((SIGNAL_DUPL[I].SRC_NO>0) AND ...
+   ENDFOR ;I=1 TO ...
+END ;SPS_IO_DUPL()
+;ENDFOLD (SPS_IO_DUPL)
+
+
+;FOLD FIND_INDEX;%{H}%V3.2.0,%MKUKATPUSER,%CSPS,%VSPS,%P
+DEFFCT  INT FIND_INDEX(PGNO :IN)
+   INT PGNO,II
+   FOR II=1 TO  MAX_SPS_PROG
+      IF SPS_PROG[II].PROG_NR==PGNO THEN
+         RETURN  II
+      ENDIF
+   ENDFOR
+   RETURN  0
+ENDFCT
+;ENDFOLD (FIND_INDEX)
+
+;ENDFOLD (USER SUBROUTINE)

@@ -1,0 +1,22 @@
+&ACCESS RV7
+&COMMENT Check GRP AXOR Z7 OPEN
+DEF chk_w7_grp7_opn( )
+
+; Check gripper axor OPEN Z7.1/2
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+;FOLD WAIT FOR ( IN 517 ' Z7.1 - Grampo Recuado - Axor' AND IN 519 ' Z7.2 - Grampo Recuado - Axor' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:517, 7: Z7.1 - Grampo Recuado - Axor, 8:AND, 9:, 10:$IN, 11:519, 12: Z7.2 - Grampo Recuado - Axor, 14:
+WAIT FOR  ( $IN[517] AND $IN[519] ) 
+;ENDFOLD
+;FOLD WAIT FOR ( NOT IN 518 ' Z7.1 - Grampo Avançado - Axor' AND NOT IN 520 ' Z7.2 - Grampo Avançado - Axor' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:NOT, 5:$IN, 6:518, 7: Z7.1 - Grampo Avançado - Axor, 8:AND, 9:NOT, 10:$IN, 11:520, 12: Z7.2 - Grampo Avançado - Axor, 14:
+WAIT FOR  (  NOT $IN[518] AND  NOT $IN[520] ) 
+;ENDFOLD
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+END

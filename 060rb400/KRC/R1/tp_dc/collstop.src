@@ -1,0 +1,151 @@
+&ACCESS RVO12
+&REL 267
+&COMMENT VERRIEGELUNGEN V3.02
+DEF  COLLSTOP (NO :IN,MODE :IN )
+   ;!======================================================
+   ;! Programm : COLLSTOP(..)     
+   ;! Funktion : Steuerung der Verriegelungen Roboter
+   ;!                             
+   ;! Mode 0 = Interruptmodus
+   ;! Mode 1 = Einschalten
+   ;! Mode 2 = Ausschalten
+   ;! Mode 3 = Initialisierung                     
+   ;!
+   ;!=======================================================
+   ;! Version  : 3.02             
+   ;! Aenderungsstand: 17.10.01 
+   ;! (C) 2001 DC-Bremen RBR-IH   
+   ;! Bearbeiter: Projektgruppe R230 B.S Tel.: 6652  
+   ;!=======================================================
+   ;! Version  : 3.01             
+   ;! Aenderungsstand: 05.05.2000 
+   ;!=======================================================
+   ;! (C) 1998 Daimler-Benz AG    
+   ;!                             
+   ;! Bearbeiter: R.Weinmann  07031-90-2571  
+   ;!=======================================================
+
+   INT NO,MODE,II
+   BOOL BRESULT
+
+   SWITCH  MODE
+
+;====main case===========
+CASE 0 ;Interruptmodus
+;========================
+   IF ($EXT) THEN
+         SWITCH  NO
+         CASE 1
+            INTERRUPT DISABLE 21
+         CASE 2
+            INTERRUPT DISABLE 22
+         CASE 3
+            INTERRUPT DISABLE 23
+         CASE 4
+            INTERRUPT DISABLE 24
+         DEFAULT
+         ENDSWITCH
+         BRAKE
+         MSG_WAIT ( CS_MESSAGE[], COLLISION_DATA[NO].I_NR,TRUE,MAX_I_CS_MESSAGE, 0,BRESULT )
+         SWITCH  NO
+         CASE 1
+            INTERRUPT ENABLE 21
+         CASE 2
+            INTERRUPT ENABLE 22
+         CASE 3
+            INTERRUPT ENABLE 23
+         CASE 4
+            INTERRUPT ENABLE 24
+         DEFAULT
+         ENDSWITCH
+      ENDIF ;$EXT
+
+;====main case===========
+CASE 1 ;Einschalten
+;========================
+    WHILE  COLLISION_DATA[NO].I_NR==0
+         MSG_TEXT (CS_ERRORS[1],#QUIT )
+      ENDWHILE
+      IF ($EXT) AND (NO<=4) AND (COLLISION_DATA[NO].I_NR>0) THEN
+         IF COLLISION_DATA[NO].ACTIVE==TRUE THEN ;Kollision ist aktiv
+            COLLISION_DATA[NO].ACTIVE=FALSE
+            SWITCH  NO
+            CASE 1
+               INTERRUPT OFF 21
+            CASE 2
+               INTERRUPT OFF 22
+            CASE 3
+               INTERRUPT OFF 23
+            CASE 4
+               INTERRUPT OFF 24
+            DEFAULT
+            ENDSWITCH ;NO
+         ENDIF
+      ENDIF ;$EXT
+
+      IF COLLISION_DATA[NO].I_NR>0 THEN
+	IF $OUT[COLLISION_DATA[NO].I_NR]==FALSE then  
+   	   MSG_WAIT ( CS_MESSAGE[], COLLISION_DATA[NO].I_NR,TRUE,MAX_I_CS_MESSAGE,0, BRESULT )
+	ELSE
+           $OUT[COLLISION_DATA[NO].I_NR]=TRUE
+           MSG_WAIT ( CS_MESSAGE[], COLLISION_DATA[NO].I_NR,FALSE,MAX_I_CS_MESSAGE,0,BRESULT )
+           $OUT[COLLISION_DATA[NO].I_NR]=FALSE
+        ENDIF
+      ENDIF
+      IF ($EXT) AND (NO<=4) AND (COLLISION_DATA[NO].I_NR>0) THEN
+         COLLISION_DATA[NO].ACTIVE=TRUE
+         SWITCH  NO
+         CASE 1
+            INTERRUPT ON 21
+         CASE 2
+            INTERRUPT ON 22
+         CASE 3
+            INTERRUPT ON 23
+         CASE 4
+            INTERRUPT ON 24
+         DEFAULT
+         ENDSWITCH ;NO
+      ENDIF ;$EXT
+
+      IF COLLISION_DATA[NO].I_NR>0 THEN
+         MSG_WAIT ( CS_MESSAGE[], COLLISION_DATA[NO].I_NR,TRUE,MAX_I_CS_MESSAGE,0, BRESULT )
+      ENDIF ; 
+
+;====main case===========
+CASE 2 ;Ausschalten
+;========================
+
+      IF COLLISION_DATA[NO].I_NR>0 THEN
+         $OUT[COLLISION_DATA[NO].I_NR]=TRUE
+      ENDIF ; 
+
+      IF ($EXT) AND (NO<=4) AND (COLLISION_DATA[NO].I_NR>0) THEN
+         COLLISION_DATA[NO].ACTIVE=FALSE
+         SWITCH  NO
+         CASE 1
+            INTERRUPT OFF 21
+         CASE 2
+            INTERRUPT OFF 22
+         CASE 3
+            INTERRUPT OFF 23
+         CASE 4
+            INTERRUPT OFF 24
+         DEFAULT
+         ENDSWITCH ;NO
+      ENDIF ;$EXT
+
+;====main case===========
+CASE 3 ;Initialisierung
+;========================
+
+      FOR II=1 TO  MAX_COLL
+         IF COLLISION_DATA[II].I_NR>0 THEN
+            $OUT[COLLISION_DATA[II].I_NR]=TRUE
+            COLLISION_DATA[II].ACTIVE=FALSE
+         ENDIF
+      ENDFOR
+
+   DEFAULT
+   ENDSWITCH ;MODE
+
+END

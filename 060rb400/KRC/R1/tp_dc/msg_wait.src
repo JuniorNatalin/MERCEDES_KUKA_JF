@@ -1,0 +1,90 @@
+&ACCESS RVO14
+&REL 17
+&COMMENT WARTEN AUF PROZESSSIGNAL
+DEF MSG_WAIT ( I_MESS[]:OUT, IN_NO:IN, CONDITION:IN, MAX_MSG:IN, TIMEOUT:IN, RESULT:OUT ) 
+ ;!==========================================================
+ ;! Programm : WAIT_MSG(..)
+ ;! Funktion : Zeigt dem Eingang zugehoerigen Text im
+ ;!            Meldungsfenster an.
+ ;!
+ ;! Version  : 0.0
+ ;! Aenderungsstand: 23.03.2000
+ ;!==========================================================
+ ;! (C) 1998 Daimler-Benz AG
+ ;!
+ ;! Bearbeiter :
+ ;!  R.Weinmann  07031-90-2571
+ ;!==========================================================
+   INT OFFSET, TIMEOUT, DUMMY, MSG_ID, IN_NO, MAX_MSG
+   BOOL CONDITION, RESULT
+   DECL I_MESSAGETYP I_MESS[]
+   CHAR STEMP[64]
+   DECL STATE_T STATE
+
+   If (IN_NO< 1) then
+   	return
+   endif	
+
+   MSG_ID=GET_MSG_ID( I_MESS[], IN_NO, MAX_MSG )
+
+   RESULT=FALSE ;default
+   $TIMER_STOP[15]=TRUE
+   $TIMER[15]=-1500 ;[msec]
+   $TIMER_STOP[15]=FALSE
+   WHILE  (($IN[IN_NO]<>CONDITION) AND ( NOT $TIMER_FLAG[15]))
+      WAIT SEC 0.01
+   ENDWHILE
+
+   ; wenn Timeout Meldungsangezeige
+   IF $TIMER_FLAG[15] THEN
+      $TIMER_STOP[15]=TRUE
+      IF TIMEOUT > 0 THEN
+         $TIMER[15] = (TIMEOUT-$TIMER[15]) * (-1)
+         $TIMER_STOP[15]=FALSE
+      ENDIF
+
+      $LOOP_CONT=TRUE
+      WHILE  (($IN[IN_NO]<>CONDITION) AND $LOOP_CONT )
+         OFFSET=0
+         IF CONDITION THEN
+            SWRITE($LOOP_MSG[],STATE,OFFSET,"S|Wait for %s",I_MESS[MSG_ID].I_MSG_TXT[])
+         ELSE
+            SWRITE($LOOP_MSG[],STATE,OFFSET,"S|Wait for not %s",I_MESS[MSG_ID].I_MSG_TXT[])
+         ENDIF
+         IF ($TIMER_FLAG[15]) AND (TIMEOUT > 0) THEN
+            RESULT = TRUE
+            EXIT
+         ENDIF
+         WAIT SEC 0.2 
+      ENDWHILE
+      $LOOP_MSG[]="                                                            "
+   ENDIF ;$TIMER_FLAG[15]
+   $TIMER_STOP[15]=TRUE
+
+END ; (MSG_WAIT)
+
+
+
+DEFFCT  INT GET_MSG_ID( I_MESS[]:OUT, IN_NO :IN, MSG_MAX:IN )
+   ;!==========================================================
+   ;! Programm : GET_MSG_ID(..)
+   ;! Funktion : Sucht im Datenstrukturfeld I_MESS[] eine
+   ;!	         Eingangsnummer, und liefert den zugehoerigen
+   ;!            Feldindex zurueck
+   ;! Version  : 1.01
+   ;! Aenderungsstand: 22.08.1998
+   ;!==========================================================
+   ;! (C) 1998 Daimler-Benz AG
+   ;!
+   ;! Bearbeiter :
+   ;!  R.Weinmann  07031-90-2571
+   ;!==========================================================
+   DECL I_MESSAGETYP I_MESS[]
+   INT IN_NO,II, MSG_MAX
+   FOR II=1 TO  MSG_MAX
+      IF I_MESS[II].I_NR==IN_NO THEN
+         RETURN  II
+      ENDIF
+   ENDFOR
+   RETURN MSG_MAX
+ENDFCT

@@ -1,0 +1,4 @@
+&ACCESS RVO4
+&COMMENT Checagem das ferramentas nos docks
+DEFDAT chk_w8_tools_ok PUBLIC
+ENDDAT

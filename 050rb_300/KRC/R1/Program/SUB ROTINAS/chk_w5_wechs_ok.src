@@ -1,0 +1,9 @@
+&ACCESS RV9
+&COMMENT Check C3
+DEF chk_w5_wechs_ok( )
+
+; VERIFICAÇÃO DE FERRAMENTA: PINCA C3
+ 
+WAIT FOR (($in [219]) AND ($in [161]) AND ($in [169]) AND ($in [177]) AND ($in [185]) AND (NOT $in [193]) AND (($in [201]) OR (NOT $in [201] AND $in [3320])))
+
+END

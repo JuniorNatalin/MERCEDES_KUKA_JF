@@ -1,0 +1,74 @@
+&ACCESS RVO2
+&REL 1
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF MBINI_2( )
+
+; Reset de bists finais
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+;FOLD OUT 3352 'R1 busca traseira' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3352, 3:R1 busca traseira, 5:FALSE, 6:
+$OUT[3352]=FALSE
+;ENDFOLD
+;FOLD OUT 3351 'R1 busca teto' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3351, 3:R1 busca teto, 5:FALSE, 6:
+$OUT[3351]=FALSE
+;ENDFOLD
+;FOLD OUT 3350 'Solicita lib. sair magazine' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3350, 3:Solicita lib. sair magazine, 5:FALSE, 6:
+$OUT[3350]=FALSE
+;ENDFOLD
+;FOLD OUT 3349 'R1 pegou peça' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3349, 3:R1 pegou peça, 5:FALSE, 6:
+$OUT[3349]=FALSE
+;ENDFOLD
+;FOLD OUT 3346 'Entrega peça Geo box' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3346, 3:Entrega peça Geo box, 5:FALSE, 6:
+$OUT[3346]=FALSE
+;ENDFOLD
+;FOLD OUT 3345 'Solicita lib sair geo box' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3345, 3:Solicita lib sair geo box, 5:FALSE, 6:
+$OUT[3345]=FALSE
+;ENDFOLD
+;FOLD OUT 3344 'R1 entregou peça geo box' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3344, 3:R1 entregou peça geo box, 5:FALSE, 6:
+$OUT[3344]=FALSE
+;ENDFOLD
+;FOLD OUT 3339 'R1 solicita lib soldar geometria' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3339, 3:R1 solicita lib soldar geometria, 5:FALSE, 6:
+$OUT[3339]=FALSE
+;ENDFOLD
+;FOLD OUT 3338 'R1 solda geometria concluida' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3338, 3:R1 solda geometria concluida, 5:FALSE, 6:
+$OUT[3338]=FALSE
+;ENDFOLD
+;FOLD OUT 3337 'R1 retira garra geo box' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3337, 3:R1 retira garra geo box, 5:FALSE, 6:
+$OUT[3337]=FALSE
+;ENDFOLD
+;FOLD OUT 3336 'R1 solicita sair com garra' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3336, 3:R1 solicita sair com garra, 5:FALSE, 6:
+$OUT[3336]=FALSE
+;ENDFOLD
+;FOLD OUT 3335 'R1 retirou garra' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3335, 3:R1 retirou garra, 5:FALSE, 6:
+$OUT[3335]=FALSE
+;ENDFOLD
+;FOLD OUT 3334 'R1 solda respot concluída' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3334, 3:R1 solda respot concluída, 5:FALSE, 6:
+$OUT[3334]=FALSE
+;ENDFOLD
+;FOLD OUT 3332 'Solicita sair com teto accelo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3332, 3:Solicita sair com teto accelo, 5:FALSE, 6:
+$OUT[3332]=FALSE
+;ENDFOLD
+;FOLD OUT 3331 'SOLDANDO Respot 7 pontos' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3331, 3:SOLDANDO Respot 7 pontos, 5:FALSE, 6:
+$OUT[3331]=FALSE
+;ENDFOLD
+;FOLD OUT 3360 'R1 em posição entregar peça R5' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3360, 3:R1 em posição entregar peça R5, 5:FALSE, 6:
+$OUT[3360]=FALSE
+;ENDFOLD
+;FOLD OUT 3359 'R1 entregou teto R5' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3359, 3:R1 entregou  teto R5, 5:FALSE, 6:
+$OUT[3359]=FALSE
+;ENDFOLD
+;FOLD OUT 3340 'AREA_CLEAR_AGV' State=TRUE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3340, 3:AREA_CLEAR_AGV, 5:TRUE, 6:
+$OUT[3340]=TRUE
+;ENDFOLD
+
+;FOLD WAIT Time=1 sec;%{PE}%R 8.2.20,%MKUKATPBASIS,%CWAIT,%VWAIT,%P 3:1
+WAIT SEC 1
+;ENDFOLD
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+END

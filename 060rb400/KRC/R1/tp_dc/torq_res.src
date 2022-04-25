@@ -1,0 +1,299 @@
+&ACCESS RO
+&REL 19
+&COMMENT Torq_monitoring V4_01
+DEF torq_res(CL_COMMAND :IN )
+;*******************************************
+;   Subroutine for                         *
+;Automatic supervision                     *
+;   of the Torqmon                         *
+;                                          *   
+;Name: B.Steffens                          *
+;Depart: DC-SA                             *
+;                                          *
+;Date: 27.04.2002                          *
+;     v.4.0.2                              *
+;==========================================*
+;Timerueberwachung im Defaultzweig         * 
+;integriert, Trigger mit fester Prioritaet *
+;Torq-Limits =      Mode 127               *
+;Torq-Aufzeichnung= Mode 128               *
+;*******************************************
+  
+
+DECL TORQ_PARA CL_COMMAND
+INT ADV_OL,Z
+
+SWITCH  CL_COMMAND.CL_PARA
+;============================
+;1 Torqmon default
+CASE #DEFA
+CL_TOR ( ) ; clear $torq_Diff
+DEFAULT_TORQ ( ) ;Torqmon default values 200%
+
+;============================
+;2 Setting tolerance individual
+CASE #LIMI
+$TORQMON[1]=CL_COMMAND.TORQ_BUF1
+$TORQMON[2]=CL_COMMAND.TORQ_BUF2
+$TORQMON[3]=CL_COMMAND.TORQ_BUF3
+$TORQMON[4]=CL_COMMAND.TORQ_BUF4
+$TORQMON[5]=CL_COMMAND.TORQ_BUF5
+$TORQMON[6]=CL_COMMAND.TORQ_BUF6
+CL_TOR ( ) ;       clear torq_Diff
+
+;============================
+;3 setting with of tolerance band automatic
+CASE #OFFS
+IF TORQ_MES THEN
+TORQ_DEFAULT=FALSE
+endif
+
+IF NOT TORQ_DEFAULT THEN ;              e
+   ADV_OL=$ADVANCE
+  $ADVANCE=1
+   IF not TORQ_MES THEN ;                       c
+     IF CL_COMMAND.TRIG<>#STP THEN ;          a
+
+      FOR Z=1 TO  6
+       IF MONIT[CL_COMMAND.F,Z]<TORQ_MIN THEN ; b
+          MONIT[CL_COMMAND.F,Z]=TORQ_MIN
+       ENDIF ;                                  b
+      ENDFOR
+
+       TORQ_AUT (CL_COMMAND )
+       CL_TOR ( ) ;       clear torq_Diff
+     ELSE ;                                   a
+       DEFAULT_TORQ ( ) ; If seqence off
+     ENDIF ;                                  a
+  ELSE ;                                  c 
+    IF TORQ_MES AND  NOT MON_CL THEN ;  f
+     CL_MONIT ( ) ;     initialation monit variable  
+     MON_CL=TRUE
+    ENDIF ;                                   f
+   DEFAULT_TORQ ( ) ;Torqmon default values 200%
+   CL_TOR ( ) ;      clear torq_Diff
+   $ADVANCE=ADV_OL
+  ENDIF ;c
+ELSE ;e
+DEFAULT_TORQ ( ) ; If Automatic monitoring off
+ENDIF ;e
+
+;============================
+;4 Monitoring
+CASE #MONI
+ADV_OL=$ADVANCE
+$ADVANCE=1
+IF TORQ_MES THEN
+TORQ_MONIT (CL_COMMAND )
+CL_TOR ( ) ;      clear $torq_Diff
+DEFAULT_TORQ ( ) ;Torqmon default values 200%
+ELSE
+MON_CL=FALSE
+DEFAULT_TORQ ( ) ;Torqmon default values 200%
+ENDIF
+$ADVANCE=ADV_OL
+ENDSWITCH
+END
+;=========end of main=========================================
+
+
+
+DEF  TORQ_AUT (CL_COMMAND :IN )
+DECL TORQ_PARA CL_COMMAND
+F=CL_COMMAND.F
+IF ($PRO_MODE==#ISTEP) OR ($PRO_MODE==#MSTEP) THEN
+DEFAULT_TORQ ( )
+ELSE
+IF TI_CTR THEN ;timer controll active
+TI_ASK (CL_COMMAND ) ;global offset of timer controll
+ENDIF
+TRIGGER WHEN DISTANCE=0 DELAY=0 DO TORQ_VAL ( ) PRIO=127
+ENDIF
+END
+
+;============================
+DEF  TORQ_VAL ( )
+
+$TORQMON[1]=MONIT[F,1]+TOL1+TORQ_BUF1+TI_OFFSET
+$TORQMON[2]=MONIT[F,2]+TOL2+TORQ_BUF2+TI_OFFSET
+$TORQMON[3]=MONIT[F,3]+TOL3+TORQ_BUF3+TI_OFFSET
+$TORQMON[4]=MONIT[F,4]+TOL4+TORQ_BUF4+TI_OFFSET
+$TORQMON[5]=MONIT[F,5]+TOL5+TORQ_BUF5+TI_OFFSET
+$TORQMON[6]=MONIT[F,6]+TOL6+TORQ_BUF6+TI_OFFSET
+TI_OFFSET=0
+END
+
+
+;============================
+DEF  TI_ASK (CL_COMMAND :IN )
+DECL TORQ_PARA CL_COMMAND
+BOOL FLAG_TI
+INT Z,TI_OFF,TI_OFF1
+TI_OFF=200
+FLAG_TI=FALSE
+IF $TIMER_FLAG[TI_NR1] THEN
+TI_AK=TRUE ;Flag
+ENDIF
+IF TI_AK THEN
+TI_COUNT=11
+TI_AK=FALSE
+ENDIF
+
+SWITCH  TI_COUNT
+CASE 1,2
+FOR Z=1 TO  6
+IF $PRO_MODE==#GO THEN
+IF MONIT[F,Z]<(TI_OFF-30) THEN
+FLAG_TI=TRUE
+ELSE
+FLAG_TI=FALSE
+EXIT
+ENDIF
+ENDIF
+ENDFOR
+IF FLAG_TI==TRUE THEN
+TI_OFFSET=5
+FLAG_TI=FALSE
+ENDIF
+CASE 3,4
+FOR Z=1 TO  6
+IF $PRO_MODE==#GO THEN
+IF MONIT[F,Z]<(TI_OFF-30) THEN
+FLAG_TI=TRUE
+ELSE
+FLAG_TI=FALSE
+EXIT
+ENDIF
+ENDIF
+ENDFOR
+IF FLAG_TI==TRUE THEN
+TI_OFFSET=10
+FLAG_TI=FALSE
+ENDIF
+CASE 5,6
+FOR Z=1 TO  6
+IF $PRO_MODE==#GO THEN
+IF MONIT[F,Z]<(TI_OFF-30) THEN
+FLAG_TI=TRUE
+ELSE
+FLAG_TI=FALSE
+EXIT
+ENDIF
+ENDIF
+ENDFOR
+IF FLAG_TI==TRUE THEN
+TI_OFFSET=15
+FLAG_TI=FALSE
+ENDIF
+CASE 7,8
+FOR Z=1 TO  6
+IF $PRO_MODE==#GO THEN
+IF MONIT[F,Z]<(TI_OFF-30) THEN
+FLAG_TI=TRUE
+ELSE
+FLAG_TI=FALSE
+EXIT
+ENDIF
+ENDIF
+ENDFOR
+IF FLAG_TI==TRUE THEN
+TI_OFFSET=20
+FLAG_TI=FALSE
+ENDIF
+CASE 9,10,11
+FOR Z=1 TO  6
+IF $PRO_MODE==#GO THEN
+IF MONIT[F,Z]<(TI_OFF-30) THEN
+FLAG_TI=TRUE
+ELSE
+FLAG_TI=FALSE
+EXIT
+ENDIF
+ENDIF
+ENDFOR
+IF FLAG_TI==TRUE THEN
+TI_OFFSET=25
+FLAG_TI=FALSE
+ENDIF
+ENDSWITCH
+IF (TI_COUNT>0) AND (CL_COMMAND.F==1) THEN
+TI_COUNT=TI_COUNT-1
+ENDIF
+$TIMER[TI_NR1]=TI_DELAY*60*1000*(-1)
+$TIMER_STOP[TI_NR1]=FALSE
+END
+
+
+
+;============================
+DEF  TORQ_MONIT (CL_COMMAND :IN )
+DECL TORQ_PARA CL_COMMAND
+INT Z
+$ADVANCE=1
+IF CL_COMMAND.F==1 THEN
+IF TORQ_LOOP>=TORQ_MAX THEN
+TORQ_MES=false
+TORQ_DEFAULT=TRUE
+TORQ_LOOP=0
+ELSE
+TORQ_LOOP=TORQ_LOOP+1
+ENDIF
+ENDIF
+
+TRIGGER WHEN DISTANCE=0 DELAY=50 DO MON_VAL ( ) PRIO=128
+
+F=CL_COMMAND.F
+FOR Z=1 TO  6
+IF MONIT[F,Z]<MON_BUF[Z] THEN
+MONIT[F,Z]=MON_BUF[Z]
+ENDIF
+MON_BUF[Z]=0
+ENDFOR
+END
+;============================
+DEF  MON_VAL ( )
+INT Z
+FOR Z=1 TO  6
+MON_BUF[Z]=$TORQ_DIFF[Z]
+ENDFOR
+END
+
+;============================
+DEF  CL_TOR ( )
+INT Z
+FOR Z=1 TO  6
+$TORQ_DIFF[Z]=0
+ENDFOR
+TORQ_BUF1=0
+TORQ_BUF2=0
+TORQ_BUF3=0
+TORQ_BUF4=0
+TORQ_BUF5=0
+TORQ_BUF6=0
+END
+
+;============================
+DEF  CL_MONIT ( )
+INT Z,X
+FOR Z=1 TO  POS_SEQ ;Number of The monotoring sequences
+FOR X=1 TO  6
+MONIT[Z,X]=DEF_MONIT ;   default initialization
+ENDFOR
+ENDFOR
+
+END
+
+;============================
+DEF  DEFAULT_TORQ ( )
+
+$TORQMON[1]=$TORQMON_DEF[1]
+$TORQMON[2]=$TORQMON_DEF[2]
+$TORQMON[3]=$TORQMON_DEF[3]
+$TORQMON[4]=$TORQMON_DEF[4]
+$TORQMON[5]=$TORQMON_DEF[5]
+$TORQMON[6]=$TORQMON_DEF[6]
+$TIMER[TI_NR1]=TI_DELAY*60*1000*(-1)
+$TIMER_STOP[TI_NR1]=FALSE
+
+END
+;;endfold

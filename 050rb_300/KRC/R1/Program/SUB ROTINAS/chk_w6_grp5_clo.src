@@ -1,0 +1,18 @@
+&ACCESS RVO8
+&COMMENT Check GRP AXOR Z5 CLOSE
+DEF chk_w6_grp5_clo( )
+
+; Check gripper axor CLOSE Z5.1/2/3/4
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+WAIT FOR (NOT $IN[501] and NOT $in[503] AND NOT $IN[505] AND NOT $IN[507])
+WAIT FOR ($IN[502] and $in[504] AND $IN[506] AND $IN[508])
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+END

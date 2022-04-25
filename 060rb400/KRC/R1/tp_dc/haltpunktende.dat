@@ -1,0 +1,19 @@
+&ACCESS RO
+&REL 6
+&COMMENT DC-Halt nach Punktende V1.00
+DEFDAT  HaltPunktEnde
+
+DECL CONST INT I_HALTNACHPUNKT=817
+DECL CONST INT O_HALTNACHPUNKTERREICHT=817
+
+
+DECL BOOL BRESULT
+INT MAX_I_HPE_MESSAGE=5
+DECL I_MESSAGETYP HPE_MESSAGE[5]
+HPE_MESSAGE[1]={I_NR 817,I_MSG_TXT[] "Halt nach Punktende aktiv ! E817 HPE                    "}
+HPE_MESSAGE[2]={I_NR 0,I_MSG_TXT[] "                                                        "}
+HPE_MESSAGE[3]={I_NR 0,I_MSG_TXT[] "                                                        "}
+HPE_MESSAGE[4]={I_NR 0,I_MSG_TXT[] "                                                        "}
+HPE_MESSAGE[5]={I_NR 0,I_MSG_TXT[] "                                                        "}
+
+ENDDAT

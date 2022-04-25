@@ -1,0 +1,192 @@
+&ACCESS RV8
+&REL 82
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF mbini( )
+;FOLD Collision.Monitoring_1_Off . ;%{PE}%MKUKATPUSER
+
+COLLSTOP( 1, 2+0 )
+
+;ENDFOLD
+;FOLD Collision.Monitoring_2_Off . ;%{PE}%MKUKATPUSER
+
+COLLSTOP( 2, 2+0 )
+
+;ENDFOLD
+;FOLD Collision.Monitoring_3_Off . ;%{PE}%MKUKATPUSER
+
+COLLSTOP( 3, 2+0 )
+
+;ENDFOLD
+;FOLD Collision.Monitoring_4_Off . ;%{PE}%MKUKATPUSER
+
+COLLSTOP( 4, 2+0 )
+
+;ENDFOLD
+;FOLD OUT 167 'Proteção da pinca 1 abrir'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:167, 3:'Proteção da pinca 1 abrir', 5:FALSE, 6:
+$OUT[167]=FALSE
+;ENDFOLD
+;FOLD OUT 168 'Proteção da pinca 1 fechar'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:168, 3:'Proteção da pinca 1 fechar', 5:FALSE, 6:
+$OUT[168]=FALSE
+;ENDFOLD
+;FOLD OUT 175 'Proteção da pinca 2 abrir'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:175, 3:'Proteção da pinca 2 abrir', 5:FALSE, 6:
+$OUT[175]=FALSE
+;ENDFOLD
+;FOLD OUT 176 'Proteção da pinca 2 fechar'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:176, 3:'Proteção da pinca 2 fechar', 5:FALSE, 6:
+$OUT[176]=FALSE
+;ENDFOLD
+;FOLD OUT 183 'Proteção da pinca 3 abrir'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:183, 3:'Proteção da pinca 3 abrir', 5:FALSE, 6:
+$OUT[183]=FALSE
+;ENDFOLD
+;FOLD OUT 184 'Proteção da pinca 3 fechar'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:184, 3:'Proteção da pinca 3 fechar', 5:FALSE, 6:
+$OUT[184]=FALSE
+;ENDFOLD
+;FOLD OUT 191 'Proteção da pinca 4 abrir'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:191, 3:'Proteção da pinca 4 abrir', 5:FALSE, 6:
+$OUT[191]=FALSE
+;ENDFOLD
+;FOLD OUT 192 'Proteção da pinca 4 fechar'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:192, 3:'Proteção da pinca 4 fechar', 5:FALSE, 6:
+$OUT[192]=FALSE
+;ENDFOLD
+;FOLD OUT 199 'Proteção Docking 5 abrir'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:199, 3:'Proteção Docking 5 abrir', 5:FALSE, 6:
+$OUT[199]=FALSE
+;ENDFOLD
+;FOLD OUT 200 'Proteção Docking 5 fechar'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:200, 3:'Proteção Docking 5 fechar', 5:FALSE, 6:
+$OUT[200]=FALSE
+;ENDFOLD
+;FOLD OUT 223 'Desbloqueio MPS'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:223, 3:'Desbloqueio MPS', 5:FALSE, 6:
+$OUT[223]=FALSE
+;ENDFOLD
+;FOLD OUT 224 'Bloqueio MPS'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:224, 3:'Bloqueio MPS', 5:TRUE, 6:
+$OUT[224]=TRUE
+;ENDFOLD
+;FOLD OUT 3321 'Fora da Geometria' State=TRUE ;%{PE}%R 8.2.24,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3321, 3:Fora da Geometria, 5:TRUE, 6:
+$OUT[3321]=TRUE
+;ENDFOLD
+;FOLD OUT 3332 'locking-signal PLC' State=FALSE ;%{PE}%R 8.2.24,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3332, 3:locking-signal PLC, 5:FALSE, 6:
+$OUT[3332]=FALSE
+;ENDFOLD
+;FOLD OUT 3333 'R4 trabalho concluido' State=FALSE ;%{PE}%R 8.2.24,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3333, 3:R4 trabalho concluido, 5:FALSE, 6:
+$OUT[3333]=FALSE
+;ENDFOLD
+;FOLD OUT 3334 'R4 solda respot OK' State=FALSE ;%{PE}%R 8.2.24,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3334, 3:R4 solda respot OK, 5:FALSE, 6:
+$OUT[3334]=FALSE
+;ENDFOLD
+;FOLD ; Retirado out 835 FALSE;%{PE}%R 8.2.24,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:Retirado  out  835  FALSE
+;ENDFOLD
+;FOLD OUT 835 'R6 solicita lib sair'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:835, 3:'R6 solicita lib sair', 5:FALSE, 6:
+$OUT[835]=FALSE
+;ENDFOLD
+;FOLD OUT 3340 'Liberacao Saida Garra R01' State=FALSE ;%{PE}%R 8.2.24,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3340, 3:Liberacao Saida Garra R01, 5:FALSE, 6:
+$OUT[3340]=FALSE
+;ENDFOLD
+;FOLD OUT 3343 'locking-signal PLC' State=TRUE ;%{PE}%R 8.2.24,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3343, 3:locking-signal PLC, 5:TRUE, 6:
+$OUT[3343]=TRUE
+;ENDFOLD
+;FOLD ; Retirado out 845 FALSE;%{PE}%R 8.2.24,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:Retirado  out  845  FALSE
+;ENDFOLD
+;FOLD OUT 3333 'R4 trabalho concluido' State=FALSE ;%{PE}%R 8.2.24,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3333, 3:R4 trabalho concluido, 5:FALSE, 6:
+$OUT[3333]=FALSE
+;ENDFOLD
+
+;FOLD ; ROBO EM POSICAO/GARRA DO FRONTAL;%{PE}%R 8.2.24,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:ROBO  EM  POSICAO/GARRA  DO  FRONTAL
+;ENDFOLD
+;FOLD OUT 3348 'STATUS DA SAIDA' State=FALSE ;%{PE}%R 8.2.24,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3348, 3:STATUS DA SAIDA, 5:FALSE, 6:
+$OUT[3348]=FALSE
+;ENDFOLD
+
+;FOLD PULSE 168 'Proteção da pinca 1 fechar'  State= TRUE   Time= 0.3 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:168, 3:'Proteção da pinca 1 fechar', 5:TRUE, 6:, 8:0.3
+PULSE($OUT[168], TRUE,0.3)
+;ENDFOLD
+;FOLD PULSE 176 'Proteção da pinca 2 fechar'  State= TRUE   Time= 0.3 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:176, 3:'Proteção da pinca 2 fechar', 5:TRUE, 6:, 8:0.3
+PULSE($OUT[176], TRUE,0.3)
+;ENDFOLD
+;FOLD PULSE 184 'Proteção da pinca 3 fechar'  State= TRUE   Time= 0.3 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:184, 3:'Proteção da pinca 3 fechar', 5:TRUE, 6:, 8:0.3
+PULSE($OUT[184], TRUE,0.3)
+;ENDFOLD
+;FOLD PULSE 192 'Proteção da pinca 4 fechar'  State= TRUE   Time= 0.3 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:192, 3:'Proteção da pinca 4 fechar', 5:TRUE, 6:, 8:0.3
+PULSE($OUT[192], TRUE,0.3)
+;ENDFOLD
+;FOLD PULSE 200 'Proteção Docking 5 fechar'  State= TRUE   Time= 0.3 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:200, 3:'Proteção Docking 5 fechar', 5:TRUE, 6:, 8:0.3
+PULSE($OUT[200], TRUE,0.3)
+;ENDFOLD
+;FOLD PULSE 208 'Proteção da pinca fechar'  State= TRUE   Time= 0.3 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:208, 3:'Proteção da pinca fechar', 5:TRUE, 6:, 8:0.3
+PULSE($OUT[208], TRUE,0.3)
+;ENDFOLD
+;FOLD PULSE 216 'Proteção da pinca fechar'  State= TRUE   Time= 0.3 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:216, 3:'Proteção da pinca fechar', 5:TRUE, 6:, 8:0.3
+PULSE($OUT[216], TRUE,0.3)
+;ENDFOLD
+
+;FOLD WAIT FOR IN 165 'Protecao de pinca aberta'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:165, 3:'Protecao de pinca aberta', 5:FALSE, 6:
+WAIT FOR $IN[165]==FALSE
+;ENDFOLD
+;FOLD WAIT FOR IN 173 'Protecao de pinca aberta'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:173, 3:'Protecao de pinca aberta', 5:FALSE, 6:
+WAIT FOR $IN[173]==FALSE
+;ENDFOLD
+;FOLD WAIT FOR IN 181 'Protecao de pinca aberta'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:181, 3:'Protecao de pinca aberta', 5:FALSE, 6:
+WAIT FOR $IN[181]==FALSE
+;ENDFOLD
+;FOLD WAIT FOR IN 189 'Protecao de pinca 4 aberta'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:189, 3:'Protecao de pinca 4 aberta', 5:FALSE, 6:
+WAIT FOR $IN[189]==FALSE
+;ENDFOLD
+;FOLD WAIT FOR IN 197 'Protecao Docking 5 aberta'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:197, 3:'Protecao Docking 5 aberta', 5:FALSE, 6:
+WAIT FOR $IN[197]==FALSE
+;ENDFOLD
+
+;FOLD WAIT FOR IN 166 'Protecao de pinca fechada'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:166, 3:'Protecao de pinca fechada', 5:TRUE, 6:
+WAIT FOR $IN[166]==TRUE
+;ENDFOLD
+;FOLD WAIT FOR IN 174 'Protecao de pinca fechada'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:174, 3:'Protecao de pinca fechada', 5:TRUE, 6:
+WAIT FOR $IN[174]==TRUE
+;ENDFOLD
+;FOLD WAIT FOR IN 182 'Protecao de pinca fechada'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:182, 3:'Protecao de pinca fechada', 5:TRUE, 6:
+WAIT FOR $IN[182]==TRUE
+;ENDFOLD
+;FOLD WAIT FOR IN 190 'Protecao de pinca 4 fechada'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:190, 3:'Protecao de pinca 4 fechada', 5:TRUE, 6:
+WAIT FOR $IN[190]==TRUE
+;ENDFOLD
+;FOLD WAIT FOR IN 198 'Protecao Docking 5 fechada'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:198, 3:'Protecao Docking 5 fechada', 5:TRUE, 6:
+WAIT FOR $IN[198]==TRUE
+;ENDFOLD
+$TIMER_STOP[10] = TRUE
+
+
+;FOLD ; Sinais Atego e Axor;%{PE}%R 4.1.16,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:Sinais Atego e Axor
+;ENDFOLD
+
+;FOLD Collision.Monitoring_5_Off . ;%{PE}%MKUKATPUSER
+
+COLLSTOP( 5, 2+0 )
+
+;ENDFOLD
+;FOLD Collision.Monitoring_6_Off . ;%{PE}%MKUKATPUSER
+
+COLLSTOP( 6, 2+0 )
+
+;ENDFOLD
+;FOLD Collision.Monitoring_7_Off . ;%{PE}%MKUKATPUSER
+
+COLLSTOP( 7, 2+0 )
+
+;ENDFOLD
+;FOLD Collision.Monitoring_8_Off . ;%{PE}%MKUKATPUSER
+
+COLLSTOP( 8, 2+0 )
+
+;ENDFOLD
+
+;FOLD OUT 3347 'locking-signal PLC' State=TRUE ;%{PE}%R 8.2.24,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3347, 3:locking-signal PLC, 5:TRUE, 6:
+$OUT[3347]=TRUE
+;ENDFOLD
+;FOLD OUT 3346 'locking-signal PLC' State=TRUE ;%{PE}%R 8.2.24,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3346, 3:locking-signal PLC, 5:TRUE, 6:
+$OUT[3346]=TRUE
+;ENDFOLD
+;FOLD OUT 3344 'locking-signal PLC' State=TRUE ;%{PE}%R 8.2.24,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3344, 3:locking-signal PLC, 5:TRUE, 6:
+$OUT[3344]=TRUE
+;ENDFOLD
+;FOLD OUT 866 'Perfil Livre Pre Dep Teto Atego e Axor'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:866, 3:'Perfil Livre Pre Dep Teto Atego e Axor', 5:TRUE, 6:
+$OUT[866]=TRUE
+;ENDFOLD
+
+
+
+END

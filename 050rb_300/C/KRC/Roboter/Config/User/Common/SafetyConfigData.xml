@@ -1,0 +1,1087 @@
+<?xml version="1.0"?>
+<SafetyConfigData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AxisRangeNameItems />
+  <ChangeLog>
+    <Entries>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_HardwareParameterChanged</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-03-05T04:33:00.8125-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-03-05T04:33:02.140625-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-03-05T04:33:02.140625-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-07-07T08:38:15.859375-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-07-07T08:38:15.859375-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ReferenceAdjustmentParameterChanged</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-07-07T08:58:50.59375-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_AxisMonitoringParameterChanged</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-07-07T08:58:50.59375-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 1</string>
+        </MessageParams>
+        <Timestamp>2012-07-07T08:58:50.609375-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 2</string>
+        </MessageParams>
+        <Timestamp>2012-07-07T08:58:50.609375-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 3</string>
+        </MessageParams>
+        <Timestamp>2012-07-07T08:58:50.609375-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 4</string>
+        </MessageParams>
+        <Timestamp>2012-07-07T08:58:50.609375-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 5</string>
+        </MessageParams>
+        <Timestamp>2012-07-07T08:58:50.609375-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 6</string>
+        </MessageParams>
+        <Timestamp>2012-07-07T08:58:50.609375-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 7</string>
+        </MessageParams>
+        <Timestamp>2012-07-07T08:58:50.609375-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 8</string>
+        </MessageParams>
+        <Timestamp>2012-07-07T08:58:50.609375-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 9</string>
+        </MessageParams>
+        <Timestamp>2012-07-07T08:58:50.609375-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 10</string>
+        </MessageParams>
+        <Timestamp>2012-07-07T08:58:50.609375-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 11</string>
+        </MessageParams>
+        <Timestamp>2012-07-07T08:58:50.625-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 12</string>
+        </MessageParams>
+        <Timestamp>2012-07-07T08:58:50.625-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 13</string>
+        </MessageParams>
+        <Timestamp>2012-07-07T08:58:50.625-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 14</string>
+        </MessageParams>
+        <Timestamp>2012-07-07T08:58:50.625-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 15</string>
+        </MessageParams>
+        <Timestamp>2012-07-07T08:58:50.625-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 16</string>
+        </MessageParams>
+        <Timestamp>2012-07-07T08:58:50.625-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-07-07T08:58:51.40625-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-07-07T08:58:51.40625-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-07-08T13:17:03.140625-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-07-08T13:17:03.140625-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-07-09T06:54:34.3578152-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-07-09T06:54:34.3578152-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-07-13T09:45:47.2120208-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-07-13T09:45:59.554213-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-07-19T11:23:12.5230011-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-07-19T11:23:31.3983312-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-07-19T11:46:00.6466957-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-07-19T11:46:02.8474397-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-07-19T12:08:15.7599469-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-07-19T12:08:18.004146-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-07-20T04:40:14.7373857-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-07-20T04:40:17.0577472-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-02T18:21:08.5760271-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-02T18:21:08.5780272-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-02T13:33:13.7305848-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-02T13:33:15.9188128-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-07T15:55:36.3660109-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-07T15:55:36.368011-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-07T14:34:11.4666984-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-07T14:34:13.5983237-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-08T10:31:59.21875-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-08T10:31:59.21875-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-08T13:45:23.3278549-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-08T13:45:25.2919962-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-09T12:38:50.421875-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-09T12:38:50.421875-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-09T10:21:38.2086336-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-09T10:21:42.3742705-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-10T13:32:56.7880347-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-10T13:32:56.7910349-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-10T08:44:23.1050712-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-10T08:44:24.9257236-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-13T17:16:09.2597807-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-13T17:16:09.2617808-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MachineDataUpdated</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-13T12:23:37.3428888-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-13T12:23:37.3428888-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-08-16T14:17:48.0888324-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_SafeOperationMonitoringEnabled</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-09-08T18:18:16.7529502-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-09-08T18:18:24.4854336-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ReferenceAdjustmentParameterChanged</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-09-08T18:20:50.371744-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-09-08T18:20:57.3173048-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_SafeOperationMonitoringDisabled</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-09-09T17:24:18.0066465-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-09-09T17:24:23.327835-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_SafeOperationMonitoringEnabled</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-12T19:53:09.9196268-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-12T19:53:30.6768707-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_CellAreaParameterChanged</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-12T20:00:24.2708118-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-12T20:01:17.0155756-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 1</string>
+        </MessageParams>
+        <Timestamp>2012-12-12T20:06:31.472299-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-12T20:06:50.291373-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 2</string>
+        </MessageParams>
+        <Timestamp>2012-12-12T20:10:51.2869284-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-12T20:11:00.0795294-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 3</string>
+        </MessageParams>
+        <Timestamp>2012-12-12T20:15:06.6771831-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-12T20:15:14.5970825-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 4</string>
+        </MessageParams>
+        <Timestamp>2012-12-12T20:17:57.1751872-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-12T20:18:04.0933955-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ToolParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Ferramenta 1</string>
+        </MessageParams>
+        <Timestamp>2012-12-12T20:29:07.9227902-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-12T20:29:13.7026414-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ToolParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Ferramenta 2</string>
+        </MessageParams>
+        <Timestamp>2012-12-12T20:32:57.3914281-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-12T20:33:04.4798968-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ToolParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Ferramenta 3</string>
+        </MessageParams>
+        <Timestamp>2012-12-12T20:38:24.0795013-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-12T20:38:51.6762152-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ToolParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Ferramenta 4</string>
+        </MessageParams>
+        <Timestamp>2012-12-12T20:43:20.7571312-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-12T20:43:31.8802582-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ToolParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Ferramenta 8</string>
+        </MessageParams>
+        <Timestamp>2012-12-12T20:45:10.3702327-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-12T20:45:36.1378133-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_SafeOperationMonitoringDisabled</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-12T21:00:15.8022658-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-12T21:00:19.3379777-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_SafeOperationMonitoringEnabled</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-12T22:46:07.2729324-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-12T22:46:12.863913-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_SafeOperationMonitoringDisabled</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-12T22:47:48.8399435-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-12T22:47:53.2542245-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_SafeOperationMonitoringEnabled</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-13T00:07:42.153271-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-13T00:07:45.9802578-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ReferenceAdjustmentParameterChanged</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-13T00:15:30.5654638-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-13T00:15:35.2744884-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 2</string>
+        </MessageParams>
+        <Timestamp>2012-12-13T00:52:17.364968-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 3</string>
+        </MessageParams>
+        <Timestamp>2012-12-13T00:52:27.8392604-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 4</string>
+        </MessageParams>
+        <Timestamp>2012-12-13T00:52:37.0856656-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-13T00:52:56.6822746-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 1</string>
+        </MessageParams>
+        <Timestamp>2012-12-13T08:47:56.0290592-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-13T08:48:35.3831277-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 4</string>
+        </MessageParams>
+        <Timestamp>2012-12-14T08:53:26.4082891-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-14T08:53:38.9956045-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 1</string>
+        </MessageParams>
+        <Timestamp>2012-12-14T16:23:44.3306459-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-14T16:23:51.5957062-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 1</string>
+        </MessageParams>
+        <Timestamp>2012-12-14T16:27:16.441887-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-14T16:27:21.3086972-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 1</string>
+        </MessageParams>
+        <Timestamp>2012-12-14T16:30:03.022452-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-14T16:30:22.3654958-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 1</string>
+        </MessageParams>
+        <Timestamp>2012-12-14T16:53:01.1103876-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-14T16:53:06.5748769-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 1</string>
+        </MessageParams>
+        <Timestamp>2012-12-14T16:58:27.5318658-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-14T16:58:32.044543-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 1</string>
+        </MessageParams>
+        <Timestamp>2012-12-14T17:06:00.0827878-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-14T17:06:07.1576099-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 3</string>
+        </MessageParams>
+        <Timestamp>2012-12-14T17:15:42.6844478-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-14T17:15:51.6622354-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 1</string>
+        </MessageParams>
+        <Timestamp>2012-12-14T17:23:22.4855996-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-14T17:23:32.0178216-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 1</string>
+        </MessageParams>
+        <Timestamp>2012-12-14T17:28:10.2344764-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-14T17:28:14.2193694-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 1</string>
+        </MessageParams>
+        <Timestamp>2012-12-14T17:37:58.3672254-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-14T17:38:01.8669462-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 1</string>
+        </MessageParams>
+        <Timestamp>2012-12-14T17:41:13.641779-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-14T17:41:17.9642775-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_CellAreaParameterChanged</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-14T17:46:32.9857748-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-14T17:46:38.4806898-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 1</string>
+        </MessageParams>
+        <Timestamp>2012-12-14T17:48:47.524102-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-14T17:49:04.409931-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 1</string>
+        </MessageParams>
+        <Timestamp>2012-12-14T18:00:46.0313732-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-14T18:00:50.2053705-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 1</string>
+        </MessageParams>
+        <Timestamp>2012-12-15T13:58:24.6117784-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-15T13:58:30.1933069-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ReferenceAdjustmentParameterChanged</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-15T16:45:14.438254-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-15T16:45:19.7596269-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_SafeOperationMonitoringDisabled</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-18T08:57:02.9203266-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-18T08:57:08.5076802-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_SafeOperationMonitoringEnabled</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-18T09:00:17.9144435-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-18T09:00:21.9416722-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ReferenceAdjustmentParameterChanged</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-19T23:41:13.601981-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2012-12-19T23:41:18.6886281-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ReferenceAdjustmentParameterChanged</MessageKey>
+        <MessageParams />
+        <Timestamp>2013-02-05T12:59:08.2332025-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2013-02-05T12:59:20.8577625-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_SafeOperationMonitoringDisabled</MessageKey>
+        <MessageParams />
+        <Timestamp>2013-02-09T08:55:58.5046287-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2013-02-09T08:56:04.1913256-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_SafeOperationMonitoringEnabled</MessageKey>
+        <MessageParams />
+        <Timestamp>2013-02-09T17:05:28.1745172-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2013-02-09T17:05:32.2209376-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_GlobalParameterChanged</MessageKey>
+        <MessageParams />
+        <Timestamp>2013-06-17T00:02:46.608164-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_SafeOperationMonitoringDisabled</MessageKey>
+        <MessageParams />
+        <Timestamp>2013-06-17T00:02:47.51801-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2013-06-17T00:02:51.9730959-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_SafeOperationMonitoringEnabled</MessageKey>
+        <MessageParams />
+        <Timestamp>2013-06-17T00:17:22.8135951-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_GlobalParameterChanged</MessageKey>
+        <MessageParams />
+        <Timestamp>2013-06-17T00:17:24.7827326-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2013-06-17T00:17:33.13108-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ToolParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Ferramenta 8</string>
+        </MessageParams>
+        <Timestamp>2013-10-06T17:44:42.5746884-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2013-10-06T17:44:50.3297194-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ToolParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Ferramenta 8</string>
+        </MessageParams>
+        <Timestamp>2013-10-06T17:51:03.9499962-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2013-10-06T17:51:09.6114261-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_SafeOperationMonitoringEnabled</MessageKey>
+        <MessageParams />
+        <Timestamp>2015-02-22T08:52:18.1465633-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2015-02-22T08:54:36.0574022-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ToolParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Ferramenta 6</string>
+        </MessageParams>
+        <Timestamp>2015-08-05T02:02:13.0338372-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2015-08-05T02:02:18.0598398-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ToolParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Ferramenta 7</string>
+        </MessageParams>
+        <Timestamp>2015-08-05T02:07:49.4214143-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2015-08-05T02:08:05.2236379-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ToolParameterChanged</MessageKey>
+        <MessageParams>
+          <string>GUN C3</string>
+        </MessageParams>
+        <Timestamp>2015-09-07T10:36:13.6434586-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2015-09-07T10:36:33.6343429-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ToolParameterChanged</MessageKey>
+        <MessageParams>
+          <string>TOOLCHANGER</string>
+        </MessageParams>
+        <Timestamp>2015-09-07T10:38:07.530951-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2015-09-07T10:38:32.0735457-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_MonitoringSpaceParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Espaço 2</string>
+        </MessageParams>
+        <Timestamp>2015-09-16T12:33:29.308252-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2015-09-16T12:33:51.1371756-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ToolParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Ferramenta 6</string>
+        </MessageParams>
+        <Timestamp>2015-11-04T02:28:53.4049314-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ToolParameterChanged</MessageKey>
+        <MessageParams>
+          <string>Ferramenta 7</string>
+        </MessageParams>
+        <Timestamp>2015-11-04T02:28:59.9143166-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2015-11-04T02:29:04.6825911-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_HardwareParameterChanged</MessageKey>
+        <MessageParams />
+        <Timestamp>2017-04-21T16:32:35.7916362-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2017-04-21T16:32:41.7560726-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_HardwareParameterChanged</MessageKey>
+        <MessageParams />
+        <Timestamp>2017-04-21T16:50:56.2654026-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2017-04-21T16:51:00.5703018-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_SafeOperationMonitoringDisabled</MessageKey>
+        <MessageParams />
+        <Timestamp>2019-03-21T08:34:55.1641916-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2019-03-21T08:35:54.7858013-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_SafeOperationMonitoringEnabled</MessageKey>
+        <MessageParams />
+        <Timestamp>2019-03-21T08:59:39.9314245-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2019-03-21T08:59:45.0563747-03:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_SafeOperationMonitoringDisabled</MessageKey>
+        <MessageParams />
+        <Timestamp>2019-11-04T10:09:17.4388624-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2019-11-04T10:09:37.2923308-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_SafeOperationMonitoringEnabled</MessageKey>
+        <MessageParams />
+        <Timestamp>2019-11-04T10:21:34.5394365-02:00</Timestamp>
+      </ProtocolEntry>
+      <ProtocolEntry>
+        <MessageKey>ChangeLog_ConfigurationSaved</MessageKey>
+        <MessageParams />
+        <Timestamp>2019-11-04T10:21:39.7284126-02:00</Timestamp>
+      </ProtocolEntry>
+    </Entries>
+  </ChangeLog>
+  <DevDescrRevision>393220</DevDescrRevision>
+  <LastModified>2019-11-04T10:21:39.8394823-02:00</LastModified>
+  <MachineDataLastModified>2012-08-13T12:23:37.3428888-03:00</MachineDataLastModified>
+  <ProjectName>-</ProjectName>
+  <ToolNameItems>
+    <string xsi:nil="true" />
+    <string xsi:nil="true" />
+    <string xsi:nil="true" />
+    <string xsi:nil="true" />
+    <string>GUN C3</string>
+    <string xsi:nil="true" />
+    <string xsi:nil="true" />
+    <string>TOOLCHANGER</string>
+  </ToolNameItems>
+  <Version>84</Version>
+  <WorksheetCrc>1215949201</WorksheetCrc>
+  <MonitoringSpaceNameItems />
+  <WorkspaceNameItems />
+</SafetyConfigData>

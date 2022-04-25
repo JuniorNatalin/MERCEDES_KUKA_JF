@@ -1,0 +1,104 @@
+&ACCESS RVP
+&REL 29
+&COMMENT Principal ACCELO
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF hp007( )
+;FOLD INI
+  ;FOLD BASISTECH INI
+    GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM ( )
+    INTERRUPT ON 3 
+    BAS (#INITMOV,0 )
+  ;ENDFOLD (BASISTECH INI)
+;FOLD GRIPPERTECH INI
+USER_GRP(0,DUMMY,DUMMY,GDEFAULT)
+;ENDFOLD (GRIPPERTECH INI)
+  ;FOLD USER INI
+    ;Make your modifications here
+
+  ;ENDFOLD (USER INI)
+     ;FOLD COLLISION_V_3.01 INI ;%{E}
+        IF (COLLISION_DATA[1].I_NR>0) THEN
+          GLOBAL INTERRUPT DECL 21 WHEN $IN[COLLISION_DATA[1].I_NR]==FALSE DO COLLSTOP (1,0 )
+        ENDIF
+        IF (COLLISION_DATA[2].I_NR>0) THEN
+          GLOBAL INTERRUPT DECL 22 WHEN $IN[COLLISION_DATA[2].I_NR]==FALSE DO COLLSTOP (2,0 )
+        ENDIF
+        IF (COLLISION_DATA[3].I_NR>0) THEN
+          GLOBAL INTERRUPT DECL 23 WHEN $IN[COLLISION_DATA[3].I_NR]==FALSE DO COLLSTOP (3,0 )
+        ENDIF
+        IF (COLLISION_DATA[4].I_NR>0) THEN
+          GLOBAL INTERRUPT DECL 24 WHEN $IN[COLLISION_DATA[4].I_NR]==FALSE DO COLLSTOP (4,0 )
+        ENDIF
+     ;ENDFOLD (Collision)
+;ENDFOLD (INI)
+
+; Caracterização dos meios de produção:
+; Changes:  Accelo  -  HP007
+; Versão Atual: 12/08/2013
+; Name: P13.050-R3
+
+chk_w8_wechs_ok ( )        ; CHECK TOOL CHANGE
+
+MBINI ( )                  ; RESET DE BITS
+
+$TIMER[3]=0
+$TIMER_STOP[3]=FALSE
+
+;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
+$BWDSTART = FALSE
+PDAT_ACT=PDEFAULT
+FDAT_ACT=FHOME
+BAS (#PTP_PARAMS,100 )
+$H_POS=XHOME
+PTP  XHOME
+;ENDFOLD
+
+wkz4_an ( )                ; BUSCA GRIPPER ACCELO
+
+HO_ST631_R3_2 ( )          ; BUSCA LATERAL ACCELO
+     
+AB_ST600_R3 ( )            ; DEPOSITA LAT. NA GEO
+
+wkz1_an ( )                ; BUSCA PINÇA C1
+
+start_weld_GEO ( )         ; BIT DE SOLDA GEO
+
+ps_ltc_geo_c1 ( )          ; SOLDA GEOMETRIA C1
+
+wkz1_ab ( )                ; DEPOSITA PINÇA C1
+
+wkz2_an ( )                ; BUSCA PINÇA C2
+    
+ps_ltc_geo_c2 ( )          ; SOLDA GEOMETRIA C2
+
+end_weld_GEO ( )           ; BIT FIM DE SOLDA GEO
+
+wkz2_ab ( )                ; DEPOSITA PINÇA C2
+
+wkz4_off_st600 ( )         ; BUSCA GRIPPER GEO
+
+wkz4_ab ( )                ; DEPOSITA GRIPPER ACCELO
+
+wkz2_an ( )                ; BUSCA PINÇA C2
+
+start_weld_RESPOT ( )      ; BIT DE SOLDA RESPOT
+
+ps_ltc_res_c2 ( )          ; SOLDA RESPOT C2
+
+wkz2_ab ( )                ; DEPOSITA PINÇA C2
+
+;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
+$BWDSTART = FALSE
+PDAT_ACT=PDEFAULT
+FDAT_ACT=FHOME
+BAS (#PTP_PARAMS,100 )
+$H_POS=XHOME
+PTP  XHOME
+;ENDFOLD
+
+MBINI ( )                  ; RESET DE BITS
+
+$TIMER_STOP[3]=TRUE
+
+END

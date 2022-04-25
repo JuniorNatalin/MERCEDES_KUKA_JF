@@ -1,0 +1,10 @@
+&ACCESS RVO9
+&REL 1
+&COMMENT Check X2
+DEF chk_w4_wechs_ok( )
+
+; VERIFICAÇÃO DE FERRAMENTA: TOOL CHANGE
+
+wait for (($in[161]) and ($in[169]) and ($in[177]) and ($in[219]) and (not $in[185]))
+
+END

@@ -1,0 +1,546 @@
+&ACCESS RO
+&REL 2
+&COMMENT Tool CheckCorrection Program Ver_1.03
+DEF CheckTool( )
+   ;!==================================================
+   ;! (C) 2004 Daimler AG                             =
+   ;!                                                 =
+   ;! Programm : CheckTool   Ver. 1.3                 =
+   ;! Funktion : Tool checking and correcting program =
+   ;! Date:      12-05-08                             =
+   ;! Name: Bernd Steffens MBSA  East - London        =
+   ;!==================================================
+   ;! Ver: 1.03                                       =
+   ;! Date: 12-05-08                                  =
+   ;! Name: B. Steffens                               =
+   ;!     - add Function to log process information   =
+   ;!==================================================
+   ;! Ver: 1.01                                       =
+   ;! Date: 03-12-07                                  =
+   ;! Name: B. Steffens                               =
+   ;!    Update to Kuka Ver. 5.3...                   =
+   ;!    BugFixs                                      =
+   ;!==================================================  
+   decl INT Answer
+   struc TCalcDate int nY,nT
+   
+
+  Tool_No=$Act_Tool
+  if not CeckToolInit (Tool_No) then
+     return
+  endif
+         
+  while not CeckToolWork (Tool_No)
+  endwhile 
+                       
+END ;EndMain
+
+;Fold Routine V1.02
+ DefFct  bool CeckToolInit  (Tool_No: in)
+ decl int Tool_No,answer
+ decl bool Ok
+ $Base=$NullFrame
+ $LOOP_MSG[]="                                     "
+ Ok=True
+ Check_Flag=False
+ Ok= FirstSet()
+ if ok then
+  while $MODE_OP<>#T1
+      Answer=MsgHd(#state,Cor_TXT[5,Corr_Set.C_Lang],#ToolNr)
+  endwhile
+  ReleaseMsg ()
+ endif
+  if ok then 
+   Ok=CHK_Tool_No (Tool_No )
+  endif
+ if ok then 
+  Ok=CHK_Tool_Data (Tool_No )
+ endif
+ If Ok then
+  Ok=CheckMasterTool (Tool_No )
+ endif
+ if ok then
+  Ok= CheckRefPt (Tool_No)
+ endif  
+  if ok then
+   Ok= ToolCh (Tool_No)
+  endif  
+return (Ok)
+EndFct
+ 
+  
+deffct bool CeckToolWork (Tool_No)
+bool dummy
+int Tool_No,answer
+Frame StartPos
+$Tool=Tool_Data[Tool_No]
+StartPos=$Pos_act
+answer=0
+ptp StartPos
+ToolCheck(Tool_No)
+
+while answer <> 5
+$Tool=Tool_Data[Tool_No]
+ptp StartPos
+answer=MsgHd(#Dialog,Cor_TXT[24,Corr_Set.C_Lang],#ToolNr) ;//Move to Maintenance position or
+  switch answer
+
+ case   2 ;Einricht
+    ToolMaintenance(Tool_No)
+    
+
+ case   4 ;Vermessen
+    ToolCheck(Tool_No)
+    
+ case   7 ;Restore
+    if ToolCh (Tool_No) ==false then
+       answer=5
+    endif
+  endswitch
+endwhile
+return (true)
+endfct
+
+Def ToolMaintenance(Tool_No: in)
+  decl frame tmp
+  int Tool_No,answer
+
+  $TOOL=TOOL_DATA[Tool_No]
+  BAS (#VEL_CP,0.1 ) 
+  Lin REF_PT[Tool_No]
+  answer=MsgHd(#Quit,Cor_TXT[25,Corr_Set.C_Lang],#ToolNr) ;//Ref_PT[%d] absolut Position erreicht
+  wait for false ;// for safety only
+  WriteLogParam(#check,TOOL_DATA[Tool_No],$NullFrame)
+	
+end
+
+
+    
+Def ToolCheck (Tool_No: in)
+ decl INT Answer,Tool_No
+  INTERRUPT DECL 1 WHEN Check_Flag DO INTER_1 ( )
+  INTERRUPT  ON 1
+   TRIGGER WHEN DISTANCE=1 DELAY=-0.01 DO Check_Flag=TRUE
+  GO_REF (Tool_No ) 
+end
+        
+          
+DEF  GO_REF (Tool_No: in)
+  decl frame tmp
+  int Tool_No
+
+  $TOOL=TOOL_DATA[Tool_No]
+  tmp=REF_PT[Tool_No]
+  tmp.x=tmp.x-Diff_Ref[Tool_No].x
+  tmp.y=tmp.y-Diff_Ref[Tool_No].y
+  tmp.z=tmp.z-Diff_Ref[Tool_No].z
+  BAS (#VEL_CP,0.1 ) 
+  LIN tmp
+  BAS (#VEL_CP,2 )
+   HALT
+END 
+
+DEF  INTER_1 () 
+int Tool_No,answer
+  Check_Flag=FALSE 
+  BRAKE 
+  PTP $Axis_Act ;// Is necessary since Kuka SW 5.3...
+  ANSWER=MSGHD(#STATE,COR_TXT[3,CORR_SET.C_LANG],#TOOLNR) ;// move to ref point
+halt
+  ReleaseMsg ()
+  W_CRASH ()
+  RESUME
+END 
+
+
+DEF  W_CRASH ()
+  REAL T[4,4]
+  REAL NEW_WZK[3],OLD_WZK[3],Mast_t[3]
+  FRAME REF_POINT,OLD_BASE,OLD_TOOL
+  INT I,answer,MsgResult
+
+  OLD_TOOL=$TOOL
+  OLD_BASE=$BASE
+  $TOOL=$NULLFRAME
+  $BASE=$POS_ACT
+   
+  $BASE.X=REF_PT[Tool_No].X
+  $BASE.Y=REF_PT[Tool_No].Y
+  $BASE.Z=REF_PT[Tool_No].Z
+
+  
+  Mast_t[1]=Master_Tool[Tool_No].x
+  Mast_t[2]=Master_Tool[Tool_No].y
+  Mast_t[3]=Master_Tool[Tool_No].z
+  
+  NEW_WZK[1]=-$POS_ACT.X 
+  NEW_WZK[2]=-$POS_ACT.Y
+  NEW_WZK[3]=-$POS_ACT.Z
+  
+  $TOOL=OLD_TOOL
+  $BASE=OLD_BASE
+  
+  OLD_WZK[1]=TOOL_DATA[Tool_No].X
+  OLD_WZK[2]=TOOL_DATA[Tool_No].Y
+  OLD_WZK[3]=TOOL_DATA[Tool_No].Z
+  
+  
+  MsgResult=CheckToolData(NEW_WZK[],Mast_t[])
+  switch MsgResult
+    case 1
+        ;Answer=MsgHd(#quit,Cor_TXT[5,Corr_Set.C_Lang],#ToolNr)
+        ;ReleaseMsg ()
+  
+    case 2
+        ;Answer=MsgHd(#quit,Cor_TXT[5,Corr_Set.C_Lang],#ToolNr)
+        ;ReleaseMsg ()
+    case 3
+        Answer=MsgHd(#quit,Cor_TXT[28,Corr_Set.C_Lang],#ToolNr);Outside tolerance range of Master Tool 
+        ;halt
+        Answer=MsgHd(#quit,Cor_TXT[22,Corr_Set.C_Lang],#ToolDiff);Outside tolerance range of Master Tool 
+        WriteLogParam(#NoModify,TOOL_DATA[Tool_No],TOOL_DATA[Tool_No])
+        ReleaseMsg ()
+  endswitch 
+  
+  if (MsgResult < 3) then
+  
+     MsgResult=CheckToolData(NEW_WZK[],OLD_WZK[])
+     switch MsgResult
+      case 1
+          Answer=MsgHd(#quit,Cor_TXT[2,Corr_Set.C_Lang],#ToolDiff); correction in tolerence
+          ReleaseMsg ()
+  
+      case 2
+          Answer=MsgHd(#quit,Cor_TXT[4,Corr_Set.C_Lang],#ToolNr); no correction neccessary
+          ReleaseMsg ()
+      case 3
+          Answer=MsgHd(#quit,Cor_TXT[28,Corr_Set.C_Lang],#ToolNr);Outside tolerance range of Master Tool 
+          halt
+          Answer=MsgHd(#quit,Cor_TXT[1,Corr_Set.C_Lang],#ToolDiff);Outside tolerance range of "Max tolerance"
+          ReleaseMsg ()
+    endswitch 
+  endif
+  
+   if MsgResult==1 then
+     if  MsgHd(#dialog,Cor_TXT[19,Corr_Set.C_Lang],#ToolNr)==3 then ;ToolDataen updaten ?
+         TOOL_DATA[Tool_No].X=NEW_WZK[1]
+	 			 TOOL_DATA[Tool_No].Y=NEW_WZK[2]
+         TOOL_DATA[Tool_No].Z=NEW_WZK[3]
+         Answer=MsgHd(#quit,Cor_TXT[21,Corr_Set.C_Lang],#ToolData);Korrektur anzeigen
+         WriteLogParam(#Modify,OLD_TOOL,TOOL_DATA[Tool_No])
+         ReleaseMsg ()
+     else
+         Answer=MsgHd(#quit,Cor_TXT[20,Corr_Set.C_Lang],#ToolNr);Keine Aenderung
+         WriteLogParam(#NoModify,OLD_TOOL,TOOL_DATA[Tool_No])
+         ReleaseMsg ()
+     endif
+   endif     
+   
+  
+END
+
+
+Deffct int CheckToolData(NEW_WZK[],OLD_WZK[])
+  REAL OLD_WZK[],NEW_WZK[],DIST_WZK[3]
+  int i
+  
+  FOR I=1 TO  3
+   DIST_WZK[I]=NEW_WZK[I]-OLD_WZK[I];Versatz definieren
+   Diff_Wzk[i]=DIST_WZK[I]
+  ENDFOR
+
+  IF (VEK_LAENGE(DIST_WZK[],3)<0.1) THEN ;Versatz pruefen auf <
+   return (2)
+  ELSE
+    IF ((VEK_LAENGE(DIST_WZK[],3)>Corr_Set.ToolDiff)) THEN;Versatz pruefen auf >
+    return (3)
+    else
+    return (1)
+    endif
+  endif
+  
+EndFct
+
+DEFFCT  REAL VEK_LAENGE(V[],N :IN)
+  REAL V[]
+  INT N
+  RETURN  (SQRT(SKAL_PROD(V[],V[],N)))
+ENDFCT
+
+DEFFCT  REAL SKAL_PROD(V[],W[],N :IN)
+  REAL V[],W[]
+  INT N,I
+  REAL SK_PROD
+  SK_PROD=0
+  FOR I=1 TO  N
+    SK_PROD=SK_PROD+V[I]*W[I]
+  ENDFOR
+  RETURN  (SK_PROD)
+ENDFCT
+
+
+
+DEFFCT bool CheckMasterTool (Tool_No: in)
+int Tool_No,answer 
+   if Master_Tool[Tool_No].z==0 then  
+     Answer=MsgHd(#quit,Cor_TXT[9,Corr_Set.C_Lang],#ToolNr)
+     Master_Tool[Tool_No]=Tool_Data[Tool_No]
+     Ref_Pt[Tool_No]=$NullFrame
+     return (true)
+     If not (Master_Tool[Tool_No].z <>0) then
+       Answer=MsgHd(#quit,Cor_TXT[18,Corr_Set.C_Lang],#ToolNr)
+       return (false)
+     endif
+  else
+  return (true)  
+  endif
+ENDfct
+ 
+DEFfct bool CHK_Tool_Data (Tool_No: in )
+  int Tool_No,answer
+  if ((Tool_No<1) OR (Tool_No>MAX_TOOL)) then
+    Answer=MsgHd(#Quit,Cor_TXT[7,Corr_Set.C_Lang],#ToolNr)
+    return (false)
+  else
+     if not (Tool_Data[Tool_No].z<>0) then
+        Answer=MsgHd(#Quit,Cor_TXT[16,Corr_Set.C_Lang],#ToolNr)
+        return (false)
+     else   
+        return (true)
+     endif
+  endif
+ENDfct
+ 
+Deffct bool CheckRefPt (Tool_No: in)
+int Tool_No,Answer
+ if ((Ref_Pt[Tool_No].x<>0) or (Ref_Pt[Tool_No].y<>0) or (Ref_Pt[Tool_No].z<>0)) then
+    return (true)
+ else
+   Answer=MsgHd(#quit,Cor_TXT[10,Corr_Set.C_Lang],#ToolNr)
+   return (CreateRefPt( ))
+ endif
+endfct
+ 
+DefFct  bool CreateRefPt  ()
+ PosTmp=$Pos_Act
+ INTERRUPT DECL 1 WHEN Check_Flag DO INTER_RefPt ( )
+ INTERRUPT  ON 1
+ TRIGGER WHEN DISTANCE=1 DELAY=-0.01 DO Check_Flag=TRUE
+  GoRefPt ()
+ return (false)
+EndFct
+
+def GoRefPt ()
+BAS (#VEL_CP,0.1 )
+LIN  PosTmp
+HALT
+end
+
+DEF  Inter_RefPt ( ) 
+decl int answer
+
+  Check_Flag=FALSE
+  INTERRUPT  Off 1
+  BRAKE
+  PTP $Axis_Act ;// Is necessary since Kuka SW 5.3...
+  ANSWER=MSGHD(#STATE,COR_TXT[11,CORR_SET.C_LANG],#TOOLNR)
+  halt
+  PosRefPt ()
+  ReleaseMsg ()
+  Answer=MsgHd(#quit,Cor_TXT[18,Corr_Set.C_Lang],#ToolNr)
+  Lin PosTmp
+  RESUME  
+END 
+
+def PosRefPt ( )
+Frame Tmp
+tmp=$Pos_act
+Diff_Ref[Tool_No].x=tmp.x-PosTmp.x
+Diff_Ref[Tool_No].y=tmp.y-PosTmp.y
+Diff_Ref[Tool_No].z=tmp.z-PosTmp.z
+Ref_PT[Tool_No]=$Pos_act
+end
+
+DefFct  bool ToolCh (Tool_No: in)
+ decl int Tool_No,answer
+ 
+answer=MsgHd(#dialog,Cor_TXT[23,Corr_Set.C_Lang],#ToolNr)
+if answer == 2 then
+   Tool_Data[Tool_No]=Master_Tool[Tool_No]
+   WriteLogParam(#restore,TOOL_DATA[Tool_No],Master_Tool[Tool_No])
+else
+return(true)
+endif
+ if answer == 2 then
+   if  MsgHd(#dialog,Cor_TXT[27,Corr_Set.C_Lang],#ToolNr)==3 then
+        return (true)
+   else
+        return (false)
+   endif
+ endif
+EndFct
+
+DefFct  bool CHK_Tool_No (Tool_No: in)
+ decl int Tool_No,answer
+if MsgHd(#dialog,Cor_TXT[17,Corr_Set.C_Lang],#ToolNr) == 3 then
+ return (true)
+ else
+  return (false)
+endif
+EndFct
+
+DEFFCT int  MsgHd (M_Typ: in,msgtx: out,MsgResult: in) 
+  Decl TResultMode MsgResult
+  DECL STATE_T STATE
+  decl C_TXT msgtx 
+  decl INT i,MESS_NR,OPT,OFFSET,iMSG
+  decl Msg_Typ M_Typ
+  DECL MSG_T EMPTY_MSG,Save_MSG
+ EMPTY_MSG={MSG_T: VALID FALSE,RELEASE FALSE,TYP #QUIT,MODUL[] "CHECKTOOL",KEY[] " ",PARAM_TYP #KEY,PARAM[] " ",DLG_FORMAT[] " ",ANSWER 0}
+$LOOP_MSG[]="     ____                            "
+WAIT SEC 0.05
+$LOOP_MSG[]="                                     "
+
+  $MSG_T=EMPTY_MSG
+  $MSG_T.Param_Typ=#Key
+  $MSG_T.MODUL[]="CHECKTOOL"
+  $MSG_T.PARAM[]=" "
+  $MSG_T.Valid=false
+  offset=0
+  
+  switch MsgResult
+  case #ToolNr
+    SWRITE($MSG_T.KEY[],STATE,OFFSET,msgtx.msgt[],Tool_No)
+  case #ToolData
+    SWRITE($MSG_T.KEY[],STATE,OFFSET,msgtx.msgt[],Tool_No,"  X=",Tool_Data[Tool_No].x,"  Y=",Tool_Data[Tool_No].y,"  Z=",Tool_Data[Tool_No].z)    
+  case #ToolDiff 
+  SWRITE($MSG_T.KEY[],STATE,OFFSET,msgtx.msgt[],Tool_No,"  X=",Diff_Wzk[1],"  Y=",Diff_Wzk[2], "  Z=",Diff_Wzk[3] )
+   endswitch
+
+  
+
+  
+switch M_Typ
+
+  case #Dialog
+    $MSG_T.TYP=#Dialog
+    for i=1 to Corr_Set.MaxDlgChar
+    	  wait sec 0.01
+        $MSG_T.DLG_FORMAT[i]=msgtx.Dialg[i]
+    endfor 
+      wait sec 0.03 
+       Save_MSG = $MSG_T  
+       WHILE $MSG_T.ANSWER==0
+        WAIT SEC 0.02
+        $MSG_T=Save_MSG
+        $MSG_T.VALID=TRUE
+        WHILE  $MSG_T.VALID
+           WAIT SEC 0.03
+        ENDWHILE
+        iMSG=$MSG_T.ANSWER
+        WAIT SEC 0.03
+     ENDWHILE  
+    Return (iMSG)
+    
+    
+  case #Notify
+    $MSG_T.TYP=#quit
+    $MSG_T.VALID=TRUE
+    halt
+    WAIT SEC 0.1
+    Return (-1)
+
+    
+    
+  case #State
+   $MSG_T.TYP=#STATE
+   $MSG_T.VALID=TRUE
+    WAIT SEC 0.1
+    Return (-1)
+    
+  case #Quit
+    wait sec 0.2
+    $MSG_T.TYP=#state
+    $MSG_T.VALID=TRUE
+    WAIT SEC 0.2
+    halt
+    ReleaseMsg ()
+    WAIT SEC 0.1
+    Return (-1)
+endswitch
+
+ENDfct
+
+def ReleaseMsg ()
+DECL MSG_T EMPTY_MSG
+$MSG_T.RELEASE=TRUE
+WHILE  $MSG_T.VALID
+WAIT SEC 0.03
+ENDWHILE
+WAIT SEC 0.03
+EMPTY_MSG={MSG_T: VALID FALSE,RELEASE FALSE,TYP #QUIT,MODUL[] "CHECKTOOL",KEY[] " ",PARAM_TYP #KEY,PARAM[] " ",DLG_FORMAT[] " ",ANSWER 0}
+$MSG_T=EMPTY_MSG
+WAIT SEC 0.05
+$LOOP_MSG[]="     ____                            "
+WAIT SEC 0.05
+$LOOP_MSG[]="                                     "
+
+end
+
+DEFFCT bool  FirstSet ()
+if ((Corr_Set.C_Lang<1) or (Corr_Set.C_Lang>2)) then
+  If MsgHd(#Dialog,Cor_TXT[12,1],#ToolNr) == 3 then
+    Corr_Set.C_Lang=2
+    return (true)
+  else
+    Corr_Set.C_Lang=1
+    return (true)
+  endif
+endif
+return (true)
+ENDfct
+
+Def WriteLogParam(lMode :in,fOldt: in,fNewt :in )
+decl date LTimer
+decl eLCheckMode lMode
+decl TCalcDate CalcDate
+decl TToolLog TmpToolLog
+decl frame fOldt,fNewt
+decl int i
+LTimer=$Date
+TmpToolLog={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+TmpToolLog.LogCheckMode=lMode
+TmpToolLog.iY=(LTimer.Year*10000+LTimer.Month*100+LTimer.Day)
+TmpToolLog.iT=(LTimer.Hour*10000+LTimer.Min*100+LTimer.Sec)
+TmpToolLog.iTNo=Tool_No
+TmpToolLog.OldTool=fOldt
+TmpToolLog.NewTool=fNewt
+
+FOR I=MaxLogs TO 2 STEP -1
+   ToolLog[i]=ToolLog[I-1]
+ENDFOR
+ToolLog[1]=TmpToolLog
+end
+
+DEF MsgRC (msgtx: out) 
+  DECL STATE_T STATE
+  decl C_TXT msgtx 
+  decl INT i,MESS_NR,OPT,OFFSET
+  decl Msg_Typ M_Typ
+  DECL MSG_T EMPTY_MSG
+ EMPTY_MSG={MSG_T: VALID FALSE,RELEASE FALSE,TYP #QUIT,MODUL[] "CHECKTOOL",KEY[] " ",PARAM_TYP #KEY,PARAM[] " ",DLG_FORMAT[] " ",ANSWER 0}
+ $MSG_T=EMPTY_MSG
+   
+  $MSG_T.Param_Typ=#Key
+  $MSG_T.MODUL[]="CHECKTOOL"
+  $MSG_T.PARAM[]=" "
+  $MSG_T.Valid=false
+  offset=0
+  
+  SWRITE($MSG_T.KEY[],STATE,OFFSET,msgtx.msgt[],$Act_Tool)
+   
+   $MSG_T.VALID=TRUE
+    HALT
+   $MSG_T=EMPTY_MSG
+END
+;endfold (V1.02)

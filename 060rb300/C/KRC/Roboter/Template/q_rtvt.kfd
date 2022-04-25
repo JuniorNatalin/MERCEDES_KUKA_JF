@@ -1,0 +1,38 @@
+;FOLD Q_RTVT ;%{H}
+; QuISS RTVision_t Modul Version 2.1/24.08.04
+; Jan Linnenkohl, QuISS GmbH, Germany
+;
+; ueberarbeitet auf Schnittstelle
+; V 1.1.2.5 oder spaeter
+; 2008_09_04 Roland Watz K-ROB GmbH
+
+DEFTP Q_RTVT ={SOT FALSE}
+
+  
+DECL PARAM P2Prod ={shortname[] "Produkt= ", shortcut[] "Prod", unit[] "", value { NUMBER: min 1, max 200, step 1, DEFAULT 1,}}
+DECL PARAM QPATH  ={shortname[] "Strecke= ", shortcut[] "", unit[] "mm", value { NUMBER: DEFAULT 1}}
+DECL PARAM QDELAY ={shortname[] "Zeit= ", shortcut[] "", unit[] "ms", value { NUMBER: DEFAULT 0}}
+
+
+DECL FOLD Start_Product_FOLD[1]
+Start_Product_FOLD[1] = "Q_RTVT(1,%P2Prod  )" ; Neue Messung
+
+DECL FOLD Inspection_Start_FOLD[1]
+Inspection_Start_FOLD[1] = "TRIGGER WHEN PATH= %QPATH  DELAY= %QDELAY  DO Q_RTVT(2,0) PRIO=-1" ; Inspektion Start
+
+DECL FOLD Inspection_Stop_FOLD[1]
+Inspection_Stop_FOLD[1] = "TRIGGER WHEN PATH= %QPATH  DELAY= %QDELAY  DO Q_RTVT(3,0) PRIO=-1" ; Inspektion Stop
+
+DECL FOLD Complete_FOLD[1]
+Complete_FOLD[1] = "Q_RTVT(4,0)" ; Gesamt-Messung beenden
+
+
+DECL INLINEFORM Start_Produkt     ={FOCUS 2, FOLD[1] Start_Product_FOLD, PARAM[1] P2Prod }
+DECL INLINEFORM Inspektion_Start  ={FOCUS 2, FOLD[1] Inspection_Start_FOLD, PARAM[1] QPATH, PARAM[2] QDELAY }
+DECL INLINEFORM Inspektion_Stop   ={FOCUS 2, FOLD[1] Inspection_Stop_FOLD, PARAM[1] QPATH, PARAM[2] QDELAY }
+DECL INLINEFORM Messung_beenden   ={FOCUS 2, FOLD[1] Complete_FOLD }
+
+ENDTP
+;ENDFOLD
+
+

@@ -1,0 +1,61 @@
+&ACCESS RVO2
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF mbini_2( )
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+;FOLD OUT 3352 'R3 busca peça Actros' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3352, 3:R3 busca peça  Actros, 5:FALSE, 6:
+$OUT[3352]=FALSE
+;ENDFOLD
+;FOLD OUT 3351 'R3 busca peça Accelo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3351, 3:R3 busca peça Accelo, 5:FALSE, 6:
+$OUT[3351]=FALSE
+;ENDFOLD
+;FOLD OUT 3350 'R3 solicita liberação p/ sair magazine' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3350, 3:R3 solicita liberação p/ sair magazine, 5:FALSE, 6:
+$OUT[3350]=FALSE
+;ENDFOLD
+;FOLD OUT 3349 'R2 pegou peça' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3349, 3:R2 pegou peça, 5:FALSE, 6:
+$OUT[3349]=FALSE
+;ENDFOLD
+;FOLD OUT 3346 'R3 entrega peça Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3346, 3:R3 entrega peça Geo, 5:FALSE, 6:
+$OUT[3346]=FALSE
+;ENDFOLD
+;FOLD OUT 3345 'R3 pré encaixe Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3345, 3:R3 pré encaixe Geo, 5:FALSE, 6:
+$OUT[3345]=FALSE
+;ENDFOLD
+;FOLD OUT 3344 'R3 solicita lib. sair Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3344, 3:R3 solicita lib. sair Geo, 5:FALSE, 6:
+$OUT[3344]=FALSE
+;ENDFOLD
+;FOLD OUT 3343 'R3 entregou peça Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3343, 3:R3 entregou peça Geo, 5:FALSE, 6:
+$OUT[3343]=FALSE
+;ENDFOLD
+;FOLD OUT 3339 'R3 Soldando' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3339, 3:R3 Soldando, 5:FALSE, 6:
+$OUT[3339]=FALSE
+;ENDFOLD
+;FOLD OUT 3338 'R3 solda geometria Ok' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3338, 3:R3 solda geometria Ok, 5:FALSE, 6:
+$OUT[3338]=FALSE
+;ENDFOLD
+;FOLD OUT 3337 'R3 retira garra Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3337, 3:R3 retira garra Geo, 5:FALSE, 6:
+$OUT[3337]=FALSE
+;ENDFOLD
+;FOLD OUT 3336 'R3 posição aguardando retirar garra' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3336, 3:R3 posição aguardando retirar garra, 5:FALSE, 6:
+$OUT[3336]=FALSE
+;ENDFOLD
+;FOLD OUT 3335 'R3 retirou garra da Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3335, 3:R3 retirou garra da Geo, 5:FALSE, 6:
+$OUT[3335]=FALSE
+;ENDFOLD
+;FOLD OUT 3334 'R3 solda respot Ok' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3334, 3:R3 solda respot Ok, 5:FALSE, 6:
+$OUT[3334]=FALSE
+;ENDFOLD
+;FOLD OUT 3340 'Area_clear_AGV' State=TRUE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3340, 3:Area_clear_AGV, 5:TRUE, 6:
+$OUT[3340]=TRUE
+;ENDFOLD
+;FOLD WAIT 1 1 sec;%{PE}%R 8.2.20,%MKUKATPBASIS,%CWAIT,%VWAIT,%P 3:1
+WAIT SEC 1
+;ENDFOLD
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+END

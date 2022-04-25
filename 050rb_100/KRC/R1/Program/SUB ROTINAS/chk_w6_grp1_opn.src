@@ -1,0 +1,17 @@
+&ACCESS RVO2
+&COMMENT Accelo Teto Z1.1_Z1.2_Z1.3
+DEF chk_w6_grp1_opn( )
+; Check gripper ACCELO TETO OPEN Z1.1/2/3
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+WAIT FOR (NOT $IN[38] AND NOT $IN[40] AND NOT $IN[42])
+WAIT FOR ($IN[37] AND $IN[39] AND $IN[41])
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+END

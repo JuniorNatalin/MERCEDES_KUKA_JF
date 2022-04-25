@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<settings>
+  <setting path="BackupManager\Network\KopFileDirectory">D:\ProjectBackup</setting>
+  <setting path="BackupManager\Network\ArchiveDirectory">D:\ProjectBackup</setting>
+  <setting path="BackupManager\Network\ArchivePath">D:\ProjectBackup\0\WorkingProject.asz</setting>
+  <setting path="BackupManager\Network\BackupAutomatically">False</setting>
+  <setting path="BackupManager\Network\UseSubDirectoryWithRobotName">True</setting>
+  <setting path="BackupManager\Network\OnlySaveActiveProject">False</setting>
+  <setting path="BackupManager\Network\Password">GP1lmvarvz6MJCCNkWZLhA==</setting>
+  <setting path="BackupManager\Network\Username">user</setting>
+  <setting path="BackupManager\Network\SuppressHistory">False</setting>
+  <setting path="BackupManager\Network\ProjectRestoreDirectoryPath">D:\ProjectBackup</setting>
+  <setting path="BackupManager\Network\KopRestoreDirectoryPath">D:\ProjectBackup</setting>
+  <setting path="BackupManager\Network\ProjectBackupDirectoryPath">D:\ProjectBackup</setting>
+  <setting path="BackupManager\Network\KopBackupDirectoryPath">D:\ProjectBackup</setting>
+  <setting path="BackupManager\Network\Date">09/09/2013 00:00:00</setting>
+  <setting path="BackupManager\Network\BackupInterval">Weekly</setting>
+  <setting path="BackupManager\Network\Day">Monday</setting>
+  <setting path="BackupManager\Network\Hours">0</setting>
+  <setting path="BackupManager\Network\Minutes">0</setting>
+  <setting path="BackupManager\Network\ArchiveHistoryCount">5</setting>
+  <setting path="BackupManager\Network\OnlyLocally">True</setting>
+  <setting path="BackupManager\Network\KopFileDirectoryFlag">D:\ProjectBackup</setting>
+  <setting path="BackupManager\Network\ProjectDirectoryBackupPathFlag">D:\ProjectBackup</setting>
+</settings>

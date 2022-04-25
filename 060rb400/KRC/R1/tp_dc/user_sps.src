@@ -1,0 +1,27 @@
+&ACCESS RVP1
+&REL 14
+&COMMENT User SPS V1.0
+DEF  User_SPS (MODE :IN )
+decl TSPS_Mod Mode
+;fold
+switch Mode
+ case #_INIT
+  SPS_INIT ()
+ case #_Loop
+  SPS_LOOP ()
+ Default
+  Wait for false
+endswitch
+;endfold
+END
+
+def SPS_INIT ()
+;//-- Add the User init SPS logic
+
+end
+
+def SPS_Loop ()
+;//-- Add the User loop SPS logic
+CheckStudOnNoEStop( ) ;// Studweld monitoring of E-Stop
+
+end

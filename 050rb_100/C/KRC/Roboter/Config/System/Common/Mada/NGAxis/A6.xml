@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Axis xsi:noNamespaceSchemaLocation="/Roboter/Config/System/Common/Schemes/NGAxis.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Version Label="">
+<Info Version="KUKA V8.2" />
+<Schema Version="4" />
+</Version>
+<Machine Name="#KR500_3 C4 FLR ZH500_3" />
+<AxisData Type="Rotator" Mode="StandAlone" Simulation="Off" SingleMotorCoupling="Off" MessageDisable="0" />
+<ToolMotor ExtTorqueOfInertia="0.00399" MaximalEnergy="1167.75" RampUpTimeUnderLoad="1800" RampStopTime="720" MotorFile="Motor/M_C0_KSP40_400V_V1.xml" ServoFile="Servofile/S_C0_KSP40_400V_V1.xml" ParameterFile="Mada/NGAxis/CtrlA6.xml" AdditionalFunctionFile="Mada/NGAxis/CtrlA6AddFct.xml">
+<Monitoring PositionLag="322.4" PositionLagSoft="1289.6" Speed="4488" SpeedLag="0" />
+<Limit Speed="0" Current="0" />
+</ToolMotor>
+<Inversion Position="false" Velocity="false" Torque="false" />
+<Delay ActValue="2" CmdValue="24" />
+</Axis>
+

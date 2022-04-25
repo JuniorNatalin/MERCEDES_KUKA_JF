@@ -1,0 +1,22 @@
+&ACCESS RVO2
+&COMMENT Check GRP ACCELO Z1 CLOSE
+DEF chk_w6_grp1_clo( )
+
+; Check gripper accelo CLOSE Z1.1/2/3/4/5
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+;FOLD WAIT FOR ( NOT IN 37 ' Z1.1 - Grampo Recuado - Accelo' AND NOT IN 39 ' Z1.2 - Grampo Recuado - Accelo' AND NOT IN 41 ' Z1.3 - Grampo Recuado - Accelo' AND NOT IN 43 ' Z1.4 - Grampo Recuado - Accelo' AND NOT IN 45 ' Z1.5 - Grampo Recuado - Accelo' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:NOT, 5:$IN, 6:37, 7: Z1.1 - Grampo Recuado - Accelo, 8:AND, 9:NOT, 10:$IN, 11:39, 12: Z1.2 - Grampo Recuado - Accelo, 13:AND, 14:NOT, 15:$IN, 16:41, 17: Z1.3 - Grampo Recuado - Accelo, 18:AND, 19:NOT, 20:$IN, 21:43, 22: Z1.4 - Grampo Recuado - Accelo, 23:AND, 24:NOT, 25:$IN, 26:45, 27: Z1.5 - Grampo Recuado - Accelo, 29:
+WAIT FOR  (  NOT $IN[37] AND  NOT $IN[39] AND  NOT $IN[41] AND  NOT $IN[43] AND  NOT $IN[45] ) 
+;ENDFOLD
+;FOLD WAIT FOR ( IN 38 ' Z1.1 - Grampo Avançado - Accelo' AND IN 40 ' Z1.2 - Grampo Avançado - Accelo' AND IN 42 ' Z1.3 - Grampo Avançado - Accelo' AND IN 44 ' Z1.4 - Grampo Avançado - Accelo' AND IN 46 ' Z1.5 - Grampo Avançado - Accelo' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:38, 7: Z1.1 - Grampo Avançado - Accelo, 8:AND, 9:, 10:$IN, 11:40, 12: Z1.2 - Grampo Avançado - Accelo, 13:AND, 14:, 15:$IN, 16:42, 17: Z1.3 - Grampo Avançado - Accelo, 18:AND, 19:, 20:$IN, 21:44, 22: Z1.4 - Grampo Avançado - Accelo, 23:AND, 24:, 25:$IN, 26:46, 27: Z1.5 - Grampo Avançado - Accelo, 29:
+WAIT FOR  ( $IN[38] AND $IN[40] AND $IN[42] AND $IN[44] AND $IN[46] ) 
+;ENDFOLD
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+END

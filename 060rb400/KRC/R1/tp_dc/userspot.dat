@@ -1,0 +1,563 @@
+&ACCESS RVO14
+&REL 639
+&COMMENT MB-SpotWeld V4.14U
+DEFDAT  USERSPOT PUBLIC
+;date:2012-07-01 #Bst
+
+
+DECL CONST BOOL OPT_USRSPOT=TRUE
+;fold DC-Userspot V 4.xx
+INT II=6
+INT ZA=1
+INT AY=2
+INT TIMEOUT=3
+
+DECL CONST INT FK_WAIT_TIME=5000 ;Wartezeit auf FK in ms
+DECL CONST INT FRAESER_KLEMMT_TIME=500 ;Überwachungszeit für Fräser klemmt in ms
+DECL CONST INT FRAESER_KLEMMT_MAX=2 ;Anzahl Fräserverklemmungen bevor Dialog kommt
+DECL INT TURN_ACT=5 ;act.turns of dresser
+DECL INT sign_err[4]
+
+sign_err[1]=0 ;Dress error tip 1 
+sign_err[2]=9 ;Dress error tip 2 
+sign_err[3]=3 ;Dress error tip 3 
+sign_err[4]=0 ;Dress error tip 4 
+
+SIGNAL O_PROGRAMM_A $OUT[233]  TO $OUT[240] ;Schweißsteuerung 1
+SIGNAL O_PROGRAMM_B $OUT[233]  TO $OUT[240] ;Schweißsteuerung 2
+SIGNAL O_PROGRAMM_C $OUT[233]  TO $OUT[240]
+SIGNAL O_PROGRAMM_D $OUT[233]  TO $OUT[240]
+
+GLOBAL STRUC ZANGENDATTYP BOOL VORHANDEN,INT Z_TYP,BOOL Stationaer,INT Z_ANZ,BOOL VORHUB,INT WKZ_AB,INT Z_EA_NR,MaxStandmenge,FraesAnf,INT FRAESER,INT EL_NR,INT VSST,INT PRMAXDR
+STRUC Z_E_ADATTYP INT O_VH_ZU,INT O_VH_AUF,INT O_SH,INT O_RH,INT I_VH_AUF,INT I_VH_ZU,I_SH_AUF,I_SH_ZU,INT I_SW_MIN,INT I_SW_MAX,INT I_TK
+STRUC FRAESDATTYP INT FRAES_SST,INT FRAES_START,INT FRAES_DREHT,INT TWIN_DREHT,INT FRAES_FERTIG,INT FRAES_F,INT ZANGE_ZU,INT I_MMS,INT I_KONTROLL,INT I_SCHWENK_VOR,INT I_SCHWENK_ZUR,INT O_SCHWENK_VOR,INT O_SCHWENK_ZUR
+STRUC FRAES_PARAMETERDATTYP INT EF_UM_KAP,INT FF_UM_KAP,INT EF_PROG,INT FF_PROG,INT Ef_Twin_Prog,INT Ff_Twin_Prog,BOOL FRAESER_SCHWENKEN,BOOL TWIN_FRAESER,BOOL STEP_DRESS,INT STEP_TURN,INT TURN_TWIN_FF,INT TURN_TWIN_EF,INT MAX_DRESS_TIME,REAL PAST_TIME
+STRUC SSTDATTYP INT O_SKSTART,O_QFAL,O_QFFK,O_QFPW,O_MSTROM,O_QELW,O_QFRAES,O_BTEnd,O_RefWNEl,O_RefWFraes,O_UebWSchw,I_FK,I_ZPSBEREIT,I_SchwFehl,I_OHNEUEBWACH,I_MSTROM,I_VorWarn,I_MaxStandMenge,I_FRAESEN,I_StartFraesAnfrage,I_NeueEl,I_QBTEnd,I_RefWAct,I_FraesErr,I_UWSchwAct,I_QErrFK,I_QErrPktW,I_FraesNotw,I_PktAnwOK
+
+
+
+DECL BOOL OPT_USRSPOT_SIMULATE=FALSE ;wenn TRUE wird nur Vorhub ausgeführt
+DECL BOOL Opt_GetGunNr=FALSE ;Zangennummer aus Bahnhofsbelgung ermitteln
+DECL BOOL OPT_T1_CLOSE=TRUE
+DECL BOOL T1_WithWeld=TRUE ;// In mode T1 with Weldprocess
+DECL BOOL WithMaxPressure=FALSE ;// In case of old X-Gun
+DECL BOOL OPT_MIT_STR=TRUE
+DECL BOOL OPT_EL_NR=TRUE
+DECL CONST INT Max_Weld_Repeat=2 ;anzahl wiederholung nach fehlschweissung
+DECL INT MaxStandmengeDelay=0 ;// Anzahl Verzoegerung bis nach MaxStandmenge bis Rob stoppt
+DECL INT FraesAnfDelay=0 ;// Anzahl Verzoegerung bis rob selbst. zum freas. 
+DECL INT TWIN=0 ;Merker fuer den Twin Fraeser
+DECL INT UM_KAP=5 ;Merker fuer die Umdrehungen
+DECL INT AZ=1 ;aktuelle Zange
+DECL CONST INT I_WKZAN=219 ;Eingang von Dockplatte fuer Werkzeug angedockt
+DECL CONST INT I_HALTNACHPUNKT=817
+DECL CONST INT O_HALTNACHPUNKTERREICHT=817
+DECL INT Key_No=1 ;used Statkey No.
+
+DECL BOOL IniDress=FALSE ;// For JDF Truck reuse
+
+;================ Variablen fuer E/A-Belegung SST =================
+;// Status Info an SPS
+DECL INT PS_Rob_Vorwarnung=0 ;//Elektr.-Vorwarnung erreicht Rob.-Zange
+DECL INT PS_Rob_E_GrpWechs=0 ;//Elektr.-Wechsel erforderlich Rob.-Zange
+DECL INT PS_Rob_MaxStandmenge=0 ;//Elektr.-Max Standmenge erreicht Rob.-Zange
+DECL INT PS_Rob_Fraesanf=0 ;//Elektr.-Bereitschaft GruppenFraesen Rob.-Zange
+DECL INT PS_Rob_FraesErf=0 ;//Elektr.-Fraesen zwingend erfoderlich Rob.-Zange
+DECL INT PS_Stat_Vorwarnung=0 ;//Elektr.-Vorwarnung erreicht Stat.-Zange         
+DECL INT PS_Stat_E_GrpWechs=0 ;//Elektr.-Wechsel erforderlich Stat.-Zange        
+DECL INT PS_Stat_MaxStandmenge=0 ;//Elektr.-Max Standmenge erreicht Stat.-Zange     
+DECL INT PS_Stat_Fraesanf=0 ;//Elektr.-Bereitschaft GruppenFraesen Stat.-Zange 
+DECL INT PS_Stat_FraesErf=0 ;//Elektr.-Fraesen zwingend erfoderlich Stat.-Zange
+DECL INT O_KAPPENWECHSELPOS=0 ;//Roboter in E-Wechselposition
+DECL INT I_FRAESANFSPS=1026 ;// Anford. Fraes von SPS. 
+DECL CONST INT MAX_SST=1
+DECL CONST SSTDATTYP SST[4]
+SST[1]={O_SKSTART 225,O_QFAL 229,O_QFFK 227,O_QFPW 231,O_MSTROM 232,O_QELW 0,O_QFRAES 226,O_BTEnd 0,O_RefWNEl 0,O_RefWFraes 0,O_UebWSchw 0,I_FK 225,I_ZPSBEREIT 229,I_SchwFehl 230,I_OHNEUEBWACH 231,I_MSTROM 232,I_VorWarn 227,I_MaxStandMenge 228,I_FRAESEN 226,I_StartFraesAnfrage 1026,I_NeueEl 0,I_QBTEnd 1026,I_RefWAct 1026,I_FraesErr 1026,I_UWSchwAct 1026,I_QErrFK 1026,I_QErrPktW 1026,I_FraesNotw 1026,I_PktAnwOK 1025}
+
+SST[2]={O_SKSTART 225,O_QFAL 226,O_QFFK 227,O_QFPW 228,O_MSTROM 229,O_QELW 232,O_QFRAES 233,O_BTEnd 247,O_RefWNEl 250,O_RefWFraes 251,O_UebWSchw 252,I_FK 225,I_ZPSBEREIT 226,I_SchwFehl 227,I_OHNEUEBWACH 228,I_MSTROM 229,I_VorWarn 231,I_MaxStandMenge 232,I_FRAESEN 233,I_StartFraesAnfrage 234,I_NeueEl 235,I_QBTEnd 247,I_RefWAct 250,I_FraesErr 251,I_UWSchwAct 252,I_QErrFK 255,I_QErrPktW 256,I_FraesNotw 281,I_PktAnwOK 288}
+
+SST[3]={O_SKSTART 225,O_QFAL 226,O_QFFK 227,O_QFPW 228,O_MSTROM 229,O_QELW 232,O_QFRAES 233,O_BTEnd 247,O_RefWNEl 250,O_RefWFraes 251,O_UebWSchw 252,I_FK 225,I_ZPSBEREIT 226,I_SchwFehl 227,I_OHNEUEBWACH 228,I_MSTROM 229,I_VorWarn 231,I_MaxStandMenge 232,I_FRAESEN 233,I_StartFraesAnfrage 234,I_NeueEl 235,I_QBTEnd 247,I_RefWAct 250,I_FraesErr 251,I_UWSchwAct 252,I_QErrFK 255,I_QErrPktW 256,I_FraesNotw 281,I_PktAnwOK 288}
+
+SST[4]={O_SKSTART 225,O_QFAL 226,O_QFFK 227,O_QFPW 228,O_MSTROM 229,O_QELW 232,O_QFRAES 233,O_BTEnd 247,O_RefWNEl 250,O_RefWFraes 251,O_UebWSchw 252,I_FK 225,I_ZPSBEREIT 226,I_SchwFehl 227,I_OHNEUEBWACH 228,I_MSTROM 229,I_VorWarn 231,I_MaxStandMenge 232,I_FRAESEN 233,I_StartFraesAnfrage 234,I_NeueEl 235,I_QBTEnd 247,I_RefWAct 250,I_FraesErr 251,I_UWSchwAct 252,I_QErrFK 255,I_QErrPktW 256,I_FraesNotw 281,I_PktAnwOK 288}
+
+
+;================= Variablen fuer Fraeserkennung ==================
+DECL CONST INT MAX_FRAESER=2
+DECL CONST FRAESDATTYP FRAESER[6] ; FRAES_SST => Zuordnung zur SST, 0 = extra Fräser ausserhalb vom SST
+
+FRAESER[1]={FRAES_SST 0,FRAES_START 119,FRAES_DREHT 120,TWIN_DREHT 1026,FRAES_FERTIG 0,FRAES_F 0,ZANGE_ZU 239,I_MMS 241,I_KONTROLL 243,I_SCHWENK_VOR 118,I_SCHWENK_ZUR 116,O_SCHWENK_VOR 117,O_SCHWENK_ZUR 115}
+
+FRAESER[2]={FRAES_SST 0,FRAES_START 135,FRAES_DREHT 136,TWIN_DREHT 1026,FRAES_FERTIG 0,FRAES_F 0,ZANGE_ZU 245,I_MMS 241,I_KONTROLL 249,I_SCHWENK_VOR 134,I_SCHWENK_ZUR 132,O_SCHWENK_VOR 133,O_SCHWENK_ZUR 131}
+
+FRAESER[3]={FRAES_SST 0,FRAES_START 135,FRAES_DREHT 136,TWIN_DREHT 1026,FRAES_FERTIG 0,FRAES_F 0,ZANGE_ZU 245,I_MMS 241,I_KONTROLL 249,I_SCHWENK_VOR 134,I_SCHWENK_ZUR 132,O_SCHWENK_VOR 133,O_SCHWENK_ZUR 131}
+
+FRAESER[4]={FRAES_SST 2,FRAES_START 212,FRAES_DREHT 212,TWIN_DREHT 1026,FRAES_FERTIG 213,FRAES_F 214,ZANGE_ZU 213,I_MMS 209,I_KONTROLL 217,I_SCHWENK_VOR 1026,I_SCHWENK_ZUR 1025,O_SCHWENK_VOR 1026,O_SCHWENK_ZUR 1026}
+
+FRAESER[5]={FRAES_SST 0,FRAES_START 1026,FRAES_DREHT 1026,TWIN_DREHT 1026,FRAES_FERTIG 1026,FRAES_F 1026,I_MMS 1026,I_SCHWENK_VOR 1026,I_SCHWENK_ZUR 1025,O_SCHWENK_VOR 1026,O_SCHWENK_ZUR 1026}
+
+FRAESER[6]={FRAES_SST 0,FRAES_START 1026,FRAES_DREHT 1026,TWIN_DREHT 1026,FRAES_FERTIG 1026,FRAES_F 1026,I_MMS 1026,I_SCHWENK_VOR 1026,I_SCHWENK_ZUR 1025,O_SCHWENK_VOR 1026,O_SCHWENK_ZUR 1026}
+
+;================= Variablen fuer Fraeserparameter ===================
+DECL CONST INT MAX_PARAMETER=6
+DECL FRAES_PARAMETERDATTYP PARAMETER[6] ; 
+
+PARAMETER[1]={EF_UM_KAP 10,FF_UM_KAP 5,EF_PROG 241,FF_PROG 242,Ef_Twin_Prog 241,Ff_Twin_Prog 241,FRAESER_SCHWENKEN FALSE,TWIN_FRAESER FALSE,STEP_DRESS TRUE,STEP_TURN 10,TURN_TWIN_FF 5,TURN_TWIN_EF 5,MAX_DRESS_TIME 15,PAST_TIME 3.0}
+
+PARAMETER[2]={EF_UM_KAP 10,FF_UM_KAP 5,EF_PROG 243,FF_PROG 244,Ef_Twin_Prog 241,Ff_Twin_Prog 241,FRAESER_SCHWENKEN FALSE,TWIN_FRAESER FALSE,STEP_DRESS TRUE,STEP_TURN 10,TURN_TWIN_FF 5,TURN_TWIN_EF 5,MAX_DRESS_TIME 15,PAST_TIME 3.0}
+
+PARAMETER[3]={EF_UM_KAP 10,FF_UM_KAP 5,EF_PROG 245,FF_PROG 246,Ef_Twin_Prog 241,Ff_Twin_Prog 241,FRAESER_SCHWENKEN FALSE,TWIN_FRAESER FALSE,STEP_DRESS TRUE,STEP_TURN 10,TURN_TWIN_FF 5,TURN_TWIN_EF 5,MAX_DRESS_TIME 15,PAST_TIME 3.0}
+
+
+PARAMETER[4]={EF_UM_KAP 10,FF_UM_KAP 5,EF_PROG 247,FF_PROG 248,Ef_Twin_Prog 241,Ff_Twin_Prog 241,FRAESER_SCHWENKEN FALSE,TWIN_FRAESER FALSE,STEP_DRESS TRUE,STEP_TURN 10,TURN_TWIN_FF 5,TURN_TWIN_EF 5,MAX_DRESS_TIME 30,PAST_TIME 3.0}
+
+PARAMETER[5]={EF_UM_KAP 0,FF_UM_KAP 0,EF_PROG 0,FF_PROG 0,Ef_Twin_Prog 0,Ff_Twin_Prog 0,FRAESER_SCHWENKEN FALSE,TWIN_FRAESER FALSE,STEP_DRESS TRUE,STEP_TURN 10,TURN_TWIN_FF 0,TURN_TWIN_EF 0,MAX_DRESS_TIME 30,PAST_TIME 3.0}
+
+PARAMETER[6]={EF_UM_KAP 0,FF_UM_KAP 0,EF_PROG 0,FF_PROG 0,Ef_Twin_Prog 0,Ff_Twin_Prog 0,FRAESER_SCHWENKEN FALSE,TWIN_FRAESER FALSE,STEP_DRESS TRUE,STEP_TURN 10,TURN_TWIN_FF 0,TURN_TWIN_EF 0,MAX_DRESS_TIME 30,PAST_TIME 3.0}
+
+;================= Variablen fuer Zangenkennung ===================
+
+;=============== Variablen fuer E/A-Belegung Zange ================
+
+DECL CONST INT MAX_Z_E_A=3
+DECL Z_E_ADATTYP Z_E_A[5]
+
+Z_E_A[1]={O_VH_ZU 65,O_VH_AUF 68,O_SH 66,O_RH 999,I_VH_AUF 69,I_VH_ZU 71,I_SH_AUF 70,I_SH_ZU 1025,I_SW_MIN 67,I_SW_MAX 1025,I_TK 1025}
+
+Z_E_A[2]={O_VH_ZU 81,O_VH_AUF 84,O_SH 82,O_RH 999,I_VH_AUF 85,I_VH_ZU 87,I_SH_AUF 86,I_SH_ZU 1025,I_SW_MIN 83,I_SW_MAX 1025,I_TK 88}
+
+Z_E_A[3]={O_VH_ZU 97,O_VH_AUF 100,O_SH 98,O_RH 999,I_VH_AUF 101,I_VH_ZU 103,I_SH_AUF 102,I_SH_ZU 1025,I_SW_MIN 99,I_SW_MAX 1025,I_TK 102}
+
+Z_E_A[4]={O_VH_ZU 999,O_VH_AUF 999,O_SH 999,O_RH 1026,I_VH_AUF 117,I_VH_ZU 121,I_SH_AUF 119,I_SH_ZU 1025,I_SW_MIN 145,I_SW_MAX 1025,I_TK 102}
+
+Z_E_A[5]={O_VH_ZU 999,O_VH_AUF 999,O_SH 999,O_RH 1026,I_VH_AUF 117,I_VH_ZU 121,I_SH_AUF 119,I_SH_ZU 1025,I_SW_MIN 145,I_SW_MAX 1025,I_TK 102}
+
+
+DECL CONST INT MAX_ZANGKENN=10
+; Gueltige Werte fuer Zangentyp:
+; 1 = C-Zange Standard Typ 
+; 2 = X-Zange Variante mit 2 doppeltwirkenden Zylinder
+; 3 = SE-Zange (nur für Bremen)
+; 4 = C-Zange bei der der Vorhub nicht getrennt vom Schweißhub zurückgefahren werden kann (sonst wie Typ 1)
+
+DECL GLOBAL ZANGENDATTYP ZANGE[10]
+
+ZANGE[1]={VORHANDEN TRUE,Z_TYP 1,Stationaer FALSE,Z_ANZ 1,VORHUB FALSE,WKZ_AB 169,Z_EA_NR 1,MaxStandmenge 0,FraesAnf 0,FRAESER 1,EL_NR 1,VSST 1,PRMAXDR 251}
+
+ZANGE[2]={VORHANDEN TRUE,Z_TYP 2,Stationaer FALSE,Z_ANZ 1,VORHUB TRUE,WKZ_AB 161,Z_EA_NR 1,MaxStandmenge 0,FraesAnf 0,FRAESER 1,EL_NR 2,VSST 1,PRMAXDR 252}
+
+ZANGE[3]={VORHANDEN TRUE,Z_TYP 1,Stationaer FALSE,Z_ANZ 1,VORHUB TRUE,WKZ_AB 177,Z_EA_NR 1,MaxStandmenge 0,FraesAnf 0,FRAESER 1,EL_NR 3,VSST 1,PRMAXDR 253}
+
+ZANGE[4]={VORHANDEN FALSE,Z_TYP 1,Stationaer FALSE,Z_ANZ 1,VORHUB TRUE,WKZ_AB 185,Z_EA_NR 1,MaxStandmenge 0,FraesAnf 0,FRAESER 1,EL_NR 4,VSST 1,PRMAXDR 254}
+
+ZANGE[5]={VORHANDEN FALSE,Z_TYP 1,Stationaer FALSE,Z_ANZ 1,VORHUB TRUE,WKZ_AB 0,Z_EA_NR 1,MaxStandmenge 0,FraesAnf 0,FRAESER 1,EL_NR 0,VSST 0,PRMAXDR 250}
+
+ZANGE[6]={VORHANDEN FALSE,Z_TYP 1,Stationaer FALSE,Z_ANZ 1,VORHUB TRUE,WKZ_AB 0,Z_EA_NR 0,MaxStandmenge 0,FraesAnf 0,FRAESER 1,EL_NR 0,VSST 0,PRMAXDR 250}
+
+ZANGE[7]={VORHANDEN FALSE,Z_TYP 1,Stationaer FALSE,Z_ANZ 1,VORHUB TRUE,WKZ_AB 0,Z_EA_NR 0,MaxStandmenge 0,FraesAnf 0,FRAESER 1,EL_NR 0,VSST 0,PRMAXDR 250}
+
+ZANGE[8]={VORHANDEN FALSE,Z_TYP 1,Stationaer FALSE,Z_ANZ 1,VORHUB TRUE,WKZ_AB 0,Z_EA_NR 0,MaxStandmenge 0,FraesAnf 0,FRAESER 1,EL_NR 0,VSST 0,PRMAXDR 250}
+
+ZANGE[9]={VORHANDEN FALSE,Z_TYP 1,Stationaer FALSE,Z_ANZ 1,VORHUB TRUE,WKZ_AB 0,Z_EA_NR 0,MaxStandmenge 0,FraesAnf 0,FRAESER 1,EL_NR 0,VSST 0,PRMAXDR 250}
+
+ZANGE[10]={VORHANDEN FALSE,Z_TYP 1,Stationaer FALSE,Z_ANZ 1,VORHUB TRUE,WKZ_AB 0,Z_EA_NR 0,MaxStandmenge 0,FraesAnf 0,FRAESER 1,EL_NR 0,VSST 0,PRMAXDR 250}
+
+DECL BOOL FraesAnford[10]
+FraesAnford[1]=TRUE
+FraesAnford[2]=TRUE
+FraesAnford[3]=TRUE
+FraesAnford[4]=FALSE
+FraesAnford[5]=FALSE
+FraesAnford[6]=FALSE
+FraesAnford[7]=FALSE
+FraesAnford[8]=FALSE
+FraesAnford[9]=FALSE
+FraesAnford[10]=FALSE
+INT ERROR_PRG=0
+;ENDFOLD        
+;FOLD USERSPOT_INPUTS_V4.xx
+INT MAX_I_PS_MESSAGE=110
+DECL I_MESSAGETYP PS_MESSAGE[110]
+; EINGAENGE AM MODUL ZANGE 1
+PS_MESSAGE[1]={I_NR 67,I_MSG_TXT[] "Stroemungswaechter Zange 1 E67 S42B                   "}
+PS_MESSAGE[2]={I_NR 69,I_MSG_TXT[] "Vorhub Zange 1 hinten E69 B41YER                        "}
+PS_MESSAGE[3]={I_NR 70,I_MSG_TXT[] "Schweisshub Zange 1 offen E70 B40YER                    "}
+PS_MESSAGE[4]={I_NR 71,I_MSG_TXT[] "X-Vorhub Zange 1 vorne E71 B41YEV                       "}
+PS_MESSAGE[5]={I_NR 72,I_MSG_TXT[] "Thermoschutz Trafo Zange 1 E72 B42TH                    "}
+PS_MESSAGE[6]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE[7]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE[8]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE[9]={I_NR 0,I_MSG_TXT[] " "}
+
+; EINGAENGE AM MODUL ZANGE 2
+PS_MESSAGE[10]={I_NR 83,I_MSG_TXT[] "Stroemungswaechter Zange 2 E83 S12B                     "}
+PS_MESSAGE[11]={I_NR 85,I_MSG_TXT[] "Vorhub Zange 2 hinten E85 B11YER                        "}
+PS_MESSAGE[12]={I_NR 86,I_MSG_TXT[] "Schweisshub Zange 2 offen E86 B10YER                    "}
+PS_MESSAGE[13]={I_NR 87,I_MSG_TXT[] "X-Vorhub Zange 2 vorne E87 B11YEV                       "}
+PS_MESSAGE[14]={I_NR 88,I_MSG_TXT[] "Thermoschutz Trafo Zange 2 E88 B12TH                    "}
+PS_MESSAGE[15]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE[16]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE[17]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE[18]={I_NR 0,I_MSG_TXT[] " "}
+
+
+; EINGAENGE AM MODUL ZANGE 3
+PS_MESSAGE[19]={I_NR 99,I_MSG_TXT[] "Stroemungswaechter Zange 3 E99 S22B                     "}
+PS_MESSAGE[20]={I_NR 101,I_MSG_TXT[] "Vorhub Zange 3 hinten E101 B21YER                       "}
+PS_MESSAGE[21]={I_NR 102,I_MSG_TXT[] "Schweisshub Zange 3 offen E102 B20YER                   "}
+PS_MESSAGE[22]={I_NR 103,I_MSG_TXT[] "X-Vorhub Zange 3 vorne E103 B21YEV                      "}
+PS_MESSAGE[23]={I_NR 104,I_MSG_TXT[] "Thermoschutz Trafo Zange 3 E104 B22TH                   "}
+PS_MESSAGE[24]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE[25]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE[26]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE[27]={I_NR 0,I_MSG_TXT[] " "}
+
+
+
+PS_MESSAGE[28]={I_NR 0,I_MSG_TXT[] "                            "}
+
+PS_MESSAGE[29]={I_NR 817,I_MSG_TXT[] "Halt nach Applications Stop aktiv ! E817 HPE             "}
+
+; Schweiss-Steuerung 1
+PS_MESSAGE[30]={I_NR 225,I_MSG_TXT[] "FK E225 SWP1FK                                           "}
+PS_MESSAGE[31]={I_NR 226,I_MSG_TXT[] "Anforderung Fraesen SWP1 E226 SWP1FR                      "}
+PS_MESSAGE[32]={I_NR 227,I_MSG_TXT[] "Vorwarnung E227 SWP1WARN                                 "}
+PS_MESSAGE[33]={I_NR 228,I_MSG_TXT[] "Maximale Standmenge erreicht E228 SWP1MAX                "}
+PS_MESSAGE[34]={I_NR 229,I_MSG_TXT[] "ZPS bereit E229 SWP1BER                                  "}
+PS_MESSAGE[35]={I_NR 230,I_MSG_TXT[] "Schweissfehler E230 SWP1SF                               "}
+PS_MESSAGE[36]={I_NR 231,I_MSG_TXT[] "Schweissprozessueberwachung aus E231 SWP1UEWN            "}
+PS_MESSAGE[37]={I_NR 232,I_MSG_TXT[] "Mit Schweissstrom E232 SWP1STR                           "}
+PS_MESSAGE[38]={I_NR 0,I_MSG_TXT[] "Elektrode gewechselt/Startfraesen E234 SWP1STFR          "}
+PS_MESSAGE[39]={I_NR 0,I_MSG_TXT[] "Neue Elektrode E235 SWP1NEEL                             "}
+PS_MESSAGE[40]={I_NR 0,I_MSG_TXT[] "Fraesmesserverschleiss E236 SWP1FRVER                     "}
+PS_MESSAGE[41]={I_NR 0,I_MSG_TXT[] "Fraesmesservorwarnung E237 SWP1FRWARN                     "}
+PS_MESSAGE[42]={I_NR 0,I_MSG_TXT[] "Bauteil-End I247                                        "}
+PS_MESSAGE[43]={I_NR 0,I_MSG_TXT[] "Punktanwahl gueltig I288                                 "}
+PS_MESSAGE[44]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE[45]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE[46]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE[47]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE[48]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE[49]={I_NR 241,I_MSG_TXT[] "Motorschutz Fraesen SWP1 E241                    "}
+
+; Schweiss-Steuerung 2
+PS_MESSAGE[50]={I_NR 0,I_MSG_TXT[] "FK E257 SWP2FK                                           "}
+PS_MESSAGE[51]={I_NR 0,I_MSG_TXT[] "Anforderung Fraesen SWP2 E258 SWP2FR                      "}
+PS_MESSAGE[52]={I_NR 0,I_MSG_TXT[] "Vorwarnung E259 SWP2WARN                                 "}
+PS_MESSAGE[53]={I_NR 0,I_MSG_TXT[] "Maximale Standmenge erreicht E260 SWP2MAX                "}
+PS_MESSAGE[54]={I_NR 0,I_MSG_TXT[] "ZPS bereit E261 SWP2BER                                  "}
+PS_MESSAGE[55]={I_NR 0,I_MSG_TXT[] "Schweissfehler E262 SWP2SF                               "}
+PS_MESSAGE[56]={I_NR 0,I_MSG_TXT[] "Schweissprozessueberwachung aus E263 SWP2UEWN            "}
+PS_MESSAGE[57]={I_NR 0,I_MSG_TXT[] "Mit Schweissstrom E264 SWP2STR                           "}
+PS_MESSAGE[58]={I_NR 0,I_MSG_TXT[] "Elektrode gewechselt/Startfraesen E265 SWP2STFR          "}
+PS_MESSAGE[59]={I_NR 0,I_MSG_TXT[] "Neue Elektrode E266 SWP2NEEL                             "}
+PS_MESSAGE[60]={I_NR 0,I_MSG_TXT[] "Fraesmesserverschleiss E140 SWP1FRVER                     "}
+PS_MESSAGE[61]={I_NR 0,I_MSG_TXT[] "Fraesmesservorwarnung E141 SWP1FRWARN                     "}
+PS_MESSAGE[62]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE[63]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE[64]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE[65]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE[66]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE[67]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE[68]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE[69]={I_NR 0,I_MSG_TXT[] "Motorschutz Fraesen SWP2 E145                    "}
+
+;Fräser 1
+PS_MESSAGE[70]={I_NR 120,I_MSG_TXT[] "Fraeser 1 dreht E120 B46YM1                             "}
+PS_MESSAGE[71]={I_NR 0,I_MSG_TXT[] "Fraesfertigmeldung 1 E143           "}
+PS_MESSAGE[72]={I_NR 0,I_MSG_TXT[] "Fehler Fraesen 1 E144        "}
+PS_MESSAGE[73]={I_NR 0,I_MSG_TXT[] "Kontrollsensor Fraesen 1 E147            "}
+PS_MESSAGE[74]={I_NR 0,I_MSG_TXT[] "       "}
+
+;Fräser 2
+PS_MESSAGE[75]={I_NR 136,I_MSG_TXT[] "Fraeser 2 dreht E136 B16YM1                             "}
+PS_MESSAGE[76]={I_NR 0,I_MSG_TXT[] "Fraesfertigmeldung 1 E143           "}
+PS_MESSAGE[77]={I_NR 0,I_MSG_TXT[] "Fehler Fraesen 1 E144        "}
+PS_MESSAGE[78]={I_NR 0,I_MSG_TXT[] "Kontrollsensor Fraesen 1 E147            "}
+PS_MESSAGE[79]={I_NR 0,I_MSG_TXT[] "       "}
+
+;Fräser 3
+PS_MESSAGE[80]={I_NR 0,I_MSG_TXT[] "Fraeser 3 dreht E147 B26YM1                             "}
+PS_MESSAGE[81]={I_NR 0,I_MSG_TXT[] "Fraesfertigmeldung 1 E143           "}
+PS_MESSAGE[82]={I_NR 0,I_MSG_TXT[] "Fehler Fraesen 1 E144        "}
+PS_MESSAGE[83]={I_NR 0,I_MSG_TXT[] "Kontrollsensor Fraesen 1 E147            "}
+PS_MESSAGE[84]={I_NR 0,I_MSG_TXT[] "       "}
+
+;Fräser 4
+PS_MESSAGE[85]={I_NR 0,I_MSG_TXT[] "Fraeser 1 dreht E142       "}
+PS_MESSAGE[86]={I_NR 0,I_MSG_TXT[] "Fraesfertigmeldung 1 E143           "}
+PS_MESSAGE[87]={I_NR 0,I_MSG_TXT[] "Fehler Fraesen 1 E144        "}
+PS_MESSAGE[88]={I_NR 0,I_MSG_TXT[] "Kontrollsensor Fraesen 1 E147            "}
+PS_MESSAGE[89]={I_NR 0,I_MSG_TXT[] "       "}
+
+;Schwenkeinheiten für Fräser
+PS_MESSAGE[90]={I_NR 118,I_MSG_TXT[] "Schwenkeinrichtung vorn Fraeser1 E118 B45YEV            "}
+PS_MESSAGE[91]={I_NR 134,I_MSG_TXT[] "Schwenkeinrichtung vorn Fraeser2 E134 B15YEV            "}
+PS_MESSAGE[92]={I_NR 150,I_MSG_TXT[] "Schwenkeinrichtung vorn Fraeser3 E150 B25YEV            "}
+PS_MESSAGE[93]={I_NR 116,I_MSG_TXT[] "Schwenkeinrichtung zurueck Fraeser1 E116  B45YER        "}
+PS_MESSAGE[94]={I_NR 132,I_MSG_TXT[] "Schwenkeinrichtung zurueck Fraeser2 E132  B15YER        "}
+PS_MESSAGE[95]={I_NR 148,I_MSG_TXT[] "Schwenkeinrichtung zurueck Fraeser3 E148  B25YER        "}
+PS_MESSAGE[96]={I_NR 150,I_MSG_TXT[] "Schwenkeinrichtung zurueck Fraeser3 E516  B25YER        "}
+PS_MESSAGE[97]={I_NR 0,I_MSG_TXT[] "Schwenkeinrichtung vorn Fraeser3 E153 B25YEV            "}
+PS_MESSAGE[98]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE[99]={I_NR 0,I_MSG_TXT[] " "}
+
+;Sonstiges
+PS_MESSAGE[100]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE[101]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE[102]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE[103]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE[104]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE[105]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE[106]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE[107]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE[108]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE[109]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE[110]={I_NR 0,I_MSG_TXT[] "Kein Eingangsname definiert in Userspot.dat               "}
+
+
+DECL I_MESSAGETYP PS_MESSAGE_U[110]
+; EINGAENGE AM MODUL ZANGE 1
+PS_MESSAGE_U[1]={I_NR 67,I_MSG_TXT[] "Stroemungswaechter Zange 1 E67 S42B                   "}
+PS_MESSAGE_U[2]={I_NR 69,I_MSG_TXT[] "Vorhub Zange 1 hinten E69 B41YER                        "}
+PS_MESSAGE_U[3]={I_NR 70,I_MSG_TXT[] "Schweisshub Zange 1 offen E70 B40YER                    "}
+PS_MESSAGE_U[4]={I_NR 71,I_MSG_TXT[] "X-Vorhub Zange 1 vorne E71 B41YEV                       "}
+PS_MESSAGE_U[5]={I_NR 72,I_MSG_TXT[] "Thermoschutz Trafo Zange 1 E72 B42TH                    "}
+PS_MESSAGE_U[6]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE_U[7]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE_U[8]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE_U[9]={I_NR 0,I_MSG_TXT[] " "}
+
+; EINGAENGE AM MODUL ZANGE 2
+PS_MESSAGE_U[10]={I_NR 83,I_MSG_TXT[] "Stroemungswaechter Zange 2 E83 S12B                     "}
+PS_MESSAGE_U[11]={I_NR 85,I_MSG_TXT[] "Vorhub Zange 2 hinten E85 B11YER                        "}
+PS_MESSAGE_U[12]={I_NR 86,I_MSG_TXT[] "Schweisshub Zange 2 offen E86 B10YER                    "}
+PS_MESSAGE_U[13]={I_NR 87,I_MSG_TXT[] "X-Vorhub Zange 2 vorne E87 B11YEV                       "}
+PS_MESSAGE_U[14]={I_NR 88,I_MSG_TXT[] "Thermoschutz Trafo Zange 2 E88 B12TH                    "}
+PS_MESSAGE_U[15]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE_U[16]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE_U[17]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE_U[18]={I_NR 0,I_MSG_TXT[] " "}
+
+
+; EINGAENGE AM MODUL ZANGE 3
+PS_MESSAGE_U[19]={I_NR 99,I_MSG_TXT[] "Stroemungswaechter Zange 3 E99 S22B                     "}
+PS_MESSAGE_U[20]={I_NR 101,I_MSG_TXT[] "Vorhub Zange 3 hinten E101 B21YER                       "}
+PS_MESSAGE_U[21]={I_NR 102,I_MSG_TXT[] "Schweisshub Zange 3 offen E102 B20YER                   "}
+PS_MESSAGE_U[22]={I_NR 103,I_MSG_TXT[] "X-Vorhub Zange 3 vorne E103 B21YEV                      "}
+PS_MESSAGE_U[23]={I_NR 104,I_MSG_TXT[] "Thermoschutz Trafo Zange 3 E104 B22TH                   "}
+PS_MESSAGE_U[24]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE_U[25]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE_U[26]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE_U[27]={I_NR 0,I_MSG_TXT[] " "}
+
+
+
+PS_MESSAGE_U[28]={I_NR 0,I_MSG_TXT[] "                            "}
+
+PS_MESSAGE_U[29]={I_NR 817,I_MSG_TXT[] "Halt nach Applications Stop aktiv ! E817 HPE             "}
+
+; Schweiss-Steuerung 1
+PS_MESSAGE_U[30]={I_NR 225,I_MSG_TXT[] "FK E225 SWP1FK                                           "}
+PS_MESSAGE_U[31]={I_NR 226,I_MSG_TXT[] "Anforderung Fraesen SWP1 E226 SWP1FR                      "}
+PS_MESSAGE_U[32]={I_NR 227,I_MSG_TXT[] "Vorwarnung E227 SWP1WARN                                 "}
+PS_MESSAGE_U[33]={I_NR 228,I_MSG_TXT[] "Maximale Standmenge erreicht E228 SWP1MAX                "}
+PS_MESSAGE_U[34]={I_NR 229,I_MSG_TXT[] "ZPS bereit E229 SWP1BER                                  "}
+PS_MESSAGE_U[35]={I_NR 230,I_MSG_TXT[] "Schweissfehler E230 SWP1SF                               "}
+PS_MESSAGE_U[36]={I_NR 231,I_MSG_TXT[] "Schweissprozessueberwachung aus E231 SWP1UEWN            "}
+PS_MESSAGE_U[37]={I_NR 232,I_MSG_TXT[] "Mit Schweissstrom E232 SWP1STR                           "}
+PS_MESSAGE_U[38]={I_NR 0,I_MSG_TXT[] "Elektrode gewechselt/Startfraesen E234 SWP1STFR          "}
+PS_MESSAGE_U[39]={I_NR 0,I_MSG_TXT[] "Neue Elektrode E235 SWP1NEEL                             "}
+PS_MESSAGE_U[40]={I_NR 0,I_MSG_TXT[] "Fraesmesserverschleiss E236 SWP1FRVER                     "}
+PS_MESSAGE_U[41]={I_NR 0,I_MSG_TXT[] "Fraesmesservorwarnung E237 SWP1FRWARN                     "}
+PS_MESSAGE_U[42]={I_NR 0,I_MSG_TXT[] "Bauteil-End I247                                        "}
+PS_MESSAGE_U[43]={I_NR 0,I_MSG_TXT[] "Punktanwahl gueltig I288                                 "}
+PS_MESSAGE_U[44]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE_U[45]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE_U[46]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE_U[47]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE_U[48]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE_U[49]={I_NR 241,I_MSG_TXT[] "Motorschutz Fraesen SWP1 E241                    "}
+
+; Schweiss-Steuerung 2
+PS_MESSAGE_U[50]={I_NR 0,I_MSG_TXT[] "FK E257 SWP2FK                                           "}
+PS_MESSAGE_U[51]={I_NR 0,I_MSG_TXT[] "Anforderung Fraesen SWP2 E258 SWP2FR                      "}
+PS_MESSAGE_U[52]={I_NR 0,I_MSG_TXT[] "Vorwarnung E259 SWP2WARN                                 "}
+PS_MESSAGE_U[53]={I_NR 0,I_MSG_TXT[] "Maximale Standmenge erreicht E260 SWP2MAX                "}
+PS_MESSAGE_U[54]={I_NR 0,I_MSG_TXT[] "ZPS bereit E261 SWP2BER                                  "}
+PS_MESSAGE_U[55]={I_NR 0,I_MSG_TXT[] "Schweissfehler E262 SWP2SF                               "}
+PS_MESSAGE_U[56]={I_NR 0,I_MSG_TXT[] "Schweissprozessueberwachung aus E263 SWP2UEWN            "}
+PS_MESSAGE_U[57]={I_NR 0,I_MSG_TXT[] "Mit Schweissstrom E264 SWP2STR                           "}
+PS_MESSAGE_U[58]={I_NR 0,I_MSG_TXT[] "Elektrode gewechselt/Startfraesen E265 SWP2STFR          "}
+PS_MESSAGE_U[59]={I_NR 0,I_MSG_TXT[] "Neue Elektrode E266 SWP2NEEL                             "}
+PS_MESSAGE_U[60]={I_NR 0,I_MSG_TXT[] "Fraesmesserverschleiss E140 SWP1FRVER                     "}
+PS_MESSAGE_U[61]={I_NR 0,I_MSG_TXT[] "Fraesmesservorwarnung E141 SWP1FRWARN                     "}
+PS_MESSAGE_U[62]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE_U[63]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE_U[64]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE_U[65]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE_U[66]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE_U[67]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE_U[68]={I_NR 0,I_MSG_TXT[] "                    "}
+PS_MESSAGE_U[69]={I_NR 0,I_MSG_TXT[] "Motorschutz Fraesen SWP2 E145                    "}
+
+;Fräser 1
+PS_MESSAGE_U[70]={I_NR 120,I_MSG_TXT[] "Fraeser 1 dreht E120 B46YM1                             "}
+PS_MESSAGE_U[71]={I_NR 0,I_MSG_TXT[] "Fraesfertigmeldung 1 E143           "}
+PS_MESSAGE_U[72]={I_NR 0,I_MSG_TXT[] "Fehler Fraesen 1 E144        "}
+PS_MESSAGE_U[73]={I_NR 0,I_MSG_TXT[] "Kontrollsensor Fraesen 1 E147            "}
+PS_MESSAGE_U[74]={I_NR 0,I_MSG_TXT[] "       "}
+
+;Fräser 2
+PS_MESSAGE_U[75]={I_NR 136,I_MSG_TXT[] "Fraeser 2 dreht E136 B16YM1                             "}
+PS_MESSAGE_U[76]={I_NR 0,I_MSG_TXT[] "Fraesfertigmeldung 1 E143           "}
+PS_MESSAGE_U[77]={I_NR 0,I_MSG_TXT[] "Fehler Fraesen 1 E144        "}
+PS_MESSAGE_U[78]={I_NR 0,I_MSG_TXT[] "Kontrollsensor Fraesen 1 E147            "}
+PS_MESSAGE_U[79]={I_NR 0,I_MSG_TXT[] "       "}
+
+;Fräser 3
+PS_MESSAGE_U[80]={I_NR 0,I_MSG_TXT[] "Fraeser 3 dreht E147 B26YM1                             "}
+PS_MESSAGE_U[81]={I_NR 0,I_MSG_TXT[] "Fraesfertigmeldung 1 E143           "}
+PS_MESSAGE_U[82]={I_NR 0,I_MSG_TXT[] "Fehler Fraesen 1 E144        "}
+PS_MESSAGE_U[83]={I_NR 0,I_MSG_TXT[] "Kontrollsensor Fraesen 1 E147            "}
+PS_MESSAGE_U[84]={I_NR 0,I_MSG_TXT[] "       "}
+
+;Fräser 4
+PS_MESSAGE_U[85]={I_NR 0,I_MSG_TXT[] "Fraeser 1 dreht E142       "}
+PS_MESSAGE_U[86]={I_NR 0,I_MSG_TXT[] "Fraesfertigmeldung 1 E143           "}
+PS_MESSAGE_U[87]={I_NR 0,I_MSG_TXT[] "Fehler Fraesen 1 E144        "}
+PS_MESSAGE_U[88]={I_NR 0,I_MSG_TXT[] "Kontrollsensor Fraesen 1 E147            "}
+PS_MESSAGE_U[89]={I_NR 0,I_MSG_TXT[] "       "}
+
+;Schwenkeinheiten für Fräser
+PS_MESSAGE_U[90]={I_NR 118,I_MSG_TXT[] "Schwenkeinrichtung vorn Fraeser1 E118 B45YEV            "}
+PS_MESSAGE_U[91]={I_NR 134,I_MSG_TXT[] "Schwenkeinrichtung vorn Fraeser2 E134 B15YEV            "}
+PS_MESSAGE_U[92]={I_NR 150,I_MSG_TXT[] "Schwenkeinrichtung vorn Fraeser3 E150 B25YEV            "}
+PS_MESSAGE_U[93]={I_NR 116,I_MSG_TXT[] "Schwenkeinrichtung zurueck Fraeser1 E116  B45YER        "}
+PS_MESSAGE_U[94]={I_NR 132,I_MSG_TXT[] "Schwenkeinrichtung zurueck Fraeser2 E132  B15YER        "}
+PS_MESSAGE_U[95]={I_NR 148,I_MSG_TXT[] "Schwenkeinrichtung zurueck Fraeser3 E148  B25YER        "}
+PS_MESSAGE_U[96]={I_NR 150,I_MSG_TXT[] "Schwenkeinrichtung zurueck Fraeser3 E516  B25YER        "}
+PS_MESSAGE_U[97]={I_NR 0,I_MSG_TXT[] "Schwenkeinrichtung vorn Fraeser3 E153 B25YEV            "}
+PS_MESSAGE_U[98]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE_U[99]={I_NR 0,I_MSG_TXT[] " "}
+
+;Sonstiges
+PS_MESSAGE_U[100]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE_U[101]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE_U[102]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE_U[103]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE_U[104]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE_U[105]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE_U[106]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE_U[107]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE_U[108]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE_U[109]={I_NR 0,I_MSG_TXT[] " "}
+PS_MESSAGE_U[110]={I_NR 0,I_MSG_TXT[] "Kein Eingangsname definiert in Userspot.dat               "}
+
+
+INT MAX_I_PS_MESSAGE1=4
+DECL I_MESSAGETYP PS_MESSAGE1[10]
+; EINGAENGE Twin-Fraeser
+PS_MESSAGE1[1]={I_NR 0,I_MSG_TXT[] "Twin Fraeser 1 dreht E? B46YM2                        "}
+PS_MESSAGE1[2]={I_NR 0,I_MSG_TXT[] "Twin Fraeser 2 dreht E? B16YM2                        "}
+PS_MESSAGE1[3]={I_NR 0,I_MSG_TXT[] "Twin Fraeser 3 dreht E? B26YM2                        "}
+PS_MESSAGE1[4]={I_NR 0,I_MSG_TXT[] "Kein Eingangsname vorhanden       "}
+
+DECL I_MESSAGETYP PS_MESSAGE1_U[10]
+; EINGAENGE Twin-Fraeser
+PS_MESSAGE1_U[1]={I_NR 0,I_MSG_TXT[] "Twin Fraeser 1 dreht E? B46YM2                        "}
+PS_MESSAGE1_U[2]={I_NR 0,I_MSG_TXT[] "Twin Fraeser 2 dreht E? B16YM2                        "}
+PS_MESSAGE1_U[3]={I_NR 0,I_MSG_TXT[] "Twin Fraeser 3 dreht E? B26YM2                        "}
+PS_MESSAGE1_U[4]={I_NR 0,I_MSG_TXT[] "Kein Eingangsname vorhanden       "}
+
+
+
+;ENDFOLD
+;FOLD USERSPOT_ERRORS_V4.xx
+INT MAX_I_PS_ERROR=20
+DECL MSG_TXT_TYP PS_ERROR[20]
+PS_ERROR[1]={MSGTXT[] "Fraeser klemmt Fraesvorgang beenden ?  "}
+PS_ERROR[2]={MSGTXT[] "Ungueltige Schweisskofferparametrierung !  "}
+PS_ERROR[3]={MSGTXT[] "Zangenzahl oder Endschalter Ablage n.i.O   "}
+PS_ERROR[4]={MSGTXT[] "Schweissueberw. ist ausgeschalten !           "}
+PS_ERROR[5]={MSGTXT[] "Schweissstrom ist ausgeschaltet!  Einschalten ?  "}
+PS_ERROR[6]={MSGTXT[] "Projektierungsfehler Fraeserzuordnung"}
+PS_ERROR[7]={MSGTXT[] "GUN Nr. nicht in Userspot.dat (Zange[Gun]) definiert "}
+PS_ERROR[8]={MSGTXT[] "Roboter gestoppt wegen fehlendem FK! Beheben und neu starten"}
+PS_ERROR[9]={MSGTXT[] "FK von Schweisssteuerung fehlt!   Schweisssung wiederholen ?"}
+PS_ERROR[10]={MSGTXT[] "! Konfiguration Fraeser nicht moeglich !"}
+PS_ERROR[11]={MSGTXT[] " Abbruch, Fraespr. angewaehlt ! "}
+PS_ERROR[12]={MSGTXT[] " Maximale Fraeserlaufzeit erreicht ! "}
+PS_ERROR[13]={MSGTXT[] " Abruch Fraeser nicht gestartet ! "}
+PS_ERROR[14]={MSGTXT[] " Abbruch !! Kein Fraeser parametriert !"}
+PS_ERROR[15]={MSGTXT[] " Fraesfehler von der Schweisssteuerung !"}
+PS_ERROR[16]={MSGTXT[] " Elektrode-Kontrolle ist nicht in Ordnung ! "}
+PS_ERROR[17]={MSGTXT[] "Falsche Zange angedockt !                   "}
+PS_ERROR[18]={MSGTXT[] " "}
+PS_ERROR[19]={MSGTXT[] " "}
+PS_ERROR[20]={MSGTXT[] " "}
+
+DECL MSG_TXT_TYP PS_ERROR_U[20]
+PS_ERROR_U[1]={MSGTXT[] "Fraeser klemmt Fraesvorgang beenden ?  "}
+PS_ERROR_U[2]={MSGTXT[] "Ungueltige Schweisskofferparametrierung !  "}
+PS_ERROR_U[3]={MSGTXT[] "Zangenzahl oder Endschalter Ablage n.i.O   "}
+PS_ERROR_U[4]={MSGTXT[] "Schweissueberw. ist ausgeschalten !           "}
+PS_ERROR_U[5]={MSGTXT[] "Schweissstrom ist ausgeschaltet!  Einschalten ?  "}
+PS_ERROR_U[6]={MSGTXT[] "Projektierungsfehler Fraeserzuordnung"}
+PS_ERROR_U[7]={MSGTXT[] "GUN Nr. nicht in Userspot.dat (Zange[Gun]) definiert "}
+PS_ERROR_U[8]={MSGTXT[] "Roboter gestoppt wegen fehlendem FK! Beheben und neu starten"}
+PS_ERROR_U[9]={MSGTXT[] "FK von Schweisssteuerung fehlt!   Schweisssung wiederholen ?"}
+PS_ERROR_U[10]={MSGTXT[] "! Konfiguration Fraeser nicht moeglich !"}
+PS_ERROR_U[11]={MSGTXT[] " Abbruch, Fraespr. angewaehlt ! "}
+PS_ERROR_U[12]={MSGTXT[] " Maximale Fraeserlaufzeit erreicht ! "}
+PS_ERROR_U[13]={MSGTXT[] " Abruch Fraeser nicht gestartet ! "}
+PS_ERROR_U[14]={MSGTXT[] " Abbruch !! Kein Fraeser parametriert !"}
+PS_ERROR_U[15]={MSGTXT[] " Fraesfehler von der Schweisssteuerung !"}
+PS_ERROR_U[16]={MSGTXT[] " Elektrode-Kontrolle ist nicht in Ordnung ! "}
+PS_ERROR_U[17]={MSGTXT[] "Falsche Zange angedockt !                   "}
+PS_ERROR_U[18]={MSGTXT[] " "}
+PS_ERROR_U[19]={MSGTXT[] " "}
+PS_ERROR_U[20]={MSGTXT[] " "}
+
+;ENDFOLD        
+;Fold Bosch Error Code V1.0
+;Status-Codes vom Schweisskoffer auswerten
+SIGNAL PS_SK_StatusIn $IN[257]  TO $IN[272]
+STRUC PS_SK_SatusCodeTyp INT Nr,CHAR MsgText[50]
+DECL INT PS_SK_SatusCodeMax=34
+DECL PS_SK_SatusCodeTyp PS_SK_SatusCode[34]
+PS_SK_SatusCode[1]={Nr 0,MsgText[] "Kein FK (IN%%1): %s, Wiederholung?"}
+PS_SK_SatusCode[2]={Nr 0,MsgText[] "Schweissfehler(IN%%1): %s, Wiederholen?"}
+PS_SK_SatusCode[3]={Nr 80,MsgText[] "Stopp Kreis offen / +24V fehlt         "}
+PS_SK_SatusCode[4]={Nr 81,MsgText[] "SOB: Strom ohne Befehl                 "}
+PS_SK_SatusCode[5]={Nr 84,MsgText[] "Batterie Fehler                        "}
+PS_SK_SatusCode[6]={Nr 85,MsgText[] "Speicher geloescht==RAM Checksum Fehler"}
+PS_SK_SatusCode[7]={Nr 86,MsgText[] "Daten - Restore aktiv                  "}
+PS_SK_SatusCode[8]={Nr 87,MsgText[] "kein Schweissprogramm==ungueltige Param"}
+PS_SK_SatusCode[9]={Nr 88,MsgText[] "Hardware Fehler                        "}
+PS_SK_SatusCode[10]={Nr 89,MsgText[] "E/A Bus-Fehler                         "}
+PS_SK_SatusCode[11]={Nr 90,MsgText[] "Halbwellen Ueberwachung                "}
+PS_SK_SatusCode[12]={Nr 91,MsgText[] "Hauptschalter ausgeloest               "}
+PS_SK_SatusCode[13]={Nr 92,MsgText[] "Externe Temperatur zu hoch             "}
+PS_SK_SatusCode[14]={Nr 93,MsgText[] "Synchronisations-Fehler                "}
+PS_SK_SatusCode[15]={Nr 94,MsgText[] "Ablauf gesperrt                        "}
+PS_SK_SatusCode[16]={Nr 95,MsgText[] "Programm-Paritaet Fehler               "}
+PS_SK_SatusCode[17]={Nr 98,MsgText[] "Sollwert zu Gross                      "}
+PS_SK_SatusCode[18]={Nr 99,MsgText[] "Schweissprozess-Fehler                 "}
+PS_SK_SatusCode[19]={Nr 100,MsgText[] "Versorgungsspannungs Fehler            "}
+PS_SK_SatusCode[20]={Nr 160,MsgText[] "Kuehlkoerpertemperatur zu hoch         "}
+PS_SK_SatusCode[21]={Nr 164,MsgText[] "Trafotemperatur zu hoch                "}
+PS_SK_SatusCode[22]={Nr 165,MsgText[] "Hardwarefehler Treiberbaugruppe        "}
+PS_SK_SatusCode[23]={Nr 166,MsgText[] "24V Versorgungsspannungsfehler         "}
+PS_SK_SatusCode[24]={Nr 182,MsgText[] "Fraeseransteuerung fehlerhaft          "}
+PS_SK_SatusCode[25]={Nr 224,MsgText[] "Fraeserg fehlerhaft bei erster Pruefung"}
+PS_SK_SatusCode[26]={Nr 225,MsgText[] "Fraeserg fehlerhaft bei zweiter Pruefng"}
+PS_SK_SatusCode[27]={Nr 3106,MsgText[] "Q-Stopp Bauteil                ------ "}
+PS_SK_SatusCode[28]={Nr 3107,MsgText[] "Q-Stopp Punkt in Folge         ------ "}
+PS_SK_SatusCode[29]={Nr 3108,MsgText[] "Q-Stopp Sonderpunkt            ------ "}
+PS_SK_SatusCode[30]={Nr 3109,MsgText[] "Q-Stopp UIP absolut unten      ------ "}
+PS_SK_SatusCode[31]={Nr 3110,MsgText[] "Q-Stopp PSF absolut unten      ------ "}
+PS_SK_SatusCode[32]={Nr 3111,MsgText[] "Q-Stopp UIP absolut oben       ------ "}
+PS_SK_SatusCode[33]={Nr 3112,MsgText[] "Q-Stopp FQF absolut unten      ------ "}
+PS_SK_SatusCode[34]={Nr 3113,MsgText[] "Q-Stopp FQF absolut oben       ------ "}
+;endfold (ErrorCode)
+ENDDAT

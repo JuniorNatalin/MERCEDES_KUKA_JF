@@ -1,0 +1,11 @@
+&ACCESS RV15
+&COMMENT Check C1
+DEF chk_w2_wechs_ok( )
+
+; VERIFICAÇÃO DE FERRAMENTA: C1
+
+wait for ((not $in[161]) and ($in[169]) and ($in[177]) and ($in[185]) and ($in[219]))
+
+;//---- End -------
+;Diag_Appl(#Off,5)
+END

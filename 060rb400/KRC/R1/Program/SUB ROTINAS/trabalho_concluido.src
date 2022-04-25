@@ -1,0 +1,17 @@
+&ACCESS RVO10
+&REL 3
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF trabalho_concluido( )
+
+;FOLD PULSE 845 'R4 trabalho concluido'  State= TRUE CONT  Time= 3 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:845, 3:'R4 trabalho concluido', 5:TRUE, 6:CONTINUE, 8:3
+CONTINUE
+PULSE($OUT[845], TRUE,3)
+;ENDFOLD
+
+
+;FOLD OUT 851 'Libera AGV'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:851, 3:'Libera AGV', 5:TRUE, 6:
+$OUT[851]=TRUE
+;ENDFOLD
+
+END

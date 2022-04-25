@@ -1,0 +1,50 @@
+[FirstEncoderValues]
+Axis1=168
+Axis2=3880
+Axis3=1643
+Axis4=810
+Axis5=303
+Axis6=2163
+
+[EncoderDifference for Tool 1]
+
+[EncoderDifference for Tool 2]
+
+[EncoderDifference for Tool 3]
+
+[EncoderDifference for Tool 4]
+
+[EncoderDifference for Tool 5]
+
+[EncoderDifference for Tool 6]
+
+[EncoderDifference for Tool 7]
+
+[EncoderDifference for Tool 8]
+
+[EncoderDifference for Tool 9]
+
+[EncoderDifference for Tool 10]
+
+[EncoderDifference for Tool 11]
+
+[EncoderDifference for Tool 12]
+
+[EncoderDifference for Tool 13]
+
+[EncoderDifference for Tool 14]
+
+[EncoderDifference for Tool 15]
+
+[EncoderDifference for Tool 16]
+
+[CalibrationDifference]
+Axis1=-8.05662E-06
+Axis2=2.70334E-05
+Axis3=-1.57075
+Axis4=-2.66641E-05
+Axis5=-0.785367
+Axis6=-0.261799
+
+[ReferencePointOffset]
+

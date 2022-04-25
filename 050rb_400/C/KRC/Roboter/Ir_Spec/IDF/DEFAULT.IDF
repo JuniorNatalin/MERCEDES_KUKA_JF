@@ -1,0 +1,26 @@
+;Produced at: 9/6/2012
+;                     09:31:29
+;
+;Type           : fast calculation
+;
+;Comment    :
+;
+-104 ;min. A1
+-104 ;max. A1
+-88 ;min. A2
+-88 ;max. A2
+88 ;min. A3
+92 ;max. A3
+0 ;min. A4
+0 ;max. A4
+-17 ;min. A5
+63 ;max. A5
+30 ;min. A6
+150 ;max. A6
+100 ;Mass [kg]
+1 ;Periods
+RobotType: #KR500_3 C4 FLR ZH500_3
+ToolType: 100
+MassIdentification: true
+Warm-Up: false
+Additional Load:

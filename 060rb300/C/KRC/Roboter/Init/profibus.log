@@ -1,0 +1,12 @@
+Logfile for Profibus CP5613/14 (V1.08)
+
+9.5.0  17:01 : Downloading Firmware and Database..........
+9.5.0  17:01 : DP_start_cp returned error: 0x00000005 code: 0x0000301f
+
+                  Fehlerklasse (5h):
+                  Fehlermeldung des Treibers.
+                  Fehler (301fh):
+                  Datenbasis File konnte nicht geöffnet werden
+
+9.5.0  17:01 : Timer task deleted!
+9.5.0  17:01 : ISR task deleted!

@@ -1,0 +1,19 @@
+&ACCESS RVO2
+&COMMENT Check GRP ACTROS Z2 OPEN
+DEF chk_w3_grp2_opn( )
+
+;//---- Start User-------
+;Aguardando posicao de gripper fechado
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+WAIT FOR ($IN[11] AND $IN[13])
+WAIT FOR (NOT $IN[12] AND NOT $IN[14])
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User-------
+
+END

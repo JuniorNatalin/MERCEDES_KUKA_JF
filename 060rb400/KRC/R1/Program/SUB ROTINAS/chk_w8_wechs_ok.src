@@ -1,0 +1,12 @@
+&ACCESS RVO10
+&COMMENT Check Tool change
+DEF chk_w8_wechs_ok( )
+Diag_Appl(#on,5)
+
+; VERIFICAÇÃO DE FERRAMENTA: TOOL CHANGE
+
+wait for (( $in[161]) and ($in[169]) and ($in[177]) and (not $in[219]))
+
+;//---- End -------
+Diag_Appl(#Off,5)
+END

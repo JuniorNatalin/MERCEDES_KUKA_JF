@@ -1,0 +1,27 @@
+&ACCESS RO7
+&REL 22
+DEFFCT Bool Ghost ( )
+  decl bool Bresult
+  ;-----------------------
+  ;Function:  Ghost Mode
+  ;Date: 2010-10-20 B.ST.
+  ;-----------------------
+  If GhostPossible then
+    bResult=GhostFlag
+  else
+    bResult=false
+  endif
+  RETURN (bResult)
+endfct
+
+GLOBAL DEF IniGhost()
+  IF GhostFlag then
+    GhostFlag=False
+  endif
+  IF (I_ghost_act>0) and (I_ghost_act<=IO_Range+2) then
+    GhostFlag=(GhostPossible and $IN[I_ghost_act])
+    IF (O_ghost_act>0) and (O_ghost_act<=IO_Range) then
+      $OUT[O_ghost_act]=GhostFlag
+    endif
+  endif
+end

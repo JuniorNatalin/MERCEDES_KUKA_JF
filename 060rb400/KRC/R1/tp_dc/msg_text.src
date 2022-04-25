@@ -1,0 +1,69 @@
+&ACCESS RV4
+&REL 10
+&COMMENT Meldungsausgabe V1.01
+DEF MSG_TEXT (MSG_TXT : OUT,MSG_TYPE :IN, IRESULT :OUT)
+   ;=========================================================
+   ;! Programm : MSG_TEXT(..) 
+   ;! Funktion : Zeigt per Parameter uebergebenden String
+   ;!            im Meldungsfenster an.
+   ;!
+   ;! Version  : 1.01
+   ;! Aenderungsstand: 22.08.1998
+   ;=========================================================
+   ;! (C) 1998 Daimler-Benz AG
+   ;!
+   ;! Bearbeiter :
+   ;!  R.Weinmann  07031-90-2571
+   ;=========================================================
+
+   DECL MSG_TYP MSG_TYPE
+   DECL MSG_TXT_TYP MSG_TXT
+   DECL INT ANSWER,OFFSET, II, IRESULT
+   DECL STATE_T STATE
+   DECL MSG_T EMPTY_MSG
+   EMPTY_MSG={MSG_T: VALID FALSE,RELEASE FALSE,TYP #NOTIFY,MODUL[] " ",KEY[] " ",PARAM_TYP #VALUE,PARAM[] " ",DLG_FORMAT[] " ",ANSWER 0}
+
+   $MSG_T=EMPTY_MSG
+   $MSG_T.MODUL[]="MSGTXT"
+   $MSG_T.PARAM[]="PARAM"
+   $MSG_T.RELEASE=FALSE
+   $MSG_T.PARAM_TYP=#KEY
+
+   FOR II=1 TO  40
+      $MSG_T.KEY[II]=MSG_TXT.MSGTXT[II]
+   ENDFOR
+
+
+   SWITCH  MSG_TYPE
+   CASE #DIALOG
+      $MSG_T.TYP=#DIALOG
+      $MSG_T.DLG_FORMAT[]="JA|NEIN|"
+      $MSG_T.VALID=TRUE
+      WHILE  $MSG_T.VALID
+         WAIT SEC 0.05
+      ENDWHILE
+      IRESULT=$MSG_T.ANSWER
+   CASE #STATE
+      ;$MSG_T.TYP=#STATE
+      ;$MSG_T.VALID=TRUE
+      ;WHILE  $MSG_T.VALID
+      ;  WAIT SEC 0.05
+      ;ENDWHILE
+
+   CASE #QUIT
+      $MSG_T.TYP=#QUIT
+      $MSG_T.VALID=TRUE
+      WHILE  $MSG_T.VALID
+         WAIT SEC 0.05
+      ENDWHILE
+
+   CASE #NOTIFY
+      $MSG_T.TYP=#NOTIFY
+      $MSG_T.VALID=TRUE
+      WHILE  $MSG_T.VALID
+         WAIT SEC 0.05
+      ENDWHILE
+   DEFAULT
+   ENDSWITCH
+
+END

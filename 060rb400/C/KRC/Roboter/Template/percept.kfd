@@ -1,0 +1,59 @@
+deftp perceptron={ SOT FALSE }
+
+;Inline-Formulare fuer PERCEPTRON
+;V1.01
+
+decl param partner={value {number: min 1, max 255, step 1}, shortname[] "Partner=", shortcut[] "Partner"}
+decl param modell={value {number: min 1, max 40, step 1}, shortname[] "Modell=", shortcut[] "Modell"}
+decl param phase={value {number: min 0, max 2, step 1}, shortname[] "Phase=", shortcut[] "Phase"}
+decl param ausrichtung_a={value {number: min 1, max 8, step 1}, shortname[] "Ausrichtung=", shortcut[] "Ausr. A"}
+decl param ausrichtung_b={value {number: min 0, max 8, step 1}, shortname[] "-", shortcut[] "Ausr. B", unit[] ""}
+decl param punkt={value {number: min 0, max 255, step 1}, shortname[] "Punkt=", shortcut[] "Punkt"}
+decl param relation={value {number: min 0, max 9, step 1}, shortname[] "Relation=", shortcut[] "Rel."}
+decl param zone={shortname[] "Zone=", value {list: item[1] {item: value[] "A", disp[] "A"}, _ 
+ item[2] {item: value[] "B"}, item[3] {item: value[] "C"}, item[4] {item: value[] "D"}, _ 
+ item[5] {item: value[] "E"}, item[6] {item: value[] "F"}, item[7] {item: value[] "G"}, _
+ item[8] {item: value[] "H"} } }
+decl param wert_xmin={value {number: min -30, max 30, step 1}, shortname[] "Toleranz X min=", shortcut[] "Xmin"}
+decl param wert_xmax={value {number: min -30, max 30, step 1}, shortname[] "X max=", shortcut[] "Xmax"}
+decl param wert_ymin={value {number: min -30, max 30, step 1}, shortname[] "Y min=", shortcut[] "Ymin"}
+decl param wert_ymax={value {number: min -30, max 30, step 1}, shortname[] "Y max=", shortcut[] "Ymax"}
+decl param wert_zmin={value {number: min -30, max 30, step 1}, shortname[] "Z min=", shortcut[] "Zmin"}
+decl param wert_zmax={value {number: min -30, max 30, step 1}, shortname[] "Z max=", shortcut[] "Zmax"}
+decl param wert_min={value {number: min -30, max 30, step 1}, shortname[] "Toleranz min=", shortcut[] "Rmin"}
+decl param wert_max={value {number: min -30, max 30, step 1}, shortname[] "max=", shortcut[] "Rmax"}
+
+decl fold ST_fold[1]
+ST_fold[1]="PCT_STFO ( %partner , %modell , %phase )"
+
+decl fold P_fold[1]
+P_fold[1]="RETRY=TRUE"
+P_fold[1]="WHILE  RETRY"
+P_fold[1]="PCT_P ( %punkt ) "
+P_fold[1]="RETRY=PCT_FEHL(PCT_STATUS+PCTPUNKT,SER_ERROR,SER_PORT )"
+P_fold[1]="ENDWHILE"
+
+decl fold TC_fold[1]
+TC_fold[1]="RETRY=TRUE"
+TC_fold[1]="WHILE  RETRY"
+TC_fold[1]="PCT_TC () "
+TC_fold[1]="RETRY=PCT_FEHL(PCT_STATUS+PCTMESSEN,SER_ERROR,SER_PORT )"
+TC_fold[1]="ENDWHILE"
+
+decl fold GO_fold[1]
+GO_fold[1]="PCT_GOFO ( %partner , %modell , %phase , %ausrichtung_a %ausrichtung_b , %wert_xmin , %wert_xmax , %wert_ymin , %wert_ymax , %wert_zmin , %wert_zmax )"
+
+decl fold R_fold[1]
+R_fold[1]="PCT_RFO ( %partner , %modell , %phase , /"%zone/" , %relation , %wert_min , %wert_max )"
+
+
+decl inlineform StartMessen={param[1] partner, param[2] modell,param[3] phase, fold[1] ST_fold}
+decl inlineform AusrdatenHolen={param[1] partner, param[2] modell,param[3] phase, param[4] ausrichtung_a, param[5] ausrichtung_b, param[6] wert_xmin, param[7] wert_xmax, param[8] wert_ymin, param[9] wert_ymax, param[10] wert_zmin, param[11] wert_zmax, fold[1] GO_fold}
+decl inlineform ReldatenHolen={param[1] partner, param[2] modell,param[3] phase, param[4] zone, param[5] relation, param[6] wert_min, param[7] wert_max, fold[1] R_fold}
+
+;nur bei OptiFlex!
+decl inlineform PunktMessen={param[1] punkt, fold[1] P_fold}
+decl inlineform PunktMessenBeenden={fold[1] TC_fold}
+
+endtp
+

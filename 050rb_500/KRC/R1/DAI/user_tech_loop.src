@@ -1,0 +1,23 @@
+&ACCESS RVP
+&REL 3
+&COMMENT user_plc_loop
+&USER PKL_AST
+&PARAM version = 1.0
+DEF user_tech_loop( )
+; hier alle User-Aufrufe fuer den SPS.SUB-Loop einpflegen
+; insert alle user-funtions for SPS.SUB-Loop
+
+
+;START Tech_001
+;END Tech_001
+
+;START Tech_002
+;END Tech_002
+
+;START Tech_100
+;END Tech_100
+
+;START Tech_101
+;END Tech_101
+
+END

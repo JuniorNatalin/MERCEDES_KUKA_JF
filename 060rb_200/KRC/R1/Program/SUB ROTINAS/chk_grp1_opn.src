@@ -1,0 +1,43 @@
+&ACCESS RVO4
+DEF chk_grp1_opn( )
+;//---- Start -------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+;FOLD WAIT FOR IN 7 'grampo Z2.1 aberto'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:7, 3:'grampo Z2.1 aberto', 5:TRUE, 6:
+WAIT FOR $IN[7]==TRUE
+;ENDFOLD
+;FOLD WAIT FOR IN 9 'grampo Z2.2 aberto'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:9, 3:'grampo Z2.2 aberto', 5:TRUE, 6:
+WAIT FOR $IN[9]==TRUE
+;ENDFOLD
+;FOLD WAIT FOR IN 11 'grampo Z2.3 aberto'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:11, 3:'grampo Z2.3 aberto', 5:TRUE, 6:
+WAIT FOR $IN[11]==TRUE
+;ENDFOLD
+;FOLD WAIT FOR IN 13 'grampo Z2.4 aberto'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:13, 3:'grampo Z2.4 aberto', 5:TRUE, 6:
+WAIT FOR $IN[13]==TRUE
+;ENDFOLD
+;FOLD WAIT FOR IN 15 'grampo Z2.5 aberto'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:15, 3:'grampo Z2.5 aberto', 5:TRUE, 6:
+WAIT FOR $IN[15]==TRUE
+;ENDFOLD
+;FOLD WAIT FOR IN 8 'grampo Z2.1 fechado'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:8, 3:'grampo Z2.1 fechado', 5:FALSE, 6:
+WAIT FOR $IN[8]==FALSE
+;ENDFOLD
+;FOLD WAIT FOR IN 10 'grampo Z2.2 fechado'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:10, 3:'grampo Z2.2 fechado', 5:FALSE, 6:
+WAIT FOR $IN[10]==FALSE
+;ENDFOLD
+;FOLD WAIT FOR IN 12 'grampo Z2.3 fechado'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:12, 3:'grampo Z2.3 fechado', 5:FALSE, 6:
+WAIT FOR $IN[12]==FALSE
+;ENDFOLD
+;FOLD WAIT FOR IN 14 'grampo Z2.4 fechado'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:14, 3:'grampo Z2.4 fechado', 5:FALSE, 6:
+WAIT FOR $IN[14]==FALSE
+;ENDFOLD
+;FOLD WAIT FOR IN 16 'grampo Z2.5 fechado'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:16, 3:'grampo Z2.5 fechado', 5:FALSE, 6:
+WAIT FOR $IN[16]==FALSE
+;ENDFOLD
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End -------
+END

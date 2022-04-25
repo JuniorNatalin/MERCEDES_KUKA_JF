@@ -1,0 +1,37 @@
+&ACCESS RVP
+&REL 19
+&COMMENT PLC ON CONTROL
+DEFDAT SPS
+;FOLD DUPLICATE_IO V_3.01 ;%{E}
+; Vervielfaeltigung von Ein- / Ausgaengen auf Ausgaenge
+; Stand: 15.05.2000 / Wi
+;==================================
+; Userdefined Types 
+;==================================
+ENUM IO_TYP INP,OUTP
+ENUM INV_TYP Y,N
+STRUC SIGNAL_DUPL_TYP IO_TYP SRC_TYP,INT SRC_NO,INV_TYP INVERT,INT DST_NO
+;==================================
+; Userdefined Variables 
+;==================================
+;SRC_TYP: #INP,#OUTP: Art der Quelle (Eingang/Ausgang) 
+;SRC_NO : 1..1024   : Nummer des Quell-Eingangs/Ausgangs 
+;INVERT : #Y,#N     : Invertierung Ziel-Ausgang
+;DST_NO : 1..1024   : Nummer des Ziel-Ausgangs 
+;SRC_NO,DST_NO == 0 : nicht aktiv
+INT MAX_DUPL=10
+DECL SIGNAL_DUPL_TYP SIGNAL_DUPL[10]
+SIGNAL_DUPL[1]={SRC_TYP #INP,SRC_NO 0,INVERT #N,DST_NO 0}
+SIGNAL_DUPL[2]={SRC_TYP #INP,SRC_NO 0,INVERT #N,DST_NO 0}
+SIGNAL_DUPL[3]={SRC_TYP #INP,SRC_NO 0,INVERT #N,DST_NO 0}
+SIGNAL_DUPL[4]={SRC_TYP #INP,SRC_NO 0,INVERT #N,DST_NO 0}
+;SIGNAL_DUPL[4]={SRC_TYP #INP,SRC_NO 871,INVERT #N,DST_NO 348};// Request 2K Purge from PLC 1-K
+SIGNAL_DUPL[5]={SRC_TYP #INP,SRC_NO 0,INVERT #N,DST_NO 0}
+;SIGNAL_DUPL[5]={SRC_TYP #INP,SRC_NO 349,INVERT #N,DST_NO 871};// Acknowledge 2K-Purge to PLC
+SIGNAL_DUPL[6]={SRC_TYP #OUTP,SRC_NO 1010,INVERT #N,DST_NO 296}; //no E-Stop
+SIGNAL_DUPL[7]={SRC_TYP #OUTP,SRC_NO 809,INVERT #N,DST_NO 304} ;//T1 no material
+SIGNAL_DUPL[8]={SRC_TYP #OUTP,SRC_NO 0,INVERT #N,DST_NO 0}
+SIGNAL_DUPL[9]={SRC_TYP #OUTP,SRC_NO 0,INVERT #N,DST_NO 0}
+SIGNAL_DUPL[10]={SRC_TYP #OUTP,SRC_NO 0,INVERT #N,DST_NO 0}
+;ENDFOLD
+ENDDAT

@@ -1,0 +1,123 @@
+;FOLD Clinchen ;%{H}
+;============================================
+; USRTECH für Clinchen  V5.01
+; FWT-ANT T. Breitmaier Tel. 70512
+; Änderungsstand: 21.06.2006
+;============================================
+;
+DEFTP CLINCHEN={ SOT FALSE }
+
+DECL PARAM ZANGENNR={shortname[] "ZangeNr. ", shortcut[] "Zange", unit[] "", value { NUMBER : min 1, max 2, step 1, default 1 }}
+
+DECL PARAM CLProgramm={shortname[] "ProgNr. ", shortcut[] "Prg", unit[] "", value { NUMBER : min 1 , max 15, step 1, default 1 }}
+
+DECL PARAM SpruehZeit={shortname[] "SpruehPuls ", shortcut[] "V-Zeit", unit[] " sec", value { real : min 0 , max 0.5, step 0.001, default 0.06 }}
+
+DECL PARAM Prozessuebw={shortname[] "Prozessueberwachung-Geraet ", shortcut[] "PUG ", unit[] "", value { NUMBER : min 1 , max 4, step 1, default 1 }}
+
+DECL PARAM Druckueber={shortname[] "Druckueberwachung ", shortcut[] "Druck ", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "TRUE ", disp[] "Ein "}, _
+  ITEM[2] {ITEM:VALUE[] "FALSE ", disp[] "Aus " }}}
+
+DECL PARAM Vorhub={shortname[] "Vorhub ", shortcut[] "VH ", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "FALSE ", disp[] "open "}, _
+  ITEM[2] {ITEM:VALUE[] "TRUE ", disp[] "close " }}}
+
+ DECL PARAM Ausgleich={shortname[] "Ausgleich ", shortcut[] "AG ", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "0 ", disp[] "AUS "}, _
+  ITEM[2] {ITEM:VALUE[] "1 ", disp[] "0 Grad "}, _
+  ITEM[3] {ITEM:VALUE[] "2 ", disp[] "180 Grad " }}}
+
+  
+DECL FOLD CL-INIT_FOLD[1]
+CL-INIT_FOLD[1]="CL_ACT.Zangennr=0"
+CL-INIT_FOLD[2]="CL_ACT.Prognr=0"
+CL-INIT_FOLD[3]="CL_ACT.Przueberw=0"
+CL-INIT_FOLD[4]="CL_ACT.Spruehpuls=0.0"
+CL-INIT_FOLD[5]="CL_ACT.Druckueberw=TRUE"
+CL-INIT_FOLD[6]="CL_ACT.Vorhub=FALSE"
+CL-OPRUW_FOLD[6]="CL_ACT.Ausgleich=0"
+CL-INIT_FOLD[7]="Clinchen (#INIT,CL_ACT)"
+
+DECL FOLD CL-OPRUW_FOLD[1]
+CL-OPRUW_FOLD[1]="CL_ACT.Zangennr=%ZANGENNR"
+CL-OPRUW_FOLD[2]="CL_ACT.Prognr=0"
+CL-OPRUW_FOLD[3]="CL_ACT.Przueberw=0"
+CL-OPRUW_FOLD[4]="CL_ACT.Spruehpuls=%SpruehZeit"
+CL-OPRUW_FOLD[5]="CL_ACT.Druckueberw=FALSE"
+CL-OPRUW_FOLD[6]="CL_ACT.Vorhub=FALSE"
+CL-OPRUW_FOLD[6]="CL_ACT.Ausgleich=0"
+CL-OPRUW_FOLD[7]="Clinchen (#CLINCH,CL_ACT)"
+
+DECL FOLD CL-PRUW_FOLD[1]
+CL-PRUW_FOLD[1]="CL_ACT.Zangennr=%ZANGENNR"
+CL-PRUW_FOLD[2]="CL_ACT.Prognr=%CLProgramm"
+CL-PRUW_FOLD[3]="CL_ACT.Przueberw=%Prozessuebw"
+CL-PRUW_FOLD[4]="CL_ACT.Spruehpuls=%SpruehZeit"
+CL-PRUW_FOLD[5]="CL_ACT.Druckueberw=FALSE"
+CL-PRUW_FOLD[6]="CL_ACT.Vorhub=FALSE"
+CL-OPRUW_FOLD[6]="CL_ACT.Ausgleich=0"
+CL-PRUW_FOLD[7]="Clinchen (#CLINCH,CL_ACT)"
+
+DECL FOLD CL-OPRUWAG_FOLD[1]
+CL-OPRUW_FOLD[1]="CL_ACT.Zangennr=%ZANGENNR"
+CL-OPRUW_FOLD[2]="CL_ACT.Prognr=0"
+CL-OPRUW_FOLD[3]="CL_ACT.Przueberw=0"
+CL-OPRUW_FOLD[4]="CL_ACT.Spruehpuls=%SpruehZeit"
+CL-OPRUW_FOLD[5]="CL_ACT.Druckueberw=FALSE"
+CL-OPRUW_FOLD[6]="CL_ACT.Vorhub=FALSE"
+CL-OPRUW_FOLD[6]="CL_ACT.Ausgleich=%Ausgleich"
+CL-OPRUW_FOLD[7]="Clinchen (#CLINCH,CL_ACT)"
+
+DECL FOLD CL-PRUWAG_FOLD[1]
+CL-PRUW_FOLD[1]="CL_ACT.Zangennr=%ZANGENNR"
+CL-PRUW_FOLD[2]="CL_ACT.Prognr=%CLProgramm"
+CL-PRUW_FOLD[3]="CL_ACT.Przueberw=%Prozessuebw"
+CL-PRUW_FOLD[4]="CL_ACT.Spruehpuls=%SpruehZeit"
+CL-PRUW_FOLD[5]="CL_ACT.Druckueberw=FALSE"
+CL-PRUW_FOLD[6]="CL_ACT.Vorhub=FALSE"
+CL-OPRUW_FOLD[6]="CL_ACT.Ausgleich=%Ausgleich"
+CL-PRUW_FOLD[7]="Clinchen (#CLINCH,CL_ACT)"
+
+DECL FOLD CL-VH-OPRUW_FOLD[1]
+CL-OPRUW_FOLD[1]="CL_ACT.Zangennr=%ZANGENNR"
+CL-OPRUW_FOLD[2]="CL_ACT.Prognr=0"
+CL-OPRUW_FOLD[3]="CL_ACT.Przueberw=0"
+CL-OPRUW_FOLD[4]="CL_ACT.Spruehpuls=%SpruehZeit"
+CL-OPRUW_FOLD[5]="CL_ACT.Druckueberw=FALSE"
+CL-OPRUW_FOLD[6]="CL_ACT.Vorhub=%Vorhub"
+CL-OPRUW_FOLD[6]="CL_ACT.Ausgleich=0"
+CL-OPRUW_FOLD[7]="Clinchen (#CLINCH,CL_ACT)"
+
+DECL FOLD CL-VH-PRUW_FOLD[1]
+CL-PRUW_FOLD[1]="CL_ACT.Zangennr=%ZANGENNR"
+CL-PRUW_FOLD[2]="CL_ACT.Prognr=%CLProgramm"
+CL-PRUW_FOLD[3]="CL_ACT.Przueberw=%Prozessuebw"
+CL-PRUW_FOLD[4]="CL_ACT.Spruehpuls=%SpruehZeit"
+CL-PRUW_FOLD[5]="CL_ACT.Druckueberw=FALSE"
+CL-PRUW_FOLD[6]="CL_ACT.Vorhub=%Vorhub"
+CL-OPRUW_FOLD[6]="CL_ACT.Ausgleich=0"
+CL-PRUW_FOLD[7]="Clinchen (#CLINCH,CL_ACT)"
+
+DECL FOLD CL-SPRUEH_FOLD[1]
+CL-SPRUEH_FOLD[1]="CL_ACT.Zangennr=%ZANGENNR"
+CL-SPRUEH_FOLD[2]="CL_ACT.Prognr=0"
+CL-SPRUEH_FOLD[3]="CL_ACT.Przueberw=0"
+CL-SPRUEH_FOLD[4]="CL_ACT.Spruehpuls=%SpruehZeit"
+CL-SPRUEH_FOLD[5]="CL_ACT.Druckueberw=FALSE"
+CL-SPRUEH_FOLD[6]="CL_ACT.Vorhub=FALSE"
+CL-OPRUW_FOLD[6]="CL_ACT.Ausgleich=0"
+CL-SPRUEH_FOLD[7]="Clinchen (#SPRUEHEN,CL_ACT)"
+
+
+;ALT DECL INLINEFORM Init={FOCUS 0, FOLD[1] CL-INIT_FOLD, PARAM[1] Druckueber}
+DECL INLINEFORM Init={FOCUS 0, FOLD[1] CL-INIT_FOLD}
+DECL INLINEFORM Mit_Prozessueberwachung={FOCUS 0, FOLD[1] CL-PRUW_FOLD, PARAM[1] ZANGENNR , PARAM[2] Prozessuebw , PARAM[3] CLProgramm , PARAM[4] SpruehZeit}
+DECL INLINEFORM Ohne_Prozessueberwachung={FOCUS 0, FOLD[1] CL-OPRUW_FOLD, PARAM[1] ZANGENNR , PARAM[2] SpruehZeit}
+;DECL INLINEFORM Vorhub+Mit_Prozessueberwachung={FOCUS 0, FOLD[1] CL-VH-PRUW_FOLD, PARAM[1] ZANGENNR , PARAM[2] Prozessuebw , PARAM[3] CLProgramm , PARAM[4] SpruehZeit, PARAM[5] Vorhub}
+;DECL INLINEFORM Vorhub+Ohne_Prozessueberwachung={FOCUS 0, FOLD[1] CL-VH-OPRUW_FOLD, PARAM[1] ZANGENNR , PARAM[2] SpruehZeit, PARAM[3] Vorhub}
+DECL INLINEFORM Mit_Prozessueberwachung_Ausgleich={FOCUS 0, FOLD[1] CL-PRUWAG_FOLD, PARAM[1] ZANGENNR , PARAM[2] Prozessuebw , PARAM[3] CLProgramm , PARAM[4] SpruehZeit , PARAM[5] Ausgleich}
+DECL INLINEFORM Ohne_Prozessueberwachung_Ausgleich={FOCUS 0, FOLD[1] CL-OPRUWAG_FOLD, PARAM[1] ZANGENNR , PARAM[2] SpruehZeit , PARAM[5] Ausgleich}
+DECL INLINEFORM Spruehpuls={FOCUS 0, FOLD[1] CL-SPRUEH_FOLD, PARAM[1] ZANGENNR , PARAM[2] SpruehZeit}
+ENDTP
+;ENDFOLD

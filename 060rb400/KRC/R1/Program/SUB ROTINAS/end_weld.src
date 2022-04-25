@@ -1,0 +1,11 @@
+&ACCESS RVO4
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF end_weld( )
+
+;FOLD PULSE 844 'R4 solda RESPOT concluida'  State= TRUE CONT  Time= 3 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:844, 3:'R4 solda RESPOT concluida', 5:TRUE, 6:CONTINUE, 8:3
+CONTINUE
+PULSE($OUT[844], TRUE,3)
+;ENDFOLD
+
+END

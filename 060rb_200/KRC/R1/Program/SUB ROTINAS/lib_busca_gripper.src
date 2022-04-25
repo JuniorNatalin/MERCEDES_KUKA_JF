@@ -1,0 +1,20 @@
+&ACCESS RVO2
+&REL 4
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF Lib_Busca_gripper( )
+
+
+
+;FOLD OUT 3362 'R2_Solicita Lib. Buscar Gripper' State=TRUE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3362, 3:R2_Solicita Lib. Buscar Gripper, 5:TRUE, 6:
+$OUT[3362]=TRUE
+;ENDFOLD
+;FOLD WAIT FOR ( IN 3321 'R2_Aguarda Lib. Buscar Gripper' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:3321, 7:R2_Aguarda Lib. Buscar Gripper, 9:
+WAIT FOR  ( $IN[3321] ) 
+;ENDFOLD
+;FOLD OUT 3362 'R2_Solicita Lib. Buscar Gripper' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3362, 3:R2_Solicita Lib. Buscar Gripper, 5:FALSE, 6:
+$OUT[3362]=FALSE
+;ENDFOLD
+
+
+END

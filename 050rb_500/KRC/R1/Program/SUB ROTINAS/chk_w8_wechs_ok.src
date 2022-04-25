@@ -1,0 +1,9 @@
+&ACCESS RVO13
+&COMMENT Check Tool Change
+DEF chk_w8_wechs_ok( )
+
+; VERIFICAÇÃO DE FERRAMENTA: TOOL CHANGE
+
+WAIT FOR ((($IN[161]) OR ((NOT $IN[161]) AND ($IN[3320]))) AND ($IN[169]) AND ($IN[177]) AND ($IN[185]) AND ($IN[193]) AND (NOT $IN[219]))
+
+END

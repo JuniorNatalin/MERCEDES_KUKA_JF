@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Gripper Number="1" Name="GRP 1" />
+  <Gripper Number="2" Name="GRP 2" />
+  <Gripper Number="3" Name="GRP 3" />
+  <Gripper Number="4" Name="GRP 4" />
+  <Gripper Number="5" Name="GRP 5" />
+  <Gripper Number="6" Name="GRP 6" />
+  <Gripper Number="7" Name="GRP 7" />
+  <Gripper Number="8" Name="GRP 8" />
+  <Gripper Number="9" Name="GRP 9" />
+  <Gripper Number="10" Name="GRP 10" />
+  <Gripper Number="11" Name="GRP 11" />
+  <Gripper Number="12" Name="GRP 12" />
+  <Gripper Number="13" Name="GRP 13" />
+  <Gripper Number="14" Name="GRP 14" />
+  <Gripper Number="15" Name="GRP 15" />
+  <Gripper Number="16" Name="GRP 16" />
+  <GripperType Type="0" />
+  <GripperType Type="1">
+    <State Number="1" Description="OPN" />
+    <State Number="2" Description="CLO" />
+  </GripperType>
+  <GripperType Type="2">
+    <State Number="1" Description="POS1" />
+    <State Number="2" Description="POS2" />
+    <State Number="3" Description="MID" />
+  </GripperType>
+  <GripperType Type="3">
+    <State Number="1" Description="VACUUM" />
+    <State Number="2" Description="BLOW" />
+    <State Number="3" Description="OFF" />
+  </GripperType>
+  <GripperType Type="4">
+    <State Number="1" Description="VACUUM" />
+    <State Number="2" Description="BLOW" />
+    <State Number="3" Description="OFF" />
+  </GripperType>
+  <GripperType Type="5">
+    <State Number="1" Description="CLO" />
+    <State Number="2" Description="OPN" />
+  </GripperType>
+</Configuration>

@@ -1,0 +1,132 @@
+&ACCESS RVP20
+&COMMENT dai_sps_init
+&USER PKL_AST
+&PARAM version = 2.0
+DEF dai_sps_init( )
+; hier alle User-Aufrufe fuer den SPS.SUB-Init einpflegen
+; insert alle user-funtions for SPS.SUB-Init
+
+
+
+;START Tech_001
+;END Tech_001
+
+;START Tech_002
+;END Tech_002
+
+;START Tech_003
+;END Tech_003
+
+;START Tech_004
+;END Tech_004
+
+;START Tech_005
+;END Tech_005
+
+;START Tech_006
+;END Tech_006
+
+;START Tech_007
+;END Tech_007
+
+;START Tech_008
+;END Tech_008
+
+;START Tech_009
+;END Tech_009
+
+;START Tech_010
+;END Tech_010
+
+;START Tech_011
+;END Tech_011
+
+;START Tech_012
+;END Tech_012
+
+;START Tech_013
+;END Tech_013
+
+;START Tech_014
+;END Tech_014
+
+;START Tech_015
+;END Tech_015
+
+;START Tech_016
+;END Tech_016
+
+;START Tech_017
+;END Tech_017
+
+;START Tech_018
+;END Tech_018
+
+;START Tech_019
+;END Tech_019
+
+;START Tech_020
+;END Tech_020
+
+;START Tech_021
+;END Tech_021
+
+;START Tech_022
+;END Tech_022
+
+;START Tech_023
+;END Tech_023
+
+;START Tech_024
+;END Tech_024
+
+;START Tech_025
+;END Tech_025
+
+;START Tech_026
+;END Tech_026
+
+;START Tech_027
+;END Tech_027
+
+;START Tech_028
+;END Tech_028
+
+;START Tech_029
+;END Tech_029
+
+;START Tech_030
+;END Tech_030
+
+;START Tech_031
+;END Tech_031
+
+;START Tech_032
+;END Tech_032
+
+;START Tech_033
+;END Tech_033
+
+;START Tech_034
+;END Tech_034
+
+;START Tech_035
+;END Tech_035
+
+;START Tech_036
+;END Tech_036
+
+;START Tech_037
+;END Tech_037
+
+;START Tech_038
+;END Tech_038
+
+;START Tech_039
+;END Tech_039
+
+;START Tech_040
+;END Tech_040
+
+
+END

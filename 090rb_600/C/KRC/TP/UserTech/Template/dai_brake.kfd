@@ -1,0 +1,44 @@
+;============================================
+; USERTECH für PLUS
+; function:			   Setzt den Wert fuer das Bremseneinfallen
+; content:			   Inlineformulare fuer die Bremsenanstweuerung
+; user: 			      PKL_AST Thomas Schneider 74975
+;============================================
+; user: 			      PKL_AST Thomas Schneider 74975
+; date: 			      2014-01-11
+; version:			   1.0
+; comment:			   First Release
+; offline relevant	yes 
+;============================================
+DEFTP SET_BRAKE={ SOT FALSE }
+
+
+;
+; 1. alle Parameter 
+;
+DECL PARAM WithExAx7 = {SHORTNAME[] "WithExAx7:", _
+VALUE {LIST : ITEM[1] {ITEM: VALUE[] "63",DISP[] "NO"}, ITEM[2] {ITEM: VALUE[] "127",DISP[] "YES"}}}
+
+DECL PARAM BrakeTime={shortname[] "Time: ", unit[] "", value { NUMBER : min 500, max 20000, step 500, default 2000 }}
+;
+; 2. alle Folds
+;
+DECL FOLD fSetB[1]
+fInit[1]="iBrakeReturn=SET_BRAKE_DELAY( %WithExAx7 , %BrakeTime )"
+
+
+
+
+;
+; 3. alle inlineformulare
+;
+DECL INLINEFORM SetBrake={FOCUS 0, FOLD[1] fSetB, PARAM[1] BrakeTime, PARAM[2] WithExAx7}
+
+
+;
+; 4. alle Skripte
+;
+
+
+ENDTP
+

@@ -1,0 +1,564 @@
+&ACCESS RP14
+&REL 125
+&COMMENT DC-BOLZENSCHWEISSEN V4.04_JDF #C
+DEF  BOLZEN (CALLMODE :IN,BSST_NR: IN,BOLZEN_NR :IN,KOPF_NR :IN,FOERDERN_NR :IN,WKOPF :IN )
+  ;----------------------------------
+  ; Technologipaket Bolzenschweissen
+  ; Version: V3.00
+  ; Stand: 04.10.2000
+  ; KUKA Roboter GmbH, R. Wiedmann
+  ;----------------------------------
+  ;!======================================================
+  ;!   Version 4.03 JDF
+  ;!   Date: 2012-07-26 @BST
+  ;!   Configured to JDF-Truck Standard
+  ;!======================================================
+  ;!   Version 4.02
+  ;!     Aenderungsstand 08.11.2002 (FWT-ANT Tobias Breitmaier Tel.70512)
+  ;!      - Anpassung auf den Digitalen-Bolzenkoffer
+  ;!        Stand BR219 Sifi
+  ;!======================================================
+  ;!   Version 3.06
+  ;!     Aenderungsstand 21.06.2002 DC-BSRB O.Teuber 89899 B-Schicht
+  ;!      - Bolzen foerdern zeitueberwacht
+  ;!      - Abfrage letzter Bolzen nicht Foerdern
+  ;!======================================================
+  ;!   Version 3.05
+  ;!     Aenderungsstand 07.11.2001 (HK)
+  ;!    - Haltnachpunktende
+  ;!======================================================
+  ;!   Version 3.04
+  ;!     Aenderungsstand 13.09.2001 (HK)
+  ;!    - Farbmarkierung setzen über Inlineformular
+  ;!    - Abfrage "BolzenAusserToleranz"
+  ;!
+  ;!======================================================
+
+  DECL CALLMODE_T CALLMODE
+  INT BSST_NR
+  INT BOLZEN_NR
+  INT KOPF_NR
+  INT FOERDERN_NR
+  BOOL WKOPF
+
+  INT DUMMY
+  INT IRESULT
+  BOOL BRESULT
+  BOOL INIT_OK
+  BOOL AKOPF   ;Aktivierungsvariable fuer Kopfwechsel
+
+
+  ; Option BS gesetzt
+  IF  NOT OPT_STUDWELD THEN
+    RETURN
+  ENDIF
+
+  ;Kopfwechsel nicht aktiv, reset
+  AKOPF= TRUE
+
+  SWITCH CALLMODE
+
+  CASE #M_INIT
+    STUD_INIT(INIT_OK)
+    WHILE NOT INIT_OK
+      MSG_TEXT(BS_ERRORS[8], #DIALOG, IRESULT)
+      SWITCH IRESULT
+      CASE 1 ;wiederholen
+        WAIT SEC 0.2
+        STUD_INIT(INIT_OK)
+      CASE 2 ;nicht wiederholen
+        RETURN
+      ENDSWITCH
+    ENDWHILE
+
+  CASE #M_WELD
+    IF CHK_PARA(BSST_NR,BOLZEN_NR,KOPF_NR,FOERDERN_NR,AKOPF) THEN
+      ; Parameter innerhalb Grenzen
+      STUD_WELD(BSST_NR,BOLZEN_NR,KOPF_NR,FOERDERN_NR)
+    ELSE
+      ; Parameter ausserhalb Grenzen
+      RETURN
+    ENDIF
+
+  CASE #M_FARBM
+    IF CHK_PARA(BSST_NR,BOLZEN_NR,KOPF_NR,FOERDERN_NR,AKOPF) THEN
+      ; Parameter innerhalb Grenzen
+      STUD_FARBM(BSST_NR, FOERDERN_NR)
+    ELSE
+      ; Parameter ausserhalb Grenzen
+      RETURN
+    ENDIF
+
+
+  CASE #M_INTERRUPT
+    STUD_INTERRUPT()
+
+  CASE #M_FOERDERN
+    FOERDERN (FOERDERN_NR)
+
+  CASE #M_WKOPF ; Bolzenkopf wechseln
+    AKOPF=WKOPF  ; AKOPF = TRUE, dann Kopfaktivueberwachun aus
+    IF CHK_PARA(BSST_NR,BOLZEN_NR,KOPF_NR,FOERDERN_NR,AKOPF) THEN
+      ; Parameter innerhalb Grenzen
+      WECHSELN_KOPF (BSST_NR,BOLZEN_NR,KOPF_NR,FOERDERN_NR,WKOPF)
+    ELSE
+      ; Parameter ausserhalb Grenzen
+      RETURN
+    ENDIF
+
+
+  DEFAULT
+    MSG_TEXT(BS_ERRORS[2], #QUIT)
+    RETURN
+  ENDSWITCH
+
+END
+
+
+
+DEF  STUD_WELD (BSST_NR_LW :IN,BOLZEN_NR_LW :IN,KOPF_NR_LW :IN,FOERDERN_NR_LW :IN)
+  ;-------------------------------
+  ; Schweiss-Zyklus ausfuehren.
+  ;-------------------------------
+
+  INT BOLZEN_NR_LW
+  INT KOPF_NR_LW
+  INT FOERDERN_NR_LW
+  INT BSST_NR_LW
+
+  BOOL BRESULT,BRESULT1,BRESULT2
+  INT IRESULT
+
+  ; Laufzeitvariablen initialisieren
+  BRESULT=FALSE
+  BRESULT1=FALSE
+  BRESULT2=FALSE
+  IRESULT=0
+
+  REPEAT
+
+    IF ((NOT $T1) OR ($T1 AND OPT_WELD_IN_T1)) THEN
+
+      if LangU then
+        MSG_WAIT ( BS_MESSAGE_U[], KOPF[KOPF_NR_LW].I_STOERUNG, FALSE, MAX_I_BS_MESSAGE, 0, BRESULT );keine Stoerung
+      else
+        MSG_WAIT ( BS_MESSAGE[], KOPF[KOPF_NR_LW].I_STOERUNG, FALSE, MAX_I_BS_MESSAGE, 0, BRESULT );keine Stoerung
+      endif
+
+      if LangU then
+        MSG_WAIT ( BS_MESSAGE_U[], BSST[BSST_NR_LW].I_KEINESTOERUNG, TRUE, MAX_I_BS_MESSAGE, 0, BRESULT );keine Stoerung
+      else
+        MSG_WAIT ( BS_MESSAGE[], BSST[BSST_NR_LW].I_KEINESTOERUNG, TRUE, MAX_I_BS_MESSAGE, 0, BRESULT );keine Stoerung
+      endif
+
+      if LangU then
+        MSG_WAIT ( BS_MESSAGE_U[], BSST[BSST_NR_LW].I_BSSTBEREIT, TRUE, MAX_I_BS_MESSAGE, 0, BRESULT );bereit
+      else
+        MSG_WAIT ( BS_MESSAGE[], BSST[BSST_NR_LW].I_BSSTBEREIT, TRUE, MAX_I_BS_MESSAGE, 0, BRESULT );bereit
+      endif
+
+      ;Ueberwachung fuer Bolzen-gefoerdert, nur Aktiv im Weichenbetrieb
+      IF ((OPT_WEICHE) AND ($TIMER[B_TIMER]>0)) THEN
+        WAIT FOR ($TIMER[B_TIMER]>BOLZEN_TIME)
+        $TIMER_STOP[B_TIMER]=TRUE
+      ENDIF
+
+      ;Abfrage fuer letzten Bolzen
+      IF OPT_WEICHE THEN
+        BOLZEN_LADEN=(FOERDERN_NR_LW > 0)
+      ELSE
+        BOLZEN_LADEN=FALSE
+      ENDIF
+
+      IF BSST[BSST_NR_LW].VORHANDEN THEN ;Bolzen-Nummer ausgeben
+        SWITCH BSST_NR_LW
+        CASE 1
+          O_BOLZEN_NR_BSST_1 =BOLZEN_NR_LW
+        CASE 2
+          O_BOLZEN_NR_BSST_2 =BOLZEN_NR_LW
+        ENDSWITCH
+      ENDIF
+      if LangU then
+        MSG_WAIT ( BS_MESSAGE_U[], I_WARTEFREIGABE, TRUE, MAX_I_BS_MESSAGE, 0, BRESULT);Warte FG Schweissen v. SPS(NBS)
+      else
+        MSG_WAIT ( BS_MESSAGE[], I_WARTEFREIGABE, TRUE, MAX_I_BS_MESSAGE, 0, BRESULT);Warte FG Schweissen v. SPS(NBS)
+      endif
+
+      CYC_IN[KOPF_NR_LW]=1025 ;Kopf-Ueberwachung fuer aktuallen Kopf abschalten
+
+      IF (BSST[BSST_NR_LW].O_MITSTROM>0) then
+        $OUT[BSST[BSST_NR_LW].O_MITSTROM]=OPT_MIT_STROM
+      endif
+
+      if LangU then
+        MSG_WAIT ( BS_MESSAGE_U[],BSST[BSST_NR_LW].I_MITSTROM, FALSE, MAX_I_BS_MESSAGE, 0, BRESULT);Warte FG Schweissen v. SPS(NBS)
+      else
+        MSG_WAIT ( BS_MESSAGE[],BSST[BSST_NR_LW].I_MITSTROM, FALSE, MAX_I_BS_MESSAGE, 0, BRESULT);Warte FG Schweissen v. SPS(NBS)
+      endif
+
+      $OUT[BSST[BSST_NR_LW].O_TESTBETRIEB]=OPT_TESTBETRIEB ;Mit schweissen setzen      ****
+
+      $OUT[KOPF[KOPF_NR_LW].O_STARTSCHWEISS]=TRUE ;Start schweissen setzen
+
+      if LangU then
+        MSG_WAIT ( BS_MESSAGE_U[], KOPF[KOPF_NR_LW].I_FK, TRUE, MAX_I_BS_MESSAGE, WAIT_TIME_FK, BRESULT1) ;Warte FK gesetzt
+      else
+        MSG_WAIT ( BS_MESSAGE[], KOPF[KOPF_NR_LW].I_FK, TRUE, MAX_I_BS_MESSAGE, WAIT_TIME_FK, BRESULT1) ;Warte FK gesetzt
+      endif
+
+      if $IN[BSST[BSST_NR_LW].I_INTOLERANZ] == FALSE then
+        NotInToleranz[BSST_NR_LW] = TRUE              ;merken ob außerhalb Toleranz
+      endif
+
+      $OUT[KOPF[KOPF_NR_LW].O_STARTSCHWEISS]=FALSE ;Start schweissen ruecksetzen
+
+      If LangU then
+        MSG_WAIT ( BS_MESSAGE_U[], KOPF[KOPF_NR_LW].I_FK, FALSE, MAX_I_BS_MESSAGE, WAIT_TIME_FK, BRESULT2) ;Warte FK gesetzt
+      else
+        MSG_WAIT ( BS_MESSAGE[], KOPF[KOPF_NR_LW].I_FK, FALSE, MAX_I_BS_MESSAGE, WAIT_TIME_FK, BRESULT2) ;Warte FK gesetzt
+      endif
+
+
+
+      IF BRESULT1 OR BRESULT2 THEN ;wiederholen?
+        IF LangU then
+          MSG_TEXT(BS_ERRORS_U[8], #DIALOG, IRESULT)
+        else
+          MSG_TEXT(BS_ERRORS[8], #DIALOG, IRESULT)
+        endif
+      ENDIF
+
+
+      IF OPT_WEICHE AND BOLZEN_LADEN THEN ; Bolzen foerdern, nur aktiv im Weichenbetrieb
+        $TIMER[B_TIMER]=0
+        IF  FOERDERN_NR_LW >0 THEN
+          PULSE ($OUT[FOERDERER[FOERDERN_NR_LW].O_FOERDERN],TRUE,0.2 )
+          $TIMER_STOP[B_TIMER]=FALSE
+        ENDIF
+      ENDIF
+
+      IF $IN[I_HALTNACHPUNKT] THEN
+        $OUT[O_HALTNACHPUNKTERREICHT]=TRUE ;Halt nach Punktende erreicht
+        HALT
+        If LangU then
+          MSG_WAIT ( BS_MESSAGE_U[],  I_HALTNACHPUNKT, FALSE, MAX_I_BS_MESSAGE, 0, BRESULT) ;Warte I_HALTNACHPUNKT FALSE
+        else
+          MSG_WAIT ( BS_MESSAGE[],  I_HALTNACHPUNKT, FALSE, MAX_I_BS_MESSAGE, 0, BRESULT) ;Warte I_HALTNACHPUNKT FALSE
+        endif
+        $OUT[O_HALTNACHPUNKTERREICHT]=FALSE ;Halt nach Punktende verlassen
+      ENDIF
+    ENDIF ;NOT $T1
+  UNTIL ((NOT BRESULT1 AND NOT BRESULT2) OR (IRESULT==2))
+
+  CYC_IN[KOPF_NR_LW]=KOPF[KOPF_NR_LW].I_KOPF_HINTEN ;Kopf-Ueberwachung fuer aktuallen Kopf einschalten
+
+END
+
+DEF  FOERDERN (FOERDERN_NR_LF : IN)
+  ;---------------------
+  ; nur Bolzen foerdern
+  ;---------------------
+  DECL INT FOERDERN_NR_LF
+
+  IF $T1==FALSE THEN
+    IF (FOERDERN_NR_LF > 0) THEN
+      PULSE ($OUT[FOERDERER[FOERDERN_NR_LF].O_FOERDERN],TRUE,0.2 ) ;Bolzen foerdern
+    ENDIF
+  ENDIF
+  BOLZEN_LADEN=(FOERDERN_NR_LF > 0) ;Freigabe Bolzen foerdern
+END
+
+DEF  STUD_FARBM (BSST_NR_LW :IN,FOERDERN_NR_LW :IN)
+  ;-------------------------------
+  ; Farbmarkierung setzen
+  ;-------------------------------
+  DECL INT BSST_NR_LW
+  DECL INT FOERDERN_NR_LW
+
+  BOOL BRESULT
+
+  ; Laufzeitvariablen initialisieren
+  BRESULT=FALSE
+
+  IF ((NOT $T1) OR ($T1 AND OPT_WELD_IN_T1)) THEN
+    If LangU then
+      MSG_WAIT ( BS_MESSAGE_U[], BSST[BSST_NR_LW].I_KEINESTOERUNG, TRUE, MAX_I_BS_MESSAGE, 0, BRESULT );keine Stoerung
+    else
+      MSG_WAIT ( BS_MESSAGE[], BSST[BSST_NR_LW].I_KEINESTOERUNG, TRUE, MAX_I_BS_MESSAGE, 0, BRESULT );keine Stoerung
+    endif
+    If LangU then
+      MSG_WAIT ( BS_MESSAGE_U[], BSST[BSST_NR_LW].I_BSSTBEREIT, TRUE, MAX_I_BS_MESSAGE, 0, BRESULT );bereit
+    else
+      MSG_WAIT ( BS_MESSAGE[], BSST[BSST_NR_LW].I_BSSTBEREIT, TRUE, MAX_I_BS_MESSAGE, 0, BRESULT );bereit
+    endif
+    $OUT[FOERDERER[FOERDERN_NR_LW].O_FARBM]=TRUE ;Farbmarkierung starten
+    If LangU Then
+      MSG_WAIT ( BS_MESSAGE_U[], FOERDERER[FOERDERN_NR_LW].I_QUIT_FARBM, TRUE, MAX_I_BS_MESSAGE,0, BRESULT) ;Warte Quittung
+    else
+      MSG_WAIT ( BS_MESSAGE[], FOERDERER[FOERDERN_NR_LW].I_QUIT_FARBM, TRUE, MAX_I_BS_MESSAGE,0, BRESULT) ;Warte Quittung
+    endif
+    $OUT[FOERDERER[FOERDERN_NR_LW].O_FARBM]=FALSE ;Farbmarkierung rücksetzen
+    if LangU then
+      MSG_WAIT ( BS_MESSAGE_U[], FOERDERER[FOERDERN_NR_LW].I_QUIT_FARBM, FALSE, MAX_I_BS_MESSAGE,0, BRESULT) ;Warte bis Quittung weggeht
+    else
+      MSG_WAIT ( BS_MESSAGE[], FOERDERER[FOERDERN_NR_LW].I_QUIT_FARBM, FALSE, MAX_I_BS_MESSAGE,0, BRESULT) ;Warte bis Quittung weggeht
+    endif
+    NotInToleranz[BSST_NR_LW] = FALSE
+  ENDIF
+END
+
+
+
+DEF  WECHSELN_KOPF (BSST_NR_LW: IN,BOLZEN_NR_LW :IN,KOPF_NR_LW :IN,FOERDERN_NR_LW :IN, WKOPF_LW :IN)
+  ;----------------------------------------------------
+  ; Bolzenkopf An- und Abdock-Unterprogramm
+  ;----------------------------------------------------
+  INT BSST_NR_LW
+  INT BOLZEN_NR_LW
+  INT KOPF_NR_LW
+  INT FOERDERN_NR_LW
+  BOOL WKOPF_LW
+
+  BOOL Bresult
+
+  ; Laufzeitvariablen initialisieren
+  BRESULT=FALSE
+
+  IF WKOPF_LW then
+    ;-------------------------------------------------------------------
+    ; Bolzenkopf-Interrupt ausschalten für anschliessenden Abdockvorgang
+    ;-------------------------------------------------------------------
+
+
+    CYC_IN[KOPF_NR_LW]=1025 ;Kopf-Ueberwachung fuer aktuellen Kopf abschalten
+    KOPF[KOPF_NR_LW].AKTIV=FALSE
+  ENDIF
+
+  IF NOT WKOPF_LW then
+    ;-------------------------------------------------------------------
+    ; Bolzenkopf-Interrupt einschalten für vorangegangenen Andockvorgang
+    ;-------------------------------------------------------------------
+    ; Kopf aktivieren !
+    KOPF[KOPF_NR_LW].AKTIV=TRUE
+    CYC_IN[KOPF_NR_LW]=KOPF[KOPF_NR_LW].I_KOPF_HINTEN ;Kopf-Ueberwachung fuer aktuellen Kopf einschalten
+
+    IF NOT $IN[KOPF[KOPF_NR_LW].I_KOPF_HINTEN]  THEN
+      if LangU then
+        MSG_WAIT ( BS_MESSAGE_U[], KOPF[KOPF_NR_LW].I_KOPF_HINTEN, TRUE, MAX_I_BS_MESSAGE, 0, BRESULT)
+      else
+        MSG_WAIT ( BS_MESSAGE[], KOPF[KOPF_NR_LW].I_KOPF_HINTEN, TRUE, MAX_I_BS_MESSAGE, 0, BRESULT)
+      ENDIF
+    ENDIF
+  ENDIF
+END
+
+
+
+DEF  STUD_INTERRUPT ( )
+  ;---------------------------------------------------
+  ; Interrupt-Unterprogramm wenn Positionsueberwchung
+  ; eines Kopfes angesprochen hat.
+  ;---------------------------------------------------
+
+  INT I_INT
+  BOOL BRESULT
+
+  INTERRUPT OFF 9
+
+  ; Eingangs-Status abbilden
+  FOR I_INT = 1 TO KOPF_NR_MM.MAX
+    STATE_IN[I_INT]=$IN[KOPF[I_INT].I_KOPF_HINTEN]
+  ENDFOR
+
+  ; Roboter stoppen
+  BRAKE
+
+  ; Meldung ausgeben, warten bis Kopf in richtiger Stellung
+  FOR I_INT = 1 TO KOPF_NR_MM.MAX
+    IF KOPF[I_INT].VORHANDEN AND NOT STATE_IN[I_INT] THEN
+      If LangU then
+        MSG_WAIT ( BS_MESSAGE_U[], KOPF[I_INT].I_KOPF_HINTEN, TRUE, MAX_I_BS_MESSAGE, 0, BRESULT)
+      else
+        MSG_WAIT ( BS_MESSAGE[], KOPF[I_INT].I_KOPF_HINTEN, TRUE, MAX_I_BS_MESSAGE, 0, BRESULT)
+      endif
+    ENDIF
+  ENDFOR
+
+  ; Warten, bis CYCFLAG rueckgesetzt und Interrupt ein
+  WAIT FOR $CYCFLAG[CYCFLAG_NR]
+  INTERRUPT ON 9
+
+END
+DEF STUD_INIT (INIT_OK_L :OUT )
+  ;----------------------------------
+  ; Initialisierung und
+  ; Betriebsbereitschaft abfragen.
+  ;----------------------------------
+
+  INT I_INI
+  BOOL BRESULT
+  BOOL INIT_OK_L
+
+  INIT_OK_L=FALSE
+
+  $CYCFLAG[CYCFLAG_NR]=FALSE
+  GLOBAL INTERRUPT DECL 9 WHEN  $CYCFLAG[CYCFLAG_NR]==FALSE DO BOLZEN(#M_INTERRUPT,0,0,0,0)
+
+  FOR I_INI = 1 TO KOPF_NR_MM.MAX
+    IF KOPF[I_INI].VORHANDEN THEN
+      ; Hilfsvariablen schreiben
+      CYC_IN[I_INI]=KOPF[I_INI].I_KOPF_HINTEN
+      ; Kopfstellungen pruefen
+      $OUT[KOPF[I_INI].O_KOPF_VOR]=FALSE
+      If LangU then
+        MSG_WAIT(BS_MESSAGE_U[], KOPF[I_INI].I_KOPF_HINTEN, TRUE, MAX_I_BS_MESSAGE, 0, BRESULT)
+      else
+        MSG_WAIT(BS_MESSAGE[], KOPF[I_INI].I_KOPF_HINTEN, TRUE, MAX_I_BS_MESSAGE, 0, BRESULT)
+      endif
+      ; Schweisstarts ruecksetzen
+      $OUT[KOPF[I_INI].O_STARTSCHWEISS]=FALSE
+      IF $IN[KOPF[I_INI].I_FK] THEN
+        If LangU then
+          MSG_WAIT(BS_MESSAGE_U[], KOPF[I_INI].I_FK, FALSE, MAX_I_BS_MESSAGE, 0, BRESULT)
+        else
+          MSG_WAIT(BS_MESSAGE[], KOPF[I_INI].I_FK, FALSE, MAX_I_BS_MESSAGE, 0, BRESULT)
+        endif
+      ENDIF
+    ELSE
+      CYC_IN[I_INI]=1025 ;auf FALSE
+    ENDIF
+  ENDFOR
+
+  ; Foerderperipherie initialisieren
+  FOR I_INI=1 TO FOERDERN_NR_MM.MAX
+    $OUT[FOERDERER[I_INI].O_FOERDERN]=FALSE
+    $OUT[FOERDERER[I_INI].O_FARBM]   =FALSE ;Farbmarkierung rücksetzen
+  ENDFOR
+
+  $TIMER[B_TIMER]=0 ;Zeitueberw.f.Bolzen-Foerdern zuruecksetzen
+
+
+  ; Kopfueberwachung einschalten
+  $CYCFLAG[CYCFLAG_NR]=$IN[CYC_IN[1]] AND $IN[CYC_IN[2]] AND $IN[CYC_IN[3]] AND $IN[CYC_IN[4]] AND $IN[CYC_IN[5]]
+  WAIT FOR $CYCFLAG[CYCFLAG_NR] ; Kopf 1..5 nicht hinten
+  INTERRUPT ON 9
+
+
+  $OUT[O_HALTNACHPUNKTERREICHT]=FALSE ;Halt nach Punktende verlassen
+
+
+  ; Bolzensteuerung initialisieren
+  FOR I_INI = 1 TO BSST_NR_MM.MAX
+    IF BSST[I_INI].VORHANDEN THEN
+      IF NOT $IN[BSST[I_INI].I_BSSTBEREIT] THEN
+        If LangU then
+          MSG_WAIT(BS_MESSAGE_U[],BSST[I_INI].I_BSSTBEREIT, TRUE, MAX_I_BS_MESSAGE, 0, BRESULT)
+        else
+          MSG_WAIT(BS_MESSAGE[],BSST[I_INI].I_BSSTBEREIT, TRUE, MAX_I_BS_MESSAGE, 0, BRESULT)
+        endif
+      ENDIF
+      IF NOT $IN[BSST[I_INI].I_KEINESTOERUNG] THEN
+        If LangU then
+          MSG_WAIT(BS_MESSAGE_U[],BSST[I_INI].I_KEINESTOERUNG, TRUE, MAX_I_BS_MESSAGE, 0, BRESULT)
+        else
+          MSG_WAIT(BS_MESSAGE[],BSST[I_INI].I_KEINESTOERUNG, TRUE, MAX_I_BS_MESSAGE, 0, BRESULT)
+        endif
+      ENDIF
+    ENDIF ;..VORHANDEN
+    NotInToleranz[I_INI] = FALSE
+  ENDFOR
+
+  IF (($AUT OR $EXT) AND NOT OPT_MIT_STROM) THEN
+    IF LangU then
+      MSG_TEXT(BS_ERRORS_U[3], #QUIT)
+    else
+      MSG_TEXT(BS_ERRORS[3], #QUIT)
+    endif
+  ENDIF
+
+  INIT_OK_L=TRUE
+
+END
+DEFFCT BOOL CHK_PARA(BSST_NR_LC :IN,BOLZEN_NR_LC :IN,KOPF_NR_LC :IN,FOERDERN_NR_LC :IN,AKOPF_LC :IN)
+  ;----------------------------------
+  ; Pruefung der Uebergabe-Parameter
+  ; auf Min-/Max-Werte.
+  ;----------------------------------
+
+  INT BOLZEN_NR_LC
+  INT KOPF_NR_LC
+  INT FOERDERN_NR_LC
+  INT BSST_NR_LC
+  BOOL AKOPF_LC
+
+  IF ((BSST_NR_LC<BSST_NR_MM.MIN) OR (BSST_NR_LC>BSST_NR_MM.MAX )) THEN
+    If LangU then
+      MSG_TEXT(BS_ERRORS_u[4], #QUIT)
+    else
+      MSG_TEXT(BS_ERRORS[4], #QUIT)
+    endif
+    RETURN (FALSE)
+  ENDIF
+  IF ((BOLZEN_NR_LC<BOLZEN_NR_MM.MIN) OR (BOLZEN_NR_LC>BOLZEN_NR_MM.MAX )) THEN
+    If LangU then
+      MSG_TEXT(BS_ERRORS_u[5], #QUIT)
+    else
+      MSG_TEXT(BS_ERRORS[5], #QUIT)
+    endif
+    RETURN (FALSE)
+  ENDIF
+  IF ((KOPF_NR_LC<KOPF_NR_MM.MIN) OR (KOPF_NR_LC>KOPF_NR_MM.MAX )) THEN
+    If LangU then
+      MSG_TEXT(BS_ERRORS_u[6], #QUIT)
+    else
+      MSG_TEXT(BS_ERRORS[6], #QUIT)
+    endif
+    RETURN (FALSE)
+  ENDIF
+  IF ((FOERDERN_NR_LC<FOERDERN_NR_MM.MIN) OR (FOERDERN_NR_LC>FOERDERN_NR_MM.MAX )) THEN
+    If LangU then
+      MSG_TEXT(BS_ERRORS_u[7], #QUIT)
+    else
+      MSG_TEXT(BS_ERRORS[7], #QUIT)
+    endif
+    RETURN (FALSE)
+  ENDIF
+
+  ; Abfrage der beiden Betriebsarten   ****
+  IF ((OPT_MIT_STROM and OPT_TESTBETRIEB) AND (NOT OPT_MIT_STROM and NOT OPT_TESTBETRIEB)) THEN
+    If LangU then
+      MSG_TEXT(BS_ERRORS_U[9], #QUIT)
+    else
+      MSG_TEXT(BS_ERRORS[9], #QUIT)
+    endif
+    RETURN (FALSE)
+  ENDIF
+
+  ; Abfrage ob angewählter Kopf aktiv ist!   ****
+  IF NOT KOPF[KOPF_NR_LC].AKTIV AND AKOPF_LC THEN
+    If LangU then
+      MSG_TEXT(BS_ERRORS_U[10], #QUIT)
+    else
+      MSG_TEXT(BS_ERRORS[10], #QUIT)
+    endif
+    RETURN (FALSE)
+  ENDIF
+
+  RETURN (TRUE)
+
+ENDFCT
+global DEFFCT BOOL BolzenAusserToleranz(BSST_NR_LW : IN)
+  DECL INT BSST_NR_LW
+  RETURN  (NotInToleranz[BSST_NR_LW])
+ENDFCT
+
+global DEF CheckStudOnNoEStop( )
+  DECL INT i
+  for i=1 to 2
+    IF BSST[i].VORHANDEN then
+      IF ((BSST[i].I_BSSTBEREIT>0) and (BSST[i].O_NoEStop>0)) then
+        $OUT[BSST[i].O_NoEStop]=$ALARM_STOP
+      endif
+    endif
+  endfor
+END

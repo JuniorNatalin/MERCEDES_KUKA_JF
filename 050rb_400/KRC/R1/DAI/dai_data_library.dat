@@ -1,0 +1,198 @@
+&ACCESS RV2
+&REL 124
+&COMMENT daimler_data_library
+&PARAM DISKPATH = KRC:\R1\DAI
+&PARAM version = 2.1.1
+DEFDAT  dai_data_library PUBLIC
+
+
+;FOLD VISU --don't touch--
+
+; Daten
+GLOBAL ENUM IO_TYP INP,OUTP
+GLOBAL ENUM YesNo No,YES
+GLOBAL STRUC Tech CHAR TechShortcut[5],YesNo IsActive
+GLOBAL STRUC DigitalIO INT Number,IO_TYP Typ
+GLOBAL STRUC Technology YesNo IsActive,CHAR TechShortCut[5],INT Kennung,DigitalIO Nr1,DigitalIO Nr2,DigitalIO Nr3,DigitalIO Nr4,DigitalIO Nr5,DigitalIO Nr6,DigitalIO Nr7,DigitalIO Nr8,DigitalIO Nr9,DigitalIO Nr10,DigitalIO Nr11,DigitalIO Nr12,DigitalIO Nr13,DigitalIO Nr14,DigitalIO Nr15,DigitalIO Nr16
+DECL CONST INT Start_Visu=3553
+;feste Signalvereinbarungen, da dies aktuell noch nicht dynamisch gemacht werden kann
+;und die dynamische Funktion uerbs Ziel hinausgeschossen waere
+SIGNAL Signal_Tech_A_ID $OUT[3553]  TO $OUT[3560]
+SIGNAL Signal_Tech_A_Data $OUT[3561]  TO $OUT[3576]
+
+SIGNAL Signal_Tech_B_ID $OUT[3577]  TO $OUT[3584]
+SIGNAL Signal_Tech_B_Data $OUT[3585]  TO $OUT[3600]
+
+SIGNAL Signal_Tech_C_ID $OUT[3601]  TO $OUT[3608]
+SIGNAL Signal_Tech_C_Data $OUT[3609]  TO $OUT[3624]
+
+SIGNAL Signal_Tech_D_ID $OUT[3625]  TO $OUT[3632]
+SIGNAL Signal_Tech_D_Data $OUT[3633]  TO $OUT[3648]
+
+SIGNAL Signal_Tech_E_ID $OUT[3649]  TO $OUT[3656]
+SIGNAL Signal_Tech_E_Data $OUT[3657]  TO $OUT[3672]
+
+;ENDFOLD
+
+;FOLD RDS --don't touch--
+
+; Maximale Signalelaenge 32bit --> 4 bytes immer
+Decl GLOBAL Bool WithRDS=FALSE
+;Eingangsbeschreibung der Daten von der SPS auf der Schnittstelle
+SIGNAL I_RDS_1 $IN[1026]  TO $IN[1026]
+SIGNAL I_RDS_2 $IN[1026]  TO $IN[1026]
+SIGNAL I_RDS_3 $IN[1026]  TO $IN[1026]
+SIGNAL I_RDS_4 $IN[1026]  TO $IN[1026]
+SIGNAL I_RDS_5 $IN[1026]  TO $IN[1026]
+
+; Erste, interne Spiegelung der Daten auf einen Eíngangsbereich
+SIGNAL O_RDS_0_1 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_0_2 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_0_3 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_0_4 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_0_5 $OUT[999]  TO $OUT[999]
+
+
+; 1. Bereich fürt die Technologien ab Byte 600 (8k-Bereich)
+SIGNAL O_RDS_1_1 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_1_2 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_1_3 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_1_4 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_1_5 $OUT[999]  TO $OUT[999]
+; 2. Bereich
+SIGNAL O_RDS_2_1 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_2_2 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_2_3 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_2_4 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_2_5 $OUT[999]  TO $OUT[999]
+; 3. Bereich
+SIGNAL O_RDS_3_1 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_3_2 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_3_3 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_3_4 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_3_5 $OUT[999]  TO $OUT[999]
+; 4. Bereich
+SIGNAL O_RDS_4_1 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_4_2 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_4_3 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_4_4 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_4_5 $OUT[999]  TO $OUT[999]
+; 5. Bereich
+SIGNAL O_RDS_5_1 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_5_2 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_5_3 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_5_4 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_5_5 $OUT[999]  TO $OUT[999]
+; 6. Bereich
+SIGNAL O_RDS_6_1 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_6_2 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_6_3 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_6_4 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_6_5 $OUT[999]  TO $OUT[999]
+; 7. Bereich
+SIGNAL O_RDS_7_1 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_7_2 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_7_3 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_7_4 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_7_5 $OUT[999]  TO $OUT[999]
+; 8. Bereich
+SIGNAL O_RDS_8_1 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_8_2 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_8_3 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_8_4 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_8_5 $OUT[999]  TO $OUT[999]
+; 9. Bereich
+SIGNAL O_RDS_9_1 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_9_2 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_9_3 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_9_4 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_9_5 $OUT[999]  TO $OUT[999]
+; 10. Bereich
+SIGNAL O_RDS_10_1 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_10_2 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_10_3 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_10_4 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_10_5 $OUT[999]  TO $OUT[999]
+; 11. Bereich
+SIGNAL O_RDS_11_1 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_11_2 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_11_3 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_11_4 $OUT[999]  TO $OUT[999]
+SIGNAL O_RDS_11_5 $OUT[999]  TO $OUT[999]
+;ENDFOLD
+
+;FOLD PLUS --don't touch--
+GLOBAL ENUM en_PlusData PLUS_Init,PLUS_Fill,PLUS_Send
+GLOBAL STRUC T_PlusData CHAR QAussageArt[4], CHAR QIdent[12],CHAR QCodierung[4]
+
+DECL CONST INT Max_PlusData=100
+DECL CONST INT IO_AzykHndshkPLC=3227
+DECL T_PlusData QualTelegram[200]
+DECL GLOBAL T_PlusData TempQTelegram
+CHAR SendBuffer[2200]
+
+DECL STATE_T WState
+DECL MODUS_T WModus,RModus
+
+DECL INT SpotNr,offset,AzykHndl,Time
+DECL REAL TimeOut=5.0
+DECL INT cmdid,cmdl,tid,aid,slot,sslot,idx,cdl,errc
+DECL BOOL Result
+DECL BOOL bPLUSSend = FALSE   
+DECL CONST BOOL bPLUSActiv = TRUE
+
+;ENDFOLD
+
+
+
+;FOLD Technologien
+
+DECL CONST INT Max_Tech=40
+
+DECL GLOBAL Technology Tech_Array[40]
+Tech_Array[1]={IsActive #YES,TechShortCut[] "SWP_1",Kennung 1,Nr1 {Number 516,Typ #INP},Nr2 {Number 529,Typ #INP},Nr3 {Number 531,Typ #INP},Nr4 {Number 533,Typ #INP},Nr5 {Number 534,Typ #INP},Nr6 {Number 535,Typ #INP},Nr7 {Number 547,Typ #INP},Nr8 {Number 552,Typ #INP},Nr9 {Number 569,Typ #INP}}
+Tech_Array[2]={IsActive #YES,TechShortCut[] "SWP_2",Kennung 2,Nr1 {Number 516,Typ #INP},Nr2 {Number 529,Typ #INP},Nr3 {Number 531,Typ #INP},Nr4 {Number 533,Typ #INP},Nr5 {Number 534,Typ #INP},Nr6 {Number 535,Typ #INP},Nr7 {Number 547,Typ #INP},Nr8 {Number 552,Typ #INP},Nr9 {Number 569,Typ #INP}}
+Tech_Array[3]={IsActive #YES,TechShortCut[] "SWB_1",Kennung 3,Nr1 {Number 1153,Typ #INP},Nr2 {Number 1155,Typ #INP},Nr3 {Number 1184,Typ #INP}}
+Tech_Array[4]={IsActive #YES,TechShortCut[] "SWB_2",Kennung 4,Nr1 {Number 1153,Typ #INP},Nr2 {Number 1155,Typ #INP},Nr3 {Number 1184,Typ #INP}}
+Tech_Array[5]={IsActive #YES,TechShortCut[] "SWM_1",Kennung 5,Nr1 {Number 1892,Typ #INP},Nr2 {Number 1899,Typ #INP},Nr3 {Number 1900,Typ #INP},Nr4 {Number 1901,Typ #INP},Nr5 {Number 1902,Typ #INP}}   
+Tech_Array[6]={IsActive #YES,TechShortCut[] "SWM_2",Kennung 6,Nr1 {Number 1892,Typ #INP},Nr2 {Number 1899,Typ #INP},Nr3 {Number 1900,Typ #INP},Nr4 {Number 1901,Typ #INP},Nr5 {Number 1902,Typ #INP}}   
+Tech_Array[7]={IsActive #YES,TechShortCut[] "MNI_1",Kennung 7,Nr1 {Number 2879,Typ #INP},Nr2 {Number 2880,Typ #INP}}   
+Tech_Array[8]={IsActive #YES,TechShortCut[] "MNI_2",Kennung 8,Nr1 {Number 2879,Typ #INP},Nr2 {Number 2880,Typ #INP}}   
+Tech_Array[9]={IsActive #YES,TechShortCut[] "KLB_1",Kennung 9,Nr1 {Number 1537,Typ #INP},Nr2 {Number 1538,Typ #INP},Nr3 {Number 1569,Typ #INP},Nr4 {Number 1571,Typ #INP},Nr5 {Number 1601,Typ #INP},Nr6 {Number 1602,Typ #INP},Nr7 {Number 1603,Typ #INP},Nr8 {Number 1604,Typ #INP},Nr9 {Number 1605,Typ #INP},Nr10 {Number 1606,Typ #INP},Nr11 {Number 1607,Typ #INP},Nr12 {Number 1608,Typ #INP},Nr13 {Number 1609,Typ #INP}}
+Tech_Array[10]={IsActive #YES,TechShortCut[] "KLB_2",Kennung 10,Nr1 {Number 1665,Typ #INP},Nr2 {Number 1666,Typ #INP},Nr3 {Number 1697,Typ #INP},Nr4 {Number 1699,Typ #INP},Nr5 {Number 1729,Typ #INP},Nr6 {Number 1731,Typ #INP},Nr7 {Number 1732,Typ #INP},Nr8 {Number 1734,Typ #INP}}
+Tech_Array[11]={IsActive #YES,TechShortCut[] "KNI_1",Kennung 11,Nr1 {Number 1601,Typ #INP},Nr2 {Number 1602,Typ #INP},Nr3 {Number 1603,Typ #INP},Nr4 {Number 1604,Typ #INP},Nr5 {Number 1605,Typ #INP},Nr6 {Number 1606,Typ #INP},Nr7 {Number 1607,Typ #INP},Nr8 {Number 1608,Typ #INP},Nr9 {Number 1609,Typ #INP},Nr10 {Number 1610,Typ #INP},Nr11 {Number 1611,Typ #INP},Nr12 {Number 1612,Typ #INP},Nr13 {Number 1613,Typ #INP},Nr14 {Number 1614,Typ #OUTP}}
+Tech_Array[12]={IsActive #YES,TechShortCut[] "KNI_2",Kennung 12,Nr1 {Number 1729,Typ #INP},Nr2 {Number 1730,Typ #INP},Nr3 {Number 1731,Typ #INP},Nr4 {Number 1732,Typ #INP},Nr5 {Number 1733,Typ #INP},Nr6 {Number 1734,Typ #INP},Nr7 {Number 1735,Typ #INP},Nr8 {Number 1736,Typ #INP},Nr9 {Number 1737,Typ #INP},Nr10 {Number 1738,Typ #INP},Nr11 {Number 1739,Typ #INP},Nr12 {Number 1740,Typ #INP},Nr13 {Number 1741,Typ #INP},Nr14 {Number 1742,Typ #OUTP}}
+Tech_Array[13]={IsActive #YES,TechShortCut[] "VSN_1",Kennung 13}   
+Tech_Array[14]={IsActive #YES,TechShortCut[] "VSN_2",Kennung 14} 
+Tech_Array[15]={IsActive #YES,TechShortCut[] "HSN_1",Kennung 15,Nr1 {Number 2632,Typ #INP},Nr2 {Number 2634,Typ #INP},Nr3 {Number 2635,Typ #INP},Nr4 {Number 2640,Typ #INP},Nr5 {Number 2646,Typ #INP},Nr6 {Number 2647,Typ #INP},Nr7 {Number 2648,Typ #INP},Nr8 {Number 2657,Typ #INP},Nr9 {Number 2658,Typ #INP},Nr10 {Number 2659,Typ #INP}}
+Tech_Array[16]={IsActive #YES,TechShortCut[] "HSN_2",Kennung 16,Nr1 {Number 2632,Typ #INP},Nr2 {Number 2634,Typ #INP},Nr3 {Number 2635,Typ #INP},Nr4 {Number 2640,Typ #INP},Nr5 {Number 2646,Typ #INP},Nr6 {Number 2647,Typ #INP},Nr7 {Number 2648,Typ #INP},Nr8 {Number 2657,Typ #INP},Nr9 {Number 2658,Typ #INP},Nr10 {Number 2659,Typ #INP}}
+Tech_Array[17]={IsActive #YES,TechShortCut[] "FZR_1",Kennung 17,Nr1 {Number 1921,Typ #INP},Nr2 {Number 1922,Typ #INP},Nr3 {Number 1923,Typ #INP},Nr4 {Number 1953,Typ #INP},Nr5 {Number 1955,Typ #INP},Nr6 {Number 1921,Typ #OUTP},Nr7 {Number 1929,Typ #OUTP}}
+Tech_Array[18]={IsActive #YES,TechShortCut[] "FZR_2",Kennung 18,Nr1 {Number 1921,Typ #INP},Nr2 {Number 1922,Typ #INP},Nr3 {Number 1923,Typ #INP},Nr4 {Number 1953,Typ #INP},Nr5 {Number 1955,Typ #INP},Nr6 {Number 1921,Typ #OUTP},Nr7 {Number 1929,Typ #OUTP}}
+Tech_Array[19]={IsActive #YES,TechShortCut[] "IMP_1",Kennung 19,Nr1 {Number 3027,Typ #INP},Nr2 {Number 3028,Typ #INP},Nr3 {Number 3029,Typ #INP},Nr4 {Number 3033,Typ #INP},Nr5 {Number 3038,Typ #INP},Nr6 {Number 3039,Typ #INP},Nr7 {Number 3034,Typ #INP},Nr8 {Number 3035,Typ #INP},Nr9 {Number 3036,Typ #INP}}
+Tech_Array[20]={IsActive #YES,TechShortCut[] "IMP_2",Kennung 20,Nr1 {Number 3027,Typ #INP},Nr2 {Number 3028,Typ #INP},Nr3 {Number 3029,Typ #INP},Nr4 {Number 3033,Typ #INP},Nr5 {Number 3038,Typ #INP},Nr6 {Number 3039,Typ #INP},Nr7 {Number 3034,Typ #INP},Nr8 {Number 3035,Typ #INP},Nr9 {Number 3036,Typ #INP}}
+Tech_Array[21]={IsActive #YES,TechShortCut[] "SRF_1",Kennung 21,Nr1 {Number 2401,Typ #INP},Nr2 {Number 2402,Typ #INP},Nr3 {Number 2403,Typ #INP},Nr4 {Number 2404,Typ #INP},Nr5 {Number 2405,Typ #INP},Nr6 {Number 2406,Typ #INP},Nr7 {Number 2407,Typ #INP},Nr8 {Number 2408,Typ #INP}}
+Tech_Array[22]={IsActive #YES,TechShortCut[] "SRF_2",Kennung 22,Nr1 {Number 2401,Typ #INP},Nr2 {Number 2402,Typ #INP},Nr3 {Number 2403,Typ #INP},Nr4 {Number 2404,Typ #INP},Nr5 {Number 2405,Typ #INP},Nr6 {Number 2406,Typ #INP},Nr7 {Number 2407,Typ #INP},Nr8 {Number 2408,Typ #INP}}
+Tech_Array[23]={IsActive #YES,TechShortCut[] "CLS_1",Kennung 23,Nr1 {Number 1409,Typ #INP},Nr2 {Number 1411,Typ #INP},Nr3 {Number 1419,Typ #INP},Nr4 {Number 1425,Typ #INP},Nr5 {Number 1426,Typ #INP},Nr6 {Number 1430,Typ #INP},Nr7 {Number 1432,Typ #INP},Nr8 {Number 1433,Typ #INP},Nr9 {Number 1438,Typ #INP},Nr10 {Number 1435,Typ #INP},Nr11 {Number 1437,Typ #INP}}
+Tech_Array[24]={IsActive #YES,TechShortCut[] "CLS_2",Kennung 24,Nr1 {Number 1473,Typ #INP},Nr2 {Number 1475,Typ #INP},Nr3 {Number 1483,Typ #INP},Nr4 {Number 1489,Typ #INP},Nr5 {Number 1490,Typ #INP},Nr6 {Number 1494,Typ #INP},Nr7 {Number 1496,Typ #INP},Nr8 {Number 1497,Typ #INP},Nr9 {Number 1502,Typ #INP},Nr10 {Number 1499,Typ #INP},Nr11 {Number 1501,Typ #INP}}
+Tech_Array[25]={IsActive #YES,TechShortCut[] "CF__1",Kennung 25} 
+Tech_Array[26]={IsActive #YES,TechShortCut[] "CF__2",Kennung 26} 
+Tech_Array[27]={IsActive #YES,TechShortCut[] "QDL_1",Kennung 27,Nr1 {Number 2865,Typ #INP},Nr2 {Number 2867,Typ #INP},Nr3 {Number 2871,Typ #INP},Nr4 {Number 2872,Typ #INP},Nr5 {Number 2873,Typ #INP},Nr6 {Number 2874,Typ #INP}}
+Tech_Array[28]={IsActive #YES,TechShortCut[] "QDL_2",Kennung 28,Nr1 {Number 2865,Typ #INP},Nr2 {Number 2867,Typ #INP},Nr3 {Number 2871,Typ #INP},Nr4 {Number 2872,Typ #INP},Nr5 {Number 2873,Typ #INP},Nr6 {Number 2874,Typ #INP}}
+Tech_Array[29]={IsActive #YES,TechShortCut[] "TAR_1",Kennung 29,Nr1 {Number 2250,Typ #INP},Nr2 {Number 2251,Typ #INP}}
+Tech_Array[30]={IsActive #YES,TechShortCut[] "TAR_2",Kennung 30,Nr1 {Number 2250,Typ #INP},Nr2 {Number 2251,Typ #INP}}
+Tech_Array[31]={IsActive #No}
+Tech_Array[32]={IsActive #No}
+Tech_Array[33]={IsActive #No}
+Tech_Array[34]={IsActive #No}
+Tech_Array[35]={IsActive #No}
+Tech_Array[36]={IsActive #No}
+Tech_Array[37]={IsActive #No}
+Tech_Array[38]={IsActive #No}
+Tech_Array[39]={IsActive #No}
+Tech_Array[40]={IsActive #No}
+;ENDFOLD
+
+
+
+
+ENDDAT

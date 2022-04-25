@@ -1,0 +1,103 @@
+&ACCESS RVP
+&REL 7
+&COMMENT MGSR
+&PARAM DISKPATH = KRC:\R1\Program
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF hp004( )
+;FOLD INI
+  ;FOLD BASISTECH INI
+    GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM ( )
+    INTERRUPT ON 3 
+    BAS (#INITMOV,0 )
+  ;ENDFOLD (BASISTECH INI)
+;FOLD GRIPPERTECH INI
+USER_GRP(0,DUMMY,DUMMY,GDEFAULT)
+;ENDFOLD (GRIPPERTECH INI)
+  ;FOLD USER INI
+    ;Make your modifications here
+
+  ;ENDFOLD (USER INI)
+     ;FOLD COLLISION_V_3.01 INI ;%{E}
+        IF (COLLISION_DATA[1].I_NR>0) THEN
+          GLOBAL INTERRUPT DECL 21 WHEN $IN[COLLISION_DATA[1].I_NR]==FALSE DO COLLSTOP (1,0 )
+        ENDIF
+        IF (COLLISION_DATA[2].I_NR>0) THEN
+          GLOBAL INTERRUPT DECL 22 WHEN $IN[COLLISION_DATA[2].I_NR]==FALSE DO COLLSTOP (2,0 )
+        ENDIF
+        IF (COLLISION_DATA[3].I_NR>0) THEN
+          GLOBAL INTERRUPT DECL 23 WHEN $IN[COLLISION_DATA[3].I_NR]==FALSE DO COLLSTOP (3,0 )
+        ENDIF
+        IF (COLLISION_DATA[4].I_NR>0) THEN
+          GLOBAL INTERRUPT DECL 24 WHEN $IN[COLLISION_DATA[4].I_NR]==FALSE DO COLLSTOP (4,0 )
+        ENDIF
+     ;ENDFOLD (Collision)
+;ENDFOLD (INI)
+
+; Caracterização dos meios de produção:
+; Versão Atual:
+; 01/05/2013 12:00 Name: P13.050-R2 CHANGES: MGSB
+; LTA, LTB
+
+chk_w8_wechs_ok ( )    ; CHECK TOOL CHANGE
+
+MBINI()                ; Reset de bits
+
+;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
+$BWDSTART = FALSE
+PDAT_ACT=PDEFAULT
+FDAT_ACT=FHOME
+BAS (#PTP_PARAMS,100 )
+$H_POS=XHOME
+PTP  XHOME
+;ENDFOLD
+
+$TIMER[4]=0
+$TIMER_STOP[4]=FALSE
+
+wkz5_an( )             ; Buscar Gripper no Docking
+
+HO_ST600_R2_1( )       ; Pega da Peca Lateral
+
+AB_ST600_R2_1( )       ; Deposito gripper GEOBOX
+
+wkz2_an( )             ; Pegar a Pinca C1
+
+start_weld_GEO ( )     
+
+PS_com_geo_c1( )       ; Solda Comum GEOBOX, C1
+
+PS_geo_c1( )           ; Solda L GEOBOX, C1
+
+wkz2_ab( )             ; Depositar C1 no Docking
+
+WKZ1_AN( )             ; Pegar a Pinca X1
+
+PS_com_geo_x1( )       ; Solda Comum GEOBOX, X1
+
+WKZ1_AB( )             ; Depositar X1 no Docking
+
+wkz5_off_st600( )      ; Buscar Gripper na GEOBOX
+
+wkz5_ab( )             ; Depositar Gripper Docking
+
+wkz3_an( )             ; Pegar a Pinca C2 
+
+PS_res_c2( )           ; Solda L Respot, C2
+
+end_weld_RESPOT()
+
+wkz3_ab( )             ; Depositar C2 no Docking
+
+$TIMER_STOP[4]=TRUE
+
+;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
+$BWDSTART = FALSE
+PDAT_ACT=PDEFAULT
+FDAT_ACT=FHOME
+BAS (#PTP_PARAMS,100 )
+$H_POS=XHOME
+PTP  XHOME
+;ENDFOLD
+
+END

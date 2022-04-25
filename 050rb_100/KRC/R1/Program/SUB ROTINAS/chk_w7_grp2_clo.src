@@ -1,0 +1,19 @@
+&ACCESS RVO1
+&COMMENT Accelo Traseiro Z2.1_Z2.2
+DEF chk_w7_grp2_clo( )
+
+; Check gripper ACCELO TRASEIRO CLOSE Z2.1/2
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+WAIT FOR ($IN[56] AND $IN[58])
+WAIT FOR (NOT $IN[55] AND NOT $IN[57])
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+
+END

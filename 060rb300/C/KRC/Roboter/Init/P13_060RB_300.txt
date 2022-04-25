@@ -1,0 +1,1934 @@
+IN_1 presenca peca1
+IN_2 presenca peca2
+IN_3 _
+IN_4 _
+IN_5 cilindro Z1.1 recuado
+IN_6 cilindro Z1.1 avancado
+IN_7 cilindro Z1.2 recuado
+IN_8 cilindro Z1.2 avancado
+IN_9 grampo Z2 aberto
+IN_10 grampo Z2 fechado
+IN_11 grampo Z3.1 aberto
+IN_12 grampo Z3.1 fechado
+IN_13 grampo Z3.2 aberto
+IN_14 grampo Z3.2 fechado
+IN_15 _
+IN_16 _
+IN_17 _
+IN_18 _
+IN_19 _
+IN_20 _
+IN_21 _
+IN_22 _
+IN_23 _
+IN_24 _
+IN_25 _
+IN_26 _
+IN_27 _
+IN_28 _
+IN_29 _
+IN_30 _
+IN_31 _
+IN_32 _
+IN_33 _
+IN_34 _
+IN_35 _
+IN_36 _
+IN_37 _
+IN_38 _
+IN_39 _
+IN_40 _
+IN_41 _
+IN_42 _
+IN_43 _
+IN_44 _
+IN_45 _
+IN_46 _
+IN_47 _
+IN_48 _
+IN_49 _
+IN_50 _
+IN_51 _
+IN_52 _
+IN_53 _
+IN_54 _
+IN_55 _
+IN_56 _
+IN_57 _
+IN_58 _
+IN_59 _
+IN_60 _
+IN_61 _
+IN_62 _
+IN_63 _
+IN_64 _
+IN_65 _
+IN_66 _
+IN_67 Fluxostato
+IN_69 pinca aberta
+IN_70 cursor aberto
+IN_71 pinca semi-aberta
+IN_72 Protecao Termica
+IN_73 _
+IN_74 _
+IN_75 _
+IN_76 _
+IN_77 _
+IN_78 _
+IN_79 _
+IN_80 _
+IN_81 _
+IN_82 _
+IN_83 _
+IN_84 _
+IN_85 pinca aberta
+IN_86 cursor aberto
+IN_87 pinca semi-aberta
+IN_88 Protecao Termica
+IN_90 _
+IN_91 _
+IN_93 _
+IN_94 _
+IN_95 _
+IN_96 _
+IN_97 _
+IN_98 _
+IN_99 Controlador de Corrente
+IN_100 _
+IN_101 pinca aberta
+IN_102 cursor aberto
+IN_103 pinca semi-aberta
+IN_104 Protecao Termica
+IN_106 _
+IN_107 _
+IN_109 _
+IN_110 -
+IN_111 _
+IN_112 _
+IN_114 _
+IN_116 Fresa Capa Girando para fora
+IN_118 Fresa de Capa Girando para dentro
+IN_119 _
+IN_120 Fresa de capa funcionando
+IN_121 _
+IN_122 _
+IN_123 _
+IN_124 _
+IN_125 _
+IN_126 _
+IN_127 _
+IN_128 _
+IN_130 _
+IN_132 Fresa Capa Girando para fora
+IN_134 Fresa de Capa Girando para dentro
+IN_135 _
+IN_136 Fresa de capa funcionando
+IN_137 _
+IN_138 _
+IN_139 _
+IN_140 _
+IN_141 _
+IN_142 _
+IN_143 _
+IN_144 _
+IN_146 _
+IN_148 Fresa Capa Girando para fora
+IN_150 Fresa de Capa Girando para dentro
+IN_151 _
+IN_152 Fresa de capa funcionando
+IN_153 _
+IN_154 _
+IN_155 _
+IN_156 _
+IN_157 _
+IN_158 _
+IN_159 _
+IN_160 _
+IN_161 Deposito X1 Ocupado
+IN_162 _
+IN_163 _
+IN_164 _
+IN_165 Protecao de pinca aberta
+IN_166 Protecao de pinca fechada
+IN_167 _
+IN_168 _
+IN_169 Deposito C1 Ocupado
+IN_170 _
+IN_171 _
+IN_172 _
+IN_173 Protecao de pinca aberta
+IN_174 Protecao de pinca fechada
+IN_175 _
+IN_176 _
+IN_177 Deposito Garra ocupado
+IN_178 Klaschka recuado
+IN_179 protecao da Garra aberto
+IN_180 protecao da Garra fechado
+IN_181 Protecao de pinca aberta
+IN_182 Protecao de pinca fechada
+IN_183 _
+IN_184 _
+IN_185 Deposito C2 Ocupado
+IN_186 _
+IN_187 _
+IN_188 _
+IN_189 Protecao de pinca C2 aberta
+IN_190 Protecao de pinca C2 fechada
+IN_191 _
+IN_192 _
+IN_193 Deposito Ocupado
+IN_194 _
+IN_195 _
+IN_196 _
+IN_197 Protecao de pinca aberta
+IN_198 Protecao de pinca fechada
+IN_199 _
+IN_200 _
+IN_201 Deposito Ocupado
+IN_202 _
+IN_203 _
+IN_204 _
+IN_205 Protecao de pinca aberta
+IN_206 Protecao de pinca fechada
+IN_207 _
+IN_208 _
+IN_209 Deposito Ocupado
+IN_210 _
+IN_211 _
+IN_212 _
+IN_213 Protecao de pinca aberta
+IN_214 Protecao de pinca fechada
+IN_215 _
+IN_216 _
+IN_217 MPS Destravado
+IN_218 _
+IN_219 Placa de suporte fundida
+IN_220 _
+IN_221 MPS Travado
+IN_222 Klaschka ativado
+IN_223 _
+IN_224 _
+IN_225 ponto de solda ok
+IN_226 Pedido de fresa
+IN_227 Pre-alerta
+IN_228 Quantidade Maxima alcansada
+IN_229 sistema de controle pronto
+IN_230 Falha de solda
+IN_231 Sem monitoração
+IN_232 Com ignição
+IN_233 Selecao de Bit 00
+IN_234 Selecao de Bit 01
+IN_235 Selecao de Bit 02
+IN_236 Selecao de Bit 03
+IN_237 Selecao de Bit 04
+IN_238 Selecao de Bit 05
+IN_239 Selecao de Bit 06
+IN_240 Selecao de Bit 07
+IN_289 Falha Geral
+IN_290 Erro limite superior
+IN_291 Erro limite inferior
+IN_292 erro 1 (falha de colagem H)
+IN_293 erro 2
+IN_294 pronto (alimentador H)
+IN_295 alimentador preenchido
+IN_296 cola fluxa HERION
+IN_297 Quitar Prog. Bit 0
+IN_298 Quitar Prog. Bit 1
+IN_299 Quitar Prog. Bit 2
+IN_300 Quitar Prog. Bit 3
+IN_301 _
+IN_302 _
+IN_303 _
+IN_304 _
+IN_305 _
+IN_306 _
+IN_307 _
+IN_308 _
+IN_309 _
+IN_310 _
+IN_311 _
+IN_312 _
+IN_313 _
+IN_314 _
+IN_315 _
+IN_316 _
+IN_317 _
+IN_318 _
+IN_319 _
+IN_320 _
+IN_321 _
+IN_322 _
+IN_323 _
+IN_324 _
+IN_325 _
+IN_326 _
+IN_327 _
+IN_328 _
+IN_329 _
+IN_330 _
+IN_331 _
+IN_332 _
+IN_333 _
+IN_334 _
+IN_335 _
+IN_336 _
+IN_337 _
+IN_338 _
+IN_339 _
+IN_340 _
+IN_341 _
+IN_342 _
+IN_343 _
+IN_344 _
+IN_345 _
+IN_346 _
+IN_347 _
+IN_348 _
+IN_349 _
+IN_350 _
+IN_351 _
+IN_352 _
+IN_353 Falha Geral
+IN_354 Erro limite superior
+IN_355 Erro limite inferior
+IN_356 erro 1 (falha de colagem H)
+IN_357 erro 2
+IN_358 pronto (alimentador H)
+IN_359 alimentador preenchido
+IN_360 cola fluxa HERION
+IN_361 Quitar Prog. Bit 0
+IN_362 Quitar Prog. Bit 1
+IN_363 Quitar Prog. Bit 2
+IN_364 Quitar Prog. Bit 3
+IN_365 _
+IN_366 _
+IN_367 _
+IN_368 _
+IN_369 _
+IN_370 _
+IN_371 _
+IN_372 _
+IN_373 _
+IN_374 _
+IN_375 _
+IN_376 _
+IN_377 _
+IN_378 _
+IN_379 _
+IN_380 _
+IN_381 _
+IN_382 _
+IN_383 _
+IN_384 _
+IN_385 _
+IN_386 _
+IN_387 _
+IN_388 _
+IN_389 _
+IN_390 _
+IN_391 _
+IN_392 _
+IN_393 _
+IN_394 _
+IN_395 _
+IN_396 _
+IN_397 _
+IN_398 _
+IN_399 _
+IN_400 _
+IN_401 _
+IN_402 _
+IN_403 _
+IN_404 _
+IN_405 _
+IN_406 _
+IN_407 _
+IN_408 _
+IN_409 _
+IN_410 _
+IN_411 _
+IN_412 _
+IN_413 _
+IN_414 _
+IN_415 _
+IN_416 _
+IN_417 pronto para operar
+IN_418 Sem corrente de solda
+IN_419 Não Falha
+IN_420 _
+IN_421 _
+IN_422 _
+IN_423 _
+IN_424 _
+IN_425 Falha Cabeça 1
+IN_426 Falha Cabeça 2
+IN_427 Falha Cabeça 3
+IN_428 Falha Cabeça 4
+IN_429 Falha Cabeça 5
+IN_430 Alerta de Manutencao
+IN_431 Solda dentro da tolerancia
+IN_432 _
+IN_433 Ponto de solda OK - Cabec 1
+IN_434 Ponto de solda OK - Cabec 2
+IN_435 Ponto de solda OK - Cabec 3
+IN_436 Ponto de solda OK - Cabec 4
+IN_437 Ponto de solda OK - Cabec 5
+IN_438 Cabeca de solda 1 atras
+IN_439 Cabeca de solda 2 atras
+IN_440 Cabeca de solda 3 atras
+IN_441 Cabeca de solda 4 atras
+IN_442 Cabeca de solda 5 atras
+IN_443 _
+IN_444 _
+IN_445 _
+IN_446 _
+IN_447 _
+IN_448 _
+IN_449 Pronto para operar
+IN_450 Sem corrente de solda
+IN_451 Não Falha
+IN_452 _
+IN_453 _
+IN_454 _
+IN_455 _
+IN_456 _
+IN_457 Falha Cabeça 1
+IN_458 Falha Cabeça 2
+IN_459 Falha Cabeça 3
+IN_460 Falha Cabeça 4
+IN_461 Falha Cabeça 5
+IN_462 Alerta de Manutencao
+IN_463 Solda dentro da tolerancia
+IN_464 _
+IN_465 Ponto de solda OK - Cabec 1
+IN_466 Ponto de solda OK - Cabec 2
+IN_467 Ponto de solda OK - Cabec 3
+IN_468 Ponto de solda OK - Cabec 4
+IN_469 Ponto de solda OK - Cabec 5
+IN_470 Cabeca de solda 1 atras
+IN_471 Cabeca de solda 2 atras
+IN_472 Cabeca de solda 3 atras
+IN_473 Cabeca de solda 4 atras
+IN_474 Cabeca de solda 5 atras
+IN_475 _
+IN_476 _
+IN_477 _
+IN_478 _
+IN_479 _
+IN_480 _
+IN_481 _
+IN_482 _
+IN_483 _
+IN_484 _
+IN_485 _
+IN_486 _
+IN_487 _
+IN_488 _
+IN_489 _
+IN_490 _
+IN_491 _
+IN_492 _
+IN_493 _
+IN_494 _
+IN_495 _
+IN_496 _
+IN_497 _
+IN_498 _
+IN_499 _
+IN_500 _
+IN_501 _
+IN_502 _
+IN_503 _
+IN_504 _
+IN_505 _
+IN_506 _
+IN_507 _
+IN_508 _
+IN_509 _
+IN_510 _
+IN_511 _
+IN_512 _
+IN_513 _
+IN_514 _
+IN_515 _
+IN_516 _
+IN_517 _
+IN_518 _
+IN_519 _
+IN_520 _
+IN_521 _
+IN_522 _
+IN_523 _
+IN_524 _
+IN_525 _
+IN_526 _
+IN_527 _
+IN_528 _
+IN_529 _
+IN_530 _
+IN_531 _
+IN_532 _
+IN_533 _
+IN_534 _
+IN_535 _
+IN_536 _
+IN_537 _
+IN_538 _
+IN_539 _
+IN_540 _
+IN_541 _
+IN_542 _
+IN_543 _
+IN_544 _
+IN_545 _
+IN_546 _
+IN_547 _
+IN_548 _
+IN_549 _
+IN_550 _
+IN_551 _
+IN_552 _
+IN_553 _
+IN_554 _
+IN_555 _
+IN_556 _
+IN_557 _
+IN_558 _
+IN_559 _
+IN_560 _
+IN_561 _
+IN_562 _
+IN_563 _
+IN_564 _
+IN_565 _
+IN_566 _
+IN_567 _
+IN_568 _
+IN_569 _
+IN_570 _
+IN_571 _
+IN_572 _
+IN_573 _
+IN_574 _
+IN_575 _
+IN_576 _
+IN_577 _
+IN_578 _
+IN_579 _
+IN_580 _
+IN_581 _
+IN_582 _
+IN_583 _
+IN_584 _
+IN_585 _
+IN_586 _
+IN_587 _
+IN_588 _
+IN_589 _
+IN_590 _
+IN_591 _
+IN_592 _
+IN_593 _
+IN_594 _
+IN_595 _
+IN_596 _
+IN_597 _
+IN_598 _
+IN_599 _
+IN_600 _
+IN_601 _
+IN_602 _
+IN_603 _
+IN_604 _
+IN_605 _
+IN_606 _
+IN_607 _
+IN_608 _
+IN_609 _
+IN_610 _
+IN_611 _
+IN_612 _
+IN_613 _
+IN_614 _
+IN_615 _
+IN_616 _
+IN_617 _
+IN_618 _
+IN_619 _
+IN_620 _
+IN_621 _
+IN_622 _
+IN_623 _
+IN_624 _
+IN_625 _
+IN_626 _
+IN_627 _
+IN_628 _
+IN_629 _
+IN_630 _
+IN_631 _
+IN_632 _
+IN_633 _
+IN_634 _
+IN_635 _
+IN_636 _
+IN_637 _
+IN_638 _
+IN_639 _
+IN_640 _
+IN_641 _
+IN_642 _
+IN_643 _
+IN_644 _
+IN_645 _
+IN_646 _
+IN_647 _
+IN_648 _
+IN_649 _
+IN_650 _
+IN_651 _
+IN_652 _
+IN_653 _
+IN_654 _
+IN_655 _
+IN_656 _
+IN_657 _
+IN_658 _
+IN_659 _
+IN_660 _
+IN_661 _
+IN_662 _
+IN_663 _
+IN_664 _
+IN_665 _
+IN_666 _
+IN_667 _
+IN_668 _
+IN_669 _
+IN_670 _
+IN_671 _
+IN_672 _
+IN_673 _
+IN_674 _
+IN_675 _
+IN_676 _
+IN_677 _
+IN_678 _
+IN_679 _
+IN_680 _
+IN_681 _
+IN_682 _
+IN_683 _
+IN_684 _
+IN_685 _
+IN_686 _
+IN_687 _
+IN_688 _
+IN_689 _
+IN_690 _
+IN_691 _
+IN_692 _
+IN_693 _
+IN_694 _
+IN_695 _
+IN_696 _
+IN_697 _
+IN_698 _
+IN_699 _
+IN_700 _
+IN_701 _
+IN_702 _
+IN_703 _
+IN_704 _
+IN_705 _
+IN_706 _
+IN_707 _
+IN_708 _
+IN_709 _
+IN_710 _
+IN_711 _
+IN_712 _
+IN_713 _
+IN_714 _
+IN_715 _
+IN_716 _
+IN_717 _
+IN_718 _
+IN_719 _
+IN_720 _
+IN_721 _
+IN_722 _
+IN_723 _
+IN_724 _
+IN_725 _
+IN_726 _
+IN_727 _
+IN_728 _
+IN_729 _
+IN_730 _
+IN_731 _
+IN_732 _
+IN_733 _
+IN_734 _
+IN_735 _
+IN_736 _
+IN_737 _
+IN_738 _
+IN_739 _
+IN_740 _
+IN_741 _
+IN_742 _
+IN_743 _
+IN_744 _
+IN_745 _
+IN_746 _
+IN_747 _
+IN_748 _
+IN_749 _
+IN_750 _
+IN_751 _
+IN_752 _
+IN_753 _
+IN_754 _
+IN_755 _
+IN_756 _
+IN_757 _
+IN_758 _
+IN_759 _
+IN_760 _
+IN_761 _
+IN_762 _
+IN_763 _
+IN_764 _
+IN_765 _
+IN_766 _
+IN_767 _
+IN_768 _
+IN_769 _
+IN_770 _
+IN_771 _
+IN_772 _
+IN_773 _
+IN_774 _
+IN_775 _
+IN_776 _
+IN_777 _
+IN_778 _
+IN_779 _
+IN_780 _
+IN_781 _
+IN_782 _
+IN_783 _
+IN_784 _
+IN_785 _
+IN_786 _
+IN_787 _
+IN_788 _
+IN_789 _
+IN_790 _
+IN_791 _
+IN_792 _
+IN_793 _
+IN_794 _
+IN_795 _
+IN_796 _
+IN_797 _
+IN_798 _
+IN_799 _
+IN_800 _
+IN_801 $DRIVES_OFF
+IN_802 $DRIVES_ON
+IN_803 $MOVE ENABLE
+IN_804 $EXT_START
+IN_805 $CONF_MESS
+IN_806 $PGNO_VALID
+IN_807 $PGNO_PARITY
+IN_808 $LARGURA DOS BITS
+IN_809 $PROGRAMA BIT 0
+IN_810 $PROGRAMA BIT 1
+IN_811 $PROGRAMA BIT 2
+IN_812 $PROGRAMA BIT 3
+IN_813 $PROGRAMA BIT 4
+IN_814 $PROGRAMA BIT 5
+IN_815 $PROGRAMA BIT 6
+IN_816 $PROGRAMA BIT 7
+IN_817 PARAR DEPOIS DO FIM DO PONTO
+IN_818 POSIÇÃO DE MANUTENCAO
+IN_819 Reservado para FC170
+IN_820 GHOST ATIVADO
+IN_821 Reservado para FC170
+IN_822 Reservado para FC170
+IN_823 Reservado para FC170
+IN_824 Reservado para FC170
+IN_825 Sinal de Anti-colisão para CLP
+IN_826 Aguarda lib. buscar frontal Accelo
+IN_827 Aguarda liberacao sair magazine
+IN_828 _
+IN_829 aguarda lib. sair magazine
+IN_830 R3 Aguarda Lib Buscar Gripper Accelo
+IN_831 aguarda liberacao sair Geo
+IN_832 Aguarda lib. entrega peca Geo
+IN_833 _
+IN_834 Aguarda lib. sair Geo
+IN_835 Presenca garra GEOBOX
+IN_836 _Sinal de Anti-colisão para CLP
+IN_837 _
+IN_838 _
+IN_839 Aguarda lib. soldar geometria
+IN_840 _
+IN_841 Aguarda lib. entrar na Geo
+IN_842 _
+IN_843 Aguarda lib. retirar garra Geo
+IN_844 Aguarda lib. soldar respot
+IN_845 _
+IN_846 Lib. solda respot Geo1
+IN_847 _
+IN_848 _
+IN_849 _
+IN_850 _
+IN_851 _
+IN_852 _
+IN_853 _
+IN_854 _
+IN_855 Lib interlock 10 robo 1
+IN_856 Lib interlock 9 robo 4
+IN_857 Lib interlock 8 robo 4
+IN_858 Lib interlock 7 robo 4
+IN_859 Lib interlock 6 robo 4
+IN_860 Lib interlock 5 robo 5
+IN_861 Sinal de Anti-colisão do robô 4
+IN_862 Sinal de Anti-colisão do robô 3
+IN_863 Lib interlock 2 robo 2
+IN_864 Sinal de Anti-colisão do robô 1
+IN_865 _
+IN_866 _
+IN_867 _
+IN_868 Liberacao para soldar
+IN_869 _
+IN_870 _
+IN_871 Aplicação purga de dois componentes iniciado
+IN_872 _
+IN_873 _
+IN_874 _
+IN_875 _
+IN_876 _
+IN_877 _
+IN_878 _
+IN_879 _
+IN_880 _
+IN_881 _
+IN_882 _
+IN_883 _
+IN_884 _
+IN_885 _
+IN_886 _
+IN_887 _
+IN_888 _
+IN_889 _
+IN_890 _
+IN_891 _
+IN_892 _
+IN_893 _
+IN_894 _
+IN_895 _
+IN_896 _
+IN_897 _
+IN_898 _
+IN_899 _
+IN_900 _
+IN_901 _
+IN_902 _
+IN_903 _
+IN_904 _
+IN_905 _
+IN_906 _
+IN_907 _
+IN_908 _
+IN_909 _
+IN_910 _
+IN_911 _
+IN_912 _
+IN_913 _
+IN_914 _
+IN_915 _
+IN_916 _
+IN_917 _
+IN_918 _
+IN_919 _
+IN_920 _
+IN_921 _
+IN_922 _
+IN_923 _
+IN_924 _
+IN_925 _
+IN_926 _
+IN_927 _
+IN_928 _
+IN_929 _
+IN_930 _
+IN_931 _
+IN_932 _
+IN_933 _
+IN_934 _
+IN_935 _
+IN_936 _
+IN_937 _
+IN_938 _
+IN_939 _
+IN_940 _
+IN_941 _
+IN_942 _
+IN_943 _
+IN_944 _
+IN_945 _
+IN_946 _
+IN_947 _
+IN_948 _
+IN_949 _
+IN_950 _
+IN_951 _
+IN_952 _
+IN_953 _
+IN_954 _
+IN_955 _
+IN_956 _
+IN_957 _
+IN_958 _
+IN_959 _
+IN_960 _
+IN_961 _
+IN_962 _
+IN_963 _
+IN_964 _
+IN_965 _
+IN_966 _
+IN_967 _
+IN_968 _
+IN_969 _
+IN_970 _
+IN_971 _
+IN_972 _
+IN_973 _
+IN_974 _
+IN_975 _
+IN_976 _
+IN_977 _
+IN_978 _
+IN_979 _
+IN_980 _
+IN_981 _
+IN_982 _
+IN_983 _
+IN_984 _
+IN_985 _
+IN_986 _
+IN_987 _
+IN_988 _
+IN_989 _
+IN_990 _
+IN_991 _
+IN_992 _
+IN_993 _
+IN_994 _
+IN_995 _
+IN_996 _
+IN_997 _
+IN_998 _
+IN_999 _
+IN_1000 _
+IN_1001 _
+IN_1002 $HWEND
+IN_1003 _
+IN_1004 _
+IN_1005 _
+IN_1006 _
+IN_1007 _
+IN_1008 _
+IN_1009 _
+IN_1010 _
+IN_1011 _
+IN_1012 _
+IN_1013 _
+IN_1014 _
+IN_1015 _
+IN_1016 _
+IN_1017 _
+IN_1018 _
+IN_1019 _
+IN_1020 _
+IN_1021 _
+IN_1022 _
+IN_1023 _
+IN_1024 _
+OUT_1 avanca cilindro Z1.1/Z1.2
+OUT_2 recua cilindro Z1.1/ Z1.2
+OUT_3 fechar grampo Z2
+OUT_4 abrir grampo Z2
+OUT_5 fechar grampos Z3.1/Z3.2
+OUT_6 abrir grampos Z3.1/Z3.2
+OUT_7 _
+OUT_8 _
+OUT_9 _
+OUT_10 _
+OUT_11 _
+OUT_12 _
+OUT_13 _
+OUT_14 _
+OUT_15 _
+OUT_16 _
+OUT_17 _
+OUT_18 _
+OUT_19 _
+OUT_20 _
+OUT_21 _
+OUT_22 _
+OUT_23 _
+OUT_24 _
+OUT_25 _
+OUT_26 _
+OUT_27 _
+OUT_28 _
+OUT_29 _
+OUT_30 _
+OUT_31 _
+OUT_32 _
+OUT_33 _
+OUT_34 _
+OUT_35 _
+OUT_36 _
+OUT_37 _
+OUT_38 _
+OUT_39 _
+OUT_40 _
+OUT_41 _
+OUT_42 _
+OUT_43 _
+OUT_44 _
+OUT_45 _
+OUT_46 _
+OUT_47 _
+OUT_48 _
+OUT_49 _
+OUT_50 _
+OUT_51 _
+OUT_52 _
+OUT_53 _
+OUT_54 _
+OUT_55 _
+OUT_56 _
+OUT_57 _
+OUT_58 _
+OUT_59 _
+OUT_60 _
+OUT_61 _
+OUT_62 _
+OUT_63 _
+OUT_64 _
+OUT_65 Avanço em frente
+OUT_66 Curso de solda em frente / compensação
+OUT_68 Avanço em frente
+OUT_69 _
+OUT_70 _
+OUT_71 _
+OUT_72 _
+OUT_73 _
+OUT_74 _
+OUT_75 _
+OUT_76 _
+OUT_77 _
+OUT_78 _
+OUT_79 _
+OUT_80 _
+OUT_81 Avanço em frente
+OUT_82 Curso de solda em frente / compensação
+OUT_84 Avanço em frente
+OUT_85 _
+OUT_86 _
+OUT_87 _
+OUT_88 _
+OUT_89 _
+OUT_90 _
+OUT_91 _
+OUT_92 _
+OUT_93 _
+OUT_94 _
+OUT_95 _
+OUT_96 _
+OUT_97 Avanço em frente
+OUT_98 Curso de solda em frente / compensação
+OUT_100 Avanço em frente
+OUT_101 _
+OUT_102 _
+OUT_103 _
+OUT_104 _
+OUT_105 _
+OUT_106 _
+OUT_107 _
+OUT_108 _
+OUT_109 _
+OUT_110 _
+OUT_111 _
+OUT_112 _
+OUT_115 Fresa de capa girar para fora
+OUT_117 Fresa de capa girar para dentro
+OUT_118 _
+OUT_119 Fresa de capa ligada
+OUT_120 _
+OUT_121 _
+OUT_122 _
+OUT_123 _
+OUT_124 _
+OUT_125 _
+OUT_126 _
+OUT_127 _
+OUT_128 _
+OUT_131 Fresa de capa girar para fora
+OUT_133 Fresa de capa girar para dentro
+OUT_134 _
+OUT_135 Fresa de capa ligada
+OUT_136 _
+OUT_137 _
+OUT_138 _
+OUT_139 _
+OUT_140 _
+OUT_141 _
+OUT_142 _
+OUT_143 _
+OUT_144 _
+OUT_147 Fresa de capa girar para fora
+OUT_149 Fresa de capa girar para dentro
+OUT_150 _
+OUT_151 Fresa de capa ligada
+OUT_152 _
+OUT_153 _
+OUT_154 _
+OUT_155 _
+OUT_156 _
+OUT_157 _
+OUT_158 _
+OUT_159 _
+OUT_160 _
+OUT_161 _
+OUT_162 _
+OUT_163 _
+OUT_164 _
+OUT_165 _
+OUT_166 _
+OUT_167 Proteção da pinca X1 abrir
+OUT_168 Proteção da pinca X1 fechar
+OUT_169 _
+OUT_170 _
+OUT_171 _
+OUT_172 _
+OUT_173 _
+OUT_174 _
+OUT_175 Proteção da pinca C1 abrir
+OUT_176 Proteção da pinca C1 fechar
+OUT_177 _
+OUT_178 _
+OUT_179 _
+OUT_180 _
+OUT_181 avanca klaskka
+OUT_182 recua klaschka
+OUT_183 Proteção da Garra abrir
+OUT_184 Proteção da Garra fechar
+OUT_185 _
+OUT_186 _
+OUT_187 _
+OUT_188 _
+OUT_189 _
+OUT_190 _
+OUT_191 Proteção da pinca C2 abrir
+OUT_192 Proteção da pinca C2 fechar
+OUT_193 _
+OUT_194 _
+OUT_195 _
+OUT_196 _
+OUT_197 _
+OUT_198 _
+OUT_199 Proteção da pinca abrir
+OUT_200 Proteção da pinca fechar
+OUT_201 _
+OUT_202 _
+OUT_203 _
+OUT_204 _
+OUT_205 _
+OUT_206 _
+OUT_207 Proteção da pinca abrir
+OUT_208 Proteção da pinca fechar
+OUT_209 _
+OUT_210 _
+OUT_211 _
+OUT_212 _
+OUT_213 _
+OUT_214 _
+OUT_215 Proteção da pinca abrir
+OUT_216 Proteção da pinca fechar
+OUT_217 _
+OUT_218 _
+OUT_219 _
+OUT_220 _
+OUT_221 _
+OUT_222 _
+OUT_223 DESBLOQUEIA MPS
+OUT_224 BLOQUEIA MPS
+OUT_225 START SOLDA
+OUT_226 Confitmacao de fresa
+OUT_227 Reset de falha na unidade de potencia
+OUT_228 Confirmacao de troca de eletrodo
+OUT_229 Reset geral de falha
+OUT_230 Reset de falha com CCS
+OUT_231 Reset de falha com repeticao de ponto
+OUT_232 Ignicao externa ligada
+OUT_233 Selecao de ponto Bit 00
+OUT_234 Selecao de ponto Bit 01
+OUT_235 Selecao de ponto Bit 02
+OUT_236 Selecao de ponto Bit 03
+OUT_237 Selecao de ponto Bit 04
+OUT_238 Selecao de ponto Bit 05
+OUT_239 Selecao de ponto Bit 06
+OUT_240 Selecao de ponto Bit 07
+OUT_289 Partida (controle de DH1)
+OUT_290 Partida (controle de DH1)
+OUT_291 Alimentador preencher
+OUT_292 Bico limpar
+OUT_293 Controle de pre-pressao ligado
+OUT_294 Partida (controle de caminho DH2)
+OUT_295 Purga
+OUT_296 E-stop (aviso)
+OUT_297 Programa Bit 00
+OUT_298 Programa Bit 01
+OUT_299 Programa Bit 02
+OUT_300 Programa Bit 03
+OUT_301 Quitar programa
+OUT_302 Partida (controle de pressao dh2)
+OUT_303 Quitar erro
+OUT_304 Com/sem material
+OUT_305 Valor nominal de materia Bit 00
+OUT_306 Valor nominal de materia Bit 01
+OUT_307 Valor nominal de materia Bit 02
+OUT_308 Valor nominal de materia Bit 03
+OUT_309 Valor nominal de materia Bit 04
+OUT_310 Valor nominal de materia Bit 05
+OUT_311 Valor nominal de materia Bit 06
+OUT_312 Valor nominal de materia Bit 07
+OUT_313 Valor nominal de materia Bit 08
+OUT_314 Valor nominal de materia Bit 09
+OUT_315 Valor nominal de materia Bit 10
+OUT_316 Valor nominal de materia Bit 11
+OUT_317 Valor nominal de materia Bit 12
+OUT_318 Valor nominal de materia Bit 13
+OUT_319 Valor nominal de materia Bit 14
+OUT_320 Valor nominal de materia Bit 15
+OUT_321 Valor nominal de ar pulverizado Bit 00
+OUT_322 Valor nominal de ar pulverizado Bit 01
+OUT_323 Valor nominal de ar pulverizado Bit 02
+OUT_324 Valor nominal de ar pulverizado Bit 03
+OUT_325 Valor nominal de ar pulverizado Bit 04
+OUT_326 Valor nominal de ar pulverizado Bit 05
+OUT_327 Valor nominal de ar pulverizado Bit 06
+OUT_328 Valor nominal de ar pulverizado Bit 07
+OUT_329 Valor nominal de ar pulverizado Bit 08
+OUT_330 Valor nominal de ar pulverizado Bit 09
+OUT_331 Valor nominal de ar pulverizado Bit 10
+OUT_332 Valor nominal de ar pulverizado Bit 11
+OUT_333 Valor nominal de ar pulverizado Bit 12
+OUT_334 Valor nominal de ar pulverizado Bit 13
+OUT_335 Valor nominal de ar pulverizado Bit 14
+OUT_336 Valor nominal de ar pulverizado Bit 15
+OUT_337 _
+OUT_338 _
+OUT_339 _
+OUT_340 _
+OUT_341 _
+OUT_342 _
+OUT_343 _
+OUT_344 _
+OUT_345 _
+OUT_346 _
+OUT_347 _
+OUT_348 _
+OUT_349 _
+OUT_350 _
+OUT_351 _
+OUT_352 _
+OUT_353 Partida (controle de DH1)
+OUT_354 Partida (controle de DH1)
+OUT_355 Alimentador preencher
+OUT_356 Bico limpar
+OUT_357 Controle de pre-pressao ligado
+OUT_358 Partida (controle de caminho DH2)
+OUT_359 Purga
+OUT_360 E-stop (aviso)
+OUT_361 Programa Bit 00
+OUT_362 Programa Bit 01
+OUT_363 Programa Bit 02
+OUT_364 Programa Bit 03
+OUT_365 Quitar programa
+OUT_366 Partida (controle de pressao dh2)
+OUT_367 Quitar erro
+OUT_368 Com/sem material
+OUT_369 Valor nominal de materia Bit 00
+OUT_370 Valor nominal de materia Bit 01
+OUT_371 Valor nominal de materia Bit 02
+OUT_372 Valor nominal de materia Bit 03
+OUT_373 Valor nominal de materia Bit 04
+OUT_374 Valor nominal de materia Bit 05
+OUT_375 Valor nominal de materia Bit 06
+OUT_376 Valor nominal de materia Bit 07
+OUT_377 Valor nominal de materia Bit 08
+OUT_378 Valor nominal de materia Bit 09
+OUT_379 Valor nominal de materia Bit 10
+OUT_380 Valor nominal de materia Bit 11
+OUT_381 Valor nominal de materia Bit 12
+OUT_382 Valor nominal de materia Bit 13
+OUT_383 Valor nominal de materia Bit 14
+OUT_384 Valor nominal de materia Bit 15
+OUT_385 Valor nominal de ar pulverizado Bit 00
+OUT_386 Valor nominal de ar pulverizado Bit 01
+OUT_387 Valor nominal de ar pulverizado Bit 02
+OUT_388 Valor nominal de ar pulverizado Bit 03
+OUT_389 Valor nominal de ar pulverizado Bit 04
+OUT_390 Valor nominal de ar pulverizado Bit 05
+OUT_391 Valor nominal de ar pulverizado Bit 06
+OUT_392 Valor nominal de ar pulverizado Bit 07
+OUT_393 Valor nominal de ar pulverizado Bit 08
+OUT_394 Valor nominal de ar pulverizado Bit 09
+OUT_395 Valor nominal de ar pulverizado Bit 10
+OUT_396 Valor nominal de ar pulverizado Bit 11
+OUT_397 Valor nominal de ar pulverizado Bit 12
+OUT_398 Valor nominal de ar pulverizado Bit 13
+OUT_399 Valor nominal de ar pulverizado Bit 14
+OUT_400 Valor nominal de ar pulverizado Bit 15
+OUT_401 _
+OUT_402 _
+OUT_403 _
+OUT_404 _
+OUT_405 _
+OUT_406 _
+OUT_407 _
+OUT_408 _
+OUT_409 _
+OUT_410 _
+OUT_411 _
+OUT_412 _
+OUT_413 _
+OUT_414 _
+OUT_415 _
+OUT_416 _
+OUT_417 BS1 período de parada e;stop
+OUT_418 BS1 pré seleção sem solda
+OUT_419 BS1 quitar falha
+OUT_420 BS1 tranportar  de pinos cabeça 1
+OUT_421 BS1 tranportar  de pinos cabeça 2
+OUT_422 BS1 tranportar  de pinos cabeça 3
+OUT_423 BS1 tranportar  de pinos cabeça 4
+OUT_424 BS1 tranportar  de pinos cabeça 5
+OUT_425 BS1 seleção programa Bit 00
+OUT_426 BS1 seleção programa Bit 01
+OUT_427 BS1 seleção programa Bit 02
+OUT_428 BS1 seleção programa Bit 03
+OUT_429 BS1 seleção programa Bit 04
+OUT_430 BS1 seleção programa Bit 05
+OUT_431 BS1 seleção programa Bit 06
+OUT_432 BS1 _
+OUT_433 BS1 partida solda cabeça 1
+OUT_434 BS1 partida solda cabeça 2
+OUT_435 BS1 partida solda cabeça 3
+OUT_436 BS1 partida solda cabeça 4
+OUT_437 BS1 partida solda cabeça 5
+OUT_438 BS1 cabeça de solda 1 em frente (GRF)
+OUT_439 BS1 cabeça de solda 2 em frente (GRF)
+OUT_440 BS1 cabeça de solda 3 em frente (GRF)
+OUT_441 BS1 cabeça de solda 4 em frente (GRF)
+OUT_442 BS1 cabeça de solda 5 em frente (GRF)
+OUT_443 BS1 resetar falha com repetição de solda
+OUT_444 BS1 resetar falha com ponto de solda Ok
+OUT_445 BS1 _
+OUT_446 BS1 _
+OUT_447 BS1 _
+OUT_448 BS1 _
+OUT_449 BS2 período de parada e;stop
+OUT_450 BS2 pré seleção sem solda
+OUT_451 BS2 quitar falha
+OUT_452 BS2 tranportar  de pinos cabeça 1
+OUT_453 BS2 tranportar  de pinos cabeça 2
+OUT_454 BS2 tranportar  de pinos cabeça 3
+OUT_455 BS2 tranportar  de pinos cabeça 4
+OUT_456 BS2 tranportar  de pinos cabeça 5
+OUT_457 BS2 seleção programa Bit 00
+OUT_458 BS2 seleção programa Bit 01
+OUT_459 BS2 seleção programa Bit 02
+OUT_460 BS2 seleção programa Bit 03
+OUT_461 BS2 seleção programa Bit 04
+OUT_462 BS2 seleção programa Bit 05
+OUT_463 BS2 seleção programa Bit 06
+OUT_464 BS2 _
+OUT_465 BS2 partida solda cabeça 1
+OUT_466 BS2 partida solda cabeça 2
+OUT_467 BS2 partida solda cabeça 3
+OUT_468 BS2 partida solda cabeça 4
+OUT_469 BS2 partida solda cabeça 5
+OUT_470 BS2 cabeça de solda 1 em frente (GRF)
+OUT_471 BS2 cabeça de solda 2 em frente (GRF)
+OUT_472 BS2 cabeça de solda 3 em frente (GRF)
+OUT_473 BS2 cabeça de solda 4 em frente (GRF)
+OUT_474 BS2 cabeça de solda 5 em frente (GRF)
+OUT_475 BS2 resetar error com repetição de solda
+OUT_476 BS2 resetar falha com ponto de solda Ok
+OUT_477 BS2 _
+OUT_478 BS2 _
+OUT_479 BS2 _
+OUT_480 BS2 _
+OUT_481 _
+OUT_482 _
+OUT_483 _
+OUT_484 _
+OUT_485 _
+OUT_486 _
+OUT_487 _
+OUT_488 _
+OUT_489 _
+OUT_490 _
+OUT_491 _
+OUT_492 _
+OUT_493 _
+OUT_494 _
+OUT_495 _
+OUT_496 _
+OUT_497 _
+OUT_498 _
+OUT_499 _
+OUT_500 _
+OUT_501 _
+OUT_502 _
+OUT_503 _
+OUT_504 _
+OUT_505 _
+OUT_506 _
+OUT_507 _
+OUT_508 _
+OUT_509 _
+OUT_510 _
+OUT_511 _
+OUT_512 _
+OUT_513 _
+OUT_514 _
+OUT_515 _
+OUT_516 _
+OUT_517 _
+OUT_518 _
+OUT_519 _
+OUT_520 _
+OUT_521 _
+OUT_522 _
+OUT_523 _
+OUT_524 _
+OUT_525 _
+OUT_526 _
+OUT_527 _
+OUT_528 _
+OUT_529 _
+OUT_530 _
+OUT_531 _
+OUT_532 _
+OUT_533 _
+OUT_534 _
+OUT_535 _
+OUT_536 _
+OUT_537 _
+OUT_538 _
+OUT_539 _
+OUT_540 _
+OUT_541 _
+OUT_542 _
+OUT_543 _
+OUT_544 _
+OUT_545 _
+OUT_546 _
+OUT_547 _
+OUT_548 _
+OUT_549 _
+OUT_550 _
+OUT_551 _
+OUT_552 _
+OUT_553 _
+OUT_554 _
+OUT_555 _
+OUT_556 _
+OUT_557 _
+OUT_558 _
+OUT_559 _
+OUT_560 _
+OUT_561 _
+OUT_562 _
+OUT_563 _
+OUT_564 _
+OUT_565 _
+OUT_566 _
+OUT_567 _
+OUT_568 _
+OUT_569 _
+OUT_570 _
+OUT_571 _
+OUT_572 _
+OUT_573 _
+OUT_574 _
+OUT_575 _
+OUT_576 _
+OUT_577 _
+OUT_578 _
+OUT_579 _
+OUT_580 _
+OUT_581 _
+OUT_582 _
+OUT_583 _
+OUT_584 _
+OUT_585 _
+OUT_586 _
+OUT_587 _
+OUT_588 _
+OUT_589 _
+OUT_590 _
+OUT_591 _
+OUT_592 _
+OUT_593 _
+OUT_594 _
+OUT_595 _
+OUT_596 _
+OUT_597 _
+OUT_598 _
+OUT_599 _
+OUT_600 _
+OUT_601 _
+OUT_602 _
+OUT_603 _
+OUT_604 _
+OUT_605 _
+OUT_606 _
+OUT_607 _
+OUT_608 _
+OUT_609 _
+OUT_610 _
+OUT_611 _
+OUT_612 _
+OUT_613 _
+OUT_614 _
+OUT_615 _
+OUT_616 _
+OUT_617 _
+OUT_618 _
+OUT_619 _
+OUT_620 _
+OUT_621 _
+OUT_622 _
+OUT_623 _
+OUT_624 _
+OUT_625 _
+OUT_626 _
+OUT_627 _
+OUT_628 _
+OUT_629 _
+OUT_630 _
+OUT_631 _
+OUT_632 _
+OUT_633 _
+OUT_634 _
+OUT_635 _
+OUT_636 _
+OUT_637 _
+OUT_638 _
+OUT_639 _
+OUT_640 _
+OUT_641 _
+OUT_642 _
+OUT_643 _
+OUT_644 _
+OUT_645 _
+OUT_646 _
+OUT_647 _
+OUT_648 _
+OUT_649 _
+OUT_650 _
+OUT_651 _
+OUT_652 _
+OUT_653 _
+OUT_654 _
+OUT_655 _
+OUT_656 _
+OUT_657 _
+OUT_658 _
+OUT_659 _
+OUT_660 _
+OUT_661 _
+OUT_662 _
+OUT_663 _
+OUT_664 _
+OUT_665 _
+OUT_666 _
+OUT_667 _
+OUT_668 _
+OUT_669 _
+OUT_670 _
+OUT_671 _
+OUT_672 _
+OUT_673 _
+OUT_674 _
+OUT_675 _
+OUT_676 _
+OUT_677 _
+OUT_678 _
+OUT_679 _
+OUT_680 _
+OUT_681 _
+OUT_682 _
+OUT_683 _
+OUT_684 _
+OUT_685 _
+OUT_686 _
+OUT_687 _
+OUT_688 _
+OUT_689 _
+OUT_690 _
+OUT_691 _
+OUT_692 _
+OUT_693 _
+OUT_694 _
+OUT_695 _
+OUT_696 _
+OUT_697 _
+OUT_698 _
+OUT_699 _
+OUT_700 _
+OUT_701 _
+OUT_702 _
+OUT_703 _
+OUT_704 _
+OUT_705 _
+OUT_706 _
+OUT_707 _
+OUT_708 _
+OUT_709 _
+OUT_710 _
+OUT_711 _
+OUT_712 _
+OUT_713 _
+OUT_714 _
+OUT_715 _
+OUT_716 _
+OUT_717 _
+OUT_718 _
+OUT_719 _
+OUT_720 _
+OUT_721 _
+OUT_722 _
+OUT_723 _
+OUT_724 _
+OUT_725 _
+OUT_726 _
+OUT_727 _
+OUT_728 _
+OUT_729 _
+OUT_730 _
+OUT_731 _
+OUT_732 _
+OUT_733 _
+OUT_734 _
+OUT_735 _
+OUT_736 _
+OUT_737 _
+OUT_738 _
+OUT_739 _
+OUT_740 _
+OUT_741 _
+OUT_742 _
+OUT_743 _
+OUT_744 _
+OUT_745 _
+OUT_746 _
+OUT_747 _
+OUT_748 _
+OUT_749 _
+OUT_750 _
+OUT_751 _
+OUT_752 _
+OUT_753 _
+OUT_754 _
+OUT_755 _
+OUT_756 _
+OUT_757 _
+OUT_758 _
+OUT_759 _
+OUT_760 _
+OUT_761 _
+OUT_762 _
+OUT_763 _
+OUT_764 _
+OUT_765 _
+OUT_766 _
+OUT_767 _
+OUT_768 _
+OUT_769 _
+OUT_770 _
+OUT_771 _
+OUT_772 _
+OUT_773 _
+OUT_774 _
+OUT_775 _
+OUT_776 _
+OUT_777 _
+OUT_778 _
+OUT_779 _
+OUT_780 _
+OUT_781 _
+OUT_782 _
+OUT_783 _
+OUT_784 _
+OUT_785 _
+OUT_786 _
+OUT_787 _
+OUT_788 _
+OUT_789 _
+OUT_790 _
+OUT_791 _
+OUT_792 _
+OUT_793 _
+OUT_794 _
+OUT_795 _
+OUT_796 _
+OUT_797 _
+OUT_798 _
+OUT_799 _
+OUT_800 _
+OUT_801 $PERI_RDY
+OUT_802 $USER_SAFE
+OUT_803 IBS Local Master OK
+OUT_804 Reservado para FC170
+OUT_805 $STOPMESS
+OUT_806 PGNO_REQ
+OUT_807 APPL_RUN
+OUT_808 Submit está rodando
+OUT_809 $T1
+OUT_810 $T2
+OUT_811 $I_O_ACTCONF
+OUT_812 $NEAR_POSRET
+OUT_813 $ON_PATH
+OUT_814 Reservado para FC170
+OUT_815 Reservado para FC170
+OUT_816 $IN_HOME POSITION
+OUT_817 Fim do ponto atingido
+OUT_818 Posição de manutenção atingida
+OUT_819 Reservado para FC170
+OUT_820 Ghost ativado
+OUT_821 Reservado para FC170
+OUT_822 Reservado para FC170
+OUT_823 Reservado para FC170
+OUT_824 Reservado para FC170
+OUT_825 R3 Solic Lib Entrar EST 060 EL_621
+OUT_826 Busca frontal Accelo
+OUT_827 solicita saida do magazine
+OUT_828 Solicita lib. sair magazine
+OUT_829 Pegou peca
+OUT_830 R3 Solic Lib Buscar Gripper Acelo
+OUT_831 R3 Solic Lib Entregar peca GEOBOX
+OUT_832 R3 Entregando peca Geo
+OUT_833 Solicita lib. sair Geo
+OUT_834 Entregou peca Geo
+OUT_835 Libera Geometria
+OUT_836 Solic. Lib. Soldar Geometria
+OUT_837 Solic. Lib. Soldar Respot GEO 2
+OUT_838 Solic. Lib. Soldar Respot GEO 1
+OUT_839 Soldando
+OUT_840 Solda Geometria Concluida
+OUT_841 Retira Gripper da Geo
+OUT_842 Solicita saida com Garra
+OUT_843 Retirou Gripper da Geo
+OUT_844 Solda Respot Geo 2 Concluida
+OUT_845 Trabalho Concluido
+OUT_846 R3 solda respot Geo 1 concluida
+OUT_847 Peca na Geo
+OUT_848 Area de Solda
+OUT_849 Area do Gripper
+OUT_850 Area do Operador
+OUT_851 Libera  AGV
+OUT_852 Reservado para colisionOUT_853 R_A853 Anti-colisão para CLP
+OUT_853 _
+OUT_855 Lib interlock 10 robo 1
+OUT_856 Lib interlock 9 robo 4
+OUT_857 Lib interlock 8 robo 4
+OUT_858 Lib interlock 7 robo 4
+OUT_859 Lib interlock 6 robo 4
+OUT_860 Lib interlock 5 robo 5
+OUT_861 Sinal de Anti-colisão do robô 4
+OUT_862 Sinal de Anti-colisão do robô 3
+OUT_863 Lib interlock 2 robo 2
+OUT_864 Sinal de Anti-colisão do robô 1
+OUT_865 _
+OUT_866 _
+OUT_867 Aplicação OK
+OUT_868 Perfil livre Estacao
+OUT_869 Alerta de aplicação
+OUT_870 Falha de aplicação
+OUT_871 Aplicação purga de dois componentes INICIADO
+OUT_872 Falha de solda
+OUT_873 _
+OUT_874 _
+OUT_875 Falha de agua
+OUT_876 Falha de Gripper
+OUT_877 B30YEV  MPS verriegelt
+OUT_878 Magazine 3 ocupado
+OUT_879 Magazine 2 ocupado
+OUT_880 Magazine 1 ocupado
+OUT_881 Pre-aviso SK1
+OUT_882 Quantidade maxima SK1
+OUT_883 SK1 Pronto
+OUT_884 Interbus Master OK
+OUT_885 _
+OUT_886 _
+OUT_887 _
+OUT_888 _
+OUT_889 _
+OUT_890 Monitoramento de fluxo HIP1
+OUT_891 Monitoramento de fluxo HIP2
+OUT_892 Monitoramento de fluxo HIP3
+OUT_893 MirrPLC_B0
+OUT_894 MirrPLC_B1
+OUT_895 MirrPLC_B2
+OUT_896 Aplicacao pronta
+OUT_897 _
+OUT_898 _
+OUT_899 _
+OUT_900 _
+OUT_901 _
+OUT_902 _
+OUT_903 _
+OUT_904 _
+OUT_905 _
+OUT_906 _
+OUT_907 _
+OUT_908 _
+OUT_909 _
+OUT_910 _
+OUT_911 _
+OUT_912 _
+OUT_913 _
+OUT_914 _
+OUT_915 _
+OUT_916 _
+OUT_917 _
+OUT_918 _
+OUT_919 _
+OUT_920 _
+OUT_921 _
+OUT_922 _
+OUT_923 _
+OUT_924 _
+OUT_925 _
+OUT_926 _
+OUT_927 _
+OUT_928 _
+OUT_929 _
+OUT_930 _
+OUT_931 _
+OUT_932 _
+OUT_933 _
+OUT_934 _
+OUT_935 _
+OUT_936 _
+OUT_937 _
+OUT_938 _
+OUT_939 _
+OUT_940 _
+OUT_941 _
+OUT_942 _
+OUT_943 _
+OUT_944 _
+OUT_945 _
+OUT_946 _
+OUT_947 _
+OUT_948 _
+OUT_949 _
+OUT_950 _
+OUT_951 _
+OUT_952 _
+OUT_953 _
+OUT_954 _
+OUT_955 _
+OUT_956 _
+OUT_957 _
+OUT_958 _
+OUT_959 _
+OUT_960 _
+OUT_961 _
+OUT_962 _
+OUT_963 _
+OUT_964 _
+OUT_965 _
+OUT_966 _
+OUT_967 _
+OUT_968 _
+OUT_969 _
+OUT_970 _
+OUT_971 _
+OUT_972 _
+OUT_973 _
+OUT_974 _
+OUT_975 _
+OUT_976 _
+OUT_977 $IN_HOME1
+OUT_978 $IN_HOME2
+OUT_979 $IN_HOME3
+OUT_980 $IN_HOME4
+OUT_981 $IN_HOME5
+OUT_982 $MOVE_ENA_ACK
+OUT_983 _
+OUT_984 $WORKSTATE1
+OUT_985 $WORKSTATE2
+OUT_986 $WORKSTATE3
+OUT_987 $WORKSTATE4
+OUT_988 $WORKSTATE5
+OUT_989 $WORKSTATE6
+OUT_990 $WORKSTATE7
+OUT_991 $WORKSTATE8
+OUT_992 _
+OUT_993 $PR_MODE
+OUT_994 $SS_MODE
+OUT_995 $AUT
+OUT_996 _
+OUT_997 $COLL_ALARM
+OUT_998 $COLL_ENABLE
+OUT_999 _
+OUT_1000 _
+OUT_1001 $ROB_CAL
+OUT_1002 _
+OUT_1003 _
+OUT_1004 _
+OUT_1005 _
+OUT_1006 _
+OUT_1007 _
+OUT_1008 _
+OUT_1009 _
+OUT_1010 _
+OUT_1011 _
+OUT_1012 $RC_RDY1
+OUT_1013 $ALARM_STOP
+OUT_1014 _
+OUT_1015 $STROBE1
+OUT_1016 $STROBE2
+OUT_1017 $STROBE3
+OUT_1018 $STROBE4
+OUT_1019 $STROBE5
+OUT_1020 $STROBE6
+OUT_1021 $PRO_ACT
+OUT_1022 $PRO_MOVE
+OUT_1023 $ROB_STOPPED
+OUT_1024 _
+TimerText1 Tempo Ciclo LTA
+TimerText2 Tempo Ciclo LTB
+TimerText3 Tempo Ciclo MSR
+TimerText4 Tempo Ciclo MSB
+TimerText5 Tempo Ciclo STB
+TimerText6 Tempo Ciclo STB 1213
+TimerText7 Tempo Ciclo ACCELO
+TimerText10 Falha Gripper nao utlizar
+

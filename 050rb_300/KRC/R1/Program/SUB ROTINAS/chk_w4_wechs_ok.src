@@ -1,0 +1,18 @@
+&ACCESS RV2
+&COMMENT Check Gripper Accelo
+DEF chk_w4_wechs_ok( )
+
+;177 => wkz1 C1
+;185 => wkz2 C2
+;161 => wkz3 GRIPER ACTROS
+;169 => wkz4 GRIPER ACELO
+;193 => wkz5 C3
+;201 => wkz6 GRIPER AXOR/ATEGO
+;219 => ACOPLAMENTO OK
+;3320=> GRIPER NA ST600
+
+; VERIFICAÇÃO DE FERRAMENTA: Griper Accelo
+ 
+WAIT FOR ((($in [161]) AND (NOT $in[169])) AND ($in[177]) AND ($in[185]) AND ($in[193]) AND ($in[201]) AND ( $in[219] and not ($in[3320])))
+
+END

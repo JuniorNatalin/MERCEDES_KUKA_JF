@@ -1,0 +1,1489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns="http://www.kuka.com/schemas/kxr/2009">
+  <module name="DAI_Gripper">
+  <!-- section dialog buttons -->
+    <uiText key="UG_YES_BT">
+      <text xml:lang="de-DEV">Ja</text>
+      <text xml:lang="en-DEV">yes</text>
+    </uiText>
+    <uiText key="UG_NO_BT">
+      <text xml:lang="de-DEV">Nein</text>
+      <text xml:lang="en-DEV">no</text>
+    </uiText>  
+	<uiText key="UG_OK_BT">
+      <text xml:lang="de-DEV">OK</text>
+      <text xml:lang="en-DEV">OK</text>
+    </uiText>  
+    <uiText key="UG_CAN_BT">
+      <text xml:lang="de-DEV">Abbruch</text>
+      <text xml:lang="en-DEV">cancel</text>
+    </uiText> 
+    <uiText key="UG_NEX_BT">
+      <text xml:lang="de-DEV">weiter</text>
+      <text xml:lang="en-DEV">next please</text>
+    </uiText>    
+    
+  <!-- section error messages -->    
+    	<uiText key="UG_ERR_MSG1">
+      <text xml:lang="de-DEV">Greifertyp nicht Projektiert bitte ueberpruefen</text>
+      <text xml:lang="en-DEV">Gripper type not setup , please check</text>
+    </uiText>
+    	<uiText key="UG_ERR_MSG2">
+      <text xml:lang="de-DEV">Falscher Greiferstatus</text>
+      <text xml:lang="en-DEV">wrong gripper state</text>
+    </uiText>
+    	<uiText key="UG_ERR_MSG3">
+      <text xml:lang="de-DEV">Greifer nicht definiert</text>
+      <text xml:lang="en-DEV">gripper not defined</text>
+    </uiText>
+    	<uiText key="UG_ERR_MSG4">
+      <text xml:lang="de-DEV">Greifer ist nicht konfiguriert</text>
+      <text xml:lang="en-DEV">gripper not configured</text>
+    </uiText>
+    	<uiText key="UG_ERR_MSG5">
+      <text xml:lang="de-DEV">Ungueltiger Greiferbefehl.(USER_GRP-Aufruf)</text>
+      <text xml:lang="en-DEV">unknown gripper command (user_grp call) </text>
+    </uiText>
+    	<uiText key="UG_ERR_MSG6">
+      <text xml:lang="de-DEV">Greifer nicht geoeffnet.bzw.noch geschlossen</text>
+      <text xml:lang="en-DEV">gripper not open or still closed</text>
+    </uiText>
+    	<uiText key="UG_ERR_MSG7">
+      <text xml:lang="de-DEV">Greifer nicht geschlossen.bzw.noch geoeffnet</text>
+      <text xml:lang="en-DEV">gripper not closed or still open</text>
+    </uiText>
+    	<uiText key="UG_ERR_MSG8">
+      <text xml:lang="de-DEV">Greiferpaket ist nicht aktiviert</text>
+      <text xml:lang="en-DEV">gripper pack. not activated</text>
+    </uiText>
+    <uiText key="UG_ERR_MSG9">
+      <text xml:lang="de-DEV">Parametrierungsfehler im DAT-FILE->GRP_iBinLen ungleich 9</text>
+      <text xml:lang="en-DEV">parameter error in dat-file ... GRP_iBinLen not 9</text>
+    </uiText>
+    <uiText key="UG_ERR_MSG10">
+      <text xml:lang="de-DEV">Fehlernummer ist nicht definiert!</text>
+      <text xml:lang="en-DEV">error number not defined</text>
+    </uiText>  
+    <uiText key="UG_ERR_MSG11">
+      <text xml:lang="de-DEV">Ghostbetrieb User-Gripper aktiv</text>
+      <text xml:lang="en-DEV">ghost mode active</text>
+    </uiText>  
+    <uiText key="UG_ERR_MSG12">
+      <text xml:lang="de-DEV">Warten auf User-Greifer</text>
+      <text xml:lang="en-DEV">wait for user gripper</text>
+    </uiText>  
+    <uiText key="UG_ERR_MSG13">
+      <text xml:lang="de-DEV">Eingaenge sind simuliert</text>
+      <text xml:lang="en-DEV">Inputs are simulated</text>
+    </uiText>
+    <uiText key="UG_ERR_MSG99">
+      <text xml:lang="de-DEV">Greiferfunktion abgebrochen</text>
+      <text xml:lang="en-DEV">gripper function canceled</text>
+    </uiText>
+    
+    
+    <!-- section "gripper locked" messages -->   
+    <!-- UG=usergripper    GL= gripper 1 locked      MS1= first lock message -->
+    
+    <uiText key="UG_GL1_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL1_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL1_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL2_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL2_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL2_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL3_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL3_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL3_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL4_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL4_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL4_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL5_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL5_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL5_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL6_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL6_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL6_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL7_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL7_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL7_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL8_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL8_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL8_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL9_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL9_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL9_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL10_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL10_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL10_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL11_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL11_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL11_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL12_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL12_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL12_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL13_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL13_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL13_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL14_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL14_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL14_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL15_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL15_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL15_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL16_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL16_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL16_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL17_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL17_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL17_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL18_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL18_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL18_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL19_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL19_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL19_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL20_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL20_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL20_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL21_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL21_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL21_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL22_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL22_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL22_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL23_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL23_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL23_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL24_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL24_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL24_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL25_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL25_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL25_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL26_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL26_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL26_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL27_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL27_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL27_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL28_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL28_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL28_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL29_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL29_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL29_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL30_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL30_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL30_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL31_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL31_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL31_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <uiText key="UG_GL32_MS1">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL32_MS2">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    <uiText key="UG_GL32_MS3">
+      <text xml:lang="de-DEV">Achtung Greifer verriegelt Crashgefahr!</text>
+      <text xml:lang="en-DEV">gripper is locked -- risk of crash</text>
+    </uiText>
+    
+    <!-- section gripper safety messages --> 
+    <uiText key="UG_GS_MS1">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS2">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS3">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS4">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS5">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS6">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS7">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS8">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS9">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS10">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS11">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS12">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS13">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS14">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS15">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS16">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS17">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS18">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS19">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS20">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS21">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS22">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS23">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS24">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS25">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS26">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS27">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS28">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS29">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS30">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS31">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+    <uiText key="UG_GS_MS32">
+      <text xml:lang="de-DEV">Achtung Sicherheits-Greifer wirklich oeffnen/schliessen</text>
+      <text xml:lang="en-DEV">Safe gripper !! are you sure to open / close</text>
+    </uiText>
+
+    
+    <!-- section "manual gripper operating" messages --> 
+    <!-- message text for manual use -->
+     
+     <uiText key="UG_MG_QUE">
+      <text xml:lang="de-DEV">Greifer %1  In welchen Zustand wollen Sie wechseln ?</text>
+      <text xml:lang="en-DEV">Gripper %1  what state do you want to change to ?</text>
+     </uiText>  
+     
+    
+    <!-- state buttons for manual operating -->
+    
+    <!-- please insert a state description for each used gripper-->
+    
+    <!-- Gripper 1-->
+     <uiText key="UG_MG_BT1A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT1B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT1C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+
+    <!-- Gripper 2-->
+     <uiText key="UG_MG_BT2A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT2B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT2C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 3-->
+     <uiText key="UG_MG_BT3A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT3B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT3C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 4-->
+     <uiText key="UG_MG_BT4A">
+      <text xml:lang="de-DEV">Blasen</text>
+      <text xml:lang="en-DEV">blow</text>
+     </uiText>
+     <uiText key="UG_MG_BT4B">
+      <text xml:lang="de-DEV">aus</text>
+      <text xml:lang="en-DEV">off</text>
+     </uiText>
+     <uiText key="UG_MG_BT4C">
+      <text xml:lang="de-DEV">Saugen</text>
+      <text xml:lang="en-DEV">suck</text>
+     </uiText>
+    <!-- Gripper 5-->
+     <uiText key="UG_MG_BT5A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT5B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT5C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 6-->
+     <uiText key="UG_MG_BT6A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT6B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT6C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 7-->
+     <uiText key="UG_MG_BT7A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT7B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT7C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 8-->
+     <uiText key="UG_MG_BT8A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT8B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT8C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 9-->
+     <uiText key="UG_MG_BT9A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT9B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT9C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 10-->
+     <uiText key="UG_MG_BT10A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT10B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT10C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 11-->
+     <uiText key="UG_MG_BT11A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT11B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT11C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 12-->
+     <uiText key="UG_MG_BT12A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT12B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT12C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 13-->
+     <uiText key="UG_MG_BT13A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT13B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT13C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 14-->
+     <uiText key="UG_MG_BT14A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT14B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT14C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 15-->
+     <uiText key="UG_MG_BT15A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT15B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT15C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 16-->
+     <uiText key="UG_MG_BT16A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT16B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT16C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 17-->
+     <uiText key="UG_MG_BT17A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT17B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT17C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 18-->
+     <uiText key="UG_MG_BT18A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT18B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT18C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 19-->
+     <uiText key="UG_MG_BT19A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT19B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT19C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 20-->
+     <uiText key="UG_MG_BT20A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT20B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT20C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 21-->
+     <uiText key="UG_MG_BT21A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT21B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT21C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 22-->
+     <uiText key="UG_MG_BT22A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT22B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT22C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 23-->
+     <uiText key="UG_MG_BT23A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT23B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT23C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 24-->
+     <uiText key="UG_MG_BT24A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT24B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT24C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 25-->
+     <uiText key="UG_MG_BT25A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT25B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT25C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 26-->
+     <uiText key="UG_MG_BT26A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT26B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT26C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 27-->
+     <uiText key="UG_MG_BT27A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT27B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT27C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 28-->
+     <uiText key="UG_MG_BT28A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT28B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT28C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 29-->
+     <uiText key="UG_MG_BT29A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT29B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT29C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 30-->
+     <uiText key="UG_MG_BT30A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT30B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT30C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 31-->
+     <uiText key="UG_MG_BT31A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT31B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT31C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>
+    <!-- Gripper 32-->
+     <uiText key="UG_MG_BT32A">
+      <text xml:lang="de-DEV">Zustand A</text>
+      <text xml:lang="en-DEV">state A</text>
+     </uiText>
+     <uiText key="UG_MG_BT32B">
+      <text xml:lang="de-DEV">Zustand B</text>
+      <text xml:lang="en-DEV">state B</text>
+     </uiText>
+     <uiText key="UG_MG_BT32C">
+      <text xml:lang="de-DEV">Zustand C</text>
+      <text xml:lang="en-DEV">state C</text>
+     </uiText>     
+     
+     
+    
+     
+     <!-- status message for logbook -->
+     
+     <uiText key="UG_MG_001A">
+      <text xml:lang="de-DEV">Greifer 1 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 1 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_001B">
+      <text xml:lang="de-DEV">Greifer 1 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 1 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_001C">
+      <text xml:lang="de-DEV">Greifer 1 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 1 got changed to state C</text>
+     </uiText>
+	 
+    <uiText key="UG_MG_002A">
+      <text xml:lang="de-DEV">Greifer 2 wurde zu Zustand OFFEN gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 2 got changed to state OPEN</text>
+     </uiText>  
+     <uiText key="UG_MG_002B">
+      <text xml:lang="de-DEV">Greifer 2 wurde zu Zustand GESCHLOSSEN gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 2 got changed to state CLOSED</text>
+     </uiText>
+     <uiText key="UG_MG_002C">
+      <text xml:lang="de-DEV">Greifer 2 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 2 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_003A">
+      <text xml:lang="de-DEV">Greifer 3 wurde zu Zustand VOR gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 3 got changed to state FORWARD</text>
+     </uiText>  
+     <uiText key="UG_MG_003B">
+      <text xml:lang="de-DEV">Greifer 3 wurde zu Zustand ZURUECK gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 3 got changed to state BACKWARD</text>
+     </uiText>
+     <uiText key="UG_MG_003C">
+      <text xml:lang="de-DEV">Greifer 3 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 3 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_004A">
+      <text xml:lang="de-DEV">Greifer 4 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 4 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_004B">
+      <text xml:lang="de-DEV">Greifer 4 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 4 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_004C">
+      <text xml:lang="de-DEV">Greifer 4 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 4 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_005A">
+      <text xml:lang="de-DEV">Greifer 5 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 5 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_005B">
+      <text xml:lang="de-DEV">Greifer 5 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 5 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_005C">
+      <text xml:lang="de-DEV">Greifer 5 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 5 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_006A">
+      <text xml:lang="de-DEV">Greifer 6 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 6 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_006B">
+      <text xml:lang="de-DEV">Greifer 6 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 6 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_006C">
+      <text xml:lang="de-DEV">Greifer 6 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 6 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_007A">
+      <text xml:lang="de-DEV">Greifer 7 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 7 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_007B">
+      <text xml:lang="de-DEV">Greifer 7 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 7 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_007C">
+      <text xml:lang="de-DEV">Greifer 7 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 7 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_008A">
+      <text xml:lang="de-DEV">Greifer 8 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 8 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_008B">
+      <text xml:lang="de-DEV">Greifer 8 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 8 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_008C">
+      <text xml:lang="de-DEV">Greifer 8 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 8 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_009A">
+      <text xml:lang="de-DEV">Greifer 9 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 9 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_009B">
+      <text xml:lang="de-DEV">Greifer 9 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 9 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_009C">
+      <text xml:lang="de-DEV">Greifer 9 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 9 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_010A">
+      <text xml:lang="de-DEV">Greifer 10 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 10 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_010B">
+      <text xml:lang="de-DEV">Greifer 10 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 10 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_010C">
+      <text xml:lang="de-DEV">Greifer 10 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 10 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_011A">
+      <text xml:lang="de-DEV">Greifer 11 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 11 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_011B">
+      <text xml:lang="de-DEV">Greifer 11 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 11 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_011C">
+      <text xml:lang="de-DEV">Greifer 11 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 11 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_012A">
+      <text xml:lang="de-DEV">Greifer 12 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 12 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_012B">
+      <text xml:lang="de-DEV">Greifer 12 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 12 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_012C">
+      <text xml:lang="de-DEV">Greifer 12 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 12 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_013A">
+      <text xml:lang="de-DEV">Greifer 13 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 13 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_013B">
+      <text xml:lang="de-DEV">Greifer 13 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 13 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_013C">
+      <text xml:lang="de-DEV">Greifer 13 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 13 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_014A">
+      <text xml:lang="de-DEV">Greifer 14 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 14 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_014B">
+      <text xml:lang="de-DEV">Greifer 14 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 14 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_014C">
+      <text xml:lang="de-DEV">Greifer 14 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 14 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_015A">
+      <text xml:lang="de-DEV">Greifer 15 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 15 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_015B">
+      <text xml:lang="de-DEV">Greifer 15 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 15 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_015C">
+      <text xml:lang="de-DEV">Greifer 15 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 15 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_016A">
+      <text xml:lang="de-DEV">Greifer 16 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 16 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_016B">
+      <text xml:lang="de-DEV">Greifer 16 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 16 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_016C">
+      <text xml:lang="de-DEV">Greifer 16 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 16 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_017A">
+      <text xml:lang="de-DEV">Greifer 17 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 17 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_017B">
+      <text xml:lang="de-DEV">Greifer 17 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 1 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_017C">
+      <text xml:lang="de-DEV">Greifer 17 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 17 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_018A">
+      <text xml:lang="de-DEV">Greifer 18 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 18 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_018B">
+      <text xml:lang="de-DEV">Greifer 18 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 18 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_018C">
+      <text xml:lang="de-DEV">Greifer 18 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 18 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_019A">
+      <text xml:lang="de-DEV">Greifer 19 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 19 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_019B">
+      <text xml:lang="de-DEV">Greifer 19 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 19 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_019C">
+      <text xml:lang="de-DEV">Greifer 19 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 19 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_020A">
+      <text xml:lang="de-DEV">Greifer 20 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 20 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_020B">
+      <text xml:lang="de-DEV">Greifer 20 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 20 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_020C">
+      <text xml:lang="de-DEV">Greifer 20 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 20 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_021A">
+      <text xml:lang="de-DEV">Greifer 21 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 21 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_021B">
+      <text xml:lang="de-DEV">Greifer 21 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 21 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_021C">
+      <text xml:lang="de-DEV">Greifer 21 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 21 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_022A">
+      <text xml:lang="de-DEV">Greifer 22 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 22 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_022B">
+      <text xml:lang="de-DEV">Greifer 22 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 22 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_022C">
+      <text xml:lang="de-DEV">Greifer 22 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 22 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_023A">
+      <text xml:lang="de-DEV">Greifer 23 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 23 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_023B">
+      <text xml:lang="de-DEV">Greifer 23 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 23 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_023C">
+      <text xml:lang="de-DEV">Greifer 23 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 23 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_024A">
+      <text xml:lang="de-DEV">Greifer 24 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 24 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_0024B">
+      <text xml:lang="de-DEV">Greifer 24 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 24 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_024C">
+      <text xml:lang="de-DEV">Greifer 24 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 24 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_025A">
+      <text xml:lang="de-DEV">Greifer 25 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 25 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_025B">
+      <text xml:lang="de-DEV">Greifer 25 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 25 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_025C">
+      <text xml:lang="de-DEV">Greifer 25 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 25 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_026A">
+      <text xml:lang="de-DEV">Greifer 26 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 26 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_026B">
+      <text xml:lang="de-DEV">Greifer 26 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 26 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_026C">
+      <text xml:lang="de-DEV">Greifer 26 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 26 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_027A">
+      <text xml:lang="de-DEV">Greifer 27 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 27 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_027B">
+      <text xml:lang="de-DEV">Greifer 27 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 27 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_027C">
+      <text xml:lang="de-DEV">Greifer 27 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 27 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_028A">
+      <text xml:lang="de-DEV">Greifer 28 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 28 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_028B">
+      <text xml:lang="de-DEV">Greifer 28 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 28 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_028C">
+      <text xml:lang="de-DEV">Greifer 28 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 28 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_029A">
+      <text xml:lang="de-DEV">Greifer 29 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 29 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_029B">
+      <text xml:lang="de-DEV">Greifer 29 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 29 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_029C">
+      <text xml:lang="de-DEV">Greifer 29 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 29 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_030A">
+      <text xml:lang="de-DEV">Greifer 30 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 30 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_030B">
+      <text xml:lang="de-DEV">Greifer 30 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 30 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_030C">
+      <text xml:lang="de-DEV">Greifer 30 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 30 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_031A">
+      <text xml:lang="de-DEV">Greifer 31 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 31 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_031B">
+      <text xml:lang="de-DEV">Greifer 31 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 31 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_031C">
+      <text xml:lang="de-DEV">Greifer 31 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 31 got changed to state C</text>
+     </uiText>
+	 
+	 <uiText key="UG_MG_032A">
+      <text xml:lang="de-DEV">Greifer 32 wurde zu Zustand A gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 32 got changed to state A</text>
+     </uiText>  
+     <uiText key="UG_MG_032B">
+      <text xml:lang="de-DEV">Greifer 32 wurde zu Zustand B gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 32 got changed to state B</text>
+     </uiText>
+     <uiText key="UG_MG_032C">
+      <text xml:lang="de-DEV">Greifer 32 wurde zu Zustand C gewechselt</text>
+      <text xml:lang="en-DEV">Gripper 32 got changed to state C</text>
+     </uiText>
+	 
+	 
+  </module>
+</resources>

@@ -1,0 +1,17 @@
+&ACCESS RVO2
+&COMMENT VACUO AXOR CLOSE
+DEF chk_w6_grp1_vacoff( )
+
+; Check Vacuum on gripper AXOR
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+WAIT FOR (NOT $IN[493])
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+END

@@ -1,0 +1,141 @@
+&ACCESS RVP
+&REL 12
+&COMMENT Roboterpruefprogramm
+&PARAM TEMPLATE = C:\KRC\ROBOTER\TEMPLATE\VG_HP
+&PARAM EDITMASK = *
+DEF rob_ok( )
+;FOLD INI
+;FOLD BASISTECH INI
+    GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM ( )
+    INTERRUPT ON 3
+    BAS (#INITMOV,0 )
+;ENDFOLD (BASISTECH INI)
+;FOLD SPOTTECH INI
+    USERSPOT(#INIT)
+;ENDFOLD (SPOTTECH INI)
+;FOLD GRIPPERTECH INI
+    USER_GRP(0,DUMMY,DUMMY,GDEFAULT)
+;ENDFOLD (GRIPPERTECH INI)
+;FOLD USER INI
+;Make your modifications here
+;FOLD COLLISION_V_3.01 INI ;%{E}
+    IF (COLLISION_DATA[1].I_NR>0) THEN
+    GLOBAL INTERRUPT DECL 21 WHEN $IN[COLLISION_DATA[1].I_NR]==FALSE DO COLLSTOP (1,0 )
+    ENDIF
+    IF (COLLISION_DATA[2].I_NR>0) THEN
+    GLOBAL INTERRUPT DECL 22 WHEN $IN[COLLISION_DATA[2].I_NR]==FALSE DO COLLSTOP (2,0 )
+    ENDIF
+    IF (COLLISION_DATA[3].I_NR>0) THEN
+    GLOBAL INTERRUPT DECL 23 WHEN $IN[COLLISION_DATA[3].I_NR]==FALSE DO COLLSTOP (3,0 )
+    ENDIF
+    IF (COLLISION_DATA[4].I_NR>0) THEN
+    GLOBAL INTERRUPT DECL 24 WHEN $IN[COLLISION_DATA[4].I_NR]==FALSE DO COLLSTOP (4,0 )
+    ENDIF
+;ENDFOLD (Collision)
+;ENDFOLD (USER INI)
+;ENDFOLD (INI)
+;FOLD ; Anlagenbezeichn:               Stations-Nr:;%{PE}%R 5.2.7,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:Anlagenbezeichn:               Stations-Nr:
+;ENDFOLD
+;FOLD ; Stand / Version:;%{PE}%R 5.2.7,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:Stand / Version:
+;ENDFOLD
+;FOLD ; Name Bearbeiter:;%{PE}%R 5.2.7,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:Name Bearbeiter:
+;ENDFOLD
+;Sicherheitsfrage (nur im Musterprogramm, nach teachen entfernen)
+wait for false
+;FOLD ; ***************************************;%{PE}%R 2.4.6,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:***************************************
+;ENDFOLD
+;FOLD ; A C H T U N G  ! ! !   Nur in T1 fahren;%{PE}%R 2.4.6,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:A C H T U N G  ! ! !   Nur in T1 fahren
+;ENDFOLD
+;FOLD ; ***************************************;%{PE}%R 2.4.6,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:***************************************
+;ENDFOLD
+WAIT FOR $T1
+;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
+    $BWDSTART = FALSE
+    PDAT_ACT=PDEFAULT
+    BAS(#PTP_DAT)
+    FDAT_ACT=FHOME
+    BAS(#FRAMES)
+    BAS(#VEL_PTP,100)
+    $H_POS=XHOME
+    PTP XHOME
+;ENDFOLD
+; PTP ... zur Kontrollposition Roboter teachen
+;FOLD PTP LHP1  Vel= 100 % PDAT Tool[16] Base[16];%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:LHP1, 3:, 5:100, 7:PDAT
+    $BWDSTART = FALSE
+    PDAT_ACT=PPDAT
+    BAS(#PTP_DAT)
+    FDAT_ACT=FLHP1
+    BAS(#FRAMES)
+    BAS(#VEL_PTP,100)
+    PTP XLHP1
+;ENDFOLD
+;FOLD PTP LHP2  Vel= 100 % PDAT Tool[16] Base[16];%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:LHP2, 3:, 5:100, 7:PDAT
+    $BWDSTART = FALSE
+    PDAT_ACT=PPDAT
+    BAS(#PTP_DAT)
+    FDAT_ACT=FLHP2
+    BAS(#FRAMES)
+    BAS(#VEL_PTP,100)
+    PTP XLHP2
+;ENDFOLD
+;FOLD ; *********************************************************;%{PE}%R 2.4.6,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:*********************************************************
+;ENDFOLD
+;FOLD ; A C H T U N G  ! ! !   Spitze am IR Flansch befestigen   ;%{PE}%R 2.4.6,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:A C H T U N G  ! ! !   Spitze am IR Flansch befestigen
+;ENDFOLD
+;FOLD ; *********************************************************;%{PE}%R 2.4.6,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:*********************************************************
+;ENDFOLD
+;Spitze am Flansch 02.3 und 03.1
+;Spitze an Vorrichtung 01.2 und 03.1
+WAIT FOR  $IN[1026]==TRUE
+;FOLD ; 1.Kontrollposition;%{PE}%R 2.4.6,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:1.Kontrollposition
+;ENDFOLD
+;FOLD ; Pruefspitze - Roboterflansch         ;%{PE}%R 2.4.6,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2: Pruefspitze - Roboterflansch
+;ENDFOLD
+;FOLD ; mit 02.3 03.1 Laenge;%{PE}%R 5.2.17,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:mit 02.3 03.1 Laenge
+;ENDFOLD
+;FOLD PTP KONTROLL1  Vel= 100 % PDAT Tool[16] Base[16];%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:KONTROLL1, 3:, 5:100, 7:PDAT
+    $BWDSTART = FALSE
+    PDAT_ACT=PPDAT
+    BAS(#PTP_DAT)
+    FDAT_ACT=FKONTROLL1
+    BAS(#FRAMES)
+    BAS(#VEL_PTP,100)
+    PTP XKONTROLL1
+;ENDFOLD
+WAIT FOR  $IN[1026]==TRUE ; Kontrollposition IR
+;FOLD PTP LHP3  Vel= 100 % PDAT Tool[16] Base[16];%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:LHP3, 3:, 5:100, 7:PDAT
+    $BWDSTART = FALSE
+    PDAT_ACT=PPDAT
+    BAS(#PTP_DAT)
+    FDAT_ACT=FLHP3
+    BAS(#FRAMES)
+    BAS(#VEL_PTP,100)
+    PTP XLHP3
+;ENDFOLD
+;FOLD ; *******************************************************;%{PE}%R 2.4.6,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:*******************************************************
+;ENDFOLD
+;FOLD ; A C H T U N G  ! ! !   Messpitze am IR  entfernen;%{PE}%R 2.4.6,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:A C H T U N G  ! ! !   Messpitze am IR  entferne
+;ENDFOLD
+;FOLD ; *******************************************************;%{PE}%R 2.4.6,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:*******************************************************
+;ENDFOLD
+WAIT FOR  $IN[1026]==TRUE
+;FOLD PTP LHP5  Vel= 100 % PDAT Tool[16] Base[16];%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:LHP5, 3:, 5:100, 7:PDAT
+    $BWDSTART = FALSE
+    PDAT_ACT=PPDAT
+    BAS(#PTP_DAT)
+    FDAT_ACT=FLHP5
+    BAS(#FRAMES)
+    BAS(#VEL_PTP,100)
+    PTP XLHP5
+;ENDFOLD
+;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
+    $BWDSTART = FALSE
+    PDAT_ACT=PDEFAULT
+    BAS(#PTP_DAT)
+    FDAT_ACT=FHOME
+    BAS(#FRAMES)
+    BAS(#VEL_PTP,100)
+    $H_POS=XHOME
+    PTP XHOME
+;ENDFOLD
+END

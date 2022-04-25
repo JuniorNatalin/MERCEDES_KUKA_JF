@@ -1,0 +1,19 @@
+&ACCESS RVO2
+&COMMENT Check GRP ACCELO Z2 CLOSE
+DEF chk_w4_grp2_clo( )
+
+;//---- Start User-------
+;Aguardando posicao de gripper fechado
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+WAIT FOR (NOT $IN[41] AND NOT $IN[43])
+WAIT FOR ($IN[42] AND $IN[44])
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User-------
+
+END

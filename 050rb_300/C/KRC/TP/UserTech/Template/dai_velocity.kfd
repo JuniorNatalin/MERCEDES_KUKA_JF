@@ -1,0 +1,51 @@
+;============================================
+; USERTECH f�r Velocity
+; function:			   Setzt Beschleunigungsparameter in der Steuerung
+; content:			   Inlineformulare fuer PLUS-Ansteuerung
+; user: 			      PKL_AST Thomas Schneider 74975
+;============================================
+; user: 			      PKL_AST Thomas Schneider 74975
+; date: 			      2012-06-04
+; version:			   1.0
+; comment:			   First Release
+; offline relevant	yes 
+;============================================
+DEFTP Velocity={ SOT FALSE }
+
+
+;
+; 1. alle Parameter 
+;
+
+DECL PARAM CP={shortname[] "ACC_CP: ", unit[] "", value { REAL : min 2.3, max 5, step 0.1, default 2.3 }}
+DECL PARAM ORI1={shortname[] "ACC_ORI1: ", unit[] "", value { NUMBER : min 100, max 500, step 1, default 100 }}
+DECL PARAM ORI2={shortname[] "ACC_ORI2: ", unit[] "", value { NUMBER : min 100, max 500, step 1, default 100 }}
+
+
+;
+; 2. alle Folds
+;
+DECL FOLD fSetVel[3]
+fSetVel[1]="$ACC.CP= %CP"
+fSetVel[2]="$ACC.ORI1= %ORI1"
+fSetVel[2]="$ACC.ORI2= %ORI2"
+
+DECL FOLD fResetVel[1]
+fResetVel[1]="BAS(#INITMOV)"
+
+
+
+;
+; 3. alle inlineformulare
+;
+DECL INLINEFORM SetVel={FOCUS 0, FOLD[1] fSetVel, PARAM[1] CP,PARAM[2] ORI1, PARAM[3] ORI2}
+DECL INLINEFORM ResetVel={FOCUS 0, FOLD[1] fResetVel}
+
+
+;
+; 4. alle Skripte
+;
+
+
+ENDTP
+

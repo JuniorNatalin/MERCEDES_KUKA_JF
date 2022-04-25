@@ -1,0 +1,120 @@
+&ACCESS RO
+&REL 4
+&COMMENT Ein-/AusgangsHandling V1.02 KRC1
+DEF IO_Handling()
+END
+
+Global DEF  SetOut (Nr:IN, Status:IN, PulsTime:IN )
+ ;=============================================================================
+ ; Funktion : Setzt den Ausgang mit der Nr auf den Status
+ ;            Wenn Nr=0 wird keine Aktion ausgeführt
+ ;            Wenn Nr negativ ist, wird der Status invertiert
+ ;            Wenn eine PulsTime angegeben ist, wird der Ausgang als Puls ausgeführt
+ ;==============================================================================
+ Decl INT  Nr
+ Decl BOOL Status
+ Decl REAL PulsTime
+ Decl INT Nr_ABS
+
+  IF Nr<>0 THEN
+     Nr_ABS=ABS(Nr)
+     IF not (Varstate("PulsTime")==#INITIALIZED) THEN
+        $OUT[Nr_ABS]=(Status==(Nr>0))
+     ELSE
+        if PulsTime==0 then
+           $OUT[Nr_ABS]=(Status==(Nr>0))
+        else
+           PULSE ($OUT[Nr_ABS],(Status==(Nr>0)),PulsTime )
+        endif
+     ENDIF
+  ENDIF
+END
+
+Global DEF  WaitForIn (Nr:IN, Status:IN, MaxWaitTime:IN, TimeOut:OUT )
+ ;=============================================================================
+ ; Funktion : Wartet bis der Eingang Nr den Status annimmt
+ ;            Wenn Nr=0 wird nicht gewartet
+ ;            Wenn Nr negativ ist, wird der Status invertiert
+ ;            Wenn eine MaxWaitTime angegeben ist, wird maximal diese Zeit gewartet.
+ ;              Wenn das Warten durch MaxWaitTime abgebrochen wurde,
+ ;              wird TimeOut auf True gesetzt
+ ;==============================================================================
+  Decl INT  Nr
+  Decl BOOL Status
+  Decl REAL MaxWaitTime
+  Decl Bool TimeOut
+  Decl INT Nr_ABS
+
+  TimeOut=False
+
+  IF Nr<>0 THEN
+     IF not (Varstate("MaxWaitTime")==#INITIALIZED) THEN
+        MaxWaitTime=0
+     endif
+     Nr_ABS=ABS(Nr)
+     IF MaxWaitTime==0 then
+        if ((Status==(Nr>0)) == True) then
+          wait for $IN[Nr_ABS]
+        else
+          wait for not $IN[Nr_ABS]
+        endif
+     ELSE
+        $TIMER_STOP[ti_nr2]=TRUE
+        $TIMER[ti_nr2]=-MaxWaitTime ;[msec]
+        $TIMER_STOP[ti_nr2]=FALSE
+
+        if ((Status==(Nr>0)) == True) then
+          wait for $IN[Nr_ABS] or $TIMER_FLAG[ti_nr2]
+        else
+          wait for not $IN[Nr_ABS] or $TIMER_FLAG[ti_nr2]
+        endif
+        if $IN[Nr_ABS]<>(Status==(Nr>0)) then  ;Maximale Wartezeit abgelaufen ?
+          TimeOut=TRUE
+          $TIMER[ti_nr2]=0
+        endif
+        $TIMER_STOP[ti_nr2]=TRUE
+     ENDIF
+  ENDIF
+END
+
+
+Global DEFFCT Bool GetIn (Nr:IN, Status:IN)
+ ;=============================================================================
+ ; Funktion : Status eines Eingangs abfragen
+ ;            Wenn Nr=0 wird kein Eingang abgefragt und der erwartete Status zurückgegeben
+ ;            Wenn Nr negativ ist, wird der Status invertiert
+ ;==============================================================================
+ Decl INT  Nr
+ Decl BOOL Status
+ Decl INT Nr_ABS
+  if not (Varstate("Status")==#INITIALIZED) THEN
+    Status=True
+  endif
+  if Nr<>0 THEN
+    Nr_ABS=ABS(Nr)
+    return ($IN[Nr_ABS] == (Status==(Nr>0)))
+  else
+    return(Status)
+  endif
+ENDFCT
+
+
+Global DEFFCT Bool GetOut (Nr:IN, Status:IN)
+ ;=============================================================================
+ ; Funktion : Status eines Ausgangs abfragen
+ ;            Wenn Nr=0 wird kein Ausgang abgefragt und der erwartete Status zurückgegeben
+ ;            Wenn Nr negativ ist, wird der Status invertiert
+ ;==============================================================================
+ Decl INT  Nr
+ Decl BOOL Status
+ Decl INT Nr_ABS
+  if not (Varstate("Status")==#INITIALIZED) THEN
+    Status=True
+  endif
+  if Nr<>0 THEN
+    Nr_ABS=ABS(Nr)
+    return ($OUT[Nr_ABS] == (Status==(Nr>0)))
+  else
+    return(Status)
+  endif
+ENDFCT

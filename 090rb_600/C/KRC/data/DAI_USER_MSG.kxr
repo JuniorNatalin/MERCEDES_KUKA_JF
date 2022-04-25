@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns="http://www.kuka.com/schemas/kxr/2009">
+   <module name="DAI_USER_MSG">
+      <uiText key="DAI_USER_MSG_001">
+         <text xml:lang="de-DEV">Testnachricht</text>
+         <text xml:lang="en-DEV">testmessage</text>
+      </uiText>
+   </module>
+</resources>

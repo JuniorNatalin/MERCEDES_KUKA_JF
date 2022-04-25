@@ -1,0 +1,18 @@
+&ACCESS RV4
+&COMMENT check gun C2
+DEF chk_w2_wechs_ok( )
+
+;177 => wkz1 C1
+;185 => wkz2 C2
+;161 => wkz3 GRIPER ACTROS
+;169 => wkz4 GRIPER ACELO
+;193 => wkz5 C3
+;201 => wkz6 GRIPER AXOR/ATEGO
+;219 => ACOPLAMENTO OK
+;3320=> GRIPER NA ST600
+
+; VERIFICAÇÃO DE FERRAMENTA: C2
+ 
+WAIT FOR ((($in [161]) OR (NOT ($in[161]) and $in[3320])) AND (($in [169]) OR (NOT ($in[169]) and $in[3320])) AND ($in[177]) AND (not $in[185]) AND ($in[193]) AND ($in[201]) AND ($in[219]))
+
+END

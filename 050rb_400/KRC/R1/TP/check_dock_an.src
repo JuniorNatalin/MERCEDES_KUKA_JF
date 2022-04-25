@@ -1,0 +1,79 @@
+&ACCESS RVO1
+&REL 71
+&COMMENT MB-CHECK_CONDITIONS_AN
+&PARAM DISKPATH = KRC:\R1\TP
+DEF Check_dock_AN(Dock :IN, Seq :IN)
+  DECL INT Dock ;Variável numérica que diz o número do DockStation
+  DECL INT Seq  ;Variável numérica que diz a sequencia de checagem sendo:
+                ;1 - Checagem inicial
+                ;2 - Checagem pré encaixe
+                ;3 - Checagem no ponto de encaixe
+                ;4 - Checagem pós encaixe (ponto acima)
+                ;5 - Checagem em Home
+  DECL INT Dep_ocup
+  DECL INT Prot_Ab
+  DECL INT Prot_Fech
+  DECL INT Abrir_Prot
+  DECL INT Fechar_Prot
+
+  ;!==================================================
+  ;! Program  : CHECK_DOCK_AN.SRC
+  ;! Function : Check conditions when robot taking a tool
+  ;!==================================================
+  ;!   Version 0.1 JDF
+  ;!   12-08-14 
+  ;!==================================================
+  ;!   SERVNEWS ROBÓTICA E AUTOMAÇÃO
+  ;!     Programador: Fábio Luiz dos Santos
+  ;!  
+  ;!======================================================
+
+
+  SWITCH  Dock
+  
+   CASE 1
+    Dep_ocup = 161        ;Depósito ocupado  IN
+    Prot_Ab = 165         ;Proteção aberta   IN
+    Prot_Fech = 166       ;Proteção fechada  IN
+    Abrir_Prot = 167      ;Abre Proteção     OUT
+    Fechar_Prot = 168     ;Fecha Proteção    OUT
+   
+   CASE 2
+    Dep_ocup = 169        ;Depósito ocupado  IN
+    Prot_Ab = 173         ;Proteção aberta   IN
+    Prot_Fech = 174       ;Proteção fechada  IN
+    Abrir_Prot = 175      ;Abre Proteção     OUT
+    Fechar_Prot = 176     ;Fecha Proteção    OUT    
+      
+  ENDSWITCH
+    
+  SWITCH Seq
+   CASE 1                               ;Condições iniciais
+    PULSE($OUT[Abrir_Prot], TRUE,0.2)    ;Abre tampa do dock station
+    WAIT FOR ( $IN[Prot_Ab] )           ; Aguarda Tampa aberta
+    WAIT FOR ( $IN[Dep_ocup] )          ; Verifica se depósito ocupado
+    WAIT FOR NOT ( $IN[219] )           ; Verifica se ferramenta acoplada
+   
+   CASE 2                               ;Condições pré encaixe
+    $OUT[224]=FALSE                     ;Desliga Bloqueio de MPS
+    $OUT[223]=TRUE                      ;Desbloqueia MPS   
+    WAIT FOR ( $IN[217] )               ;Verifica se MPS destravado
+    WAIT FOR NOT ( $IN[221] )           ;Verifica se MPS não travado    
+    
+   CASE 3                               ;Condições de encaixe
+    WAIT FOR ( $IN[219] )               ;Verifica se ferramenta em posição
+    $OUT[223]=FALSE                     ;Desliga desbloqueio de MPS
+    $OUT[224]=TRUE                      ;Bloqueia MPS
+    WAIT FOR NOT ( $IN[217] )           ;Verifica se MPS não destravado
+    WAIT FOR ( $IN[221] )               ;Verifica se MPS travado 
+        
+   CASE 4                               ;Condições de pós encaixe
+    WAIT FOR NOT ( $IN[Dep_ocup] )      ;Verifica se ferramenta não está no dock
+    WAIT FOR ( $IN[219] )               ;Verifica se ferramenta acoplada
+    
+   CASE 5
+    PULSE($OUT[Fechar_Prot], TRUE,0.2)    ;Fecha tampa do dock station
+
+  ENDSWITCH  
+    
+END ;(Check_dock_AN)

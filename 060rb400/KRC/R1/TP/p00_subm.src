@@ -1,0 +1,432 @@
+&ACCESS R1
+&COMMENT EXTERNAL PACKAGE
+DEF  P00_SUBM (COMMAND :IN,PGNO_FUNCT :IN )
+;----------------------------
+;Version: DC V3.2.X
+;----------------------------
+DECL P00_COMMAND COMMAND
+DECL FUNCT_TYPE PGNO_FUNCT
+
+SWITCH  COMMAND
+CASE #INIT_EXT
+IF ERROR_FLAG==TRUE THEN
+$H_POS=XHOME
+CHK_HOME ( )
+INIT_EXT ( )
+ENDIF
+CASE #EXT_PGNO
+IF (ERROR_FLAG==FALSE) AND (CHK_STEP==2) THEN
+EXT_PGNO (PGNO_FUNCT )
+ENDIF
+ENDSWITCH
+END
+
+
+DEF  INIT_EXT ( )
+;********************************
+; Function: initializing of the
+;           external interface
+;********************************
+PGNO_ERROR=0
+ERROR_FLAG=FALSE
+
+;********************************
+;INIT PGNO_REQ UND APPL_RUN
+;********************************
+IF (PGNO_REQ>0) THEN
+$OUT[PGNO_REQ]=FALSE
+ENDIF
+IF (PGNO_REQ<0) THEN
+$OUT[-PGNO_REQ]=TRUE
+ENDIF
+IF (APPL_RUN>0) THEN
+$OUT[APPL_RUN]=FALSE
+ENDIF
+
+SWITCH  PGNO_TYPE
+;*********************************************************
+CASE 1,2 ;bci-coding,bcd-coding
+;*********************************************************
+;***** CHECK PGNO_LENGTH *****
+IF (PGNO_LENGTH<1) THEN
+ERROR_FLAG=TRUE ;pgno_length
+P01_MSG (2 )
+ENDIF
+IF (PGNO_TYPE==1) THEN ;bci-coding
+IF (PGNO_LENGTH>16) THEN
+ERROR_FLAG=TRUE ;pgno_length
+P01_MSG (2 )
+ENDIF
+ENDIF
+IF (PGNO_TYPE==2) THEN ;bcd-coding
+SWITCH  PGNO_LENGTH
+CASE 4,8,12,16
+DEFAULT
+ERROR_FLAG=TRUE ;pgno_length
+P01_MSG (3 )
+ENDSWITCH
+ENDIF
+;***** CHECK PGNO_FBIT *****
+IF (PGNO_FBIT<1) THEN
+ERROR_FLAG=TRUE ;pgno_fbit
+P01_MSG (4 )
+ENDIF
+;***** CHECK PGNO_REQ *****
+IF (PGNO_REQ==0) THEN
+ERROR_FLAG=TRUE ;pgno_req
+P01_MSG (7 )
+ENDIF
+IF (PGNO_REQ>0) THEN ;active high
+$OUT[PGNO_REQ]=FALSE ;reset
+WAIT SEC 0.2 ;delay for plc
+ENDIF
+IF (PGNO_REQ<0) THEN ;active low
+$OUT[PGNO_REQ*(-1)]=TRUE ;reset
+WAIT SEC 0.2 ;delay for plc
+ENDIF
+;*********************************************************
+CASE 3 ;one out of n
+;*********************************************************
+;***** CHECK PGNO_LENGTH *****
+IF (PGNO_LENGTH<1) THEN
+ERROR_FLAG=TRUE ;pgno_length
+P01_MSG (2 )
+ENDIF
+IF (PGNO_LENGTH>16) THEN
+ERROR_FLAG=TRUE ;pgno_length
+P01_MSG (2 )
+ENDIF
+;***** CHECK PGNO_FBIT *****
+IF (PGNO_FBIT<1) THEN
+ERROR_FLAG=TRUE ;pgno_fbit
+P01_MSG (4 )
+ENDIF
+
+;*********************************************************
+DEFAULT ;PGNO_TYPE wrong type
+;*********************************************************
+ERROR_FLAG=TRUE ;pgno_type
+P01_MSG (1 )
+ENDSWITCH
+;***********************************************************
+END
+
+
+DEF  EXT_PGNO (FUNCT )
+;********************************
+; Function: communication program
+;           for external mode
+;********************************
+DECL FUNCT_TYPE FUNCT
+INT I,J,K,L,M,N
+BOOL P_RECV
+BOOL P_CALC
+J=1
+K=0
+L=1
+P_RECV=FALSE
+P_CALC=FALSE
+IF (APPL_RUN>0) AND (P01_STEP<>3) THEN
+$OUT[APPL_RUN]=FALSE
+ENDIF
+SWITCH  FUNCT
+;*******************
+CASE #PGNO_ACKN
+;*******************
+IF (PGNO_REQ>0) AND (P01_STEP==3) THEN
+$OUT[PGNO_REQ]=FALSE
+ENDIF
+IF (PGNO_REQ<0) AND (P01_STEP==3) THEN
+$OUT[PGNO_REQ*(-1)]=TRUE
+ENDIF
+
+IF (APPL_RUN>0) AND (P01_STEP==3) THEN
+$OUT[APPL_RUN]=TRUE
+ENDIF
+;*******************
+CASE #PGNO_GET
+;*******************
+SWITCH  PGNO_TYPE
+;*******************
+CASE 1,2
+;*******************
+SWITCH  P01_STEP
+CASE 0
+IF PGNO_VALID>0 THEN
+IF $IN[PGNO_VALID]==FALSE THEN
+P01_STEP=1
+$LOOP_MSG[]="                                  "
+ELSE
+$LOOP_MSG[]="Wait For $Input[PGNO_VALID]==FALSE"
+ENDIF
+ELSE
+IF PGNO_VALID<0 THEN
+IF $IN[PGNO_VALID*(-1)]==TRUE THEN
+P01_STEP=1
+$LOOP_MSG[]="                                 "
+ELSE
+$LOOP_MSG[]="Wait For $Input[PGNO_VALID]==TRUE"
+ENDIF
+ELSE
+IF PGNO_VALID==0 THEN
+IF $EXT_START==FALSE THEN
+P01_STEP=1
+$LOOP_MSG[]="                                  "
+ELSE
+$LOOP_MSG[]="Wait For $EXT_START==FALSE"
+ENDIF
+ENDIF
+ENDIF
+ENDIF
+CASE 1
+IF PGNO_REQ>0 THEN
+$OUT[PGNO_REQ]=TRUE
+P01_STEP=2
+ELSE
+IF PGNO_REQ<0 THEN
+$OUT[PGNO_REQ*(-1)]=FALSE
+P01_STEP=2
+ENDIF
+ENDIF
+CASE 2
+IF PGNO_VALID>0 THEN
+IF $IN[PGNO_VALID]==TRUE THEN
+P01_STEP=3
+$LOOP_MSG[]="                                 "
+ELSE
+$LOOP_MSG[]="Wait For $Input[PGNO_VALID]==TRUE"
+ENDIF
+ELSE
+IF PGNO_VALID<0 THEN
+IF $IN[PGNO_VALID*(-1)]==FALSE THEN
+P01_STEP=3
+$LOOP_MSG[]="                                  "
+ELSE
+$LOOP_MSG[]="Wait For $Input[PGNO_VALID]==FALSE"
+ENDIF
+ELSE
+IF PGNO_VALID==0 THEN
+IF $EXT_START==TRUE THEN
+P01_STEP=3
+$LOOP_MSG[]="                                  "
+ELSE
+$LOOP_MSG[]="Wait For $EXT_START==TRUE"
+ENDIF
+ENDIF
+ENDIF
+ENDIF
+CASE 3
+P01_STEP=0
+DEFAULT
+ENDSWITCH
+
+PGNO=0
+SWITCH  PGNO_TYPE
+;*******************
+CASE 1
+;*******************
+FOR I=0 TO  PGNO_LENGTH-1
+IF $IN[PGNO_FBIT+I] THEN
+PGNO=PGNO+J
+ENDIF
+J=J*2
+ENDFOR
+;*******************
+CASE 2
+;*******************
+FOR I=0 TO  PGNO_LENGTH-1  STEP  4
+N=0
+J=1
+FOR M=I TO  I+3
+IF $IN[PGNO_FBIT+M] THEN
+N=N+J
+ENDIF
+J=J*2
+ENDFOR
+IF (N>9) THEN
+PGNO_ERROR=2
+PGNO=0
+EXIT
+ELSE
+PGNO=PGNO+N*L
+L=L*10
+ENDIF
+ENDFOR
+ENDSWITCH
+
+IF P01_STEP==3 THEN
+PGNO_FLAG=PGNO
+ENDIF
+IF (PGNO_ERROR<>2) THEN
+IF (PGNO_PARITY>0) THEN
+P_RECV=$IN[PGNO_PARITY]
+FOR I=0 TO  PGNO_LENGTH-1
+P_CALC=P_CALC EXOR $IN[PGNO_FBIT+I]
+ENDFOR
+IF (P_RECV<>P_CALC) THEN
+PGNO=0
+PGNO_ERROR=1
+ELSE
+PGNO_ERROR=0
+ENDIF
+ENDIF
+IF (PGNO_PARITY<0) THEN
+P_RECV=$IN[PGNO_PARITY*(-1)]
+FOR I=0 TO  PGNO_LENGTH-1
+P_CALC=P_CALC EXOR $IN[PGNO_FBIT+I]
+ENDFOR
+IF (P_RECV<> NOT (P_CALC)) THEN
+PGNO=0
+PGNO_ERROR=1
+ELSE
+PGNO_ERROR=0
+ENDIF
+ENDIF
+ENDIF
+;*******************
+CASE 3
+;*******************
+SWITCH  P01_STEP
+CASE 0
+IF PGNO>0 THEN
+PGNO_FLAG=PGNO ;remember old program number
+IF $IN[PGNO_FBIT+PGNO-1]==FALSE THEN
+P01_STEP=2
+ELSE
+$LOOP_MSG[]="Wait for $Input[PGNO_FBIT+PGNO-1]==FALSE"
+P01_STEP=1
+ENDIF
+ELSE
+P01_STEP=2
+ENDIF
+CASE 1
+IF $IN[PGNO_FBIT+PGNO_FLAG-1]==FALSE THEN
+$LOOP_MSG[]="                                         "
+P01_STEP=2
+ELSE
+$LOOP_MSG[]="Wait for $Input[PGNO_FBIT+PGNO-1]==FALSE"
+ENDIF
+CASE 2
+K=0
+IF $IN[PGNO_FBIT+PGNO_FLAG-1]==FALSE THEN
+FOR I=0 TO  PGNO_LENGTH-1
+IF $IN[PGNO_FBIT+I] THEN
+IF K==0 THEN
+K=I+1
+ELSE
+PGNO_ERROR=0
+K=0
+ENDIF
+ENDIF
+ENDFOR
+ELSE
+P01_STEP=1
+ENDIF
+PGNO=K
+IF PGNO<>0 THEN
+P01_STEP=3
+ENDIF
+CASE 3
+P01_STEP=0
+ENDSWITCH
+ENDSWITCH
+;***********************************************************
+CASE #PGNO_FAULT
+;***********************************************************
+IF PGNO_ERROR==1 THEN
+P01_MSG (10 )
+ENDIF
+IF PGNO_ERROR==2 THEN
+P01_MSG (12 )
+ENDIF
+IF PGNO_ERROR==0 THEN
+IF (PGNO_TYPE==3) THEN
+P01_MSG (15 )
+ELSE
+IF $PERI_RDY THEN
+P01_MSG (11 )
+ELSE
+P01_MSG (14 )
+ENDIF
+ENDIF
+ENDIF
+PGNO_ERROR=0
+IF (PGNO_REQ>0) THEN
+$OUT[PGNO_REQ]=FALSE
+ENDIF
+IF (PGNO_REQ<0) THEN
+$OUT[PGNO_REQ*(-1)]=TRUE
+ENDIF
+;WAIT SEC 0.5 ;?
+;IF PGNO_TYPE<>3 THEN
+;  P01_STEP=3
+;ENDIF
+ENDSWITCH
+END
+
+;********************************
+;CHECK HOME
+;********************************
+DEF  CHK_HOME ( )
+SWITCH  CHK_STEP
+CASE 0
+IF $IN_HOME==FALSE THEN
+CHK_STEP=1
+$LOOP_MSG[]="Robot not in Home-Position!"
+ELSE
+CHK_STEP=2
+ENDIF
+CASE 1
+ERROR_FLAG=TRUE
+IF $IN_HOME==TRUE THEN
+$LOOP_MSG[]="                            "
+CHK_STEP=2
+ENDIF
+ENDSWITCH
+END
+
+DEF  P01_MSG (MSG_NR :IN )
+DECL INT MSG_NR
+DECL INT OFFSET
+DECL STATE_T STATE
+DECL MSG_T P_MSG
+DECL MSG_T EMPTY_MSG
+$LOOP_MSG[]="                                          "
+EMPTY_MSG={MSG_T: VALID FALSE,RELEASE FALSE,TYP #NOTIFY,MODUL[] " ",KEY[] " ",PARAM_TYP #VALUE,PARAM[] " ",DLG_FORMAT[] " ",ANSWER 0}
+P_MSG={MSG_T: VALID FALSE,RELEASE FALSE,TYP #NOTIFY,MODUL[] "P00",KEY[] " ",PARAM_TYP #KEY,PARAM[] " ",DLG_FORMAT[] " ",ANSWER 0}
+$MSG_T=P_MSG
+SWITCH  MSG_NR
+CASE 1
+$MSG_T.KEY[]="PgNo_TypeWrong"
+CASE 2
+$MSG_T.KEY[]="PgNo_LengthTooSmall"
+CASE 3
+$MSG_T.KEY[]="PgNo_LengthWrong"
+CASE 4
+$MSG_T.KEY[]="PgNo_FBitWrong"
+CASE 7
+$MSG_T.KEY[]="PgNo_ReqWrong"
+CASE 10
+$MSG_T.KEY[]="ParityFault"
+OFFSET=0
+SWRITE($MSG_T.PARAM[],STATE,OFFSET,"%d",PGNO)
+CASE 11
+$MSG_T.KEY[]="ProgramNotAvailable"
+OFFSET=0
+SWRITE($MSG_T.PARAM[],STATE,OFFSET,"%d",PGNO)
+CASE 12
+$MSG_T.KEY[]="BCDCodeError"
+OFFSET=0
+SWRITE($MSG_T.PARAM[],STATE,OFFSET,"%d",PGNO)
+CASE 14
+$MSG_T.KEY[]="SelectionRequiresDrivesOn"
+CASE 15
+$MSG_T.KEY[]="ProgNumberWrong"
+ENDSWITCH
+$MSG_T.VALID=TRUE
+WHILE  $MSG_T.VALID
+WAIT SEC 0.05
+ENDWHILE
+WAIT SEC 0.2
+$MSG_T=EMPTY_MSG
+END

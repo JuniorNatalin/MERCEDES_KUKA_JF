@@ -1,0 +1,8 @@
+&ACCESS RO
+&REL 25
+DEFDAT GHOST public
+decl bool GhostPossible=TRUE ;// MasterFlag with Ghost
+decl int IO_Range=1024 ;// range of produced IOs
+DECL global REAL GhostDelay=1.5 ;// Ghost delay 1,5 sec
+
+ENDDAT

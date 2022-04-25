@@ -1,0 +1,172 @@
+DEFTP Collision={ SOT FALSE }
+;============================================
+; USRTECH für Verriegelungen
+; FWT-APA, IR-Systeme, R.WOnmann
+; Tel.: 07031-90-2571
+; Aenderungsstand: 11.05.2000
+;
+; Aenderungsstand:  7.10.2008 Triggermodus 
+; Aenderungsstand:  06.11.2011 Englisch 
+;============================================ 
+
+
+DECL PARAM pCont={shortname[] "", shortcut[] "SYN", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "0 ", disp[]  ". "}, _
+  ITEM[2] {ITEM:VALUE[] "10 ", disp[] "SYN_at_Start "}, _
+  ITEM[3] {ITEM:VALUE[] "20 ", disp[] "SYN_at_Ende  " }}}
+
+
+; *** Fold-Beschreibung ***
+
+DECL FOLD COLL_FOLD1[1]
+COLL_FOLD1[1]="COLLSTOP( 1, 1 ) /;Interrupt-Controlled"
+
+DECL FOLD COLL_FOLD2[1]
+COLL_FOLD2[1]="COLLSTOP( 2, 1 ) /;Interrupt-Controlled"
+
+DECL FOLD COLL_FOLD3[1]
+COLL_FOLD3[1]="COLLSTOP( 3, 1 ) /;Interrupt-Controlled"
+
+DECL FOLD COLL_FOLD4[1]
+COLL_FOLD4[1]="COLLSTOP( 4, 1 ) /;Interrupt-Controlled"
+
+DECL FOLD COLL_FOLD5[1]
+COLL_FOLD5[1]="COLLSTOP( 5, 1 ) /;not Interrupt-Controlled"
+
+DECL FOLD COLL_FOLD6[1]
+COLL_FOLD6[1]="COLLSTOP( 6, 1 ) /;not Interrupt-Controlled"
+
+DECL FOLD COLL_FOLD7[1]
+COLL_FOLD7[1]="COLLSTOP( 7, 1 ) /;not Interrupt-Controlled"
+
+DECL FOLD COLL_FOLD8[1]
+COLL_FOLD8[1]="COLLSTOP( 8, 1 ) /;not Interrupt-Controlled"
+
+DECL FOLD COLL_FOLD9[1]
+COLL_FOLD9[1]="COLLSTOP( 9, 1 ) /;not Interrupt-Controlled"
+
+DECL FOLD COLL_FOLD10[1]
+COLL_FOLD10[1]="COLLSTOP( 10, 1 ) /;not Interrupt-Controlled"
+
+DECL FOLD COLL_FOLD11[1]
+COLL_FOLD11[1]="COLLSTOP( 11, 1 ) /;not Interrupt-Controlled"
+
+DECL FOLD COLL_FOLD12[1]
+COLL_FOLD12[1]="COLLSTOP( 12, 1 ) /;not Interrupt-Controlled"
+
+DECL FOLD COLL_FOLD13[1]
+COLL_FOLD13[1]="COLLSTOP( 13, 1 ) /;not Interrupt-Controlled"
+
+DECL FOLD COLL_FOLD14[1]
+COLL_FOLD14[1]="COLLSTOP( 14, 1 ) /;not Interrupt-Controlled"
+
+DECL FOLD COLL_FOLD15[1]
+COLL_FOLD15[1]="COLLSTOP( 15, 1 ) /;not Interrupt-Controlled"
+
+DECL FOLD COLL_FOLD16[1]
+COLL_FOLD16[1]="COLLSTOP( 16, 1 ) /;not Interrupt-Controlled"
+
+;-----------------------
+
+DECL FOLD COLL_FOLD17[1]
+COLL_FOLD17[1]="COLLSTOP( 1, 2+%pCont )"
+
+DECL FOLD COLL_FOLD18[1]
+COLL_FOLD18[1]="COLLSTOP( 2, 2+%pCont )"
+
+DECL FOLD COLL_FOLD19[1]
+COLL_FOLD19[1]="COLLSTOP( 3, 2+%pCont )"
+
+DECL FOLD COLL_FOLD20[1]
+COLL_FOLD20[1]="COLLSTOP( 4, 2+%pCont )"
+
+DECL FOLD COLL_FOLD21[1]
+COLL_FOLD21[1]="COLLSTOP( 5, 2+%pCont )"
+
+DECL FOLD COLL_FOLD22[1]
+COLL_FOLD22[1]="COLLSTOP( 6, 2+%pCont )"
+
+DECL FOLD COLL_FOLD23[1]
+COLL_FOLD23[1]="COLLSTOP( 7, 2+%pCont )"
+
+DECL FOLD COLL_FOLD24[1]
+COLL_FOLD24[1]="COLLSTOP( 8, 2+%pCont )"
+
+DECL FOLD COLL_FOLD25[1]
+COLL_FOLD25[1]="COLLSTOP( 9, 2+%pCont )"
+
+DECL FOLD COLL_FOLD26[1]
+COLL_FOLD26[1]="COLLSTOP( 10, 2+%pCont )"
+
+DECL FOLD COLL_FOLD27[1]
+COLL_FOLD27[1]="COLLSTOP( 11, 2+%pCont )"
+
+DECL FOLD COLL_FOLD28[1]
+COLL_FOLD28[1]="COLLSTOP( 12, 2+%pCont )"
+
+DECL FOLD COLL_FOLD29[1]
+COLL_FOLD29[1]="COLLSTOP( 13, 2+%pCont )"
+
+DECL FOLD COLL_FOLD30[1]
+COLL_FOLD30[1]="COLLSTOP( 14, 2+%pCont )"
+
+DECL FOLD COLL_FOLD31[1]
+COLL_FOLD31[1]="COLLSTOP( 15, 2+%pCont )"
+
+DECL FOLD COLL_FOLD32[1]
+COLL_FOLD32[1]="COLLSTOP( 16, 2+%pCont )"
+
+; *** Beschreibung Inlineformulare ***
+
+; Kollision mit Interrupts
+DECL INLINEFORM Monitoring_1_On={FOCUS 0, FOLD[1] COLL_FOLD1 }
+DECL INLINEFORM Monitoring_1_Off={FOCUS 0, FOLD[1] COLL_FOLD17, PARAM[1] pCont }
+
+DECL INLINEFORM Monitoring_2_On={FOCUS 0, FOLD[1] COLL_FOLD2 }
+DECL INLINEFORM Monitoring_2_Off={FOCUS 0, FOLD[1] COLL_FOLD18, PARAM[1] pCont }
+
+DECL INLINEFORM Monitoring_3_On={FOCUS 0, FOLD[1] COLL_FOLD3 }
+DECL INLINEFORM Monitoring_3_Off={FOCUS 0, FOLD[1] COLL_FOLD19, PARAM[1] pCont }
+
+DECL INLINEFORM Monitoring_4_On={FOCUS 0, FOLD[1] COLL_FOLD4 }
+DECL INLINEFORM Monitoring_4_Off={FOCUS 0, FOLD[1] COLL_FOLD20, PARAM[1] pCont }
+
+; Kollision ohne Interrupts
+DECL INLINEFORM Monitoring_5_On={FOCUS 0, FOLD[1] COLL_FOLD5 }
+DECL INLINEFORM Monitoring_5_Off={FOCUS 0, FOLD[1] COLL_FOLD21, PARAM[1] pCont }
+
+DECL INLINEFORM Monitoring_6_On={FOCUS 0, FOLD[1] COLL_FOLD6 }
+DECL INLINEFORM Monitoring_6_Off={FOCUS 0, FOLD[1] COLL_FOLD22, PARAM[1] pCont }
+
+DECL INLINEFORM Monitoring_7_On={FOCUS 0, FOLD[1] COLL_FOLD7 }
+DECL INLINEFORM Monitoring_7_Off={FOCUS 0, FOLD[1] COLL_FOLD23, PARAM[1] pCont }
+
+DECL INLINEFORM Monitoring_8_On={FOCUS 0, FOLD[1] COLL_FOLD8 }
+DECL INLINEFORM Monitoring_8_Off={FOCUS 0, FOLD[1] COLL_FOLD24, PARAM[1] pCont }
+
+DECL INLINEFORM Monitoring_9_On={FOCUS 0, FOLD[1] COLL_FOLD9 }
+DECL INLINEFORM Monitoring_9_Off={FOCUS 0, FOLD[1] COLL_FOLD25, PARAM[1] pCont }
+
+DECL INLINEFORM Monitoring_10_On={FOCUS 0, FOLD[1] COLL_FOLD10 }
+DECL INLINEFORM Monitoring_10_Off={FOCUS 0, FOLD[1] COLL_FOLD26, PARAM[1] pCont }
+
+DECL INLINEFORM Monitoring_11_On={FOCUS 0, FOLD[1] COLL_FOLD11 }
+DECL INLINEFORM Monitoring_11_Off={FOCUS 0, FOLD[1] COLL_FOLD27, PARAM[1] pCont }
+
+DECL INLINEFORM Monitoring_12_On={FOCUS 0, FOLD[1] COLL_FOLD12 }
+DECL INLINEFORM Monitoring_12_Off={FOCUS 0, FOLD[1] COLL_FOLD28, PARAM[1] pCont }
+
+DECL INLINEFORM Monitoring_13_On={FOCUS 0, FOLD[1] COLL_FOLD13 }
+DECL INLINEFORM Monitoring_13_Off={FOCUS 0, FOLD[1] COLL_FOLD29, PARAM[1] pCont }
+
+DECL INLINEFORM Monitoring_14_On={FOCUS 0, FOLD[1] COLL_FOLD14 }
+DECL INLINEFORM Monitoring_14_Off={FOCUS 0, FOLD[1] COLL_FOLD30, PARAM[1] pCont }
+
+DECL INLINEFORM Monitoring_15_On={FOCUS 0, FOLD[1] COLL_FOLD15 }
+DECL INLINEFORM Monitoring_15_Off={FOCUS 0, FOLD[1] COLL_FOLD31, PARAM[1] pCont }
+
+DECL INLINEFORM Monitoring_16_On={FOCUS 0, FOLD[1] COLL_FOLD16 }
+DECL INLINEFORM Monitoring_16_Off={FOCUS 0, FOLD[1] COLL_FOLD32, PARAM[1] pCont }
+
+
+ENDTP

@@ -1,0 +1,368 @@
+;!============================================!
+;! Usertech Handling Tipdressing v4.01        !
+;! (C) 2001 DC-Bremen RBR-IH                  !
+;! Bearbeiter: Projektgruppe R230 B.Steffens  !
+;! Date: 10.05.2002				      !
+;! Tel.: 6652                                 !
+;!=============================================
+;!   Version 4.02
+;!     Aenderungsstand 13.11.2003 (Harry Konz DC-Sifi Tel:64913)
+;!     - Vorhub geändert (O_VH_ZU, O_VH_AUF)
+;!======================================================
+
+DECL PARAM P_Po1={VALUE {NAME: DEFAULT[] "Dress1"},shortcut[] "Dres", USERMODE 0}
+DECL PARAM P_Tool={VALUE {NUMBER: AUTOLIMIT FALSE, min 0,max 16,default 1},shortname[] "Tool[", UNIT[] "]", Shortcut[] "Tool", USERMODE 0}
+DECL PARAM P_Base={VALUE {NUMBER: AUTOLIMIT FALSE, min 0,max 16,default 1},shortname[] "Base[", UNIT[] "]", Shortcut[] "Base", USERMODE 0}
+DECL PARAM P_Ipo={VALUE {LIST: ITEM[1] {ITEM: VALUE[] "#BASE", DISP[] "FALSE"}, _ 
+ITEM[2] {ITEM: VALUE[] "#TCP", DISP[] "TRUE"} }, _ 
+SHORTNAME[] "EXT.TCP=" , USERMODE 0} 
+
+DECL PARAM P_POSITION={VALUE {FREE: DEFAULT[] ""}}
+DECL PARAM T_Tool={VALUE {FREE: DEFAULT[] ""}}
+DECL PARAM T_Base={VALUE {FREE: DEFAULT[] ""}}
+;DECL PARAM T_Ipo={VALUE {FREE: DEFAULT[] ""}}
+
+;+++++++++++++++++++++++++++++++++++++++++++++++++
+defscript Check
+message "Using fault:InputError!"
+do CANCELINLINEFORM
+do end
+endscript
+; ------create base data ---------
+defscript SET_BASE_NULL
+setvar(FULLPATH[] "$BASE", VALUE[] "$NULLFRAME")
+endscript
+
+defscript SET_BASEDATA
+setvar(FULLPATH[] "$BASE", VALUE[] "BASE_DATA[%P_BASE ]")
+endscript
+
+
+defscript BASE_DECISION
+switch "%P_BASE"
+case "0" do SET_BASE_NULL
+case else do SET_BASEDATA
+endswitch
+endscript
+
+; ------create tool data ---------
+defscript SET_TOOL_NULL
+setvar(FULLPATH[] "$TOOL", VALUE[] "$NULLFRAME")
+endscript
+
+defscript SET_TOOLDATA
+setvar(FULLPATH[] "$TOOL", VALUE[] "TOOL_DATA[%P_Tool ]")
+endscript
+
+defscript TOOL_DECISION
+switch "%P_Tool"
+case "0" do SET_TOOL_NULL
+case else do SET_TOOLDATA
+endswitch
+endscript
+;+++++++change parameter+++++++++++++++++
+defscript UEBERNAHME
+SETVAR(FULLPATH[] "$IPO_MODE", VALUE[] "%P_Ipo")
+SETVAR(FULLPATH[] "F%P_Po1 .IPO_FRAME", VALUE[] "%P_Ipo ")
+SETVAR(FULLPATH[] "F%P_Po1 .BASE_NO", VALUE[] "%P_BASE ")
+DO Base_DECISION
+showVAR(FULLPATH[] "F%P_Po1 .BASE_NO ", PARAM T_BASE )
+switch "%T_BASE <> %P_BASE "
+case TRUE do Check
+endswitch
+
+
+SETVAR(FULLPATH[] "F%P_Po1 .TOOL_NO", VALUE[] "%P_Tool ")
+DO TOOL_DECISION
+showVAR(FULLPATH[] "F%P_Po1 .TOOL_NO ", PARAM T_Tool )
+switch "%T_Tool <> %P_Tool "
+case TRUE do Check
+endswitch
+do ACCEPTINLINEFORM
+MESSAGE "Die neuen Parameter wurden in %P_Po1  uebernommen !"
+do END
+endscript
+;++++++change position++++++++++++++++
+defscript CHANGE
+SETVAR(FULLPATH[] "F%P_Po1 .BASE_NO", VALUE[] "%P_BASE ")
+DO BASE_DECISION
+SETVAR(FULLPATH[] "F%P_Po1 .TOOL_NO", VALUE[] "%P_Tool ")
+DO TOOL_DECISION
+SETVAR(FULLPATH[] "$IPO_MODE", VALUE[] "%P_Ipo")
+SETVAR(FULLPATH[] "F%P_Po1 .IPO_FRAME", VALUE[] "%P_Ipo ")
+SHOWVAR(FULLPATH[] "$POS_ACT", PARAM P_POSITION )
+SETVAR(FULLPATH[] "X%P_Po1 ", VALUE[] "%P_POSITION ")
+MESSAGE "Die neue Position wurde in %P_Po1  uebernommen !"
+do ACCEPTINLINEFORM
+endscript
+
+;+++++create new+++++++++++++++++
+defscript TOUCH_PTP_NEW
+SETVAR(FULLPATH[] "$IPO_MODE", VALUE[] "%P_Ipo")
+REDECL(PATH[] "%MODULE", _ 
+DECLARATION[] "DECL FDAT F%P_Po1 ={ _ 
+TOOL_NO %P_Tool ,BASE_NO %P_Base , _ 
+IPO_FRAME %P_Ipo }")
+DO BASE_DECISION
+DO TOOL_DECISION
+SHOWVAR(FULLPATH[] "$POS_ACT", PARAM P_POSITION )
+REDECL(PATH[] "%MODULE ", _
+DECLARATION[] "DECL E6POS X%P_Po1 =%P_POSITION" )
+SETVAR(FULLPATH[] "X%P_Po1 ", VALUE[] "%P_POSITION ")
+MESSAGE "Der Punkt %P_Po1  wurde automatisch angelegt !"
+do ACCEPTINLINEFORM
+endscript
+
+;+++++++++++++++++++++++++++++++++++++
+defscript TOUCH_3
+setvar(Fullpath[] "$DATAPATH[]", value[] "/"%MODULE/"")
+switch dialog "Soll die neue Position in Punkt %P_Po1  uebernommen werden ?"
+case NEIN do CANCELINLINEFORM
+case JA do CHANGE
+case
+case 
+case
+case
+case ABBRECHEN do CANCELINLINEFORM
+endswitch
+endscript
+;+++++++++++++++++++++++++++++++++++++
+defscript TOUCH_2
+switch dialog "Sollen die neuen Parameter in Punkt %P_Po1  uebernommen werden ?"
+case NEIN do CANCELINLINEFORM
+case JA do UEBERNAHME
+case
+case 
+case
+case
+case ABBRECHEN do CANCELINLINEFORM
+endswitch
+endscript
+;++++++++++++++++++++++++++++++++++++
+defscript TOUCH_1 
+setvar(Fullpath[] "$DATAPATH[]", value[] "/"%MODULE/"")
+switch "x%P_Po1 .x<>x%P_Po1 .x"
+case "FALSE" do TOUCH_2
+case else do TOUCH_PTP_NEW
+endswitch
+endscript
+;+++++++++++++Dress+++++++++++++++++++
+DECL PARAM Mov={shortname[] "Mov ", shortcut[] "Mv", unit[] " ", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "PTP", disp[] "PTP"}, _
+  ITEM[2] {ITEM:VALUE[] "LIN", disp[] "LIN" }}}
+Decl PARAM Gun_nr={SHORTNAME[] "Spot Gun ",VALUE {NUMBER:MIN 1,MAX 10,DEFAULT 1},UNIT[] " "}
+DECL PARAM retr={shortname[] "RETR ", shortcut[] "Retr", unit[] " ", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "#opn", disp[] "open"}, _
+  ITEM[2] {ITEM:VALUE[] "#clo", disp[] "close" }}}
+  
+
+DECL FOLD DressL_Fold[8]
+DressL_Fold[1] = "FDAT_ACT=F%P_Po1 "
+DressL_Fold[2] = "BAS(#FRAMES) "
+DressL_Fold[3] = "LIN  X%P_Po1 "
+DressL_Fold[4] = "S_ACT.GUN=%Gun_nr "
+DressL_Fold[5] = "S_ACT.RETR=%retr "
+DressL_Fold[6] = "S_READY=FALSE "
+DressL_Fold[7] = "USERSPOT (#DRESS,S_ACT ) "
+DressL_Fold[8] = "WAIT FOR  S_READY ";Application ready
+
+DECL FOLD DressP_Fold[8]
+
+DressP_Fold[1] = "FDAT_ACT=F%P_Po1 "
+DressP_Fold[2] = "BAS(#FRAMES) "
+DressP_Fold[3] = "PTP  X%P_Po1 "
+DressP_Fold[4] = "S_ACT.GUN=%Gun_nr "
+DressP_Fold[5] = "S_ACT.RETR=%retr "
+DressP_Fold[6] = "S_READY=FALSE "
+DressP_Fold[7] = "USERSPOT (#DRESS,S_ACT ) "
+DressP_Fold[8] = "WAIT FOR  S_READY ";Application ready
+
+DECL FOLD MaxWeldP_Fold[1]
+MaxWeldP_Fold[1] = "WaitMaxStandMenge (false,%Gun_nr ) ";check max. Standmenge
+
+deftp TIP={ SOt false,Soc true }
+Decl InlineForm LIN_={PARAM[1] P_Po1, PARAM[2] Gun_nr, PARAM[3] retr, PARAM[4] P_Tool,PARAM[5] P_Base,PARAM[6] P_Ipo, FOLD[1] DressL_Fold, STYLE WYSIWYG, ONACCEPT TOUCH_1, ontouchup TOUCH_3, }
+Decl InlineForm PTP_={PARAM[1] P_Po1, PARAM[2] Gun_nr, PARAM[3] retr, PARAM[4] P_Tool,PARAM[5] P_Base,PARAM[6] P_Ipo, FOLD[1] DressP_Fold, STYLE WYSIWYG, ONACCEPT TOUCH_1, ontouchup TOUCH_3, }
+ENDTP
+
+deftp Check={ SOt false,Soc true }
+Decl InlineForm _max_Standmenge={PARAM[1] Gun_nr,FOLD[1] MaxWeldP_Fold,STYLE WYSIWYG,}
+ENDTP
+
+
+deftp SPOTkey={SOT FALSE}
+;*************************************
+; Name:   B.Steffens                 *
+; Date:  14.05.2002                  *
+; Depart. DC-Bremen                  *
+;=================================== *
+;Spotwelding.Statkey for Spot Gun    *
+;Date: 2010-07-07                    *
+;Convert to 3.2.6 and set declaration*
+;	local                              *
+;*************************************
+DECL PARAM iVal1={VALUE {FREE: DEFAULT[] ""}}
+DECL PARAM iVal2={VALUE {FREE: DEFAULT[] ""}}
+DECL PARAM bVal1={VALUE {FREE: DEFAULT[] ""}}	
+	
+;=-==1-6 Strocke======
+DECL STATKEY KEY_GUN10P
+DECL STATKEY KEY_GUN10W
+DECL STATKEY KEY_GUN1to6P 
+DECL STATKEY KEY_GUN1to6W
+DECL STATKEY KEY_GUN7P
+DECL STATKEY KEY_GUN7W
+DECL STATKEY KEY_GUN8P
+DECL STATKEY KEY_GUN8W
+DECL STATKEY KEY_GUN9P
+DECL STATKEY KEY_GUN9W
+
+
+DEFSCRIPT KeyCount1
+	SETVAR (FULLPATH[] "//R1//USERSPOT.src//Key_NO ", VALUE[] "1")
+endscript
+
+DEFSCRIPT KeyCount7
+	SETVAR (FULLPATH[] "//R1//USERSPOT.src//Key_NO ", VALUE[] "2")
+endscript
+
+DEFSCRIPT KeyCount8
+	SETVAR (FULLPATH[] "//R1//USERSPOT.src//Key_NO ", VALUE[] "3")
+endscript
+
+DEFSCRIPT KeyCount9
+	SETVAR (FULLPATH[] "//R1//USERSPOT.src//Key_NO ", VALUE[] "4")
+endscript
+
+DEFSCRIPT KeyCount10
+	SETVAR (FULLPATH[] "//R1//USERSPOT.src//Key_NO ", VALUE[] "5")
+endscript
+
+DEFSCRIPT Show_Gun_pre_str_for
+	SET KEY_GUN10P={picture[] "c:\krc\util\prestrock_cl.ico",BottomTEXT[] "VH", ENABLE true}
+	SET KEY_GUN1to6P={picture[] "c:\krc\util\prestrock_cl.ico",BottomTEXT[] "VH", ENABLE true}
+	SET KEY_GUN7P={picture[] "c:\krc\util\prestrock_cl.ico",BottomTEXT[] "VH", ENABLE true}
+	SET KEY_GUN8P={picture[] "c:\krc\util\prestrock_cl.ico",BottomTEXT[] "VH", ENABLE true}
+	SET KEY_GUN9P={picture[] "c:\krc\util\prestrock_cl.ico",BottomTEXT[] "VH", ENABLE true}
+ENDSCRIPT
+
+DEFSCRIPT Show_Gun_pre_str_back
+	SET KEY_GUN10P={picture[] "c:\krc\util\prestrock_op.ico",BottomTEXT[] "VH", ENABLE true} 
+	SET KEY_GUN1to6P={picture[] "c:\krc\util\prestrock_op.ico",BottomTEXT[] "VH", ENABLE true} 
+	SET KEY_GUN7P={picture[] "c:\krc\util\prestrock_op.ico",BottomTEXT[] "VH", ENABLE true} 
+	SET KEY_GUN8P={picture[] "c:\krc\util\prestrock_op.ico",BottomTEXT[] "VH", ENABLE true} 	
+	SET KEY_GUN9P={picture[] "c:\krc\util\prestrock_op.ico",BottomTEXT[] "VH", ENABLE true} 
+ENDSCRIPT
+
+DEFSCRIPT O_Gun_pre_str_for
+	SHOWVAR (FULLPATH[] "//R1//USERSPOT.src//Key_NO ", PARAM iVal1)
+	SHOWVAR (FULLPATH[] "//R1//USERSPOT.src//Z_E_A[%iVal1 ].O_VH_AUF  ", PARAM iVal2)
+	SETVAR (FULLPATH[] "$OUT[%iVal2 ] ", VALUE[] "FALSE")
+	SHOWVAR (FULLPATH[] "//R1//USERSPOT.src//Z_E_A[%iVal1 ].O_VH_ZU  ", PARAM iVal2)
+	SETVAR (FULLPATH[] "$OUT[%iVal2 ] ", VALUE[] "TRUE")
+	do Show_Gun_pre_str_for
+endscript
+
+DEFSCRIPT O_Gun_pre_str_back
+	SHOWVAR (FULLPATH[] "//R1//USERSPOT.src//Key_NO ", PARAM iVal1)
+	SHOWVAR (FULLPATH[] "//R1//USERSPOT.src//Z_E_A[%iVal1 ].O_VH_AUF  ", PARAM iVal2)
+	SETVAR (FULLPATH[] "$OUT[%iVal2 ] ", VALUE[] "TRUE")
+	SHOWVAR (FULLPATH[] "//R1//USERSPOT.src//Z_E_A[%iVal1 ].O_VH_ZU  ", PARAM iVal2)
+	SETVAR (FULLPATH[] "$OUT[%iVal2 ] ", VALUE[] "FALSE")
+	do Show_Gun_pre_str_back
+endscript
+
+DEFSCRIPT Rob_Gun_Pre_str
+	SHOWVAR (FULLPATH[] "//R1//USERSPOT.src//Key_NO ", PARAM iVal1)	
+	SHOWVAR (FULLPATH[] "//R1//USERSPOT.src//Z_E_A[%iVal1 ].O_VH_ZU  ", PARAM iVal2)
+	SWITCH " $OUT[%iVal2 ]"
+		CASE " FALSE " do O_Gun_pre_str_for
+		CASE ELSE do O_Gun_pre_str_back
+	ENDSWITCH
+ENDSCRIPT
+
+
+;===============================
+
+DEFSCRIPT Show_Gun_W_str_for
+	SET KEY_GUN10W={picture[] "c:\krc\util\weldstrock_cl.ico",BottomTEXT[] "SH", ENABLE true} 
+	SET KEY_GUN1to6W={picture[] "c:\krc\util\weldstrock_cl.ico",BottomTEXT[] "SH", ENABLE true} 
+	SET KEY_GUN7W={picture[] "c:\krc\util\weldstrock_cl.ico",BottomTEXT[] "SH", ENABLE true} 
+	SET KEY_GUN8W={picture[] "c:\krc\util\weldstrock_cl.ico",BottomTEXT[] "SH", ENABLE true} 
+	SET KEY_GUN9W={picture[] "c:\krc\util\weldstrock_cl.ico",BottomTEXT[] "SH", ENABLE true} 
+ENDSCRIPT
+
+DEFSCRIPT Show_Gun_W_str_back
+	SET KEY_GUN10W={picture[] "c:\krc\util\prestrock_cl.ico",BottomTEXT[] "SH", ENABLE true} 
+	SET KEY_GUN1to6W={picture[] "c:\krc\util\prestrock_cl.ico",BottomTEXT[] "SH", ENABLE true} 
+	SET KEY_GUN7W={picture[] "c:\krc\util\prestrock_cl.ico",BottomTEXT[] "SH", ENABLE true} 
+	SET KEY_GUN8W={picture[] "c:\krc\util\prestrock_cl.ico",BottomTEXT[] "SH", ENABLE true} 
+	SET KEY_GUN9W={picture[] "c:\krc\util\prestrock_cl.ico",BottomTEXT[] "SH", ENABLE true} 
+ENDSCRIPT
+
+DEFSCRIPT O_Gun_W_str_for
+	SHOWVAR (FULLPATH[] "//R1//USERSPOT.src//Key_NO ", PARAM iVal1)
+	SHOWVAR (FULLPATH[] "//R1//USERSPOT.src//Z_E_A[%iVal1 ].O_SH  ", PARAM iVal2)
+	SETVAR (FULLPATH[] "$OUT[%iVal2 ] ", VALUE[] "TRUE")
+	do Show_Gun_W_str_for
+endscript
+
+
+DEFSCRIPT O_Gun_W_str_back
+	SHOWVAR (FULLPATH[] "//R1//USERSPOT.src//Key_NO ", PARAM iVal1)
+	SHOWVAR (FULLPATH[] "//R1//USERSPOT.src//Z_E_A[%iVal1 ].O_SH  ", PARAM iVal2)
+	SETVAR (FULLPATH[] "$OUT[%iVal2 ] ", VALUE[] "FALSE")
+	do Show_Gun_W_str_back
+endscript
+
+
+DEFSCRIPT Rob_Gun_W_str
+	SHOWVAR (FULLPATH[] "//R1//USERSPOT.src//Key_NO ", PARAM iVal1)	
+	SHOWVAR (FULLPATH[] "//R1//USERSPOT.src//Z_E_A[%iVal1 ].O_SH  ", PARAM iVal2)
+	SWITCH " $OUT[%iVal2 ]"
+		CASE " FALSE " do O_Gun_W_str_for
+		CASE ELSE do O_Gun_W_str_back
+	ENDSWITCH
+ENDSCRIPT
+
+;===============================
+
+
+SET KEY_GUN10P={picture[] "c:\krc\util\prestrock_op.ico",BottomTEXT[] "VH", style #switch, ONKEYDOWN Rob_Gun_Pre_str, USERMODE 0, NEED_SAFETYSWITCH true}
+SET KEY_GUN1To6P={picture[] "c:\krc\util\prestrock_op.ico",BottomTEXT[] "VH",style #switch, ONKEYDOWN Rob_Gun_Pre_str, USERMODE 0, NEED_SAFETYSWITCH true }
+SET KEY_GUN7P={picture[] "c:\krc\util\prestrock_op.ico",BottomTEXT[] "VH", style #switch, ONKEYDOWN Rob_Gun_Pre_str, USERMODE 0, NEED_SAFETYSWITCH true}
+SET KEY_GUN8P={ picture[] "c:\krc\util\prestrock_op.ico",BottomTEXT[] "VH",style #switch, ONKEYDOWN Rob_Gun_Pre_str, USERMODE 0, NEED_SAFETYSWITCH true}
+SET KEY_GUN9P={ picture[] "c:\krc\util\prestrock_op.ico",BottomTEXT[] "VH",style #switch, ONKEYDOWN Rob_Gun_Pre_str, USERMODE 0, NEED_SAFETYSWITCH true}
+SET KEY_GUN10W={picture[] "c:\krc\util\prestrock_cl.ico",BottomTEXT[] "SH", style #switch, ONKEYDOWN Rob_Gun_W_str, USERMODE 0, NEED_SAFETYSWITCH true }
+SET KEY_GUN1To6W={picture[] "c:\krc\util\prestrock_cl.ico",BottomTEXT[] "SH", style #switch, ONKEYDOWN Rob_Gun_W_str, USERMODE 0, NEED_SAFETYSWITCH true}
+SET KEY_GUN7W={picture[] "c:\krc\util\prestrock_cl.ico",BottomTEXT[] "SH", style #switch, ONKEYDOWN Rob_Gun_W_str, USERMODE 0, NEED_SAFETYSWITCH true}
+SET KEY_GUN8W={picture[] "c:\krc\util\prestrock_cl.ico",BottomTEXT[] "SH", style #switch, ONKEYDOWN Rob_Gun_W_str, USERMODE 0, NEED_SAFETYSWITCH true}
+SET KEY_GUN9W={picture[] "c:\krc\util\prestrock_cl.ico",BottomTEXT[] "SH", style #switch, ONKEYDOWN Rob_Gun_W_str, USERMODE 0, NEED_SAFETYSWITCH true }
+
+DECL STATKEYBAR STATBAR_GUN10
+DECL STATKEYBAR STATBAR_GUN1_6
+DECL STATKEYBAR STATBAR_GUN7
+DECL STATKEYBAR STATBAR_GUN8
+DECL STATKEYBAR STATBAR_GUN9
+
+DECL STATKEY ChangeToGun10={TOPTEXT[] "Extern",CenterTEXT[] "",BottomTEXT[] "Gun 4", NEXT STATBAR_GUN10}
+DECL STATKEY ChangeToGun1_6={TOPTEXT[] "Gun",CenterTEXT[] "on",BottomTEXT[] "Robot", NEXT STATBAR_GUN1_6}
+DECL STATKEY ChangeToGun7={TOPTEXT[] "Extern",CenterTEXT[] "",BottomTEXT[] "Gun 1", NEXT STATBAR_GUN7}
+DECL STATKEY ChangeToGun8={TOPTEXT[] "Extern",CenterTEXT[] "",BottomTEXT[] "Gun 2", NEXT STATBAR_GUN8}
+DECL STATKEY ChangeToGun9={TOPTEXT[] "Extern",CenterTEXT[] "",BottomTEXT[] "Gun 3", NEXT STATBAR_GUN9}
+
+SET STATBAR_GUN10={ STATKEY[1] KEY_GUN10W, STATKEY[2] KEY_GUN10P, STATKEY[3] ChangeToGun1_6}
+SET STATBAR_GUN1_6={ STATKEY[1]  KEY_GUN1To6W, STATKEY[2] KEY_GUN1To6P, STATKEY[3] ChangeToGun7}
+SET STATBAR_GUN7={ STATKEY[1] KEY_GUN7W, STATKEY[2] KEY_GUN7P, STATKEY[3] ChangeToGun8}
+SET STATBAR_GUN8={ STATKEY[1] KEY_GUN8W, STATKEY[2] KEY_GUN8P, STATKEY[3] ChangeToGun9}
+SET STATBAR_GUN9={ STATKEY[1] KEY_GUN9W, STATKEY[2] KEY_GUN9P, STATKEY[3] ChangeToGun10 }
+
+SET ChangeToGun10={ ONKEYDOWN KeyCount1, USERMODE 0, NEED_SAFETYSWITCH FALSE }
+SET ChangeToGun1_6={ONKEYDOWN KeyCount7, USERMODE 0, NEED_SAFETYSWITCH FALSE }
+SET ChangeToGun7={ ONKEYDOWN KeyCount8, USERMODE 0, NEED_SAFETYSWITCH FALSE }
+SET ChangeToGun8={ ONKEYDOWN KeyCount9, USERMODE 0, NEED_SAFETYSWITCH FALSE }
+SET ChangeToGun9={ ONKEYDOWN KeyCount10, USERMODE 0, NEED_SAFETYSWITCH FALSE }
+
+
+
+ENDTP

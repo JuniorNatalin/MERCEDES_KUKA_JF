@@ -1,0 +1,19 @@
+&ACCESS RVO2
+&COMMENT Actros Z3.1_Z3.2
+DEF chk_w5_grp3_opn( )
+
+; Check gripper ACTROS OPEN Z3.1 Z3.2
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+WAIT FOR (NOT $IN[12] AND NOT $IN[14])
+WAIT FOR ($IN[11] AND $IN[13])
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+
+END

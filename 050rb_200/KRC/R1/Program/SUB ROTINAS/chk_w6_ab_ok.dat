@@ -1,0 +1,4 @@
+&ACCESS RVP2
+&COMMENT Condicoes iniciais dock 6 - Deposito
+DEFDAT CHK_W6_AB_OK PUBLIC
+ENDDAT

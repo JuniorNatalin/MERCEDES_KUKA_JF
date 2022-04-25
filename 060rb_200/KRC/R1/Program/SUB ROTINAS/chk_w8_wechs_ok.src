@@ -1,0 +1,19 @@
+&ACCESS RVO11
+&REL 1
+&COMMENT Check Tool change
+DEF chk_w8_wechs_ok( )
+;Diag_Appl(#on,5)
+
+; VERIFICAÇÃO DE FERRAMENTA: TOOL CHANGE
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+wait for (( $in[161]) and (($in[169]) or (NOT ($in[169]) and $in[3320])) and ($in [177]) and ($in [185]) and (not $in[219]))
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End -------
+;Diag_Appl(#Off,5)
+END

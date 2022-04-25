@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<XmlLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <MaintenanceGroups>
+    <MaintenanceGroup Name="MainAxisMaintenance">
+      <MaintenanceLogs>
+        <MaintenanceLog IntervalInYears="4" Maintenance="MainAxisMaintenance">
+          <CurrentDate>2011-06-20T00:00:00+02:00</CurrentDate>
+          <UserName>kuka roboter gmbh</UserName>
+          <RunTimeInHours>8</RunTimeInHours>
+          <OrderNumber>51246934587</OrderNumber>
+          <Comment>durchgefuehrt alle i.o</Comment>
+        </MaintenanceLog>
+      </MaintenanceLogs>
+    </MaintenanceGroup>
+  </MaintenanceGroups>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>R1KbAQIfsvvToHC1I1wPIb1cMok=</DigestValue></Reference><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>R1KbAQIfsvvToHC1I1wPIb1cMok=</DigestValue></Reference></SignedInfo><SignatureValue>hLIlp2Wy+BsEsj/C+pk1apcZId050fXMYIa9J5ABWttEXOynWGP9b4VjuNS8OQOUrpK9h3LEp0hY7J3vZV00nPid53QoUEOMTEJ0H91ePHTlv0Wkllb5NE70rjPYRtWr9aOWg3L3sAN9zPaRjpm7epVUgKHbBATUNsD+T9aqBmA=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>w4yr/0V/yShkBI54NICmUrxkvGhm99YUjnli+25q6KkbG8H3lUQVRyQIzLM24XT+l9WxPnp7HnXonzXI+n5OaDQIHbjk+LAzassX0Tr0IyH72aSQtNfrqlci7NFDupedmNv95gLK0JDcmr17SF3PsA1k9cIsKJapEMBi7RaZFAs=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue></KeyInfo></Signature></XmlLog>

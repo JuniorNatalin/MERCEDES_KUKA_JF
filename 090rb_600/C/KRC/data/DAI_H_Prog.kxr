@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns="http://www.kuka.com/schemas/kxr/2009">
+	<module name="DAI_H_Prog">
+		<uiText key="dai_rob_ok_0">
+			<text xml:lang="de-DEV">A C H T U N G !!! Nur in $T1 fahren</text>
+			<text xml:lang="en-DEV">A T T E N T I O N !!! Only drive in $T1</text>
+		</uiText>
+		<uiText key="dai_rob_ok_1">
+			<text xml:lang="de-DEV">A C H T U N G !!! Messspitze an Roboterflansch anbringen</text>
+			<text xml:lang="en-DEV">; A T T E N T I O N !!! Attach peak at robot-flange</text>
+		</uiText>
+		<uiText key="dai_rob_ok_2">
+			<text xml:lang="de-DEV">Position am Roboter kontrollieren!</text>
+			<text xml:lang="en-DEV">Check Position </text>
+		</uiText>
+		<uiText key="dai_rob_ok_3">
+			<text xml:lang="de-DEV">A C H T U N G !!! Messspitze an Roboterflansch entfernen</text>
+			<text xml:lang="en-DEV">A T T E N T I O N !!! Remove peak at robot-flange</text>
+		</uiText>
+		<uiText key="dai_tool_ok_0">
+			<text xml:lang="de-DEV">A C H T U N G !!! Nur in $T1 fahren</text>
+			<text xml:lang="en-DEV">A T T E N T I O N !!! Only drive in $T1</text>
+		</uiText>
+		<uiText key="dai_tool_ok_1">
+			<text xml:lang="de-DEV">Wenn notwendig vorher das Werkzeug im Bahnhof ablegen</text>
+			<text xml:lang="en-DEV">Decouple tool if it is necessary</text>
+		</uiText>		
+		<uiText key="dai_tool_ok_2">
+			<text xml:lang="de-DEV">Roboterprüfprogramm wird ausgeführt </text>
+			<text xml:lang="en-DEV">Run roboter-check-program</text>
+		</uiText>	
+		<uiText key="dai_tool_ok_3">
+			<text xml:lang="de-DEV">Wenn notwendig richtig  Werkzeug ankoppeln</text>
+			<text xml:lang="en-DEV">Couple correct tool if it is necessary</text>
+		</uiText>		
+		<uiText key="dai_tool_ok_4">
+			<text xml:lang="de-DEV">1. Kontrollposition mit Tool 64</text>
+			<text xml:lang="en-DEV">1. control-position with tool 64</text>
+		</uiText>	
+		<uiText key="dai_tool_ok_5">
+			<text xml:lang="de-DEV">Auf aktuelles Tool umschalten!</text>
+			<text xml:lang="en-DEV">Switchting to the actually tool!</text>
+		</uiText>	
+		<uiText key="dai_tool_ok_6">
+			<text xml:lang="de-DEV">1. Kontrollposition mit aktuellem Tool</text>
+			<text xml:lang="en-DEV">1. control-position with actually tool</text>
+		</uiText>	
+		<uiText key="dai_before_zero_0">
+			<text xml:lang="de-DEV">A C H T U N G !!! Nur in $T1 fahren</text>
+			<text xml:lang="en-DEV">A T T E N T I O N !!! Only drive in $T1</text>
+		</uiText>
+		<uiText key="dai_before_zero_1">
+			<text xml:lang="de-DEV">zum Anfahren der Nullstellung Satzzeiger setzen</text>
+			<text xml:lang="en-DEV">for approaching the zero set record pointer</text>
+		</uiText>	
+		<uiText key="dai_before_zero_2">
+			<text xml:lang="de-DEV">mechanische Null wird angefahren</text>
+			<text xml:lang="en-DEV">mechanical zero is approached</text>
+		</uiText>			
+		<uiText key="dai_before_zero_3">
+			<text xml:lang="de-DEV">Kerben anfahren. IR-Vorjustagestellung</text>
+			<text xml:lang="en-DEV">Approach scores. specific calibration setting</text>
+		</uiText>			
+		<uiText key="dai_before_zero_4">
+			<text xml:lang="de-DEV">Justage!</text>
+			<text xml:lang="en-DEV">Calibration!</text>
+		</uiText>		
+		<uiText key="dai_ldd_0">
+			<text xml:lang="de-DEV">A C H T U N G !!! Nur in $T1 fahren</text>
+			<text xml:lang="en-DEV">A T T E N T I O N !!! Only drive in $T1</text>
+		</uiText>
+		<uiText key="dai_ldd_1">
+			<text xml:lang="de-DEV">Pendelpunkt erreicht</text>
+			<text xml:lang="en-DEV">pendelum-point reached</text>
+		</uiText>
+		<uiText key="dai_maintenance_0">
+			<text xml:lang="de-DEV">Wartungsposition erreicht</text>
+			<text xml:lang="en-DEV">maintenanceposition reached</text>
+		</uiText>
+		<uiText key="dai_maintenance_1">
+			<text xml:lang="de-DEV">Pendelpunkt erreicht</text>
+			<text xml:lang="en-DEV">pendelum-point reached</text>
+		</uiText>
+		<uiText key="dai_cleaning_0">
+			<text xml:lang="de-DEV">Wartungsposition erreicht</text>
+			<text xml:lang="en-DEV">maintenanceposition reached</text>
+		</uiText>
+		<uiText key="dai_toolchange_0">
+			<text xml:lang="de-DEV">A C H T U N G !!! Nur in $T1 fahren</text>
+			<text xml:lang="en-DEV">A T T E N T I O N !!! Only drive in $T1</text>
+		</uiText>	
+		<uiText key="dai_toolchange_1">
+			<text xml:lang="de-DEV">A C H T U N G !!! Nur in $T1 fahren</text>
+			<text xml:lang="en-DEV">A T T E N T I O N !!! Only drive in $T1</text>
+		</uiText>	
+		<uiText key="dai_grp_ok_0">
+			<text xml:lang="de-DEV">A C H T U N G !!! Nur in $T1 fahren</text>
+			<text xml:lang="en-DEV">A T T E N T I O N !!! Only drive in $T1</text>
+		</uiText>
+		<uiText key="dai_grp_ok_1">
+			<text xml:lang="de-DEV">Wenn notwendig vorher das Werkzeug im Bahnhof ablegen</text>
+			<text xml:lang="en-DEV">Decouple tool if it is necessary</text>
+		</uiText>		
+		<uiText key="dai_grp_ok_2">
+			<text xml:lang="de-DEV">Roboterprüfprogramm wird ausgeführt </text>
+			<text xml:lang="en-DEV">Run roboter-check-program</text>
+		</uiText>	
+		<uiText key="dai_grp_ok_3">
+			<text xml:lang="de-DEV">Wenn notwendig richtig  Werkzeug ankoppeln</text>
+			<text xml:lang="en-DEV">Couple correct tool if it is necessary</text>
+		</uiText>		
+		<uiText key="dai_grp_ok_4">
+			<text xml:lang="de-DEV">1. Kontrollposition mit Tool 64</text>
+			<text xml:lang="en-DEV">1. control-position with tool 64</text>
+		</uiText>	
+		<uiText key="dai_grp_ok_5">
+			<text xml:lang="de-DEV">Auf aktuelles Tool umschalten!</text>
+			<text xml:lang="en-DEV">Switchting to the actually tool!</text>
+		</uiText>	
+		<uiText key="dai_grp_ok_6">
+			<text xml:lang="de-DEV">1. Kontrollposition mit aktuellem Tool</text>
+			<text xml:lang="en-DEV">1. control-position with actually tool</text>
+		</uiText>	
+   </module>
+</resources>

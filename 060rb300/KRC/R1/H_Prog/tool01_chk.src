@@ -1,0 +1,231 @@
+&ACCESS RVP
+&REL 64
+&COMMENT Werkzeugpruefprogramm
+&PARAM TEMPLATE = C:\KRC\ROBOTER\TEMPLATE\VG_HP
+&PARAM EDITMASK = *
+DEF TOOL01_chk( )
+;FOLD INI
+;FOLD BASISTECH INI
+    GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM ( )
+    INTERRUPT ON 3
+    BAS (#INITMOV,0 )
+;ENDFOLD (BASISTECH INI)
+;FOLD SPOTTECH INI
+    USERSPOT(#INIT)
+;ENDFOLD (SPOTTECH INI)
+;FOLD GRIPPERTECH INI
+    USER_GRP(0,DUMMY,DUMMY,GDEFAULT)
+;ENDFOLD (GRIPPERTECH INI)
+;FOLD USER INI
+;Make your modifications here
+;FOLD COLLISION_V_3.01 INI ;%{E}
+    IF (COLLISION_DATA[1].I_NR>0) THEN
+    GLOBAL INTERRUPT DECL 21 WHEN $IN[COLLISION_DATA[1].I_NR]==FALSE DO COLLSTOP (1,0 )
+    ENDIF
+    IF (COLLISION_DATA[2].I_NR>0) THEN
+    GLOBAL INTERRUPT DECL 22 WHEN $IN[COLLISION_DATA[2].I_NR]==FALSE DO COLLSTOP (2,0 )
+    ENDIF
+    IF (COLLISION_DATA[3].I_NR>0) THEN
+    GLOBAL INTERRUPT DECL 23 WHEN $IN[COLLISION_DATA[3].I_NR]==FALSE DO COLLSTOP (3,0 )
+    ENDIF
+    IF (COLLISION_DATA[4].I_NR>0) THEN
+    GLOBAL INTERRUPT DECL 24 WHEN $IN[COLLISION_DATA[4].I_NR]==FALSE DO COLLSTOP (4,0 )
+    ENDIF
+;ENDFOLD (Collision)
+;ENDFOLD (USER INI)
+;ENDFOLD (INI)
+;FOLD ; Anlagenbezeichn:               Stations-Nr:;%{PE}%R 5.2.7,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:Anlagenbezeichn:               Stations-Nr:
+;ENDFOLD
+;FOLD ; Stand / Version:;%{PE}%R 5.2.7,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:Stand / Version:
+;ENDFOLD
+;FOLD ; Name Bearbeiter:;%{PE}%R 5.2.7,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:Name Bearbeiter:
+;ENDFOLD
+;Sicherheitsfrage (nur im Musterprogramm, nach teachen entfernen)
+wait for false
+;FOLD ; ***************************************;%{PE}%R 2.4.6,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:***************************************
+;ENDFOLD
+;FOLD ; A C H T U N G  ! ! !   Nur in T1 fahren;%{PE}%R 2.4.6,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:A C H T U N G  ! ! !   Nur in T1 fahren
+;ENDFOLD
+;FOLD ; ***************************************;%{PE}%R 2.4.6,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:***************************************
+;ENDFOLD
+WAIT FOR $T1
+;Wenn notwendig vorher das Werkzeug im Bahnhof ablegen
+;Roboterpruefprogramm
+rob_ok ( )
+;Wenn notwendig zu pruefendes Werkzeug ankoppeln
+;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
+$BWDSTART = FALSE
+PDAT_ACT=PDEFAULT
+BAS(#PTP_DAT)
+FDAT_ACT=FHOME
+BAS(#FRAMES)
+BAS(#VEL_PTP,100)
+$H_POS=XHOME
+PTP XHOME 
+;ENDFOLD
+;FOLD PTP LHP5  Vel= 100 % PDAT Tool[16] Base[16];%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:LHP5, 3:, 5:100, 7:PDAT
+    $BWDSTART = FALSE
+    PDAT_ACT=PPDAT
+    BAS(#PTP_DAT)
+    FDAT_ACT=FLHP5
+    BAS(#FRAMES)
+    BAS(#VEL_PTP,100)
+    PTP XLHP5
+;ENDFOLD
+;FOLD PTP LHP4  Vel= 100 % PDAT Tool[16] Base[16];%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:LHP4, 3:, 5:100, 7:PDAT
+    $BWDSTART = FALSE
+    PDAT_ACT=PPDAT
+    BAS(#PTP_DAT)
+    FDAT_ACT=FLHP4
+    BAS(#FRAMES)
+    BAS(#VEL_PTP,100)
+    PTP XLHP4
+;ENDFOLD
+;FOLD PTP LHP7  Vel= 100 % PDAT Tool[16] Base[16];%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:LHP7, 3:, 5:100, 7:PDAT
+    $BWDSTART = FALSE
+    PDAT_ACT=PPDAT
+    BAS(#PTP_DAT)
+    FDAT_ACT=FLHP7
+    BAS(#FRAMES)
+    BAS(#VEL_PTP,100)
+    PTP XLHP7
+;ENDFOLD
+;FOLD PTP LHP6  Vel= 100 % PDAT Tool[16] Base[16];%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:LHP6, 3:, 5:100, 7:PDAT
+    $BWDSTART = FALSE
+    PDAT_ACT=PPDAT
+    BAS(#PTP_DAT)
+    FDAT_ACT=FLHP6
+    BAS(#FRAMES)
+    BAS(#VEL_PTP,100)
+    PTP XLHP6
+;ENDFOLD
+;FOLD ; 1.Kontrollposition mit Tool 16;%{PE}%R 5.2.17,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:1.Kontrollposition mit Tool 16
+;ENDFOLD
+;FOLD ; Pruefspitze - Werkzeugspitze bzw. Greiferreferenzpunkt;%{PE}%R 2.4.6,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:Pruefspitze - Werkzeugspitze bzw. Greiferreferenzpunkt
+;ENDFOLD
+;FOLD ; Spitze unten;%{PE}%R 2.4.6,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:Spitze unten
+;ENDFOLD
+;FOLD LIN Kontroll1  Vel= 1 m/s CPDAT Tool[16] Base[16];%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VLIN,%P 1:LIN, 2:Kontroll1, 3:, 5:1, 7:CPDAT
+    $BWDSTART = FALSE
+    LDAT_ACT=LCPDAT
+    BAS(#CP_DAT)
+    FDAT_ACT=FKontroll1
+    BAS(#FRAMES)
+    BAS(#VEL_CP,1)
+    LIN XKontroll1
+;ENDFOLD
+WAIT FOR  $IN[1026]==TRUE ; Kontrollposition Werkzeug mit Tool16 (Nullwerkzeug)
+;PTP LHP freifahren
+;FOLD LIN LHP8  Vel= 2 m/s CPDAT Tool[16] Base[16];%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VLIN,%P 1:LIN, 2:LHP8, 3:, 5:2, 7:CPDAT
+    $BWDSTART = FALSE
+    LDAT_ACT=LCPDAT
+    BAS(#CP_DAT)
+    FDAT_ACT=FLHP8
+    BAS(#FRAMES)
+    BAS(#VEL_CP,2)
+    LIN XLHP8
+;ENDFOLD
+;FOLD PTP LHP9  Vel= 100 % PDAT Tool[16] Base[16];%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:LHP9, 3:, 5:100, 7:PDAT
+    $BWDSTART = FALSE
+    PDAT_ACT=PPDAT
+    BAS(#PTP_DAT)
+    FDAT_ACT=FLHP9
+    BAS(#FRAMES)
+    BAS(#VEL_PTP,100)
+    PTP XLHP9
+;ENDFOLD
+;FOLD PTP LHP10  Vel= 100 % PDAT Tool[16] Base[16];%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:LHP10, 3:, 5:100, 7:PDAT
+    $BWDSTART = FALSE
+    PDAT_ACT=PPDAT
+    BAS(#PTP_DAT)
+    FDAT_ACT=FLHP10
+    BAS(#FRAMES)
+    BAS(#VEL_PTP,100)
+    PTP XLHP10
+;ENDFOLD
+;Wichtig: auf Home zurueck fahren und auf aktuelles TOOL umschalten
+;FOLD PTP HOME  Vel= 100 % PDAT;%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:PDAT
+    $BWDSTART = FALSE
+    PDAT_ACT=PPDAT
+    BAS(#PTP_DAT)
+    FDAT_ACT=FHOME
+    BAS(#FRAMES)
+    BAS(#VEL_PTP,100)
+    $H_POS=XHOME
+    PTP XHOME
+;ENDFOLD
+;FOLD PTP LHP12  Vel= 100 % PDAT Tool[1] Base[16];%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:LHP12, 3:, 5:100, 7:PDAT
+    $BWDSTART = FALSE
+    PDAT_ACT=PPDAT
+    BAS(#PTP_DAT)
+    FDAT_ACT=FLHP12
+    BAS(#FRAMES)
+    BAS(#VEL_PTP,100)
+    PTP XLHP12
+;ENDFOLD
+;FOLD PTP LHP13  Vel= 100 % PDAT Tool[1] Base[16];%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:LHP13, 3:, 5:100, 7:PDAT
+    $BWDSTART = FALSE
+    PDAT_ACT=PPDAT
+    BAS(#PTP_DAT)
+    FDAT_ACT=FLHP13
+    BAS(#FRAMES)
+    BAS(#VEL_PTP,100)
+    PTP XLHP13
+;ENDFOLD
+;FOLD ; 2.Kontrollposition mit Tool aktuell;%{PE}%R 5.2.17,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:2.Kontrollposition mit Tool aktuell
+;ENDFOLD
+;FOLD ; Pruefspitze - Werkzeugspitze bzw. Greiferreferenzpunkt;%{PE}%R 2.4.6,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:Pruefspitze - Werkzeugspitze bzw. Greiferreferenzpunkt
+;ENDFOLD
+;FOLD ; Spitze unten;%{PE}%R 2.4.6,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:Spitze unten
+;ENDFOLD
+;PTP KONTROLL2 teachen mit dem zugehoerigen Tool
+;FOLD LIN Kontroll2  Vel= 1 m/s CPDAT Tool[1] Base[16];%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VLIN,%P 1:LIN, 2:Kontroll2, 3:, 5:1, 7:CPDAT
+    $BWDSTART = FALSE
+    LDAT_ACT=LCPDAT
+    BAS(#CP_DAT)
+    FDAT_ACT=FKontroll2
+    BAS(#FRAMES)
+    BAS(#VEL_CP,1)
+    LIN XKontroll2
+;ENDFOLD
+WAIT FOR  $IN[1026]==TRUE ; Kontrollposition Werkzeug mit zugehoerigem Tool
+;PTP LHP zur Ausgangsstellung
+;FOLD LIN LHP15  Vel= 1 m/s CPDAT Tool[1] Base[16];%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VLIN,%P 1:LIN, 2:LHP15, 3:, 5:1, 7:CPDAT
+    $BWDSTART = FALSE
+    LDAT_ACT=LCPDAT
+    BAS(#CP_DAT)
+    FDAT_ACT=FLHP15
+    BAS(#FRAMES)
+    BAS(#VEL_CP,1)
+    LIN XLHP15
+;ENDFOLD
+;FOLD PTP LHP16  Vel= 100 % PDAT Tool[1] Base[16];%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:LHP16, 3:, 5:100, 7:PDAT
+    $BWDSTART = FALSE
+    PDAT_ACT=PPDAT
+    BAS(#PTP_DAT)
+    FDAT_ACT=FLHP16
+    BAS(#FRAMES)
+    BAS(#VEL_PTP,100)
+    PTP XLHP16
+;ENDFOLD
+;FOLD PTP LHP17  Vel= 100 % PDAT Tool[1] Base[16];%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:LHP17, 3:, 5:100, 7:PDAT
+    $BWDSTART = FALSE
+    PDAT_ACT=PPDAT
+    BAS(#PTP_DAT)
+    FDAT_ACT=FLHP17
+    BAS(#FRAMES)
+    BAS(#VEL_PTP,100)
+    PTP XLHP17
+;ENDFOLD
+;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%R 3.2.43,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
+    $BWDSTART = FALSE
+    PDAT_ACT=PDEFAULT
+    BAS(#PTP_DAT)
+    FDAT_ACT=FHOME
+    BAS(#FRAMES)
+    BAS(#VEL_PTP,100)
+    $H_POS=XHOME
+    PTP XHOME
+;ENDFOLD
+;Wenn notwendig das ursprüngliche Werkzeug wieder ankoppeln
+END

@@ -1,0 +1,181 @@
+&ACCESS RO
+&REL 2
+&COMMENT Tool CheckCorrection Program Ver_1.03
+DEFDAT  CHECKTOOL PUBLIC
+;fold Declaration V 1.03
+ENUM TResultMode ToolNr,ToolData,ToolDiff
+STRUC C_TXT CHAR MSGT[70],CHAR Dialg[38]
+STRUC Cor_Setting INT MaxCharMSG,INT MaxDlgChar,BOOL FirstSet,INT C_Lang,REAL ToolDiff
+DECL Cor_Setting Corr_Set={MaxCharMSG 70,MaxDlgChar 38,FirstSet FALSE,C_Lang 0,ToolDiff 6.25}
+DECL TResultMode MsgResult
+DECL MSG_T EMPTY_MSG
+DECL INT Tool_No=1
+BOOL Check_Flag=FALSE
+DECL INT MAX_Master_Tool=32
+DECL FRAME PosTmp
+;endfold
+;fold LogDatas V1.03
+ENUM eLCheckMode restore,check,modify,NoModify,none
+STRUC TToolLog eLCheckMode LogCheckMode,INT iY,INT iT,INT iTNo,FRAME OldTool,NewTool
+DECL INT MaxLogs=20
+DECL TToolLog ToolLog[20]
+ToolLog[1]={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+ToolLog[2]={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+ToolLog[3]={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+ToolLog[4]={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+ToolLog[5]={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+ToolLog[6]={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+ToolLog[7]={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+ToolLog[8]={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+ToolLog[9]={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+ToolLog[10]={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+ToolLog[11]={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+ToolLog[12]={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+ToolLog[13]={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+ToolLog[14]={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+ToolLog[15]={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+ToolLog[16]={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+ToolLog[17]={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+ToolLog[18]={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+ToolLog[19]={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+ToolLog[20]={LogCheckMode #none,iY 0,iT 0,iTNo 0,OldTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0},NewTool {X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}}
+;endfold (LogDatas)
+;fold Datas V 1.03
+DECL FRAME Master_Tool[32]
+Master_Tool[1]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[2]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[3]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[4]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[5]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[6]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[7]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[8]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[9]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[10]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[11]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[12]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[13]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[14]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[15]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[16]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[17]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[18]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[19]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[20]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[21]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[22]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[23]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[24]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[25]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[26]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[27]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[28]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[29]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[30]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[31]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+Master_Tool[32]={X 0.0,Y 0.0,Z 0.0,A 0.0,B 0.0,C 0.0}
+
+DECL REAL Diff_Wzk[3]
+Diff_Wzk[1]=0.0
+Diff_Wzk[2]=0.0
+Diff_Wzk[3]=0.0
+
+DECL GLOBAL FRAME Diff_Ref[32]
+Diff_Ref[1]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[2]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[3]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[4]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[5]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[6]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[7]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[8]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[9]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[10]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[11]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[12]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[13]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[14]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[15]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[16]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[17]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[18]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[19]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[20]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[21]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[22]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[23]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[24]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[25]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[26]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[27]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[28]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[29]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[30]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[31]={X 0.0,Y 0.0,Z 0.0}
+Diff_Ref[32]={X 0.0,Y 0.0,Z 0.0}
+
+;endfold (Datas V 1.02)
+;fold Message V1.02
+DECL C_TXT Cor_txt[30,2]
+Cor_txt[1,1]={MSGT[] "Werkzeug aus Toleranz Tool [%d] %s %1.2f %s %1.2f %s %1.2f     ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[1,2]={MSGT[] "Tool out of toleranceTool [%d ]%s %1.2f %s %1.2f %s %1.2f     ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[2,1]={MSGT[] "Abweichung Tool %d  inToleranz %s %1.2f %s %1.2f %s %1.2f",Dialg[] "||ja||Nein||                         "}
+Cor_txt[2,2]={MSGT[] "Deviation Tool %d in tolerance %s %1.2f %s %1.2f %s %1.2f",Dialg[] "||ja||Nein||                         "}
+Cor_txt[3,1]={MSGT[] "Werkzeug ueber die Messspitze deckend verfahren und Start druecken",Dialg[] "||ja||Nein||                     "}
+Cor_txt[3,2]={MSGT[] "Move with the TCP to the Reference point and push START button",Dialg[] "||ja||Nein||                          "}
+Cor_txt[4,1]={MSGT[] "Abweichung unter 0,1mm. Keine Aenderung noetig !             ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[4,2]={MSGT[] "Deviation less than 0.1 mm,no change necessary !               ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[5,1]={MSGT[] "OnlyInT1ModeAllowed                                          ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[5,2]={MSGT[] "OnlyInT1ModeAllowed                                          ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[6,1]={MSGT[] "Fehler im Programm, Abruch!!                                 ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[6,2]={MSGT[] "Error in program, is be canceld!!                            ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[7,1]={MSGT[] "InvalidToolNumber                                            ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[7,2]={MSGT[] "InvalidToolNumber                                            ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[8,1]={MSGT[] "TouchupRefPT                                                 ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[8,2]={MSGT[] "TouchupRefPT                                                 ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[9,1]={MSGT[] "Masterdatensatz vom Tool %d angelegt!                        ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[9,2]={MSGT[] "Master Tool of Tool %d is generated!                         ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[10,1]={MSGT[] "Referenzpunkt von Tool %d ist nicht vorhanden               ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[10,2]={MSGT[] "Reference point for Tool %d  is not avaible.                ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[11,1]={MSGT[] "Bewege TCP zur Referenzspitze und weiter mit START          ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[11,2]={MSGT[] "Move with the TCP to the Reference point and enter START.   ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[12,1]={MSGT[] "Select your Language                                        ",Dialg[] "||English||German||                   "}
+Cor_txt[12,2]={MSGT[] "Select your Language                                        ",Dialg[] "||English||German||                   "}
+Cor_txt[13,1]={MSGT[] "Mit Uebernahme wird Referenzpkt. fuer Tool %d angelegt!     ",Dialg[] "|Uebernahme|||Abrechen||              "}
+Cor_txt[13,2]={MSGT[] "With takeover becomes Referencepoint  for Tool %d created!     ",Dialg[] "|Create|||No||              "}
+Cor_txt[14,1]={MSGT[] "Prozedure abgebrochen. Ref_Pt. fuer Tool %d nicht angelegt. ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[14,2]={MSGT[] "Procedure is canceled. Ref_Pt. of Tool %d not created. ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[15,1]={MSGT[] "Prozedure wird abgebrochen. Wiederholen ?          ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[15,2]={MSGT[] "Procedure is canceled. Repeating ?          ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[16,1]={MSGT[] "Prozedure abgebrochen.Fuer Tool %d Kein Datensatz vorhanden.",Dialg[] "||ja||Nein||                          "}
+Cor_txt[16,2]={MSGT[] "Procedure is canceled.ForTool %d no Data set available.",Dialg[] "||ja||Nein||                          "}
+Cor_txt[17,1]={MSGT[] "Zu ueberpruefendes Werkzeug ist die Tool-Nr.%d zugeordnet!",Dialg[] "||Ok||Nein||                          "}
+Cor_txt[17,2]={MSGT[] "Tool to be checked is the Tool.No %d assigned!  ",Dialg[] "||Ok||No||                            "}
+Cor_txt[18,1]={MSGT[] "Ref_PT[%d] angelegt.Zum Werkzeugcheck Programm wiederholen! ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[18,2]={MSGT[] "Ref_PT[%d] created.For check, repeat the program! ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[19,1]={MSGT[] "Datensatz von Tool %d korrigieren ?                         ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[19,2]={MSGT[] "Correcting data set of Tool %d ?                         ",Dialg[] "||Yes||No||                           "}
+Cor_txt[20,1]={MSGT[] "Keine Aenderung am Datensatz von Tool %d                    ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[20,2]={MSGT[] "No change at the data set of Tool %d                    ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[21,1]={MSGT[] "Neue Daten Tool %d  %s %1.2f %s %1.2f %s %1.2f",Dialg[] "||ja||Nein||                          "}
+Cor_txt[21,2]={MSGT[] "New Data set of Tool %d  %s %1.2f %s %1.2f %s %1.2f",Dialg[] "||ja||Nein||                          "}
+Cor_txt[22,1]={MSGT[] "Abweichung zum Master Tool %d zu gross %s %1.2f %s %1.2f %s %1.2f  ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[22,2]={MSGT[] "Deviation to the Master Tool %d too big   %s %1.2f %s %1.2f %s %1.2f ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[23,1]={MSGT[] "Tooldaten restaurieren oder Werkzeug pruefen ?              ",Dialg[] "|Restore|||Pruefen||                  "}
+Cor_txt[23,2]={MSGT[] "Restoring Tooldata or checking tool                         ",Dialg[] "|Restore|||Check||                    "}
+Cor_txt[24,1]={MSGT[] "Auf Einrichtposition fahren oder Vermessen ?           ",Dialg[] "|Einrichten||Vermessen|Fertig||Restore"}
+Cor_txt[24,2]={MSGT[] "Move to Maintenance position or measuring procedure?   ",Dialg[] "|Maintenance||Measuring|End||Restore  "}
+Cor_txt[25,1]={MSGT[] "Ref_PT[%d] absolut Position erreicht, Werkzeug einrichten   ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[25,2]={MSGT[] "Ref_PT[%d] position absolutely reaches, adjust the Tool ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[26,1]={MSGT[] "Abweichung zum Mastertool%d %s %1.2f %s %1.2f %s %1.2f ",Dialg[] "||ja||Nein||                    "}
+Cor_txt[26,2]={MSGT[] "Deviation to Mastertool%d  %s %1.2f %s %1.2f %s %1.2f      ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[27,1]={MSGT[] "Weiter mit Vermessung oder Abbrechen ?     ",Dialg[] "||Weiter||Abbrechen||                 "}
+Cor_txt[27,2]={MSGT[] "Continue with measurement or cancel Procedure ?     ",Dialg[] "||Continue||Cancel||                  "}
+Cor_txt[28,1]={MSGT[] "Keine Korrektur moeglich !                            ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[28,2]={MSGT[] "No correction possible !                                ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[29,1]={MSGT[] "Dummy                                                       ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[29,2]={MSGT[] "Dummy                                                       ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[30,1]={MSGT[] "MessageNumberIsWrong                                        ",Dialg[] "||ja||Nein||                          "}
+Cor_txt[30,2]={MSGT[] "MessageNumberIsWrong                                        ",Dialg[] "||ja||Nein||                          "}
+;endfold (Message V1.02)
+ENDDAT

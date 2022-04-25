@@ -1,0 +1,23 @@
+&ACCESS RVO9
+&REL 13
+&COMMENT Check Pinca C1 OK
+DEF chk_w1_wechs_ok( )
+
+;IN[161] -> WKZ1 C1
+;IN[169] -> WKZ2 GRIPPER ACTROS
+;IN[177] -> WKZ3 GRIPPER ACELO
+;IN[185] -> WKZ4 X1
+;IN[193] -> WKZ5 GRIPPER AXOR ATEGO
+;IN[219] -> SUPERFICIE DE CONTATO
+
+; VERIFICAÇÃO DE FERRAMENTA: C1
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+wait for ((not $in[161]) and ($in[169]) and ($in[177]) and ($in[185]) and ($in[193]) AND ($in[219]))
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+END

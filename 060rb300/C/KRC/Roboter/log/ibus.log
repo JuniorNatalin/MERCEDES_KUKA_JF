@@ -1,0 +1,187 @@
+FILE_PTR_POS=012170
+I-Bus : Drv.Version : 1.41.3.0                                                  
+I-Bus : INI-File entries:                                                       
+I-Bus : IO_ADDR : 0x390                                                         
+I-Bus : BOARDNUMBER : 0x1                                                       
+I-Bus : MEMBASE : 0xd400                                                        
+I-Bus : CARD_IRQ : 0x0                                                          
+I-Bus : ACCESS_MODE : 0                                                         
+I-Bus : CONSISTENCY_CONTROLLER : 1                                              
+I-Bus : IBLOGOPTION : 0x0                                                       
+I-Bus : IBLOGFILE : log\ibus.log                                                
+I-Bus : TESTAUSGABE: 0                                                          
+I-Bus : DEBUGFLAG : 0x1                                                         
+I-Bus : IBDUMPFILE : log/ibsdump.log                                            
+I-Bus : BOFERROUTPUT : 0x1                                                      
+I-Bus : MASTERRING : 1                                                          
+I-Bus : ID : 0x603                                                              
+I-Bus : MPM_SLAVEADDR : 0x380                                                   
+I-Bus : CONTINUE_BY_ERR : 1                                                     
+I-Bus : SWAP_SL_BYTES : 1                                                       
+I-Bus : LOCALMASTEROK : 884                                                     
+I-Bus : NEWLOCALMASTEROK : 0                                                    
+I-Bus : USERQUITPF : 0                                                          
+I-Bus : ON_ERR_CLEAR_MPM_OUT : 1                                                
+I-Bus : CHECKLEVEL : 0                                                          
+I-Bus : INACCURACY : 0                                                          
+I-Bus : ERR_CODE : 0                                                            
+I-Bus : WRITEBUSFAILINF : 0                                                     
+I-Bus : WATCHDOG : 1                                                            
+I-Bus : CONTINUE_WITH_WARNING : 1                                               
+I-Bus : PASSIVE_UPDATE : 0                                                      
+I-Bus : LOCK_UNREQ_IND : 0x0                                                    
+I-Bus : NODIAGPOLL : 0                                                          
+I-Bus : IBSTASK_CYCLE_TIME : 50 Ticks.                                          
+I-Bus : SEGM_RETRY_TIME : 5                                                     
+I-Bus : CMD_FILE : init\p1360r3.svc                                             
+I-Bus : BAUDRATE : 9600                                                         
+I-Bus : MSGDELAY : 100                                                          
+I-Bus : USEBOCKID : 1                                                           
+I-Bus : BRK_IB_ERR : 1                                                          
+I-Bus : TIMEOUT : 60000                                                         
+I-Bus : EXTERN_START : 0                                                        
+I-Bus : RESET : 1                                                               
+I-Bus : STATUS : -1                                                             
+I-Bus : PARAMETER : -1                                                          
+I-Bus : PARAMETER2 : -1                                                         
+I-Bus : IBSPRIO : 170                                                           
+I-Bus : AUTORESTART : 0                                                         
+I-Bus : 11.0 |  1 Klebersteu                                                    
+I-Bus : 21.0 |  2 Klebersteu                                                    
+I-Bus : 31.0 |  SCA Kleberst                                                    
+I-Bus : 12.0 |  Schweisskoffer 1                                                
+I-Bus : 22.0 |  Schweisskoffer 2                                                
+I-Bus : 170.1 |  Stanzn.                                                        
+I-Bus : 170.2 |  Stanzn.                                                        
+I-Bus : 171.0 |  Prozessüberw                                                   
+I-Bus : 13.0 |  Bolzenschw 1                                                    
+I-Bus : 23.0 |  Bolzenschw 2                                                    
+I-Bus : 173 |  NIMAG                                                            
+I-Bus : 14.0 |  WKZ Ablage 1                                                    
+I-Bus : 24.0 |  WKZ Ablage 2                                                    
+I-Bus : 34.0 |  WKZ Ablage 3                                                    
+I-Bus : 15.0 |  Z1 Stationär                                                    
+I-Bus : 25.0 |  Z2 Stationär                                                    
+I-Bus : 35.0 |  Z3 Stationär                                                    
+I-Bus : 16.0 |  Fräsen 1                                                        
+I-Bus : 26.0 |  Fräsen 2                                                        
+I-Bus : 36.0 |  Fräsen 3                                                        
+I-Bus : 116.0 |  Wechselpl.                                                     
+I-Bus : 17.0 |  Wechselzange                                                    
+I-Bus : 18.0 |  Handling 1.1                                                    
+I-Bus : 28.0 |  Handling 1.2                                                    
+I-Bus : 38.0 |  Handling 1.3                                                    
+I-Bus : 48.0 |  Handling 1.4                                                    
+I-Bus : 68.0 |  Handling 1.5                                                    
+I-Bus : 19.0 |  Handling 2.1                                                    
+I-Bus : 29.0 |  Handling 2.2                                                    
+I-Bus : 39.0 |  Handling 2.3                                                    
+I-Bus : 49.0 |  Handling 2.4                                                    
+I-Bus : 69.0 |  Handling 2.5                                                    
+I-Bus : 174.0 |  DSF-Zange                                                      
+I-Bus : 51.0 |  1 Klebersteu IPC                                                
+I-Bus : 52.0 |  2 Klebersteu IPC                                                
+I-Bus : 20.0 |   Quiss RT Vision                                                
+I-Bus : RESET (Poll)                                                            
+I-Bus : Master running after RESET                                              
+I-Bus : Access Mode : 16-Bit if 16-Bit IBS-Card else 8-Bit                      
+I-Bus : Using SVC-File !!!!!                                                    
+I-Bus : CMD-Baudrate (9600) configured                                          
+
+I-Bus : Message Code : 0x1303                                                  
+
+I-Bus : Message Code : 0x0750                                                  
+
+I-Bus : Message Code : 0x0760                                                  
+
+I-Bus : Message Code : 0x030E                                                  
+
+I-Bus : Message Code : 0x0750                                                  
+
+I-Bus : Message Code : 0x0306                                                  
+
+I-Bus : Message Code : 0x0307                                                  
+
+I-Bus : Message Code : 0x0308                                                  
+
+I-Bus : Message Code : 0x0750                                                  
+
+I-Bus : Message Code : 0x0320                                                  
+
+I-Bus : Message Code : 0x0321                                                  
+
+I-Bus : Message Code : 0x0321                                                  
+
+I-Bus : Message Code : 0x0321                                                  
+
+I-Bus : Message Code : 0x0321                                                  
+
+I-Bus : Message Code : 0x0321                                                  
+
+I-Bus : Message Code : 0x0321                                                  
+
+I-Bus : Message Code : 0x0321                                                  
+
+I-Bus : Message Code : 0x0321                                                  
+
+I-Bus : Message Code : 0x0321                                                  
+
+I-Bus : Message Code : 0x0321                                                  
+
+I-Bus : Message Code : 0x0322                                                  
+
+I-Bus : Message Code : 0x0324                                                  
+
+I-Bus : Message Code : 0x0325                                                  
+
+I-Bus : Message Code : 0x0325                                                  
+
+I-Bus : Message Code : 0x0326                                                  
+
+I-Bus : Message Code : 0x0264                                                  
+
+I-Bus : Message Code : 0x0144                                                  
+
+I-Bus : Message Code : 0x0149                                                  
+
+I-Bus : Message Code : 0x014E                                                  
+
+I-Bus : Message Code : 0x030E                                                  
+
+I-Bus : Message Code : 0x0711                                                  
+
+I-Bus : Message Code : 0x0701                                                  
+
+I-Bus : Message Code : 0x014F                                                  
+
+I-Bus : End SVC-Configuration !!!!!                                            
+I-Bus : Open Data-Interface successful, Node-Handle : 0x40                      
+I-Bus : Open Mailbox-Interface successful, Node-Handle : 0x41                   
+I-Bus : CMD-Baudrate (9600) configured                                          
+I-Bus : Consistency_Controller -                                                
+I-Bus : FW.VersionNr.:4.31                                                      
+I-Bus : HW.ArtName: IBS ISA SC/RI/I-T                                           
+I-Bus : HW.Version: 11                                                          
+I-Bus : Baudrate Master: 500kBaud                                               
+I-Bus : Get_configuration (Bus-Struktur-List) Attributes = 2                    
+I-Bus : ID-Codes (9 participants)                                               
+I-Bus : Ident : 12F (1,47)                                                      
+I-Bus : Ident : 8103 (129,3)                                                    
+I-Bus : Ident : 8103 (129,3)                                                    
+I-Bus : Ident : 8103 (129,3)                                                    
+I-Bus : Ident : 8103 (129,3)                                                    
+I-Bus : Ident : 8103 (129,3)                                                    
+I-Bus : Ident : 8103 (129,3)                                                    
+I-Bus : Ident : 8103 (129,3)                                                    
+I-Bus : Ident : 203 (2,3)                                                       
+I-Bus : Total amount of Interbus Digital- Inputs 104; outputs 104; (Bit)        
+I-Bus : Total amount of Interbus Analog- Inputs 0; outputs 0; (Bit)             
+I-Bus : Read Slave ID successful; ID : 603                                      
+I-Bus : CALLP : ibsOpen called                                                  
+I-Bus : Channel->dwDataNum : 54                                                 
+I-Bus : Channel->byChTyp : 0                                                    
+I-Bus : CALLP : ibsOpen called                                                  
+I-Bus : Channel->dwDataNum : 52                                                 
+I-Bus : Channel->byChTyp : 129                                                  
+=====  LAST_ENTRY  =====                                                        
+                                                                                

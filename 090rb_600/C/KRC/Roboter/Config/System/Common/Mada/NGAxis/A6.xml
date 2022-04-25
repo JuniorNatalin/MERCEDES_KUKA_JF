@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Axis xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/Roboter/Config/System/Common/Schemes/NGAxis.xsd">
+   <Version Label="">
+      <Info Version="KUKA V8.2"/>
+      <Schema Version="4"/>
+   </Version>
+   <Machine Name="#KR360R2830 C4 FLR"/>
+   <AxisData MessageDisable="0" Mode="StandAlone" Simulation="Off" SingleMotorCoupling="Off" Type="Rotator"/>
+   <ToolMotor AdditionalFunctionFile="Mada/NGAxis/CtrlA6AddFct.xml" ExtTorqueOfInertia="0.003829212" MaximalEnergy="1359.89" MotorFile="Motor/M_C0_KSP40_400V_V1.xml" ParameterFile="Mada/NGAxis/CtrlA6.xml" RampStopTime="340.26" RampUpTimeUnderLoad="680.53" ServoFile="Servofile/S_C0_KSP40_400V_V1.xml">
+      <Monitoring PositionLag="261.51" PositionLagSoft="1046.04" Speed="4727.36" SpeedLag="0"/>
+      <Limit Current="0" Speed="0"/>
+   </ToolMotor>
+   <Inversion Position="false" Torque="false" Velocity="false"/>
+   <Delay ActValue="2" CmdValue="24"/>
+</Axis>

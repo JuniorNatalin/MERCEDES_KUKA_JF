@@ -1,0 +1,8 @@
+&ACCESS  RV
+&PARAM DISKPATH = TP/Gripper_SpotTech
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\ExpertVorgabe
+&PARAM EDITMASK = *
+&REL 1
+DEFDAT  user_gripper_ini PUBLIC
+
+ENDDAT

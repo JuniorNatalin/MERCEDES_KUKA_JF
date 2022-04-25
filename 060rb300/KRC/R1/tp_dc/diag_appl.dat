@@ -1,0 +1,23 @@
+&ACCESS RV11
+&REL 34
+&COMMENT Dianostic modul V5.02
+DEFDAT  DIAG_APPL PUBLIC
+GLOBAL ENUM DiagToPlc ON,clo,opn,pp0,pp1,OnTech1,OnTech2,OnTech3,OnTech4,OnTech5,OFF ;// Diag Modes  
+
+DECL BOOL Opt_Diag=TRUE ;// Diag_Application active
+DECL BOOL bInter_Aktive=TRUE ;// Flag, check if interrupt aktive
+SIGNAL FaultToPlc $out[999]  TO $out[999] ;// Bit Range of Diag. Signals to PLC
+
+DECL INT ApplicationSignal[11]
+ApplicationSignal[1]='B0000' ;// Reset
+ApplicationSignal[2]='B0001' ;// General Tech ON
+ApplicationSignal[3]='B0010' ;// GripperTech (Close)
+ApplicationSignal[4]='B0011' ;// GripperTech (Open)
+ApplicationSignal[5]='B0100' ;// Gripper not Part present (pp0)
+ApplicationSignal[6]='B0101' ;// Gripper Part present (pp1)
+ApplicationSignal[7]='B0110' ;// OnTech1
+ApplicationSignal[8]='B0111' ;// OnTech2
+ApplicationSignal[9]='B1000' ;// OnTech3
+ApplicationSignal[10]='B1001' ;// OnTech4
+ApplicationSignal[11]='B1010' ;// OnTech5
+ENDDAT

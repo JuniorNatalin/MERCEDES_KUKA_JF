@@ -1,0 +1,18 @@
+&ACCESS RV4
+&COMMENT Check X1
+DEF chk_w1_wechs_ok( )
+
+; VERIFICAÇÃO DE FERRAMENTA: X1
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+wait for (($in[161]) and ($in[169]) and (not $in[177]) and (($IN[185]) OR ((NOT $IN[185]) AND ($IN [3320]))) and (($IN[193]) OR ((NOT $IN[193]) AND ($IN [3320]))) and ($IN[201]) and ($IN[209]) and ($IN[219]))
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End -------
+;Diag_Appl(#Off,5)
+
+END

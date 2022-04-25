@@ -1,0 +1,18 @@
+&ACCESS RV4
+&COMMENT Check GRP AXOR Z7 OPEN
+DEF chk_w6_grp7_opn( )
+
+; Check gripper axor OPEN Z7.1/2
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+WAIT FOR ($IN[517] and $in[519])
+WAIT FOR (NOT $IN[518] and NOT $IN[520])
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+END

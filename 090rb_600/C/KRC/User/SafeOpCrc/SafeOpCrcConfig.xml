@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SafeOpCrcConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CrcService>
+    <Trigger Value="2" />
+    <Watchdog Value="120" />
+    <AppModeEnabled Value="true" />
+    <LastValue Value="246CC68F" />
+  </CrcService>
+</SafeOpCrcConfig>

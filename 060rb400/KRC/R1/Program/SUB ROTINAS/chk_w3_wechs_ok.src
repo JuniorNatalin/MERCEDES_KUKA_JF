@@ -1,0 +1,14 @@
+&ACCESS RVO6
+&REL 2
+&COMMENT Check C2
+DEF chk_w3_wechs_ok( )
+Diag_Appl(#on,5)
+
+; VERIFICAÇÃO DE FERRAMENTA: C2
+
+wait for (($in[161]) and ($in[169]) and (not $in[177]) and ($in[219]))
+
+
+;//---- End -------
+Diag_Appl(#Off,5)
+END

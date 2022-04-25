@@ -1,0 +1,10 @@
+&ACCESS RV1
+&REL 6
+&COMMENT Check Gripper Actros
+DEF chk_w3_wechs_ok( )
+
+; VERIFICAÇÃO DE FERRAMENTE: GRIPPER ACTROS
+
+WAIT FOR (($in[161]) AND ($in[169]) AND ($in [177]) and (NOT $in[185]) AND ($in[193]) AND ($in[201]) and ( $in[219]))
+
+END

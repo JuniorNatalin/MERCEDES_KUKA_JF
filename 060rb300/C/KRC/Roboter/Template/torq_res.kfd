@@ -1,0 +1,112 @@
+
+
+;*******************************
+; Name:   B.Steffens           *
+; Date:  30.04.2002            *
+; Depart. DC-Bremen    4.01    *
+;==============================*
+;     german version           *
+;upgraded automatic monitoring *
+;*******************************
+
+;declaration global
+
+; global parameters for SetLimits-inlineformulare:
+Decl PARAM limit1={SHORTNAME[] "Axis 1: ",VALUE {NUMBER:MIN 5,MAX 200,DEFAULT 50},UNIT[] " %"}
+Decl PARAM limit2={SHORTNAME[] "Axis 2: ",VALUE {NUMBER:MIN 5,MAX 200,DEFAULT 50},UNIT[] " %"}
+Decl PARAM limit3={SHORTNAME[] "Axis 3: ",VALUE {NUMBER:MIN 5,MAX 200,DEFAULT 50},UNIT[] " %"}
+Decl PARAM limit4={SHORTNAME[] "Axis 4: ",VALUE {NUMBER:MIN 5,MAX 200,DEFAULT 50},UNIT[] " %"}
+Decl PARAM limit5={SHORTNAME[] "Axis 5: ",VALUE {NUMBER:MIN 5,MAX 200,DEFAULT 50},UNIT[] " %"}
+Decl PARAM limit6={SHORTNAME[] "Axis 6: ",VALUE {NUMBER:MIN 5,MAX 200,DEFAULT 50},UNIT[] " %"}
+;global parameters for SetLimits-automatic
+decl PARAM mon1={SHORTNAME[] "Offset A1:",VALUE {NUMBER:MIN -10,MAX 40,DEFAULT 0},UNIT[] " %"}
+Decl PARAM mon2={SHORTNAME[] "Offset A2:",VALUE {NUMBER:MIN -10,MAX 40,DEFAULT 0},UNIT[] " %"}
+Decl PARAM mon3={SHORTNAME[] "Offset A3:",VALUE {NUMBER:MIN -10,MAX 40,DEFAULT 0},UNIT[] " %"}
+Decl PARAM mon4={SHORTNAME[] "Offset A4:",VALUE {NUMBER:MIN -10,MAX 20,DEFAULT 0},UNIT[] " %"}
+Decl PARAM mon5={SHORTNAME[] "Offset A5:",VALUE {NUMBER:MIN -10,MAX 20,DEFAULT 0},UNIT[] " %"}
+Decl PARAM mon6={SHORTNAME[] "Offset A6:",VALUE {NUMBER:MIN -10,MAX 20,DEFAULT 0},UNIT[] " %"}
+;global parameters for Trigger mode
+Decl PARAM coun={SHORTNAME[] "Torqmon_Sequence ",VALUE {NUMBER:MIN 1,MAX 30,DEFAULT 1},UNIT[] " No."}
+DECL PARAM Art_of_Trigger={shortname[] "Sequence ", shortcut[] "Art", unit[] "   switch_On/Off", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "#stp", disp[] "not_active"}, _
+  ITEM[2] {ITEM:VALUE[] "#mov", disp[] "active" }}}
+; setting with of tolerance band default
+DECL FOLD SetDefaults_Fold[2]
+SetDefaults_Fold[1] = "TO_PARA.CL_PARA=#DEFA"
+SetDefaults_Fold[2] = "TORQ_RES (TO_PARA) "
+; setting with of tolerance band individual
+DECL FOLD SetLimits_Fold[8]
+SetLimits_Fold[1] = "TO_PARA.TORQ_BUF1=%mon1 "
+SetLimits_Fold[2] = "TO_PARA.TORQ_BUF2=%mon2 "
+SetLimits_Fold[3] = "TO_PARA.TORQ_BUF3=%mon3 "
+SetLimits_Fold[4] = "TO_PARA.TORQ_BUF4=%mon4 "
+SetLimits_Fold[5] = "TO_PARA.TORQ_BUF5=%mon5 "
+SetLimits_Fold[6] = "TO_PARA.TORQ_BUF6=%mon6 "
+SetLimits_Fold[7] = "TO_PARA.CL_PARA=#LIMI"
+SetLimits_Fold[8] = "TORQ_RES (TO_PARA) "
+; Monitoring limits individually
+DECL FOLD Monitor_Fold[3]
+Monitor_Fold[1] = "TO_PARA.f=%coun"
+Monitor_Fold[2] = "TO_PARA.CL_PARA=#MONI "
+Monitor_Fold[3] = "TORQ_RES (TO_PARA) "
+; setting width of tolerance band automatic
+DECL FOLD Setmon_Fold[10]
+Setmon_Fold[1] = "TO_PARA.f=%coun "
+Setmon_Fold[2] = "TO_PARA.TORQ_BUF1=%mon1  "
+Setmon_Fold[3] = "TO_PARA.TORQ_BUF2=%mon2"
+Setmon_Fold[4] = "TO_PARA.TORQ_BUF3=%mon3"
+Setmon_Fold[5] = "TO_PARA.TORQ_BUF4=%mon4"
+Setmon_Fold[6] = "TO_PARA.TORQ_BUF5=%mon5"
+Setmon_Fold[7] = "TO_PARA.TORQ_BUF6=%mon6"
+Setmon_Fold[8] = "TO_PARA.CL_PARA=#OFFS"
+Setmon_Fold[9] = "TO_PARA.trig=%Art_of_Trigger "
+Setmon_Fold[10] = "TORQ_RES (TO_PARA)"
+
+;=========================
+
+DEFTP TORQ_AUT={SOT FALSE}
+Decl InlineForm AutomaticLimits={FOLD[1] Setmon_Fold, PARAM[1] mon1, PARAM[2] mon2, PARAM[3] mon3, PARAM[4] mon4, PARAM[5] mon5, PARAM[6] mon6, PARAM[7] coun, PARAM[8] Art_of_Trigger }
+Decl InlineForm Monitoring={FOLD[1] Monitor_Fold,PARAM[1] coun }
+
+DECL STATKEY TORQ_MES 
+DEFSCRIPT TORQ_DEF1
+SETVAR (FULLPATH[] "$TORQMON[1]",VALUE[] "$TORQMON_DEF[1]")
+SETVAR (FULLPATH[] "$TORQMON[2]",VALUE[] "$TORQMON_DEF[2]")
+SETVAR (FULLPATH[] "$TORQMON[3]",VALUE[] "$TORQMON_DEF[3]")
+SETVAR (FULLPATH[] "$TORQMON[4]",VALUE[] "$TORQMON_DEF[4]")
+SETVAR (FULLPATH[] "$TORQMON[5]",VALUE[] "$TORQMON_DEF[5]")
+SETVAR (FULLPATH[] "$TORQMON[6]",VALUE[] "$TORQMON_DEF[6]")
+ENDSCRIPT
+DEFSCRIPT Show_ON
+set torq_mes={TOPTEXT[] " ", CENTERTEXT[] " "}
+SET TORQ_MES={picture[] "c:\krc\util\z.ico"} 
+ENDSCRIPT
+DEFSCRIPT Show_OFF
+set torq_mes={TOPTEXT[] " ", CENTERTEXT[] " "}  
+SET TORQ_MES={picture[] "c:\krc\util\z1.ico"} 
+ENDSCRIPT
+DEFSCRIPT TORQ_MES_ON
+SETVAR (FULLPATH[] "Torq_default", VALUE[] "FALSE")
+do Show_On
+MESSAGE " Torq. automatic monitoring on "
+endscript
+
+DEFSCRIPT TORQ_MES_OF
+SETVAR (FULLPATH[] "Torq_default", VALUE[] "TRUE")
+do Torq_DEF1 
+do Show_Off
+MESSAGE " Torqmon default monitoring off Values 200 Percent"
+endscript
+DEFSCRIPT TORQ_MES_EIN
+SWITCH " Torq_default "
+CASE " true " do TORQ_MES_ON
+CASE ELSE do TORQ_MES_OF
+ENDSWITCH
+ENDSCRIPT
+
+SET TORQ_MES={TOPTEXT[] "Torq ", CENTERTEXT[] "mon", style #switch, ONKEYDOWN TORQ_MES_EIN, USERMODE 10, NEED_SAFETYSWITCH TRUE}
+;===========================
+DECL STATKEYBAR TORQSTATKEYBAR 
+SET TORQSTATKEYBAR = { STATKEY[1] Torq_mes}
+ENDTP
+

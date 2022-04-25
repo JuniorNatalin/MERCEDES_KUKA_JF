@@ -1,0 +1,73 @@
+&ACCESS  RV
+&USER PKL_AST
+&COMMENT daimler_global_datalist
+&PARAM DISKPATH = DAI
+&PARAM version = 2.0
+&REL 98
+DEFDAT  dai_global PUBLIC
+; GLobale Datenliste beinhaltet globalen Daimler-Daten
+
+;FOLD DAI_BASIS
+
+
+;==================================
+; Userdefined Types 
+;==================================
+GLOBAL STRUC I_MESSAGETYP INT I_NR,CHAR I_MSG_TXT[100]
+GLOBAL STRUC MSG_TXT_TYP CHAR MSGTXT[100],CHAR Softkey[80]
+GLOBAL STRUC MSGTXT_TYP CHAR MSGTXT[100] ;neu FSE 
+GLOBAL ENUM MB_COMMAND ZANGE_AB
+GLOBAL ENUM TECHOPTION ON,OFF
+GLOBAL ENUM TOOLPOS AUF,ZU
+;Message_Ausgabe
+GLOBAL ENUM MSG_TYP Notify,Dialog,State,Quit
+
+;==================================
+; Userdefined Externals 
+;==================================
+EXT  COLLSTOP (INT  :IN,INT  :IN )
+EXT  CheckOverride ( )
+EXT  BedingterHalt (INT  :IN )
+;==================================
+; Userdefined Variables 
+;==================================
+
+;MECHANISCHE NULL
+DECL GLOBAL FDAT FMECHNULL={TOOL_NO 0,BASE_NO 0,IPO_FRAME #BASE,TQ_STATE FALSE}
+DECL GLOBAL E6AXIS XMECHNULL={A1 0.0,A2 -90.0,A3 90.0,A4 0.0,A5 0.0,A6 0.0,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}
+
+
+
+;AutoExtern V2.0 
+DECL GLOBAL INT SpsSubRun=3208 ;Meldung an SPS dass Sps.sub laeuft. Zum Abschalten auf 0 setzen
+DECL GLOBAL INT SpsSubRunHelp=961 ;Hilfsausgang fuer Taktsignal
+DECL GLOBAL INT SpsSubRunCountMax=10 ;Max Durchlauefe fuer SpsSubRun
+DECL GLOBAL REAL SpsSubRunTime=0.200000003 ;Zeit in Sec fuer Tastverhaeltnis
+DECL GLOBAL INT RobWaitForIn=3222 ;Meldung an SPS dass Roboter auf Eingang wartet. Zum Abschalten auf 0 setzen
+DECL GLOBAL INT RobDialogmeldungAktiv=3224 ;Meldung an SPS dass auf Roboter Dialogmeldung aktiv istBOOL Kaltstart=FALSE ;Kaltstart/SPS-Sub neu gestartet
+DECL GLOBAL BOOL Kaltstart=FALSE ;Kaltstart/SPS-Sub neu gestartet
+DECL GLOBAL BOOL SpsSubStop4Update=FALSE ;Update Anforderung
+DECL GLOBAL BOOL SpsSubStopped=FALSE ;Update Rueckmeldung
+DECL GLOBAL INT MaxHome=1 ;Anzahl der zulaessigen Homepositionen (maximal 3 zulaessig)
+DECL GLOBAL INT Red_over_save=0
+DECL GLOBAL INT O_max_speed=3219
+DECL GLOBAL INT O_KRF=3203
+
+;E/A's fuer Energieabschaltung
+DECL GLOBAL INT o_Energie_aktiv=3229
+DECL GLOBAL INT o_Energie_deakt=3230
+DECL GLOBAL INT i_Energie_aktiv=3229
+DECL GLOBAL INT i_Energie_deakt=3230
+
+
+DECL GLOBAL CONST INT iDivisor=100
+
+;ENDFOLD(DAI_BASIS)
+
+
+;FOLD TECH
+
+
+;ENDFOLD
+
+ENDDAT

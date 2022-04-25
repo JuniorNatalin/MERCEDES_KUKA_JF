@@ -1,0 +1,122 @@
+DEFTP KlebenKT={ SOT FALSE }
+;============================================
+; USRTECH für Kleben mit KT/B3 Dosiertechnik / USRTECH ragasztashoz KT/B3 adagolastechnikaval
+; Erstellt von:M.Franz KT/B3 Tel.:89304 / Létrehozta M.Franz KT/B3 Tel.:89304
+;
+; Version / Aenderungsstand:/ Verzio/ valtozatatasi lista
+;  V1.10 10.01.2002 Grundfunktionen erstellt/alapfunkciok letrehozasa
+;  V1.16 23.03.2003 Erweiterung auf 2 Dosierer/fejlesztes 2 adagolora
+;  V1.20 29.03.2003 Erweiterung auf 4 Dosierer mit 2 Steuerungen/fejlesztes negy adagolora ket vezerlessel
+;  V1.25 13.04.2010 An 32 Nahtbereiche angepasst/ 32 varrattartomanyhoz illesztve
+;============================================ 
+
+
+; *** Parameter-Beschreibung *** Parameter leiras***
+
+DECL PARAM DelayZeit={shortname[] "Analogdelay: ", shortcut[] "Delay", unit[] " sec", value { real : min -0.3, max 0.3, step 0.01, default 0.0 }}
+
+DECL PARAM WegDelay={shortname[] "Wegdelay: ", shortcut[] "WEG", unit[] " mm", value { number : min -400, max 400, step 1, default 0 }}
+
+DECL PARAM Bereich={shortname[] "Bereich/Terulet ", shortcut[] "Ber", unit[] " ", value { number : min 1, max 32, step 1, default 1 }}
+
+
+;DECL PARAM Dosierer={shortname[] " Dosierer ", shortcut[] "Dos", unit[] "", value { number : min 1, max 4, step 1, default 1 }}
+DECL PARAM Dosierer={shortname[] " ", shortcut[] "Dos", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "1", disp[] "S1 Doser_ Toltes 1"}, _
+  ITEM[2] {ITEM:VALUE[] "2", disp[] "S1 Doser_ Toltes 2"}, _
+  ITEM[3] {ITEM:VALUE[] "3", disp[] "S2 Doser_ Toltes 1"}, _
+  ITEM[4] {ITEM:VALUE[] "4", disp[] "S2 Doser_ Toltes 2" }}}
+
+
+DECL PARAM KLProgramm={shortname[] "Applikationsprogamm Nr.", shortcut[] "Prg", unit[] "", value { NUMBER : min 1, max 63, step 1, default 1 }}
+
+DECL PARAM FehlerMode={shortname[] "Fehlerauswertung: ", shortcut[] " ", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "0", disp[] "AUS/KI"}, _
+  ITEM[2] {ITEM:VALUE[] "1", disp[] "EIN/BE"}, _
+  ITEM[3] {ITEM:VALUE[] "2", disp[] "Messagebox/Uzenetbox" }}}
+
+DECL PARAM NB_MAX ={VALUE {FREE: DEFAULT[] ””}}
+
+
+; *** Fold-Beschreibung ***
+
+; Funktionsaufruf :/funkcio meghivasa
+; KLEBEN_KT( {Klebefunktion, Steuerung, Dosierhahn, Regelung, Vordruck, Klebemenge, Verzoegerungszeit, Programm-Nr, Faktor}  )
+; KLEBEN_KT( {ragasztasi funkcio, vezerles, adagolocsap, szabalyzas, elonyomas, ragasztomennyiseg, kesleltetesi ido, program szam, faktor}  )
+; Initialisierung/inicializalas
+
+DECL FOLD KLEBINIT[1] 
+KLEBINIT[1]="KL_KT_ACTPARA.KLEBEFUNKTION=#INIT"
+KLEBINIT[2]="KL_KT_ACTPARA.DOSIERER=%Dosierer"
+KLEBINIT[3]="KL_KT_ACTPARA.PROGNR=%KLProgramm"
+KLEBINIT[4]="KL_KT_ACTPARA.VERZOEGERUNG=%Delayzeit"
+KLEBINIT[5]="KLEBEN_KT ( KL_KT_ACTPARA )"
+
+; Mengensteuerung/ mennyisegszabalyzas
+DECL FOLD KLEBMENGE[1] 
+KLEBMENGE[1]="KL_KT_ACTPARA.KLEBEFUNKTION=#MENGE"
+KLEBMENGE[2]="KL_KT_ACTPARA.DOSIERER=%Dosierer"
+KLEBMENGE[3]="KL_KT_ACTPARA.MENGE=%Bereich"
+KLEBMENGE[4]="KL_KT_ACTPARA.WEGDELAY=%WegDelay"
+KLEBMENGE[5]="KLEBEN_KT ( KL_KT_ACTPARA )"
+
+; Nahtbeginn/varrat kezdet
+DECL FOLD KLEBNAHTBEGINN[1] 
+KLEBNAHTBEGINN[1]="KL_KT_ACTPARA.KLEBEFUNKTION=#NAHTBEGINN"
+KLEBNAHTBEGINN[2]="KL_KT_ACTPARA.DOSIERER=%Dosierer"
+KLEBNAHTBEGINN[3]="KL_KT_ACTPARA.WEGDELAY=%WegDelay"
+KLEBNAHTBEGINN[4]="KLEBEN_KT ( KL_KT_ACTPARA )"
+
+; NahtEnde/ varratvég
+DECL FOLD KLEBNAHTENDE[1] 
+KLEBNAHTENDE[1]="KL_KT_ACTPARA.KLEBEFUNKTION=#NAHTENDE"
+KLEBNAHTENDE[2]="KL_KT_ACTPARA.DOSIERER=%Dosierer"
+KLEBNAHTENDE[3]="KL_KT_ACTPARA.WEGDELAY=%WegDelay"
+KLEBNAHTENDE[4]="KLEBEN_KT ( KL_KT_ACTPARA )"
+
+; FehlerStop/ Hiba stop
+DECL FOLD KLEBFEHLSTOP[1] 
+KLEBFEHLSTOP[1]="KL_KT_ACTPARA.KLEBEFUNKTION=#FEHLERSTOP"
+KLEBFEHLSTOP[2]="KL_KT_ACTPARA.DOSIERER=%Dosierer"
+KLEBFEHLSTOP[3]="KL_KT_ACTPARA.KLSTOP=%FehlerMode"
+KLEBFEHLSTOP[4]="KLEBEN_KT ( KL_KT_ACTPARA )"
+
+
+; *** Script-Beschreibung ***Script leirasa***
+
+DEFSCRIPT NahtbereichAkzeptieren
+DO ACCEPTINLINEFORM
+ENDSCRIPT
+
+DEFSCRIPT NahtbereichNichtAkzeptieren
+SHOWVAR(FULLPATH[] "//R1//kleben_kt.dat//NB_MAX", PARAM NB_MAX )
+MESSAGE "Maximaler Nahtbereich %NB_MAX"
+MESSAGE "Parametrierung pruefen"
+DO CANCELINLINEFORM
+DO END
+ENDSCRIPT
+
+DEFSCRIPT NahtbereicheTesten
+SHOWVAR(FULLPATH[] "//R1//kleben_kt.dat//NB_MAX", PARAM NB_MAX )
+
+SWITCH "%BEREICH <= NB_MAX "
+CASE TRUE DO NahtbereichAkzeptieren
+CASE ELSE DO NahtbereichNichtAkzeptieren
+ENDSWITCH
+ENDSCRIPT
+
+
+; *** Beschreibung Inlineformulare *** Inline formula leirasa***
+
+
+DECL INLINEFORM Init={FOCUS 1, FOLD[1] KLEBINIT, PARAM[1] Dosierer, PARAM[2] KLProgramm, PARAM[3] DelayZeit}
+
+DECL INLINEFORM Menge={FOCUS 1, FOLD[1] KLEBMENGE, PARAM[1] Dosierer, PARAM[2] Bereich, PARAM[3] WegDelay,ONACCEPT NahtbereicheTesten}
+
+DECL INLINEFORM Nahtbeginn={FOCUS 1, FOLD[1] KLEBNAHTBEGINN, PARAM[1] Dosierer, PARAM[2] WegDelay}
+
+DECL INLINEFORM NahtEnde={FOCUS 1, FOLD[1] KLEBNAHTENDE, PARAM[1] Dosierer, PARAM[2] WegDelay}
+
+DECL INLINEFORM FehlerStop={FOCUS 1, FOLD[1] KLEBFEHLSTOP, PARAM[1] Dosierer, PARAM[2] FehlerMode}
+
+ENDTP

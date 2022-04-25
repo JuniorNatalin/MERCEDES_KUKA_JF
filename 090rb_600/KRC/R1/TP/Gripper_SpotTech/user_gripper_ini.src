@@ -1,0 +1,13 @@
+&ACCESS  RV
+&PARAM DISKPATH = TP/Gripper_SpotTech
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\ExpertVorgabe
+&PARAM EDITMASK = *
+&REL 1
+DEF user_gripper_ini( )
+
+;Hier kann bei Bedarf die Grundinitialisierung der
+;Gripper Typen > 100 eingetragen werden.
+;Wird im INI im Programmkopf aufgerufen.
+
+
+END

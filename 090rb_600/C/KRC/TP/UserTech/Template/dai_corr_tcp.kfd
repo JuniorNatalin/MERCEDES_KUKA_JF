@@ -1,0 +1,56 @@
+;============================================
+; USERTECH für dai_corr_tcp
+; function:
+; content:    Portierung auf KRC4
+; user: 			A. Koeglmeier
+;============================================
+
+
+DEFTP corr_tcp={SOT FALSE, SOC FALSE}
+
+;**********************************************************************************
+;UserTech für Koorrektur von Tooldaten
+;**********************************************************************************
+
+Decl PARAM X={SHORTNAME[] "X=",SHORTCUT[] "X=",VALUE {REAL:MIN -2000.0,MAX 2000.0,STEP 0.1,DEFAULT 0.0},UNIT[] " mm"}
+Decl PARAM Y={SHORTNAME[] "Y=",SHORTCUT[] "Y=",VALUE {REAL:MIN -2000.0,MAX 2000.0,STEP 0.1,DEFAULT 0.0},UNIT[] " mm"}
+Decl PARAM Z={SHORTNAME[] "Z=",SHORTCUT[] "Z=",VALUE {REAL:MIN -2000.0,MAX 2000.0,STEP 0.1,DEFAULT 0.0},UNIT[] " mm"}
+Decl PARAM A={SHORTNAME[] "A=",SHORTCUT[] "A=",VALUE {REAL:MIN -180.0,MAX 180.0,STEP 0.1,DEFAULT 0.0},UNIT[] " Grad"}
+Decl PARAM B={SHORTNAME[] "B=",SHORTCUT[] "B=",VALUE {REAL:MIN -180.0,MAX 180.0,STEP 0.1,DEFAULT 0.0},UNIT[] " Grad"}
+Decl PARAM C={SHORTNAME[] "C=",SHORTCUT[] "C=",VALUE {REAL:MIN -180.0,MAX 180.0,STEP 0.1,DEFAULT 0.0},UNIT[] " Grad"}
+
+
+Decl PARAM ToolNr={SHORTNAME[] "Tool=",SHORTCUT[] "Tool=",VALUE {Number:MIN 1,MAX 32,STEP 1,DEFAULT 1}}
+
+;********************************************************************************
+
+DECL FOLD Zwischenstueck_Fold[1]
+Zwischenstueck_Fold[1] = "Zwischenstueck={x %X , y %Y , z %Z , a %A , b %B , c %C }"
+
+DECL FOLD WerkzeugTCP_Fold[1]
+WerkzeugTCP_Fold[2] = "ToolNummer=%ToolNr"
+WerkzeugTCP_Fold[3] = "WerkzeugTCP={ x %X , y %Y , z %Z , a %A , b %B , c %C }"
+
+
+DEFSCRIPT WkzTCP_OK
+   setvar(FULLPATH[] "%MODULE//WkzTCP_OK", VALUE[] "True")
+   setvar(FULLPATH[] "%MODULE//DatenOK", VALUE[] "0")
+ENDSCRIPT
+
+DEFSCRIPT ZwiStk_OK
+   setvar(FULLPATH[] "%MODULE//ZwiStk_OK", VALUE[] "True")
+   setvar(FULLPATH[] "%MODULE//DatenOK", VALUE[] "0")
+ENDSCRIPT
+
+
+;*************************************************************************************************************************
+ 
+Decl InlineForm Adapter={FOLD[1] Zwischenstueck_Fold, _
+PARAM[1] X , PARAM[2] Y , PARAM[3] Z , PARAM[4] A , PARAM[5] B , PARAM[6] C , _
+ONACCEPT ZwiStk_OK }
+Decl InlineForm Tool={FOLD[1] WerkzeugTCP_Fold, PARAM[1] ToolNr , _
+PARAM[2] X , PARAM[3] Y , PARAM[4] Z , PARAM[5] A , PARAM[6] B , PARAM[7] C , _
+ONACCEPT WkzTCP_OK }
+ 
+ENDTP
+

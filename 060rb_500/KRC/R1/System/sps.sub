@@ -1,0 +1,243 @@
+&ACCESS RVO
+&REL 16
+&COMMENT PLC on control
+DEF  SPS ( )
+  ;FOLD DECLARATIONS
+  ;FOLD BASISTECH DECL
+  ;Automatik extern
+  DECL STATE_T STAT
+  DECL MODUS_T MODE
+  ;ENDFOLD (BASISTECH DECL)
+  ;FOLD USER DECL
+  ; Please insert user defined declarations
+
+  ;ENDFOLD (USER DECL)
+  ;ENDFOLD (DECLARATIONS)
+  ;FOLD INI
+  ;FOLD AUTOEXT INIT
+  INTERRUPT DECL 91 WHEN $PRO_STATE1==#P_FREE DO RESET_OUT ()
+  INTERRUPT ON 91
+  $LOOP_MSG[]="                                                            "
+  MODE=#SYNC
+  $H_POS=$H_POS
+  ;Automatik extern
+  IF $MODE_OP==#EX THEN
+    CWRITE($CMD,STAT,MODE,"RUN /R1/CELL()")
+  ENDIF
+  ;ENDFOLD (AUTOEXT INIT)
+	     ;FOLD DAI_SPS_INI
+	     ; Daimler-Anteil im sps.sub INIT
+	      
+        DAI_MSG_LIBRARY() ; dient zum Einbinden der Message_library
+        DAI_CTRL_LIBRARY() ; dient zum Einbinden der CTRL_library
+        DAI_SPS_LIBRARY() ; dient zum Einbinden der SPS_library
+        DAI_MATH_LIBRARY() ; dient zum Einbinden der MATH_library
+        DAI_DATA_LIBRARY() ; dient zum Einbinden der DATA_library
+        
+        
+        dai_sps_ini() ; Initialisierungen von der Mercedes Grundplatte
+         ;ENDFOLD (DAI_SPS_INI)
+  ;FOLD USER INIT
+  ; Please insert user defined initialization commands
+if O_SpsSubRun <> 0 then
+  $Out[O_SpsSubRun]=False
+  SpsSubRunCount=0
+endif
+  ;ENDFOLD (USER INIT)
+  ;ENDFOLD (INI)
+
+  LOOP
+     WAIT FOR NOT($POWER_FAIL)
+     TORQUE_MONITORING()
+     CLOCK()
+;FOLD GRIPPERTECH PLC;%{E}%MKUKATPGRP,%CSPS,%VSPS,%P
+  IF (ZANGEN_FUNKT>0) THEN
+    H50 (5,AKT_ZANGE,DUMMY,GDEFAULT )
+    ZANGEN_FUNKT=0
+  ENDIF
+;ENDFOLD (GRIPPERTECH PLC)
+	  ;FOLD DAI_SPS_LOOP
+	  ; Daimler-Anteil im sps.sub LOOP
+     dai_sps_loop() ; Aufruf mercedesspezifischer sps.sub-Anweisungen
+     ;ENDFOLD (DAI_SPS_LOOP)
+    ;FOLD USER PLC
+    ;Make your modifications here
+    
+; Troca de eletrodo
+
+IF ($IN[227]) THEN
+    $OUT[3450]=TRUE   ;PRE AVISO
+    $OUT[3452]=FALSE  ;LIMITE MAX DE PONTOS DE SOLDA
+  ELSE
+    $OUT[3450]=FALSE  ;PRE AVISO
+ENDIF
+IF (NOT $IN[227]) AND (NOT $IN[228]) THEN
+    $OUT[3450]=FALSE  ;PRE AVISO
+    $OUT[3452]=FALSE  ;LIMITE MAX DE PONTOS DE SOLDA
+ENDIF
+IF ($IN[228]) THEN
+    $OUT[3450]=FALSE  ;PRE AVISO
+    $OUT[3452]=TRUE   ;LIMITE MAX DE PONTOS DE SOLDA
+ENDIF
+IF ($IN[229]) THEN
+    $OUT[3449]=TRUE   ;MAQUINA OK
+ELSE
+    $OUT[3449]=FALSE  ;MAQUINA OK
+ENDIF
+
+; Falha de solda
+
+IF ($IN[230]) OR (NOT $IN[229]) THEN
+   $OUT[3497] = FALSE
+   ELSE
+   $OUT[3497] = TRUE
+ENDIF
+
+; Sinais para Seguranca do Docking
+
+IF ((NOT $IN[161]) OR (NOT $IN[177]) OR (NOT $IN[185]) OR ((NOT $IN[169]))) THEN
+  
+   $OUT[223]=FALSE   ; DESBLOQUEAR MPS
+   $OUT[224]=TRUE    ; BLOQUEAR MPS
+   
+   ENDIF
+
+; Sinais para PLC (SAFETY OPERATION)
+
+IF ((NOT $IN[219]) AND ($IN[161]) AND ($IN[169]) AND ($IN[177]) AND ($IN[185])) THEN
+  
+   $OUT[3313]=FALSE   ; (1) TOOL X1       
+   $OUT[3314]=FALSE   ; (2) TOOL C1
+   $OUT[3315]=FALSE   ; (3) TOOL C2
+   $OUT[3316]=FALSE   ; (4) TOOL X2
+   $OUT[3317]=FALSE   ; (5) NÃO USADA 
+   $OUT[3318]=FALSE   ; (6) NÃO USADA 
+   $OUT[3319]=FALSE   ; (7) NÃO USADA
+   $OUT[3320]=TRUE    ; (8) TOOL CHANGE
+
+ENDIF
+
+
+IF (($IN[219]) AND ($IN[161]) AND (NOT $IN[169]) AND ($IN[177]) AND ($IN[185])) THEN
+
+   $OUT[3313]=TRUE    ; (1) TOOL X1
+   $OUT[3314]=FALSE   ; (2) TOOL C1
+   $OUT[3315]=FALSE   ; (3) TOOL C2
+   $OUT[3316]=FALSE   ; (4) TOOL X2 
+   $OUT[3317]=FALSE   ; (5) NÃO USADA 
+   $OUT[3318]=FALSE   ; (6) NÃO USADA 
+   $OUT[3319]=FALSE   ; (7) NÃO USADA
+   $OUT[3320]=FALSE   ; (8) TOOL CHANGE
+      
+ENDIF
+
+IF (($IN[219]) AND (NOT $IN[161]) AND ($IN[169]) AND ($IN[177]) AND ($IN[185])) THEN
+
+   $OUT[3313]=FALSE   ; (1) TOOL X1    
+   $OUT[3314]=TRUE    ; (2) TOOL C1
+   $OUT[3315]=FALSE   ; (3) TOOL C2
+   $OUT[3316]=FALSE   ; (4) TOOL X2 
+   $OUT[3317]=FALSE   ; (5) NÃO USADA 
+   $OUT[3318]=FALSE   ; (6) NÃO USADA 
+   $OUT[3319]=FALSE   ; (7) NÃO USADA
+   $OUT[3320]=FALSE   ; (8) TOOL CHANGE
+   
+ENDIF
+
+IF (($IN[219]) AND ($IN[161]) AND ($IN[169]) AND (NOT $IN[177]) AND ($IN[185])) THEN
+
+   $OUT[3313]=FALSE   ; (1) TOOL X1
+   $OUT[3314]=FALSE   ; (2) TOOL C1
+   $OUT[3315]=TRUE    ; (3) TOOL C2
+   $OUT[3316]=FALSE   ; (4) TOOL X2
+   $OUT[3317]=FALSE   ; (5) NÃO USADA 
+   $OUT[3318]=FALSE   ; (6) NÃO USADA 
+   $OUT[3319]=FALSE   ; (7) NÃO USADA
+   $OUT[3320]=FALSE   ; (8) TOOL CHANGE
+   
+ENDIF
+
+IF (($IN[219]) AND ($IN[161]) AND ($IN[169]) AND ($IN[177]) AND (NOT $IN[185])) THEN
+
+   $OUT[3313]=FALSE   ; (1) TOOL X1
+   $OUT[3314]=FALSE   ; (2) TOOL C1
+   $OUT[3315]=FALSE   ; (3) TOOL C2
+   $OUT[3316]=TRUE    ; (4) TOOL X2
+   $OUT[3317]=FALSE   ; (5) NÃO USADA 
+   $OUT[3318]=FALSE   ; (6) NÃO USADA 
+   $OUT[3319]=FALSE   ; (7) NÃO USADA
+   $OUT[3320]=FALSE   ; (8) TOOL CHANGE
+   
+ENDIF
+
+; Falha de água
+
+IF (($IN[219]) AND (NOT $IN[161]) AND (NOT $IN[67]) AND (NOT $IN[3218]) ) THEN
+   $OUT[3441] = FALSE
+ENDIF
+      
+IF ($IN[219]) AND (NOT $IN[169]) AND (NOT $IN[67])  THEN
+   $OUT[3441] = FALSE
+ENDIF   
+   
+IF ($IN[219]) AND (NOT $IN[177]) AND (NOT $IN[67]) THEN
+   $OUT[3441] = FALSE
+ENDIF
+   
+IF ($IN[219]) AND (NOT $IN[185]) AND (NOT $IN[67]) THEN
+   $OUT[3441] = FALSE
+ENDIF
+
+IF (NOT $IN[219]) AND ($IN[161]) AND ($IN[169]) AND ($IN[177]) AND ($IN[185]) THEN
+   $OUT[3441] = TRUE
+ENDIF
+
+IF ($IN[67]) THEN
+   $OUT[3441] = TRUE
+ENDIF
+
+IF (NOT $IN[67]) AND ($IN[3218]) THEN
+   $OUT[3441] = TRUE
+ENDIF
+
+; Fim de falha de água
+
+
+;FOLD CheckSpsSub is running
+  if O_SpsSubRun <> 0 then
+    SpsSubRunCount=SpsSubRunCount+1
+      if SpsSubRunCount>SpsSubRunCountMax then
+        $Out[O_SpsSubRun] = not $Out[O_SpsSubRun]
+        SpsSubRunCount=0
+      endif
+    endif
+    ;ENDFOLD (USER PLC)
+  ENDLOOP
+  ;FOLD ;%{H}
+  ;FOLD
+END
+  ;ENDFOLD
+
+
+DEF  RESET_OUT ( )
+  INT N
+  MsgLoop(" ")
+  IF REFLECT_PROG_NR == 1 THEN
+    FOR N = 0 TO PGNO_LENGTH - 1
+      $OUT[PGNO_FBIT_REFL + N] = FALSE
+    ENDFOR
+  ENDIF
+  IF (PGNO_REQ>0) THEN
+    $OUT[PGNO_REQ]=FALSE
+  ELSE
+    IF (PGNO_REQ<0) THEN
+      $OUT[-PGNO_REQ]=TRUE
+    ENDIF
+  ENDIF
+END
+
+;FOLD USER SUBROUTINE
+; Integrate your user defined subroutines
+
+;ENDFOLD (USER SUBROUTINE)
+;ENDFOLD

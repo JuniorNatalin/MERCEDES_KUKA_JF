@@ -1,0 +1,20 @@
+&ACCESS RV2
+&REL 7
+&COMMENT Check X1
+DEF chk_w2_wechs_ok( )
+Diag_Appl(#on,5)
+
+;VERIFICAÇÃO DE FERRAMENTA: X1
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+wait for ((not $in[161]) and ($in[169]) and (($in[177]) OR (NOT $in[177])) and ($in[219]))
+
+;//---- End -------
+Diag_Appl(#Off,5)
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+END

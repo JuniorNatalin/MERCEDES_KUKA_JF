@@ -1,0 +1,11 @@
+&ACCESS RVO1
+&REL 153
+&COMMENT start_weld_RESPOT
+&PARAM DISKPATH = KRC:\R1\Program\SubRotinas
+DEF start_weld_RESPOT( )
+;
+;FOLD OUT 3333 'R5 trabalho concluido' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3333, 3:R5 trabalho concluido, 5:FALSE, 6:
+$OUT[3333]=FALSE
+;ENDFOLD
+;
+END

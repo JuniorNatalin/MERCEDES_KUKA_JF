@@ -1,0 +1,23 @@
+&ACCESS RV1
+&COMMENT user_plc_init
+&USER PKL_AST
+DEF user_housekeeping( )
+; hier alle User-Aufrufe fuer den SPS.SUB-Init einpflegen
+; insert alle user-funtions for SPS.SUB-Init
+
+
+
+;START Tech_001
+;END Tech_001
+
+;START Tech_002
+;END Tech_002
+
+;START Tech_100
+;END Tech_100
+
+;START Tech_101
+;END Tech_101
+
+
+END

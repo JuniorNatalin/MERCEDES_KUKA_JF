@@ -1,0 +1,54 @@
+&ACCESS RVP
+&COMMENT Cond Finais
+&PARAM DISKPATH = KRC:\R1\Program
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF MBINI_2( )
+;FOLD OUT 3334 'R4 solda respot concluida' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3334, 3:R4 solda respot concluida, 5:FALSE, 6:
+$OUT[3334]=FALSE
+;ENDFOLD
+;FOLD OUT 3335 'R4 retirou garra da Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3335, 3:R4 retirou garra da Geo, 5:FALSE, 6:
+$OUT[3335]=FALSE
+;ENDFOLD
+;FOLD OUT 3336 'R4 posicao solicita retirar garra Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3336, 3:R4 posicao solicita retirar garra Geo, 5:FALSE, 6:
+$OUT[3336]=FALSE
+;ENDFOLD
+;FOLD OUT 3337 'R4 retirando garra Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3337, 3:R4 retirando garra Geo, 5:FALSE, 6:
+$OUT[3337]=FALSE
+;ENDFOLD
+;FOLD OUT 3338 'R4 solda geometria concluida' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3338, 3:R4 solda geometria concluida, 5:FALSE, 6:
+$OUT[3338]=FALSE
+;ENDFOLD
+;FOLD OUT 3339 'R4 soldando' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3339, 3:R4 soldando, 5:FALSE, 6:
+$OUT[3339]=FALSE
+;ENDFOLD
+;FOLD OUT 3343 'R4 entregou peca Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3343, 3:R4 entregou peca Geo, 5:FALSE, 6:
+$OUT[3343]=FALSE
+;ENDFOLD
+;FOLD OUT 3344 'R4 solicita lib sair Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3344, 3:R4 solicita lib sair Geo, 5:FALSE, 6:
+$OUT[3344]=FALSE
+;ENDFOLD
+;FOLD OUT 3345 'locking-signal PLC' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3345, 3:locking-signal PLC, 5:FALSE, 6:
+$OUT[3345]=FALSE
+;ENDFOLD
+;FOLD OUT 3346 'R4 entrega peca Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3346, 3:R4 entrega peca Geo, 5:FALSE, 6:
+$OUT[3346]=FALSE
+;ENDFOLD
+;FOLD OUT 3349 'R4 pegou peca' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3349, 3:R4 pegou peca, 5:FALSE, 6:
+$OUT[3349]=FALSE
+;ENDFOLD
+;FOLD OUT 3350 'R4 solicita lib sair magazine' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3350, 3:R4 solicita lib sair magazine, 5:FALSE, 6:
+$OUT[3350]=FALSE
+;ENDFOLD
+;FOLD OUT 3351 'R4 busca peca Accelo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3351, 3:R4 busca peca Accelo, 5:FALSE, 6:
+$OUT[3351]=FALSE
+;ENDFOLD
+;FOLD OUT 3352 'R4 busca peca Actros' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3352, 3:R4 busca peca Actros, 5:FALSE, 6:
+$OUT[3352]=FALSE
+;ENDFOLD
+
+;FOLD OUT 3340 'Area_Clear_AGV' State=TRUE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3340, 3:Area_Clear_AGV, 5:TRUE, 6:
+$OUT[3340]=TRUE
+;ENDFOLD
+
+END

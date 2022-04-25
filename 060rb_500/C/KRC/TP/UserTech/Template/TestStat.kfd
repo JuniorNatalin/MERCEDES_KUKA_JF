@@ -1,0 +1,57 @@
+DEFTP StatkeyTest
+Decl Param BildNr={Value {Number: Min 0, Max 2, default 1}}
+Decl Param StatKeyNr={Value {Number: Min 0, Max 3, default 1}}
+
+Decl StatKey Stat1
+Decl StatKey Stat2
+Decl StatKey Stat3
+Decl StatKey Stat4
+
+DefScript Meldung
+    Message "StatusKey Nr. %StatkeyNr  mit Bild %BildNr"
+ENDSCRIPT
+
+Defscript ST1
+    Showvar(FULLPATH[] "1", PARAM StatKeyNr )
+    DO Meldung
+ENDSCRIPT
+
+Defscript ST2
+    Showvar(FULLPATH[] "2", PARAM StatKeyNr )
+    DO Meldung
+ENDSCRIPT
+
+Defscript ST3
+    Showvar(FULLPATH[] "3", PARAM StatKeyNr )
+    DO Meldung
+ENDSCRIPT
+
+Defscript SKB1
+    Showvar(FULLPATH[] "1", PARAM BildNr )
+    SET Stat1 = {Picture[] "C:\KRC\TP\UserTech\Template\Bild11.ICO"}
+    SET Stat2 = {Picture[] "C:\KRC\TP\UserTech\Template\Bild21.ICO"}
+    SET Stat3 = {Picture[] "C:\KRC\TP\UserTech\Template\Bild31.ICO"}
+ENDSCRIPT
+
+Defscript SKB2
+    Showvar(FULLPATH[] "2", PARAM BildNr )
+    SET Stat1 = {Picture[] "C:\KRC\TP\UserTech\Template\Bild12.ICO"}
+    SET Stat2 = {Picture[] "C:\KRC\TP\UserTech\Template\Bild22.ICO"}
+    SET Stat3 = {Picture[] "C:\KRC\TP\UserTech\Template\Bild32.ICO"}
+ENDSCRIPT
+
+
+Defscript CHGSTatkey
+    SWITCH "%BildNr"
+    Case "1" do SKB2
+    Case "2" do SKB1
+    endswitch
+ENDSCRIPT
+
+Set Stat1 = {Picture[] "C:\KRC\TP\UserTech\Template\Bild11.ICO", onkeydown ST1}
+Set Stat2 = {Picture[] "C:\KRC\TP\UserTech\Template\Bild21.ICO", onkeydown ST2}
+Set Stat3 = {Picture[] "C:\KRC\TP\UserTech\Template\Bild31.ICO", onkeydown ST3}
+Set Stat4 = {Picture[] "C:\KRC\TP\UserTech\Template\Bild41.ICO", onkeydown CHGStatkey}                                
+
+Decl StatKeyBar Test = {STATKEY[1] STAT1,STATKEY[2] STAT2,STATKEY[3] STAT3,STATKEY[4] STAT4}
+ENDTP

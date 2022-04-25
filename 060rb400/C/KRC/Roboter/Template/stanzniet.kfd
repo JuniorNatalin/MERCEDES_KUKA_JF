@@ -1,0 +1,32 @@
+DEFTP StanzNiet={ SOT FALSE }
+;============================================
+; USRTECH für Stanznieten mit ARIEL Steuerung
+; TS-APA, IR-Systeme, R.Weinmann
+; Tel.: 07031-90-2571
+; Änderungsstand: 24.09.1997
+; Min Wert bei KOMP Programm auf 0 gesetzt.
+;============================================ 
+
+; *** Parameter-Beschreibung ***
+
+DECL PARAM Vorhub={shortname[] "Vorhub/Eloloket ", shortcut[] "Vh", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "#AUF", disp[] "Auf/hatra "}, _
+  ITEM[2] {ITEM:VALUE[] "#ZU", disp[] "Zu/elore " }}}
+
+DECL PARAM KompProgramm={shortname[] "Prog-Nr. ", shortcut[] "Prg", unit[] "", value { NUMBER : min 0, max 16, step 1, default 1 }}
+
+; *** Fold-Beschreibung ***
+
+DECL FOLD KMP_FOLD[1]
+KMP_FOLD[1]="KOMP ( %KompProgramm )"
+
+DECL FOLD ST_FOLD[1]
+ST_FOLD[1]="NIETEN ( %Vorhub , %KompProgramm )"
+
+; *** Beschreibung Inlineformulare ***
+
+DECL INLINEFORM Kompensation={FOCUS 0, FOLD[1] KMP_FOLD, PARAM[1] KompProgramm  }
+
+DECL INLINEFORM Nieten={FOCUS 0, FOLD[1] ST_FOLD, PARAM[1] KompProgramm, PARAM[2] Vorhub  }
+
+ENDTP

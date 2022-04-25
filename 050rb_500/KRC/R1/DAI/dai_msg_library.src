@@ -1,0 +1,422 @@
+&ACCESS RVO14
+&REL 250
+&COMMENT daimler_message_library
+&USER PKL_AST
+&PARAM DISKPATH = KRC:\R1\DAI
+&PARAM version = 2.0
+DEF DAI_MSG_LIBRARY()
+;________________________________
+;
+;
+; Version:  1.3
+; Date:    2012-03-12
+;
+;________________________________
+    
+                             
+;MSG_SHOW(PAR1[] :IN,PAR2 :IN,PAR3 :IN,PAR4[] :IN,PAR5 :OUT,PAR6 :OUT)
+; Hauptmethode um die Meldung abzusetzen	
+;PAR1 = Modulname
+;PAR2 = Meldungstyp, #quit #notify #dialog #state
+;PAR3 = Meldungsnummer
+;PAR4 = Meldungskey aus der KXR Datei
+;PAR5 = Handle fuer die angesetze Meldung
+;PAR6 = Antwort der Dialogmeldung
+ 
+;MSG_BTN(PAR1[] :IN,PAR2[] :IN,PAR3[] :IN,PAR4[] :IN,PAR5[] :IN,PAR6[] :IN,PAR7[] :IN)
+; Buttons fuer die Dialogmeldung setzen
+;PAR1 bis PAR6 = Key der Buttonbeschriftung aus dem KXR File
+
+;MSG_PARAM(PAR1 :IN, PAR2[] :IN, PAR3 :IN, PAR4 :IN,PAR5 :IN, PAR6[] : IN)
+; Parameter fuer die Meldungen setzen	
+;PAR1 = Nummer des Uebergabeparameters 1,2 oder 3 
+;PAR2 = Key des Parameters in der KXR Datei
+;PAR3 = Integer Uebergabewert
+;PAR4 = Real Uebergabewert
+;PAR5 = Bool Uebergabewert
+;PAR6 = String Uebergabewert
+
+;MSG_CONDITION(PAR1 :IN,PAR2 :IN,PAR3 :IN)
+; Meldung abhaengig von einem Ausgang setzen
+;PAR1 = Meldungsausloeser #flag, #in, #out
+;PAR2 = Nummer des Meldungsausloeser
+;PAR3 = Zustand Meldungsausloeser TRUE, FALSE
+
+;MSG_PROP(PAR1 :IN,PAR2 :IN,PAR3 :IN,PAR4 :IN)
+; Spezielle Eigenschaften der Meldungen setzen
+;PAR1 = Vorlaufstop TRUE, FALSE
+;PAR2 = Programmreset loescht Meldung TRUE, FALSE
+;PAR3 = Satzanwahl loescht Meldung TRUE, FALSE
+;PAR4 = Logging der Meldung TRUE, FALSE
+
+
+;MSG_AUTO_KEY(PAR1[] :IN, PAR2 :IN, PAR3 :IN, PAR4[] :IN)
+; Funktion um eine Vielzahl von Meldungen auf Basis einer Nummer auszugeben
+;PAR1 	[]	= Modul der gewuenschten KXR-Datei
+;PAR2		= Meldungstyp (#quit, #dialog, #notify)
+;PAR3	= Integer der nachher fuer die Meldungsnummer benutzt wird und im 4. Parameter das �~%d�S ersetzt
+;PAR4	= Grundtext mit eingebautem �~%d�S das durch den Integer im 3. Parameter ersetzt wird.
+
+
+; Ausgabe der Lade-Meldung....ohne Msg_library weil hier noch nicht geladen
+decl KrlMsg_t loadmessage
+decl KrlMsgPar_t LoadPar[3]
+decl KrlMsgOpt_t loadoptions
+decl int handle 
+loadmessage={modul[] "DAI_MSG_LIB",NR 10,msg_txt[] "DAI_MSG_L0"}
+handle=Set_KrlMsg(#notify,loadmessage,LoadPar[],loadoptions)
+
+bENABLE_COMBI_STRING=TRUE ;Initialisierung fuer Kombistringbehandlung
+
+END
+
+; Hauptmethode um Meldungen anzuzeigen
+;FOLD MSG_SHOW
+GLOBAL DEF MSG_SHOW(PAR1[] :IN,PAR2 :IN,PAR3 :IN,PAR4[] :IN,PAR5 :OUT,PAR6 :OUT)
+DECL CHAR DAI_TXT[100],DAI_KEY1[16],DAI_KEY2[16],DAI_KEY3[16],DAI_KEY4[16],DAI_KEY5[16],DAI_KEY6[16],DAI_KEY7[16]
+DECL CHAR PAR1[],PAR4[]
+DECL KRLMSG_T MSG
+DECL INT PAR3,PAR5,PAR6,iCount
+DECL MSG_TYP PAR2
+DECL BOOL bResult
+DECL int i,L,lastEntry
+WAIT FOR strclear(MSG.MODUL[])
+WAIT FOR strclear(MSG.MSG_TXT[])
+MSG.MODUL[]=PAR1[]  ;sender, kxr file name
+MSG.NR=PAR3  ;message number
+MSG.MSG_TXT[]=PAR4[]  ;message text, Key name in the kxr file
+  
+SWITCH PAR2  ;message typ
+  CASE #NOTIFY
+    PAR5 = Set_KrlMsg(#notify, MSG, PAR[], OPT)
+
+  CASE #DIALOG
+    ; Kombi-String Beahandlung
+    L = StrLen(MSG.MSG_TXT[])
+    i=1
+    FOR icount=1 to L
+      ;DAI_TXT[iCount]=MSG.MSG_TXT[iCount]
+      IF MSG.MSG_TXT[iCount]=="|" then
+        i=i+1
+        lastEntry=icount
+        icount=icount+1 ; Trennzeichen ueberspringen          
+      ENDIF
+      SWITCH i
+        CASE 1
+          DAI_TXT[iCount]=MSG.MSG_TXT[iCount]
+        CASE 2
+          DAI_KEY1[iCount-lastEntry]=MSG.MSG_TXT[iCount]
+        CASE 3
+          DAI_KEY2[iCount-lastEntry]=MSG.MSG_TXT[iCount]
+        CASE 4
+          DAI_KEY3[iCount-lastEntry]=MSG.MSG_TXT[iCount]
+        CASE 5
+          DAI_KEY4[iCount-lastEntry]=MSG.MSG_TXT[iCount]
+        CASE 6
+          DAI_KEY5[iCount-lastEntry]=MSG.MSG_TXT[iCount]
+        CASE 7
+          DAI_KEY6[iCount-lastEntry]=MSG.MSG_TXT[iCount]
+        CASE 8
+          DAI_KEY7[iCount-lastEntry]=MSG.MSG_TXT[iCount]
+      ENDSWITCH
+    ENDFOR
+    WAIT FOR strclear(MSG.MSG_TXT[]);Kombistring loeschen
+    MSG.MSG_TXT[]=DAI_TXT[] ; der Messagetext wird wieder zugewiesen
+
+    IF bENABLE_COMBI_STRING THEN
+      IF (strlen(DAI_KEY1[]) >=1) THEN
+        MSG_BTN(DAI_KEY1[])
+        IF (strlen(DAI_KEY2[]) >=1) THEN
+          MSG_BTN(DAI_KEY1[],DAI_KEY2[])
+        ENDIF
+        IF (strlen(DAI_KEY3[]) >=1) THEN
+          MSG_BTN(DAI_KEY1[],DAI_KEY2[],DAI_KEY3[])
+        ENDIF
+        IF (strlen(DAI_KEY4[]) >=1) THEN
+          MSG_BTN(DAI_KEY1[],DAI_KEY2[],DAI_KEY3[],DAI_KEY4[])
+        ENDIF
+        IF (strlen(DAI_KEY5[]) >=1) THEN
+          MSG_BTN(DAI_KEY1[],DAI_KEY2[],DAI_KEY3[],DAI_KEY4[],DAI_KEY5[])
+        ENDIF
+        IF (strlen(DAI_KEY6[]) >=1) THEN
+          MSG_BTN(DAI_KEY1[],DAI_KEY2[],DAI_KEY3[],DAI_KEY4[],DAI_KEY5[],DAI_KEY6[])
+        ENDIF
+        IF (strlen(DAI_KEY7[]) >=1) THEN
+          MSG_BTN(DAI_KEY1[],DAI_KEY2[],DAI_KEY3[],DAI_KEY4[],DAI_KEY5[],DAI_KEY6[],DAI_KEY7[])
+        ENDIF
+      ELSE
+        MSG_BTN("Ja/Yes","Nein/No")
+      ENDIF
+    ENDIF ;Enable Combistring
+
+
+;ende KombiStringbehandlung
+
+    PAR5 = Set_KrlDlg(MSG, PAR[], SK[],OPT)
+    SetOut (RobDialogmeldungAktiv, TRUE, 0 ) ;set signal to PLC dialog message active
+    WHILE (Exists_KrlDlg(PAR5,PAR6))
+      WAIT SEC 0.05
+    ENDWHILE
+    SetOut (RobDialogmeldungAktiv, FALSE, 0 ) ;reset signal to PLC dialog message active
+  CASE #STATE
+    SWITCH CON.TYP
+      CASE #IN
+      CASE #OUT
+      CASE #FLAG
+        IF ($FLAG[CON.NR]== NOT CON.VALUE) THEN
+          PAR5 = Set_KrlMsg(#state, MSG, PAR[], OPT)
+          REPEAT
+            WAIT SEC 0.05
+            IF (PAR5 > 0) THEN
+              IF ($FLAG[CON.NR]==CON.VALUE) THEN
+                bResult=Clear_KrlMsg(PAR5)
+              ENDIF
+            ENDIF
+          UNTIL ($FLAG[CON.NR]==CON.VALUE)
+        ENDIF
+
+    ENDSWITCH
+
+  CASE #QUIT
+    PAR5 = Set_KrlMsg(#quit, MSG, PAR[], OPT)
+    WHILE (Exists_KrlMsg(PAR5))
+      WAIT SEC 0.05
+    ENDWHILE
+  ;CASE #waiting
+ENDSWITCH
+
+;DEFAULT VALUES
+bENABLE_COMBI_STRING=TRUE
+opt={VL_STOP TRUE,CLEAR_P_RESET TRUE,CLEAR_P_SAW FALSE,LOG_TO_DB TRUE}
+FOR iCount=1 TO 3
+  PAR[iCount].par_type=#empty
+ENDFOR
+
+END
+;ENDFOLD
+
+; Spezielle Eigenschaften der Meldungen setzen
+;FOLD MSG_PROP
+GLOBAL DEF MSG_PROP(PAR1 :IN,PAR2 :IN,PAR3 :IN,PAR4 :IN)
+
+DECL BOOL PAR1,PAR2,PAR3,PAR4
+
+IF (varstate("PAR1")==#initialized) THEN
+  OPT.VL_STOP=PAR1
+ENDIF
+IF (varstate("PAR2")==#initialized) THEN
+  OPT.CLEAR_P_RESET=PAR2
+ENDIF
+IF (varstate("PAR3")==#initialized) THEN
+  OPT.CLEAR_P_SAW=PAR3
+ENDIF
+IF (varstate("PAR4")==#initialized) THEN
+  OPT.LOG_TO_DB=PAR4
+ENDIF
+
+END
+;ENDFOLD
+
+; Meldungsausloesung mit einem Eingang 
+;FOLD MSG_CONDITION
+GLOBAL DEF MSG_CONDITION(PAR1 :IN,PAR2 :IN,PAR3 :IN)
+DECL PH_TYP PAR1
+DECL INT PAR2
+DECL BOOL PAR3
+
+CON.TYP=PAR1
+CON.NR=PAR2
+CON.VALUE=PAR3
+
+END
+;ENDFOLD
+
+; Buttons fuer Dialogmeldungen setzen
+;FOLD MSG_BTN
+GLOBAL DEF MSG_BTN(PAR1[] :IN,PAR2[] :IN,PAR3[] :IN,PAR4[] :IN,PAR5[] :IN,PAR6[] :IN,PAR7[] :IN)
+DECL CHAR PAR1[],PAR2[],PAR3[],PAR4[],PAR5[],PAR6[],PAR7[]
+IF (strlen(PAR1[])>=1) THEN
+  sk[1]={SK_TYPE #KEY,SK_TXT[] " "}
+  sk[1].SK_TXT[]=PAR1[]
+ELSE
+  sk[1]={SK_TYPE #EMPTY,SK_TXT[] " "}
+ENDIF
+IF (strlen(PAR2[])>=1) THEN
+  sk[2]={SK_TYPE #KEY,SK_TXT[] " "}
+  sk[2].SK_TXT[]=PAR2[]
+ELSE
+  sk[2]={SK_TYPE #EMPTY,SK_TXT[] " "}
+ENDIF
+IF (strlen(PAR3[])>=1) THEN
+  sk[3]={SK_TYPE #KEY,SK_TXT[] " "}
+  sk[3].SK_TXT[]=PAR3[]
+ELSE
+  sk[3]={SK_TYPE #EMPTY,SK_TXT[] " "}
+ENDIF
+IF (strlen(PAR4[])>=1) THEN
+  sk[4]={SK_TYPE #KEY,SK_TXT[] " "}
+  sk[4].SK_TXT[]=PAR4[]
+ELSE
+  sk[4]={SK_TYPE #EMPTY,SK_TXT[] " "}
+ENDIF
+IF (strlen(PAR5[])>=1) THEN
+  sk[5]={SK_TYPE #KEY,SK_TXT[] " "}
+  sk[5].SK_TXT[]=PAR5[]
+ELSE
+  sk[5]={SK_TYPE #EMPTY,SK_TXT[] " "}
+ENDIF
+IF (strlen(PAR6[])>=1) THEN
+  sk[6]={SK_TYPE #KEY,SK_TXT[] " "}
+  sk[6].SK_TXT[]=PAR6[]
+ELSE
+  sk[6]={SK_TYPE #EMPTY,SK_TXT[] " "}
+ENDIF
+IF (strlen(PAR7[])>=1) THEN
+  sk[7]={SK_TYPE #KEY,SK_TXT[] " "}
+  sk[7].SK_TXT[]=PAR7[]
+ELSE
+  sk[7]={SK_TYPE #EMPTY,SK_TXT[] " "}
+ENDIF
+
+bENABLE_COMBI_STRING=FALSE  ;Kombistringbehandlung deaktivieren
+
+END
+;ENDFOLD
+
+; Parameter fuer die Meldungen setzen
+;FOLD MSG_PARAM
+GLOBAL DEF MSG_PARAM(PAR1 :IN, PAR2[] :IN, PAR3 :IN, PAR4 :IN,PAR5 :IN, PAR6[] :IN)
+DECL INT PAR1,PAR3,iType
+DECL REAL PAR4
+DECL BOOL PAR5
+DECL CHAR PAR2[], PAR6[]
+iType=0
+WAIT FOR strclear(PARAM[1].PAR_TXT[])
+IF (strlen(PAR2[])>=1) THEN
+  ;iType=iType+1
+ENDIF
+IF (varstate("PAR3")==#initialized) THEN
+  iType=iType+2
+ENDIF
+IF (varstate("PAR4")==#initialized) THEN
+  iType=iType+3
+ENDIF
+IF (varstate("PAR5")==#initialized) THEN
+  iType=iType+4
+ENDIF
+IF (strlen(PAR6[])>=1)  THEN
+  iType=iType+5
+ENDIF
+SWITCH iType
+  CASE 1
+    PARAM[1].par_type=#key
+    PARAM[1].par_txt[]=par2[]
+  CASE 2
+    PARAM[2].par_type=#value
+    PARAM[2].par_int=par3
+  CASE 3
+    PARAM[3].par_type=#value
+    PARAM[3].par_real=par4
+  CASE 4
+    PARAM[4].par_type=#value
+    PARAM[4].par_bool=par5
+  CASE 5
+    PARAM[1].par_type=#value
+    PARAM[1].par_txt[]=par6[]
+    iType = 1
+  DEFAULT
+    WAIT FOR FALSE
+ENDSWITCH
+IF (iType>=1) AND (iType<=4) THEN
+  PAR[PAR1]=PARAM[iType]
+ENDIF 
+
+END
+;ENDFOLD
+
+; Meldung abloeschen
+;fold MSG_CLEAR
+GLOBAL DEF MSG_CLEAR(PAR1 :IN,RESULT :OUT)
+DECL INT PAR1
+DECL BOOL RESULT
+result=Clear_KrlMsg(PAR1) 
+END
+;endfold
+
+; WaitForIn-Metzhode mit Timeout (ersetzt WaitFor BR222)
+;FOLD MSG_WaitForIn
+GLOBAL DEF MSG_WaitForIn(iInputnumber :IN,bState :IN,iTimeout :IN,bResult :OUT)
+DECL INT iInputnumber ,iTimeout
+DECL bool bState,bResult
+
+; Funktion ...ersetzt MSG_WAIT()
+; wartet auf $IN[iInputnumber]==bState
+; wenn iInputnummer=0...dann wird das Programm uebersprungen
+; ist fuer das iTimeout ein Wert >0 eingetragen, 
+; dann ist die Zeitueberwachung aktiv
+; wenn das Timeout abgelaufen ist, und der Eingang in dieser Zeit nicht den Status bState erreicht hat,
+; dann wird bResult=TRUE zurueck gegeben
+; die "wait for" -Meldung benutzt den Langtext der jeweilig eingestellten Sprache
+;
+; wenn die TimeOut-Funktion benutzt wird, ist zwingend eine Weiterverarbeitung des bResult erforderlich
+
+bResult=FALSE ;default
+   IF iTimeOut == 0 THEN 
+    IF bState == TRUE THEN
+      WAIT FOR $IN[iInputnumber]
+    ELSE
+      WAIT FOR NOT $IN[iInputnumber]
+    ENDIF      
+ ELSE   
+    IF bState == TRUE THEN
+      WAIT FOR $IN[iInputnumber] or Timer_Limit(iTimeout)
+    ELSE
+      WAIT FOR (NOT $IN[iInputnumber]) or Timer_Limit(iTimeout)
+    ENDIF     
+    IF $IN[iInputnumber]<>bState THEN  ;Timeout abgelaufen ?
+      bResult=TRUE
+    ENDIF  
+ ENDIF  
+  
+END
+;ENDFOLD
+
+; Funktion um eine Vielzahl von Meldungen auf Basis einer Nummer auszugeben
+;FOLD MSG_AUTO_KEY
+GLOBAL DEF MSG_AUTO_KEY(PAR1[] :IN,PAR2 :IN,PAR3 :IN,PAR4[] :IN)
+DECL CHAR DAI_TXT[100],DAI_KEY1[16],DAI_KEY2[16],DAI_KEY3[16],DAI_KEY4[16],DAI_KEY5[16],DAI_KEY6[16],DAI_KEY7[16]
+DECL CHAR PAR1[],PAR4[]
+DECL CHAR PAR7[30]
+DECL INT PAR3,PAR5,PAR6,iCount
+DECL MSG_TYP PAR2
+DECL BOOL bResult
+DECL int i,L,lastEntry, OFFSET_A
+DECL STATE_T STATE
+DECL KRLMSG_T MSG
+WAIT FOR strclear(MSG.MODUL[])
+WAIT FOR strclear(MSG.MSG_TXT[])
+MSG.MODUL[]=PAR1[]  ;sender, kxr file name
+MSG.NR=PAR3  ;message number
+OFFSET_A=0
+SWRITE(PAR7[],STATE,OFFSET_A,PAR4[],PAR3)
+MSG.MSG_TXT[]=PAR7[]  ;message text, Key name in the kxr file
+SWITCH PAR2  ;message typ
+  CASE #QUIT
+    PAR5 = Set_KrlMsg(#quit, MSG, PAR[], OPT)
+    WHILE (Exists_KrlMsg(PAR5))
+      WAIT SEC 0.05
+    ENDWHILE
+  Default 
+    PAR5 = Set_KrlMsg(#notify, MSG, PAR[], OPT)
+ENDSWITCH
+
+;DEFAULT VALUES
+opt={VL_STOP TRUE,CLEAR_P_RESET TRUE,CLEAR_P_SAW FALSE,LOG_TO_DB TRUE}
+FOR iCount=1 TO 3
+  PAR[iCount].par_type=#empty
+ENDFOR
+
+END
+;ENDFOLD
+
+

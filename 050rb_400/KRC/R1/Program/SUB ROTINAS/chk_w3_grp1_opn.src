@@ -1,0 +1,18 @@
+&ACCESS RVO1
+&COMMENT Check GRP ACTROS Z1 OPEN
+DEF chk_w3_grp1_opn( )
+
+;//---- Start User-------
+; Aguardando posicao de Gripper Aberto
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+WAIT FOR ($IN[5] AND $IN[7] AND $IN[9])
+WAIT FOR (NOT $IN[6] AND NOT $IN[8] AND NOT $IN[10])
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User-------
+END

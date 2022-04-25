@@ -1,0 +1,79 @@
+&ACCESS RVO12
+&REL 267
+&COMMENT VERRIEGELUNGEN V3.02
+DEFDAT  COLLSTOP PUBLIC
+
+;FOLD COLLISION_V3.01 ;%{E}
+;Achtung: ACTIVE ist nicht projektierbar (28.04.99)
+DECL CONST INT MAX_COLL=16
+GLOBAL STRUC COLLISIONTYP INT I_NR,BOOL ACTIVE
+DECL GLOBAL COLLISIONTYP COLLISION_DATA[16]
+COLLISION_DATA[1]={I_NR 864,ACTIVE FALSE}
+COLLISION_DATA[2]={I_NR 863,ACTIVE FALSE}
+COLLISION_DATA[3]={I_NR 862,ACTIVE FALSE}
+COLLISION_DATA[4]={I_NR 861,ACTIVE FALSE}
+COLLISION_DATA[5]={I_NR 860,ACTIVE FALSE}
+COLLISION_DATA[6]={I_NR 859,ACTIVE FALSE}
+COLLISION_DATA[7]={I_NR 858,ACTIVE FALSE}
+COLLISION_DATA[8]={I_NR 857,ACTIVE FALSE}
+COLLISION_DATA[9]={I_NR 856,ACTIVE FALSE}
+COLLISION_DATA[10]={I_NR 855,ACTIVE FALSE}
+COLLISION_DATA[11]={I_NR 854,ACTIVE FALSE}
+COLLISION_DATA[12]={I_NR 853,ACTIVE FALSE}
+COLLISION_DATA[13]={I_NR 852,ACTIVE FALSE}
+COLLISION_DATA[14]={I_NR 851,ACTIVE FALSE}
+COLLISION_DATA[15]={I_NR 850,ACTIVE FALSE}
+COLLISION_DATA[16]={I_NR 849,ACTIVE FALSE}
+;ENDFOLD
+
+;FOLD COLLISION_INPUTS_V3.01
+INT MAX_I_CS_MESSAGE=32
+DECL I_MESSAGETYP CS_MESSAGE[32]
+CS_MESSAGE[1]={I_NR 864,I_MSG_TXT[] "08R10E864:Antikollision mit IR 07R10"}
+CS_MESSAGE[2]={I_NR 863,I_MSG_TXT[] "08R10E863:Antikollision mit IR 08R20"}
+CS_MESSAGE[3]={I_NR 862,I_MSG_TXT[] "08R10E862:Antikollision mit IR 08R20"}
+CS_MESSAGE[4]={I_NR 861,I_MSG_TXT[] "08R10E861:Antikollision mit IR 08R30"}
+CS_MESSAGE[5]={I_NR 860,I_MSG_TXT[] "XXXXE860:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[6]={I_NR 859,I_MSG_TXT[] "XXXXE859:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[7]={I_NR 858,I_MSG_TXT[] "XXXXE858:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[8]={I_NR 857,I_MSG_TXT[] "XXXXE857:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[9]={I_NR 856,I_MSG_TXT[] "XXXXE856:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[10]={I_NR 855,I_MSG_TXT[] "XXXXE855:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[11]={I_NR 854,I_MSG_TXT[] "XXXXE854:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[12]={I_NR 853,I_MSG_TXT[] "XXXXE853:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[13]={I_NR 852,I_MSG_TXT[] "XXXXE852:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[14]={I_NR 851,I_MSG_TXT[] "XXXXE851:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[15]={I_NR 850,I_MSG_TXT[] "XXXXE850:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[16]={I_NR 849,I_MSG_TXT[] "XXXXE849:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[17]={I_NR 0,I_MSG_TXT[] "XXXXEXXX:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[18]={I_NR 0,I_MSG_TXT[] "XXXXEXXX:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[19]={I_NR 0,I_MSG_TXT[] "XXXXEXXX:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[20]={I_NR 0,I_MSG_TXT[] "XXXXEXXX:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[21]={I_NR 0,I_MSG_TXT[] "XXXXEXXX:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[22]={I_NR 0,I_MSG_TXT[] "XXXXEXXX:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[23]={I_NR 0,I_MSG_TXT[] "XXXXEXXX:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[24]={I_NR 0,I_MSG_TXT[] "XXXXEXXX:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[25]={I_NR 0,I_MSG_TXT[] "XXXXEXXX:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[26]={I_NR 0,I_MSG_TXT[] "XXXXEXXX:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[27]={I_NR 0,I_MSG_TXT[] "XXXXEXXX:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[28]={I_NR 0,I_MSG_TXT[] "XXXXEXXX:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[29]={I_NR 0,I_MSG_TXT[] "XXXXEXXX:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[30]={I_NR 0,I_MSG_TXT[] "XXXXEXXX:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[31]={I_NR 0,I_MSG_TXT[] "XXXXEXXX:Antikollision mit IR XXXX                          "}
+CS_MESSAGE[32]={I_NR 0,I_MSG_TXT[] "Kein Eingangsname projektiert                               "}
+;ENDFOLD
+
+;FOLD COLLISION_ERRORS_V3.01
+INT MAX_I_CS_ERRORS=8
+DECL MSG_TXT_TYP CS_ERRORS[32]
+CS_ERRORS[1]={MSGTXT[] "Verriegelungsnummer nicht projektiert                       "}
+CS_ERRORS[2]={MSGTXT[] "                                                            "}
+CS_ERRORS[3]={MSGTXT[] "                                                            "}
+CS_ERRORS[4]={MSGTXT[] "                                                            "}
+CS_ERRORS[5]={MSGTXT[] "                                                            "}
+CS_ERRORS[6]={MSGTXT[] "                                                            "}
+CS_ERRORS[7]={MSGTXT[] "                                                            "}
+CS_ERRORS[8]={MSGTXT[] "                                                            "}
+;ENDFOLD
+
+ENDDAT

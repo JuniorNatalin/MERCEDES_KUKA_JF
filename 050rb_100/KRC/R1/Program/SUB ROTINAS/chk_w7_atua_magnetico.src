@@ -1,0 +1,55 @@
+&ACCESS RV1
+&COMMENT ima acello
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF chk_w7_atua_magnetico( )
+;FOLD INI
+  ;FOLD BASISTECH INI
+    GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM ( )
+    INTERRUPT ON 3 
+    BAS (#INITMOV,0 )
+  ;ENDFOLD (BASISTECH INI)
+;FOLD SPOTTECH INI
+USERSPOT(#INIT)
+;ENDFOLD (SPOTTECH INI)
+;FOLD GRIPPERTECH INI
+USER_GRP(0,DUMMY,DUMMY,GDEFAULT)
+;ENDFOLD (GRIPPERTECH INI)
+  ;FOLD USER INI
+    ;Make your modifications here
+
+  ;ENDFOLD (USER INI)
+;ENDFOLD (INI)
+
+; Atua e verifica os cilindros magneticos
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+IF (NOT(GHOST())) THEN
+
+;FOLD ; atuando cilindro;%{PE}%R 8.2.20,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:atuando  cilindro
+;ENDFOLD
+;FOLD OUT 56 'Cil. magnetico recuado' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:56, 3:Cil. magnetico recuado, 5:FALSE, 6:
+$OUT[56]=FALSE
+;ENDFOLD
+;FOLD PULSE 55 'Cil. magnetico avancado' State=TRUE Time=2 sec;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:55, 3:Cil. magnetico avancado, 5:TRUE, 6:, 8:2
+PULSE($OUT[55], TRUE,2)
+;ENDFOLD
+
+;FOLD ; aguarda sensores;%{PE}%R 8.2.20,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:aguarda  sensores
+;ENDFOLD
+
+;FOLD WAIT FOR ( NOT IN 59 'Cil.Magnetico direito recuado' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:NOT, 5:$IN, 6:59, 7:Cil.Magnetico direito recuado, 9:
+WAIT FOR  (  NOT $IN[59] ) 
+;ENDFOLD
+;FOLD WAIT FOR ( NOT IN 61 'Cil.Magnetico esquerdo recuado' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:NOT, 5:$IN, 6:61, 7:Cil.Magnetico esquerdo recuado, 9:
+WAIT FOR  (  NOT $IN[61] ) 
+;ENDFOLD
+
+ENDIF
+
+$TIMER_STOP[10] = TRUE
+
+
+END

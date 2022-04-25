@@ -1,0 +1,18 @@
+&ACCESS RVO7
+&COMMENT Check RPS AXOR Z2 CLOSE
+DEF chk_w6_rps2_clo( )
+
+; Check rps axor CLOSE Z2.1
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+WAIT FOR (NOT $IN[495])
+WAIT FOR ($IN[496])
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+END

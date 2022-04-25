@@ -1,0 +1,1000 @@
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT]
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\ACC]
+"Shortcut"="ACC"
+"Min"="1"
+"Max"="100"
+"Step"="1"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\APO_CPDIS]
+"Shortcut"="DIS"
+"Min"="0"
+"Max"="300"
+"Step"="1"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\APO_DIS]
+"Max"="100"
+"Shortcut"="DIS"
+"Min"="0"
+"Step"="1"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\APO_FAC]
+"Shortcut"="FAC"
+"Min"="0"
+"Max"="100"
+"Step"="1"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\AXIS_ACC]
+"Shortcut"="AxisAcc"
+"Min"="1"
+"Max"="100"
+"Step"="1"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\AXIS_VEL]
+"Shortcut"="AxisVel"
+"Min"="1"
+"Max"="100"
+"Step"="1"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BACKWARD]
+"Backward"="False"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE]
+"Shortcut"="BASE"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\CALL]
+"USE_PRESPOT"="FALSE"
+"ADVSPOT_TRIGGERD"="FALSE"
+"PRESPOT_TRIGGERD"="FALSE"
+"USE_ADVSPOT"="FALSE"
+"SPOT_TRIGGERD"="FALSE"
+"RETR_TRIGGERD"="FALSE"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\CIRC_TYP]
+"Shortcut"="CIR"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\CLO_TIME]
+"Shortcut"="ACT"
+"Min"="0"
+"Max"="1"
+"Step"="1"
+"Default"="1"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\CLO_TIME_PRE]
+"Default"="ACTIVE="
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\CLO_TM]
+"Default"="0"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\CONT]
+"Default"=""
+"Shortcut"="CONT"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\CP_PARAMS]
+"Default"="CPDAT0"
+"Shortcut"="Params"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\CP_VEL]
+"SwitchUnit"="False"
+"Max"="2"
+"Default"="2.0"
+"Shortcut"="VEL"
+"Min"="0.001"
+"Step"="0.01"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\CP_VEL_PRE]
+"Default"="Vel="
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\CP_VEL_UNIT]
+"Default"="m/s"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\DEFINITION]
+"VEL"="PARAMLIST"
+"GUN(SPOT)"="INLINEFORM"
+"RETR"="INLINEFORM"
+"PGNO"="INLINEFORM"
+"PRESS"="HIDDEN"
+"CLO_TM"="INLINEFORM"
+"GUN(RETR)"="INLINEFORM"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\EXAX_IGN]
+"Max"="0"
+"Shortcut"="IGN"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\GEAR_JERK]
+"Shortcut"="GearJerk"
+"Min"="1"
+"Max"="100"
+"Step"="1"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\GUN]
+"Shortcut"="GUN#"
+"Min"="1"
+"Max"="5"
+"Step"="1"
+"Default"=" 1"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\GUN_DEFINITION]
+"DOUBLE_Available"="False"
+"RETR_Available"="True"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\GUN_PRE]
+"Default"="Gun="
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\IPO_FRAME]
+"Shortcut"="extTCP"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\JERK_FAC]
+"Shortcut"="RATIO"
+"Min"="1"
+"Max"="100"
+"Step"="1"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\MOVETYPE]
+"Default"="LIN"
+"Shortcut"="IPO"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\ORI_TYP]
+"Shortcut"="ORI"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\PAIR]
+"Shortcut"="PAIR"
+"Default"="#FIRST"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\PAIR_PRE]
+"Default"="Pair="
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\PGNO1]
+"Shortcut"="PGNO1#"
+"Min"="1"
+"Max"="255"
+"Step"="1"
+"Default"=" 1"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\PGNO1_PRE]
+"Default"="PgNo1="
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\PGNO2]
+"Shortcut"="PGNO2#"
+"Min"="1"
+"Max"="99"
+"Step"="1"
+"Default"=" 1"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\PGNO2_PRE]
+"Default"="PgNo2="
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\PGNO_SPECIAL]
+"PGNO_FROM_POINT"="FALSE"
+"MAX_DIGIT"="3"
+"DEFAULT_PGNO1"="999"
+"DEFAULT_PGNO2"=""
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\POINT1]
+"Default"="PS01010001"
+"Shortcut"="Point#"
+"BlockCommandNotAllowed"="True"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\POINT2]
+"Default"="PS01010001"
+"Shortcut"="TargetPoint#"
+"BlockCommandNotAllowed"="True"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\PRESS1]
+"TYP"="FLOAT"
+"Shortcut"="PRESS1"
+"Min"="0"
+"Max"="9.9"
+"Step"="0.1"
+"Default"="0"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\PRESS1_PRE]
+"Default"="Press1="
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\PRESS2]
+"TYP"="FLOAT"
+"Shortcut"="PRESS2"
+"Min"="0"
+"Max"="9.9"
+"Step"="0.1"
+"Default"="0"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\PRESS2_PRE]
+"Default"="Press2="
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\PTP_PARAMS]
+"Default"="PDAT0"
+"Shortcut"="Params"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\PTP_VEL]
+"Shortcut"="VEL"
+"Min"="1"
+"Max"="100"
+"Step"="1"
+"Default"=" 100"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\PTP_VEL_PRE]
+"Default"="Vel="
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\PTP_VEL_UNIT]
+"Default"="%"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\RETR]
+"Default"="#OPN"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\RETR_CMD]
+"Shortcut"="RETR"
+"Default"="#OPN"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\RETR_CMD_PRE]
+"Default"="RETR"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\SPL_NAME]
+"Default"="S0"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\SPOT_PARAMS]
+"Default"="NORMAL"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\Sync_]
+"Shortcut"="R#"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\SYNC_LIST_PARAMS]
+"Default"="R1"
+"Shortcut"="Coop#"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\SYNC_PARAMS]
+"Default"="SYNCDAT"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\SYNC_STRING]
+"Default"=""
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\SYNC_TEXT]
+"Default"="Sync="
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL]
+"Shortcut"="TOOL"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TQ_STATE]
+"Shortcut"="CD"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\WRITELOG]
+"State"="True"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\WRITE_TBI]
+"State"="True"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[10]]
+"Display"="BASE_DATA[10]"
+"Value"="10"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[11]]
+"Display"="BASE_DATA[11]"
+"Value"="11"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[12]]
+"Display"="BASE_DATA[12]"
+"Value"="12"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[13]]
+"Display"="BASE_DATA[13]"
+"Value"="13"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[14]]
+"Display"="BASE_DATA[14]"
+"Value"="14"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[15]]
+"Display"="BASE_DATA[15]"
+"Value"="15"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[16]]
+"Display"="BASE_DATA[16]"
+"Value"="16"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[17]]
+"Display"="BASE_DATA[17]"
+"Value"="17"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[18]]
+"Display"="BASE_DATA[18]"
+"Value"="18"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[19]]
+"Display"="BASE_DATA[19]"
+"Value"="19"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[1]]
+"Display"="[1] Actros"
+"Value"="1"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[20]]
+"Display"="BASE_DATA[20]"
+"Value"="20"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[21]]
+"Display"="BASE_DATA[21]"
+"Value"="21"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[22]]
+"Display"="BASE_DATA[22]"
+"Value"="22"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[23]]
+"Display"="BASE_DATA[23]"
+"Value"="23"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[24]]
+"Display"="BASE_DATA[24]"
+"Value"="24"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[25]]
+"Display"="BASE_DATA[25]"
+"Value"="25"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[26]]
+"Display"="BASE_DATA[26]"
+"Value"="26"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[27]]
+"Display"="BASE_DATA[27]"
+"Value"="27"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[28]]
+"Display"="BASE_DATA[28]"
+"Value"="28"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[29]]
+"Display"="BASE_DATA[29]"
+"Value"="29"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[2]]
+"Display"="[2] Accelo"
+"Value"="2"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[30]]
+"Display"="BASE_DATA[30]"
+"Value"="30"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[31]]
+"Display"="BASE_DATA[31]"
+"Value"="31"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[32]]
+"Display"="BASE_DATA[32]"
+"Value"="32"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[33]]
+"Display"="BASE_DATA[33]"
+"Value"="33"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[34]]
+"Display"="BASE_DATA[34]"
+"Value"="34"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[35]]
+"Display"="BASE_DATA[35]"
+"Value"="35"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[36]]
+"Display"="BASE_DATA[36]"
+"Value"="36"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[37]]
+"Display"="BASE_DATA[37]"
+"Value"="37"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[38]]
+"Display"="BASE_DATA[38]"
+"Value"="38"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[39]]
+"Display"="BASE_DATA[39]"
+"Value"="39"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[3]]
+"Display"="[3] Atego/Axor"
+"Value"="3"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[40]]
+"Display"="BASE_DATA[40]"
+"Value"="40"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[41]]
+"Display"="BASE_DATA[41]"
+"Value"="41"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[42]]
+"Display"="BASE_DATA[42]"
+"Value"="42"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[43]]
+"Display"="BASE_DATA[43]"
+"Value"="43"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[44]]
+"Display"="BASE_DATA[44]"
+"Value"="44"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[45]]
+"Display"="BASE_DATA[45]"
+"Value"="45"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[46]]
+"Display"="BASE_DATA[46]"
+"Value"="46"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[47]]
+"Display"="BASE_DATA[47]"
+"Value"="47"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[48]]
+"Display"="BASE_DATA[48]"
+"Value"="48"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[49]]
+"Display"="BASE_DATA[49]"
+"Value"="49"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[4]]
+"Display"="BASE_DATA[4]"
+"Value"="4"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[50]]
+"Display"="BASE_DATA[50]"
+"Value"="50"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[51]]
+"Display"="BASE_DATA[51]"
+"Value"="51"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[52]]
+"Display"="BASE_DATA[52]"
+"Value"="52"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[53]]
+"Display"="BASE_DATA[53]"
+"Value"="53"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[54]]
+"Display"="BASE_DATA[54]"
+"Value"="54"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[55]]
+"Display"="BASE_DATA[55]"
+"Value"="55"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[56]]
+"Display"="BASE_DATA[56]"
+"Value"="56"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[57]]
+"Display"="BASE_DATA[57]"
+"Value"="57"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[58]]
+"Display"="BASE_DATA[58]"
+"Value"="58"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[59]]
+"Display"="BASE_DATA[59]"
+"Value"="59"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[5]]
+"Display"="BASE_DATA[5]"
+"Value"="5"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[60]]
+"Display"="BASE_DATA[60]"
+"Value"="60"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[61]]
+"Display"="BASE_DATA[61]"
+"Value"="61"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[62]]
+"Display"="[62] Safe-Ref"
+"Value"="62"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[63]]
+"Display"="[63] Calculated Basemovement"
+"Value"="63"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[64]]
+"Display"="[64] NULL"
+"Value"="64"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[6]]
+"Display"="BASE_DATA[6]"
+"Value"="6"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[7]]
+"Display"="BASE_DATA[7]"
+"Value"="7"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[8]]
+"Display"="BASE_DATA[8]"
+"Value"="8"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\BASE\BASE_DATA[9]]
+"Display"="BASE_DATA[9]"
+"Value"="9"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\ORI_TYP\IGNORE]
+"Display"="IgnoreOrientation"
+"Value"="#IGNORE"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\ORI_TYP\WRIST_PTP]
+"Display"="WristPTP"
+"Value"="#JOINT"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\PAIR\PAIR_ITEM1]
+"Display"="FIRST"
+"Value"="#FIRST"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\PAIR\PAIR_ITEM2]
+"Display"="SECOND"
+"Value"="#SECOND"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\PAIR\PAIR_ITEM3]
+"Display"="BOTH"
+"Value"="#BOTH"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\RETR_CMD\RETR_CMD_ITEM1]
+"Display"="OPN"
+"Value"="#OPN"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\RETR_CMD\RETR_CMD_ITEM2]
+"Display"="CLS"
+"Value"="#CLO"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[10]]
+"Display"="TOOL_DATA[10]"
+"Value"="10"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[11]]
+"Display"="TOOL_DATA[11]"
+"Value"="11"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[12]]
+"Display"="TOOL_DATA[12]"
+"Value"="12"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[13]]
+"Display"="TOOL_DATA[13]"
+"Value"="13"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[14]]
+"Display"="TOOL_DATA[14]"
+"Value"="14"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[15]]
+"Display"="TOOL_DATA[15]"
+"Value"="15"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[16]]
+"Display"="TOOL_DATA[16]"
+"Value"="16"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[17]]
+"Display"="TOOL_DATA[17]"
+"Value"="17"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[18]]
+"Display"="TOOL_DATA[18]"
+"Value"="18"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[19]]
+"Display"="TOOL_DATA[19]"
+"Value"="19"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[1]]
+"Display"="[1] Gun C1"
+"Value"="1"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[20]]
+"Display"="TOOL_DATA[20]"
+"Value"="20"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[21]]
+"Display"="TOOL_DATA[21]"
+"Value"="21"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[22]]
+"Display"="TOOL_DATA[22]"
+"Value"="22"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[23]]
+"Display"="TOOL_DATA[23]"
+"Value"="23"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[24]]
+"Display"="TOOL_DATA[24]"
+"Value"="24"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[25]]
+"Display"="TOOL_DATA[25]"
+"Value"="25"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[26]]
+"Display"="TOOL_DATA[26]"
+"Value"="26"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[27]]
+"Display"="TOOL_DATA[27]"
+"Value"="27"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[28]]
+"Display"="TOOL_DATA[28]"
+"Value"="28"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[29]]
+"Display"="TOOL_DATA[29]"
+"Value"="29"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[2]]
+"Display"="[2] Gripper Parabrisa Actro"
+"Value"="2"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[30]]
+"Display"="TOOL_DATA[30]"
+"Value"="30"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[31]]
+"Display"="TOOL_DATA[31]"
+"Value"="31"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[32]]
+"Display"="TOOL_DATA[32]"
+"Value"="32"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[33]]
+"Display"="TOOL_DATA[33]"
+"Value"="33"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[34]]
+"Display"="TOOL_DATA[34]"
+"Value"="34"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[35]]
+"Display"="TOOL_DATA[35]"
+"Value"="35"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[36]]
+"Display"="TOOL_DATA[36]"
+"Value"="36"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[37]]
+"Display"="TOOL_DATA[37]"
+"Value"="37"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[38]]
+"Display"="TOOL_DATA[38]"
+"Value"="38"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[39]]
+"Display"="TOOL_DATA[39]"
+"Value"="39"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[3]]
+"Display"="[3] Gripper Parabrisa Accelo"
+"Value"="3"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[40]]
+"Display"="TOOL_DATA[40]"
+"Value"="40"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[41]]
+"Display"="TOOL_DATA[41]"
+"Value"="41"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[42]]
+"Display"="TOOL_DATA[42]"
+"Value"="42"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[43]]
+"Display"="TOOL_DATA[43]"
+"Value"="43"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[44]]
+"Display"="TOOL_DATA[44]"
+"Value"="44"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[45]]
+"Display"="TOOL_DATA[45]"
+"Value"="45"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[46]]
+"Display"="TOOL_DATA[46]"
+"Value"="46"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[47]]
+"Display"="TOOL_DATA[47]"
+"Value"="47"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[48]]
+"Display"="TOOL_DATA[48]"
+"Value"="48"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[49]]
+"Display"="TOOL_DATA[49]"
+"Value"="49"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[4]]
+"Display"="[4] Gun X1"
+"Value"="4"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[50]]
+"Display"="TOOL_DATA[50]"
+"Value"="50"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[51]]
+"Display"="TOOL_DATA[51]"
+"Value"="51"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[52]]
+"Display"="TOOL_DATA[52]"
+"Value"="52"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[53]]
+"Display"="TOOL_DATA[53]"
+"Value"="53"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[54]]
+"Display"="TOOL_DATA[54]"
+"Value"="54"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[55]]
+"Display"="TOOL_DATA[55]"
+"Value"="55"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[56]]
+"Display"="TOOL_DATA[56]"
+"Value"="56"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[57]]
+"Display"="TOOL_DATA[57]"
+"Value"="57"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[58]]
+"Display"="TOOL_DATA[58]"
+"Value"="58"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[59]]
+"Display"="TOOL_DATA[59]"
+"Value"="59"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[5]]
+"Display"="[5] Gripper Geo G01 00"
+"Value"="5"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[60]]
+"Display"="[60] exchangable disk"
+"Value"="60"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[61]]
+"Display"="TOOL_DATA[61]"
+"Value"="61"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[62]]
+"Display"="[62] SafeOP reference-braket"
+"Value"="62"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[63]]
+"Display"="TOOL_DATA[63]"
+"Value"="63"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[64]]
+"Display"="[64] NULL"
+"Value"="64"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[6]]
+"Display"="TOOL_DATA[6]"
+"Value"="6"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[7]]
+"Display"="TOOL_DATA[7]"
+"Value"="7"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[8]]
+"Display"="[8] Tool Changer"
+"Value"="8"
+
+
+[\CurrentUser\SOFTWARE\VB and VBA Program Settings\KUKATPSPOT\TOOL\TOOL_DATA[9]]
+"Display"="TOOL_DATA[9]"
+"Value"="9"
+
+

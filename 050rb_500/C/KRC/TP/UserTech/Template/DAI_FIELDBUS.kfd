@@ -1,0 +1,34 @@
+;=====================================================================  
+; USERTECH für An- und Abkoppeln von Bus-Teilnehmer
+; function:		Profibus/Profinet-teilenehmer an-/abkoppeln
+; content: 		Inlinefiormular um Teilnehmer An-. und Abzukoppem
+; user:			FWT-ANT H. Konz Tel. 64913
+;=====================================================================  
+; changed: 			2011-11-06
+; User:				T.Schneider PKL-AST
+; Version:			V 2.0
+; Comment:			Standardized for KR C4 - new Standard (Englisch)
+; offline relevant	yes 
+;=====================================================================  
+; changed: 			2005-03-29
+; User:				H. Konz FWT-ANT
+; Version:			V 1.0
+; Comment:			?
+; offline relevant:	yes 
+;=====================================================================  
+
+DEFTP Fieldbus={ SOT FALSE }
+
+DECL PARAM pWkzNr={shortname[] "", shortcut[] "ToolNr", unit[] "", value { NUMBER : min 0, max 6, step 1, default 1 }}
+
+DECL PARAM pStat={shortname[] "", shortcut[] "Stat", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "0 ", disp[] "Couple "}, _
+  ITEM[2] {ITEM:VALUE[] "1 ", disp[] "Decouple " }}}
+
+
+DECL FOLD fFeldbus[1]
+fFeldbus[1]="Feldbus(%pWkzNr , %pStat )"
+
+
+DECL INLINEFORM ToolNr={FOCUS 0, FOLD[1] fFeldBus, PARAM[1] pWkzNr , PARAM[2] pStat}
+ENDTP

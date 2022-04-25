@@ -1,0 +1,587 @@
+&ACCESS RVO
+&REL 18
+&COMMENT daimler_mathematic_library
+&USER PKL_AST
+&PARAM version = 2.0
+DEF DAI_MATH_LIBRARY( )
+; Ausgabe der Lade-Meldung....ohne Msg_library weil hier noch nicht geladen
+decl KrlMsg_t loadmessage
+decl KrlMsgPar_t LoadPar[3]
+decl KrlMsgOpt_t loadoptions
+decl int handle 
+loadmessage={modul[] "DAI_MSG_LIB",NR 13,msg_txt[] "DAI_MSG_L3"}
+handle=Set_KrlMsg(#notify,loadmessage,LoadPar[],loadoptions)  
+END
+
+
+; Deutsche orginal-Funktion fuer XXXX ? 
+;FOLD AUSWAHL_VERTEILER
+GLOBAL DEFFCT INT auswahl_Verteiler(In1:IN,In2:IN,In3:IN,In4:IN,In5:IN,In6:IN,In7:IN,In8:IN,In9:IN,In10:IN,In11:IN,In12:IN,In13:IN,In14:IN,In15:IN,In16:IN )
+ DECL Int In1,In2,In3,In4,In5,In6,In7,In8,In9,In10,In11,In12,In13,In14,In15,In16
+ DECL Int InStatus
+ DECL Bool InNrStatus
+ 
+ IF not (Varstate("In1")==#INITIALIZED) THEN
+   In1=1026
+ endif
+ IF not (Varstate("In2")==#INITIALIZED) THEN
+   In2=1026
+ endif
+ IF not (Varstate("In3")==#INITIALIZED) THEN
+   In3=1026
+ endif
+ IF not (Varstate("In4")==#INITIALIZED) THEN
+   In4=1026
+ endif
+ IF not (Varstate("In5")==#INITIALIZED) THEN
+   In5=1026
+ endif
+ IF not (Varstate("In6")==#INITIALIZED) THEN
+   In6=1026
+ endif
+ IF not (Varstate("In7")==#INITIALIZED) THEN
+   In7=1026
+ endif
+ IF not (Varstate("In8")==#INITIALIZED) THEN
+   In8=1026
+ endif
+ IF not (Varstate("In9")==#INITIALIZED) THEN
+   In9=1026
+ endif
+ IF not (Varstate("In10")==#INITIALIZED) THEN
+   In10=1026
+ endif
+ IF not (Varstate("In11")==#INITIALIZED) THEN
+   In11=1026
+ endif
+ IF not (Varstate("In12")==#INITIALIZED) THEN
+   In12=1026
+ endif
+ IF not (Varstate("In13")==#INITIALIZED) THEN
+   In13=1026
+ endif
+ IF not (Varstate("In14")==#INITIALIZED) THEN
+   In14=1026
+ endif
+ IF not (Varstate("In15")==#INITIALIZED) THEN
+   In15=1026
+ endif
+ IF not (Varstate("In16")==#INITIALIZED) THEN
+   In16=1026
+ endif
+ 
+ repeat
+     InStatus = 0
+
+     if In1 > 0 then 
+       if $in[In1]==True then 
+          InStatus = InStatus + 1
+       endif
+     else
+       if $in[-In1]==FALSE then 
+          InStatus = InStatus + 1
+       endif
+     endif  
+     if In2 > 0 then 
+       if $in[In2]==True then 
+          InStatus = InStatus + 2
+       endif
+     else
+       if $in[-In2]==FALSE then 
+          InStatus = InStatus + 2
+       endif
+     endif  
+     if In3 > 0 then 
+       if $in[In3]==True then 
+          InStatus = InStatus + 4
+       endif
+     else
+       if $in[-In3]==FALSE then 
+          InStatus = InStatus + 4
+       endif
+     endif  
+     if In4 > 0 then 
+       if $in[In4]==True then 
+          InStatus = InStatus + 8
+       endif
+     else
+       if $in[-In4]==FALSE then 
+          InStatus = InStatus + 8
+       endif
+     endif  
+     if In5 > 0 then 
+       if $in[In5]==True then 
+          InStatus = InStatus + 16
+       endif
+     else
+       if $in[-In5]==FALSE then 
+          InStatus = InStatus + 16
+       endif
+     endif  
+     if In6 > 0 then 
+       if $in[In6]==True then 
+          InStatus = InStatus + 32
+       endif
+     else
+       if $in[-In6]==FALSE then 
+          InStatus = InStatus + 32
+       endif
+     endif  
+     if In7 > 0 then 
+       if $in[In7]==True then 
+          InStatus = InStatus + 64
+       endif
+     else
+       if $in[-In7]==FALSE then 
+          InStatus = InStatus + 64
+       endif
+     endif  
+     if In8 > 0 then 
+       if $in[In8]==True then 
+          InStatus = InStatus + 128
+       endif
+     else
+       if $in[-In8]==FALSE then 
+          InStatus = InStatus + 128
+       endif
+     endif  
+     if In9 > 0 then 
+       if $in[In9]==True then 
+          InStatus = InStatus + 256
+       endif
+     else
+       if $in[-In9]==FALSE then 
+          InStatus = InStatus + 256
+       endif
+     endif  
+     if In10 > 0 then 
+       if $in[In10]==True then 
+          InStatus = InStatus + 512
+       endif
+     else
+       if $in[-In10]==FALSE then 
+          InStatus = InStatus + 512
+       endif
+     endif  
+     if In11 > 0 then 
+       if $in[In11]==True then 
+          InStatus = InStatus + 1024
+       endif
+     else
+       if $in[-In11]==FALSE then 
+          InStatus = InStatus + 1024
+       endif
+     endif  
+     if In12 > 0 then 
+       if $in[In12]==True then 
+          InStatus = InStatus + 2048
+       endif
+     else
+       if $in[-In12]==FALSE then 
+          InStatus = InStatus + 2048
+       endif
+     endif  
+     if In13 > 0 then 
+       if $in[In13]==True then 
+          InStatus = InStatus + 4096
+       endif
+     else
+       if $in[-In13]==FALSE then 
+          InStatus = InStatus + 4096
+       endif
+     endif  
+     if In14 > 0 then 
+       if $in[In14]==True then 
+          InStatus = InStatus + 8192
+       endif
+     else
+       if $in[-In14]==FALSE then 
+          InStatus = InStatus + 8192
+       endif
+     endif  
+     if In15 > 0 then 
+       if $in[In15]==True then 
+          InStatus = InStatus + 16384
+       endif
+     else
+       if $in[-In15]==FALSE then 
+          InStatus = InStatus + 16384
+       endif
+     endif  
+     if In16 > 0 then 
+       if $in[In16]==True then 
+          InStatus = InStatus + 32768
+       endif
+     else
+       if $in[-In16]==FALSE then 
+          InStatus = InStatus + 32768
+       endif
+     endif  
+
+     
+ switch InStatus
+   case 0; kein Eingang 
+         $LOOP_MSG[]="Kein Eingangssignal vorhanden        "
+         wait sec 0.1
+ endswitch
+HaltPunktEnde()
+ Until InStatus > 0
+ $LOOP_MSG[]="                                     "
+ return InStatus
+ENDFCT
+;ENDFOLD (AUSWAHL_VERTEILER)
+
+; Englische Ersatz-Funktion fuer Auswahll_Verteiler
+;FOLD Select_Distribution
+	GLOBAL DEFFCT INT Select_Distribution(In1:IN,In2:IN,In3:IN,In4:IN,In5:IN,In6:IN,In7:IN,In8:IN,In9:IN,In10:IN,In11:IN,In12:IN,In13:IN,In14:IN,In15:IN,In16:IN )
+    	DECL Int In1,In2,In3,In4,In5,In6,In7,In8,In9,In10,In11,In12,In13,In14,In15,In16
+		DECL Int Status
+		Status = auswahl_Verteiler(In1,In2,In3,In4,In5,In6,In7,In8,In9,In10,In11,In12,In13,In14,In15,In16)
+		return Status 
+	ENDFCT
+	
+	;ENDFOLD
+
+
+; Deutsche orginal-Funktion fuer XOR-Ersatz
+;FOLD AUSWAHL_1_AUS_N
+GLOBAL DEFFCT INT Auswahl_eins_aus_N(In1:IN,In2:IN,In3:IN,In4:IN,In5:IN,In6:IN,In7:IN,In8:IN,In9:IN,In10:IN,In11:IN,In12:IN,In13:IN,In14:IN,In15:IN,In16:IN )
+ DECL Int In1,In2,In3,In4,In5,In6,In7,In8,In9,In10,In11,In12,In13,In14,In15,In16
+ DECL Int InStatus,InNr
+ DECL Bool InNrStatus
+ 
+ IF not (Varstate("In1")==#INITIALIZED) THEN
+   In1=1026
+ endif
+ IF not (Varstate("In2")==#INITIALIZED) THEN
+   In2=1026
+ endif
+ IF not (Varstate("In3")==#INITIALIZED) THEN
+   In3=1026
+ endif
+ IF not (Varstate("In4")==#INITIALIZED) THEN
+   In4=1026
+ endif
+ IF not (Varstate("In5")==#INITIALIZED) THEN
+   In5=1026
+ endif
+ IF not (Varstate("In6")==#INITIALIZED) THEN
+   In6=1026
+ endif
+ IF not (Varstate("In7")==#INITIALIZED) THEN
+   In7=1026
+ endif
+ IF not (Varstate("In8")==#INITIALIZED) THEN
+   In8=1026
+ endif
+ IF not (Varstate("In9")==#INITIALIZED) THEN
+   In9=1026
+ endif
+ IF not (Varstate("In10")==#INITIALIZED) THEN
+   In10=1026
+ endif
+ IF not (Varstate("In11")==#INITIALIZED) THEN
+   In11=1026
+ endif
+ IF not (Varstate("In12")==#INITIALIZED) THEN
+   In12=1026
+ endif
+ IF not (Varstate("In13")==#INITIALIZED) THEN
+   In13=1026
+ endif
+ IF not (Varstate("In14")==#INITIALIZED) THEN
+   In14=1026
+ endif
+ IF not (Varstate("In15")==#INITIALIZED) THEN
+   In15=1026
+ endif
+ IF not (Varstate("In16")==#INITIALIZED) THEN
+   In16=1026
+ endif
+ 
+
+ InNr = 0
+ repeat
+     InStatus = 0
+
+     if In1 > 0 then 
+       if $IN[In1]==True then 
+          InStatus = InStatus + 1
+       endif
+     else
+       if $IN[-In1]==FALSE then 
+          InStatus = InStatus + 1
+       endif
+     endif  
+     if In2 > 0 then 
+       if $IN[In2]==True then 
+          InStatus = InStatus + 2
+       endif
+     else
+       if $IN[-In2]==FALSE then 
+          InStatus = InStatus + 2
+       endif
+     endif  
+     if In3 > 0 then 
+       if $IN[In3]==True then 
+          InStatus = InStatus + 4
+       endif
+     else
+       if $IN[-In3]==FALSE then 
+          InStatus = InStatus + 4
+       endif
+     endif  
+     if In4 > 0 then 
+       if $IN[In4]==True then 
+          InStatus = InStatus + 8
+       endif
+     else
+       if $IN[-In4]==FALSE then 
+          InStatus = InStatus + 8
+       endif
+     endif  
+     if In5 > 0 then 
+       if $IN[In5]==True then 
+          InStatus = InStatus + 16
+       endif
+     else
+       if $IN[-In5]==FALSE then 
+          InStatus = InStatus + 16
+       endif
+     endif  
+     if In6 > 0 then 
+       if $IN[In6]==True then 
+          InStatus = InStatus + 32
+       endif
+     else
+       if $IN[-In6]==FALSE then 
+          InStatus = InStatus + 32
+       endif
+     endif  
+     if In7 > 0 then 
+       if $IN[In7]==True then 
+          InStatus = InStatus + 64
+       endif
+     else
+       if $IN[-In7]==FALSE then 
+          InStatus = InStatus + 64
+       endif
+     endif  
+     if In8 > 0 then 
+       if $IN[In8]==True then 
+          InStatus = InStatus + 128
+       endif
+     else
+       if $IN[-In8]==FALSE then 
+          InStatus = InStatus + 128
+       endif
+     endif  
+     if In9 > 0 then 
+       if $IN[In9]==True then 
+          InStatus = InStatus + 256
+       endif
+     else
+       if $IN[-In9]==FALSE then 
+          InStatus = InStatus + 256
+       endif
+     endif  
+     if In10 > 0 then 
+       if $IN[In10]==True then 
+          InStatus = InStatus + 512
+       endif
+     else
+       if $IN[-In10]==FALSE then 
+          InStatus = InStatus + 512
+       endif
+     endif  
+     if In11 > 0 then 
+       if $IN[In11]==True then 
+          InStatus = InStatus + 1024
+       endif
+     else
+       if $IN[-In11]==FALSE then 
+          InStatus = InStatus + 1024
+       endif
+     endif  
+     if In12 > 0 then 
+       if $IN[In12]==True then 
+          InStatus = InStatus + 2048
+       endif
+     else
+       if $IN[-In12]==FALSE then 
+          InStatus = InStatus + 2048
+       endif
+     endif  
+     if In13 > 0 then 
+       if $IN[In13]==True then 
+          InStatus = InStatus + 4096
+       endif
+     else
+       if $IN[-In13]==FALSE then 
+          InStatus = InStatus + 4096
+       endif
+     endif  
+     if In14 > 0 then 
+       if $IN[In14]==True then 
+          InStatus = InStatus + 8192
+       endif
+     else
+       if $IN[-In14]==FALSE then 
+          InStatus = InStatus + 8192
+       endif
+     endif  
+     if In15 > 0 then 
+       if $IN[In15]==True then 
+          InStatus = InStatus + 16384
+       endif
+     else
+       if $IN[-In15]==FALSE then 
+          InStatus = InStatus + 16384
+       endif
+     endif  
+     if In16 > 0 then 
+       if $IN[In16]==True then 
+          InStatus = InStatus + 32768
+       endif
+     else
+       if $IN[-In16]==FALSE then 
+          InStatus = InStatus + 32768
+       endif
+     endif  
+
+     
+     switch InStatus
+       case 1   ;Eingang 1 
+          InNr = 1
+       case 2   ;Eingang 2
+          InNr = 2
+       case 4   ;Eingang 3
+          InNr = 3
+       case 8   ;Eingang 4
+          InNr = 4
+       case 16  ;Eingang 5
+          InNr = 5
+       case 32  ;Eingang 6
+          InNr = 6
+       case 64  ;Eingang 7
+          InNr = 7
+       case 128 ;Eingang 8
+          InNr = 8
+       case 256 ;Eingang 9
+          InNr = 9
+       case 512 ;Eingang 10
+          InNr = 10
+       case 1024 ;Eingang 11
+          InNr = 11
+       case 2048 ;Eingang 12
+          InNr = 12
+       case 4096 ;Eingang 13
+          InNr = 13
+       case 8192 ;Eingang 14
+          InNr = 14
+       case 16384 ;Eingang 15
+          InNr = 15
+       case 32768 ;Eingang 16
+          InNr = 16
+
+		  ;unzulaessige Eingangszustaende   
+       case 0   ;kein Eingang 
+         $LOOP_MSG[]="Kein Eingangssignal vorhanden        "
+         wait sec 0.1
+       default  ;mehr als ein Eingang
+         $LOOP_MSG[]="Mehr als ein Eingangssignal vorhanden"
+         wait sec 0.1
+     endswitch
+     HaltPunktEnde()
+ Until InNr > 0
+ $LOOP_MSG[]="                                     "
+ return InNr
+ENDFCT
+;ENDFOLD (AUSWAHL_1_AUS_N)
+
+; Englische Ersatz-Funktion fuer Auswahl_1_aus 
+;FOLD Select_1_out_N
+GLOBAL DEFFCT INT Select_one_Out_N(In1:IN,In2:IN,In3:IN,In4:IN,In5:IN,In6:IN,In7:IN,In8:IN,In9:IN,In10:IN,In11:IN,In12:IN,In13:IN,In14:IN,In15:IN,In16:IN )
+    DECL Int In1,In2,In3,In4,In5,In6,In7,In8,In9,In10,In11,In12,In13,In14,In15,In16
+	DECL Int Status
+	Status = Auswahl_eins_aus_N(In1,In2,In3,In4,In5,In6,In7,In8,In9,In10,In11,In12,In13,In14,In15,In16 )
+	return Status
+ENDFCT
+;ENDFOLD (Select_1_out_N)
+
+;Modulo berechnen
+;FOLD MOD
+GLOBAL DEFFCT int mod(x:in,y:in )
+ decl int x,y
+   return(x-y*(x/y))
+ENDFCT
+;ENDFOLD (MOD)
+
+; schauen ob Post_Act naher eine übergebenen Position ist
+;FOLD nearE6Pos
+Global DEFFCT Bool nearE6Pos(ePOS:IN)
+ DECL E6POS ePOS
+
+ DECL E6POS Delta
+ DECL BOOL bRet
+
+ bRet = False
+ 
+ Delta.X = ABS(ePOS.X - $Pos_Act.X)
+ Delta.Y = ABS(ePOS.Y - $Pos_Act.Y)
+ Delta.Z = ABS(ePOS.Z - $Pos_Act.Z)
+ Delta.A = ABS(ePOS.A - $Pos_Act.A)
+ Delta.B = ABS(ePOS.B - $Pos_Act.B)
+ Delta.C = ABS(ePOS.C - $Pos_Act.C)
+
+ Delta.S = ePOS.S - $Pos_Act.S
+ Delta.T = ePOS.T - $Pos_Act.T
+ 
+ Delta.E1 = ABS(ePOS.E1 - $Pos_Act.E1)
+ Delta.E2 = ABS(ePOS.E2 - $Pos_Act.E2)
+ Delta.E3 = ABS(ePOS.E3 - $Pos_Act.E3)
+ Delta.E4 = ABS(ePOS.E4 - $Pos_Act.E4)
+ Delta.E5 = ABS(ePOS.E5 - $Pos_Act.E5)
+ Delta.E6 = ABS(ePOS.E6 - $Pos_Act.E6)
+
+ bRet= (Delta.X < MaxPosTol.X) and (Delta.Y < MaxPosTol.Y) and (Delta.Z < MaxPosTol.Z) and (Delta.A < MaxPosTol.A) and (Delta.B < MaxPosTol.B) and (Delta.C < MaxPosTol.C)
+ bRet=bRet and (Delta.S == 0) and (Delta.T == 0)
+ bRet=bRet and (Delta.E1 < MaxPosTol.E1) and (Delta.E2 < MaxPosTol.E2) and (Delta.E3 < MaxPosTol.E3) and (Delta.E4 < MaxPosTol.E4) and (Delta.E5 < MaxPosTol.E5) and (Delta.E6 < MaxPosTol.E6)
+ Return(bRet)
+ENDFCT
+;ENDFOLD
+
+; schauen ob Post_Act naher eine übergebenen Position ist
+;FOLD nearE6Axis
+;Pruefung ob die Abweichung zwischen
+; uebergebener Position (ePos) und 
+; der aktuellen Position ($Axis_Act) kleiner als die
+; zulaessige Toleranz (MaxAxisTol) ist.
+Global DEFFCT Bool nearE6Axis(ePOS:IN)
+ DECL E6AXIS ePOS
+
+ DECL E6AXIS Delta
+ DECL BOOL bRet
+
+ bRet = False
+ 
+ Delta.A1 = ABS(ePOS.A1 - $Axis_Act.A1)
+ Delta.A2 = ABS(ePOS.A2 - $Axis_Act.A2)
+ Delta.A3 = ABS(ePOS.A3 - $Axis_Act.A3)
+ Delta.A4 = ABS(ePOS.A4 - $Axis_Act.A4)
+ Delta.A5 = ABS(ePOS.A5 - $Axis_Act.A5)
+ Delta.A6 = ABS(ePOS.A6 - $Axis_Act.A6)
+
+ Delta.E1 = ABS(ePOS.E1 - $Axis_Act.E1)
+ Delta.E2 = ABS(ePOS.E2 - $Axis_Act.E2)
+ Delta.E3 = ABS(ePOS.E3 - $Axis_Act.E3)
+ Delta.E4 = ABS(ePOS.E4 - $Axis_Act.E4)
+ Delta.E5 = ABS(ePOS.E5 - $Axis_Act.E5)
+ Delta.E6 = ABS(ePOS.E6 - $Axis_Act.E6)
+
+ bRet= (Delta.A1 < MaxAxisTol.A1) and (Delta.A2 < MaxAxisTol.A2) and (Delta.A3 < MaxAxisTol.A3) and (Delta.A4 < MaxAxisTol.A4) and (Delta.A5 < MaxAxisTol.A5) and (Delta.A6 < MaxAxisTol.A6)
+ bRet=bRet and (Delta.E1 < MaxAxisTol.E1) and (Delta.E2 < MaxAxisTol.E2) and (Delta.E3 < MaxAxisTol.E3) and (Delta.E4 < MaxAxisTol.E4) and (Delta.E5 < MaxAxisTol.E5) and (Delta.E6 < MaxAxisTol.E6)
+ Return(bRet)
+ENDFCT
+;ENDFOLD
+

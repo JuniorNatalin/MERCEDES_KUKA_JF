@@ -1,0 +1,66 @@
+DEFTP Bolzen={ SOT FALSE }
+;============================================
+; USRTECH für BolzenSchweissen
+; KUKA Roboter GmbH, Roland C. Wiedmann
+; Tel.: 0172/8212499
+;============================================ 
+;!======================================================
+;!   Version 4.02 
+;!     Aenderungsstand 08.11.2002 (FWT-ANT Tobias Breitmaier Tel.70512)
+;!      - Anpassung auf den Digitalen-Bolzenkoffer
+;!        Stand BR219 Sifi
+;!======================================================
+
+; *** Parameter-Beschreibung ***
+
+DECL PARAM BSST_NR={shortname[] "BSST-Nr=", shortcut[] "BSST",unit[] "", value {NUMBER: MIN 1, MAX 4, STEP 1, DEFAULT 1}}
+
+DECL PARAM BOLZEN_NR={shortname[] "Bolzen-ID=", shortcut[] "BoID",unit[] "", value {NUMBER: MIN 1, MAX 9999999, STEP 1, DEFAULT 1}}
+
+DECL PARAM KOPF_NR={shortname[] "Kopf-Nr=", shortcut[] "Kopf",unit[] "", value {NUMBER: MIN 1, MAX 10, STEP 1, DEFAULT 1}}
+
+DECL PARAM FOERD_NR={shortname[] "Foerd-Nr=", shortcut[] "Foerd",unit[] "", value {NUMBER: MIN 0, MAX 10, STEP 1, DEFAULT 1}}
+
+DECL PARAM BZFOERD_NR={shortname[] "Bolzen Nachfoerdern vom Foerd-Nr=", shortcut[] "Foerd",unit[] "", value {NUMBER: MIN 0, MAX 10, STEP 1, DEFAULT 1}}
+
+DECL PARAM W_KOPF={shortname[] "KOPF ", shortcut[] "WK ", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "TRUE", disp[] "Abgekoppelt"}, _
+  ITEM[2] {ITEM:VALUE[] "FALSE", disp[] "Angekoppelt" }}}
+
+
+; *** Fold-Beschreibung ***
+; LeerZeichen nach variablem Item beachten
+
+DECL FOLD StudInit_FOLD[1]
+StudInit_FOLD[1]="BOLZEN (#M_INIT)"
+
+DECL FOLD StudWeld_FOLD[1]
+StudWeld_FOLD[1]="BOLZEN (#M_WELD,%BSST_NR ,%BOLZEN_NR ,%KOPF_NR ,0 )"
+
+DECL FOLD StudWeldWeiche_FOLD[1]
+StudWeldWeiche_FOLD[1]="BOLZEN (#M_WELD,%BSST_NR ,%BOLZEN_NR ,%KOPF_NR ,%BZFOERD_NR )"
+
+DECL FOLD StudFarbM_FOLD[1]
+StudFarbM_FOLD[1]="BOLZEN (#M_FARBM,%BSST_NR ,1 ,1 ,%FOERD_NR )"
+
+DECL FOLD StudFoerdern_FOLD[1]
+StudFoerdern_FOLD[1]="BOLZEN (#M_FOERDERN,%BSST_NR ,%BOLZEN_NR ,%KOPF_NR ,%FOERD_NR )"
+
+DECL FOLD StudWKOPF_FOLD[1]
+StudWKOPF_FOLD[1]="BOLZEN (#M_WKOPF,1 ,1 ,%KOPF_NR ,0 ,%W_KOPF )"
+
+; *** Beschreibung Inlineformulare ***
+
+DECL INLINEFORM Init={FOCUS 1, FOLD[1] StudInit_FOLD} 
+
+DECL INLINEFORM Weld={FOCUS 1, FOLD[1] StudWeld_FOLD , PARAM[1] BSST_NR , PARAM[2] BOLZEN_NR , PARAM[3] KOPF_NR} 
+
+DECL INLINEFORM WeldWeiche={FOCUS 1, FOLD[1] StudWeldWeiche_FOLD , PARAM[1] BSST_NR , PARAM[2] BOLZEN_NR , PARAM[3] KOPF_NR , PARAM[4] BZFOERD_NR} 
+
+DECL INLINEFORM FarbM={FOCUS 1, FOLD[1] StudFarbM_FOLD , PARAM[1] BSST_NR , PARAM[2] FOERD_NR} 
+
+DECL INLINEFORM Foerdern={FOCUS 1, FOLD[1] StudFoerdern_FOLD ,  PARAM[1] BSST_NR , PARAM[2] BOLZEN_NR , PARAM[3] KOPF_NR , PARAM[4] FOERD_NR}
+
+DECL INLINEFORM WKOPF={FOCUS 1, FOLD[1] StudWKOPF_FOLD ,  PARAM[1] KOPF_NR , PARAM[2] W_KOPF }
+
+ENDTP

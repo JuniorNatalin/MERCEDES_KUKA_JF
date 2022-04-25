@@ -1,0 +1,9 @@
+&ACCESS RVO2
+&COMMENT Check Gripper Accelo
+DEF chk_w4_wechs_ok( )
+
+; VERIFICAÇÃO DE FERRAMENTA: GRIPPER ACCELO 
+
+WAIT FOR ((NOT $IN[161]) AND ($IN[169]) AND ($IN[177]) AND ($IN[185]) AND ($IN[193]) AND ($IN[219]))
+
+END

@@ -1,0 +1,18 @@
+&ACCESS RV3
+&COMMENT Gripper Actros C2
+DEF chk_w5_wechs_ok( )
+
+; VERIFICAÇÃO DE FERRAMENTA: GRIPPER ACTROS
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+wait for (($IN[585]) and ($IN[577]) and ($in[161]) and (NOT $in[177]) and ($in[193]) and ($in[201]) and ($in[209]) and ($IN[169]) and ($in[185]) AND ($in[219]))
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End -------
+;Diag_Appl(#Off,5)
+
+END

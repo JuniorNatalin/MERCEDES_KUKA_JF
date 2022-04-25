@@ -1,0 +1,29 @@
+&ACCESS RVO
+&REL 3
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF Req_Fraes( )
+;FOLD INI
+  ;FOLD BASISTECH INI
+    GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM ( )
+    INTERRUPT ON 3 
+    BAS (#INITMOV,0 )
+  ;ENDFOLD (BASISTECH INI)
+  ;FOLD USER INI
+    ;Make your modifications here
+
+  ;ENDFOLD (USER INI)
+;ENDFOLD (INI)
+
+; Caracterização dos meios de produção: P13.060-R5
+; Versão atual: 17/07/2013 Nome: Pedido de fresa
+
+IF ($IN[3442]) THEN
+
+Req_Fraes_C1=TRUE
+Req_Fraes_C2=TRUE
+Req_Fraes_X1=TRUE
+
+ENDIF
+
+END

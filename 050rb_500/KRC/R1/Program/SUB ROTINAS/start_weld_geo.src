@@ -1,0 +1,15 @@
+&ACCESS RVO3
+&REL 150
+&COMMENT start_weld_GEO
+&PARAM DISKPATH = KRC:\R1\Program\SubRotinas
+DEF start_weld_GEO( )
+;
+; INICIO DE SOLDA COM GOEOMETRIA 
+;FOLD OUT 3338 'R5 solda geometria concluida' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3338, 3:R5 solda geometria concluida, 5:FALSE, 6:
+$OUT[3338]=FALSE
+;ENDFOLD
+;FOLD OUT 3348 'Fora area GEOBOX' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3348, 3:Fora area GEOBOX, 5:FALSE, 6:
+$OUT[3348]=FALSE
+;ENDFOLD
+;
+END

@@ -1,0 +1,23 @@
+&ACCESS RVO1
+&COMMENT Check GRP ACTROS Z5 CLOSE
+DEF chk_w5_grp5_clo( )
+
+; Check gripper actros CLOSE Z5
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+;FOLD WAIT FOR ( NOT IN 27 ' Z5 - Grampo Recuado - Actros Todos' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:NOT, 5:$IN, 6:27, 7: Z5 - Grampo Recuado - Actros Todos, 9:
+WAIT FOR  (  NOT $IN[27] ) 
+;ENDFOLD
+;FOLD WAIT FOR ( IN 28 ' Z5 - Grampo Avançado - Actros Todos' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:28, 7: Z5 - Grampo Avançado - Actros Todos, 9:
+WAIT FOR  ( $IN[28] ) 
+;ENDFOLD
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+
+END

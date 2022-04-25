@@ -1,0 +1,22 @@
+&ACCESS RVO9
+&COMMENT Check GRP AXOR Z3 CLOSE
+DEF chk_w7_grp3_clo( )
+
+; Check gripper axor CLOSE Z3.1
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+;FOLD WAIT FOR ( NOT IN 497 ' Z3.1 - Grampo Recuado - Axor' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:NOT, 5:$IN, 6:497, 7: Z3.1 - Grampo Recuado - Axor, 9:
+WAIT FOR  (  NOT $IN[497] ) 
+;ENDFOLD
+;FOLD WAIT FOR ( IN 498 ' Z3.1 - Grampo Avançado - Axor' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:498, 7: Z3.1 - Grampo Avançado - Axor, 9:
+WAIT FOR  ( $IN[498] ) 
+;ENDFOLD
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+END

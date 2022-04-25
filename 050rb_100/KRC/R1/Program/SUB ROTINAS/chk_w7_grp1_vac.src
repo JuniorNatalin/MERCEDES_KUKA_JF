@@ -1,0 +1,18 @@
+&ACCESS RVP
+&COMMENT Accelo Traseiro Vaccum on
+DEF chk_w7_grp1_vac( )
+
+; Check Vacuum on gripper ACCELO TRASEIRO
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+WAIT FOR ($IN[53])
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+
+END

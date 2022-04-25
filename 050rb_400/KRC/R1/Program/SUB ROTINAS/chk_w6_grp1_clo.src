@@ -1,0 +1,19 @@
+&ACCESS RVO9
+&COMMENT Check GRP AXOR Z1 CLOSE
+DEF chk_w6_grp1_clo( )
+
+;//---- Start User-------
+;Aguarda posicao de gripper fechado 
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+WAIT FOR (NOT $IN[493] AND NOT $IN[495] AND NOT $IN[497])
+WAIT FOR ($IN[494] AND $IN[496] AND $IN[498])
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User-------
+
+END

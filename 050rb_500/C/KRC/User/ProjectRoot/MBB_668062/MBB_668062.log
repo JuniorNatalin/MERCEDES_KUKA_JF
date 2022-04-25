@@ -1,0 +1,340 @@
+04/07/2015 17:04:45.06 [Information] -------------------------------
+04/07/2015 17:04:50.30 [Information] Prepare Installation of project "MBB_668062 V1.4.0.0".
+04/07/2015 17:04:50.30 [Information] Current project was "MBB_668062 V1.3.0".
+04/07/2015 17:04:51.96 [Warning] Element Type changed for {ExternalFileManifest Config:Copy(Config:\User\Common\SafetyConfigData.xml) - SavedExternal} -> safety
+04/07/2015 17:04:51.98 [Warning] Element Type changed for {ExternalFileManifest Config:Copy(Config:\User\Common\SCtlPara.sg) - SavedExternal} -> safety
+04/07/2015 17:04:51.98 [Warning] Element Type changed for {ExternalFileManifest Krl:Copy(C:\KRC\Roboter\Template\vg_appl.dat) - SavedExternal} -> file
+04/07/2015 17:04:51.98 [Warning] Element Type changed for {ExternalFileManifest Krl:Copy(C:\KRC\Roboter\Template\vg_appl.src) - SavedExternal} -> file
+04/07/2015 17:04:51.98 [Warning] Element Type changed for {ExternalFileManifest Krl:Copy(C:\KRC\Roboter\Template\vg_hp.dat) - SavedExternal} -> file
+04/07/2015 17:04:51.98 [Warning] Element Type changed for {ExternalFileManifest Krl:Copy(C:\KRC\Roboter\Template\vg_hp.src) - SavedExternal} -> file
+04/07/2015 17:04:51.98 [Warning] Element Type changed for {ExternalFileManifest Krl:Copy(C:\KRC\temp\ChangeLog.dat) - SavedExternal} -> file
+04/07/2015 17:04:51.98 [Warning] Element Type changed for {ExternalFileManifest Krl:Copy(C:\KRC\temp\ToDo.dat) - SavedExternal} -> file
+04/07/2015 17:04:51.98 [Warning] Element Type changed for {ExternalFileManifest File:Copy(KRC:\R1\System\P13050R050.pt.txt) - SavedExternal} -> krl
+04/07/2015 17:04:51.99 [Information] SafetyHandler ignores element: '{ExternalFileManifest safety:Copy(Config:\User\Common\SafetyConfigData.xml) - SavedExternal}'
+04/07/2015 17:04:51.99 [Information] SafetyHandler ignores element: '{ExternalFileManifest safety:Copy(Config:\User\Common\SCtlPara.sg) - SavedExternal}'
+04/07/2015 17:04:51.99 [Information] SafetyHandler ignores element: '{ExternalFileManifest safety:Copy(Config:\User\Common\HNFINFO.SAF) - SavedExternal}'
+04/07/2015 17:04:54.99 [Verbose] Ignore Action: New:file.Copy(C:\KRC\TP\USERTECH\TEMPLATE\dai_collision.kfd), 1500. MD5 check is identical!
+04/07/2015 17:04:54.99 [Verbose] Ignore Action: New:file.Copy(C:\KRC\TP\USERTECH\TEMPLATE\DAI_AG_Spottech.KFD), 1500. MD5 check is identical!
+04/07/2015 17:04:54.99 [Verbose] Ignore Action: New:file.Copy(C:\KRC\DATA\DAI_MSG_LIB.kxr), 1500. MD5 check is identical!
+04/07/2015 17:04:55.00 [Verbose] Ignore Action: New:file.Copy(C:\KRC\TP\USERTECH\TEMPLATE\ICONS\prestrock_cl.ico), 1500. MD5 check is identical!
+04/07/2015 17:04:55.00 [Verbose] Ignore Action: New:file.Copy(C:\KRC\TP\USERTECH\TEMPLATE\dai_velocity.kfd), 1500. MD5 check is identical!
+04/07/2015 17:04:55.00 [Verbose] Ignore Action: New:file.Copy(C:\KRC\TP\USERTECH\TEMPLATE\dai_plus.kfd), 1500. MD5 check is identical!
+04/07/2015 17:04:55.02 [Verbose] Ignore Action: New:file.Copy(C:\KRC\DATA\DAI_H_Prog.kxr), 1500. MD5 check is identical!
+04/07/2015 17:04:55.02 [Verbose] Ignore Action: New:file.Copy(C:\KRC\Roboter\Template\vg_hp.src), 1500. MD5 check is identical!
+04/07/2015 17:04:55.02 [Verbose] Ignore Action: New:file.Copy(C:\KRC\Roboter\Template\vg_hp.dat), 1500. MD5 check is identical!
+04/07/2015 17:04:55.02 [Verbose] Ignore Action: New:file.Copy(C:\KRC\Roboter\Template\vg_appl.src), 1500. MD5 check is identical!
+04/07/2015 17:04:55.03 [Verbose] Ignore Action: New:file.Copy(C:\KRC\DATA\DAI_Gripper.kxr), 1500. MD5 check is identical!
+04/07/2015 17:04:55.03 [Verbose] Ignore Action: New:file.Copy(C:\KRC\DATA\DAI_ANTICOLL.kxr), 1500. MD5 check is identical!
+04/07/2015 17:04:55.03 [Verbose] Ignore Action: New:file.Copy(C:\KRC\DATA\DAI_AG_Spot.kxr), 1500. MD5 check is identical!
+04/07/2015 17:04:55.07 [Verbose] Ignore Action: New:file.Copy(C:\KRC\USER\KLMDigitalIO.WriteProtectedOutputs.cfg), 1500. MD5 check is identical!
+04/07/2015 17:04:55.07 [Verbose] Ignore Action: New:file.Copy(C:\KRC\temp\ChangeLog.dat), 1500. MD5 check is identical!
+04/07/2015 17:04:55.08 [Verbose] Ignore Action: New:file.Copy(C:\KRC\TP\USERTECH\TEMPLATE\ICONS\prestrock_op.ico), 1500. MD5 check is identical!
+04/07/2015 17:04:55.08 [Verbose] Ignore Action: New:file.Copy(C:\KRC\USER\SetupWizardStates.xml), 1500. MD5 check is identical!
+04/07/2015 17:04:55.08 [Verbose] Ignore Action: New:file.Copy(C:\KRC\TP\USERTECH\TEMPLATE\DAI_FIELDBUS.kfd), 1500. MD5 check is identical!
+04/07/2015 17:04:55.08 [Verbose] Ignore Action: New:file.Copy(C:\KRC\USER\InstallTech.cfg), 1500. MD5 check is identical!
+04/07/2015 17:04:55.10 [Verbose] Ignore Action: New:file.Copy(C:\KRC\USER\KukaPMService.User.config), 1500. MD5 check is identical!
+04/07/2015 17:04:55.10 [Verbose] Ignore Action: New:file.Copy(C:\KRC\USER\MaintenanceHandBook.User.config), 1500. MD5 check is identical!
+04/07/2015 17:04:55.10 [Verbose] Ignore Action: New:file.Copy(C:\KRC\USER\InitialProjectSetup.User.config), 1500. MD5 check is identical!
+04/07/2015 17:04:55.11 [Verbose] Ignore Action: New:file.Copy(C:\KRC\temp\ToDo.dat), 1500. MD5 check is identical!
+04/07/2015 17:04:55.11 [Verbose] Ignore Action: New:file.Copy(C:\KRC\USER\ConfigMon.ini), 1500. MD5 check is identical!
+04/07/2015 17:04:55.11 [Verbose] Ignore Action: New:file.Copy(C:\KRC\USER\Cross3.User.config), 1500. MD5 check is identical!
+04/07/2015 17:04:55.11 [Verbose] Ignore Action: New:file.Copy(C:\KRC\USER\PMService.user.config), 1500. MD5 check is identical!
+04/07/2015 17:04:55.13 [Verbose] Ignore Action: New:file.Copy(C:\KRC\SmartHMI\SmartHMI.exe.DAI_AG_Spot.config), 1500. MD5 check is identical!
+04/07/2015 17:04:55.13 [Verbose] Ignore Action: New:file.Copy(C:\KRC\SmartHMI\SmartHMI.exe.DAI_STANDARD.config), 1500. MD5 check is identical!
+04/07/2015 17:04:55.13 [Verbose] Ignore Action: New:file.Copy(C:\KRC\Roboter\Template\vg_appl.dat), 1500. MD5 check is identical!
+04/07/2015 17:04:55.13 [Verbose] Ignore Action: New:file.Copy(C:\KRC\USER\WorkVisualServiceHost.User.config), 1500. MD5 check is identical!
+04/07/2015 17:04:55.14 [Verbose] Ignore Action: New:file.Copy(C:\KRC\USER\ProjectExternalFileList.xml), 1500. MD5 check is identical!
+04/07/2015 17:04:55.14 [Verbose] Ignore Action: New:file.Copy(C:\KRC\USER\SmartHMI.User.config), 1500. MD5 check is identical!
+04/07/2015 17:04:55.14 [Verbose] Ignore Action: New:file.Copy(C:\KRC\USER\WaitForUserList.xml), 1500. MD5 check is identical!
+04/07/2015 17:04:55.16 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\VIO_USER_BUS.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.16 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\TimeSync.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.16 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Mada\NGAxis\CtrlA5AddFct.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.16 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Mada\CFCore.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.17 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\SysBusDriver.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.17 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Modules_SysBusDriver.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.17 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Modules_ProConOS.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.22 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Modules_TimeSync.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.22 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\ProConOS_IO.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.22 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\ProConOS.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.22 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Mada\NextGenDriveTech.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.24 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Mada\SimuAxes.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.24 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Mada\KRCAxes.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.24 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Mada\EAWaggonDriverConfig.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.25 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Mada\CFCoreWaggonDriverConfig.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.25 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Mada\SimuAxesKrc.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.25 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Mada\NGAxis\CtrlA3AddFct.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.27 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Mada\NGAxis\CtrlA4AddFct.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.27 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Mada\NGAxis\CtrlA2AddFct.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.27 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Mada\MotionDrivers\mdrBrakeTest.ini), 2000. MD5 check is identical!
+04/07/2015 17:04:55.27 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Mada\NGAxis\CtrlA1AddFct.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.28 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\ecat_DNM_Gateway.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.28 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\ecatms_sys_X44_swap.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.28 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\ecat_PBM_Gateway.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.28 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\EtherCATConfig.xsd), 2000. MD5 check is identical!
+04/07/2015 17:04:55.30 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\ECAT_SYS_X44.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.30 [Verbose] Ignore Action: New:config.Copy(Config:\User\Cabinet\EtherCATConfig.xsd), 2000. MD5 check is identical!
+04/07/2015 17:04:55.32 [Verbose] Ignore Action: New:config.Copy(Config:\User\Cabinet\ecatms_sys_X48_config.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.32 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\CabCtrl.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.32 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\DevIODriver.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.32 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\connectionchain.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.33 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\KLIConfig.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.33 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Logging_BrakeTest.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.33 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\KrcExtConfMsg.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.33 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Logging_System.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.35 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Modules_DevIO.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.35 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\MainBoardDrv.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.35 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\KNet.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.36 [Information] ConfigCopyAction 'New:config.Copy(Config:\User\Common\IPPNIO.xml), 2000': Requests reconfiguration.
+04/07/2015 17:04:55.36 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\KrcBackward.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.36 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\KrcDryRun.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.38 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\KrcConfig.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.38 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\P1350R05.D32), 2000. MD5 check is identical!
+04/07/2015 17:04:55.38 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\P1350R05.BG4), 2000. MD5 check is identical!
+04/07/2015 17:04:55.39 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\P1350R05.SVC), 2000. MD5 check is identical!
+04/07/2015 17:04:55.39 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\P1350R05.INI), 2000. MD5 check is identical!
+04/07/2015 17:04:55.39 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\ibspci.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.41 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\VxWin\knet.config), 2000. MD5 check is identical!
+04/07/2015 17:04:55.44 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Modules_PNIODriver.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.44 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Modules_Interbus.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:55.44 [Information] ConfigCopyAction 'New:config.Copy(Config:\User\Common\KRC_IO.xml), 2000': Requests reconfiguration.
+04/07/2015 17:04:55.46 [Warning] Ignore SafetyConfigParamAction: Copy "C:\KRC\ROBOTER\Config\User\Common\SCTLPARA.SAF". Param header and content check states identical data!
+04/07/2015 17:04:55.47 [Warning] Ignore SafetyConfigParamAction: Copy "C:\KRC\ROBOTER\Config\User\Common\SCTLPARA.SAF". Param header and content check states identical data!
+04/07/2015 17:04:55.47 [Information] SafetyParamInfoAction 'New:safety.Copy(Config:\User\Common\SCTLINFO.SAF), 2000': Ignored since safety parameter file is ignored too.
+04/07/2015 17:04:55.47 [Information] ConfigCopyAction 'New:config.Copy(Config:\User\Common\Interbus.xml), 2000': Requests reconfiguration.
+04/07/2015 17:04:56.23 [Information] SafetyNetworkInstallAction 'New:safety.Copy(Config:\User\Common\SAFEDEV.SAF), 2000': Checksum has to be updated.
+04/07/2015 17:04:56.23 [Information] SafetyNetworkInstallAction 'New:safety.Copy(Config:\User\Common\SAFEDEV.SAF), 2000': Requests reconfiguration.
+04/07/2015 17:04:56.26 [Information] ConfigCopyAction 'New:config.Copy(Config:\User\Cabinet\ecatms_config.xml), 2000': Requests reconfiguration.
+04/07/2015 17:04:56.26 [Information] ConfigCopyAction 'New:config.Copy(Config:\User\Common\KrcIoSignals.xml), 2000': Requests reconfiguration.
+04/07/2015 17:04:56.27 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\pndev1.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:56.27 [Information] ConfigCopyAction 'New:config.Copy(Config:\User\Common\PNIODriver.xml), 2000': Requests reconfiguration.
+04/07/2015 17:04:56.27 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Mada\SimuAxis\A5.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:56.27 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Mada\SimuAxis\A4.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:56.29 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\MotionDrivers\loadDataDevice.ini), 2000. MD5 check is identical!
+04/07/2015 17:04:56.29 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Mada\SimuAxis\A6.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:56.29 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Mada\SimuAxis\A1.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:56.29 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Mada\NGAxis\CtrlA6AddFct.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:56.30 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Mada\SimuAxis\A3.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:56.30 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\Mada\SimuAxis\A2.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:56.30 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\MotionDrivers\mdrBrakeTest.ini), 2000. MD5 check is identical!
+04/07/2015 17:04:56.32 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\MotionDrivers\motiondrv.ini), 2000. MD5 check is identical!
+04/07/2015 17:04:56.32 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\MotionDrivers\mdrVwAscii.ini), 2000. MD5 check is identical!
+04/07/2015 17:04:56.32 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\PersistPC\NGDecouple.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:56.32 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\PersistPC\EncoderMastering.xml), 2000. MD5 check is identical!
+04/07/2015 17:04:56.34 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\MotionDrivers\mdrEmily.ini), 2000. MD5 check is identical!
+04/07/2015 17:04:56.34 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\MotionDrivers\mdrConveyor.ini), 2000. MD5 check is identical!
+04/07/2015 17:04:56.34 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\MotionDrivers\mdrStandStill.ini), 2000. MD5 check is identical!
+04/07/2015 17:04:56.35 [Verbose] Ignore Action: New:config.Copy(Config:\User\Common\MotionDrivers\mdrJointOffset.ini), 2000. MD5 check is identical!
+04/07/2015 17:04:56.37 [Verbose] Ignore Action: New:mada.Copy(KRC:\R1\Mada\$machine.dat), 4000. MD5 check is identical!
+04/07/2015 17:04:56.37 [Verbose] Ignore Action: New:mada.Copy(KRC:\R1\Mada\$robcor.dat), 4000. MD5 check is identical!
+04/07/2015 17:04:56.37 [Verbose] Ignore Action: New:mada.Copy(KRC:\STEU\Mada\$machine.dat), 4000. MD5 check is identical!
+04/07/2015 17:04:56.38 [Verbose] Ignore Action: New:mada.Copy(KRC:\STEU\Mada\$option.dat), 4000. MD5 check is identical!
+04/07/2015 17:04:56.38 [Verbose] Ignore Action: New:mada.Copy(KRC:\STEU\Mada\$custom.dat), 4000. MD5 check is identical!
+04/07/2015 17:04:56.40 [Information] KrcCopyAction 'New:mada.Copy(KRC:\R1\System\$config.dat), 4000': Requests stopping the program.
+04/07/2015 17:04:56.40 [Verbose] Ignore Action: New:mada.Copy(KRC:\STEU\$config.dat), 4000. MD5 check is identical!
+04/07/2015 17:04:56.41 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\HP251.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.41 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\f_fraes2.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.43 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\e_fraes2.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.43 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\HP241.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.43 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\wkz3_ok.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.44 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\wkz2_ok.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.44 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\tip_change.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.44 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\wkz1_an.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.46 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\wkz1_ab.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.46 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\hp005.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.46 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ab_st600_r5.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.48 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\HP248.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.48 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\HP240.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.49 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\wkz1_off_accelo.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.49 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ps_stb_res_x2.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.49 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ps_stb_geo_x2.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.51 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ps_stb_geo_x1.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.51 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\MBINI.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.51 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\teste.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.52 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\chk_w0_tools_ok.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.52 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\MBINI_2.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.54 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ps_ltc_geo_c1.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.54 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ps_com_geo_x2.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.54 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\wkz4_ok.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.55 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ps_l_geo_c1.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.55 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ps_l_res_c1.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.55 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ps_l_geo_x2.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.57 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ps_l_geo_x1.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.57 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\hp007.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.59 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\WKZ3_AB.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.59 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\WKZ2_AN.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.59 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\WKZ3_AN.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.60 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\H_Prog\dai_robot_ok.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.60 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\H_Prog\dai_ldd_xx.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.60 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\H_Prog\dai_grp_xx_ok.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.62 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\hp004.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.62 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\TP\Gripper_SpotTech\User_grp.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.62 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\H_Prog\dai_maintenance.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.62 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\TP\BrakeTest\BrakeTestStart.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.63 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\H_Prog\dai_before_zero.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.63 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\DAI\user_global.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.65 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\System\ir_stopm.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.65 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\WKZ2_AB.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.65 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\wkz4_ab.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.65 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\DAI\dai_msg_library.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.66 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\DAI\dai_math_library.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.66 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\DAI\dai_data_library.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.66 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\DAI\user_settings.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.68 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\DAI\dai_ctrl_library.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.68 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\DAI\dai_sps_library.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.68 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\DAI\dai_global.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.70 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\H_Prog\dai_tool_xx_ok.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.70 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\wkz4_an.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.71 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\H_Prog\dai_tool_xx_chg.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.71 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\H_Prog\dai_VorNull.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.71 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\TP\DAI_AG_Spot\userspot.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.71 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\wartung.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.73 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\reinigung.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.73 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\TP\p00.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.74 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\e_fraes1.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.74 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\TP\BrakeTest\BrakeTestBack.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.74 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\tm_useraction.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.76 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\f_fraes3.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.76 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\System\MsgLib.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.76 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\f_fraes1.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.77 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\System\tm_bib.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.77 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\System\masref_main.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.77 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\TP\BrakeTest\BrakeTestPark.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.77 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\TP\BrakeTest\BrakeTestSelfTest.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.79 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\TP\BrakeTest\BrakeTestReq.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.79 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\masref_user.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.79 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ho_r1_r5.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.81 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\HP250.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.81 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\e_fraes3.dat), 6500. MD5 check is identical!
+04/07/2015 17:04:56.82 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\TP\DAI_AG_Spot\userspot.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.82 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\System\ir_stopm.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.82 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\wartung.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.84 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\H_Prog\dai_VorNull.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.84 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\WKZ2_AB.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.84 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\reinigung.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.85 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\DAI\dai_msg_library.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.85 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ho_r1_r5.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.87 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\masref_user.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.87 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\DAI\dai_sps_init.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.88 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\DAI\dai_sps_library.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.88 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\System\bas.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.88 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\tm_useraction.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.90 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\DAI\dai_math_library.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.90 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\WKZ2_AN.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.90 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\TP\BrakeTest\BrakeTestBack.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.92 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\TP\p00.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.92 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\WKZ3_AN.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.92 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\WKZ3_AB.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.93 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\TP\Gripper_SpotTech\h50.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.93 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\TP\BrakeTest\BrakeTestStart.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.93 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\TP\BrakeTest\BrakeTestReq.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.95 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\TP\BrakeTest\BrakeTestPark.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.95 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\TP\Gripper_SpotTech\User_grp.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.95 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\H_Prog\dai_tool_xx_chg.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.96 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\TP\BrakeTest\BrakeTestSelfTest.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.96 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\System\MsgLib.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.96 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\System\masref_main.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.96 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\H_Prog\dai_tool_xx_ok.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.98 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\H_Prog\dai_grp_xx_ok.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.98 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\System\tm_bib.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.99 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\H_Prog\dai_ldd_xx.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.99 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\H_Prog\dai_robot_ok.src), 7000. MD5 check is identical!
+04/07/2015 17:04:56.99 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\System\sps.sub), 7000. MD5 check is identical!
+04/07/2015 17:04:57.01 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\DAI\dai_tech_loop.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.01 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\wkz4_ok.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.01 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\DAI\user_housekeeping.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.02 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ps_com_geo_x2.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.02 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\DAI\user_tech_loop.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.02 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\HP250.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.04 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\wkz2_ok.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.04 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\wkz3_ok.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.04 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\H_Prog\dai_maintenance.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.06 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ps_l_geo_x2.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.06 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ps_l_res_c1.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.06 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ps_stb_geo_x1.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.07 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ps_l_geo_x1.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.07 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ps_ltc_geo_c1.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.07 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ps_l_geo_c1.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.09 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\H_Prog\dai_before_zero.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.09 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\tip_change.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.10 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\wkz1_off_accelo.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.10 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\f_fraes1.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.10 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\HP240.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.10 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\wkz1_an.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.12 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\hp005.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.12 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\wkz1_ab.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.12 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ab_st600_r5.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.13 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\HP248.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.13 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\HP251.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.13 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\HP241.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.15 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\f_fraes3.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.15 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\e_fraes1.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.15 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\e_fraes3.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.17 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\e_fraes2.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.17 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\f_fraes2.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.17 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\wkz4_ab.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.18 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\teste.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.20 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\System\P13050R050.pt.txt), 7000. MD5 check is identical!
+04/07/2015 17:04:57.20 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\chk_w2_grp3_opn.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.20 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\chk_w2_grp2_clo.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.20 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\chk_w2_grp2_opn.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.21 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\chk_w2_grp3_clo.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.21 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\chk_w1_wechs_ok.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.21 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\DAI\dai_data_library.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.23 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\DAI\dai_ctrl_library.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.23 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\DAI\user_sps_ini.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.23 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\chk_w5_wechs_ok.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.23 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\chk_w2_wechs_ok.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.24 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\chk_w3_wechs_ok.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.24 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\chk_w4_wechs_ok.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.26 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\chk_w2_grp1_opn.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.26 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\chk_w2_grp4_opn.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.26 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\end_weld_geo.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.26 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\end_weld_respot.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.28 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\chk_w2_grp4_clo.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.28 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\hp007.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.28 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ps_stb_geo_x2.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.29 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\ps_stb_res_x2.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.29 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\hp004.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.29 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\start_weld_respot.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.31 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\chk_w0_tools_ok.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.31 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\chk_w2_grp1_clo.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.31 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\start_weld_geo.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.32 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\MBINI.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.32 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\wkz4_an.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.32 [Verbose] Ignore Action: New:krl.Copy(KRC:\R1\Program\Suberotine\MBINI_2.src), 7000. MD5 check is identical!
+04/07/2015 17:04:57.32 [Information] Ignore Action: New:solution.Copy(C:\KRC\User\ProjectRoot\MBB_668062\MBB_668062.wvs), 9000. Copy only once!
+04/07/2015 17:04:58.12 [Warning] Ignore UserPdiGenerationAction: Create "C:\KRC\Roboter\Config\User\Common\USERPDI.SAF". Header and content check states identical data!
+04/07/2015 17:04:58.12 [Information] CrcFileCreateAction 'New:safety.Create(Config:\User\Common\SCTLCRC.IMG), 99998': Requests reconfiguration.
+04/07/2015 17:05:01.85 [Information] Successfull execute PrepareAction 'Global.UserPermission(), 1000'.
+04/07/2015 17:05:01.85 [Information] Execute Global.StopProgram(), 2000. Krc not in Automatic!
+04/07/2015 17:05:01.89 [Information] Successfull execute PrepareAction 'Global.StopProgram(), 2000'.
+04/07/2015 17:05:02.04 [Information] Committed: Prepared.
+04/07/2015 17:05:02.12 [Information] Start installation of "MBB_668062 V1.4.0.0".
+04/07/2015 17:05:02.14 [Information] Reset current project!
+04/07/2015 17:05:02.18 [Information] Successfull execute Install Action 'Global.PrepareReconfiguration(), 0'.
+04/07/2015 17:05:02.20 [Information] Successfull execute Install Action 'New:file.Copy(C:\KRC\Roboter\RDC\668062.cal), 1500'.
+04/07/2015 17:05:02.26 [Information] Successfull execute Install Action 'New:file.Copy(C:\KRC\Roboter\RDC\RobotData.xml), 1500'.
+04/07/2015 17:05:02.26 [Information] Successfull execute Install Action 'New:file.Copy(C:\KRC\Roboter\RDC\RobotInfo.xml), 1500'.
+04/07/2015 17:05:02.26 [Information] Successfull execute Install Action 'New:file.Copy(C:\KRC\Roboter\RDC\RdcDirectoryContents.txt), 1500'.
+04/07/2015 17:05:02.28 [Information] Successfull execute Install Action 'New:file.Copy(C:\KRC\Roboter\RDC\668062.mam), 1500'.
+04/07/2015 17:05:02.31 [Information] Successfull execute Install Action 'New:file.Copy(C:\KRC\Roboter\RDC\MaintenanceLog.xml), 1500'.
+04/07/2015 17:05:02.32 [Information] Successfull execute Install Action 'New:file.Copy(C:\KRC\Roboter\RDC\InitialOperation.xml), 1500'.
+04/07/2015 17:05:02.32 [Information] Successfull execute Install Action 'New:file.Copy(C:\KRC\Roboter\RDC\KLIConfig.xml), 1500'.
+04/07/2015 17:05:02.36 [Information] Successfull execute Install Action 'New:config.Copy(Config:\User\Common\KRC_IO.xml), 2000'.
+04/07/2015 17:05:02.37 [Information] Successfull execute Install Action 'New:config.Copy(Config:\User\Cabinet\ecatms_config.xml), 2000'.
+04/07/2015 17:05:02.39 [Information] Successfull execute Install Action 'New:config.Copy(Config:\User\Common\KrcIoSignals.xml), 2000'.
+04/07/2015 17:05:02.40 [Information] Successfull execute Install Action 'New:config.Copy(Config:\User\Common\Interbus.xml), 2000'.
+04/07/2015 17:05:02.45 [Information] SafetyNetworkInstallAction 'New:safety.Copy(Config:\User\Common\SAFEDEV.SAF), 2000': Checksum written.
+04/07/2015 17:05:02.47 [Information] Successfull execute Install Action 'New:safety.Copy(Config:\User\Common\SAFEDEV.SAF), 2000'.
+04/07/2015 17:05:02.51 [Information] Successfull execute Install Action 'New:config.Copy(Config:\User\Common\PNIODriver.xml), 2000'.
+04/07/2015 17:05:02.53 [Information] Successfull execute Install Action 'New:config.Copy(Config:\User\Common\IPPNIO.xml), 2000'.
+04/07/2015 17:05:03.00 [Information] Successfull execute Install Action 'New:mada.Copy(KRC:\R1\System\$config.dat), 4000'.
+04/07/2015 17:05:03.00 [Information] CrcFileCreateAction 'New:safety.Create(Config:\User\Common\SCTLCRC.IMG), 99998': CRC container updated for file 'C:\KRC\ROBOTER\Config\User\Common\SAFEDEV.SAF'.
+04/07/2015 17:05:03.01 [Information] Successfull execute Install Action 'New:safety.Create(Config:\User\Common\SCTLCRC.IMG), 99998'.
+04/07/2015 17:05:03.03 [Information] Successfull execute Install Action 'Global.Reconfiguration(), 99999'.
+04/07/2015 17:05:03.03 [Information] Installation successfull!
+04/07/2015 17:05:03.56 [Information] Set current project: MBB_668062 V1.4.0.0
+04/07/2015 17:05:03.72 [Information] Committed: Installed.
+04/07/2015 17:05:03.74 [Information] *** Activation Successful.
+04/07/2015 17:05:06.12 [Information] Committed: Activated.
+04/07/2015 17:05:06.29 [Information] #----------------o0o---------------#

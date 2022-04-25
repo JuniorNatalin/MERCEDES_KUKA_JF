@@ -1,0 +1,151 @@
+DEFTP KlebenBRM_S1={ SOT FALSE }
+;============================================
+; USRTECH für Kleben mit 2 Herionsteuerungen
+; TS-APA, IR-Systeme, R.Weinmann
+; BM-BRM, M.Franz Tel.: 82887 / 89304
+; Aenderungsstand:  
+;        18.02.1998 Dosierer spuelen eingefuegt
+;        05.05.1998 Triggerdelay eingefügt, Vordruck von 
+;                   Volt auf bar geändert
+;  V1.12 20.08.1998 TRIGGERDELAY geloescht, Fehlerstop geaendert,
+;		    WEGDELAY eingefuegt
+;  V1.13 18.09.1999 Verzoegerung bei Menge geaendert,
+;                   unnoetige Variablen geloescht.
+;  V1.15 10.11.1999 Delay-Zeit bei Menge geandert.
+;  V1.16 23.12.1999 Default Werte geaendert
+;  V1.18 09.07.2001 Messagebox im Fehlerstop
+;  ----- 19.07.2001 Max-Wert fuer Vordruck geaendert (von 200 auf 400bar)
+;  ----- 20.07.2001 Bug im Init behoben (Satzvorlauf-Wert)
+;============================================ 
+
+; *** Parameter-Beschreibung ***
+
+DECL PARAM Regelung={shortname[] "  ", shortcut[] "Art", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "#WEG", disp[] "Wegregelung"}, _
+  ITEM[2] {ITEM:VALUE[] "#DRUCK", disp[] "Druckregelung" }}}
+
+DECL PARAM Mengensteuerung={shortname[] " ", shortcut[] "Art", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "#KON", disp[] "konstant"}, _
+  ITEM[2] {ITEM:VALUE[] "#VPROPORT", disp[] "V-Proportional" }}}
+
+DECL PARAM Dosierhahn={shortname[] "  ", shortcut[] "Dh", unit[] "", value { LIST : POS 1, _
+  ITEM[1] { ITEM:VALUE[] "1", disp[] "Dosierhahn 1"}, _
+  ITEM[2] { ITEM:VALUE[] "2", disp[] "Dosierhahn 2" }}}
+
+DECL PARAM KlMenge={shortname[] "Menge/Mennyiseg ", shortcut[] "Volt", unit[] " Volt", value { real : min 0, max 10, step 0.1, default 0 }}
+
+DECL PARAM KlVorlauf={shortname[] "Satzvorlauf/mondatelofuto ", shortcut[] "Satz", unit[] "", value { real : min 0, max 5, step 1, default 3 }}
+
+DECL PARAM VDruck={shortname[] "Vordruck/Elonyomas ", shortcut[] "VDru", unit[] " bar", value { number : min 0, max 400, step 1, default 0 }}
+
+DECL PARAM VFaktor={shortname[] "Faktor/Faktor ", shortcut[] "Fak", unit[] " ", value { real : min 0, max 10, step 0.1, default 0 }}
+
+DECL PARAM DelayZeit={shortname[] "Analog-Delay/Analog kesleltetes ", shortcut[] "Delay", unit[] " sec", value { real : min -0.3, max 0.3, step 0.01, default 0.0 }}
+
+DECL PARAM WegDelay={shortname[] "Wegdelay/Ut kesleltetes ", shortcut[] "WEG", unit[] " mm", value { number : min -200, max 200, step 1, default 0 }}
+
+DECL PARAM KLProgramm={shortname[] "Prog-Nr./Prog-Nr. ", shortcut[] "Prg", unit[] "", value { NUMBER : min 1, max 16, step 1, default 1 }}
+
+DECL PARAM DosFuell={shortname[] "Dosierer fuellen/Adagolo toltes ", shortcut[] " ", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "TRUE", disp[] "EIN/BE"}, _
+  ITEM[2] {ITEM:VALUE[] "FALSE", disp[] "AUS/KI" }}}
+
+DECL PARAM Leerlaufzeit={shortname[] "Spuelen nach/Atoblit ", shortcut[] "LLZ", unit[] " min", value { NUMBER : min 1, max 120, step 1, default 1 }}
+
+DECL PARAM Spuelzeit={shortname[] "Spuelzeit/atoblitesi ido ", shortcut[] "SPZ", unit[] " sec", value { NUMBER : min 1, max 60, step 1, default 1 }}
+
+DECL PARAM FehlerMode={shortname[] "Fehlerauswertung:/hibakiertekeles ", shortcut[] " ", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "0", disp[] "AUS/KI"}, _
+  ITEM[2] {ITEM:VALUE[] "1", disp[] "EIN/BE"}, _
+  ITEM[3] {ITEM:VALUE[] "2", disp[] "Messagebox/Uzenetbox" }}}
+
+DECL PARAM Schaltart={shortname[] "Schaltart/Kapcsolasi mod ", shortcut[] "Art", unit[] "", value { LIST : POS 1, _
+  ITEM[1] {ITEM:VALUE[] "#TRIG", disp[] "TRIGGER/TRIGGER"}, _
+  ITEM[2] {ITEM:VALUE[] "#CONT", disp[] "CONTINUE/Folyamatos" }}}
+
+
+; *** Fold-Beschreibung ***
+
+; Funktionsaufruf :
+; KLEBEN_H( {Klebefunktion, Steuerung, Dosierhahn, Regelung, Vordruck, Klebemenge, Verzoegerungszeit, Programm-Nr, Faktor}  )
+
+; Nahtbeginn
+DECL FOLD KLEBNAHTBEGINN[1] 
+KLEBNAHTBEGINN[1]="KL_H_ACTPARA.KLEBFUNKTION=#NAHTBEGINN"
+KLEBNAHTBEGINN[2]="KL_H_ACTPARA.KLSTEUERUNG=1"
+KLEBNAHTBEGINN[3]="KL_H_ACTPARA.DOSIERHAHN=%Dosierhahn"
+KLEBNAHTBEGINN[4]="KL_H_ACTPARA.REGELUNG=%Regelung"
+KLEBNAHTBEGINN[5]="KL_H_ACTPARA.WEGDELAY=%WegDelay"
+KLEBNAHTBEGINN[6]="KLEBEN_H ( KL_H_ACTPARA )"
+
+; NahtEnde
+DECL FOLD KLEBNAHTENDE[1] 
+KLEBNAHTENDE[1]="KL_H_ACTPARA.KLEBFUNKTION=#NAHTENDE"
+KLEBNAHTENDE[2]="KL_H_ACTPARA.KLSTEUERUNG=1"
+KLEBNAHTENDE[3]="KL_H_ACTPARA.VDRUCK=%VDruck"
+KLEBNAHTENDE[4]="KL_H_ACTPARA.WEGDELAY=%WegDelay"
+KLEBNAHTENDE[5]="KL_H_ACTPARA.FUELLEN=%Dosfuell"
+KLEBNAHTENDE[6]="KLEBEN_H ( KL_H_ACTPARA )"
+
+; Init
+DECL FOLD KLEBINIT[1] 
+KLEBINIT[1]="KL_H_ACTPARA.KLEBFUNKTION=#INIT"
+KLEBINIT[2]="KL_H_ACTPARA.KLSTEUERUNG=1"
+KLEBINIT[3]="KL_H_ACTPARA.VDRUCK=%VDruck"
+KLEBINIT[4]="KL_H_ACTPARA.PROGNR=%KLProgramm"
+KLEBINIT[5]="KL_H_ACTPARA.VORLAUF=%KLVorlauf"
+KLEBINIT[6]="KLEBEN_H ( KL_H_ACTPARA )"
+
+; Menge
+DECL FOLD KLEBMENGE[1] 
+KLEBMENGE[1]="KL_H_ACTPARA.KLEBFUNKTION=#MENGE"
+KLEBMENGE[2]="KL_H_ACTPARA.KLSTEUERUNG=1"
+KLEBMENGE[3]="KL_H_ACTPARA.MENGENSTEU=%Mengensteuerung"
+KLEBMENGE[4]="KL_H_ACTPARA.KLEBEMENGE=%KlMenge"
+KLEBMENGE[5]="KL_H_ACTPARA.KLFAKTOR=%VFaktor"
+KLEBMENGE[6]="KL_H_ACTPARA.SCHALTART=%Schaltart"
+KLEBMENGE[7]="KL_H_ACTPARA.VERZOEGERUNG=%Delayzeit"
+KLEBMENGE[8]="KL_H_ACTPARA.WEGDELAY=%WegDelay"
+KLEBMENGE[9]="KLEBEN_H ( KL_H_ACTPARA )"
+
+; Vordruck
+DECL FOLD KLEBVORDRUCK[1] 
+KLEBVORDRUCK[1]="KL_H_ACTPARA.KLEBFUNKTION=#VORDRUCK"
+KLEBVORDRUCK[2]="KL_H_ACTPARA.KLSTEUERUNG=1"
+KLEBVORDRUCK[3]="KL_H_ACTPARA.VDRUCK=%VDruck"
+KLEBVORDRUCK[4]="KLEBEN_H ( KL_H_ACTPARA )"
+
+; Dosierer spuelen
+DECL FOLD KLEBDOSSPUEL[1] 
+KLEBDOSFUELL[1]="KL_H_ACTPARA.KLEBFUNKTION=#DOSSPUEL"
+KLEBDOSFUELL[2]="KL_H_ACTPARA.KLSTEUERUNG=1"
+KLEBDOSFUELL[3]="KL_H_ACTPARA.LEERLAUFZEIT=%Leerlaufzeit"
+KLEBDOSFUELL[4]="KL_H_ACTPARA.SPUELZEIT=%Spuelzeit"
+KLEBDOSFUELL[5]="KL_H_ACTPARA.KLEBEMENGE=%KlMenge"
+KLEBDISFUELL[6]="KL_H_ACTPARA.DOSIERHAHN=%Dosierhahn"
+KLEBDOSFUELL[7]="KLEBEN_H ( KL_H_ACTPARA )"
+
+; FehlerStop
+DECL FOLD KLEBFEHLSTOP[1] 
+KLEBFEHLSTOP[1]="KL_H_ACTPARA.KLEBFUNKTION=#FEHLERSTOP"
+KLEBFEHLSTOP[2]="KL_H_ACTPARA.KLSTEUERUNG=1"
+KLEBFEHLSTOP[3]="KL_H_ACTPARA.KLSTOP=%FehlerMode"
+KLEBFEHLSTOP[4]="KLEBEN_H ( KL_H_ACTPARA )"
+
+; *** Beschreibung Inlineformulare ***
+
+DECL INLINEFORM Nahtbeginn={FOCUS 1, FOLD[1] KLEBNAHTBEGINN, PARAM[1] Regelung, PARAM[2] Dosierhahn, PARAM[3] WegDelay}
+
+DECL INLINEFORM NahtEnde={FOCUS 1, FOLD[1] KLEBNAHTENDE, PARAM[1] VDruck, PARAM[2] WegDelay, PARAM[3] DosFuell}
+
+DECL INLINEFORM Init={FOCUS 1, FOLD[1] KLEBINIT, PARAM[1] KLProgramm, PARAM[2] VDruck , PARAM[3] KLVorlauf}
+
+DECL INLINEFORM Menge={FOCUS 1, FOLD[1] KLEBMENGE, PARAM[1] Mengensteuerung, PARAM[2] KlMenge, PARAM[3] VFaktor, PARAM[4] Schaltart, PARAM[5] WegDelay, PARAM[6] DelayZeit }
+
+DECL INLINEFORM Vordruck={FOCUS 1, FOLD[1] KLEBVORDRUCK, PARAM[1] Vdruck }
+
+DECL INLINEFORM Spuelen={FOCUS 1, FOLD[1] KLEBDOSSPUEL, PARAM[1] Leerlaufzeit , PARAM[2] Spuelzeit , PARAM[3] KlMenge, PARAM[4] Dosierhahn }
+
+DECL INLINEFORM FehlerStop={FOCUS 1, FOLD[1] KLEBFEHLSTOP, PARAM[1] FehlerMode}
+
+ENDTP

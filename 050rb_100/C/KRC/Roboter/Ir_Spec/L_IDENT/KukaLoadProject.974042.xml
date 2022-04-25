@@ -1,0 +1,950 @@
+<?xml version="1.0" standalone="yes"?>
+<KukaLoadProjectDataSet xmlns="http://tempuri.org/KukaLoadProjectDataSet.xsd">
+  <xs:schema id="KukaLoadProjectDataSet" targetNamespace="http://tempuri.org/KukaLoadProjectDataSet.xsd" xmlns:mstns="http://tempuri.org/KukaLoadProjectDataSet.xsd" xmlns="http://tempuri.org/KukaLoadProjectDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+    <xs:element name="KukaLoadProjectDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:AssemblyFileVersion="Kuka.Load 4@4.0.5.2" msprop:CreationFileVersion="Kuka.Load 4@4.0.5.2">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Factory">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int" />
+                <xs:element name="project">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="200" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="factory">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="200" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Information" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2147483647" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="customer">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="100" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Station">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int" />
+                <xs:element name="name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="100" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="FactoryID" type="xs:int" />
+                <xs:element name="description" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="200" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Robot">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int" />
+                <xs:element name="robottype">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="RobotID" type="xs:int" />
+                <xs:element name="StationID" type="xs:int" />
+                <xs:element name="serialnumber">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="comment" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2147483647" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="application">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="100" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="krcRelease" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="LoadingCase">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int" />
+                <xs:element name="description" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="100" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="RobotID" type="xs:int" />
+                <xs:element name="loadID">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="100" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="tool">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="date" type="xs:dateTime" />
+                <xs:element name="engineer">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="m" type="xs:decimal" />
+                <xs:element name="cx" type="xs:decimal" />
+                <xs:element name="cy" type="xs:decimal" />
+                <xs:element name="cz" type="xs:decimal" />
+                <xs:element name="Ix" type="xs:decimal" />
+                <xs:element name="Iy" type="xs:decimal" />
+                <xs:element name="Iz" type="xs:decimal" />
+                <xs:element name="A" type="xs:decimal" />
+                <xs:element name="B" type="xs:decimal" />
+                <xs:element name="C" type="xs:decimal" />
+                <xs:element name="mA1" type="xs:decimal" />
+                <xs:element name="cxA1" type="xs:int" />
+                <xs:element name="cyA1" type="xs:int" />
+                <xs:element name="czA1" type="xs:int" />
+                <xs:element name="IxA1" type="xs:decimal" />
+                <xs:element name="IyA1" type="xs:decimal" />
+                <xs:element name="IzA1" type="xs:decimal" />
+                <xs:element name="mA2" type="xs:decimal" />
+                <xs:element name="cxA2" type="xs:int" />
+                <xs:element name="cyA2" type="xs:int" />
+                <xs:element name="czA2" type="xs:int" />
+                <xs:element name="IxA2" type="xs:decimal" />
+                <xs:element name="IyA2" type="xs:decimal" />
+                <xs:element name="IzA2" type="xs:decimal" />
+                <xs:element name="mA3" type="xs:decimal" />
+                <xs:element name="cxA3" type="xs:int" />
+                <xs:element name="cyA3" type="xs:int" />
+                <xs:element name="czA3" type="xs:int" />
+                <xs:element name="IxA3" type="xs:decimal" />
+                <xs:element name="IyA3" type="xs:decimal" />
+                <xs:element name="IzA3" type="xs:decimal" />
+                <xs:element name="DeterminationID" type="xs:int" />
+                <xs:element name="calibration_with_tool" type="xs:int" />
+                <xs:element name="determinationInfo" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="30" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="valuation">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="200" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="toolNr" type="xs:int" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Determination">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ID" type="xs:int" />
+                <xs:element name="determination">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//mstns:Factory" />
+        <xs:field xpath="mstns:ID" />
+      </xs:unique>
+      <xs:unique name="Station_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//mstns:Station" />
+        <xs:field xpath="mstns:ID" />
+      </xs:unique>
+      <xs:unique name="Robot_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//mstns:Robot" />
+        <xs:field xpath="mstns:ID" />
+      </xs:unique>
+      <xs:unique name="LoadingCase_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//mstns:LoadingCase" />
+        <xs:field xpath="mstns:ID" />
+      </xs:unique>
+      <xs:unique name="Determination_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//mstns:Determination" />
+        <xs:field xpath="mstns:ID" />
+      </xs:unique>
+    </xs:element>
+    <xs:annotation>
+      <xs:appinfo>
+        <msdata:Relationship name="FK_Factory_Station" msdata:parent="Factory" msdata:child="Station" msdata:parentkey="ID" msdata:childkey="FactoryID" />
+        <msdata:Relationship name="FK_Station_Robot" msdata:parent="Station" msdata:child="Robot" msdata:parentkey="ID" msdata:childkey="StationID" />
+        <msdata:Relationship name="FK_Robot_LoadingCase" msdata:parent="Robot" msdata:child="LoadingCase" msdata:parentkey="ID" msdata:childkey="RobotID" />
+        <msdata:Relationship name="FK_Determination_LoadingCase" msdata:parent="Determination" msdata:child="LoadingCase" msdata:parentkey="ID" msdata:childkey="DeterminationID" />
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:schema>
+  <Factory>
+    <ID>1</ID>
+    <project>P 01</project>
+    <factory />
+    <Information />
+    <customer />
+  </Factory>
+  <Station>
+    <ID>1</ID>
+    <name>Station 1</name>
+    <FactoryID>1</FactoryID>
+    <description />
+  </Station>
+  <Robot>
+    <ID>1</ID>
+    <robottype>KR 500-3</robottype>
+    <RobotID>263</RobotID>
+    <StationID>1</StationID>
+    <serialnumber>974042</serialnumber>
+    <comment />
+    <application />
+    <krcRelease>KR C@V8.2.17@#114</krcRelease>
+  </Robot>
+  <LoadingCase>
+    <ID>1</ID>
+    <description />
+    <RobotID>1</RobotID>
+    <loadID>20120905_180422_327</loadID>
+    <tool />
+    <date>2012-09-05T18:04:22.3270132-03:00</date>
+    <engineer />
+    <m>180.757141113281</m>
+    <cx>-96.5120544433594</cx>
+    <cy>-32.4123840332031</cy>
+    <cz>357.304992675781</cz>
+    <Ix>12.5</Ix>
+    <Iy>34.2389945983887</Iy>
+    <Iz>43.9477157592773</Iz>
+    <A>14.960596</A>
+    <B>-88.891983</B>
+    <C>-105.320053</C>
+    <mA1>0</mA1>
+    <cxA1>0</cxA1>
+    <cyA1>0</cyA1>
+    <czA1>0</czA1>
+    <IxA1>0</IxA1>
+    <IyA1>0</IyA1>
+    <IzA1>0</IzA1>
+    <mA2>0</mA2>
+    <cxA2>0</cxA2>
+    <cyA2>0</cyA2>
+    <czA2>0</czA2>
+    <IxA2>0</IxA2>
+    <IyA2>0</IyA2>
+    <IzA2>0</IzA2>
+    <mA3>50</mA3>
+    <cxA3>-505</cxA3>
+    <cyA3>0</cyA3>
+    <czA3>-1215</czA3>
+    <IxA3>17.5</IxA3>
+    <IyA3>17.5</IyA3>
+    <IzA3>17.5</IzA3>
+    <DeterminationID>3</DeterminationID>
+    <calibration_with_tool>128</calibration_with_tool>
+    <determinationInfo>V6.1.5 B12</determinationInfo>
+    <valuation>The robot type is released</valuation>
+    <toolNr>1</toolNr>
+  </LoadingCase>
+  <LoadingCase>
+    <ID>2</ID>
+    <description />
+    <RobotID>1</RobotID>
+    <loadID>20120905_181801_701</loadID>
+    <tool />
+    <date>2012-09-05T18:18:01.7019631-03:00</date>
+    <engineer />
+    <m>156.755172729492</m>
+    <cx>-110.163459777832</cx>
+    <cy>-30.5313873291016</cy>
+    <cz>342.420989990234</cz>
+    <Ix>12.5</Ix>
+    <Iy>19.8145313262939</Iy>
+    <Iz>32.3038177490234</Iz>
+    <A>9.951204</A>
+    <B>-87.948158</B>
+    <C>-100.255989</C>
+    <mA1>0</mA1>
+    <cxA1>0</cxA1>
+    <cyA1>0</cyA1>
+    <czA1>0</czA1>
+    <IxA1>0</IxA1>
+    <IyA1>0</IyA1>
+    <IzA1>0</IzA1>
+    <mA2>0</mA2>
+    <cxA2>0</cxA2>
+    <cyA2>0</cyA2>
+    <czA2>0</czA2>
+    <IxA2>0</IxA2>
+    <IyA2>0</IyA2>
+    <IzA2>0</IzA2>
+    <mA3>50</mA3>
+    <cxA3>-505</cxA3>
+    <cyA3>0</cyA3>
+    <czA3>-1215</czA3>
+    <IxA3>17.5</IxA3>
+    <IyA3>17.5</IyA3>
+    <IzA3>17.5</IzA3>
+    <DeterminationID>3</DeterminationID>
+    <calibration_with_tool>128</calibration_with_tool>
+    <determinationInfo>V6.1.5 B12</determinationInfo>
+    <valuation>The robot type is released</valuation>
+    <toolNr>1</toolNr>
+  </LoadingCase>
+  <LoadingCase>
+    <ID>3</ID>
+    <description />
+    <RobotID>1</RobotID>
+    <loadID>20120905_183054_217</loadID>
+    <tool>GUN X1</tool>
+    <date>2012-09-05T18:30:54.2171512-03:00</date>
+    <engineer />
+    <m>213.381713867188</m>
+    <cx>-75.5106964111328</cx>
+    <cy>-33.1850700378418</cy>
+    <cz>382.756011962891</cz>
+    <Ix>12.5</Ix>
+    <Iy>39.7773895263672</Iy>
+    <Iz>48.5505104064941</Iz>
+    <A>28.063213</A>
+    <B>-89.200905</B>
+    <C>-27.737392</C>
+    <mA1>0</mA1>
+    <cxA1>0</cxA1>
+    <cyA1>0</cyA1>
+    <czA1>0</czA1>
+    <IxA1>0</IxA1>
+    <IyA1>0</IyA1>
+    <IzA1>0</IzA1>
+    <mA2>0</mA2>
+    <cxA2>0</cxA2>
+    <cyA2>0</cyA2>
+    <czA2>0</czA2>
+    <IxA2>0</IxA2>
+    <IyA2>0</IyA2>
+    <IzA2>0</IzA2>
+    <mA3>50</mA3>
+    <cxA3>-505</cxA3>
+    <cyA3>0</cyA3>
+    <czA3>-1215</czA3>
+    <IxA3>17.5</IxA3>
+    <IyA3>17.5</IyA3>
+    <IzA3>17.5</IzA3>
+    <DeterminationID>3</DeterminationID>
+    <calibration_with_tool>128</calibration_with_tool>
+    <determinationInfo>V6.1.5 B12</determinationInfo>
+    <valuation>The robot type is released</valuation>
+    <toolNr>1</toolNr>
+  </LoadingCase>
+  <LoadingCase>
+    <ID>4</ID>
+    <description />
+    <RobotID>1</RobotID>
+    <loadID>20120905_191957_794</loadID>
+    <tool>GUN C2</tool>
+    <date>2012-09-05T19:19:57.7944404-03:00</date>
+    <engineer />
+    <m>164.084503173828</m>
+    <cx>-36.902774810791</cx>
+    <cy>-29.0969867706299</cy>
+    <cz>266.488006591797</cz>
+    <Ix>12.5</Ix>
+    <Iy>12.5</Iy>
+    <Iz>14.1950902938843</Iz>
+    <A>33.955681</A>
+    <B>-89.109695</B>
+    <C>-124.390793</C>
+    <mA1>0</mA1>
+    <cxA1>0</cxA1>
+    <cyA1>0</cyA1>
+    <czA1>0</czA1>
+    <IxA1>0</IxA1>
+    <IyA1>0</IyA1>
+    <IzA1>0</IzA1>
+    <mA2>0</mA2>
+    <cxA2>0</cxA2>
+    <cyA2>0</cyA2>
+    <czA2>0</czA2>
+    <IxA2>0</IxA2>
+    <IyA2>0</IyA2>
+    <IzA2>0</IzA2>
+    <mA3>50</mA3>
+    <cxA3>-505</cxA3>
+    <cyA3>0</cyA3>
+    <czA3>-1215</czA3>
+    <IxA3>17.5</IxA3>
+    <IyA3>17.5</IyA3>
+    <IzA3>17.5</IzA3>
+    <DeterminationID>3</DeterminationID>
+    <calibration_with_tool>128</calibration_with_tool>
+    <determinationInfo>V6.1.5 B12</determinationInfo>
+    <valuation>The robot type is released</valuation>
+    <toolNr>3</toolNr>
+  </LoadingCase>
+  <LoadingCase>
+    <ID>5</ID>
+    <description />
+    <RobotID>1</RobotID>
+    <loadID>20120906_110459_080</loadID>
+    <tool>GRIPPER TETO ACCELO</tool>
+    <date>2012-09-06T11:04:59.0809631-03:00</date>
+    <engineer />
+    <m>111.209037780762</m>
+    <cx>-8.21413612365723</cx>
+    <cy>17.4337558746338</cy>
+    <cz>111.96900177002</cz>
+    <Ix>12.5</Ix>
+    <Iy>12.5</Iy>
+    <Iz>12.5</Iz>
+    <A>0.006726</A>
+    <B>-0.095182</B>
+    <C>90.466949</C>
+    <mA1>0</mA1>
+    <cxA1>0</cxA1>
+    <cyA1>0</cyA1>
+    <czA1>0</czA1>
+    <IxA1>0</IxA1>
+    <IyA1>0</IyA1>
+    <IzA1>0</IzA1>
+    <mA2>0</mA2>
+    <cxA2>0</cxA2>
+    <cyA2>0</cyA2>
+    <czA2>0</czA2>
+    <IxA2>0</IxA2>
+    <IyA2>0</IyA2>
+    <IzA2>0</IzA2>
+    <mA3>50</mA3>
+    <cxA3>-505</cxA3>
+    <cyA3>0</cyA3>
+    <czA3>-1215</czA3>
+    <IxA3>17.5</IxA3>
+    <IyA3>17.5</IyA3>
+    <IzA3>17.5</IzA3>
+    <DeterminationID>3</DeterminationID>
+    <calibration_with_tool>128</calibration_with_tool>
+    <determinationInfo>V6.1.5 B12</determinationInfo>
+    <valuation>Freigabe des Robotertyps</valuation>
+    <toolNr>6</toolNr>
+  </LoadingCase>
+  <LoadingCase>
+    <ID>6</ID>
+    <description />
+    <RobotID>1</RobotID>
+    <loadID>20120906_111506_296</loadID>
+    <tool>Painel Traseiro Accelo</tool>
+    <date>2012-09-06T11:15:06.2967034-03:00</date>
+    <engineer />
+    <m>141.17561340332</m>
+    <cx>-51.9011764526367</cx>
+    <cy>-19.4614295959473</cy>
+    <cz>189.968002319336</cz>
+    <Ix>12.5</Ix>
+    <Iy>12.5</Iy>
+    <Iz>12.5</Iz>
+    <A>-0.064027</A>
+    <B>-1.43472</B>
+    <C>-90.941566</C>
+    <mA1>0</mA1>
+    <cxA1>0</cxA1>
+    <cyA1>0</cyA1>
+    <czA1>0</czA1>
+    <IxA1>0</IxA1>
+    <IyA1>0</IyA1>
+    <IzA1>0</IzA1>
+    <mA2>0</mA2>
+    <cxA2>0</cxA2>
+    <cyA2>0</cyA2>
+    <czA2>0</czA2>
+    <IxA2>0</IxA2>
+    <IyA2>0</IyA2>
+    <IzA2>0</IzA2>
+    <mA3>50</mA3>
+    <cxA3>-505</cxA3>
+    <cyA3>0</cyA3>
+    <czA3>-1215</czA3>
+    <IxA3>17.5</IxA3>
+    <IyA3>17.5</IyA3>
+    <IzA3>17.5</IzA3>
+    <DeterminationID>3</DeterminationID>
+    <calibration_with_tool>128</calibration_with_tool>
+    <determinationInfo>V6.1.5 B12</determinationInfo>
+    <valuation>Freigabe des Robotertyps</valuation>
+    <toolNr>7</toolNr>
+  </LoadingCase>
+  <LoadingCase>
+    <ID>7</ID>
+    <description />
+    <RobotID>1</RobotID>
+    <loadID>20120906_113943_078</loadID>
+    <tool>Painel Traseiro Actros</tool>
+    <date>2012-09-06T11:39:43.0789269-03:00</date>
+    <engineer />
+    <m>328.434356689453</m>
+    <cx>-25.5199642181396</cx>
+    <cy>-11.2040777206421</cy>
+    <cz>364.7080078125</cz>
+    <Ix>192.473449707031</Ix>
+    <Iy>231.820449829102</Iy>
+    <Iz>236.270080566406</Iz>
+    <A>90.006508</A>
+    <B>-0.130019</B>
+    <C>-87.374809</C>
+    <mA1>0</mA1>
+    <cxA1>0</cxA1>
+    <cyA1>0</cyA1>
+    <czA1>0</czA1>
+    <IxA1>0</IxA1>
+    <IyA1>0</IyA1>
+    <IzA1>0</IzA1>
+    <mA2>0</mA2>
+    <cxA2>0</cxA2>
+    <cyA2>0</cyA2>
+    <czA2>0</czA2>
+    <IxA2>0</IxA2>
+    <IyA2>0</IyA2>
+    <IzA2>0</IzA2>
+    <mA3>50</mA3>
+    <cxA3>-505</cxA3>
+    <cyA3>0</cyA3>
+    <czA3>-1215</czA3>
+    <IxA3>17.5</IxA3>
+    <IyA3>17.5</IyA3>
+    <IzA3>17.5</IzA3>
+    <DeterminationID>3</DeterminationID>
+    <calibration_with_tool>128</calibration_with_tool>
+    <determinationInfo>V6.1.5 B12</determinationInfo>
+    <valuation>Freigabe des Robotertyps</valuation>
+    <toolNr>5</toolNr>
+  </LoadingCase>
+  <LoadingCase>
+    <ID>8</ID>
+    <description />
+    <RobotID>1</RobotID>
+    <loadID>20150804_034635_651</loadID>
+    <tool>GUN C3</tool>
+    <date>2015-08-04T03:46:35.6517649-03:00</date>
+    <engineer />
+    <m>182.853240966797</m>
+    <cx>-59.4248542785644</cx>
+    <cy>-15.5449457168579</cy>
+    <cz>375.826995849609</cz>
+    <Ix>12.5</Ix>
+    <Iy>12.5</Iy>
+    <Iz>22.8359794616699</Iz>
+    <A>1.18828</A>
+    <B>-80.799133</B>
+    <C>-91.236595</C>
+    <mA1>0</mA1>
+    <cxA1>0</cxA1>
+    <cyA1>0</cyA1>
+    <czA1>0</czA1>
+    <IxA1>0</IxA1>
+    <IyA1>0</IyA1>
+    <IzA1>0</IzA1>
+    <mA2>0</mA2>
+    <cxA2>0</cxA2>
+    <cyA2>0</cyA2>
+    <czA2>0</czA2>
+    <IxA2>0</IxA2>
+    <IyA2>0</IyA2>
+    <IzA2>0</IzA2>
+    <mA3>50</mA3>
+    <cxA3>-505</cxA3>
+    <cyA3>0</cyA3>
+    <czA3>-1215</czA3>
+    <IxA3>17.5</IxA3>
+    <IyA3>17.5</IyA3>
+    <IzA3>17.5</IzA3>
+    <DeterminationID>3</DeterminationID>
+    <calibration_with_tool>128</calibration_with_tool>
+    <determinationInfo>V6.1.5 B12</determinationInfo>
+    <valuation>Freigabe des Robotertyps</valuation>
+    <toolNr>4</toolNr>
+  </LoadingCase>
+  <LoadingCase>
+    <ID>9</ID>
+    <description />
+    <RobotID>1</RobotID>
+    <loadID>20150804_045119_431</loadID>
+    <tool>Grp 903 Axor</tool>
+    <date>2015-08-04T04:51:19.4313996-03:00</date>
+    <engineer />
+    <m>267.588836669922</m>
+    <cx>163.197265625</cx>
+    <cy>-13.5620613098145</cy>
+    <cz>237.069000244141</cz>
+    <Ix>94.9252166748047</Ix>
+    <Iy>99.5873336791992</Iy>
+    <Iz>183.24348449707</Iz>
+    <A>0.501563</A>
+    <B>0.57961</B>
+    <C>0.056207</C>
+    <mA1>0</mA1>
+    <cxA1>0</cxA1>
+    <cyA1>0</cyA1>
+    <czA1>0</czA1>
+    <IxA1>0</IxA1>
+    <IyA1>0</IyA1>
+    <IzA1>0</IzA1>
+    <mA2>0</mA2>
+    <cxA2>0</cxA2>
+    <cyA2>0</cyA2>
+    <czA2>0</czA2>
+    <IxA2>0</IxA2>
+    <IyA2>0</IyA2>
+    <IzA2>0</IzA2>
+    <mA3>50</mA3>
+    <cxA3>-505</cxA3>
+    <cyA3>0</cyA3>
+    <czA3>-1215</czA3>
+    <IxA3>17.5</IxA3>
+    <IyA3>17.5</IyA3>
+    <IzA3>17.5</IzA3>
+    <DeterminationID>3</DeterminationID>
+    <calibration_with_tool>128</calibration_with_tool>
+    <determinationInfo>V6.1.5 B12</determinationInfo>
+    <valuation>Freigabe des Robotertyps</valuation>
+    <toolNr>9</toolNr>
+  </LoadingCase>
+  <LoadingCase>
+    <ID>10</ID>
+    <description />
+    <RobotID>1</RobotID>
+    <loadID>20150804_055329_306</loadID>
+    <tool>Grp 913 Axor  </tool>
+    <date>2015-08-04T05:53:29.3061622-03:00</date>
+    <engineer />
+    <m>276.224273681641</m>
+    <cx>154.057357788086</cx>
+    <cy>-17.1866817474365</cy>
+    <cz>226.755996704102</cz>
+    <Ix>100.787246704102</Ix>
+    <Iy>103.280769348145</Iy>
+    <Iz>189.868927001953</Iz>
+    <A>1.126284</A>
+    <B>0.523567</B>
+    <C>0.070796</C>
+    <mA1>0</mA1>
+    <cxA1>0</cxA1>
+    <cyA1>0</cyA1>
+    <czA1>0</czA1>
+    <IxA1>0</IxA1>
+    <IyA1>0</IyA1>
+    <IzA1>0</IzA1>
+    <mA2>0</mA2>
+    <cxA2>0</cxA2>
+    <cyA2>0</cyA2>
+    <czA2>0</czA2>
+    <IxA2>0</IxA2>
+    <IyA2>0</IyA2>
+    <IzA2>0</IzA2>
+    <mA3>50</mA3>
+    <cxA3>-505</cxA3>
+    <cyA3>0</cyA3>
+    <czA3>-1215</czA3>
+    <IxA3>17.5</IxA3>
+    <IyA3>17.5</IyA3>
+    <IzA3>17.5</IzA3>
+    <DeterminationID>3</DeterminationID>
+    <calibration_with_tool>128</calibration_with_tool>
+    <determinationInfo>V6.1.5 B12</determinationInfo>
+    <valuation>Freigabe des Robotertyps</valuation>
+    <toolNr>11</toolNr>
+  </LoadingCase>
+  <LoadingCase>
+    <ID>11</ID>
+    <description />
+    <RobotID>1</RobotID>
+    <loadID>20150927_003557_339</loadID>
+    <tool>Grp 903 c/ pc </tool>
+    <date>2015-09-27T00:35:57.3394443-03:00</date>
+    <engineer />
+    <m>364.790283203125</m>
+    <cx>139.243148803711</cx>
+    <cy>18.0051345825195</cy>
+    <cz>371.096984863281</cz>
+    <Ix>128.652618408203</Ix>
+    <Iy>201.211578369141</Iy>
+    <Iz>275.197845458984</Iz>
+    <A>-89.962967</A>
+    <B>-0.057118</B>
+    <C>179.121002</C>
+    <mA1>0</mA1>
+    <cxA1>0</cxA1>
+    <cyA1>0</cyA1>
+    <czA1>0</czA1>
+    <IxA1>0</IxA1>
+    <IyA1>0</IyA1>
+    <IzA1>0</IzA1>
+    <mA2>0</mA2>
+    <cxA2>0</cxA2>
+    <cyA2>0</cyA2>
+    <czA2>0</czA2>
+    <IxA2>0</IxA2>
+    <IyA2>0</IyA2>
+    <IzA2>0</IzA2>
+    <mA3>50</mA3>
+    <cxA3>-505</cxA3>
+    <cyA3>0</cyA3>
+    <czA3>-1215</czA3>
+    <IxA3>17.5</IxA3>
+    <IyA3>17.5</IyA3>
+    <IzA3>17.5</IzA3>
+    <DeterminationID>3</DeterminationID>
+    <calibration_with_tool>128</calibration_with_tool>
+    <determinationInfo>V6.1.5 B12</determinationInfo>
+    <valuation>Freigabe des Robotertyps</valuation>
+    <toolNr>10</toolNr>
+  </LoadingCase>
+  <LoadingCase>
+    <ID>12</ID>
+    <description />
+    <RobotID>1</RobotID>
+    <loadID>20151007_234351_676</loadID>
+    <tool>Grp 913 c/ pc </tool>
+    <date>2015-10-07T23:43:51.6767369-03:00</date>
+    <engineer />
+    <m>329.511535644531</m>
+    <cx>128.890258789062</cx>
+    <cy>-16.1413326263428</cy>
+    <cz>291.480987548828</cz>
+    <Ix>141.176971435547</Ix>
+    <Iy>145.676620483398</Iy>
+    <Iz>229.613586425781</Iz>
+    <A>89.508842</A>
+    <B>-0.064134</B>
+    <C>-179.419739</C>
+    <mA1>0</mA1>
+    <cxA1>0</cxA1>
+    <cyA1>0</cyA1>
+    <czA1>0</czA1>
+    <IxA1>0</IxA1>
+    <IyA1>0</IyA1>
+    <IzA1>0</IzA1>
+    <mA2>0</mA2>
+    <cxA2>0</cxA2>
+    <cyA2>0</cyA2>
+    <czA2>0</czA2>
+    <IxA2>0</IxA2>
+    <IyA2>0</IyA2>
+    <IzA2>0</IzA2>
+    <mA3>50</mA3>
+    <cxA3>-505</cxA3>
+    <cyA3>0</cyA3>
+    <czA3>-1215</czA3>
+    <IxA3>17.5</IxA3>
+    <IyA3>17.5</IyA3>
+    <IzA3>17.5</IzA3>
+    <DeterminationID>3</DeterminationID>
+    <calibration_with_tool>128</calibration_with_tool>
+    <determinationInfo>V6.1.5 B12</determinationInfo>
+    <valuation>Freigabe des Robotertyps</valuation>
+    <toolNr>12</toolNr>
+  </LoadingCase>
+  <LoadingCase>
+    <ID>13</ID>
+    <description />
+    <RobotID>1</RobotID>
+    <loadID>20151102_204342_593</loadID>
+    <tool />
+    <date>2015-11-02T20:43:42.5937422-02:00</date>
+    <engineer />
+    <m>315.860321044922</m>
+    <cx>141.009689331055</cx>
+    <cy>-19.5261764526367</cy>
+    <cz>275.191986083984</cz>
+    <Ix>141.576614379883</Ix>
+    <Iy>167.644775390625</Iy>
+    <Iz>253.157287597656</Iz>
+    <A>89.887238</A>
+    <B>-0.061863</B>
+    <C>0.591845</C>
+    <mA1>0</mA1>
+    <cxA1>0</cxA1>
+    <cyA1>0</cyA1>
+    <czA1>0</czA1>
+    <IxA1>0</IxA1>
+    <IyA1>0</IyA1>
+    <IzA1>0</IzA1>
+    <mA2>0</mA2>
+    <cxA2>0</cxA2>
+    <cyA2>0</cyA2>
+    <czA2>0</czA2>
+    <IxA2>0</IxA2>
+    <IyA2>0</IyA2>
+    <IzA2>0</IzA2>
+    <mA3>50</mA3>
+    <cxA3>-505</cxA3>
+    <cyA3>0</cyA3>
+    <czA3>-1215</czA3>
+    <IxA3>17.5</IxA3>
+    <IyA3>17.5</IyA3>
+    <IzA3>17.5</IzA3>
+    <DeterminationID>3</DeterminationID>
+    <calibration_with_tool>128</calibration_with_tool>
+    <determinationInfo>V6.1.5 B12</determinationInfo>
+    <valuation>Freigabe des Robotertyps</valuation>
+    <toolNr>1</toolNr>
+  </LoadingCase>
+  <LoadingCase>
+    <ID>14</ID>
+    <description />
+    <RobotID>1</RobotID>
+    <loadID>20151102_204730_043</loadID>
+    <tool>Grp 903 s/ pc</tool>
+    <date>2015-11-02T20:47:30.0437947-02:00</date>
+    <engineer />
+    <m>315.973785400391</m>
+    <cx>141.066009521484</cx>
+    <cy>-19.5623302459717</cy>
+    <cz>274.885009765625</cz>
+    <Ix>143.042526245117</Ix>
+    <Iy>166.164291381836</Iy>
+    <Iz>254.247436523438</Iz>
+    <A>89.872581</A>
+    <B>-0.062015</B>
+    <C>0.574297</C>
+    <mA1>0</mA1>
+    <cxA1>0</cxA1>
+    <cyA1>0</cyA1>
+    <czA1>0</czA1>
+    <IxA1>0</IxA1>
+    <IyA1>0</IyA1>
+    <IzA1>0</IzA1>
+    <mA2>0</mA2>
+    <cxA2>0</cxA2>
+    <cyA2>0</cyA2>
+    <czA2>0</czA2>
+    <IxA2>0</IxA2>
+    <IyA2>0</IyA2>
+    <IzA2>0</IzA2>
+    <mA3>50</mA3>
+    <cxA3>-505</cxA3>
+    <cyA3>0</cyA3>
+    <czA3>-1215</czA3>
+    <IxA3>17.5</IxA3>
+    <IyA3>17.5</IyA3>
+    <IzA3>17.5</IzA3>
+    <DeterminationID>3</DeterminationID>
+    <calibration_with_tool>128</calibration_with_tool>
+    <determinationInfo>V6.1.5 B12</determinationInfo>
+    <valuation>Freigabe des Robotertyps</valuation>
+    <toolNr>9</toolNr>
+  </LoadingCase>
+  <LoadingCase>
+    <ID>15</ID>
+    <description />
+    <RobotID>1</RobotID>
+    <loadID>20151102_230503_028</loadID>
+    <tool>Grp 903 c/ pc </tool>
+    <date>2015-11-02T23:05:03.0283547-02:00</date>
+    <engineer />
+    <m>390.365814208984</m>
+    <cx>116.208908081055</cx>
+    <cy>-10.1511001586914</cy>
+    <cz>384.295989990234</cz>
+    <Ix>245.784332275391</Ix>
+    <Iy>261.487243652344</Iy>
+    <Iz>322.834655761719</Iz>
+    <A>89.921349</A>
+    <B>-0.06259</B>
+    <C>0.91537</C>
+    <mA1>0</mA1>
+    <cxA1>0</cxA1>
+    <cyA1>0</cyA1>
+    <czA1>0</czA1>
+    <IxA1>0</IxA1>
+    <IyA1>0</IyA1>
+    <IzA1>0</IzA1>
+    <mA2>0</mA2>
+    <cxA2>0</cxA2>
+    <cyA2>0</cyA2>
+    <czA2>0</czA2>
+    <IxA2>0</IxA2>
+    <IyA2>0</IyA2>
+    <IzA2>0</IzA2>
+    <mA3>50</mA3>
+    <cxA3>-505</cxA3>
+    <cyA3>0</cyA3>
+    <czA3>-1215</czA3>
+    <IxA3>17.5</IxA3>
+    <IyA3>17.5</IyA3>
+    <IzA3>17.5</IzA3>
+    <DeterminationID>3</DeterminationID>
+    <calibration_with_tool>384</calibration_with_tool>
+    <determinationInfo>V6.1.5 B12</determinationInfo>
+    <valuation>Freigabe des Robotertyps
+Taktzeitanalyse empfehlenswert</valuation>
+    <toolNr>10</toolNr>
+  </LoadingCase>
+  <Determination>
+    <ID>1</ID>
+    <determination>CAD</determination>
+  </Determination>
+  <Determination>
+    <ID>2</ID>
+    <determination>Manuell</determination>
+  </Determination>
+  <Determination>
+    <ID>3</ID>
+    <determination>Lastdatenermittlung</determination>
+  </Determination>
+</KukaLoadProjectDataSet>

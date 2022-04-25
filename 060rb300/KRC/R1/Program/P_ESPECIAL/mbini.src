@@ -1,0 +1,225 @@
+&ACCESS RVO7
+&REL 59
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF mbini( )
+;FOLD ; ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:
+;ENDFOLD
+;FOLD ; Modulo de condicoes iniciais;%{PE}%R 4.1.16,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:Modulo de condicoes iniciais
+;ENDFOLD
+;FOLD ; ROBO 3;%{PE}%R 4.1.16,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:ROBO 3
+;ENDFOLD
+;FOLD ; ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:
+;ENDFOLD
+;FOLD Kollision.Ueberwachung_1_Aus ;%{PE}%MKUKATPUSER
+COLLSTOP( 1, 2 )
+;ENDFOLD
+;FOLD Kollision.Ueberwachung_2_Aus ;%{PE}%MKUKATPUSER
+COLLSTOP( 2, 2 )
+;ENDFOLD
+;FOLD Kollision.Ueberwachung_3_Aus ;%{PE}%MKUKATPUSER
+COLLSTOP( 3, 2 )
+;ENDFOLD
+;FOLD Kollision.Ueberwachung_4_Aus ;%{PE}%MKUKATPUSER
+COLLSTOP( 4, 2 )
+;ENDFOLD
+;FOLD Kollision.Ueberwachung_5_Aus ;%{PE}%MKUKATPUSER
+COLLSTOP( 5, 2 )
+;ENDFOLD
+;FOLD Kollision.Ueberwachung_6_Aus ;%{PE}%MKUKATPUSER
+COLLSTOP( 6, 2 )
+;ENDFOLD
+;FOLD Kollision.Monitoring_AREA_1_Off ;%{PE}%MKUKATPUSER
+COLLSTOP( 7, 2 )
+;ENDFOLD
+;FOLD Kollision.Monitoring_AREA_2_Off ;%{PE}%MKUKATPUSER
+COLLSTOP( 8, 2 )
+;ENDFOLD
+;FOLD Kollision.Monitoring_AREA_3_Off ;%{PE}%MKUKATPUSER
+COLLSTOP( 9, 2 )
+;ENDFOLD
+;FOLD Kollision.Monitoring_AREA_4_Off ;%{PE}%MKUKATPUSER
+COLLSTOP( 10, 2 )
+;ENDFOLD
+
+;FOLD OUT 167 'protecao da pinca abrir'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:167, 3:'protecao da pinca abrir', 5:FALSE, 6:
+$OUT[167]=FALSE
+;ENDFOLD
+;FOLD OUT 168 'protecao da pinca fechar'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:168, 3:'protecao da pinca fechar', 5:FALSE, 6:
+$OUT[168]=FALSE
+;ENDFOLD
+;FOLD OUT 175 'protecao da pinca abrir'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:175, 3:'protecao da pinca abrir', 5:FALSE, 6:
+$OUT[175]=FALSE
+;ENDFOLD
+;FOLD OUT 176 'protecao da pinca fechar'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:176, 3:'protecao da pinca fechar', 5:FALSE, 6:
+$OUT[176]=FALSE
+;ENDFOLD
+;FOLD OUT 181 'avanca klaskka'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:181, 3:'avanca klaskka', 5:FALSE, 6:
+$OUT[181]=FALSE
+;ENDFOLD
+;FOLD OUT 182 'recua klaschka'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:182, 3:'recua klaschka', 5:FALSE, 6:
+$OUT[182]=FALSE
+;ENDFOLD
+;FOLD OUT 183 'protecao da pinca abrir'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:183, 3:'protecao da pinca abrir', 5:FALSE, 6:
+$OUT[183]=FALSE
+;ENDFOLD
+;FOLD OUT 184 'protecao da pinca fechar'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:184, 3:'protecao da pinca fechar', 5:FALSE, 6:
+$OUT[184]=FALSE
+;ENDFOLD
+;FOLD OUT 191 'protecao da pinca abrir'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:191, 3:'protecao da pinca abrir', 5:FALSE, 6:
+$OUT[191]=FALSE
+;ENDFOLD
+;FOLD OUT 192 'protecao da pinca fechar'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:192, 3:'protecao da pinca fechar', 5:FALSE, 6:
+$OUT[192]=FALSE
+;ENDFOLD
+;FOLD OUT 199 'protecao da pinca abrir'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:199, 3:'protecao da pinca abrir', 5:FALSE, 6:
+$OUT[199]=FALSE
+;ENDFOLD
+;FOLD OUT 200 'protecao da pinca fechar'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:200, 3:'protecao da pinca fechar', 5:FALSE, 6:
+$OUT[200]=FALSE
+;ENDFOLD
+;FOLD OUT 207 'protecao da piinca abrir'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:207, 3:'protecao da piinca abrir', 5:FALSE, 6:
+$OUT[207]=FALSE
+;ENDFOLD
+;FOLD OUT 208 'protecao da pnca fechar'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:208, 3:'protecao da pnca fechar', 5:FALSE, 6:
+$OUT[208]=FALSE
+;ENDFOLD
+;FOLD OUT 215 'protecao da pinca abrir'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:215, 3:'protecao da pinca abrir', 5:FALSE, 6:
+$OUT[215]=FALSE
+;ENDFOLD
+;FOLD OUT 216 'protecao da pinca fechar'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:216, 3:'protecao da pinca fechar', 5:FALSE, 6:
+$OUT[216]=FALSE
+;ENDFOLD
+;FOLD OUT 223 'Desbloqueio MPS'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:223, 3:'Desbloqueio MPS', 5:FALSE, 6:
+$OUT[223]=FALSE
+;ENDFOLD
+;FOLD OUT 224 'Bloqueio MPS'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:224, 3:'Bloqueio MPS', 5:TRUE, 6:
+$OUT[224]=TRUE
+;ENDFOLD
+;FOLD PULSE 229  State= TRUE   Time= 1.5 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:229, 3:'protecao da pinca fechar', 5:TRUE, 6:, 8:1.5
+PULSE($OUT[229], TRUE,1.5)
+;ENDFOLD
+;FOLD OUT 825 'R3 Solic Lib Entrar EST 060 EL_631 '  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:825, 3:'R3 Solic Lib Entrar EST 060 EL_631 ', 5:FALSE, 6:
+$OUT[825]=FALSE
+;ENDFOLD
+;FOLD OUT 826 'Busca frontal Accelo'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:826, 3:'Busca frontal Accelo', 5:FALSE, 6:
+$OUT[826]=FALSE
+;ENDFOLD
+;FOLD OUT 827 'solicita saida do magazine'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:827, 3:'solicita saida do magazine', 5:FALSE, 6:
+$OUT[827]=FALSE
+;ENDFOLD
+;FOLD OUT 828 'Solicita lib. sair magazine'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:828, 3:'Solicita lib. sair magazine', 5:FALSE, 6:
+$OUT[828]=FALSE
+;ENDFOLD
+;FOLD OUT 829 'Pegou peca'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:829, 3:'Pegou peca', 5:FALSE, 6:
+$OUT[829]=FALSE
+;ENDFOLD
+;FOLD OUT 830 'R3 Solic Lib Buscar Gripper Acelo'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:830, 3:'R3 Solic Lib Buscar Gripper Acelo', 5:FALSE, 6:
+$OUT[830]=FALSE
+;ENDFOLD
+;FOLD OUT 831 'Posicao Segura entrega peca Accelo'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:831, 3:'Posicao Segura entrega peca Accelo', 5:FALSE, 6:
+$OUT[831]=FALSE
+;ENDFOLD
+;FOLD OUT 832 'Entrega peca Geo'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:832, 3:'Entrega peca Geo', 5:FALSE, 6:
+$OUT[832]=FALSE
+;ENDFOLD
+;FOLD OUT 833 'Solicita lib. sair Geo'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:833, 3:'Solicita lib. sair Geo', 5:FALSE, 6:
+$OUT[833]=FALSE
+;ENDFOLD
+;FOLD OUT 834 'Entregou peca Geo'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:834, 3:'Entregou peca Geo', 5:FALSE, 6:
+$OUT[834]=FALSE
+;ENDFOLD
+;FOLD OUT 837 'Posicao segura soldar Actros'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:837, 3:'Posicao segura soldar Actros', 5:FALSE, 6:
+$OUT[837]=FALSE
+;ENDFOLD
+;FOLD OUT 838 'Posicao segura soldar Accelo'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:838, 3:'Posicao segura soldar Accelo', 5:FALSE, 6:
+$OUT[838]=FALSE
+;ENDFOLD
+;FOLD OUT 839 'Soldando'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:839, 3:'Soldando', 5:FALSE, 6:
+$OUT[839]=FALSE
+;ENDFOLD
+;FOLD OUT 840 'Solda Geometria Concluida'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:840, 3:'Solda Geometria Concluida', 5:FALSE, 6:
+$OUT[840]=FALSE
+;ENDFOLD
+;FOLD OUT 841 'Retira Gripper da Geo'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:841, 3:'Retira Gripper da Geo', 5:FALSE, 6:
+$OUT[841]=FALSE
+;ENDFOLD
+;FOLD OUT 842 'Solicita saida com Garra'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:842, 3:'Solicita saida com Garra', 5:FALSE, 6:
+$OUT[842]=FALSE
+;ENDFOLD
+;FOLD OUT 843 'Retirou Gripper da Geo'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:843, 3:'Retirou Gripper da Geo', 5:FALSE, 6:
+$OUT[843]=FALSE
+;ENDFOLD
+;FOLD OUT 844 'Solda Respot Geo 2 Concluida'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:844, 3:'Solda Respot Geo 2 Concluida', 5:FALSE, 6:
+$OUT[844]=FALSE
+;ENDFOLD
+;FOLD OUT 845 'Trabalho Concluido'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:845, 3:'Trabalho Concluido', 5:FALSE, 6:
+$OUT[845]=FALSE
+;ENDFOLD
+;FOLD OUT 846 'R3 solda respot Geo1 K'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:846, 3:'R3 solda respot Geo1 K', 5:FALSE, 6:
+$OUT[846]=FALSE
+;ENDFOLD
+
+;FOLD OUT 848 'Area de Solda'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:848, 3:'Area de Solda', 5:TRUE, 6:
+$OUT[848]=TRUE
+;ENDFOLD
+;FOLD OUT 849 'Area do Gripper'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:849, 3:'Area do Gripper', 5:TRUE, 6:
+$OUT[849]=TRUE
+;ENDFOLD
+;FOLD OUT 850 'Area do Operador'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:850, 3:'Area do Operador', 5:TRUE, 6:
+$OUT[850]=TRUE
+;ENDFOLD
+;FOLD OUT 851 'Libera  AGV'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:851, 3:'Libera  AGV', 5:TRUE, 6:
+$OUT[851]=TRUE
+;ENDFOLD
+;FOLD OUT 868 'Perfil livre Estacao'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:868, 3:'Perfil livre Estacao', 5:TRUE, 6:
+$OUT[868]=TRUE
+;ENDFOLD
+
+;FOLD PULSE 168 'Proteção da pinca 1 fechar'  State= TRUE   Time= 1.5 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:168, 3:'Proteção da pinca 1 fechar', 5:TRUE, 6:, 8:1.5
+PULSE($OUT[168], TRUE,1.5)
+;ENDFOLD
+;FOLD PULSE 176 'Proteção da pinca 2 fechar'  State= TRUE   Time= 1.5 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:176, 3:'Proteção da pinca 2 fechar', 5:TRUE, 6:, 8:1.5
+PULSE($OUT[176], TRUE,1.5)
+;ENDFOLD
+;FOLD PULSE 184 'Proteção da pinca 3 fechar'  State= TRUE   Time= 1.5 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:184, 3:'Proteção da pinca 3 fechar', 5:TRUE, 6:, 8:1.5
+PULSE($OUT[184], TRUE,1.5)
+;ENDFOLD
+;FOLD PULSE 192 'Proteção da pinca fechar'  State= TRUE   Time= 1.5 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:192, 3:'Proteção da pinca fechar', 5:TRUE, 6:, 8:1.5
+PULSE($OUT[192], TRUE,1.5)
+;ENDFOLD
+;FOLD PULSE 200 'Proteção da pinca fechar'  State= TRUE   Time= 1.5 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:200, 3:'Proteção da pinca fechar', 5:TRUE, 6:, 8:1.5
+PULSE($OUT[200], TRUE,1.5)
+;ENDFOLD
+;FOLD PULSE 208 'Proteção da pinca fechar'  State= TRUE   Time= 1.5 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:208, 3:'Proteção da pinca fechar', 5:TRUE, 6:, 8:1.5
+PULSE($OUT[208], TRUE,1.5)
+;ENDFOLD
+;FOLD PULSE 216 'Proteção da pinca fechar'  State= TRUE   Time= 1.5 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:216, 3:'Proteção da pinca fechar', 5:TRUE, 6:, 8:1.5
+PULSE($OUT[216], TRUE,1.5)
+;ENDFOLD
+
+;FOLD WAIT FOR IN 166 'Protecao de pinca fechada'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:166, 3:'Protecao de pinca fechada', 5:TRUE, 6:
+WAIT FOR $IN[166]==TRUE
+;ENDFOLD
+;FOLD WAIT FOR IN 174 'Protecao de pinca fechada'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:174, 3:'Protecao de pinca fechada', 5:TRUE, 6:
+WAIT FOR $IN[174]==TRUE
+;ENDFOLD
+;FOLD WAIT FOR IN 180 'protecao da pinca fechado'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:180, 3:'protecao da pinca fechado', 5:TRUE, 6:
+WAIT FOR $IN[180]==TRUE
+;ENDFOLD
+;FOLD WAIT FOR IN 190 'Protecao de pinca fechada'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:190, 3:'Protecao de pinca fechada', 5:TRUE, 6:
+WAIT FOR $IN[190]==TRUE
+;ENDFOLD
+;FOLD WAIT FOR IN 165 'Protecao de pinca aberta'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:165, 3:'Protecao de pinca aberta', 5:FALSE, 6:
+WAIT FOR $IN[165]==FALSE
+;ENDFOLD
+;FOLD WAIT FOR IN 173 'Protecao de pinca aberta'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:173, 3:'Protecao de pinca aberta', 5:FALSE, 6:
+WAIT FOR $IN[173]==FALSE
+;ENDFOLD
+;FOLD WAIT FOR IN 179 'protecao da pinca aberto'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:179, 3:'protecao da pinca aberto', 5:FALSE, 6:
+WAIT FOR $IN[179]==FALSE
+;ENDFOLD
+;FOLD WAIT FOR IN 189 'Protecao de pinca aberta'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CWAIT_FOR,%VWAIT_FOR,%P 1:0, 2:189, 3:'Protecao de pinca aberta', 5:FALSE, 6:
+WAIT FOR $IN[189]==FALSE
+;ENDFOLD
+END

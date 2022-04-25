@@ -1,0 +1,46 @@
+DEFTP MyTech
+  Decl PARAM ParamList={SHORTNAME[] "Val: ",VALUE {Name: DEFAULT[] "val1"}}
+
+  Decl PARAM LSR_MAX_PWR = {SHORTNAME[] "Maximum Power", VALUE {NUMBER:MIN 0, MAX 20000, STEP 100, AUTOLIMIT TRUE, DEFAULT 2000}, UNIT[] "W", SHORTCUT[]  "MAXP" }
+  Decl PARAM LSR_MIN_PWR = {SHORTNAME[] "Minimum Power",  VALUE {NUMBER:MIN 0, MAX 20000, STEP 100 , AUTOLIMIT TRUE, DEFAULT 2000}, UNIT[] "W", SHORTCUT[]  "MINP" }
+  Decl PARAM LSR_PRG = {SHORTNAME[] "Laser Program",  VALUE {NUMBER:MIN 1, MAX 79,STEP 1, AUTOLIMIT TRUE, DEFAULT 1}, SHORTCUT[] "PRG"}
+  Decl PARAM SNSR_PRG = {SHORTNAME[]  "Sensor Program", VALUE {NUMBER:MIN 0, MAX 3,STEP 1, AUTOLIMIT TRUE, DEFAULT 1}, SHORTCUT[] "PREC"}
+  Decl PARAM GAS_PRESSURE = {SHORTNAME[] "Cutting Gas",  VALUE {NUMBER:MIN 0, MAX 8, STEP 1 , AUTOLIMIT TRUE, DEFAULT 2}, UNIT[] "bar", SHORTCUT[]  "GAS" }
+  Decl PARAM GAS_PRE_FLOW = {SHORTNAME[] "PRE Flow Time",  VALUE {NUMBER:MIN 0, MAX 5000, STEP 100 , AUTOLIMIT TRUE, DEFAULT 0}, UNIT[] "ms", SHORTCUT[]  "PRE" }
+  Decl PARAM GAS_POST_FLOW = {SHORTNAME[] "POST Flow Time",  VALUE {NUMBER:MIN 0, MAX 5000, STEP 100 , AUTOLIMIT TRUE, DEFAULT 0}, UNIT[] "ms", SHORTCUT[]  "POST" }
+  Decl PARAM LSR_DLY = {SHORTNAME[] "Piercing Time",  VALUE {NUMBER:MIN 0, MAX 5000, STEP 100 , AUTOLIMIT TRUE, DEFAULT 0}, UNIT[] "ms", SHORTCUT[]  "LSR" }
+  Decl PARAM TestBool = {SHORTNAME[] "Laser",  VALUE {BOOL: DEFAULT TRUE , TRUE[] "EIN", FALSE[] "AUS"},  SHORTCUT[]  "LS3" }	
+  Decl PARAM PL_LsrTool = {SHORTNAME[] "PLTOOL", VAR[] "LSC_TOOL_TYP", SHORTCUT[] "LT", UNIT[] "TOOL" ,Value {FREE: DEFAULT[] "_"}}
+
+  
+
+  DECL FOLD MyFold[1] 
+     MyFold[1]= "/;test"
+  
+  DECL FOLD PFold[1] 
+     PFold[1]= "/;ParamList"
+     
+  DECL FOLD SPL_FOLD[1]
+     SPL_Fold[1]= "/;Spline Fold"
+  
+  DECL PLIST LsrTool[8] -> ParamList
+  LsrTool[1]  =  LSR_MAX_PWR 
+  LsrTool[2]  =  LSR_MIN_PWR  
+  LsrTool[3]  =  LSR_PRG 
+  LsrTool[4]  =  SNSR_PRG 
+  LsrTool[5]  =  GAS_PRESSURE 
+  LsrTool[6]  =  GAS_PRE_FLOW 
+  LsrTool[7]  =  GAS_POST_FLOW 
+  LsrTool[8]  =  LSR_DLY     
+;The next two lines must be inserted in $Config.dat to use this example!
+;
+;STRUC LSC_TOOL_TYP INT LSR_MAX_PWR,INT LSR_MIN_PWR,INT LSR_Prg,REAL SNSR_Prg,INT SNSR_State,REAL GAS_Pressure,INT LSR_Dly,INT GAS_Pre_Flow,INT GAS_Post_Flow
+;DECL LSC_TOOL_TYP LTDEFAULT={LSR_MAX_PWR 500,LSR_MIN_PWR 50,LSR_Prg 1,SNSR_Prg 1.0,SNSR_State 0,GAS_Pressure 1.0,LSR_Dly 100,GAS_Pre_Flow 0,GAS_Post_Flow 0}  
+
+  Decl InlineForm MyCmd={ FOLD[1] MyFold}  
+  Decl InlineForm ILF_With_ParamList={FOLD[1] PFold, PARAM[1] ParamList, PARAM[2] TESTBOOL} 
+  ;To use the next demo ILF remove the comment sign, function only available in Version 5.5!
+  ;Decl InlineForm MySplineCheck={ FOLD[1] MyFold, ILF_TYPE ALL} 
+  ;Decl InlineForm MySplineILF={ FOLD[1] SPL_FOLD, SPLINE TRUE}
+  
+ENDTP

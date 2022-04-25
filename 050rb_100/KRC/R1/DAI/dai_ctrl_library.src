@@ -1,0 +1,724 @@
+&ACCESS RVO31
+&REL 41
+&COMMENT daimler_programcontrol_library
+&USER PKL_AST
+&PARAM DISKPATH = DAI
+&PARAM version = 2.0
+DEF dai_ctrl_library( )
+; Ausgabe der Lade-Meldung....ohne Msg_library weil hier noch nicht geladen
+decl KrlMsg_t loadmessage
+decl KrlMsgPar_t LoadPar[3]
+decl KrlMsgOpt_t loadoptions
+decl int handle 
+loadmessage={modul[] "DAI_MSG_LIB",NR 11,msg_txt[] "DAI_MSG_L1"}
+handle=Set_KrlMsg(#notify,loadmessage,LoadPar[],loadoptions)
+END
+
+
+; Ghost-Funktionalität
+;FOLD GhostOperation
+
+; Aufruf vom SPS-Loop
+GLOBAL DEF  GhostOperation( )
+ DECL Bool Dummy
+  $OUT[O_GhostAllowed]=GhostAllowed
+  $OUT[O_GhostActive]=$IN[I_GhostActive] and not $IN[I_GhostNonActive] and GhostAllowed
+    ;Ueberpruefung der Eingangssignale
+  IF (GhostAllowed and ($IN[I_GhostActive] == $IN[I_GhostNonActive])) then
+     wait sec 0.5
+     while (GhostAllowed and ($IN[I_GhostActive] == $IN[I_GhostNonActive]))
+       ;Quittungsmeldung ausgeben
+         ;MsgQuit("Ghostsignale von SPS falsch ! (IN3220 == IN3221) I_GhostAktiv/-NotAktiv","SPS.SUB")
+         MSG_SHOW("DAI_MSG_LIB",#quit,113,"CTRL_MSG01")
+         if ((GhostAllowed==False) or ($IN[I_GhostActive] <> $IN[I_GhostNonActive])) then
+         endif
+     endwhile
+  endif
+END
+
+; Funktion die von den Techpaketen aufgerufen wird
+GLOBAL DEFFCT BOOL Ghost()
+   continue
+   return GhostAllowed and $IN[I_GhostActive] and not $in[I_GhostNonActive]
+endfct
+
+;ENDFOLD (GhostOperation)
+
+; HaltPunktEnde-Funktionalität / Wie kann man in Zukunft besser machen --> FSE
+;FOLD Halt nach Punktende
+	
+
+Global DEF  HaltPunktEnde ( )
+  continue 
+  IF $IN[I_HALTNACHPUNKT] THEN
+     repeat  
+       $OUT[O_HALTNACHPUNKTERREICHT]=TRUE ;Halt nach Punktende erreicht
+       ;$LOOP_MSG[]="Roboter wegen Haltpunktende angehalten       "
+        msgloop("CTRL_MSG02","DAI_MSG_LIB")
+	   if HaltPunktEndeOhneHalt==True then
+         wait sec 0.1	   
+	   else
+         halt
+	   endif	 
+     until not $IN[I_HALTNACHPUNKT] 
+     ;$LOOP_MSG[]="Roboter verlaesst Haltpunktende                                 "
+       msgloop("CTRL_MSG03","DAI_MSG_LIB")
+     ;$LOOP_MSG[]="                                                                "
+       msgloop(" "," ")     
+     $OUT[O_HALTNACHPUNKTERREICHT]=FALSE ;Halt nach Punktende verlassen
+  ENDIF
+end
+
+global def HaltPunktEndeInit()
+  $OUT[O_HALTNACHPUNKTERREICHT]=FALSE ;Halt nach Punktende loeschen
+  if CycFlagWaitForOn>0 then 
+    $CycFlag[CycFlagWaitForOn]=$WAIT_FOR_ON
+  endif  
+  IF $IN[I_HALTNACHPUNKT] THEN
+     if $PRO_STATE1==#P_ACTIVE then
+        wait sec 0.5
+     endif 
+     repeat  
+       $OUT[O_HALTNACHPUNKTERREICHT]=TRUE ;Halt nach Punktende erreicht
+       ;$LOOP_MSG[]="Roboter wegen Haltpunktende angehalten        "
+        msgloop("CTRL_MSG02","DAI_MSG_LIB")
+	   if HaltPunktEndeOhneHalt==True then
+         wait sec 0.1	   
+	   else
+         halt
+	   endif	 
+     until not $IN[I_HALTNACHPUNKT] 
+     ;$LOOP_MSG[]="Roboter verlaesst Haltpunktende                                 "
+       msgloop("CTRL_MSG03","DAI_MSG_LIB")
+     ;$LOOP_MSG[]="                                                                "
+       msgloop(" "," ") 
+     $OUT[O_HALTNACHPUNKTERREICHT]=FALSE ;Halt nach Punktende verlassen
+  ENDIF
+  if HaltPunktEndeAktiv then 
+     ;Halt moeglich wenn der Roboter auf einen Eingang wartet
+     $CycFlag[CycFlagHPE]= $IN[I_HALTNACHPUNKT] and HaltPunktEndeErlaubt and $WAIT_FOR_ON
+     GLOBAL INTERRUPT DECL IntHPE WHEN $Cycflag[CycFlagHPE] DO HaltPunktEndeInterrupt ( )
+     INTERRUPT ON IntHPE
+  endif 
+end
+ 
+global def HaltPunktEndeInterrupt()
+  INTERRUPT OFF IntHPE
+  IF $IN[I_HALTNACHPUNKT] THEN
+    repeat 
+       $OUT[O_HALTNACHPUNKTERREICHT]=TRUE ;Halt nach Punktende erreicht
+       ;$LOOP_MSG[]="Roboter wegen Haltpunktende angehalten                          "
+        msgloop("CTRL_MSG02","DAI_MSG_LIB")
+	   if HaltPunktEndeOhneHalt==True then
+         wait sec 0.1	   
+	   else
+         brake
+         halt
+	   endif	 
+    until not $IN[I_HALTNACHPUNKT] 
+    ;$LOOP_MSG[]="Roboter verlaesst Haltpunktende                                 "
+      msgloop("CTRL_MSG03","DAI_MSG_LIB")
+    ;$LOOP_MSG[]="                                                                "
+      msgloop(" "," ") 
+    $OUT[O_HALTNACHPUNKTERREICHT]=FALSE ;Halt nach Punktende verlassen
+  ENDIF
+  INTERRUPT ON IntHPE
+end
+
+
+
+;ENDFOLD (Halt nach Punktende)
+
+; BedingterHalt-Funktionalität / Wie kann man in Zukunft besser machen --> FSE
+;FOLD Bedingter Halt
+
+
+
+GLOBAL DEF BedingterHalt(Nr:IN)
+ DECL INT Nr
+ Decl int Antwort
+ DECL MSG_TXT_TYP BH_MSG[1]
+
+  HaltPunktEnde()
+
+  Antwort=0
+    IF ( not($MODE_OP==#T1) and (bedHalt[NR]==True) ) THEN 
+    repeat
+      ; Dialog...Roboter wegen bedingtem Halt angehalten  Weiter? ja nein    
+      MSG_SHOW("DAI_MSG_LIB",#dialog,101,"CTRL_MSG04|DAI_YES_BT|DAI_NO_BT",,ANTWORT) 
+    until Antwort==1  ;Warten bis Ja bet�tigt wird
+  ENDIF
+END
+;ENDFOLD (Bedingter Halt)
+
+; Alle E/A-Funktionen
+;FOLD E/A-Funktionen
+;FOLD SetOut
+Global DEF  SetOut (Nr:IN, Status:IN, PulsTime:IN )
+ ;=============================================================================
+ ; Funktion : Setzt den Ausgang mit der Nr auf den Status
+ ;            Wenn Nr=0 wird keine Aktion ausgef�hrt
+ ;            Wenn Nr negativ ist, wird der Status invertiert
+ ;            Wenn eine PulsTime angegeben ist, wird der Ausgang als Puls ausgef�hrt
+ ;==============================================================================
+ Decl INT  Nr
+ Decl BOOL Status
+ Decl REAL PulsTime
+ Decl INT Nr_ABS
+
+  IF Nr<>0 THEN
+     Nr_ABS=ABS(Nr)
+     IF not (Varstate("PulsTime")==#INITIALIZED) THEN
+        $OUT[Nr_ABS]=(Status==(Nr>0))
+     ELSE
+        if PulsTime==0 then
+           $OUT[Nr_ABS]=(Status==(Nr>0))
+        else
+           PULSE ($OUT[Nr_ABS],(Status==(Nr>0)),PulsTime )
+        endif
+     ENDIF
+  ENDIF
+END
+;ENDFOLD (SetOut)
+
+;FOLD WaitForIN
+Global DEF  WaitForIn (Nr:IN, Status:IN, MaxWaitTime:IN, TimeOut:OUT )
+ ;=============================================================================
+ ; Funktion : Wartet bis der Eingang Nr den Status annimmt
+ ;            Wenn Nr=0 wird nicht gewartet
+ ;            Wenn Nr negativ ist, wird der Status invertiert
+ ;            Wenn eine MaxWaitTime angegeben ist, wird maximal diese Zeit gewartet.
+ ;              Wenn das Warten durch MaxWaitTime abgebrochen wurde,
+ ;              wird TimeOut auf True gesetzt
+ ;==============================================================================
+  Decl INT  Nr
+  Decl BOOL Status
+  Decl REAL MaxWaitTime
+  Decl Bool TimeOut
+  Decl INT Nr_ABS
+
+  TimeOut=False
+
+  IF Nr<>0 THEN
+     IF not (Varstate("MaxWaitTime")==#INITIALIZED) THEN
+        MaxWaitTime=0
+     endif
+     Nr_ABS=ABS(Nr)
+     IF MaxWaitTime==0 then
+        if ((Status==(Nr>0)) == True) then
+          wait for $IN[Nr_ABS]
+        else
+          wait for not $IN[Nr_ABS]
+        endif
+     ELSE
+        if ((Status==(Nr>0)) == True) then
+          wait for $IN[Nr_ABS] or Timer_Limit(MaxWaitTime)
+        else
+          wait for not $IN[Nr_ABS] or Timer_Limit(MaxWaitTime)
+        endif
+        if $IN[Nr_ABS]<>(Status==(Nr>0)) then  ;Maximale Wartezeit abgelaufen ?
+          TimeOut=TRUE
+        endif
+     ENDIF
+  ENDIF
+END
+
+;ENDFOLD (WaitForIN)
+
+;FOLD GetIn
+Global DEFFCT Bool GetIn (Nr:IN, Status:IN)
+ ;=============================================================================
+ ; Funktion : Status eines Eingangs abfragen
+ ;            Wenn Nr=0 wird kein Eingang abgefragt und der erwartete Status zur�ckgegeben
+ ;            Wenn Nr negativ ist, wird der Status invertiert
+ ;==============================================================================
+ Decl INT  Nr
+ Decl BOOL Status
+ Decl INT Nr_ABS
+  if not (Varstate("Status")==#INITIALIZED) THEN
+    Status=True
+  endif
+  if Nr<>0 THEN
+    Nr_ABS=ABS(Nr)
+    return ($IN[Nr_ABS] == (Status==(Nr>0)))
+  else
+    return(Status)
+  endif
+ENDFCT
+;ENDFOLD (GetIn)
+
+;FOLD GetOut
+Global DEFFCT Bool GetOut (Nr:IN, Status:IN)
+ ;=============================================================================
+ ; Funktion : Status eines Ausgangs abfragen
+ ;            Wenn Nr=0 wird kein Ausgang abgefragt und der erwartete Status zur�ckgegeben
+ ;            Wenn Nr negativ ist, wird der Status invertiert
+ ;==============================================================================
+ Decl INT  Nr
+ Decl BOOL Status
+ Decl INT Nr_ABS
+  if not (Varstate("Status")==#INITIALIZED) THEN
+    Status=True
+  endif
+  if Nr<>0 THEN
+    Nr_ABS=ABS(Nr)
+    return ($OUT[Nr_ABS] == (Status==(Nr>0)))
+  else
+    return(Status)
+  endif
+ENDFCT
+;ENDFOLD (GetOut)
+;ENDFOLD E/A-Funktionen
+
+; Funktion um zu schauen ob Override auf 100% ist
+;FOLD CheckOverride
+GLOBAL DEF CheckOverride()
+DECL Bool Dummy
+Decl int Answer
+  Red_Over_Save=0
+  IF (not($MODE_OP==#T2) and ($OV_PRO<100)) THEN
+      ;MsgDialog (Answer,"Override ist nicht auf 100%! Soll auf 100% gesetzt werden?","Check_OV",,"Ja","Nein")
+       MSG_SHOW("DAI_MSG_LIB",#dialog,101,"CTRL_MSG05|DAI_YES_BT|DAI_NO_BT",,ANSWER) 
+      IF ANSWER==1 THEN ;Override auf 100% setzen
+        $OV_PRO = 100
+      ELSE                     ;mit eingest.Override weiter
+        ; 
+      ENDIF
+    WAIT SEC 0.4
+    Halt
+  ENDIF
+END
+;ENDFOLD (CheckOverride)
+
+; Roboter-Verrieglungsfunktion
+;FOLD Collstop
+;
+GLOBAL DEF  COLLSTOP (NO :IN,MODE :IN )
+   ;!======================================================
+   ;! Programm : COLLSTOP(..)     
+   ;! Funktion : Steuerung der Verriegelungen Roboter
+   ;!                             
+   ;! Mode 0 = Interruptmodus
+   ;! Mode 1 = Einschalten
+   ;! Mode 2 = Ausschalten
+   ;! Mode 12= Ausschalten ueber Trigger im Startpunkt der Bewegung
+   ;! Mode 22= Ausschalten ueber Trigger im Zielpunkt der Bewegung
+   ;! Mode 3 = Initialisierung                     
+   ;!
+   ;!=======================================================
+   ;! Version  : 3.03/04
+   ;! Aenderungsstand: 15.10.2008 
+   ;!   Ausschalten im Ueberschleifmodus (Trigger)
+   ;!   Bearbeiter: Harry Konz FWT/ANT 63914
+   ;!=======================================================
+   ;! Version  : 3.02             
+   ;! Aenderungsstand: 17.10.01 
+   ;! (C) 2001 DC-Bremen RBR-IH   
+   ;! Bearbeiter: Projektgruppe R230 B.S Tel.: 6652  
+   ;!=======================================================
+   ;! Version  : 3.01             
+   ;! Aenderungsstand: 05.05.2000 
+   ;!=======================================================
+   ;! (C) 1998 Daimler-Benz AG    
+   ;!                             
+   ;! Bearbeiter: R.Weinmann  07031-90-2571  
+   ;!=======================================================
+   Decl INT NO
+   Decl INT MODE
+
+   SWITCH  MODE
+	CASE 0 ;Interruptmodus
+	  CollInterrupt(NO)
+	CASE 1 ;Einschalten
+	  CollEinschalten(NO)
+	CASE 2 ;Ausschalten
+	  CollAusschalten(NO)
+	  
+	CASE 12 ;Ausschalten ueber Trigger im Startpunkt der Bewegung
+	  switch NO
+	    case  1
+          trigger when Distance=0 Delay=0 do CollAusTrigger( 1) prio=-1
+	    case  2
+          trigger when Distance=0 Delay=0 do CollAusTrigger( 2) prio=-1
+	    case  3
+          trigger when Distance=0 Delay=0 do CollAusTrigger( 3) prio=-1
+	    case  4
+          trigger when Distance=0 Delay=0 do CollAusTrigger( 4) prio=-1
+	    case  5 
+          trigger when Distance=0 Delay=0 do CollAusTrigger( 5) prio=-1
+	    case  6
+          trigger when Distance=0 Delay=0 do CollAusTrigger( 6) prio=-1
+	    case  7
+          trigger when Distance=0 Delay=0 do CollAusTrigger( 7) prio=-1
+	    case  8
+          trigger when Distance=0 Delay=0 do CollAusTrigger( 8) prio=-1
+	    case  9
+          trigger when Distance=0 Delay=0 do CollAusTrigger( 9) prio=-1
+	    case 10
+          trigger when Distance=0 Delay=0 do CollAusTrigger(10) prio=-1
+	    case 11
+          trigger when Distance=0 Delay=0 do CollAusTrigger(11) prio=-1
+	    case 12
+          trigger when Distance=0 Delay=0 do CollAusTrigger(12) prio=-1
+	    case 13
+          trigger when Distance=0 Delay=0 do CollAusTrigger(13) prio=-1
+	    case 14
+          trigger when Distance=0 Delay=0 do CollAusTrigger(14) prio=-1
+	    case 15
+          trigger when Distance=0 Delay=0 do CollAusTrigger(15) prio=-1
+	    case 16
+          trigger when Distance=0 Delay=0 do CollAusTrigger(16) prio=-1
+		default
+          CollAusschalten(NO)
+    	ENDSWITCH ;NO
+		
+	CASE 22 ;Ausschalten ueber Trigger im Zielpunkt der Bewegung
+	  switch NO
+	    case  1
+          trigger when Distance=1 Delay=0 do CollAusTrigger( 1) prio=-1
+	    case  2
+          trigger when Distance=1 Delay=0 do CollAusTrigger( 2) prio=-1
+	    case  3
+          trigger when Distance=1 Delay=0 do CollAusTrigger( 3) prio=-1
+	    case  4
+          trigger when Distance=1 Delay=0 do CollAusTrigger( 4) prio=-1
+	    case  5 
+          trigger when Distance=1 Delay=0 do CollAusTrigger( 5) prio=-1
+	    case  6
+          trigger when Distance=1 Delay=0 do CollAusTrigger( 6) prio=-1
+	    case  7
+          trigger when Distance=1 Delay=0 do CollAusTrigger( 7) prio=-1
+	    case  8
+          trigger when Distance=1 Delay=0 do CollAusTrigger( 8) prio=-1
+	    case  9
+          trigger when Distance=1 Delay=0 do CollAusTrigger( 9) prio=-1
+	    case 10
+          trigger when Distance=1 Delay=0 do CollAusTrigger(10) prio=-1
+	    case 11
+          trigger when Distance=1 Delay=0 do CollAusTrigger(11) prio=-1
+	    case 12
+          trigger when Distance=1 Delay=0 do CollAusTrigger(12) prio=-1
+	    case 13
+          trigger when Distance=1 Delay=0 do CollAusTrigger(13) prio=-1
+	    case 14
+          trigger when Distance=1 Delay=0 do CollAusTrigger(14) prio=-1
+	    case 15
+          trigger when Distance=1 Delay=0 do CollAusTrigger(15) prio=-1
+	    case 16
+          trigger when Distance=1 Delay=0 do CollAusTrigger(16) prio=-1
+		default
+          CollAusschalten(NO)
+    	ENDSWITCH ;NO
+		
+	CASE 3 ;Initialisierung
+	  CollInit(NO)
+	DEFAULT
+	ENDSWITCH ;MODE
+END
+
+;Interruptmodus  
+DEF CollInterrupt(NO :IN)
+ Decl INT NO
+ Decl BOOL BRESULT
+ 
+    IF ($EXT) THEN
+         SWITCH  NO
+         CASE 1
+            INTERRUPT DISABLE 21
+         CASE 2
+            INTERRUPT DISABLE 22
+         CASE 3
+            INTERRUPT DISABLE 23
+         CASE 4
+            INTERRUPT DISABLE 24
+         DEFAULT
+         ENDSWITCH
+         BRAKE
+ ;        MSG_WAIT ( CS_MESSAGE[], COLLISION_DATA[NO].I_NR,TRUE,MAX_I_CS_MESSAGE, 0,BRESULT )
+          MSG_WaitForIn(COLLISION_DATA[NO].I_NR,TRUE,0,BRESULT)
+         SWITCH  NO
+         CASE 1
+            INTERRUPT ENABLE 21
+         CASE 2
+            INTERRUPT ENABLE 22
+         CASE 3
+            INTERRUPT ENABLE 23
+         CASE 4
+            INTERRUPT ENABLE 24
+         DEFAULT
+         ENDSWITCH
+     ENDIF ;$EXT   
+  end	  
+
+
+ ;Einschalten 
+ DEF CollEinschalten(NO :IN)
+  Decl INT NO
+  Decl BOOL BRESULT
+      WHILE  COLLISION_DATA[NO].I_NR==0
+ ;        MSG_TEXT (CS_ERRORS[1],#QUIT )   input nummer nicht kunfiguriert
+          MSG_SHOW("DAI_ANTICOLL",#quit,113,"DAI_CS_E01")
+      ENDWHILE
+      IF ($EXT) AND (NO<=4) AND (COLLISION_DATA[NO].I_NR>0) THEN
+         IF COLLISION_DATA[NO].ACTIVE==TRUE THEN ;Kollision ist aktiv
+            COLLISION_DATA[NO].ACTIVE=FALSE
+            SWITCH  NO
+            CASE 1
+               INTERRUPT OFF 21
+            CASE 2
+               INTERRUPT OFF 22
+            CASE 3
+               INTERRUPT OFF 23
+            CASE 4
+               INTERRUPT OFF 24
+            DEFAULT
+            ENDSWITCH ;NO
+         ENDIF
+      ENDIF ;$EXT
+
+      IF COLLISION_DATA[NO].I_NR>0 THEN
+	    IF $OUT[COLLISION_DATA[NO].I_NR]==FALSE then  
+ ;            MSG_WAIT ( CS_MESSAGE[], COLLISION_DATA[NO].I_NR,TRUE,MAX_I_CS_MESSAGE,0, BRESULT )
+              MSG_WaitForIn(COLLISION_DATA[NO].I_NR,TRUE,0,BRESULT)
+	    ELSE
+           $OUT[COLLISION_DATA[NO].I_NR]=TRUE
+ ;          MSG_WAIT ( CS_MESSAGE[], COLLISION_DATA[NO].I_NR,FALSE,MAX_I_CS_MESSAGE,0,BRESULT )
+            MSG_WaitForIn(COLLISION_DATA[NO].I_NR,FALSE,0,BRESULT)
+
+           $OUT[COLLISION_DATA[NO].I_NR]=FALSE
+        ENDIF
+      ENDIF
+      IF ($EXT) AND (NO<=4) AND (COLLISION_DATA[NO].I_NR>0) THEN
+         COLLISION_DATA[NO].ACTIVE=TRUE
+         SWITCH  NO
+         CASE 1
+            INTERRUPT ON 21
+         CASE 2
+            INTERRUPT ON 22
+         CASE 3
+            INTERRUPT ON 23
+         CASE 4
+            INTERRUPT ON 24
+         DEFAULT
+         ENDSWITCH ;NO
+      ENDIF ;$EXT
+
+      IF COLLISION_DATA[NO].I_NR>0 THEN
+ ;        MSG_WAIT ( CS_MESSAGE[], COLLISION_DATA[NO].I_NR,TRUE,MAX_I_CS_MESSAGE,0, BRESULT )
+          MSG_WaitForIn(COLLISION_DATA[NO].I_NR,TRUE,0,BRESULT)
+      ENDIF ; 
+end
+
+;Ausschalten
+Def CollAusschalten(NO :IN)
+ Decl INT NO
+    IF COLLISION_DATA[NO].I_NR>0 THEN
+	    if NO>4 then 
+            $OUT[COLLISION_DATA[NO].I_NR]=TRUE
+		else	
+            $OUT[COLLISION_DATA[NO].I_NR]=TRUE
+            IF $EXT THEN
+              COLLISION_DATA[NO].ACTIVE=FALSE
+	           SWITCH  NO
+	            CASE 1
+	              INTERRUPT OFF 21
+	            CASE 2
+	              INTERRUPT OFF 22
+	            CASE 3
+	              INTERRUPT OFF 23
+	            CASE 4
+	              INTERRUPT OFF 24
+	            DEFAULT
+	           ENDSWITCH ;NO
+	        ENDIF ;$EXT
+		endif	;NO>=4
+    ENDIF
+end
+
+
+;Ausschalten �ber Trigger aufgerufen
+Def CollAusTrigger(NO :IN)
+ Decl INT NO
+    IF COLLISION_DATA[NO].I_NR>0 THEN
+	    if NO>4 then 
+            $OUT[COLLISION_DATA[NO].I_NR]=TRUE
+		else	
+            $OUT[COLLISION_DATA[NO].I_NR]=TRUE
+            IF $EXT THEN
+              COLLISION_DATA[NO].ACTIVE=FALSE
+	           SWITCH  NO
+	            CASE 1
+	              INTERRUPT OFF 21
+	            CASE 2
+	              INTERRUPT OFF 22
+	            CASE 3
+	              INTERRUPT OFF 23
+	            CASE 4
+	              INTERRUPT OFF 24
+	            DEFAULT
+	           ENDSWITCH ;NO
+	        ENDIF ;$EXT
+		endif	;NO>=4
+    ENDIF
+end
+
+;Initialisierung
+Def CollInit(NO :IN)
+ Decl INT NO
+ Decl Int II
+    FOR II=1 TO  MAX_COLL
+        IF COLLISION_DATA[II].I_NR>0 THEN
+            $OUT[COLLISION_DATA[II].I_NR]=TRUE
+            COLLISION_DATA[II].ACTIVE=FALSE
+        ENDIF
+    ENDFOR
+end   
+
+
+
+
+;ENDFOLD (Collstop)
+
+; Hilfsfunktion um eine Trace zu machen
+;Fold Diagnose
+Global DEF TraceInit( )
+ decl state_t state
+ int offset
+ decl date aktdate
+
+  offset=0
+  aktdate=$date
+  swrite($trace.name[],State,Offset,"Tra%2.2d_",aktdate.min)
+END
+
+Global DEF TraceStart( )
+  $Trace.Mode=#T_Start
+  wait for $Trace.state == #T_Wait
+END
+
+Global DEF TraceStop( )
+  $Trace.Mode=#T_Stop
+  wait for $trace.state == #T_END
+END
+
+
+;endfold (diagnose)
+
+;Fold Steuerluft_Ventil_Ueberwachung
+
+global def STEU_LU_MON( ) ; Steuerluft monitoring
+decl int i ; lokal var
+decl bool SL_SPS_RES[6] ;boolsches Ergebnis der prüfung des Eintrages
+decl bool SL_SPS_AN[6] ;Steuerluft eingeschaltet pro Eintrag
+
+
+
+for i = 1 to MaxSLWKZ ; alle Werkzeugeintraege prüfen
+
+if slwkz[i].typ==#Leer then ; alle leeren Einträge werden als "OK" simuliert
+        SL_SPS_RES[i]=true ;
+        SL_SPS_AN[i]=true  ; 
+  endif
+;************ feste oder stationaere Werkzeuge *****
+
+  if (slwkz[i].typ==#fest) OR (slwkz[i].typ==#stat)then 
+; alle fest Einträge werden immer überwacht
+
+  ;**********************************************
+  ; Steuerluftventil einschalten
+  ;**********************************************            
+    if (SLWKZ[i].O_SLUFT_1 > 0) then
+            $Out[SLWKZ[i].O_SLUFT_1]=True ;Steuerluft1 einschalten                    
+    endif
+    if (SLWKZ[i].O_SLUFT_2 > 0) then
+            $Out[SLWKZ[i].O_SLUFT_2]=True ;Steuerluft2 einschalten                    
+    endif
+    
+    SL_SPS_AN[i]=True  ;Steuerluft an diesem WKZ eingeschaltet an SPS melden
+    
+    
+    
+ ;***********************************************
+ ; Rueckmeldung von Steuerluftventil pruefen
+ ;***********************************************
+
+    if ((SLWKZ[i].I_SLUFT_RM1>0)  AND (SLWKZ[i].I_SLUFT_RM2==0)) then
+        SL_SPS_RES[i] =$IN[SLWKZ[i].I_SLUFT_RM1 ]
+    endif
+    
+    if ((SLWKZ[i].I_SLUFT_RM1==0)  AND (SLWKZ[i].I_SLUFT_RM2>0)) then
+         SL_SPS_RES[i] =$IN[SLWKZ[i].I_SLUFT_RM2 ]
+    endif
+    
+    if ((SLWKZ[i].I_SLUFT_RM1>0)  AND (SLWKZ[i].I_SLUFT_RM2>0)) then
+        SL_SPS_RES[i] =$IN[SLWKZ[i].I_SLUFT_RM1 ] AND $IN[SLWKZ[i].I_SLUFT_RM2 ]
+    endif
+   endif
+
+
+
+;***** Wechsel-Werkzeuge ************************
+
+
+  if (slwkz[i].typ==#wechsel) then
+   IF (Read_TOOL_ID<>0) THEN  ; Wkz angedockt
+     if (read_tool_id==i) then ; Angedocktes Werkzeug gefunden
+        
+      if (SLUFT_AUS == false) then ;Sluft wurde nicht abgeschaltet
+          
+        if (SLWKZ[i].O_SLUFT_1 > 0) then
+        $Out[SLWKZ[i].O_SLUFT_1]=True ;Steuerluft1 einschalten                    
+        endif
+         if (SLWKZ[i].O_SLUFT_2 > 0) then
+         $Out[SLWKZ[i].O_SLUFT_2]=True ;Steuerluft2 einschalten                    
+         endif
+              
+        SL_SPS_AN[i]=True       
+        ;Steuerluft an diesem WKZ eingeschaltet an SPS melden     
+          
+       else ;Sluft wurde abgeschaltet 
+          
+         if (SLWKZ[i].O_SLUFT_1 > 0) then
+         $Out[SLWKZ[i].O_SLUFT_1]=false ;Steuerluft1 ausschalten                    
+         endif
+         if (SLWKZ[i].O_SLUFT_2 > 0) then
+         $Out[SLWKZ[i].O_SLUFT_2]=false ;Steuerluft2 ausschalten                    
+         endif
+              
+        SL_SPS_AN[i]=false       
+        ;Steuerluft an diesem WKZ ausgeschaltet an SPS melden  
+      endif
+     ;******************************************
+     ; Rueckmeldung von Steuerluftventil pruefen
+     ;******************************************
+
+     if ((SLWKZ[i].I_SLUFT_RM1>0)  AND (SLWKZ[i].I_SLUFT_RM2==0)) then
+        SL_SPS_RES[i] =$IN[SLWKZ[i].I_SLUFT_RM1 ]
+     endif
+              
+      if ((SLWKZ[i].I_SLUFT_RM1==0)  AND (SLWKZ[i].I_SLUFT_RM2>0)) then
+         SL_SPS_RES[i] =$IN[SLWKZ[i].I_SLUFT_RM2 ]
+       endif
+              
+      if ((SLWKZ[i].I_SLUFT_RM1>0)  AND (SLWKZ[i].I_SLUFT_RM2>0)) then
+          SL_SPS_RES[i] =$IN[SLWKZ[i].I_SLUFT_RM1 ] AND $IN[SLWKZ[i].I_SLUFT_RM2 ]
+       endif
+     endif
+ 
+    endif
+  endif
+endfor
+
+
+; Rückmeldung an SPS dass Steuerluft eingeschaltet...wenn das Signal HIGH ist, muss auch O_SPS_RM_SLUFT HIGH sein
+$Out[O_SPS_SLUFT]=SL_SPS_AN[1] AND SL_SPS_AN[2] AND SL_SPS_AN[3] AND SL_SPS_AN[4] AND SL_SPS_AN[5] AND SL_SPS_AN[6]
+
+; Rückmeldung der Luftsensoren aller Werkzeuge...
+$Out[O_SPS_RM_SLUFT]=SL_SPS_RES[1] AND SL_SPS_RES[2] AND SL_SPS_RES[3] AND SL_SPS_RES[4] AND SL_SPS_RES[5] AND SL_SPS_RES[6]
+
+
+
+END
+;Endfold (Steuerluft_Ventil_Ueberwachung)
+
+

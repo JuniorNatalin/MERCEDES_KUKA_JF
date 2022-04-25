@@ -1,0 +1,10 @@
+&ACCESS RV10
+&REL 4
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+DEF trabalho_concluido( )
+;FOLD PULSE 3333 'R4 trabalho concluido' State=TRUE Time=3 sec;%{PE}%R 8.2.24,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:3333, 3:R4 trabalho concluido, 5:TRUE, 6:, 8:3
+PULSE($OUT[3333], TRUE,3)
+;ENDFOLD
+
+END

@@ -1,0 +1,10 @@
+&ACCESS RVO3
+&REL 1
+&COMMENT Check C1
+DEF chk_w1_wechs_ok( )
+
+; VERIFICAÇÃO DE FERRAMENTA: C1
+
+WAIT FOR ((($IN[161]) OR ((NOT $IN[161]) AND ($IN[3320]))) AND ($IN[169]) AND ($IN[177]) AND (NOT $IN[185]) AND ($IN[193]) AND ($IN[219]))
+
+END

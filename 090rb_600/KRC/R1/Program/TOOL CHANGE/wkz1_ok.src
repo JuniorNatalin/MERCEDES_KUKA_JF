@@ -1,0 +1,102 @@
+&ACCESS RVP
+&COMMENT CHK_TCP_C1
+&PARAM DISKPATH = Program/FUNCIONANDO
+DEF WKZ1_OK ( )
+
+;# Include block for krc/r1/mada/$config.dat or r1/$config.dat
+;# TOOL_DATA[1]={X 73.860,Y 19.790,Z 1095.269,A -165.0000,B -25.0000,C 180.0000}
+;# End of Include block for krc/r1/mada/$config.dat or r1/$config.dat
+;FOLD INI
+  ;FOLD BASISTECH INI
+    GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM ( )
+    INTERRUPT ON 3 
+    BAS (#INITMOV,0 )
+  ;ENDFOLD (BASISTECH INI)
+  ;FOLD USER INI
+    ;Make your modifications here
+  ;ENDFOLD (USER INI)
+;ENDFOLD (INI)
+;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%V3.2.0,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
+$BWDSTART = FALSE
+$H_POS=XHOME
+PDAT_ACT=PDEFAULT
+BAS (#PTP_DAT )
+FDAT_ACT=FHOME
+BAS (#FRAMES )
+BAS (#VEL_PTP,100 )
+PTP  XHOME
+;ENDFOLD
+;#END_HEADER
+
+;# ============ START PATH : wkz1_ok =============
+
+; Caracterização dos meios de produção:
+; Versão Atual:
+; 04/05/2013 12:00 Name: P13.090-R6 CHANGES: Check TCP C1
+chk_w1_wechs_ok ( )              ; CHECK GUN C1
+;FOLD PTP new_wkz1_ok_p1  Vel=100 % P_OLP1 Tool[1]" " Base[0]  ;%{PE}%R8.3,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:new_wkz1_ok_p1, 3:, 5:100, 7:P_OLP1
+$BWDSTART = FALSE
+PDAT_ACT= PP_OLP1
+FDAT_ACT= Fnew_wkz1_ok_p1
+BAS(#PTP_PARAMS,100)
+PTP Xnew_wkz1_ok_p1 
+;ENDFOLD
+;FOLD PTP new_wkz1_ok_p2  Vel=100 % P_OLP2 Tool[1]" " Base[0]  ;%{PE}%R8.3,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:new_wkz1_ok_p2, 3:, 5:100, 7:P_OLP2
+$BWDSTART = FALSE
+PDAT_ACT= PP_OLP2
+FDAT_ACT= Fnew_wkz1_ok_p2
+BAS(#PTP_PARAMS,100)
+PTP Xnew_wkz1_ok_p2 
+;ENDFOLD
+;FOLD LIN new_wkz1_ok_p3  Vel=2.00 m/s L_OLP1 Tool[1]" " Base[0] ;%{PE}%R8.3,%MKUKATPBASIS,%CMOVE,%VLIN,%P 1:LIN, 2:new_wkz1_ok_p3, 3:, 5:2.00, 7:L_OLP1
+$BWDSTART = FALSE
+LDAT_ACT= LL_OLP1
+FDAT_ACT= Fnew_wkz1_ok_p3
+BAS(#CP_PARAMS,2.00)
+LIN Xnew_wkz1_ok_p3 
+;ENDFOLD
+;Ponto Check TCP
+;FOLD LIN new_wkz1_ok_ptcpc  Vel=2.00 m/s L_OLP2 Tool[1]" " Base[0] ;%{PE}%R8.3,%MKUKATPBASIS,%CMOVE,%VLIN,%P 1:LIN, 2:new_wkz1_ok_ptcpc, 3:, 5:2.00, 7:L_OLP2
+$BWDSTART = FALSE
+LDAT_ACT= LL_OLP2
+FDAT_ACT= Fnew_wkz1_ok_ptcpc
+BAS(#CP_PARAMS,2.00)
+LIN Xnew_wkz1_ok_ptcpc 
+;ENDFOLD
+;FOLD WAIT Time= 3 sec;%{PE}%R8.3,%MKUKATPBASIS,%CWAIT,%VWAIT,%P 2:3
+WAIT SEC 3
+;ENDFOLD
+;FOLD LIN new_wkz1_ok_p4  Vel=2.00 m/s L_OLP3 Tool[1]" " Base[0] ;%{PE}%R8.3,%MKUKATPBASIS,%CMOVE,%VLIN,%P 1:LIN, 2:new_wkz1_ok_p4, 3:, 5:2.00, 7:L_OLP3
+$BWDSTART = FALSE
+LDAT_ACT= LL_OLP3
+FDAT_ACT= Fnew_wkz1_ok_p4
+BAS(#CP_PARAMS,2.00)
+LIN Xnew_wkz1_ok_p4 
+;ENDFOLD
+;FOLD PTP new_wkz1_ok_p5  Vel=100 % P_OLP3 Tool[1]" " Base[0]  ;%{PE}%R8.3,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:new_wkz1_ok_p5, 3:, 5:100, 7:P_OLP3
+$BWDSTART = FALSE
+PDAT_ACT= PP_OLP3
+FDAT_ACT= Fnew_wkz1_ok_p5
+BAS(#PTP_PARAMS,100)
+PTP Xnew_wkz1_ok_p5 
+;ENDFOLD
+;FOLD PTP new_wkz1_ok_p6  Vel=100 % P_OLP4 Tool[1]" " Base[0]  ;%{PE}%R8.3,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:new_wkz1_ok_p6, 3:, 5:100, 7:P_OLP4
+$BWDSTART = FALSE
+PDAT_ACT= PP_OLP4
+FDAT_ACT= Fnew_wkz1_ok_p6
+BAS(#PTP_PARAMS,100)
+PTP Xnew_wkz1_ok_p6 
+;ENDFOLD
+
+;#START_TRAILER
+;FOLD PTP HOME  Vel= 100 % DEFAULT;%{PE}%V3.2.0,%MKUKATPBASIS,%CMOVE,%VPTP,%P 1:PTP, 2:HOME, 3:, 5:100, 7:DEFAULT
+$BWDSTART = FALSE
+$H_POS=XHOME
+PDAT_ACT=PDEFAULT
+BAS (#PTP_DAT )
+FDAT_ACT=FHOME
+BAS (#FRAMES )
+BAS (#VEL_PTP,100 )
+PTP  XHOME
+;ENDFOLD
+END

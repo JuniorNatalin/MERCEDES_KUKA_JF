@@ -1,0 +1,188 @@
+&ACCESS RVO11
+&REL 41
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\ExpertVorgabe
+&PARAM EDITMASK = *
+DEF mbini( )
+;FOLD ; ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:
+;ENDFOLD
+;FOLD ; Modulo de condicoes iniciais;%{PE}%R 4.1.16,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:Modulo de condicoes iniciais
+;ENDFOLD
+;FOLD ; ROBO 1;%{PE}%R 4.1.16,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:ROBO 1
+;ENDFOLD
+;FOLD ; ;%{PE}%R 4.1.16,%MKUKATPBASIS,%CCOMMENT,%VNORMAL,%P 2:
+;ENDFOLD
+;FOLD Kollision.Ueberwachung_1_Aus ;%{PE}%MKUKATPUSER
+COLLSTOP( 1, 2 )
+;ENDFOLD
+;FOLD Kollision.Ueberwachung_2_Aus ;%{PE}%MKUKATPUSER
+COLLSTOP( 2, 2 )
+;ENDFOLD
+;FOLD Kollision.Ueberwachung_3_Aus ;%{PE}%MKUKATPUSER
+COLLSTOP( 3, 2 )
+;ENDFOLD
+;FOLD Kollision.Ueberwachung_4_Aus ;%{PE}%MKUKATPUSER
+COLLSTOP( 4, 2 )
+;ENDFOLD
+;FOLD Kollision.Ueberwachung_5_Aus ;%{PE}%MKUKATPUSER
+COLLSTOP( 5, 2 )
+;ENDFOLD
+;FOLD Collision.Monitoring_10_Off . ;%{PE}%MKUKATPUSER
+COLLSTOP( 10, 2+0 )
+;ENDFOLD
+;FOLD Collision.Monitoring_12_Off . ;%{PE}%MKUKATPUSER
+COLLSTOP( 12, 2+0 )
+;ENDFOLD
+;FOLD Collision.Monitoring_13_Off . ;%{PE}%MKUKATPUSER
+COLLSTOP( 13, 2+0 )
+;ENDFOLD
+;FOLD OUT 167 'protecao da pinca abrir 1'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:167, 3:'protecao da pinca abrir 1', 5:FALSE, 6:
+$OUT[167]=FALSE
+;ENDFOLD
+;FOLD OUT 168 'protecao da pinca fechar 1'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:168, 3:'protecao da pinca fechar 1', 5:FALSE, 6:
+$OUT[168]=FALSE
+;ENDFOLD
+;FOLD OUT 175 'protecao da pinca abrir 2'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:175, 3:'protecao da pinca abrir 2', 5:FALSE, 6:
+$OUT[175]=FALSE
+;ENDFOLD
+;FOLD OUT 176 'protecao da pinca fechar'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:176, 3:'protecao da pinca fechar', 5:FALSE, 6:
+$OUT[176]=FALSE
+;ENDFOLD
+;FOLD OUT 183 'protecao da pinca abrir'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:183, 3:'protecao da pinca abrir', 5:FALSE, 6:
+$OUT[183]=FALSE
+;ENDFOLD
+;FOLD OUT 184 'protecao da pinca fechar'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:184, 3:'protecao da pinca fechar', 5:FALSE, 6:
+$OUT[184]=FALSE
+;ENDFOLD
+;FOLD OUT 191 'protecao da pinca abrir'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:191, 3:'protecao da pinca abrir', 5:FALSE, 6:
+$OUT[191]=FALSE
+;ENDFOLD
+;FOLD OUT 192 'protecao da pinca fechar'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:192, 3:'protecao da pinca fechar', 5:FALSE, 6:
+$OUT[192]=FALSE
+;ENDFOLD
+;FOLD OUT 199 'protecao da pinca abrir'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:199, 3:'protecao da pinca abrir', 5:FALSE, 6:
+$OUT[199]=FALSE
+;ENDFOLD
+;FOLD OUT 200 'protecao  da pinca fechar'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:200, 3:'protecao  da pinca fechar', 5:FALSE, 6:
+$OUT[200]=FALSE
+;ENDFOLD
+;FOLD OUT 207 'protecao da pinca abrir'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:207, 3:'protecao da pinca abrir', 5:FALSE, 6:
+$OUT[207]=FALSE
+;ENDFOLD
+;FOLD OUT 208 'protecao da pinca fechar'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:208, 3:'protecao da pinca fechar', 5:FALSE, 6:
+$OUT[208]=FALSE
+;ENDFOLD
+;FOLD OUT 215 'protecao da pinca abrir'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:215, 3:'protecao da pinca abrir', 5:FALSE, 6:
+$OUT[215]=FALSE
+;ENDFOLD
+;FOLD OUT 216 'protecao da pinca fechar'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:216, 3:'protecao da pinca fechar', 5:FALSE, 6:
+$OUT[216]=FALSE
+;ENDFOLD
+;FOLD OUT 223 'Desbloqueio MPS'  State= FALSE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:223, 3:'Desbloqueio MPS', 5:FALSE, 6:
+$OUT[223]=FALSE
+;ENDFOLD
+;FOLD OUT 224 'Bloqueio MPS'  State= TRUE ;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:224, 3:'Bloqueio MPS', 5:TRUE, 6:
+$OUT[224]=TRUE
+;ENDFOLD
+;FOLD PULSE 229 'start com ignicao externa'  State= TRUE   Time= 2 sec;%{PE}%R 4.1.16,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:229, 3:'start com ignicao externa', 5:TRUE, 6:, 8:2
+PULSE($OUT[229], TRUE,2)
+;ENDFOLD
+;FOLD OUT 3351 'R1_Busca Peca Accelo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3351, 3:R1_Busca Peca Accelo, 5:FALSE, 6:
+$OUT[3351]=FALSE
+;ENDFOLD
+;FOLD OUT 3361 'R1_Solicita Lib. Entrar EST 060EL_621' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3361, 3:R1_Solicita Lib. Entrar EST 060EL_621, 5:FALSE, 6:
+$OUT[3361]=FALSE
+;ENDFOLD
+;FOLD OUT 3350 'R1_Solicita Lib. Sair Magazine' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3350, 3:R1_Solicita Lib. Sair Magazine, 5:FALSE, 6:
+$OUT[3350]=FALSE
+;ENDFOLD
+;FOLD OUT 3349 'R1_Pegou Peca' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3349, 3:R1_Pegou Peca, 5:FALSE, 6:
+$OUT[3349]=FALSE
+;ENDFOLD
+;FOLD OUT 3362 'R1_Solicita Lib. Buscar Gripper' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3362, 3:R1_Solicita Lib. Buscar Gripper, 5:FALSE, 6:
+$OUT[3362]=FALSE
+;ENDFOLD
+;FOLD OUT 3346 'R1_Entrega Peca Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3346, 3:R1_Entrega Peca Geo, 5:FALSE, 6:
+$OUT[3346]=FALSE
+;ENDFOLD
+;FOLD OUT 3344 'R1_Solicita Lib. Para Sair Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3344, 3:R1_Solicita Lib. Para Sair Geo, 5:FALSE, 6:
+$OUT[3344]=FALSE
+;ENDFOLD
+;FOLD OUT 3343 'R1_Entregou Peca Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3343, 3:R1_Entregou Peca Geo, 5:FALSE, 6:
+$OUT[3343]=FALSE
+;ENDFOLD
+;FOLD OUT 3339 'R1_Solicita Lib. Para Soldar Geometria' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3339, 3:R1_Solicita Lib. Para Soldar Geometria, 5:FALSE, 6:
+$OUT[3339]=FALSE
+;ENDFOLD
+;FOLD OUT 3364 'R1_Solicita Lib. Soldar Geo2' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3364, 3:R1_Solicita Lib. Soldar Geo2, 5:FALSE, 6:
+$OUT[3364]=FALSE
+;ENDFOLD
+;FOLD OUT 3365 'R1_Solicita Lib. Soldar Geo1' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3365, 3:R1_Solicita Lib. Soldar Geo1, 5:FALSE, 6:
+$OUT[3365]=FALSE
+;ENDFOLD
+;FOLD OUT 3331 'R1_Soldando' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3331, 3:R1_Soldando, 5:FALSE, 6:
+$OUT[3331]=FALSE
+;ENDFOLD
+;FOLD OUT 3338 'R1_Solda Geometria OK' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3338, 3:R1_Solda Geometria OK, 5:FALSE, 6:
+$OUT[3338]=FALSE
+;ENDFOLD
+;FOLD OUT 3337 'R1_Retira Garra Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3337, 3:R1_Retira Garra Geo, 5:FALSE, 6:
+$OUT[3337]=FALSE
+;ENDFOLD
+;FOLD OUT 3366 'R1_Solicita Sair com Garra' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3366, 3:R1_Solicita Sair com Garra, 5:FALSE, 6:
+$OUT[3366]=FALSE
+;ENDFOLD
+;FOLD OUT 3335 'R1_Retirou Garra Geo' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3335, 3:R1_Retirou Garra Geo, 5:FALSE, 6:
+$OUT[3335]=FALSE
+;ENDFOLD
+;FOLD OUT 3334 'R1_Solda Respot OK' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3334, 3:R1_Solda Respot OK, 5:FALSE, 6:
+$OUT[3334]=FALSE
+;ENDFOLD
+;FOLD OUT 3333 'R1_Trabalho Concluido' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3333, 3:R1_Trabalho Concluido, 5:FALSE, 6:
+$OUT[3333]=FALSE
+;ENDFOLD
+;FOLD OUT 3367 'R1_Solda Respot Geo1 OK' State=FALSE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3367, 3:R1_Solda Respot Geo1 OK, 5:FALSE, 6:
+$OUT[3367]=FALSE
+;ENDFOLD
+;FOLD OUT 3369 'Area de Solda' State=TRUE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3369, 3:Area de Solda, 5:TRUE, 6:
+$OUT[3369]=TRUE
+;ENDFOLD
+;FOLD OUT 3380 'Perfil Livre Estacao' State=TRUE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3380, 3:Perfil Livre Estacao, 5:TRUE, 6:
+$OUT[3380]=TRUE
+;ENDFOLD
+;FOLD OUT 3385 'Area do Gripper (INTERLOCK RB16)' State=TRUE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3385, 3:Area do Gripper (INTERLOCK RB16), 5:TRUE, 6:
+$OUT[3385]=TRUE
+;ENDFOLD
+;FOLD OUT 3386 'Area do Operador (INTERLOCK RB15)' State=TRUE ;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VOUTX,%P 2:3386, 3:Area do Operador (INTERLOCK RB15), 5:TRUE, 6:
+$OUT[3386]=TRUE
+;ENDFOLD
+
+;FOLD PULSE 168 'DOCK 1 Fechar Proteção' State=TRUE Time=0.3 sec;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:168, 3:DOCK 1 Fechar Proteção, 5:TRUE, 6:, 8:0.3
+PULSE($OUT[168], TRUE,0.3)
+;ENDFOLD
+;FOLD PULSE 176 'DOCK 2 Fechar Proteção' State=TRUE Time=0.3 sec;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:176, 3:DOCK 2 Fechar Proteção, 5:TRUE, 6:, 8:0.3
+PULSE($OUT[176], TRUE,0.3)
+;ENDFOLD
+;FOLD PULSE 184 'DOCK 3 Fechar Proteção' State=TRUE Time=0.3 sec;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:184, 3:DOCK 3 Fechar Proteção, 5:TRUE, 6:, 8:0.3
+PULSE($OUT[184], TRUE,0.3)
+;ENDFOLD
+;FOLD PULSE 192 'DOCK 4 Fechar Proteção' State=TRUE Time=0.3 sec;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:192, 3:DOCK 4 Fechar Proteção, 5:TRUE, 6:, 8:0.3
+PULSE($OUT[192], TRUE,0.3)
+;ENDFOLD
+;FOLD PULSE 200 'DOCK 5 Fechar Proteção' State=TRUE Time=0.3 sec;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:200, 3:DOCK 5 Fechar Proteção, 5:TRUE, 6:, 8:0.3
+PULSE($OUT[200], TRUE,0.3)
+;ENDFOLD
+;FOLD PULSE 208 'DOCK 6 Fechar Proteção' State=TRUE Time=0.3 sec;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:208, 3:DOCK 6 Fechar Proteção, 5:TRUE, 6:, 8:0.3
+PULSE($OUT[208], TRUE,0.3)
+;ENDFOLD
+;FOLD PULSE 216 'DOCK 7 Fechar Proteção' State=TRUE Time=0.3 sec;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:216, 3:DOCK 7 Fechar Proteção, 5:TRUE, 6:, 8:0.3
+PULSE($OUT[216], TRUE,0.3)
+;ENDFOLD
+
+
+;FOLD WAIT FOR ( IN 166 'DOCK1 Protecao Fechada' AND IN 174 'DOCK2 Protecao Fechada' AND IN 182 'DOCK3 Protecao Fechada' AND IN 190 'DOCK4 Protecao Fechada' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:166, 7:DOCK1 Protecao Fechada, 8:AND, 9:, 10:$IN, 11:174, 12:DOCK2 Protecao Fechada, 13:AND, 14:, 15:$IN, 16:182, 17:DOCK3 Protecao Fechada, 18:AND, 19:, 20:$IN, 21:190, 22:DOCK4 Protecao Fechada, 24:
+WAIT FOR  ( $IN[166] AND $IN[174] AND $IN[182] AND $IN[190] ) 
+;ENDFOLD
+;FOLD WAIT FOR ( NOT IN 165 'DOCK1 Protecao Aberta' AND NOT IN 173 'DOCK2 Protecao Aberta' AND NOT IN 181 'DOCK3 Protecao Aberta' AND NOT IN 189 'DOCK4 Protecao Aberta' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:NOT, 5:$IN, 6:165, 7:DOCK1 Protecao Aberta, 8:AND, 9:NOT, 10:$IN, 11:173, 12:DOCK2 Protecao Aberta, 13:AND, 14:NOT, 15:$IN, 16:181, 17:DOCK3 Protecao Aberta, 18:AND, 19:NOT, 20:$IN, 21:189, 22:DOCK4 Protecao Aberta, 24:
+WAIT FOR  (  NOT $IN[165] AND  NOT $IN[173] AND  NOT $IN[181] AND  NOT $IN[189] ) 
+;ENDFOLD
+END

@@ -1,0 +1,22 @@
+&ACCESS RV2
+&COMMENT Check GRP ACTROS Z4 OPEN
+DEF chk_w5_grp4_opn( )
+
+; Check gripper actros OPEN Z4.1/2/3/4/5/6/7
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+;FOLD WAIT FOR ( IN 13 ' Z4.1 - Grampo Recuado - Actros Todos' AND IN 15 ' Z4.2 - Grampo Recuado - Actros Todos' AND IN 17 ' Z4.3 - Grampo Recuado - Actros Todos' AND IN 19 ' Z4.4 - Grampo Recuado - Actros Todos' AND IN 21 ' Z4.5 - Grampo Recuado - Actros Todos' AND IN 23 ' Z4.6 - Grampo Recuado - Actros Todos' AND IN 25 ' Z4.7 - Grampo Recuado - Actros Todos' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:13, 7: Z4.1 - Grampo Recuado - Actros Todos, 8:AND, 9:, 10:$IN, 11:15, 12: Z4.2 - Grampo Recuado - Actros Todos, 13:AND, 14:, 15:$IN, 16:17, 17: Z4.3 - Grampo Recuado - Actros Todos, 18:AND, 19:, 20:$IN, 21:19, 22: Z4.4 - Grampo Recuado - Actros Todos, 23:AND, 24:, 25:$IN, 26:21, 27: Z4.5 - Grampo Recuado - Actros Todos, 28:AND, 29:, 30:$IN, 31:23, 32: Z4.6 - Grampo Recuado - Actros Todos, 33:AND, 34:, 35:$IN, 36:25, 37: Z4.7 - Grampo Recuado - Actros Todos, 39:
+WAIT FOR  ( $IN[13] AND $IN[15] AND $IN[17] AND $IN[19] AND $IN[21] AND $IN[23] AND $IN[25] ) 
+;ENDFOLD
+;FOLD WAIT FOR ( NOT IN 14 ' Z4.1 - Grampo Avançado - Actros Todos' AND NOT IN 16 ' Z4.2 - Grampo Avançado - Actros Todos' AND NOT IN 18 ' Z4.3 - Grampo Avançado - Actros Todos' AND NOT IN 20 ' Z4.4 - Grampo Avançado - Actros Todos' AND NOT IN 22 ' Z4.5 - Grampo Avançado - Actros Todos' AND NOT IN 24 ' Z4.6 - Grampo Avançado - Actros Todos' AND NOT IN 26 ' Z4.7 - Grampo Avançado - Actros Todos' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:NOT, 5:$IN, 6:14, 7: Z4.1 - Grampo Avançado - Actros Todos, 8:AND, 9:NOT, 10:$IN, 11:16, 12: Z4.2 - Grampo Avançado - Actros Todos, 13:AND, 14:NOT, 15:$IN, 16:18, 17: Z4.3 - Grampo Avançado - Actros Todos, 18:AND, 19:NOT, 20:$IN, 21:20, 22: Z4.4 - Grampo Avançado - Actros Todos, 23:AND, 24:NOT, 25:$IN, 26:22, 27: Z4.5 - Grampo Avançado - Actros Todos, 28:AND, 29:NOT, 30:$IN, 31:24, 32: Z4.6 - Grampo Avançado - Actros Todos, 33:AND, 34:NOT, 35:$IN, 36:26, 37: Z4.7 - Grampo Avançado - Actros Todos, 39:
+WAIT FOR  (  NOT $IN[14] AND  NOT $IN[16] AND  NOT $IN[18] AND  NOT $IN[20] AND  NOT $IN[22] AND  NOT $IN[24] AND  NOT $IN[26] ) 
+;ENDFOLD
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+END

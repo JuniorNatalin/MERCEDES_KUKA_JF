@@ -1,0 +1,23 @@
+&ACCESS RV3
+&COMMENT Check GRP ACTROS Z2 OPEN
+DEF chk_w5_grp2_opn( )
+
+; Check gripper actros OPEN Z2
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+;FOLD WAIT FOR ( IN 9 ' Z2 - Grampo Recuado - Actros Todos' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:, 5:$IN, 6:9, 7: Z2 - Grampo Recuado - Actros Todos, 9:
+WAIT FOR  ( $IN[9] ) 
+;ENDFOLD
+;FOLD WAIT FOR ( NOT IN 10 ' Z2 - Grampo Avançado - Actros Todos' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:NOT, 5:$IN, 6:10, 7: Z2 - Grampo Avançado - Actros Todos, 9:
+WAIT FOR  (  NOT $IN[10] ) 
+;ENDFOLD
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+
+END

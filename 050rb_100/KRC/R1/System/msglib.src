@@ -1,0 +1,560 @@
+&ACCESS R
+&COMMENT library of msg-calls
+DEF  MsgLib ( )
+;************************************************************
+;Creation Date: 7.12.2007
+;Modification:  13.10.2010
+;------------------------------------------------------------
+;list of global subroutines and functions:
+;MsgNotify(sText[]:IN, sModul[]:IN, nNumPar:IN, sTextPar[]:IN, nMsgNr:IN)
+;MsgNotifyTextPar(sText[]:IN, sModul[]:IN, nNumPar:IN, sTextPar[]:IN, sTextPar2[]:IN, nMsgNr:IN)
+;MsgQuit(sText[]:IN, sModul[]:IN, nNumPar:IN, sTextPar[]:IN, nMsgNr:IN)
+;MsgState(nHandle:OUT, sText[]:IN, sModul[]:IN, nNumPar:IN, sTextPar[]:IN, nMsgNr:IN)
+;MsgLoop(sText[]:IN,sModul[]:IN)
+;MsgDialog(nAnswer:OUT,sText[]:IN,sModul[]:IN,sTextPar[]:IN,sDialogSK1[]:IN,sDialogSK2[]:IN,sDialogSK3[]:IN,sDialogSK4[]:IN,sDialogSK5[]:IN,sDialogSK6[]:IN,sDialogSK7[]:IN,NoBrakes:IN, nMsgNr:IN)
+;explanation for parameters
+;CHAR sText[]      message text or message DB-key (80 characters)
+;CHAR sModul[]     (option) modulname or modul DB-key (24 char)
+;INT nNumPar       (option)numeric value inserted in sText[] at the position %1
+;CHAR sTextPar[]   (option)text or message DB-key inserted in sText[] at the position %1 (26 char)
+;MsgNotifyTextPar("Error", "CrossMeld", 0, "Error message 1", "Error message 2", nMsgNr:IN)
+;examples
+;DECL INT myInt
+;MsgNotify("this is a notify message")
+;MsgQuit("this is a quit message", "myMod")
+;MsgQuit("this is a quit message", "myMod",,,12345)
+;myInt=123
+;MsgQuit("this is the %1 quit message", "Module", myInt)
+;MsgNotify("this is a %1 notify message", "Tech", , "asd")
+;MsgLoop("this is the loop message")
+;MsgLoop(" "); cancels loop message
+;MsgDialog(DialogAnswer, "DBKEY" OR "dialog message", "Module", "TextPar for %1 in DBKey", "DialogKey1", "DialogKey2", "DialogKey3",,,,,,12345) 
+;MsgDialog(DialogAnswer, "StartPTP", "CrossMeld", "Achse 3", "YES", "NO", "Cancel") 
+;MsgNotifyTextPar("DBKEY" OR "notify message", "Module", 0 OR >0, "TextPar for %1", "TextPar for %2")
+;nNumPar = 0: TextPar will be send as %1 %2  nNumPar > 0: nNumPar will be send as %1
+
+
+;************************************************************
+END
+
+GLOBAL DEF MsgNotify(sText[]:IN, sModul[]:IN, nNumPar:IN, sTextPar[]:IN, nMsgNr:IN)
+;************************************************************
+;Function: Executes a Message Send of the notify message
+;************************************************************
+Decl CHAR sText[], sModul[], sTextPar[]   
+Decl KrlMsg_T Msg
+Decl EKrlMsgType MsgType
+Decl KrlMsgParType_T MsgParType
+Decl KrlMsgPar_T MsgPar[3]
+Decl KrlMsgOpt_T MsgOpt
+Decl State_T State
+Decl Int count, len, offset, nNumPar, nHandle, nMsgNr
+
+MsgType=#Notify
+Msg.Nr=1
+Err_Clear($Err)
+On_Error_Proceed
+Msg.Nr=nMsgNr
+len=Strlen(sText[])
+if len>0 then
+  if len>80 then
+    len=80
+  endif
+  for count=1 to len
+    Msg.Msg_txt[count]=sText[count]
+  endfor
+else
+  Msg.Msg_txt[]="parameter sText[] is missing"
+endif
+len=Strlen(sModul[])
+if len>0 then
+  if len>24 then
+    len=24
+  endif
+  for count=1 to len
+    Msg.Modul[count]=sModul[count]
+  endfor
+else
+  Msg.Modul[]="Appl" 
+endif
+Err_Clear($Err)
+On_Error_Proceed
+offset=nNumPar
+if $Err.Number==0 then
+  offset=0
+  MsgPar[1].Par_Txt[]=" "
+  SWRITE(MsgPar[1].Par_Txt[], State, Offset, "%d", nNumPar)
+  MsgPar[1].Par_type=#Value
+else
+  Err_Clear($Err)
+  On_Error_Proceed
+  len=Strlen(sTextPar[])
+  if len>0 then
+    if len>26 then
+      len=26
+    endif
+    for count=1 to len
+      MsgPar[1].Par_Txt[count]=sTextPar[count]
+    endfor
+    MsgPar[1].Par_type=#Value 
+  endif
+endif
+MsgOpt={ VL_Stop True, Clear_P_Reset True, Log_To_DB False }
+nHandle=Set_KrlMsg (MsgType, Msg, MsgPar[], MsgOpt)
+END 
+
+GLOBAL DEF MsgQuit(sText[]:IN, sModul[]:IN, nNumPar:IN, sTextPar[]:IN, nMsgNr:IN)
+;************************************************************
+;Function: Executes a Message Send of the quit message
+;************************************************************
+Decl CHAR sText[], sModul[], sTextPar[]  
+Decl KrlMsg_T Msg
+Decl EKrlMsgType MsgType
+Decl KrlMsgParType_T MsgParType
+Decl KrlMsgPar_T MsgPar[3]
+Decl KrlMsgOpt_T MsgOpt
+Decl State_T State
+Decl Int count, len, offset, nNumPar, nHandle, nMsgNr
+
+MsgType=#Quit
+Msg.Nr=1
+Err_Clear($Err)
+On_Error_Proceed
+Msg.Nr=nMsgNr
+len=Strlen(sText[])
+if len>0 then
+  if len>80 then
+    len=80
+  endif
+  for count=1 to len
+    Msg.Msg_txt[count]=sText[count]
+  endfor
+else
+  Msg.Msg_txt[]="parameter sText[] is missing"
+endif
+len=Strlen(sModul[])
+if len>0 then
+  if len>24 then
+    len=24
+  endif
+  for count=1 to len
+    Msg.Modul[count]=sModul[count]
+  endfor
+else
+  Msg.Modul[]="Appl" 
+endif
+Err_Clear($Err)
+On_Error_Proceed
+offset=nNumPar
+if $Err.Number==0 then
+  offset=0
+  MsgPar[1].Par_Txt[]=" "
+  SWRITE(MsgPar[1].Par_Txt[], State, offset, "%d", nNumPar)
+  MsgPar[1].Par_type=#Value
+else
+  Err_Clear($Err)
+  len=Strlen(sTextPar[])
+  if len>0 then
+    if len>26 then
+      len=26
+    endif
+    for count=1 to len
+      MsgPar[1].Par_Txt[count]=sTextPar[count]
+    endfor
+    MsgPar[1].Par_type=#Value 
+  endif
+endif
+MsgOpt={ VL_Stop True, Clear_P_Reset True, Log_To_DB False }
+nHandle=Set_KrlMsg (MsgType, Msg, MsgPar[], MsgOpt)
+while ( Exists_KrlMsg(nHandle) ) 
+  wait sec 0.1
+endwhile
+END 
+
+GLOBAL DEF MsgState(nHandle:OUT, sText[]:IN, sModul[]:IN, nNumPar:IN, sTextPar[]:IN, nMsgNr:IN)
+;************************************************************
+;Function: Executes a Message Send of the state message
+;************************************************************
+Decl CHAR sText[], sModul[], sTextPar[]  
+Decl KrlMsg_T Msg
+Decl EKrlMsgType MsgType
+Decl KrlMsgParType_T MsgParType
+Decl KrlMsgPar_T MsgPar[3]
+Decl KrlMsgOpt_T MsgOpt
+Decl State_T State
+Decl Int count, len, offset, nNumPar, nHandle, nMsgNr
+
+MsgType=#State
+Msg.Nr=1
+Err_Clear($Err)
+On_Error_Proceed
+Msg.Nr=nMsgNr
+len=Strlen(sText[])
+if len>0 then
+  if len>80 then
+    len=80
+  endif
+  for count=1 to len
+    Msg.Msg_txt[count]=sText[count]
+  endfor
+else
+  Msg.Msg_txt[]="parameter sText[] is missing"
+endif
+len=Strlen(sModul[])
+if len>0 then
+  if len>24 then
+    len=24
+  endif
+  for count=1 to len
+    Msg.Modul[count]=sModul[count]
+  endfor
+else
+  Msg.Modul[]="Appl" 
+endif
+Err_Clear($Err)
+On_Error_Proceed
+offset=nNumPar
+if $Err.Number==0 then
+  offset=0
+  MsgPar[1].Par_Txt[]=" "
+  SWRITE(MsgPar[1].Par_Txt[], State, offset, "%d", nNumPar)
+  MsgPar[1].Par_type=#Value
+else
+  Err_Clear($Err)
+  len=Strlen(sTextPar[])
+  if len>0 then
+    if len>26 then
+      len=26
+    endif
+    for count=1 to len
+      MsgPar[1].Par_Txt[count]=sTextPar[count]
+    endfor
+    MsgPar[1].Par_type=#Value 
+  endif
+endif
+MsgOpt={ VL_Stop True, Clear_P_Reset True, Log_To_DB False }
+nHandle=Set_KrlMsg (MsgType, Msg, MsgPar[], MsgOpt)
+END 
+
+GLOBAL DEF MsgLoop(sText[]:IN,sModul[]:IN)
+;************************************************************
+;Function: Executes a Message Send of the loop message
+;************************************************************
+Decl CHAR sText[], sModul[]
+Decl CHAR sMsg[80]
+Decl CHAR sMod[24]
+Decl Int count,len
+
+len=Strlen(sText[])
+if len>0 then
+  if len>80 then
+    len=80
+  endif
+  for count=1 to len
+    sMsg[count]=sText[count]
+  endfor
+endif
+len=Strlen(sModul[])
+if len>0 then
+  if len>24 then
+    len=24
+  endif
+  for count=1 to len
+    sMod[count]=sModul[count]
+  endfor
+else
+  sMod[]="Appl" 
+endif
+if (Strlen(sMsg[])>0) then
+  if lnHandle>0 then
+    wait for Clear_KrlMsg (lnHandle) OR TRUE
+    lnHandle=0
+  endif
+  for count=1 to Strlen(sMsg[])
+    if sMsg[count]<>" " then
+      MsgState(lnHandle, sMsg[], sMod[])
+	  EXIT
+    endif
+  endfor  
+endif
+END 
+
+GLOBAL DEF MsgDialog(nAnswer:OUT,sText[]:IN,sModul[]:IN,sTextPar[]:IN,sDialogSK1[]:IN,sDialogSK2[]:IN,sDialogSK3[]:IN,sDialogSK4[]:IN,sDialogSK5[]:IN,sDialogSK6[]:IN,sDialogSK7[]:IN,NoBrakes:IN, nMsgNr:IN)
+;************************************************************
+;Function: Executes a dialog
+;parameter NoBrakes causes the robot to leave brakes open
+;************************************************************
+Decl KrlMsg_T Msg
+Decl EKrlMsgType MsgType
+Decl KrlMsgPar_T MsgPar[3]
+Decl KrlMsgOpt_T MsgOpt
+DECL KrlMsgDlgSK_T Msg_SOFTKEY[7]
+Decl Int count, len, nHandle, nAnswer, nMsgNr
+Decl BOOL NoBrakes
+
+Decl CHAR sText[], sModul[], sTextPar[], sDialogSK1[], sDialogSK2[], sDialogSK3[], sDialogSK4[], sDialogSK5[], sDialogSK6[], sDialogSK7[]
+Decl CHAR sMsg[80]
+
+Msg.Nr=1
+Err_Clear($Err)
+On_Error_Proceed
+Msg.Nr=nMsgNr
+len=Strlen(sText[])
+if len>0 then
+  if len>80 then
+    len=80
+  endif
+  for count=1 to len
+    Msg.Msg_txt[count]=sText[count]
+  endfor
+else
+  Msg.Msg_txt[]="parameter sText[] is missing"
+endif
+len=Strlen(sModul[])
+if len>0 then
+  if len>24 then
+    len=24
+  endif
+  for count=1 to len
+    Msg.Modul[count]=sModul[count]
+  endfor
+else
+  Msg.Modul[]="Appl" 
+endif
+
+Err_Clear($Err)
+On_Error_Proceed
+len=Strlen(sDialogSK1[])
+if $Err.Number==0 then
+  if len > 0 then
+    if len>24 then
+      len=24
+    endif
+    Msg_SOFTKEY[7].Sk_Type = #KEY
+    for count=1 to len
+      Msg_SOFTKEY[7].Sk_txt[count] = sDialogSK1[count]
+    endfor
+  endif
+else
+    for count=1 to 24
+      Msg_SOFTKEY[7].Sk_txt[count] = " "
+    endfor
+endif
+Err_Clear($Err)
+On_Error_Proceed
+len=Strlen(sDialogSK2[])
+if $Err.Number==0 then
+  len=Strlen(sDialogSK2[])
+  if len > 0 then
+    if len>24 then
+      len=24
+    endif
+    Msg_SOFTKEY[6].Sk_Type = #KEY
+    for count=1 to len
+      Msg_SOFTKEY[6].Sk_txt[count] = sDialogSK2[count]
+    endfor
+  endif
+else
+    for count=1 to 24
+      Msg_SOFTKEY[6].Sk_txt[count] = " "
+    endfor
+endif
+Err_Clear($Err)
+On_Error_Proceed
+len=Strlen(sDialogSK3[])
+if $Err.Number==0 then
+  len=Strlen(sDialogSK3[])
+  if len > 0 then
+    if len>24 then
+      len=24
+    endif
+    Msg_SOFTKEY[5].Sk_Type = #KEY
+    for count=1 to len
+      Msg_SOFTKEY[5].Sk_txt[count] = sDialogSK3[count]
+    endfor
+  endif
+else
+    for count=1 to 24
+      Msg_SOFTKEY[5].Sk_txt[count] = " "
+    endfor
+endif
+Err_Clear($Err)
+On_Error_Proceed
+len=Strlen(sDialogSK4[])
+if $Err.Number==0 then
+  len=Strlen(sDialogSK4[])
+  if len > 0 then
+    if len>24 then
+      len=24
+    endif
+    Msg_SOFTKEY[4].Sk_Type = #KEY
+    for count=1 to len
+      Msg_SOFTKEY[4].Sk_txt[count] = sDialogSK4[count]
+    endfor
+  endif
+else
+    for count=1 to 24
+      Msg_SOFTKEY[4].Sk_txt[count] = " "
+    endfor
+endif
+Err_Clear($Err)
+On_Error_Proceed
+len=Strlen(sDialogSK5[])
+if $Err.Number==0 then
+  len=Strlen(sDialogSK5[])
+  if len > 0 then
+    if len>24 then
+      len=24
+    endif
+    Msg_SOFTKEY[3].Sk_Type = #KEY
+    for count=1 to len
+      Msg_SOFTKEY[3].Sk_txt[count] = sDialogSK5[count]
+    endfor
+  endif
+else
+    for count=1 to 24
+      Msg_SOFTKEY[3].Sk_txt[count] = " "
+    endfor
+endif
+Err_Clear($Err)
+On_Error_Proceed
+len=Strlen(sDialogSK6[])
+if $Err.Number==0 then
+  len=Strlen(sDialogSK6[])
+  if len > 0 then
+    if len>24 then
+      len=24
+    endif
+    Msg_SOFTKEY[2].Sk_Type = #KEY
+    for count=1 to len
+      Msg_SOFTKEY[2].Sk_txt[count] = sDialogSK6[count]
+    endfor
+  endif
+else
+    for count=1 to 24
+      Msg_SOFTKEY[2].Sk_txt[count] = " "
+    endfor
+endif
+Err_Clear($Err)
+On_Error_Proceed
+len=Strlen(sDialogSK7[])
+if $Err.Number==0 then
+  len=Strlen(sDialogSK7[])
+  if len > 0 then
+    if len>24 then
+      len=24
+    endif
+    Msg_SOFTKEY[1].Sk_Type = #KEY
+    for count=1 to len
+      Msg_SOFTKEY[1].Sk_txt[count] = sDialogSK7[count]
+    endfor
+  endif
+else
+    for count=1 to 24
+      Msg_SOFTKEY[1].Sk_txt[count] = " "
+    endfor
+endif
+len=Strlen(sTextPar[])
+if len>0 then
+  if len>26 then
+    len=26
+  endif
+  for count=1 to len
+    MsgPar[1].Par_Txt[count]=sTextPar[count]
+  endfor
+  MsgPar[1].Par_type=#Value 
+endif
+  
+MsgOpt={ VL_Stop True, Clear_P_Reset True, Log_To_DB False }
+  
+nHandle=SET_KRLDLG(Msg, MsgPar[], Msg_SOFTKEY[], MsgOpt)
+
+Err_Clear($Err)
+On_Error_Proceed
+NoBrakes=NoBrakes
+if NOT($Err.Number==0) then
+  NoBrakes=FALSE
+endif
+If (nHandle > 0) Then
+   WHILE (Exists_KrlDlg(nHandle, nAnswer))
+      WAIT SEC 0.5
+      if NoBrakes then
+        PTP $AXIS_ACT
+      endif
+   ENDWHILE
+endif
+END
+
+GLOBAL DEF MsgNotifyTextPar(sText[]:IN, sModul[]:IN, nNumPar:IN, sTextPar[]:IN, sTextPar2[]:IN, nMsgNr:IN)
+;************************************************************
+;Function: Executes a Message Send of the notify message with text parameter
+;************************************************************
+Decl CHAR sText[], sModul[], sTextPar[], sTextPar2[]
+Decl KrlMsg_T Msg
+Decl EKrlMsgType MsgType
+Decl KrlMsgParType_T MsgParType
+Decl KrlMsgPar_T MsgPar[3]
+Decl KrlMsgOpt_T MsgOpt
+Decl State_T State
+Decl Int count, len, offset, nNumPar, nHandle, nMsgNr
+
+MsgType=#Notify
+Msg.Nr=1
+Err_Clear($Err)
+On_Error_Proceed
+Msg.Nr=nMsgNr
+len=Strlen(sText[])
+if len>0 then
+  if len>80 then
+    len=80
+  endif
+  for count=1 to len
+    Msg.Msg_txt[count]=sText[count]
+  endfor
+else
+  Msg.Msg_txt[]="parameter sText[] is missing"
+endif
+len=Strlen(sModul[])
+if len>0 then
+  if len>24 then
+    len=24
+  endif
+  for count=1 to len
+    Msg.Modul[count]=sModul[count]
+  endfor
+else
+  Msg.Modul[]="Appl" 
+endif
+offset=nNumPar
+if nNumPar==0 then
+   ; übergebener Parameter 1
+   len=Strlen(sTextPar[])
+   if len>0 then
+      if len>26 then
+         len=26
+      endif
+      for count=1 to len
+         MsgPar[1].Par_Txt[count]=sTextPar[count]
+      endfor
+      MsgPar[1].Par_type=#Value 
+   endif  
+   ; übergebener Parameter 2
+   len=Strlen(sTextPar2[])
+   if len>0 then
+      if len>26 then
+         len=26
+      endif
+      for count=1 to len
+         MsgPar[2].Par_Txt[count]=sTextPar2[count]
+      endfor
+      MsgPar[2].Par_type=#Value 
+   endif  
+else
+   offset=0
+   MsgPar[1].Par_Txt[]=" "
+   SWRITE(MsgPar[1].Par_Txt[], State, Offset, "%d", nNumPar)
+   MsgPar[1].Par_type=#Value
+endif
+MsgOpt={ VL_Stop True, Clear_P_Reset True, Log_To_DB False }
+nHandle=Set_KrlMsg (MsgType, Msg, MsgPar[], MsgOpt)
+END 

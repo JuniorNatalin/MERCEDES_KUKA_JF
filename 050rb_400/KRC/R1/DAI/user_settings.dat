@@ -1,0 +1,114 @@
+&ACCESS RVO
+&REL 59
+&COMMENT user_settings
+&USER PKL_AST
+&PARAM DISKPATH = DAI
+&PARAM version = 2.0
+DEFDAT user_settings PUBLIC
+
+
+;FOLD Visu-Signals
+DECL GLOBAL Tech Tech_Visu[5]
+
+	; @programmer
+	; Block A
+   Tech_Visu[1]={TechShortcut[] " ", IsActive #No}
+	
+	; Block B
+	Tech_Visu[2]={TechShortcut[] " ", IsActive #No}
+	   
+	; Block C
+	Tech_Visu[3]={TechShortcut[] " ", IsActive #No}
+	
+	; Block D
+	Tech_Visu[4]={TechShortcut[] " ", IsActive #No}
+       
+	; Block E
+	Tech_Visu[5]={TechShortcut[] " ",IsActive #No}
+	
+ ;ENDFOLD Visu-Signals
+ 
+ 
+ ;FOLD BedingterHalt / Conditional Stop
+DECL GLOBAL BOOL BedHalt[32]
+
+; @programmer
+BedHalt[1]=FALSE
+BedHalt[2]=FALSE
+BedHalt[3]=FALSE
+BedHalt[4]=FALSE
+BedHalt[5]=FALSE
+BedHalt[6]=FALSE
+BedHalt[7]=FALSE
+BedHalt[8]=FALSE
+BedHalt[9]=FALSE
+BedHalt[10]=FALSE
+BedHalt[11]=FALSE
+BedHalt[12]=FALSE
+BedHalt[13]=FALSE
+BedHalt[14]=FALSE
+BedHalt[15]=FALSE
+BedHalt[16]=FALSE
+BedHalt[17]=FALSE
+BedHalt[18]=FALSE
+BedHalt[19]=FALSE
+BedHalt[20]=FALSE
+BedHalt[21]=FALSE
+BedHalt[22]=FALSE
+BedHalt[23]=FALSE
+BedHalt[24]=FALSE
+BedHalt[25]=FALSE
+BedHalt[26]=FALSE
+BedHalt[27]=FALSE
+BedHalt[28]=FALSE
+BedHalt[29]=FALSE
+BedHalt[30]=FALSE
+BedHalt[31]=FALSE
+BedHalt[32]=FALSE
+;Endfold 
+
+;FOLD Steuerluftmonitoring
+;STEU_LU_MON() in DAI_CTRL_LIB.src
+
+; es gibt maximal 2 Ausgaenge ( ggf. 2 Ventile) um die Steuerluft zu schalten 
+; und 2 korrespondierende Eingaenge, die den Druck ueberwachen.
+; diese 4 IO'S liegen je nach Applikation unterschiedlich und muessen 
+; in SLWKZ [x] konfiguriert werden
+
+; der Ausgang O_SPS_LUFT signalisiert der SPS, dass der Roboter die Luft eingeschaltet hat
+; der Ausgang O_SPS_RM_LUFT signalisiert der SPS, dass das Ventil geschaltet hat
+; 
+; gibt es z.B. ein festes und ein stat WKZ, dann werden beide ueberwacht
+
+DECL GLOBAL INT O_SPS_SLUFT=3407 ;Steuerluft eingeschaltet an SPS
+DECL GLOBAL INT O_SPS_RM_SLUFT=3408 ;Rueckmeldung von S_LUFTVENTIL
+DECL GLOBAL BOOL SLUFT_AUS=FALSE ; wird fuer Tool_change benoetigt und dort beim Koppeln gesetzt
+
+GLOBAL ENUM SLWKZTyp Leer,Fest,Wechsel,Stat
+
+;Werkzeugtyp ...SLWKZTYP
+;Leer    = nicht belegt  ---Steuerluft wird nicht beruecksichtigt z.B. Sauggreifer
+;Fest    = Werkzeug fest am Roboter angeflanscht  --- Steuerluft wird immer ueberwacht       
+;Wechsel = Wechselwerkzeug  --- Steuerluft wird beim An/Abdocken abgeschaltet    
+;Stat    = Stationaeres Werkzeug  --- Steuerluft wird immer ueberwacht 
+
+
+GLOBAL STRUC SLUFTType SLWKZTyp Typ,INT I_SLUFT_RM1,INT I_SLUFT_RM2,INT O_SLUFT_1,INT O_SLUFT_2
+
+DECL GLOBAL INT MaxSLWKZ=6 ; Max Anzahl der Steuerluftwerkzeuge
+DECL GLOBAL SLUFTType SLWKZ[6]
+
+; der Eintrag Wechsel setzt das Technologiepaket Paket "DAI_Tool_Change" vorraus
+
+SLWKZ[1]={Typ #Fest,I_SLUFT_RM1 1,I_SLUFT_RM2 0,O_SLUFT_1 1,O_SLUFT_2 0}
+SLWKZ[2]={Typ #Leer,I_SLUFT_RM1 0,I_SLUFT_RM2 0,O_SLUFT_1 0,O_SLUFT_2 0}
+SLWKZ[3]={Typ #Leer,I_SLUFT_RM1 0,I_SLUFT_RM2 0,O_SLUFT_1 0,O_SLUFT_2 0}
+SLWKZ[4]={Typ #Leer,I_SLUFT_RM1 0,I_SLUFT_RM2 0,O_SLUFT_1 0,O_SLUFT_2 0}
+SLWKZ[5]={Typ #Leer,I_SLUFT_RM1 0,I_SLUFT_RM2 0,O_SLUFT_1 0,O_SLUFT_2 0}
+SLWKZ[6]={Typ #Leer,I_SLUFT_RM1 0,I_SLUFT_RM2 0,O_SLUFT_1 0,O_SLUFT_2 0}
+
+
+;ENDFOLD (Steuerluftmonitoring)
+
+          
+ENDDAT

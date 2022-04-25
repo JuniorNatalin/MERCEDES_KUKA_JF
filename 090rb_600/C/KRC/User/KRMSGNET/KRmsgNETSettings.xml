@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+  <Channels>5</Channels>
+  <Channel0>
+    <Name>Kanal1</Name>
+    <ipAdress>192.168.0.1</ipAdress>
+    <portID>9050</portID>
+    <CurrentFilter>127</CurrentFilter>
+  </Channel0>
+  <Channel1>
+    <Name>Kanal2</Name>
+    <ipAdress>0.0.0.0</ipAdress>
+    <portID>0</portID>
+    <CurrentFilter>63</CurrentFilter>
+  </Channel1>
+  <Channel2>
+    <Name>Kanal3</Name>
+    <ipAdress>0.0.0.0</ipAdress>
+    <portID>0</portID>
+    <CurrentFilter>63</CurrentFilter>
+  </Channel2>
+  <Channel3>
+    <Name>Kanal4</Name>
+    <ipAdress>0.0.0.0</ipAdress>
+    <portID>0</portID>
+    <CurrentFilter>63</CurrentFilter>
+  </Channel3>
+  <Channel4>
+    <Name>Kanal5</Name>
+    <ipAdress>0.0.0.0</ipAdress>
+    <portID>0</portID>
+    <CurrentFilter>63</CurrentFilter>
+  </Channel4>
+</Settings>

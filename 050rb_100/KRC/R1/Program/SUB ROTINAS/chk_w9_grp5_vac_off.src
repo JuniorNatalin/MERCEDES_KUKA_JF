@@ -1,0 +1,22 @@
+&ACCESS RVP4
+&COMMENT Axor Traseiro Vaccum off
+DEF chk_w9_grp5_vac_off( )
+
+; Check Vacuum on gripper AXOR/ATEGO TRASEIRO
+;//---- Start User-------
+
+$TIMER[10] = 0
+$TIMER_STOP[10] = FALSE
+
+;FOLD WAIT FOR ( NOT IN 503 'Z6.1 - Vacuo Desligado - AXOR ATEGO 903' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:NOT, 5:$IN, 6:503, 7:Z6.1 - Vacuo Desligado - AXOR ATEGO 903, 9:
+WAIT FOR  (  NOT $IN[503] ) 
+;ENDFOLD
+;FOLD WAIT FOR ( NOT IN 504 'Z6.1 - Vacuo Ligado - AXOR ATEGO 903' );%{PE}%R 8.2.20,%MKUKATPBASIS,%CEXT_WAIT_FOR,%VEXT_WAIT_FOR,%P 2:, 4:NOT, 5:$IN, 6:504, 7:Z6.1 - Vacuo Ligado - AXOR ATEGO 903, 9:
+WAIT FOR  (  NOT $IN[504] ) 
+;ENDFOLD
+
+$TIMER_STOP[10] = TRUE
+$TIMER[10] = 0
+
+;//---- End User---------
+END

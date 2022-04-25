@@ -1,0 +1,13 @@
+&ACCESS RVO2
+&REL 153
+&COMMENT end_weld_GEO
+&PARAM DISKPATH = KRC:\R1\Program\SubRotinas
+DEF end_weld_GEO( )
+;
+; ROBO FIM DE PRECESSO DE SOLDA COM GRIPPER
+; 
+;FOLD PULSE 3338 'R1 solda geometria concluida' State=TRUE Time=3 sec;%{PE}%R 8.2.20,%MKUKATPBASIS,%COUT,%VPULSE,%P 2:3338, 3:R1 solda geometria concluida, 5:TRUE, 6:, 8:3
+PULSE($OUT[3338], TRUE,3)
+;ENDFOLD
+;
+END
